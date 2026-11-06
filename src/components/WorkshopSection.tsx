@@ -164,7 +164,7 @@ export const WorkshopSection: React.FC = () => {
             </div>
             <div>
               <span className="text-[11px] text-zinc-400 uppercase tracking-wide block font-medium">Warranty Covenant</span>
-              <span className="text-[16px] font-semibold text-[#dc2626]">5,000 km Written</span>
+              <span className="text-[16px] font-semibold text-white">5,000 km Written</span>
             </div>
             <div>
               <span className="text-[11px] text-zinc-400 uppercase tracking-wide block font-medium">Inspection Points</span>
@@ -196,11 +196,11 @@ export const WorkshopSection: React.FC = () => {
                   onClick={() => setActiveStage(i)}
                   className={`p-3.5 rounded-[16px] text-left transition-all cursor-pointer flex flex-col justify-between h-[96px] ${
                     isActive
-                      ? 'bg-[#121215] shadow-xs border-2 border-[#dc2626]'
+                      ? 'bg-[#18181c] shadow-xs border-2 border-white'
                       : 'bg-[#121215]/60 hover:bg-[#121215] border border-[#27272a]'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-[#dc2626]' : 'text-zinc-400'}`} />
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-zinc-400'}`} />
                   <span className={`text-[12px] font-semibold ${isActive ? 'text-white' : 'text-zinc-400'}`}>
                     {st.title.split('. ')[1]}
                   </span>
@@ -213,13 +213,13 @@ export const WorkshopSection: React.FC = () => {
           <div className="bg-[#121215] p-8 rounded-[20px] border border-[#27272a] space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#121215]">
               <div>
-                <span className="text-[12px] font-semibold text-[#dc2626] uppercase tracking-wide">
+                <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest">
                   Stage {activeStage + 1} of 6
                 </span>
                 <h3 className="text-[22px] font-semibold text-white">{stages[activeStage].title}</h3>
                 <p className="text-[14px] text-zinc-400 font-medium">{stages[activeStage].tagline}</p>
               </div>
-              <span className="inline-flex items-center gap-1.5 text-[12px] bg-emerald-50 text-emerald-700 font-semibold px-3 py-1 rounded-full w-fit">
+              <span className="inline-flex items-center gap-1.5 text-[12px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-semibold px-3 py-1 rounded-full w-fit">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Mandatory Handover Pass
               </span>
@@ -236,7 +236,7 @@ export const WorkshopSection: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {stages[activeStage].checklist.map((item, idx) => (
                   <div key={idx} className="flex items-start gap-2.5 text-[13px] text-white">
-                    <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -260,7 +260,7 @@ export const WorkshopSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-[#27272a]">
             <div className="space-y-4">
               <h4 className="text-[16px] font-semibold text-white flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#dc2626]" />
+                <ShieldCheck className="w-4 h-4 text-zinc-300" />
                 Covered Systems
               </h4>
               <ul className="space-y-2 text-[14px] text-zinc-400">
@@ -273,7 +273,7 @@ export const WorkshopSection: React.FC = () => {
 
             <div className="space-y-4">
               <h4 className="text-[16px] font-semibold text-white flex items-center gap-2">
-                <FileCheck className="w-4 h-4 text-[#dc2626]" />
+                <FileCheck className="w-4 h-4 text-zinc-300" />
                 Customer Assurance
               </h4>
               <ul className="space-y-2 text-[14px] text-zinc-400">
@@ -313,7 +313,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.name}
                     onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
 
@@ -325,7 +325,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.phone}
                     onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
 
@@ -334,7 +334,7 @@ export const WorkshopSection: React.FC = () => {
                   <select
                     value={bookingData.serviceType}
                     onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   >
                     <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
                     <option value="5,000 km Periodic Service">5,000 km Periodic Service</option>
@@ -354,7 +354,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.vehicleModel}
                     onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
                     placeholder="e.g. Toyota RAV4 (KDD 123X)"
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
 
@@ -364,7 +364,7 @@ export const WorkshopSection: React.FC = () => {
                     type="date"
                     value={bookingData.preferredDate}
                     onChange={(e) => setBookingData({ ...bookingData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
               </div>

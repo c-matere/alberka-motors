@@ -116,21 +116,21 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           <div className="flex items-center gap-2 bg-[#121215] p-1 rounded-full border border-[#27272a]">
             <button
               onClick={handlePrev}
-              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-[#dc2626] text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
               title="Previous vehicle slide"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-[#dc2626] text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
               title="Next vehicle slide"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-[#dc2626] text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
               title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
@@ -151,15 +151,15 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       <div
         ref={sliderRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-6 overflow-x-auto pb-6 pt-2 px-4 no-scrollbar snap-x snap-mandatory scroll-smooth"
-        style={{ scrollPaddingLeft: '24px', scrollPaddingRight: '24px' }}
+        className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 px-3 sm:px-4 no-scrollbar snap-x snap-mandatory scroll-smooth"
+        style={{ scrollPaddingLeft: '16px', scrollPaddingRight: '16px', WebkitOverflowScrolling: 'touch' }}
       >
         {vehicles.map((vehicle, idx) => {
           const isActive = idx === activeIndex;
           return (
             <div
               key={vehicle.id}
-              className={`showroom-slide snap-center shrink-0 w-[88vw] sm:w-[500px] md:w-[560px] lg:w-[600px] transition-all duration-500 ease-out ${
+              className={`showroom-slide snap-center shrink-0 w-[86vw] sm:w-[480px] md:w-[540px] lg:w-[580px] transition-[transform,opacity] duration-350 ease-out ${
                 isActive ? 'scale-100 opacity-100' : 'scale-[0.98] opacity-85 hover:opacity-100'
               }`}
             >
@@ -168,6 +168,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 isFavorite={favorites.includes(vehicle.id)}
                 onToggleFavorite={onToggleFavorite}
                 onSelect={onSelectVehicle}
+                disableScrollReveal={true}
               />
             </div>
           );
@@ -183,10 +184,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               <button
                 key={v.id}
                 onClick={() => scrollToSlide(idx)}
-                className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
                   isActive
-                    ? 'w-10 bg-[#dc2626] shadow-md shadow-red-600/40'
-                    : 'w-2.5 bg-[#27272a] hover:bg-zinc-500'
+                    ? 'w-8 bg-[#dc2626]'
+                    : 'w-2 bg-[#27272a] hover:bg-zinc-500'
                 }`}
                 title={`Slide ${idx + 1}: ${v.name}`}
               />

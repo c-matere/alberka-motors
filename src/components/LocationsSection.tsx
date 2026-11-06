@@ -55,7 +55,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="launch-status-label">Coast Operations Hub</span>
-                <span className="text-[11px] font-semibold text-[#dc2626] bg-blue-50 px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] font-medium text-zinc-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
                   Main Workshop On-Site
                 </span>
               </div>
@@ -67,17 +67,17 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
               <div className="space-y-3 py-6 border-y border-[#27272a] text-[13px]">
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#dc2626]" />
-                  <a href="tel:+254714333888" className="font-medium hover:text-[#dc2626]">+254 714 333888</a>
+                  <Phone className="w-4 h-4 text-zinc-400" />
+                  <a href="tel:+254714333888" className="font-medium hover:text-white">+254 714 333888</a>
                   <span className="text-[#27272a]">|</span>
-                  <a href="tel:+254737333888" className="font-medium hover:text-[#dc2626]">+254 737 333888</a>
+                  <a href="tel:+254737333888" className="font-medium hover:text-white">+254 737 333888</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-[#dc2626]" />
-                  <a href="mailto:sales@alberkamotors.co.ke" className="hover:text-[#dc2626]">sales@alberkamotors.co.ke</a>
+                  <Mail className="w-4 h-4 text-zinc-400" />
+                  <a href="mailto:sales@alberkamotors.co.ke" className="hover:text-white">sales@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Clock className="w-4 h-4 text-[#dc2626]" />
+                  <Clock className="w-4 h-4 text-zinc-400" />
                   <span>Mon – Sat: 8:00 AM – 6:00 PM (Sunday by appointment)</span>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="launch-status-label">Capital City Hub</span>
-                <span className="text-[11px] font-semibold text-[#dc2626] bg-blue-50 px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] font-semibold text-zinc-300 bg-white/10 px-2.5 py-0.5 rounded-full">
                   Westlands Prime
                 </span>
               </div>
@@ -113,16 +113,16 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
               <div className="space-y-3 py-6 border-y border-[#27272a] text-[13px]">
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#dc2626]" />
-                  <a href="tel:+254748999333" className="font-medium hover:text-[#dc2626]">+254 748 999333</a>
+                  <Phone className="w-4 h-4 text-zinc-400" />
+                  <a href="tel:+254748999333" className="font-medium text-white hover:text-zinc-300">+254 748 999333</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-[#dc2626]" />
-                  <a href="mailto:nairobi@alberkamotors.co.ke" className="hover:text-[#dc2626]">nairobi@alberkamotors.co.ke</a>
+                  <Mail className="w-4 h-4 text-zinc-400" />
+                  <a href="mailto:nairobi@alberkamotors.co.ke" className="text-zinc-300 hover:text-white">nairobi@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Clock className="w-4 h-4 text-[#dc2626]" />
-                  <span>Mon – Sat: 8:30 AM – 6:00 PM (Sunday by appointment)</span>
+                  <Clock className="w-4 h-4 text-zinc-400" />
+                  <span className="text-zinc-300">Mon – Sat: 8:30 AM – 6:00 PM (Sunday by appointment)</span>
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     value={testDriveData.name}
                     onChange={(e) => setTestDriveData({ ...testDriveData, name: e.target.value })}
                     placeholder="e.g. David Mwangi"
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
 
@@ -181,7 +181,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     value={testDriveData.phone}
                     onChange={(e) => setTestDriveData({ ...testDriveData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
 
@@ -190,7 +190,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <select
                     value={testDriveData.location}
                     onChange={(e) => setTestDriveData({ ...testDriveData, location: e.target.value })}
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   >
                     <option value="Mombasa — Tangana Road">Mombasa (Tangana Road Flagship)</option>
                     <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
@@ -205,7 +205,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <select
                     value={testDriveData.carName}
                     onChange={(e) => setTestDriveData({ ...testDriveData, carName: e.target.value })}
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.name}>
@@ -221,7 +221,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     type="date"
                     value={testDriveData.preferredDate}
                     onChange={(e) => setTestDriveData({ ...testDriveData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   />
                 </div>
 
@@ -230,7 +230,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <select
                     value={testDriveData.timeSlot}
                     onChange={(e) => setTestDriveData({ ...testDriveData, timeSlot: e.target.value })}
-                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-3 rounded-[12px] bg-[#121215] border border-[#27272a] text-[14px] text-white focus:outline-none focus:border-zinc-400"
                   >
                     <option value="Morning (9:00 AM – 12:00 PM)">Morning (9:00 AM – 12:00 PM)</option>
                     <option value="Afternoon (1:00 PM – 4:00 PM)">Afternoon (1:00 PM – 4:00 PM)</option>

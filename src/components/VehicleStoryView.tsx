@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useAnimatedNumber } from '../hooks/useAnimations';
+import { SkeletonImage } from './SkeletonImage';
 
 interface VehicleStoryViewProps {
   vehicle: Vehicle;
@@ -85,9 +86,18 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     <div className="w-full bg-[#121215] text-white pb-24">
       
       {/* 1. APPLE IPHONE DUO STYLE VEHICLE SWITCHER TABS */}
-      <div className="w-full bg-[#121215]/95 backdrop-blur-md border-b border-[#27272a] py-2.5 px-3 sm:px-4 sticky top-[104px] z-30 transition-all">
+      <div className="w-full bg-[#121215]/95 backdrop-blur-md border-b border-[#27272a] py-2 px-3 sm:px-4 sticky top-[52px] z-30 transition-all">
         <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 min-w-0">
+            {/* Quick Back to Fleet Button */}
+            <button
+              onClick={onBackToFleet}
+              className="text-[12px] text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer shrink-0 mr-1 sm:mr-2 px-2 py-1 rounded-full bg-white/5 hover:bg-white/10 active:scale-95 transition-all"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span className="hidden xs:inline">Fleet</span>
+            </button>
+
             <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 hidden lg:inline mr-1 shrink-0">
               Showroom Models:
             </span>
@@ -101,9 +111,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       onSelectVehicle(v);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[12px] transition-all shrink-0 cursor-pointer ${
+                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[12px] transition-all shrink-0 cursor-pointer active:scale-95 ${
                       isCurrent
-                        ? 'bg-[#dc2626] text-white shadow-md shadow-red-600/30 font-bold'
+                        ? 'bg-white text-black font-semibold shadow-xs'
                         : 'text-zinc-400 hover:text-white font-medium'
                     }`}
                   >
@@ -122,7 +132,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="pricing-red-pill !py-1.5 !px-3 sm:!px-4 text-[12px] sm:text-[13px] whitespace-nowrap"
+              className="pricing-red-pill !py-1.5 !px-3 sm:!px-4 text-[12px] sm:text-[13px] whitespace-nowrap active:scale-95 transition-transform"
             >
               Inquire
             </a>
@@ -156,11 +166,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         {/* Main Visual Event: Active Color Canvas with Edge-Free Render */}
         <div className="relative w-full max-w-[960px] mx-auto mb-6">
           <div className="w-full h-[400px] sm:h-[540px] rounded-[28px] overflow-hidden bg-[#121215] relative">
-            <img
+            <SkeletonImage
               key={activeColor.name}
               src={activeColor.imageUrl}
               alt={`${vehicle.name} in ${activeColor.name}`}
-              className="w-full h-full object-cover animate-apple-fade transition-transform duration-700 hover:scale-102"
+              className="transition-transform duration-700 hover:scale-102"
+              containerClassName="w-full h-full"
             />
 
             {/* Gradient Scrim */}
@@ -194,7 +205,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     key={idx}
                     onClick={() => setSelectedColorIndex(idx)}
                     className={`w-7 h-7 rounded-full transition-all cursor-pointer relative flex items-center justify-center ${
-                      isSelected ? 'ring-2 ring-[#dc2626] ring-offset-2 scale-110' : 'opacity-85 hover:opacity-100'
+                      isSelected ? 'ring-2 ring-white ring-offset-2 ring-offset-[#09090b] scale-110' : 'opacity-85 hover:opacity-100'
                     }`}
                     style={{ backgroundColor: c.hex }}
                     title={c.name}
@@ -217,7 +228,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
           <div className="border-l-2 border-[#27272a] pl-4">
             <span className="text-[11px] text-zinc-400 uppercase block font-medium">Auction Condition</span>
-            <span className="text-[16px] font-semibold text-[#dc2626]">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
+            <span className="text-[16px] font-semibold text-white">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
           </div>
           <div className="border-l-2 border-[#27272a] pl-4">
             <span className="text-[11px] text-zinc-400 uppercase block font-medium">Drivetrain</span>
@@ -272,11 +283,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               <div className="lg:col-span-7 h-[340px] sm:h-[420px] rounded-[20px] overflow-hidden bg-[#121215] relative">
-                <img
+                <SkeletonImage
                   key={activeCloserLook.id}
                   src={activeCloserLook.imageUrl}
                   alt={activeCloserLook.title}
-                  className="w-full h-full object-cover animate-apple-scale"
+                  containerClassName="w-full h-full"
                 />
                 <div className="absolute top-4 left-4 bg-[#121215]/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-white">
                   {activeCloserLook.subtitle}
@@ -285,7 +296,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               <div className="lg:col-span-5 space-y-6 text-left">
                 <div>
-                  <span className="text-[12px] font-semibold text-[#dc2626] uppercase tracking-wider block mb-1">
+                  <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest block mb-1">
                     Focal Engineering
                   </span>
                   <h3 className="text-[26px] font-semibold text-white leading-snug">
@@ -301,7 +312,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     <span className="text-[11px] text-zinc-400 uppercase block font-medium">Key Indicator</span>
                     <span className="text-[14px] font-semibold text-white">{activeCloserLook.metricLabel}</span>
                   </div>
-                  <span className="text-[28px] font-semibold text-[#dc2626]">
+                  <span className="text-[28px] font-bold text-white">
                     {activeCloserLook.metric}
                   </span>
                 </div>
@@ -378,7 +389,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 >
                   <span>{chap.tabLabel}</span>
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#dc2626]" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white" />
                   )}
                 </button>
               );
@@ -415,10 +426,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     {chap.videoUrl ? (
                       <video autoPlay muted loop playsInline className="w-full h-full object-cover">
                         <source src={chap.videoUrl} type="video/mp4" />
-                        <img src={chap.imageUrl} alt={chap.title} className="w-full h-full object-cover" />
+                        <SkeletonImage src={chap.imageUrl} alt={chap.title} containerClassName="w-full h-full" />
                       </video>
                     ) : (
-                      <img src={chap.imageUrl} alt={chap.title} className="w-full h-full object-cover" />
+                      <SkeletonImage src={chap.imageUrl} alt={chap.title} containerClassName="w-full h-full" />
                     )}
                   </div>
 
@@ -445,7 +456,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               onClick={() => setShowAuctionModal(true)}
               className="outlined-explore-pill cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 text-[#dc2626]" />
+              <FileText className="w-3.5 h-3.5 text-zinc-400" />
               <span>Inspect {vehicle.auctionHall} Auction Sheet</span>
             </button>
           </div>
@@ -483,7 +494,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
               <div className="text-left sm:text-right">
                 <span className="text-[11px] text-zinc-400 uppercase block font-medium">Estimated Monthly Installment</span>
-                <span className="text-[28px] font-semibold text-[#dc2626] transition-all">
+                <span className="text-[28px] font-bold text-white transition-all">
                   KES {animatedMonthlyPayment.toLocaleString()}<span className="text-[14px] font-normal text-zinc-400">/mo</span>
                 </span>
               </div>
@@ -493,7 +504,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               <div>
                 <div className="flex justify-between text-[13px] mb-2">
                   <span className="font-medium text-white">Deposit Equity ({depositPercent}%)</span>
-                  <span className="font-semibold text-[#dc2626] transition-all">KES {animatedDepositAmount.toLocaleString()}</span>
+                  <span className="font-semibold text-white transition-all">KES {animatedDepositAmount.toLocaleString()}</span>
                 </div>
                 <input
                   type="range"
@@ -514,7 +525,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               <div>
                 <div className="flex justify-between text-[13px] mb-2">
                   <span className="font-medium text-white">Loan Duration ({loanTenureMonths} Months / {loanTenureMonths / 12} Years)</span>
-                  <span className="font-semibold text-[#dc2626]">{loanTenureMonths} Months</span>
+                  <span className="font-semibold text-white">{loanTenureMonths} Months</span>
                 </div>
                 <input
                   type="range"
@@ -537,7 +548,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           {/* Mombasa Pre-Delivery Protocol Stamp */}
           <div className="apple-card p-8 bg-[#0d0d10] border border-[#27272a]">
             <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#27272a]">
-              <ShieldCheck className="w-6 h-6 text-[#dc2626]" />
+              <ShieldCheck className="w-6 h-6 text-zinc-300" />
               <div>
                 <h4 className="text-[18px] font-semibold text-white">Mombasa 48-Hour Pre-Delivery Overhaul Stamp</h4>
                 <p className="text-[12px] text-zinc-400">Certified on Tangana Road for Stock #{vehicle.stockNo}</p>
@@ -546,7 +557,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {vehicle.workshopProtocol.map((item, i) => (
                 <div key={i} className="flex items-start gap-2.5 text-[13px] text-white">
-                  <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -620,7 +631,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
               <div className="flex justify-between border-b border-[#27272a] pb-1.5">
                 <span className="text-zinc-400">Overall Inspection Score:</span>
-                <span className="font-semibold text-[#dc2626]">{vehicle.auctionGrade}</span>
+                <span className="font-semibold text-white">{vehicle.auctionGrade}</span>
               </div>
               <div className="flex justify-between border-b border-[#27272a] pb-1.5">
                 <span className="text-zinc-400">Interior / Exterior Score:</span>

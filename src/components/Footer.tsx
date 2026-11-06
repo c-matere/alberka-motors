@@ -168,7 +168,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('sitemap')} className="text-[#ef4444] font-medium hover:underline text-left cursor-pointer">
+                <button onClick={() => onNavigate('sitemap')} className="text-zinc-300 font-medium hover:text-white hover:underline text-left cursor-pointer">
                   Full Site Map
                 </button>
               </li>

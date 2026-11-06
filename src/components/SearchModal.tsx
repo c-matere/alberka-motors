@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, X, ArrowRight, Gauge, Fuel, Shield } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
+import { SkeletonImage } from './SkeletonImage';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -50,9 +51,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-start justify-center p-4 sm:p-6 pt-16 sm:pt-24 animate-in fade-in duration-200">
-      <div className="bg-[#121215] w-full max-w-[680px] rounded-[24px] overflow-hidden shadow-2xl border border-[#27272a]">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20 animate-apple-fade">
+      <div className="bg-[#121215] w-full max-w-[680px] rounded-t-[28px] sm:rounded-[24px] overflow-hidden shadow-2xl border-t sm:border border-[#27272a] max-h-[88vh] sm:max-h-[80vh] flex flex-col animate-apple-up">
         
+        {/* Mobile Pull Handle */}
+        <div className="w-10 h-1 rounded-full bg-zinc-600 mx-auto mt-2.5 mb-1 sm:hidden shrink-0" />
+
         {/* Search Input Bar */}
         <div className="p-4 sm:p-5 border-b border-[#27272a] flex items-center gap-3">
           <Search className="w-5 h-5 text-zinc-400 shrink-0" />
@@ -87,7 +91,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             <button
               key={i}
               onClick={() => setQuery(qf.label.replace('+', ''))}
-              className="text-[11px] bg-[#121215] border border-[#27272a] px-2.5 py-1 rounded-full text-white hover:border-[#dc2626] transition-colors whitespace-nowrap cursor-pointer"
+              className="text-[11px] bg-[#121215] border border-[#27272a] px-2.5 py-1 rounded-full text-white hover:border-zinc-500 transition-colors whitespace-nowrap cursor-pointer"
             >
               {qf.label}
             </button>
@@ -108,14 +112,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               >
                 <div className="flex items-center gap-3">
                   <div className="w-14 h-14 rounded-[10px] overflow-hidden bg-[#27272a] shrink-0">
-                    <img src={vehicle.heroImage} alt={vehicle.name} className="w-full h-full object-cover" />
+                    <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] font-semibold text-zinc-400 bg-[#121215] px-1.5 py-0.5 rounded border border-[#27272a]">
                         {vehicle.stockNo}
                       </span>
-                      <span className="text-[14px] font-semibold text-white group-hover:text-[#dc2626] transition-colors">
+                      <span className="text-[14px] font-semibold text-white group-hover:text-zinc-200 transition-colors">
                         {vehicle.name}
                       </span>
                     </div>
@@ -129,7 +133,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   <span className="text-[14px] font-semibold text-white block">
                     KES {vehicle.priceKes.toLocaleString()}
                   </span>
-                  <span className="text-[11px] text-[#dc2626] font-medium flex items-center gap-0.5 justify-end">
+                  <span className="text-[11px] text-zinc-400 group-hover:text-white font-medium flex items-center gap-0.5 justify-end transition-colors">
                     <span>View</span>
                     <ArrowRight className="w-3 h-3" />
                   </span>

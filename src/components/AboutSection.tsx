@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Award, Globe, Users, ArrowRight, Building, CheckCircle2 } from 'lucide-react';
+import { SkeletonImage } from './SkeletonImage';
 
 interface AboutSectionProps {
   onExploreFleet: () => void;
@@ -56,7 +57,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             </div>
             <div>
               <span className="text-[11px] text-zinc-400 uppercase tracking-wide block font-medium">Auction Standard</span>
-              <span className="text-[20px] font-semibold text-[#dc2626]">Grade 4.5+ Only</span>
+              <span className="text-[20px] font-bold text-white">Grade 4.5+ Only</span>
             </div>
             <div>
               <span className="text-[11px] text-zinc-400 uppercase tracking-wide block font-medium">Warranty</span>
@@ -91,19 +92,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             <h3 className="text-[18px] font-semibold text-white mb-2">The Alberka Motors 3-Point Sourcing Covenant:</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <p className="text-[14px] text-white">
                   <strong>Strict Grade 4.5 Minimum:</strong> No structural collisions, original factory paint depth verified, interior Grade A or B only.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <p className="text-[14px] text-white">
                   <strong>Authenticated Mileage:</strong> Odometer readings verified by QISJ and JEVIC pre-shipment inspection certificates.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <p className="text-[14px] text-white">
                   <strong>Unfiltered Documentation:</strong> Original Japanese Export Certificate and official translated auction inspection sheet provided to the buyer.
                 </p>
@@ -115,10 +116,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
         {/* Story Chapter 2: Coast to Capital Logistics */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-8 border-t border-[#27272a]">
           <div className="order-2 md:order-1 apple-card overflow-hidden">
-            <img
+            <SkeletonImage
               src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt="Port of Mombasa Operations"
-              className="w-full h-[360px] object-cover"
+              containerClassName="w-full h-[280px] sm:h-[360px]"
             />
           </div>
 

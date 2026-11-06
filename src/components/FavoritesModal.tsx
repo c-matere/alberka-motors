@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Heart, ArrowRight, Trash2, Calendar, MessageCircle } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
+import { SkeletonImage } from './SkeletonImage';
 
 interface FavoritesModalProps {
   isOpen: boolean;
@@ -24,11 +25,14 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
   const savedVehicles = vehicles.filter((v) => favorites.includes(v.id));
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
-      <div className="bg-[#121215] w-full max-w-[620px] rounded-[24px] overflow-hidden shadow-2xl border border-[#27272a] flex flex-col max-h-[85vh]">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6 animate-apple-fade">
+      <div className="bg-[#121215] w-full max-w-[620px] rounded-t-[28px] sm:rounded-[24px] overflow-hidden shadow-2xl border-t sm:border border-[#27272a] flex flex-col max-h-[88vh] animate-apple-up">
         
+        {/* Mobile Pull Handle */}
+        <div className="w-10 h-1 rounded-full bg-zinc-600 mx-auto mt-2.5 mb-1 sm:hidden shrink-0" />
+
         {/* Header */}
-        <div className="p-5 border-b border-[#27272a] flex items-center justify-between">
+        <div className="p-4 sm:p-5 border-b border-[#27272a] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Heart className="w-5 h-5 text-red-500 fill-red-500" />
             <h3 className="text-[18px] font-semibold text-white">
@@ -49,7 +53,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
             savedVehicles.map((vehicle) => (
               <div
                 key={vehicle.id}
-                className="p-3 rounded-[16px] border border-[#27272a] hover:border-[#dc2626] transition-all bg-[#121215] flex items-center justify-between gap-4"
+                className="p-3 rounded-[16px] border border-[#27272a] hover:border-zinc-500 transition-all bg-[#121215] flex items-center justify-between gap-4"
               >
                 <div
                   onClick={() => {
@@ -59,7 +63,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                   className="flex items-center gap-3 cursor-pointer flex-1"
                 >
                   <div className="w-16 h-16 rounded-[12px] overflow-hidden bg-[#121215] shrink-0">
-                    <img src={vehicle.heroImage} alt={vehicle.name} className="w-full h-full object-cover" />
+                    <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                   </div>
                   <div>
                     <span className="text-[10px] font-semibold text-zinc-400 bg-[#121215] px-1.5 py-0.5 rounded">

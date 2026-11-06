@@ -14,6 +14,7 @@ import { LocationsSection } from './components/LocationsSection';
 import { SitemapSection } from './components/SitemapSection';
 import { SearchModal } from './components/SearchModal';
 import { FavoritesModal } from './components/FavoritesModal';
+import { MobileBottomDock } from './components/MobileBottomDock';
 import { Footer } from './components/Footer';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 
@@ -103,16 +104,18 @@ export function App() {
         onOpenFavorites={() => setFavoritesModalOpen(true)}
       />
 
-      {/* 52px Sticky Local Context Navigation */}
-      <StickyLocalNav
-        currentView={selectedVehicle ? 'vehicle-detail' : currentView}
-        selectedVehicle={selectedVehicle}
-        onNavigate={handleNavigate}
-        onBackToInventory={() => handleNavigate('inventory')}
-      />
+      {/* 52px Sticky Local Context Navigation (Only rendered when browsing sections) */}
+      {!selectedVehicle && (
+        <StickyLocalNav
+          currentView={currentView}
+          selectedVehicle={null}
+          onNavigate={handleNavigate}
+          onBackToInventory={() => handleNavigate('inventory')}
+        />
+      )}
 
       {/* Main View Router with Apple Cross-Fade Motion */}
-      <main key={selectedVehicle?.id || currentView} className="flex-1 view-enter">
+      <main key={selectedVehicle?.id || currentView} className="flex-1 view-enter pb-20 md:pb-0">
         {/* If an individual vehicle is selected, render the Rolls-Royce + Apple Storytelling Page */}
         {selectedVehicle ? (
           <VehicleStoryView
@@ -387,6 +390,16 @@ export function App() {
           </>
         )}
       </main>
+
+      {/* Mobile-First Bottom Application Navigation Dock */}
+      <MobileBottomDock
+        currentView={currentView}
+        selectedVehicle={selectedVehicle}
+        onNavigate={handleNavigate}
+        onBackToInventory={() => handleNavigate('inventory')}
+        favoritesCount={favorites.length}
+        onOpenFavorites={() => setFavoritesModalOpen(true)}
+      />
 
       {/* Global Apple Multi-Column Footer */}
       <Footer

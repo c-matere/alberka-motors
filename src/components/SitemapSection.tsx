@@ -36,14 +36,14 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           {/* Box 1: Platform Hubs */}
           <div className="apple-card p-8 bg-[#121215]">
             <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#27272a]">
-              <Compass className="w-5 h-5 text-[#dc2626]" />
+              <Compass className="w-5 h-5 text-zinc-400" />
               <h3 className="text-[18px] font-semibold text-white">Primary Platform</h3>
             </div>
             <ul className="space-y-3 text-[14px]">
               <li>
                 <button
                   onClick={() => onNavigate('overview')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Overview / Flagship Showcase
                 </button>
@@ -52,7 +52,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('inventory')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Curated Showroom Fleet
                 </button>
@@ -61,7 +61,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Mombasa In-House Workshop
                 </button>
@@ -70,7 +70,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('trade-in')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Trade-In & Valuation Studio
                 </button>
@@ -79,7 +79,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('about')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Heritage & Japanese Bidding
                 </button>
@@ -88,7 +88,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Showrooms & VIP Test Drives
                 </button>
@@ -100,7 +100,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           {/* Box 2: Dedicated Car Pages */}
           <div className="apple-card p-8 bg-[#121215]">
             <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#27272a]">
-              <Car className="w-5 h-5 text-[#dc2626]" />
+              <Car className="w-5 h-5 text-zinc-400" />
               <h3 className="text-[18px] font-semibold text-white">Vehicle Product Pages</h3>
             </div>
             <ul className="space-y-3 text-[14px]">
@@ -108,7 +108,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
                 <li key={v.id}>
                   <button
                     onClick={() => onSelectVehicle(v)}
-                    className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                    className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                   >
                     {v.name}
                   </button>
@@ -123,14 +123,14 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           {/* Box 3: Technical & Workshop Protocol */}
           <div className="apple-card p-8 bg-[#121215]">
             <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#27272a]">
-              <Wrench className="w-5 h-5 text-[#dc2626]" />
+              <Wrench className="w-5 h-5 text-zinc-400" />
               <h3 className="text-[18px] font-semibold text-white">Workshop & Quality</h3>
             </div>
             <ul className="space-y-3 text-[14px]">
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   100-Point Pre-Delivery Protocol
                 </button>
@@ -139,7 +139,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   5,000 km Warranty Covenant
                 </button>
@@ -148,7 +148,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Synthetic Lubricant Overhaul
                 </button>
@@ -157,7 +157,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Computer Diagnostic Module Scans
                 </button>
@@ -166,7 +166,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Hybrid Battery Health Certification
                 </button>
@@ -178,14 +178,14 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           {/* Box 4: Showrooms & Desks */}
           <div className="apple-card p-8 bg-[#121215]">
             <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#27272a]">
-              <MapPin className="w-5 h-5 text-[#dc2626]" />
+              <MapPin className="w-5 h-5 text-zinc-400" />
               <h3 className="text-[18px] font-semibold text-white">Locations & Contact</h3>
             </div>
             <ul className="space-y-3 text-[14px]">
               <li>
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Mombasa Island Flagship (Tangana Rd)
                 </button>
@@ -194,7 +194,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Mombasa Nyali Branch (Links Rd)
                 </button>
@@ -203,7 +203,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Nairobi Westlands Hub (Mwanzi Rd)
                 </button>
@@ -214,7 +214,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
                   href="https://wa.me/254714333888"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-[#ef4444] hover:underline"
+                  className="font-medium text-zinc-300 hover:text-white hover:underline"
                 >
                   WhatsApp Support Concierge
                 </a>
@@ -226,14 +226,14 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           {/* Box 5: Sourcing & Finance */}
           <div className="apple-card p-8 bg-[#121215]">
             <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#27272a]">
-              <BadgeDollarSign className="w-5 h-5 text-[#dc2626]" />
+              <BadgeDollarSign className="w-5 h-5 text-zinc-400" />
               <h3 className="text-[18px] font-semibold text-white">Financing & Sourcing</h3>
             </div>
             <ul className="space-y-3 text-[14px]">
               <li>
                 <button
                   onClick={() => onNavigate('trade-in')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Trade-In Valuation Studio
                 </button>
@@ -242,7 +242,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('about')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   USS Tokyo & TAA Direct Bidding
                 </button>
@@ -251,7 +251,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('inventory')}
-                  className="font-medium text-white hover:text-[#dc2626] text-left cursor-pointer"
+                  className="font-medium text-white hover:text-zinc-400 text-left cursor-pointer"
                 >
                   Asset Finance Partnerships
                 </button>
@@ -263,7 +263,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           {/* Box 6: Standards & Legal */}
           <div className="apple-card p-8 bg-[#121215]">
             <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#27272a]">
-              <Shield className="w-5 h-5 text-[#dc2626]" />
+              <Shield className="w-5 h-5 text-zinc-400" />
               <h3 className="text-[18px] font-semibold text-white">Import Standards & Legal</h3>
             </div>
             <ul className="space-y-3 text-[14px]">

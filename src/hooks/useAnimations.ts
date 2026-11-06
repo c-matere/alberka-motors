@@ -25,8 +25,8 @@ export function useScrollReveal(options: { threshold?: number; rootMargin?: stri
         }
       },
       {
-        threshold: options.threshold ?? 0.15,
-        rootMargin: options.rootMargin ?? '0px 0px -40px 0px',
+        threshold: options.threshold ?? 0.05,
+        rootMargin: options.rootMargin ?? '0px 0px 50px 0px',
       }
     );
 
@@ -43,7 +43,7 @@ export function useScrollReveal(options: { threshold?: number; rootMargin?: stri
 /**
  * Hook to smoothly animate a number upwards/downwards to a target value
  */
-export function useAnimatedNumber(target: number, duration: number = 800) {
+export function useAnimatedNumber(target: number, duration: number = 300) {
   const [current, setCurrent] = useState(target);
   const startRef = useRef(target);
   const startTimeRef = useRef<number | null>(null);

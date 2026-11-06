@@ -70,7 +70,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   const currentTitle = titleMap[currentView] || 'Alberka Motors Kenya';
 
   return (
-    <div className="sticky top-[52px] z-40 bg-[#09090b]/90 backdrop-blur-md border-b border-[#27272a]">
+    <div className="hidden sm:block sticky top-[52px] z-40 bg-[#09090b]/90 backdrop-blur-md border-b border-[#27272a]">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 h-[52px] flex items-center justify-between gap-3">
         <div className="font-semibold text-white text-[15px] sm:text-[19px] tracking-tight truncate flex items-center gap-2">
           <span className="truncate">{currentTitle}</span>
@@ -82,7 +82,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
               onClick={() => onNavigate('workshop')}
               className="outlined-explore-pill hidden sm:inline-flex cursor-pointer"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#ef4444]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
               <span>Certified Warranty</span>
             </button>
           )}

@@ -126,7 +126,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
                 {/* Media Title Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 bg-[#121215]/90 backdrop-blur-md p-4 rounded-[16px] text-left">
-                  <span className="text-[11px] font-semibold text-[#dc2626] uppercase tracking-wide block">
+                  <span className="text-[11px] font-semibold text-zinc-300 uppercase tracking-wide block">
                     {activeMediaIndex === 0 ? 'Cinematic Driving Test' : vehicle.gallery[activeMediaIndex - 1]?.title}
                   </span>
                   <p className="text-[13px] text-zinc-400 mt-0.5">
@@ -142,7 +142,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 <button
                   onClick={() => setActiveMediaIndex(0)}
                   className={`h-16 w-24 rounded-[12px] overflow-hidden border-2 shrink-0 transition-all cursor-pointer relative ${
-                    activeMediaIndex === 0 ? 'border-[#dc2626] ring-2 ring-[#dc2626]/20' : 'border-transparent opacity-70 hover:opacity-100'
+                    activeMediaIndex === 0 ? 'border-white ring-2 ring-white/20' : 'border-transparent opacity-70 hover:opacity-100'
                   }`}
                 >
                   <img src={vehicle.heroImage} alt="Video preview" className="w-full h-full object-cover" />
@@ -156,7 +156,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                     key={i}
                     onClick={() => setActiveMediaIndex(i + 1)}
                     className={`h-16 w-24 rounded-[12px] overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${
-                      activeMediaIndex === i + 1 ? 'border-[#dc2626] ring-2 ring-[#dc2626]/20' : 'border-transparent opacity-70 hover:opacity-100'
+                      activeMediaIndex === i + 1 ? 'border-white ring-2 ring-white/20' : 'border-transparent opacity-70 hover:opacity-100'
                     }`}
                   >
                     <img src={img.url} alt={img.title} className="w-full h-full object-cover" />
@@ -173,7 +173,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
               <div>
                 <span className="text-[11px] text-zinc-400 uppercase tracking-wide block font-medium">Auction Condition</span>
-                <span className="text-[16px] font-semibold text-[#dc2626]">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
+                <span className="text-[16px] font-semibold text-white">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
               </div>
               <div>
                 <span className="text-[11px] text-zinc-400 uppercase tracking-wide block font-medium">Drivetrain</span>
@@ -209,7 +209,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                     </div>
                     <div className="pt-6 mt-6 border-t border-[#27272a] flex items-center justify-between text-[12px]">
                       <span className="text-zinc-400 font-medium">{h.metricTitle}</span>
-                      <span className="text-[#dc2626] font-semibold">{h.metricValue}</span>
+                      <span className="text-white font-semibold">{h.metricValue}</span>
                     </div>
                   </div>
                 ))}
@@ -227,7 +227,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
               <div className="text-left sm:text-right">
                 <span className="text-[11px] text-zinc-400 uppercase block">Estimated Monthly Tenure</span>
-                <span className="text-[26px] font-semibold text-[#dc2626]">
+                <span className="text-[26px] font-semibold text-white">
                   KES {monthlyPayment.toLocaleString()}<span className="text-[14px] font-normal text-zinc-400">/mo</span>
                 </span>
               </div>
@@ -237,7 +237,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               <div>
                 <div className="flex justify-between text-[13px] mb-2">
                   <span className="font-medium text-white">Down Payment ({depositPercent}%)</span>
-                  <span className="font-semibold text-[#dc2626]">KES {depositAmount.toLocaleString()}</span>
+                  <span className="font-semibold text-white">KES {depositAmount.toLocaleString()}</span>
                 </div>
                 <input
                   type="range"
@@ -258,7 +258,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               <div>
                 <div className="flex justify-between text-[13px] mb-2">
                   <span className="font-medium text-white">Loan Duration ({loanTenureMonths} Months / {loanTenureMonths / 12} Years)</span>
-                  <span className="font-semibold text-[#dc2626]">{loanTenureMonths} Months</span>
+                  <span className="font-semibold text-white">{loanTenureMonths} Months</span>
                 </div>
                 <input
                   type="range"
@@ -289,7 +289,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 onClick={() => setShowAuctionModal(true)}
                 className="outlined-explore-pill cursor-pointer"
               >
-                <FileText className="w-3.5 h-3.5 text-[#dc2626]" />
+                <FileText className="w-3.5 h-3.5 text-zinc-400" />
                 <span>View Japanese Auction Sheet</span>
               </button>
             </div>
@@ -314,7 +314,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           {/* Mombasa Pre-Delivery Inspection Certificate Box */}
           <div className="apple-card p-8 bg-[#0d0d10]">
             <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#27272a]">
-              <ShieldCheck className="w-6 h-6 text-[#dc2626]" />
+              <ShieldCheck className="w-6 h-6 text-emerald-400" />
               <div>
                 <h4 className="text-[18px] font-semibold text-white">Mombasa 48-Hour Pre-Delivery Overhaul Stamp</h4>
                 <p className="text-[12px] text-zinc-400">Certified on Tangana Road for Stock #{vehicle.stockNo}</p>
@@ -323,7 +323,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {vehicle.workshopProtocol.map((item, i) => (
                 <div key={i} className="flex items-start gap-2.5 text-[13px] text-white">
-                  <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -392,7 +392,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
               <div className="flex justify-between border-b border-[#27272a] pb-1.5">
                 <span className="text-zinc-400">Overall Inspection Score:</span>
-                <span className="font-semibold text-[#dc2626]">{vehicle.auctionGrade}</span>
+                <span className="font-semibold text-white">{vehicle.auctionGrade}</span>
               </div>
               <div className="flex justify-between border-b border-[#27272a] pb-1.5">
                 <span className="text-zinc-400">Interior / Exterior Score:</span>
