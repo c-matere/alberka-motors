@@ -347,7 +347,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </button>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20I%20would%20like%20to%20reserve%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20reserve%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pricing-blue-pill-lg w-full sm:w-auto justify-center"
@@ -410,7 +410,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
             <div className="mt-6 flex justify-end">
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pricing-blue-pill"

@@ -106,7 +106,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               </strong>
             </span>
             <a
-              href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20I%20have%20saved%20${savedVehicles.length}%20vehicles%20on%20your%20site:%20${savedVehicles.map(v => v.stockNo).join(',%20')}.%20I%20would%20like%20to%20schedule%20a%20joint%20viewing.`}
+              href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20saved%20${savedVehicles.length}%20vehicles%20on%20your%20site:%20${savedVehicles.map(v => v.stockNo).join(',%20')}.%20I%20would%20like%20to%20schedule%20a%20joint%20viewing.`}
               target="_blank"
               rel="noopener noreferrer"
               className="pricing-blue-pill"

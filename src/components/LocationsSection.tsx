@@ -74,7 +74,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-[#dc2626]" />
-                  <a href="mailto:sales@carsrus.co.ke" className="hover:text-[#dc2626]">sales@carsrus.co.ke</a>
+                  <a href="mailto:sales@alberkamotors.co.ke" className="hover:text-[#dc2626]">sales@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-[#dc2626]" />
@@ -118,7 +118,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-[#dc2626]" />
-                  <a href="mailto:nairobi@carsrus.co.ke" className="hover:text-[#dc2626]">nairobi@carsrus.co.ke</a>
+                  <a href="mailto:nairobi@alberkamotors.co.ke" className="hover:text-[#dc2626]">nairobi@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-[#dc2626]" />

@@ -85,13 +85,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     <div className="w-full bg-[#121215] text-white pb-24">
       
       {/* 1. APPLE IPHONE DUO STYLE VEHICLE SWITCHER TABS */}
-      <div className="w-full bg-[#121215] border-b border-[#27272a] py-3 px-4 sticky top-[96px] z-30">
-        <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-4 overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 hidden sm:inline mr-1">
+      <div className="w-full bg-[#121215]/95 backdrop-blur-md border-b border-[#27272a] py-2.5 px-3 sm:px-4 sticky top-[104px] z-30 transition-all">
+        <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 min-w-0">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 hidden lg:inline mr-1 shrink-0">
               Showroom Models:
             </span>
-            <div className="flex items-center bg-[#27272a] p-1 rounded-full">
+            <div className="flex items-center bg-[#18181c] border border-[#27272a] p-1 rounded-full shrink-0">
               {allVehicles.map((v) => {
                 const isCurrent = v.id === vehicle.id;
                 return (
@@ -101,10 +101,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       onSelectVehicle(v);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[12px] font-medium transition-all shrink-0 cursor-pointer ${
+                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[12px] transition-all shrink-0 cursor-pointer ${
                       isCurrent
-                        ? 'bg-[#121215] text-white shadow-xs font-semibold'
-                        : 'text-white/70 hover:text-white'
+                        ? 'bg-[#dc2626] text-white shadow-md shadow-red-600/30 font-bold'
+                        : 'text-zinc-400 hover:text-white font-medium'
                     }`}
                   >
                     {v.name.split(' ')[1]} {v.name.split(' ')[2] || ''}
@@ -114,15 +114,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <span className="text-[13px] font-semibold text-white hidden md:inline">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <span className="text-[13px] font-bold text-white hidden md:inline">
               KES {vehicle.priceKes.toLocaleString()}
             </span>
             <a
-              href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
+              href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="pricing-blue-pill"
+              className="pricing-red-pill !py-1.5 !px-3 sm:!px-4 text-[12px] sm:text-[13px] whitespace-nowrap"
             >
               Inquire
             </a>
@@ -575,7 +575,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </button>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20I%20would%20like%20to%20reserve%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20reserve%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pricing-blue-pill-lg w-full sm:w-auto justify-center"
@@ -638,7 +638,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
             <div className="mt-6 flex justify-end">
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pricing-blue-pill"

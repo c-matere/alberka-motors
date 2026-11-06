@@ -476,7 +476,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               {/* Conversion Buttons */}
               <div className="space-y-2.5 pt-2">
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Cars%20R%20Us,%20I%20used%20your%20Trade-In%20Studio%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Preliminary%20Trade%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20Upgrading%20to:%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
+                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20used%20your%20Trade-In%20Studio%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Preliminary%20Trade%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20Upgrading%20to:%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="pricing-blue-pill-lg w-full justify-center !py-3.5 text-[14px]"

@@ -187,7 +187,7 @@ export const Footer: React.FC<FooterProps> = ({
             <button onClick={() => onNavigate('workshop')} className="hover:underline cursor-pointer">
               Warranty Covenant
             </button>
-            <a href="https://www.carsrus.co.ke/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+            <a href="https://www.alberkamotors.co.ke/" target="_blank" rel="noopener noreferrer" className="hover:underline">
               Legacy Portal
             </a>
           </div>
