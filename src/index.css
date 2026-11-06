@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+:root {
+  /* Alberka Motors Identity: Black, Red, White */
+  --color-obsidian-black: #09090b;
+  --color-carbon-surface: #111114;
+  --color-graphite-card: #18181c;
+  --color-hairline-dark: #27272a;
+  --color-control-border: #3f3f46;
+  
+  --color-pure-white: #ffffff;
+  --color-silver-mist: #a1a1aa;
+  --color-slate-muted: #71717a;
+  
+  --color-racing-red: #dc2626;
+  --color-crimson-bright: #ef4444;
+  --color-deep-ruby: #991b1b;
+
+  --font-sf-pro-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Helvetica Neue', sans-serif;
+  --font-sf-pro-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Helvetica Neue', sans-serif;
+
+  --radius-cards: 28px;
+  --radius-buttons: 9999px;
+  --radius-pills: 36px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #09090b;
+  color: #ffffff;
+  font-family: var(--font-sf-pro-text);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #09090b;
+  color: #ffffff;
+}
+
+::selection {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+/* Alberka Motors Display & Typography */
+.hero-display {
+  font-family: var(--font-sf-pro-display);
+  font-weight: 700;
+  font-size: clamp(38px, 6.5vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+  color: #ffffff;
+}
+
+.feature-heading {
+  font-family: var(--font-sf-pro-display);
+  font-weight: 600;
+  font-size: clamp(26px, 3.8vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.2px;
+  color: #ffffff;
+}
+
+.product-kicker {
+  font-family: var(--font-sf-pro-display);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: 0.231px;
+  color: #dc2626;
+}
+
+/* Status Eyebrow: Racing Red Accent */
+.launch-status-label {
+  font-family: var(--font-sf-pro-text);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #dc2626;
+  display: inline-block;
+}
+
+/* Primary Conversion Pill: Racing Red */
+.pricing-blue-pill,
+.pricing-red-pill {
+  background-color: #dc2626;
+  color: #ffffff !important;
+  font-family: var(--font-sf-pro-text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: -0.12px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.25);
+}
+.pricing-blue-pill:hover,
+.pricing-red-pill:hover {
+  background-color: #b91c1c;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
+}
+
+.pricing-blue-pill-lg,
+.pricing-red-pill-lg {
+  background-color: #dc2626;
+  color: #ffffff !important;
+  font-family: var(--font-sf-pro-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.22px;
+  padding: 11px 24px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+}
+.pricing-blue-pill-lg:hover,
+.pricing-red-pill-lg:hover {
+  background-color: #b91c1c;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+  transform: translateY(-1px);
+}
+
+.outlined-explore-pill {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff !important;
+  border: 1px solid #3f3f46;
+  font-family: var(--font-sf-pro-text);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.12px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.outlined-explore-pill:hover {
+  border-color: #dc2626;
+  color: #ffffff !important;
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+.apple-blue-link,
+.alberka-red-link {
+  font-family: var(--font-sf-pro-text);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.374px;
+  color: #ef4444;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.apple-blue-link:hover,
+.alberka-red-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Alberka Luxury Cards: Carbon/Obsidian with hairline border and red hover accent */
+.apple-card {
+  background-color: #121215;
+  border-radius: 28px;
+  border: 1px solid #27272a;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  will-change: transform;
+}
+
+.apple-card:hover {
+  border-color: #dc2626;
+  transform: translateY(-3px);
+}
+
+.apple-card-interactive:hover {
+  transform: translateY(-4px);
+  border-color: #ef4444;
+}
+
+.apple-feature-card {
+  background-color: #18181c;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid #27272a;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  will-change: transform;
+}
+
+.apple-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: #dc2626;
+}
+
+.floating-capsule {
+  background-color: rgba(18, 18, 21, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  border: 1px solid #27272a;
+  transition: transform 0.4s ease;
+}
+
+/* Hide scrollbars for pill navigation rows while keeping scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* -------------------------------------------------------------
+   MOTION SYSTEM (Keyframes & Hardware-Accelerated Curves)
+------------------------------------------------------------- */
+:root {
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-gentle: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes appleFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes appleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appleSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appleScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroCinemaZoom {
+  0% {
+    opacity: 0.6;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 5px rgba(220, 38, 38, 0.2);
+  }
+}
+
+.animate-apple-fade {
+  animation: appleFadeIn 0.8s var(--ease-apple) forwards;
+}
+
+.animate-apple-up {
+  animation: appleSlideUp 0.85s var(--ease-apple) forwards;
+}
+
+.animate-apple-scale {
+  animation: appleScaleIn 0.65s var(--ease-apple) forwards;
+}
+
+.animate-hero-zoom {
+  animation: heroCinemaZoom 1.4s var(--ease-apple) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s var(--ease-apple), transform 0.85s var(--ease-apple);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.view-enter {
+  animation: appleFadeIn 0.5s var(--ease-apple) forwards, appleSlideUp 0.6s var(--ease-apple) forwards;
+}
