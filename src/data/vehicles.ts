@@ -145,7 +145,7 @@ export const VEHICLES: Vehicle[] = [
           'The Adventure is not merely a styling pack; it is a mechanical declaration. Where ordinary crossovers hesitate at the perimeter of the asphalt, this machine commands gravel corridors, coastal sands, and highland escarpments with unflinching poise.',
           'Its polygonal proportions pay deliberate homage to vintage off-road archetypes, modernized through tension-rich surface planar geometry and an authoritative two-tone stance.'
         ],
-        imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        imageUrl: './vehicles/rav4-adventure.jpg',
         videoUrl: 'https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4',
         highlights: [
           { label: 'Character', value: 'Authoritative All-Terrain' },
@@ -206,7 +206,7 @@ export const VEHICLES: Vehicle[] = [
       {
         title: 'Adventure Front Fascia',
         description: 'Hexagonal active shutters and dark metallic fog lamp surrounds.',
-        url: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        url: './vehicles/rav4-adventure.jpg'
       },
       {
         title: 'Digital Driver Interface',
@@ -342,7 +342,7 @@ export const VEHICLES: Vehicle[] = [
           'The Harrier Hybrid exists to remove tension from modern existence. Built upon the GA-K executive architecture, it glides across pavement with the composure of a private jet taxiing down a pristine runway.',
           'Its coupe-like roofline descends gently toward an elongated rear overhang, creating an unmistakable profile that commands respect at executive boardrooms and private coastal retreats.'
         ],
-        imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        imageUrl: './vehicles/harrier-hybrid.jpg',
         videoUrl: 'https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4',
         highlights: [
           { label: 'Character', value: 'Serene Executive' },
@@ -403,7 +403,7 @@ export const VEHICLES: Vehicle[] = [
       {
         title: 'Executive Silhouette',
         description: 'Coupe profile sweeping backward with chrome waistline accents.',
-        url: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        url: './vehicles/harrier-hybrid.jpg'
       },
       {
         title: 'Shoji Panoramic Roof',
@@ -478,7 +478,7 @@ export const VEHICLES: Vehicle[] = [
     heroVideo: 'https://videos.pexels.com/video-files/3163534/3163534-hd_1920_1080_30fps.mp4',
     heroImage: './vehicles/note-epower.jpg',
     colors: [
-      { name: 'Imperial Blue Pearl', hex: '#163152', imageUrl: './vehicles/note-epower.jpg' },
+      { name: 'Brilliant Pearl White', hex: '#f2f3f5', imageUrl: './vehicles/note-epower.jpg' },
       { name: 'Brilliant Silver Metallic', hex: '#cfd2d6', imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Pearl Pure White', hex: '#f2f3f5', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' }
     ],
@@ -530,7 +530,7 @@ export const VEHICLES: Vehicle[] = [
           'The Note e-POWER is an engineering revelation. Unlike conventional parallel hybrids where petrol and electricity fight over the drive axle, e-POWER dedicates 100% of wheel traction exclusively to an electric motor.',
           'The small 1.2L petrol engine operates purely as a quiet onboard generator, humming into life only when the battery pack demands charge. You experience full EV acceleration without ever having to plug into a wall.'
         ],
-        imageUrl: 'https://images.pexels.com/photos/12163946/pexels-photo-12163946.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        imageUrl: './vehicles/note-epower.jpg',
         videoUrl: 'https://videos.pexels.com/video-files/3163534/3163534-hd_1920_1080_30fps.mp4',
         highlights: [
           { label: 'Wheel Drive', value: '100% Electric Motor' },
@@ -559,7 +559,7 @@ export const VEHICLES: Vehicle[] = [
       {
         title: 'e-POWER Front Stance',
         description: 'V-Motion chrome signature with electric blue accent line.',
-        url: 'https://images.pexels.com/photos/12163946/pexels-photo-12163946.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        url: './vehicles/note-epower.jpg'
       },
       {
         title: 'Medallist Cockpit Suite',
@@ -633,7 +633,7 @@ export const VEHICLES: Vehicle[] = [
     heroVideo: 'https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4',
     heroImage: './vehicles/serena-highway-star.jpg',
     colors: [
-      { name: 'Diamond Silver Metallic', hex: '#d2d5d8', imageUrl: './vehicles/serena-highway-star.jpg' },
+      { name: 'Midnight Diamond Black', hex: '#141416', imageUrl: './vehicles/serena-highway-star.jpg' },
       { name: 'Phantom Black Pearl', hex: '#141416', imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Deep Cashmere White', hex: '#f5f5f7', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' }
     ],
@@ -685,7 +685,7 @@ export const VEHICLES: Vehicle[] = [
           'The Serena Highway Star e-POWER redefines executive family transit. It treats every passenger not as cargo, but as an honored guest in an acoustic sanctuary.',
           'Powered by Nissan’s electric motor drive, the lurching gear changes of traditional minivans are eradicated, replaced by whisper-quiet linear momentum.'
         ],
-        imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        imageUrl: './vehicles/serena-highway-star.jpg',
         videoUrl: 'https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4',
         highlights: [
           { label: 'Seating', value: '7 Captains with Aisle' },
@@ -698,7 +698,7 @@ export const VEHICLES: Vehicle[] = [
       {
         title: 'Highway Star Front Stance',
         description: 'V-Motion double chrome horizontal bar styling.',
-        url: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600'
+        url: './vehicles/serena-highway-star.jpg'
       },
       {
         title: 'Lounge Cabin Layout',
