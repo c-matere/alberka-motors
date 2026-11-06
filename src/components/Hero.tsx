@@ -81,10 +81,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               loop
               playsInline
               className="w-full h-full object-cover"
-              poster="https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              poster="./vehicles/flagship-hero.jpg"
             >
               <source src="https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4" type="video/mp4" />
-              <img src="https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Alberka Motors Flagship Fleet" className="w-full h-full object-cover" />
+              <img src="./vehicles/flagship-hero.jpg" alt="Alberka Motors Flagship Fleet" className="w-full h-full object-cover" />
             </video>
 
             {/* Subtle Editorial Gradient Overlay */}

@@ -90,9 +90,9 @@ export const VEHICLES: Vehicle[] = [
     interiorGrade: 'Grade B (Pristine Original)',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4',
-    heroImage: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    heroImage: './vehicles/rav4-adventure.jpg',
     colors: [
-      { name: 'Ash Khaki / Ice Edge Roof', hex: '#7f8a7e', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { name: 'Ash Khaki / Ice Edge Roof', hex: '#7f8a7e', imageUrl: './vehicles/rav4-adventure.jpg' },
       { name: 'Attitude Black Mica', hex: '#1c1d1f', imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Platinum White Pearl', hex: '#f0f0f2', imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Magnetic Graphite Metallic', hex: '#58595c', imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600' }
@@ -288,9 +288,9 @@ export const VEHICLES: Vehicle[] = [
     interiorGrade: 'Grade A (Flawless)',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4',
-    heroImage: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    heroImage: './vehicles/harrier-hybrid.jpg',
     colors: [
-      { name: 'Precious Black Pearl', hex: '#18191c', imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { name: 'Precious Black Pearl', hex: '#18191c', imageUrl: './vehicles/harrier-hybrid.jpg' },
       { name: 'White Pearl Crystal Shine', hex: '#f7f7f9', imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Dark Blue Mica', hex: '#1a273b', imageUrl: 'https://images.pexels.com/photos/12163946/pexels-photo-12163946.jpeg?auto=compress&cs=tinysrgb&w=1600' }
     ],
@@ -476,9 +476,9 @@ export const VEHICLES: Vehicle[] = [
     interiorGrade: 'Grade A',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/3163534/3163534-hd_1920_1080_30fps.mp4',
-    heroImage: 'https://images.pexels.com/photos/12163946/pexels-photo-12163946.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    heroImage: './vehicles/note-epower.jpg',
     colors: [
-      { name: 'Imperial Blue Pearl', hex: '#163152', imageUrl: 'https://images.pexels.com/photos/12163946/pexels-photo-12163946.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { name: 'Imperial Blue Pearl', hex: '#163152', imageUrl: './vehicles/note-epower.jpg' },
       { name: 'Brilliant Silver Metallic', hex: '#cfd2d6', imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Pearl Pure White', hex: '#f2f3f5', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' }
     ],
@@ -631,9 +631,9 @@ export const VEHICLES: Vehicle[] = [
     interiorGrade: 'Grade A (Pristine Lounge)',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4',
-    heroImage: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    heroImage: './vehicles/serena-highway-star.jpg',
     colors: [
-      { name: 'Diamond Silver Metallic', hex: '#d2d5d8', imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { name: 'Diamond Silver Metallic', hex: '#d2d5d8', imageUrl: './vehicles/serena-highway-star.jpg' },
       { name: 'Phantom Black Pearl', hex: '#141416', imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600' },
       { name: 'Deep Cashmere White', hex: '#f5f5f7', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' }
     ],
