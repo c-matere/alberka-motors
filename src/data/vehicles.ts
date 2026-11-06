@@ -67,7 +67,7 @@ export interface Vehicle {
 export const VEHICLES: Vehicle[] = [
   {
     id: 'toyota-rav4-adventure',
-    stockNo: 'CRU-4062',
+    stockNo: 'ALB-4062',
     name: 'Toyota RAV4 Adventure AWD',
     moniker: 'The Uncharted Horizon',
     essenceQuote: 'Born for the wild, sculpted with restraint. A harmonious union of mechanical fortitude and modern composure.',
@@ -265,7 +265,7 @@ export const VEHICLES: Vehicle[] = [
   },
   {
     id: 'toyota-harrier-hybrid',
-    stockNo: 'CRU-4058',
+    stockNo: 'ALB-4058',
     name: 'Toyota Harrier Hybrid E-Four',
     moniker: 'The Quiet Sovereign',
     essenceQuote: 'True luxury never shouts; it hums with effortless composure. An executive sanctuary enveloped in Japanese shoji glass and mastercrafted leather.',
@@ -453,7 +453,7 @@ export const VEHICLES: Vehicle[] = [
   },
   {
     id: 'nissan-note-epower',
-    stockNo: 'CRU-4061',
+    stockNo: 'ALB-4061',
     name: 'Nissan Note e-POWER Medallist',
     moniker: 'The Kinetic Whisper',
     essenceQuote: 'Electric mobility emancipated from charging cables. A pure electric drive motor fed by an invisible, onboard generator.',
@@ -608,7 +608,7 @@ export const VEHICLES: Vehicle[] = [
   },
   {
     id: 'nissan-serena-highway-star',
-    stockNo: 'CRU-4060',
+    stockNo: 'ALB-4060',
     name: 'Nissan Serena Highway Star e-POWER',
     moniker: 'The Grand Sanctuary',
     essenceQuote: 'First-class travel for seven dignitaries. A tranquil lounge on wheels where zero-gravity seating meets dual hands-free access.',

@@ -108,7 +108,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by model, chassis, or stock code (e.g. RAV4, CRU-4062, Hybrid)..."
+                placeholder="Search by model, chassis, or stock code (e.g. RAV4, ALB-4062, Hybrid)..."
                 className="w-full pl-10 pr-4 py-2 rounded-full bg-[#18181c] border border-[#27272a] text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#dc2626]"
               />
               {searchQuery && (
