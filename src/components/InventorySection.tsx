@@ -62,6 +62,13 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       });
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
+  const quickTags = [
+    { label: 'RAV4 AWD', query: 'RAV4' },
+    { label: 'Harrier Hybrid', query: 'Harrier' },
+    { label: 'Serena 7-Seater', query: 'Serena' },
+    { label: 'Note e-POWER', query: 'Note' },
+  ];
+
   return (
     <section className="w-full bg-[#09090b] py-12 sm:py-16 px-4 sm:px-8 text-[#f4f4f5] border-t border-[#27272a]">
       <div className="max-w-[1440px] mx-auto">
@@ -82,24 +89,27 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           </p>
         </div>
 
-        {/* Filter & Search Bar (Compact) */}
-        <div className="bg-[#121215] p-3.5 sm:p-4 border border-zinc-800 rounded-lg mb-6 space-y-3">
+        {/* Filter & Search Bar (Machined Obsidian Architecture) */}
+        <div className="relative bg-[#0e0e11] p-4 sm:p-5 border border-zinc-800/90 rounded-2xl mb-6 space-y-3.5 before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent">
           
-          {/* Category Tabs — Pure Black & White */}
+          {/* Category Tabs — Pure Black & White with Hairline Borders */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3.5 py-1.5 rounded-md text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
+                  onClick={() => {
+                    setActiveCategory(cat.id);
+                    setSearchQuery('');
+                  }}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
                     isActive
                       ? 'bg-white text-zinc-950 border-white shadow-sm'
                       : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
                   }`}
                 >
-                  {cat.label} <span className="font-mono opacity-80">({cat.count})</span>
+                  {cat.label} <span className="font-mono opacity-80 text-[11px]">({cat.count})</span>
                 </button>
               );
             })}
@@ -111,10 +121,10 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
               <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search by model (e.g. Prado, Serena, Harrier, Note)..."
+                placeholder="Search by model or stock number (e.g. Prado, Serena, Harrier, ALB-4062)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-black border border-zinc-800 rounded-md text-xs sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-black border border-zinc-800 rounded-lg text-xs sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
               />
             </div>
 
@@ -124,7 +134,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 aria-label="Sort vehicles"
-                className="bg-black border border-zinc-800 rounded-md px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer"
+                className="bg-black border border-zinc-800 rounded-lg px-3 py-2.5 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer"
               >
                 <option value="featured">Featured First</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -132,6 +142,37 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 <option value="year">Newest Model Year</option>
               </select>
             </div>
+          </div>
+
+          {/* Quick Model Tags for Zero-Typing Filtering */}
+          <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider mr-1">
+              QUICK FILTER:
+            </span>
+            {quickTags.map((tag) => {
+              const isSelected = searchQuery.toLowerCase() === tag.query.toLowerCase();
+              return (
+                <button
+                  key={tag.query}
+                  onClick={() => setSearchQuery(isSelected ? '' : tag.query)}
+                  className={`text-[11px] font-mono px-2.5 py-1 rounded-md transition-all cursor-pointer border ${
+                    isSelected
+                      ? 'bg-white text-zinc-950 font-bold border-white'
+                      : 'bg-zinc-900/60 text-zinc-300 border-zinc-800 hover:border-zinc-600 hover:text-white'
+                  }`}
+                >
+                  {tag.label}
+                </button>
+              );
+            })}
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="text-[11px] font-mono px-2 py-1 text-zinc-400 hover:text-white underline cursor-pointer ml-1"
+              >
+                Clear
+              </button>
+            )}
           </div>
         </div>
 
