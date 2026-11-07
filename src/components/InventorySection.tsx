@@ -185,9 +185,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           <span className="hidden sm:inline text-zinc-500 text-[11px]">Mombasa Yard & Nairobi Handover Available</span>
         </div>
 
-        {/* Vehicle Grid (Compact Gaps) */}
+        {/* Vehicle Grid (Generous Luxury 2-Column Spacing) */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-[1240px] mx-auto">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}
