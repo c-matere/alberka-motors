@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Play, Pause, Volume2, VolumeX, ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onExploreFleet: () => void;
@@ -29,50 +29,48 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   };
 
   return (
-    <section className="w-full bg-[#09090b] pt-8 sm:pt-16 pb-12 sm:pb-20 px-3 sm:px-6 text-center text-white">
-      <div className="max-w-[1240px] mx-auto">
+    <section className="w-full bg-[#08090a] pt-12 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-6 text-center text-[#d0d6e0]">
+      <div className="max-w-[1200px] mx-auto">
         
-        {/* Status Eyebrow: Platinum Silver */}
-        <span className="launch-status-label mb-2 sm:mb-3 animate-apple-fade">
-          Performance & Luxury Automotive
-        </span>
+        {/* Status Eyebrow Badge (Linear 4px badge) */}
+        <div className="inline-flex items-center gap-2 mb-4">
+          <span className="badge-linear text-[11px] font-mono tracking-wider text-[#8a8f98] uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#e4f222] inline-block animate-pulse" />
+            Midnight Precision Fleet · Est. 2000
+          </span>
+        </div>
 
-        {/* Product Kicker */}
-        <p className="product-kicker text-[17px] sm:text-[21px] mb-2 sm:mb-3 animate-apple-up delay-100">
-          Alberka Motors (Kenya)
-        </p>
-
-        {/* Display Headline */}
-        <h1 className="hero-display text-[32px] sm:text-[52px] md:text-[68px] mb-4 sm:mb-6 animate-apple-up delay-150">
+        {/* Display Headline (Linear 64px / 510 / -0.022em) */}
+        <h1 className="hero-display text-[36px] sm:text-[56px] md:text-[68px] mb-4 sm:mb-6 text-white max-w-[960px] mx-auto">
           Pure Automotive Power.<br className="hidden sm:inline" />
           Curated Without Compromise.
         </h1>
 
-        {/* Subheading body copy */}
-        <p className="max-w-[720px] mx-auto text-zinc-400 text-[15px] sm:text-[18px] leading-relaxed mb-6 sm:mb-10 px-2 animate-apple-up delay-200" style={{ letterSpacing: '-0.374px' }}>
+        {/* Subheading body copy (Linear 16px Inter 400 / #8a8f98) */}
+        <p className="max-w-[680px] mx-auto text-[#8a8f98] text-[15px] sm:text-[16px] leading-[1.6] mb-8 sm:mb-10 px-2" style={{ letterSpacing: '-0.011em' }}>
           Mombasa & Nairobi's premier showroom for verified Grade 4.5+ Japanese and European luxury imports. Handpicked from Tokyo auction houses, rigorously overhauled in our coastal engineering laboratory, and delivered ready for Kenyan roads.
         </p>
 
-        {/* Mobile Quick CTAs Bar */}
-        <div className="flex sm:hidden items-center justify-center gap-3 mb-8 animate-apple-up delay-200">
+        {/* Linear Action Buttons */}
+        <div className="flex items-center justify-center gap-3 mb-10 sm:mb-14">
           <button
             onClick={onExploreFleet}
-            className="pricing-blue-pill !py-2.5 !px-5 text-[13px] active:scale-95"
+            className="btn-primary active:scale-95 text-[14px] font-[510] py-2.5 px-5"
           >
             <span>Explore Fleet</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={onExploreWorkshop}
-            className="outlined-explore-pill !py-2.5 !px-5 text-[13px] active:scale-95"
+            className="btn-ghost active:scale-95 text-[13px] py-2.5 px-4"
           >
             <span>Workshop Standards</span>
           </button>
         </div>
 
-        {/* Center Visual Event: Breathtaking Editorial Automotive Video Stage */}
-        <div className="relative w-full mx-auto animate-hero-zoom">
-          <div className="w-full h-[280px] xs:h-[320px] sm:h-[460px] md:h-[600px] rounded-[20px] sm:rounded-[28px] overflow-hidden relative bg-[#121215] border border-[#27272a]">
+        {/* Product Showcase Card Frame (Linear 12px radius, #0f1011 surface, 1px #23252a border) */}
+        <div className="relative w-full mx-auto">
+          <div className="w-full h-[280px] xs:h-[340px] sm:h-[480px] md:h-[620px] rounded-[12px] overflow-hidden relative bg-[#0f1011] border border-[#23252a]">
             {/* Cinematic HD Video Loop */}
             <video
               ref={videoRef}
@@ -87,33 +85,33 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               <img src="./vehicles/flagship-hero.jpg" alt="Alberka Motors Flagship Fleet" className="w-full h-full object-cover" />
             </video>
 
-            {/* Subtle Editorial Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex items-end p-4 sm:p-8 pointer-events-none">
+            {/* Subtle Gradient Atmosphere */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#08090a]/90 via-[#08090a]/30 to-transparent flex items-end p-5 sm:p-8 pointer-events-none">
               <div className="text-left text-white max-w-[620px]">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-[#dc2626] inline-block animate-pulse"></span>
-                  <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest text-zinc-300">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#e4f222] inline-block animate-pulse" />
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#8a8f98]">
                     Direct Tokyo & European Import Line
                   </span>
                 </div>
-                <p className="text-[16px] sm:text-[22px] md:text-[24px] font-bold leading-tight text-white drop-shadow-md">
+                <p className="text-[17px] sm:text-[22px] md:text-[24px] font-[510] leading-tight text-white tracking-[-0.012em]">
                   Grade 4.5+ verified provenance. Zero auction mysteries.
                 </p>
               </div>
             </div>
 
-            {/* Video Controls (Quiet, translucent circular pills) */}
+            {/* Video Controls (Linear 6px pills) */}
             <div className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 flex items-center gap-2 z-30">
               <button
                 onClick={togglePlay}
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-white/20 text-white border border-white/10 backdrop-blur-md flex items-center justify-center shadow-lg transition-all cursor-pointer active:scale-90"
+                className="w-8 h-8 rounded-[6px] bg-[#08090a]/80 hover:bg-[#161718] text-[#d0d6e0] hover:text-white border border-[#23252a] backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
                 title={isPlaying ? 'Pause video' : 'Play video'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-white/20 text-white border border-white/10 backdrop-blur-md flex items-center justify-center shadow-lg transition-all cursor-pointer active:scale-90"
+                className="w-8 h-8 rounded-[6px] bg-[#08090a]/80 hover:bg-[#161718] text-[#d0d6e0] hover:text-white border border-[#23252a] backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -121,29 +119,29 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
           </div>
 
-          {/* Floating Pricing / Handover Callout */}
-          <div className="p-4 sm:p-6 max-w-[780px] mx-auto -mt-6 sm:-mt-10 relative z-20 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-left bg-[#121215] border border-[#27272a] rounded-[20px] sm:rounded-[28px] shadow-2xl">
-            <div className="grid grid-cols-3 gap-2 sm:gap-6 w-full sm:w-auto">
+          {/* Floating Linear Spec Strip (12px radius, #0f1011, 1px border) */}
+          <div className="p-4 sm:p-5 max-w-[760px] mx-auto -mt-6 sm:-mt-8 relative z-20 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-left bg-[#0f1011] border border-[#23252a] rounded-[12px] shadow-xl">
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 w-full sm:w-auto">
               <div>
-                <span className="text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wide block font-semibold">Provenance</span>
-                <span className="text-[12px] sm:text-[15px] font-bold text-white">4.5+ Verified</span>
+                <span className="text-[11px] text-[#8a8f98] font-mono uppercase tracking-wide block">Provenance</span>
+                <span className="text-[14px] font-[510] text-white">4.5+ Verified</span>
               </div>
               <div>
-                <span className="text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wide block font-semibold">Overhaul</span>
-                <span className="text-[12px] sm:text-[15px] font-bold text-white">150-Point</span>
+                <span className="text-[11px] text-[#8a8f98] font-mono uppercase tracking-wide block">Overhaul</span>
+                <span className="text-[14px] font-[510] text-white">150-Point Certified</span>
               </div>
               <div>
-                <span className="text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wide block font-semibold">Warranty</span>
-                <span className="text-[12px] sm:text-[15px] font-bold text-white">Full Cover</span>
+                <span className="text-[11px] text-[#8a8f98] font-mono uppercase tracking-wide block">Warranty</span>
+                <span className="text-[14px] font-[510] text-white">5,000 km Cover</span>
               </div>
             </div>
 
             <div className="hidden sm:flex items-center gap-3 shrink-0 w-full sm:w-auto justify-end">
               <button
                 onClick={onExploreFleet}
-                className="pricing-blue-pill cursor-pointer active:scale-95"
+                className="btn-primary text-[13px] py-1.5 px-3.5 cursor-pointer font-[510]"
               >
-                <span>Explore Fleet</span>
+                <span>Inspect Fleet</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

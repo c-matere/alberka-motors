@@ -113,24 +113,24 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
         <div className="flex items-center gap-3">
           {/* Navigation Chevron Pills */}
-          <div className="flex items-center gap-2 bg-[#121215] p-1 rounded-full border border-[#27272a]">
+          <div className="flex items-center gap-1.5 bg-[#0f1011] p-1 rounded-[6px] border border-[#23252a]">
             <button
               onClick={handlePrev}
-              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-7 h-7 rounded-[4px] bg-transparent hover:bg-[#161718] text-[#d0d6e0] hover:text-[#ffffff] flex items-center justify-center transition-all cursor-pointer"
               title="Previous vehicle slide"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-7 h-7 rounded-[4px] bg-transparent hover:bg-[#161718] text-[#d0d6e0] hover:text-[#ffffff] flex items-center justify-center transition-all cursor-pointer"
               title="Next vehicle slide"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-8 h-8 rounded-full bg-[#18181c] hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-7 h-7 rounded-[4px] bg-transparent hover:bg-[#161718] text-[#d0d6e0] hover:text-[#ffffff] flex items-center justify-center transition-all cursor-pointer"
               title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
@@ -139,7 +139,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
           <button
             onClick={onViewAll}
-            className="pricing-blue-pill cursor-pointer whitespace-nowrap"
+            className="btn-ghost cursor-pointer whitespace-nowrap !py-1.5 !px-3.5"
           >
             <span>All Fleet ({vehicles.length})</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -176,18 +176,18 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       </div>
 
       {/* Bottom Progress Indicator Bar & Direct Pagination Pills */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#27272a] px-2">
-        <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#23252a] px-2">
+        <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 no-scrollbar">
           {vehicles.map((v, idx) => {
             const isActive = idx === activeIndex;
             return (
               <button
                 key={v.id}
                 onClick={() => scrollToSlide(idx)}
-                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                className={`h-1 rounded-[2px] transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'w-8 bg-[#dc2626]'
-                    : 'w-2 bg-[#27272a] hover:bg-zinc-500'
+                    ? 'w-7 bg-[#e4f222]'
+                    : 'w-2 bg-[#23252a] hover:bg-[#383b3f]'
                 }`}
                 title={`Slide ${idx + 1}: ${v.name}`}
               />
@@ -195,10 +195,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           })}
         </div>
 
-        <div className="text-[12px] text-zinc-400 font-medium flex items-center gap-2">
-          <span>{activeIndex + 1} of {vehicles.length}</span>
+        <div className="text-[12px] text-[#8a8f98] font-mono flex items-center gap-2">
+          <span>{activeIndex + 1} / {vehicles.length}</span>
           <span>·</span>
-          <span className="text-white font-semibold">{vehicles[activeIndex]?.name}</span>
+          <span className="text-[#ffffff] font-sans font-normal">{vehicles[activeIndex]?.name}</span>
         </div>
       </div>
     </div>

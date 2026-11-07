@@ -18,36 +18,36 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   // If viewing an individual car
   if (currentView === 'vehicle-detail' && selectedVehicle) {
     return (
-      <div className="sticky top-[52px] z-40 bg-[#09090b]/90 backdrop-blur-md border-b border-[#27272a] transition-all">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 h-[52px] flex items-center justify-between gap-2">
+      <div className="sticky top-[56px] z-40 bg-[#08090a]/90 backdrop-blur-md border-b border-[#23252a] transition-all">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[48px] flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               onClick={onBackToInventory}
-              className="text-[12px] text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer shrink-0"
+              className="text-[12px] text-[#8a8f98] hover:text-[#ffffff] flex items-center gap-1 cursor-pointer shrink-0 transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Fleet</span>
             </button>
-            <span className="text-zinc-700 shrink-0">|</span>
-            <span className="font-semibold text-white text-[14px] sm:text-[18px] tracking-tight truncate max-w-[130px] xs:max-w-[180px] sm:max-w-[320px] md:max-w-none">
+            <span className="text-[#383b3f] shrink-0">/</span>
+            <span className="font-normal text-[#ffffff] text-[13px] sm:text-[14px] tracking-tight truncate max-w-[130px] xs:max-w-[180px] sm:max-w-[320px] md:max-w-none">
               {selectedVehicle.name}
             </span>
-            <span className="hidden md:inline text-[12px] text-zinc-300 bg-[#18181c] border border-[#27272a] px-2.5 py-0.5 rounded-full font-medium shrink-0">
+            <span className="hidden md:inline text-[11px] text-[#8a8f98] bg-[#0f1011] border border-[#23252a] px-2 py-0.5 rounded-[4px] font-mono shrink-0">
               {selectedVehicle.stockNo}
             </span>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span className="text-[15px] font-bold text-white hidden sm:inline">
+            <span className="text-[14px] font-mono text-[#ffffff] hidden sm:inline">
               KES {selectedVehicle.priceKes.toLocaleString()}
             </span>
             <a
               href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20ready%20to%20reserve%20or%20inspect%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="pricing-red-pill !py-1.5 !px-3 sm:!px-4 text-[12px] sm:text-[13px] whitespace-nowrap"
+              className="btn-primary !py-1.5 !px-3.5 text-[12px] whitespace-nowrap"
             >
-              <span className="hidden sm:inline">Reserve / </span>Inquire
+              <span>Inquire / Reserve</span>
             </a>
           </div>
         </div>
@@ -58,31 +58,31 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   // Section titles mapping
   const titleMap: Record<string, string> = {
     overview: 'The Alberka Prestige Collection',
-    inventory: 'Verified Performance & Luxury Fleet',
-    workshop: 'Alberka Certified Engineering Lab',
-    'trade-in': 'Automotive Trade-In & Valuation Studio',
+    inventory: 'Verified Japanese Fleet',
+    workshop: 'In-House Mechanical Facility',
+    'trade-in': 'Valuation & Trade Exchange',
     about: 'The Alberka Heritage',
-    locations: 'Executive Showrooms & Concierge',
+    locations: 'Mombasa & Nairobi Hubs',
     sitemap: 'Directory & Navigation Tree',
-    favorites: 'Your Saved Showroom Fleet',
+    favorites: 'Saved Showroom Fleet',
   };
 
   const currentTitle = titleMap[currentView] || 'Alberka Motors Kenya';
 
   return (
-    <div className="hidden sm:block sticky top-[52px] z-40 bg-[#09090b]/90 backdrop-blur-md border-b border-[#27272a]">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 h-[52px] flex items-center justify-between gap-3">
-        <div className="font-semibold text-white text-[15px] sm:text-[19px] tracking-tight truncate flex items-center gap-2">
+    <div className="hidden sm:block sticky top-[56px] z-40 bg-[#08090a]/90 backdrop-blur-md border-b border-[#23252a]">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[48px] flex items-center justify-between gap-3">
+        <div className="font-normal text-[#ffffff] text-[14px] tracking-tight truncate flex items-center gap-2">
           <span className="truncate">{currentTitle}</span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           {currentView !== 'workshop' && (
             <button
               onClick={() => onNavigate('workshop')}
-              className="outlined-explore-pill hidden sm:inline-flex cursor-pointer"
+              className="btn-ghost hidden sm:inline-flex cursor-pointer !py-1.5 !px-3 !text-[12px]"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#8a8f98]" />
               <span>Certified Warranty</span>
             </button>
           )}
@@ -90,14 +90,14 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
           {currentView !== 'inventory' ? (
             <button
               onClick={() => onNavigate('inventory')}
-              className="pricing-blue-pill cursor-pointer"
+              className="btn-primary cursor-pointer !py-1.5 !px-3.5 !text-[12px]"
             >
               Browse Fleet
             </button>
           ) : (
             <button
               onClick={() => onNavigate('trade-in')}
-              className="outlined-explore-pill cursor-pointer"
+              className="btn-ghost cursor-pointer !py-1.5 !px-3 !text-[12px]"
             >
               Trade-In Calculator
             </button>

@@ -61,24 +61,24 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
   return (
-    <section className="w-full bg-[#09090b] py-10 sm:py-16 px-3 sm:px-6 text-white border-t border-[#1f1f23]">
-      <div className="max-w-[1240px] mx-auto">
+    <section className="w-full bg-[#08090a] py-10 sm:py-16 px-4 sm:px-6 text-[#d0d6e0] border-t border-[#23252a]">
+      <div className="max-w-[1200px] mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-[680px] mx-auto mb-8 sm:mb-10">
+        <div className="text-center max-w-[640px] mx-auto mb-8 sm:mb-12">
           <span className="launch-status-label mb-2">
             Cleared & Ready For Handover
           </span>
-          <h2 className="hero-display text-[32px] sm:text-[46px] md:text-[56px] mb-3 sm:mb-4">
+          <h2 className="hero-display text-[32px] sm:text-[44px] md:text-[52px] mb-3">
             The Alberka Fleet.
           </h2>
-          <p className="text-[15px] sm:text-[17px] text-zinc-400 leading-[1.47]" style={{ letterSpacing: '-0.374px' }}>
-            Every vehicle has completed our comprehensive Mombasa workshop overhaul, includes written warranty coverage, and carries authenticated Grade 4.5+ provenance.
+          <p className="text-[14px] sm:text-[15px] text-[#8a8f98] leading-relaxed">
+            Every vehicle has completed our comprehensive Mombasa workshop overhaul, includes written warranty coverage, and carries authenticated Grade 4.5+ Japanese auction provenance.
           </p>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="bg-[#121215] p-3.5 sm:p-4 rounded-[20px] sm:rounded-[24px] border border-[#27272a] mb-8 sm:mb-10 space-y-3.5 sm:space-y-4">
+        <div className="bg-[#0f1011] p-3.5 sm:p-4 rounded-[12px] border border-[#23252a] mb-8 sm:mb-10 space-y-3.5">
           
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
@@ -88,33 +88,33 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[12px] sm:text-[13px] font-semibold transition-all shrink-0 cursor-pointer active:scale-95 ${
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-[6px] text-[12px] sm:text-[13px] font-normal transition-all shrink-0 cursor-pointer ${
                     isActive
-                      ? 'bg-white text-black shadow-sm'
-                      : 'bg-[#18181c] text-zinc-300 hover:text-white border border-[#27272a]'
+                      ? 'bg-[#ffffff] text-[#08090a] font-medium'
+                      : 'bg-transparent text-[#8a8f98] hover:text-[#ffffff] border border-[#23252a] hover:border-[#383b3f]'
                   }`}
                 >
-                  {cat.label} ({cat.count})
+                  {cat.label} <span className="font-mono text-[11px] opacity-75">({cat.count})</span>
                 </button>
               );
             })}
           </div>
 
           {/* Search Input & Sort Selector */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 pt-2 border-t border-[#1f1f23]">
+          <div className="flex flex-col sm:flex-row items-center gap-3 pt-3 border-t border-[#23252a]">
             <div className="relative w-full sm:flex-1">
-              <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#8a8f98] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by model, chassis, or stock code..."
-                className="w-full pl-10 pr-4 py-2 rounded-full bg-[#18181c] border border-[#27272a] text-[13px] text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-400"
+                className="w-full pl-10 pr-4 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#ffffff] placeholder:text-[#62666d] focus:outline-none focus:border-[#383b3f]"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[11px] text-zinc-400 hover:text-white"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[11px] font-mono text-[#8a8f98] hover:text-[#ffffff]"
                 >
                   Clear
                 </button>
@@ -122,11 +122,11 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             </div>
 
             <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
-              <span className="text-[12px] text-zinc-400 hidden sm:inline">Sort by:</span>
+              <span className="text-[12px] text-[#8a8f98] hidden sm:inline">Sort:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="px-3 py-1.5 sm:py-2 rounded-full bg-[#18181c] border border-[#27272a] text-[12px] font-medium text-white focus:outline-none cursor-pointer"
+                className="px-3 py-1.5 sm:py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[12px] text-[#d0d6e0] focus:outline-none cursor-pointer"
               >
                 <option value="featured">Featured Collection</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -134,8 +134,8 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 <option value="year">Newest Year</option>
               </select>
 
-              <span className="text-[12px] text-zinc-400 font-medium ml-2 shrink-0">
-                {filteredVehicles.length} {filteredVehicles.length === 1 ? 'car' : 'cars'}
+              <span className="font-mono text-[12px] text-[#8a8f98] ml-2 shrink-0">
+                {filteredVehicles.length} {filteredVehicles.length === 1 ? 'unit' : 'units'}
               </span>
             </div>
           </div>
@@ -144,7 +144,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
         {/* Vehicles Grid */}
         {filteredVehicles.length > 0 ? (
-          <div key={activeCategory + sortBy} className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-10 animate-apple-fade">
+          <div key={activeCategory + sortBy} className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-apple-fade">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}
@@ -156,9 +156,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             ))}
           </div>
         ) : (
-          <div className="apple-card p-12 text-center bg-[#121215] border border-[#27272a]">
-            <h3 className="text-[20px] font-bold text-white mb-2">No matching vehicles found</h3>
-            <p className="text-[14px] text-zinc-400 mb-6">
+          <div className="p-12 text-center bg-[#0f1011] border border-[#23252a] rounded-[12px]">
+            <h3 className="text-[18px] font-medium text-[#ffffff] mb-2">No matching vehicles found</h3>
+            <p className="text-[14px] text-[#8a8f98] mb-6">
               We update our showroom with fresh vessel arrivals weekly from Tokyo, Yokohama, and Nagoya.
             </p>
             <button
@@ -166,7 +166,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 setActiveCategory('all');
                 setSearchQuery('');
               }}
-              className="outlined-explore-pill cursor-pointer"
+              className="btn-ghost cursor-pointer"
             >
               Reset Filters
             </button>
@@ -174,17 +174,17 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         )}
 
         {/* Custom Bidding Sourcing Callout */}
-        <div className="p-8 md:p-12 mt-12 bg-[#121215] border border-[#27272a] rounded-[28px] text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="max-w-[580px]">
+        <div className="p-6 sm:p-10 mt-12 bg-[#0f1011] border border-[#23252a] rounded-[12px] text-left flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-[#383b3f] transition-all">
+          <div className="max-w-[560px]">
             <span className="launch-status-label mb-1">Direct Japanese Bidding</span>
-            <h3 className="text-[24px] font-bold text-white mb-2">Looking for a specific model or color?</h3>
-            <p className="text-[14px] text-zinc-400 leading-relaxed">
+            <h3 className="text-[20px] font-medium text-[#ffffff] mb-2">Looking for a specific model or color?</h3>
+            <p className="text-[14px] text-[#8a8f98] leading-relaxed">
               We execute weekly live bids directly at USS Tokyo, CAA, and TAA. Our Japanese team physically inspects your desired vehicle before purchase.
             </p>
           </div>
           <button
             onClick={onCustomImportRequest}
-            className="pricing-blue-pill-lg shrink-0 cursor-pointer"
+            className="btn-primary shrink-0 cursor-pointer"
           >
             <span>Commission Custom Import</span>
           </button>

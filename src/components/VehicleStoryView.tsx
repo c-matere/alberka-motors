@@ -12,13 +12,9 @@ import {
   FileText,
   Sliders,
   Sparkles,
-  Layers,
-  Compass,
   ArrowRight,
-  Gauge,
   Cpu,
-  Armchair,
-  Eye
+  Armchair
 } from 'lucide-react';
 import { Vehicle, EditorialFeature, FeatureSlide } from '../data/vehicles';
 import { useAnimatedNumber } from '../hooks/useAnimations';
@@ -36,8 +32,7 @@ interface VehicleStoryViewProps {
 
 /**
  * EditorialFeatureSection
- * Dedicated full-width magazine-grade editorial spread for each core vehicle system:
- * (Seats, Transmission & Gearbox, Infotainment & Cockpit, Autonomous Radar & Safety)
+ * Linear Midnight Precision Instrument — Core System Spread
  */
 const EditorialFeatureSection: React.FC<{
   feature: EditorialFeature;
@@ -52,7 +47,6 @@ const EditorialFeatureSection: React.FC<{
   const activeSlide: FeatureSlide =
     feature.slides[activeSlideIndex] || feature.slides[0];
 
-  // Optional auto-slide when playing
   useEffect(() => {
     if (!isPlaying || feature.slides.length <= 1) return;
     const interval = setInterval(() => {
@@ -61,104 +55,99 @@ const EditorialFeatureSection: React.FC<{
     return () => clearInterval(interval);
   }, [isPlaying, feature.slides.length]);
 
-  // Section icon based on feature id
   const renderFeatureIcon = () => {
     switch (feature.id) {
       case 'seats':
-        return <Armchair className="w-4 h-4 text-[#dc2626]" />;
+        return <Armchair className="w-3.5 h-3.5 text-[#e4f222]" />;
       case 'transmission':
-        return <Cpu className="w-4 h-4 text-[#dc2626]" />;
+        return <Cpu className="w-3.5 h-3.5 text-[#e4f222]" />;
       case 'infotainment':
-        return <Sliders className="w-4 h-4 text-[#dc2626]" />;
+        return <Sliders className="w-3.5 h-3.5 text-[#e4f222]" />;
       case 'safety':
-        return <ShieldCheck className="w-4 h-4 text-[#dc2626]" />;
+        return <ShieldCheck className="w-3.5 h-3.5 text-[#e4f222]" />;
       default:
-        return <Sparkles className="w-4 h-4 text-[#dc2626]" />;
+        return <Sparkles className="w-3.5 h-3.5 text-[#e4f222]" />;
     }
   };
 
   return (
-    <section className="w-full bg-[#121215] border-b border-[#27272a] py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1240px] mx-auto space-y-10">
+    <section className="w-full bg-[#08090a] border-b border-[#23252a] py-20 px-4 sm:px-6">
+      <div className="max-w-[1200px] mx-auto space-y-10">
         
-        {/* Section Header: Eyebrow + Monolithic Headline + Lead */}
-        <div className="space-y-4 max-w-[960px]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#18181c] border border-[#27272a] text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
+        {/* Section Header: Linear 4px badge + Monolithic Headline + Lead */}
+        <div className="space-y-3 max-w-[900px]">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-[#0f1011] border border-[#23252a] text-[11px] font-mono uppercase tracking-wider text-[#8a8f98]">
             {renderFeatureIcon()}
             <span>0{sectionIndex + 1} / 0{totalSections} · {feature.badge}</span>
           </div>
 
-          <h2 className="text-[28px] sm:text-[38px] lg:text-[44px] font-bold text-white tracking-tight leading-[1.15]">
+          <h2 className="text-[26px] sm:text-[36px] lg:text-[40px] font-[510] text-white tracking-[-0.022em] leading-[1.12]">
             {feature.title}
           </h2>
 
-          <p className="text-[17px] sm:text-[19px] text-zinc-300 leading-relaxed font-normal">
+          <p className="text-[15px] sm:text-[16px] text-[#d0d6e0] leading-[1.6] font-normal">
             {feature.lead}
           </p>
         </div>
 
-        {/* Main Spread: 12-Column Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* 12-Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Column 1: Cinematic Interactive Slide Frame (7 cols) */}
-          <div className="lg:col-span-7 space-y-4">
-            
-            {/* Visual Frame */}
-            <div className="w-full h-[360px] sm:h-[460px] lg:h-[500px] rounded-[24px] overflow-hidden bg-[#18181c] border border-[#27272a] relative group">
+          {/* Column 1: Cinematic Slide Showcase (7 cols, 12px radius, #0f1011) */}
+          <div className="lg:col-span-7 space-y-3">
+            <div className="w-full h-[340px] sm:h-[440px] lg:h-[480px] rounded-[12px] overflow-hidden bg-[#0f1011] border border-[#23252a] relative group">
               <SkeletonImage
                 key={activeSlide.id || activeSlide.imageUrl}
                 src={activeSlide.imageUrl}
                 alt={activeSlide.title}
-                className="transition-transform duration-700 ease-out group-hover:scale-102"
+                className="transition-transform duration-500 ease-out group-hover:scale-102"
                 containerClassName="w-full h-full"
               />
 
-              {/* Top Bar Floating Badges */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
-                <span className="bg-[#09090b]/85 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[11px] font-semibold text-white">
+              {/* Floating Badges */}
+              <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none z-10">
+                <span className="bg-[#08090a]/80 backdrop-blur-md border border-[#23252a] px-2.5 py-1 rounded-[4px] text-[11px] font-mono text-[#d0d6e0]">
                   Slide {activeSlideIndex + 1} of {feature.slides.length}
                 </span>
 
                 {activeSlide.metric && (
-                  <div className="bg-[#09090b]/90 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626]" />
-                    <span className="text-[11px] font-medium text-zinc-400 hidden xs:inline">{activeSlide.metricLabel}:</span>
-                    <span className="text-[12px] sm:text-[13px] font-bold text-white">{activeSlide.metric}</span>
+                  <div className="bg-[#08090a]/90 backdrop-blur-md border border-[#23252a] px-2.5 py-1 rounded-[4px] flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#e4f222]" />
+                    <span className="text-[11px] font-mono text-[#8a8f98] hidden xs:inline">{activeSlide.metricLabel}:</span>
+                    <span className="text-[12px] font-mono font-[510] text-white">{activeSlide.metric}</span>
                   </div>
                 )}
               </div>
 
-              {/* Bottom Scrim & Active Slide Information */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex items-end p-6 sm:p-8 pointer-events-none z-10">
-                <div className="space-y-1.5 max-w-[560px]">
-                  <span className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400 block">
+              {/* Bottom Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#08090a]/95 via-[#08090a]/40 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
+                <div className="space-y-1.5 max-w-[540px]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#8a8f98] block">
                     {activeSlide.subtitle}
                   </span>
-                  <h3 className="text-[20px] sm:text-[23px] font-bold text-white drop-shadow-sm leading-snug">
+                  <h3 className="text-[18px] sm:text-[21px] font-[510] text-white leading-snug tracking-[-0.012em]">
                     {activeSlide.title}
                   </h3>
-                  <p className="text-[13px] sm:text-[14px] text-zinc-300 line-clamp-2 sm:line-clamp-3 leading-relaxed">
+                  <p className="text-[13px] sm:text-[14px] text-[#d0d6e0] line-clamp-2 leading-[1.5]">
                     {activeSlide.description}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Slide Navigation Dock */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 bg-[#18181c] border border-[#27272a] rounded-[20px]">
-              
-              {/* Slide Pill Tabs */}
-              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+            {/* Slide Navigation Dock (Linear 8px radius) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 p-2 bg-[#0f1011] border border-[#23252a] rounded-[8px]">
+              <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5">
                 {feature.slides.map((s, idx) => {
                   const isActive = activeSlideIndex === idx;
                   return (
                     <button
                       key={s.id || idx}
                       onClick={() => setActiveSlideIndex(idx)}
-                      className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-all shrink-0 cursor-pointer active:scale-95 ${
+                      className={`px-2.5 py-1 rounded-[4px] text-[12px] font-mono transition-colors shrink-0 cursor-pointer ${
                         isActive
-                          ? 'bg-white text-black font-semibold shadow-xs'
-                          : 'bg-[#121215] text-zinc-400 hover:text-white hover:bg-white/5'
+                          ? 'bg-[#ffffff] text-[#08090a] font-[510]'
+                          : 'bg-[#161718] text-[#8a8f98] hover:text-[#d0d6e0] hover:bg-[#23252a]'
                       }`}
                     >
                       <span>{s.title.split(' ')[0]} {s.title.split(' ')[1] || ''}</span>
@@ -167,29 +156,28 @@ const EditorialFeatureSection: React.FC<{
                 })}
               </div>
 
-              {/* Arrows & Autoplay Toggle */}
-              <div className="flex items-center justify-end gap-1.5 shrink-0">
+              <div className="flex items-center justify-end gap-1 shrink-0">
                 <button
                   onClick={() =>
                     setActiveSlideIndex((prev) =>
                       prev === 0 ? feature.slides.length - 1 : prev - 1
                     )
                   }
-                  className="w-8 h-8 rounded-full bg-[#121215] hover:bg-white/10 flex items-center justify-center text-white cursor-pointer active:scale-90 transition-transform"
-                  title="Previous perspective"
+                  className="w-7 h-7 rounded-[4px] bg-[#161718] hover:bg-[#23252a] flex items-center justify-center text-[#d0d6e0] hover:text-white cursor-pointer"
+                  title="Previous slide"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
 
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-8 h-8 rounded-full bg-[#121215] hover:bg-white/10 flex items-center justify-center text-white cursor-pointer active:scale-90 transition-transform"
+                  className="w-7 h-7 rounded-[4px] bg-[#161718] hover:bg-[#23252a] flex items-center justify-center text-[#d0d6e0] hover:text-white cursor-pointer"
                   title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
                 >
                   {isPlaying ? (
-                    <Pause className="w-3.5 h-3.5" />
+                    <Pause className="w-3 h-3" />
                   ) : (
-                    <Play className="w-3.5 h-3.5 ml-0.5" />
+                    <Play className="w-3 h-3 ml-0.5" />
                   )}
                 </button>
 
@@ -197,44 +185,39 @@ const EditorialFeatureSection: React.FC<{
                   onClick={() =>
                     setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length)
                   }
-                  className="w-8 h-8 rounded-full bg-[#121215] hover:bg-white/10 flex items-center justify-center text-white cursor-pointer active:scale-90 transition-transform"
-                  title="Next perspective"
+                  className="w-7 h-7 rounded-[4px] bg-[#161718] hover:bg-[#23252a] flex items-center justify-center text-[#d0d6e0] hover:text-white cursor-pointer"
+                  title="Next slide"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-
             </div>
-
           </div>
 
-          {/* Column 2: In-Depth Engineering Narrative & Specification Grid (5 cols) */}
-          <div className="lg:col-span-5 space-y-6 text-left">
-            
-            {/* Multi-paragraph technical narrative */}
-            <div className="space-y-4 text-[15px] sm:text-[16px] text-zinc-400 leading-relaxed">
+          {/* Column 2: In-Depth Engineering Narrative & Specs (5 cols) */}
+          <div className="lg:col-span-5 space-y-5 text-left">
+            <div className="space-y-3.5 text-[14px] sm:text-[15px] text-[#8a8f98] leading-[1.6]">
               {feature.narrative.map((para, pIdx) => (
-                <p key={pIdx} className="border-l-2 border-[#27272a] pl-4">
+                <p key={pIdx} className="border-l border-[#23252a] pl-3.5">
                   {para}
                 </p>
               ))}
             </div>
 
-            {/* 4-Spec Engineering Indicator Grid */}
             <div className="pt-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 block mb-3">
-                System Engineering Highlights
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#8a8f98] block mb-2.5">
+                Engineering Specifications
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {feature.specs.map((spec, sIdx) => (
                   <div
                     key={sIdx}
-                    className="p-3.5 rounded-[16px] bg-[#18181c] border border-[#27272a] space-y-1 hover:border-zinc-500 transition-colors"
+                    className="p-3 rounded-[8px] bg-[#0f1011] border border-[#23252a] space-y-0.5 hover:border-[#383b3f] transition-colors"
                   >
-                    <span className="text-[11px] text-zinc-400 uppercase tracking-wider block font-medium">
+                    <span className="text-[10px] text-[#8a8f98] font-mono uppercase tracking-wider block">
                       {spec.label}
                     </span>
-                    <span className="text-[13px] sm:text-[14px] font-semibold text-white leading-snug block">
+                    <span className="text-[13px] font-[510] text-white leading-snug block">
                       {spec.value}
                     </span>
                   </div>
@@ -242,19 +225,17 @@ const EditorialFeatureSection: React.FC<{
               </div>
             </div>
 
-            {/* Fast Feature WhatsApp Inquiry Link */}
             <div className="pt-2">
               <a
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(feature.title)}%20on%20the%20${encodeURIComponent(vehicleName)}%20(${stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[13px] text-white hover:text-zinc-300 font-medium group cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-[13px] text-[#d0d6e0] hover:text-white font-normal group cursor-pointer transition-colors"
               >
-                <span>Ask our mechanical concierge about this system</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <span>Consult engineering concierge</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
               </a>
             </div>
-
           </div>
 
         </div>
@@ -273,13 +254,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   onToggleFavorite,
   onScheduleTestDrive,
 }) => {
-  // Apple Color Finishes Switcher State
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-
-  // Japanese Auction Sheet Submodal
   const [showAuctionModal, setShowAuctionModal] = useState(false);
-
-  // Asset Finance Calculator State
   const [depositPercent, setDepositPercent] = useState(25);
   const [loanTenureMonths, setLoanTenureMonths] = useState(48);
 
@@ -292,32 +268,30 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       (Math.pow(1 + monthlyRate, loanTenureMonths) - 1)
   );
 
-  // Animated Numbers for Slider Tweens
   const animatedMonthlyPayment = useAnimatedNumber(monthlyPayment, 350);
   const animatedDepositAmount = useAnimatedNumber(depositAmount, 350);
 
   const activeColor = vehicle.colors[selectedColorIndex] || vehicle.colors[0];
 
   return (
-    <div className="w-full bg-[#09090b] text-white pb-24">
+    <div className="w-full bg-[#08090a] text-[#d0d6e0] pb-24">
       
-      {/* 1. MODEL SWITCHER STICKY HORIZON BAR */}
-      <div className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-[#27272a] py-2 px-3 sm:px-4 sticky top-[52px] z-30 transition-all">
-        <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
+      {/* 1. MODEL SWITCHER HORIZON BAR (Linear 56px, #08090a, 1px border) */}
+      <div className="w-full bg-[#08090a]/90 backdrop-blur-md border-b border-[#23252a] py-2 px-3 sm:px-4 sticky top-[56px] z-30 transition-all">
+        <div className="max-w-[1200px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 min-w-0">
-            {/* Quick Back to Fleet Button */}
             <button
               onClick={onBackToFleet}
-              className="text-[12px] text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer shrink-0 mr-1 sm:mr-2 px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 active:scale-95 transition-all"
+              className="text-[12px] text-[#8a8f98] hover:text-white flex items-center gap-1 cursor-pointer shrink-0 mr-1 sm:mr-2 px-2.5 py-1 rounded-[6px] bg-[#161718] border border-[#23252a] hover:border-[#383b3f] transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline font-medium">Fleet</span>
+              <span className="hidden xs:inline font-mono">Fleet</span>
             </button>
 
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 hidden lg:inline mr-1 shrink-0">
-              Showroom Models:
+            <span className="text-[11px] font-mono uppercase tracking-wider text-[#8a8f98] hidden lg:inline mr-1 shrink-0">
+              Models:
             </span>
-            <div className="flex items-center bg-[#18181c] border border-[#27272a] p-1 rounded-full shrink-0">
+            <div className="flex items-center bg-[#0f1011] border border-[#23252a] p-0.5 rounded-[6px] shrink-0">
               {allVehicles.map((v) => {
                 const isCurrent = v.id === vehicle.id;
                 return (
@@ -327,10 +301,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       onSelectVehicle(v);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[12px] transition-all shrink-0 cursor-pointer active:scale-95 ${
+                    className={`px-3 py-1 rounded-[4px] text-[12px] font-mono transition-colors shrink-0 cursor-pointer ${
                       isCurrent
-                        ? 'bg-white text-black font-semibold shadow-xs'
-                        : 'text-zinc-400 hover:text-white font-medium'
+                        ? 'bg-[#ffffff] text-[#08090a] font-[510]'
+                        : 'text-[#8a8f98] hover:text-[#d0d6e0]'
                     }`}
                   >
                     {v.name.split(' ')[1]} {v.name.split(' ')[2] || ''}
@@ -341,14 +315,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span className="text-[13px] font-bold text-white hidden md:inline">
+            <span className="text-[13px] font-mono font-[510] text-white hidden md:inline">
               KES {vehicle.priceKes.toLocaleString()}
             </span>
             <a
               href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="pricing-red-pill !py-1.5 !px-3 sm:!px-4 text-[12px] sm:text-[13px] whitespace-nowrap active:scale-95 transition-transform"
+              className="btn-primary !py-1 !px-3 text-[12px] !rounded-[6px] whitespace-nowrap font-[510]"
             >
               Inquire
             </a>
@@ -356,73 +330,66 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
       </div>
 
-      {/* 2. MONUMENTAL HERO: ESSENCE, COLOR SELECTION & CORE METRICS */}
-      <section className="w-full pt-14 pb-16 px-4 sm:px-6 text-center max-w-[1240px] mx-auto">
-        
-        {/* Launch Status and Stock Identifier */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#18181c] border border-[#27272a] text-[11px] font-semibold text-zinc-300 uppercase tracking-wider mb-3">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626]" />
+      {/* 2. MONUMENTAL HERO: ESSENCE, COLOR & METRICS */}
+      <section className="w-full pt-12 pb-16 px-4 sm:px-6 text-center max-w-[1200px] mx-auto">
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-[#0f1011] border border-[#23252a] text-[11px] font-mono text-[#8a8f98] uppercase tracking-wider mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#e4f222]" />
           <span>{vehicle.status} · Stock #{vehicle.stockNo}</span>
         </div>
 
-        {/* Moniker Persona */}
-        <p className="text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.25em] text-zinc-400 mb-2">
+        <p className="text-[12px] font-mono uppercase tracking-[0.2em] text-[#8a8f98] mb-2">
           {vehicle.moniker}
         </p>
 
-        {/* Monumental Headline */}
-        <h1 className="hero-display mb-5">
+        <h1 className="hero-display text-[32px] sm:text-[48px] md:text-[58px] mb-4 text-white max-w-[900px] mx-auto">
           {vehicle.name}
         </h1>
 
-        {/* Contemplative Quote */}
-        <blockquote className="max-w-[760px] mx-auto text-zinc-400 text-[17px] sm:text-[20px] leading-relaxed italic mb-10 font-normal">
+        <blockquote className="max-w-[720px] mx-auto text-[#8a8f98] text-[15px] sm:text-[17px] leading-[1.6] italic mb-8 font-normal">
           "{vehicle.essenceQuote}"
         </blockquote>
 
-        {/* Master Visual Canvas with Color Swatches */}
-        <div className="relative w-full max-w-[1020px] mx-auto mb-8">
-          <div className="w-full h-[380px] sm:h-[520px] lg:h-[560px] rounded-[28px] overflow-hidden bg-[#18181c] border border-[#27272a] relative">
+        {/* Master Visual Canvas (Linear 12px radius, #0f1011, 1px border) */}
+        <div className="relative w-full max-w-[980px] mx-auto mb-6">
+          <div className="w-full h-[360px] sm:h-[480px] lg:h-[520px] rounded-[12px] overflow-hidden bg-[#0f1011] border border-[#23252a] relative">
             <SkeletonImage
               key={activeColor.name}
               src={activeColor.imageUrl}
               alt={`${vehicle.name} in ${activeColor.name}`}
-              className="transition-transform duration-700 hover:scale-102"
+              className="transition-transform duration-500 hover:scale-102"
               containerClassName="w-full h-full"
             />
 
-            {/* Gradient Scrim */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-6 sm:p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#08090a]/90 via-transparent to-transparent flex items-end p-5 sm:p-7">
               <div className="text-left text-white space-y-1">
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400 block">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#8a8f98] block">
                   Commission Specification
                 </span>
-                <p className="text-[18px] sm:text-[22px] font-bold text-white drop-shadow-sm">
+                <p className="text-[17px] sm:text-[20px] font-[510] text-white tracking-[-0.012em]">
                   {activeColor.name} · Grade {vehicle.auctionGrade} Provenance
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Color Finishes Switcher Floating Capsule */}
-          <div className="floating-capsule p-3.5 max-w-[460px] mx-auto -mt-7 relative z-20 flex items-center justify-between bg-[#121215] border border-[#27272a] shadow-xl">
+          {/* Color Switcher Capsule (Linear 12px radius) */}
+          <div className="p-3 max-w-[420px] mx-auto -mt-6 relative z-20 flex items-center justify-between bg-[#0f1011] border border-[#23252a] rounded-[12px] shadow-xl">
             <div className="text-left pl-2">
-              <span className="text-[10px] text-zinc-400 uppercase font-semibold block">Factory Finish</span>
-              <span className="text-[13px] font-semibold text-white truncate max-w-[200px] block">
+              <span className="text-[10px] text-[#8a8f98] font-mono uppercase block">Factory Finish</span>
+              <span className="text-[13px] font-[510] text-white truncate max-w-[180px] block">
                 {activeColor.name}
               </span>
             </div>
 
-            {/* Circular Color Swatches */}
-            <div className="flex items-center gap-2.5 pr-2">
+            <div className="flex items-center gap-2 pr-2">
               {vehicle.colors.map((c, idx) => {
                 const isSelected = selectedColorIndex === idx;
                 return (
                   <button
                     key={idx}
                     onClick={() => setSelectedColorIndex(idx)}
-                    className={`w-7 h-7 rounded-full transition-all cursor-pointer relative flex items-center justify-center ${
-                      isSelected ? 'ring-2 ring-white ring-offset-2 ring-offset-[#09090b] scale-110' : 'opacity-80 hover:opacity-100'
+                    className={`w-6 h-6 rounded-full transition-transform cursor-pointer relative flex items-center justify-center ${
+                      isSelected ? 'ring-2 ring-[#e4f222] ring-offset-2 ring-offset-[#08090a] scale-110' : 'opacity-70 hover:opacity-100'
                     }`}
                     style={{ backgroundColor: c.hex }}
                     title={c.name}
@@ -438,28 +405,27 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
 
         {/* 4-Column Metric Summary Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-[920px] mx-auto pt-6 text-left">
-          <div className="border-l-2 border-[#27272a] pl-4">
-            <span className="text-[11px] text-zinc-400 uppercase block font-medium">Year & Mileage</span>
-            <span className="text-[16px] font-semibold text-white">{vehicle.year} · {vehicle.mileageKm.toLocaleString()} km</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[880px] mx-auto pt-6 text-left">
+          <div className="border-l border-[#23252a] pl-3.5">
+            <span className="text-[10px] text-[#8a8f98] font-mono uppercase block">Year & Mileage</span>
+            <span className="text-[15px] font-[510] text-white">{vehicle.year} · {vehicle.mileageKm.toLocaleString()} km</span>
           </div>
-          <div className="border-l-2 border-[#27272a] pl-4">
-            <span className="text-[11px] text-zinc-400 uppercase block font-medium">Auction Condition</span>
-            <span className="text-[16px] font-semibold text-white">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
+          <div className="border-l border-[#23252a] pl-3.5">
+            <span className="text-[10px] text-[#8a8f98] font-mono uppercase block">Auction Score</span>
+            <span className="text-[15px] font-[510] text-white">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
           </div>
-          <div className="border-l-2 border-[#27272a] pl-4">
-            <span className="text-[11px] text-zinc-400 uppercase block font-medium">Drivetrain</span>
-            <span className="text-[16px] font-semibold text-white">{vehicle.drivetrain.split('(')[0]}</span>
+          <div className="border-l border-[#23252a] pl-3.5">
+            <span className="text-[10px] text-[#8a8f98] font-mono uppercase block">Drivetrain</span>
+            <span className="text-[15px] font-[510] text-white">{vehicle.drivetrain.split('(')[0]}</span>
           </div>
-          <div className="border-l-2 border-[#27272a] pl-4">
-            <span className="text-[11px] text-zinc-400 uppercase block font-medium">Delivered Price</span>
-            <span className="text-[17px] font-semibold text-white">KES {vehicle.priceKes.toLocaleString()}</span>
+          <div className="border-l border-[#23252a] pl-3.5">
+            <span className="text-[10px] text-[#8a8f98] font-mono uppercase block">Delivered Price</span>
+            <span className="text-[15px] font-[510] text-white">KES {vehicle.priceKes.toLocaleString()}</span>
           </div>
         </div>
-
       </section>
 
-      {/* 3. DEDICATED EDITORIAL FEATURE SPREADS (SEATS, TRANSMISSION, INFOTAINMENT, SAFETY) */}
+      {/* 3. DEDICATED EDITORIAL FEATURE SPREADS */}
       <div className="w-full">
         {vehicle.editorialFeatures.map((feat, idx) => (
           <EditorialFeatureSection
@@ -473,75 +439,72 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         ))}
       </div>
 
-      {/* 4. TECHNICAL SPECIFICATIONS & JAPANESE AUCTION SHEET MODAL */}
-      <section className="w-full bg-[#09090b] py-20 px-4 sm:px-6">
-        <div className="max-w-[1240px] mx-auto space-y-10">
-          
+      {/* 4. TECHNICAL SPECIFICATIONS & PROVENANCE */}
+      <section className="w-full bg-[#08090a] py-20 px-4 sm:px-6">
+        <div className="max-w-[1200px] mx-auto space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18181c] border border-[#27272a] text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                <FileText className="w-3.5 h-3.5 text-[#dc2626]" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-[#0f1011] border border-[#23252a] text-[11px] font-mono uppercase tracking-wider text-[#8a8f98] mb-2">
+                <FileText className="w-3.5 h-3.5 text-[#e4f222]" />
                 <span>Engineering Archive & Provenance</span>
               </span>
-              <h2 className="text-[28px] sm:text-[36px] font-bold text-white tracking-tight">
+              <h2 className="text-[26px] sm:text-[32px] font-[510] text-white tracking-[-0.022em]">
                 Technical Specifications & Provenance.
               </h2>
             </div>
 
             <button
               onClick={() => setShowAuctionModal(true)}
-              className="outlined-explore-pill cursor-pointer hover:border-white transition-colors"
+              className="btn-ghost !text-[12px] !py-1.5 !px-3 cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 text-zinc-300" />
+              <FileText className="w-3.5 h-3.5 text-[#8a8f98]" />
               <span>Inspect {vehicle.auctionHall} Auction Sheet</span>
             </button>
           </div>
 
-          <div className="p-6 sm:p-8 bg-[#121215] rounded-[24px] border border-[#27272a] divide-y divide-[#27272a]">
+          <div className="p-5 sm:p-7 bg-[#0f1011] rounded-[12px] border border-[#23252a] divide-y divide-[#23252a]">
             {vehicle.specifications.map((group, idx) => (
-              <div key={idx} className="py-6 first:pt-0 last:pb-0 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <span className="text-[15px] font-bold text-white">{group.category}</span>
-                <div className="md:col-span-2 space-y-2 text-[14px]">
+              <div key={idx} className="py-5 first:pt-0 last:pb-0 grid grid-cols-1 md:grid-cols-3 gap-3">
+                <span className="text-[14px] font-[510] text-white">{group.category}</span>
+                <div className="md:col-span-2 space-y-1.5 text-[13px]">
                   {group.items.map((item, itemIdx) => (
-                    <div key={itemIdx} className="flex justify-between py-1 border-b border-[#18181c] last:border-0">
-                      <span className="text-zinc-400">{item.label}</span>
-                      <span className="text-white font-medium">{item.value}</span>
+                    <div key={itemIdx} className="flex justify-between py-1 border-b border-[#161718] last:border-0">
+                      <span className="text-[#8a8f98]">{item.label}</span>
+                      <span className="text-[#d0d6e0] font-mono">{item.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* 5. ASSET FINANCING STUDIO & COMMISSION HANDOVER DESK */}
-      <section className="w-full bg-[#121215] py-20 px-4 sm:px-6 border-t border-[#27272a]">
-        <div className="max-w-[1240px] mx-auto space-y-10">
-          
-          <div className="p-6 sm:p-10 lg:p-12 bg-[#18181c] rounded-[24px] border border-[#27272a]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#27272a]">
+      {/* 5. ASSET FINANCING & WORKSHOP OVERHAUL STAMP */}
+      <section className="w-full bg-[#08090a] py-20 px-4 sm:px-6 border-t border-[#23252a]">
+        <div className="max-w-[1200px] mx-auto space-y-8">
+          <div className="p-5 sm:p-8 bg-[#0f1011] rounded-[12px] border border-[#23252a]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#23252a]">
               <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#121215] border border-[#27272a] text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#161718] border border-[#23252a] text-[10px] font-mono uppercase tracking-wider text-[#8a8f98] mb-1.5">
                   <span>Financial Acquisition</span>
                 </span>
-                <h3 className="text-[24px] font-bold text-white">Asset Finance Repayment Calculator</h3>
-                <p className="text-[13px] text-zinc-400 mt-1">Official pre-approved financing via NCBA Bank, Stanbic Bank, and I&M Bank Kenya.</p>
+                <h3 className="text-[20px] sm:text-[22px] font-[510] text-white">Asset Finance Calculator</h3>
+                <p className="text-[13px] text-[#8a8f98] mt-0.5">Official pre-approved financing via NCBA Bank, Stanbic Bank, and I&M Bank Kenya.</p>
               </div>
               <div className="text-left sm:text-right">
-                <span className="text-[11px] text-zinc-400 uppercase block font-medium">Estimated Monthly Installment</span>
-                <span className="text-[28px] font-bold text-white transition-all">
-                  KES {animatedMonthlyPayment.toLocaleString()}<span className="text-[14px] font-normal text-zinc-400">/mo</span>
+                <span className="text-[10px] font-mono text-[#8a8f98] uppercase block">Monthly Installment</span>
+                <span className="text-[24px] sm:text-[26px] font-[510] text-[#e4f222]">
+                  KES {animatedMonthlyPayment.toLocaleString()}<span className="text-[13px] font-normal text-[#8a8f98]">/mo</span>
                 </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-5">
               <div>
-                <div className="flex justify-between text-[13px] mb-2">
-                  <span className="font-medium text-white">Deposit Equity ({depositPercent}%)</span>
-                  <span className="font-semibold text-white transition-all">KES {animatedDepositAmount.toLocaleString()}</span>
+                <div className="flex justify-between text-[12px] mb-2 font-mono">
+                  <span className="text-[#d0d6e0]">Deposit Equity ({depositPercent}%)</span>
+                  <span className="text-white font-[510]">KES {animatedDepositAmount.toLocaleString()}</span>
                 </div>
                 <input
                   type="range"
@@ -550,9 +513,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   step="5"
                   value={depositPercent}
                   onChange={(e) => setDepositPercent(Number(e.target.value))}
-                  className="w-full accent-[#dc2626] cursor-pointer"
+                  className="w-full accent-[#e4f222] cursor-pointer"
                 />
-                <div className="flex justify-between text-[11px] text-zinc-400 mt-1">
+                <div className="flex justify-between text-[10px] font-mono text-[#8a8f98] mt-1">
                   <span>15%</span>
                   <span>35%</span>
                   <span>60%</span>
@@ -560,9 +523,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
 
               <div>
-                <div className="flex justify-between text-[13px] mb-2">
-                  <span className="font-medium text-white">Loan Duration ({loanTenureMonths} Months / {loanTenureMonths / 12} Years)</span>
-                  <span className="font-semibold text-white">{loanTenureMonths} Months</span>
+                <div className="flex justify-between text-[12px] mb-2 font-mono">
+                  <span className="text-[#d0d6e0]">Tenure ({loanTenureMonths} Months / {loanTenureMonths / 12} Yrs)</span>
+                  <span className="text-white font-[510]">{loanTenureMonths} Months</span>
                 </div>
                 <input
                   type="range"
@@ -571,9 +534,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   step="12"
                   value={loanTenureMonths}
                   onChange={(e) => setLoanTenureMonths(Number(e.target.value))}
-                  className="w-full accent-[#dc2626] cursor-pointer"
+                  className="w-full accent-[#e4f222] cursor-pointer"
                 />
-                <div className="flex justify-between text-[11px] text-zinc-400 mt-1">
+                <div className="flex justify-between text-[10px] font-mono text-[#8a8f98] mt-1">
                   <span>1 Year</span>
                   <span>3 Years</span>
                   <span>5 Years</span>
@@ -583,18 +546,18 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
 
           {/* Mombasa Pre-Delivery Protocol Stamp */}
-          <div className="p-6 sm:p-8 bg-[#18181c] rounded-[24px] border border-[#27272a]">
-            <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#27272a]">
-              <ShieldCheck className="w-6 h-6 text-white" />
+          <div className="p-5 sm:p-6 bg-[#0f1011] rounded-[12px] border border-[#23252a]">
+            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-[#23252a]">
+              <ShieldCheck className="w-5 h-5 text-[#e4f222]" />
               <div>
-                <h4 className="text-[18px] font-bold text-white">Mombasa 48-Hour Pre-Delivery Overhaul Stamp</h4>
-                <p className="text-[12px] text-zinc-400">Certified on Tangana Road for Stock #{vehicle.stockNo}</p>
+                <h4 className="text-[16px] font-[510] text-white">Mombasa 48-Hour Pre-Delivery Overhaul Stamp</h4>
+                <p className="text-[11px] font-mono text-[#8a8f98]">Certified on Tangana Road for Stock #{vehicle.stockNo}</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {vehicle.workshopProtocol.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px] text-zinc-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                <div key={i} className="flex items-start gap-2 text-[13px] text-[#d0d6e0]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#e4f222] shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -602,100 +565,99 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
 
           {/* Conversion Action Bar */}
-          <div className="p-8 bg-[#18181c] rounded-[24px] border border-[#27272a] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+          <div className="p-6 bg-[#0f1011] rounded-[12px] border border-[#23252a] flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#121215] border border-[#27272a] text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626]" />
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#161718] border border-[#23252a] text-[10px] font-mono uppercase tracking-wider text-[#8a8f98] mb-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#e4f222]" />
                 <span>Immediate Availability</span>
               </span>
-              <h3 className="text-[22px] font-bold text-white">
+              <h3 className="text-[20px] font-[510] text-white tracking-[-0.012em]">
                 Reserve {vehicle.name}
               </h3>
-              <p className="text-[13px] text-zinc-400 mt-1">
+              <p className="text-[13px] text-[#8a8f98] mt-0.5">
                 Deliverable to your residence in Nairobi or Mombasa within 48 hours.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto">
               <button
                 onClick={() => onScheduleTestDrive(vehicle)}
-                className="outlined-explore-pill py-2.5 px-6 text-[13px] cursor-pointer w-full sm:w-auto hover:border-white transition-colors"
+                className="btn-ghost !text-[13px] !py-2 !px-4 cursor-pointer w-full sm:w-auto"
               >
-                <Calendar className="w-4 h-4" />
-                <span>Book VIP Test Drive</span>
+                <Calendar className="w-3.5 h-3.5" />
+                <span>VIP Test Drive</span>
               </button>
 
               <a
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20reserve%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pricing-red-pill !py-3 !px-6 text-[13px] w-full sm:w-auto justify-center"
+                className="btn-primary !text-[13px] !py-2 !px-5 w-full sm:w-auto justify-center font-[510]"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp Sales Concierge</span>
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>WhatsApp Concierge</span>
               </a>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* 6. JAPANESE AUCTION SHEET MODAL */}
+      {/* 6. AUCTION SHEET MODAL */}
       {showAuctionModal && (
-        <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#121215] rounded-[24px] max-w-[680px] w-full p-6 sm:p-8 relative border border-[#27272a] shadow-2xl">
+        <div className="fixed inset-0 z-60 bg-[#08090a]/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-[#0f1011] rounded-[12px] max-w-[640px] w-full p-6 sm:p-7 relative border border-[#23252a] shadow-2xl">
             <button
               onClick={() => setShowAuctionModal(false)}
-              className="absolute top-5 right-5 p-2 rounded-full hover:bg-white/10 cursor-pointer text-zinc-400 hover:text-white"
+              className="absolute top-4 right-4 p-1.5 rounded-[4px] hover:bg-white/5 cursor-pointer text-[#8a8f98] hover:text-white"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-4 h-4" />
             </button>
 
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18181c] border border-[#27272a] text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#161718] border border-[#23252a] text-[10px] font-mono uppercase tracking-wider text-[#8a8f98] mb-1.5">
               <span>Authentic Japanese Export Document</span>
             </span>
-            <h3 className="text-[22px] font-bold text-white mb-1">
+            <h3 className="text-[20px] font-[510] text-white mb-1">
               {vehicle.auctionHall} Auction Sheet
             </h3>
-            <p className="text-[13px] text-zinc-400 mb-6">
-              Verified Odometer: {vehicle.mileageKm.toLocaleString()} KM · Overall Grade: {vehicle.auctionGrade} · Interior: {vehicle.interiorGrade}
+            <p className="text-[12px] font-mono text-[#8a8f98] mb-5">
+              Odometer: {vehicle.mileageKm.toLocaleString()} KM · Overall: {vehicle.auctionGrade} · Interior: {vehicle.interiorGrade}
             </p>
 
-            <div className="bg-[#18181c] rounded-[16px] p-6 text-[13px] font-mono space-y-2 border border-[#27272a]">
-              <div className="flex justify-between border-b border-[#27272a] pb-1.5">
-                <span className="text-zinc-400">Auction Hall:</span>
-                <span className="font-semibold text-white">{vehicle.auctionHall} (Japan)</span>
+            <div className="bg-[#161718] rounded-[8px] p-5 text-[12px] font-mono space-y-2 border border-[#23252a]">
+              <div className="flex justify-between border-b border-[#23252a] pb-1.5">
+                <span className="text-[#8a8f98]">Auction Hall:</span>
+                <span className="text-white font-[510]">{vehicle.auctionHall} (Japan)</span>
               </div>
-              <div className="flex justify-between border-b border-[#27272a] pb-1.5">
-                <span className="text-zinc-400">Stock Identification:</span>
-                <span className="font-semibold text-white">{vehicle.stockNo}</span>
+              <div className="flex justify-between border-b border-[#23252a] pb-1.5">
+                <span className="text-[#8a8f98]">Stock ID:</span>
+                <span className="text-white font-[510]">{vehicle.stockNo}</span>
               </div>
-              <div className="flex justify-between border-b border-[#27272a] pb-1.5">
-                <span className="text-zinc-400">Overall Inspection Score:</span>
-                <span className="font-semibold text-white">{vehicle.auctionGrade}</span>
+              <div className="flex justify-between border-b border-[#23252a] pb-1.5">
+                <span className="text-[#8a8f98]">Overall Inspection:</span>
+                <span className="text-white font-[510]">{vehicle.auctionGrade}</span>
               </div>
-              <div className="flex justify-between border-b border-[#27272a] pb-1.5">
-                <span className="text-zinc-400">Interior / Exterior Score:</span>
-                <span className="font-semibold text-white">{vehicle.interiorGrade}</span>
+              <div className="flex justify-between border-b border-[#23252a] pb-1.5">
+                <span className="text-[#8a8f98]">Interior / Exterior:</span>
+                <span className="text-white font-[510]">{vehicle.interiorGrade}</span>
               </div>
-              <div className="flex justify-between border-b border-[#27272a] pb-1.5">
-                <span className="text-zinc-400">Accident / Frame Damage:</span>
-                <span className="font-semibold text-emerald-400">ZERO (Clean Original Pillars)</span>
+              <div className="flex justify-between border-b border-[#23252a] pb-1.5">
+                <span className="text-[#8a8f98]">Accident / Frame Damage:</span>
+                <span className="text-[#27a644] font-[510]">ZERO (Clean Original Pillars)</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400">QISJ Pre-Shipment Inspection:</span>
-                <span className="font-semibold text-emerald-400">PASSED & AUTHENTICATED</span>
+                <span className="text-[#8a8f98]">QISJ Pre-Shipment:</span>
+                <span className="text-[#27a644] font-[510]">PASSED & AUTHENTICATED</span>
               </div>
             </div>
 
-            <div className="mt-6 flex justify-end">
+            <div className="mt-5 flex justify-end">
               <a
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pricing-red-pill !py-2.5 !px-5 text-[13px]"
+                className="btn-primary !text-[12px] !py-2 !px-4 font-[510]"
               >
-                Request Scanned Original PDF on WhatsApp
+                Request Scanned Original PDF
               </a>
             </div>
           </div>
