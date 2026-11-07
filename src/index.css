@@ -193,7 +193,7 @@ body {
 }
 
 .btn-crimson:hover, .btn-rr-solid:hover {
-  border-color: #ef4444;
+  border-color: #52525b;
   background-color: #202025;
   color: #ffffff;
 }
@@ -226,7 +226,7 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background-color: #ef4444;
+  background-color: #dc2626;
 }
 
 /* Smooth Entrance Transition */

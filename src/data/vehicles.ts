@@ -90,10 +90,10 @@ export const VEHICLES: Vehicle[] = [
     id: 'toyota-rav4-adventure',
     stockNo: 'ALB-4062',
     name: 'Toyota RAV4 Adventure AWD',
-    moniker: 'The Uncharted Horizon',
-    essenceQuote: 'Born for the wild, sculpted with restraint. A harmonious union of mechanical fortitude and modern composure.',
-    kicker: 'All-Terrain Poise',
-    tagline: 'Rugged composure. Dynamic Torque Vectoring All-Wheel Drive.',
+    moniker: 'Rugged All-Weather SUV',
+    essenceQuote: 'Built tough for rough Kenyan roads, comfortable for daily city driving. Smart all-wheel drive with high ground clearance and generous boot space.',
+    kicker: 'All-Road Capability',
+    tagline: 'High 200mm ground clearance with smart All-Wheel Drive and tough SofTex leather.',
     priceKes: 4450000,
     year: 2020,
     mileageKm: 48200,
@@ -108,7 +108,7 @@ export const VEHICLES: Vehicle[] = [
     fuelEconomy: '15.2 km/L (Mixed Cycle)',
     auctionGrade: 'Grade 4.5',
     auctionHall: 'USS Tokyo',
-    interiorGrade: 'Grade B (Pristine Original)',
+    interiorGrade: 'Grade B (Clean Original)',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4',
     heroImage: './vehicles/rav4-adventure.jpg',
@@ -121,36 +121,36 @@ export const VEHICLES: Vehicle[] = [
     closerLookPoints: [
       {
         id: 'torque-vectoring',
-        title: 'Dynamic Torque Vectoring',
-        subtitle: 'Bespoke Traction Architecture',
-        description: 'Dual electromagnetic couplings on the rear axle distribute torque independently to each rear wheel, pivoting the chassis into mountain bends with zero slip.',
+        title: 'Smart All-Wheel Drive',
+        subtitle: 'Independent Rear Wheel Grip',
+        description: 'Sends engine power to whichever rear wheel has the most grip, keeping you moving safely through mud, gravel, and wet corners.',
         imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: '50:50',
         metricLabel: 'Rear Axle Split'
       },
       {
         id: 'orange-stitch',
-        title: 'The Adventure Suite',
-        subtitle: 'Artisan Contrast Detailing',
-        description: 'SofTex synthetic hides adorned with laser-etched polygonal patterns and vibrant orange contrast seam piping for a cabin of athletic luxury.',
+        title: 'Durable SofTex Leather',
+        subtitle: 'Easy-to-Clean Sport Interior',
+        description: 'Tough water-resistant synthetic leather with sporty orange stitching, designed to wipe clean easily after outdoor road trips.',
         imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: 'SofTex',
-        metricLabel: 'Breathable Upholstery'
+        metricLabel: 'Durable Upholstery'
       },
       {
         id: 'thermal-efficiency',
-        title: '40% Thermal Efficiency',
-        subtitle: 'Dynamic Force Combustion',
-        description: 'Long-stroke combustion chambers and laser-clad intake valves convert more chemical energy into mechanical force than any preceding Toyota four-cylinder.',
+        title: '2.0L Fuel-Efficient Engine',
+        subtitle: 'Toyota Dynamic Force Power',
+        description: 'Modern 2.0-liter engine engineered to deliver strong pulling power while saving fuel, returning over 15 km per liter.',
         imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        metric: '40%',
-        metricLabel: 'Peak Thermal Efficiency'
+        metric: '15.2 km/L',
+        metricLabel: 'Average Fuel Economy'
       },
       {
         id: 'chassis-clearance',
         title: '200mm Ground Clearance',
-        subtitle: 'East African Terrain Compliance',
-        description: 'Elevated stance with reinforced multi-link rear suspension designed specifically to conquer corrugated Murram terrain and unpredictable flood ruts.',
+        subtitle: 'Clears Rough Roads & Bumps',
+        description: 'High ride height clears steep speed bumps, flooded city streets, and unpaved upcountry roads without scraping the underside.',
         imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: '200 mm',
         metricLabel: 'Ride Height'
@@ -159,19 +159,19 @@ export const VEHICLES: Vehicle[] = [
     editorialFeatures: [
       {
         id: 'seats',
-        badge: 'ALL-TERRAIN CABIN & ERGONOMICS',
-        title: 'Adventure SofTex Seating & Contoured Wilderness Ergonomics',
-        lead: 'High-durability polygonal-embossed SofTex upholstery, active lumbar bolstering, and contrast orange seam piping.',
+        badge: 'INTERIOR COMFORT & BOOT SPACE',
+        title: 'SofTex Leather Seats & Flexible 1,064L Boot',
+        lead: 'Water-resistant SofTex seats with power adjustments and a wide flat-folding rear boot for all your safari and family gear.',
         narrative: [
-          'The interior of the RAV4 Adventure AWD balances utilitarian resilience with tactile comfort. Upholstered in bespoke SofTex synthetic leather, the seat facings resist mud, humidity, and abrasive dust while delivering exceptional breathability on long Rift Valley expeditions.',
-          'Multi-density ergonomic foam cushions actively absorb off-camber road shocks before reaching the driver’s spine. 8-way power adjustability with memory and dual-stage seat ventilation ensures fatigue-free composure.',
-          'The 60/40 split-folding rear bench deploys flat with a single pull lever, expanding cargo volume to 1,064 liters of versatile expedition storage with reversible, easy-wipe dual-level cargo flooring.'
+          'The interior of the RAV4 Adventure AWD combines rugged durability with everyday comfort. The SofTex seats are water-resistant and wipe clean effortlessly after dusty weekend road trips.',
+          'Multi-density seat cushioning supports your back and hips, reducing fatigue on long drives between Nairobi and Mombasa. The driver seat features 8-way electric power controls.',
+          'The rear seats fold completely flat with a single pull, creating 1,064 liters of flat luggage space with a reversible, easy-wipe floor.'
         ],
         specs: [
-          { label: 'Upholstery Material', value: 'Perforated SofTex with Laser Polygonal Inserts' },
-          { label: 'Driver Adjustment', value: '8-Way Power Seat with 2-Way Lumbar Memory' },
-          { label: 'Cargo Expansion', value: '1,064 Liters Flat-Fold Capacity' },
-          { label: 'Accent Detailing', value: 'Anodized Orange Contrast Seam Piping' }
+          { label: 'Seat Material', value: 'Perforated SofTex with Orange Seams' },
+          { label: 'Driver Adjustment', value: '8-Way Electric Power with Lumbar Support' },
+          { label: 'Boot Capacity', value: '1,064 Liters Flat-Fold Space' },
+          { label: 'Cabin Accents', value: 'Sporty Orange Contrast Stitching' }
         ],
         slides: [
           {
@@ -205,121 +205,121 @@ export const VEHICLES: Vehicle[] = [
       },
       {
         id: 'transmission',
-        badge: 'DRIVETRAIN & TRANSMISSION ARCHITECTURE',
-        title: 'Dynamic Torque Vectoring AWD & Direct Shift-CVT with Physical 1st Launch Gear',
-        lead: 'True mechanical launch gear eradicates rubber-band sluggishness, coupled with independent twin-coupling rear axle torque vectoring.',
+        badge: 'DRIVETRAIN & TRANSMISSION',
+        title: 'Direct-Shift Transmission & Smart All-Wheel Drive',
+        lead: 'Quick takeoff from a complete stop with smooth highway cruising and automatic fuel-saving rear disconnect.',
         narrative: [
-          'Toyota revolutionized the continuously variable transmission by embedding an authentic mechanical first gear set. At launch from a dead stop, the RAV4 accelerates through real meshed gears for instant, direct throttle response, seamlessly transferring momentum to the high-efficiency CVT belt once moving.',
-          'The Dynamic Torque Vectoring All-Wheel Drive system incorporates independent electronically-controlled electromagnetic couplings on each rear wheel shaft. Up to 50% of engine torque can be directed to the rear axle, and 100% of that rear torque can be routed to either left or right wheel to pivot through loose gravel corners.',
-          'During steady expressway cruising, the rear driveline disconnect disengages the prop shaft completely, stopping rotation to prevent drag losses and returning exceptional 15.2 km/L mixed-cycle fuel efficiency.'
+          'Toyota designed this transmission with a dedicated physical launch gear. When taking off from traffic lights or steep hills, it engages solid gears for instant pull, then smoothly switches to the fuel-saving belt once you are moving.',
+          'The smart All-Wheel Drive system monitors road grip constantly. When you hit mud, gravel, or rainy turns, it automatically sends power to the rear wheels with the best traction.',
+          'When cruising smoothly on the highway, it disconnects the rear drive automatically to save fuel, returning an impressive 15.2 km per liter.'
         ],
         specs: [
-          { label: 'Transmission Type', value: 'Direct Shift-CVT with Physical 1st Launch Gear' },
-          { label: 'AWD System', value: 'Dynamic Torque Vectoring AWD + Rear Disconnect' },
-          { label: 'Rear Torque Split', value: 'Up to 50:50 Front/Rear & 0:100 Left/Right' },
-          { label: 'Terrain Modes', value: 'Mud & Sand, Rock & Dirt, Snow, Eco, Normal, Sport' }
+          { label: 'Gearbox Type', value: 'Direct Shift-CVT with Physical 1st Launch Gear' },
+          { label: 'AWD System', value: 'Smart All-Wheel Drive with Highway Disconnect' },
+          { label: 'Torque Distribution', value: 'Up to 50:50 Front to Rear Grip' },
+          { label: 'Terrain Modes', value: 'Mud, Sand, Rock, Dirt, Eco, and Sport' }
         ],
         slides: [
           {
             id: 'rav4-trans-1',
-            title: 'Direct-Shift Launch Gear Mechanism',
-            subtitle: 'Mechanical First Gear Elimination of CVT Lag',
-            description: 'Direct gear engagement provides crisp, immediate mechanical takeoff before transitioning effortlessly to wide-ratio belt pulleys.',
+            title: 'Direct-Shift Launch Gear',
+            subtitle: 'Immediate Response from Standstill',
+            description: 'Physical first gear delivers strong, confident takeoff before shifting smoothly into cruising speed.',
             imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Direct 1st',
             metricLabel: 'Mechanical Launch Gear'
           },
           {
             id: 'rav4-trans-2',
-            title: 'Dynamic Rear Torque Vectoring Couplings',
-            subtitle: 'Independent Dual Rear Clutches',
-            description: 'Channels lateral propulsion precisely to the outside wheel in high-speed sweeps, pulling the vehicle tight to the apex.',
+            title: 'Smart All-Wheel Drive',
+            subtitle: 'Confident Wet & Loose-Road Grip',
+            description: 'Sends power directly to the wheel with the best grip to prevent skidding on wet roads and gravel tracks.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '0–100%',
-            metricLabel: 'Rear Cross-Wheel Vectoring'
+            metric: 'Auto Grip',
+            metricLabel: 'Smart Power Split'
           },
           {
             id: 'rav4-trans-3',
-            title: 'Multi-Terrain Select Rotary Controller',
-            subtitle: 'Intelligent Wheel-Slip Algorithm',
-            description: 'Rotary dial dynamically modulates engine throttle mapping, brake pressure, and AWD clutch force across Mud, Sand, and Rock.',
+            title: 'Multi-Terrain Driving Dial',
+            subtitle: 'Dial in Mud, Sand, or Rock Settings',
+            description: 'Turn the center console dial to tailor throttle response and traction control for your road conditions.',
             imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '3 Modes',
-            metricLabel: 'Dedicated Terrain Protocols'
+            metricLabel: 'Terrain Settings'
           }
         ]
       },
       {
         id: 'infotainment',
-        badge: 'DIGITAL COCKPIT & CONNECTIVITY',
-        title: 'Floating Digital Cockpit with 7-Inch Multi-Information Display',
-        lead: 'High-visibility digital instruments, intuitive audio touchscreen, and multi-information off-road pitch and roll monitors.',
+        badge: 'TOUCHSCREEN & INSTRUMENT SCREENS',
+        title: 'Central Touchscreen & 7-Inch Driver Digital Display',
+        lead: 'Clear high-mounted touchscreen with Apple CarPlay and Android Auto, plus a digital screen for the driver.',
         narrative: [
-          'Perched centrally on the dash is the floating capacitive multimedia system featuring Apple CarPlay, Android Auto, and Bluetooth streaming. High-contrast typography ensures readability even under direct equatorial sunlight.',
-          'The driver’s instrument cluster houses a crisp 7.0-inch color TFT Multi-Information Display (MID). Drivers can switch instantly between analog speedometer dials, digital telemetry, real-time torque vectoring distribution graphs, and off-road pitch/roll inclinometers.',
-          'Dual-zone automatic climate control with dust and pollen filtration keeps the cabin pristine, complemented by wireless Qi smartphone charging in the central console cubby.'
+          'The central touchscreen sits high on the dashboard for easy viewing while keeping your eyes on the road. It connects directly to your smartphone with Apple CarPlay and Android Auto for GPS maps, music, and hands-free calls.',
+          'In front of the driver, the 7.0-inch color screen shows your digital speed, fuel efficiency, safety alerts, and all-wheel drive power distribution in real time.',
+          'Dual-zone automatic climate control keeps the cabin cool with built-in air filters that block dust and traffic fumes.'
         ],
         specs: [
-          { label: 'Infotainment Interface', value: 'High-Resolution Touchscreen with Apple CarPlay' },
-          { label: 'Cluster Screen', value: '7.0-inch TFT Multi-Information Cockpit Display' },
-          { label: 'Off-Road Telemetry', value: 'Real-Time Pitch, Roll, and AWD Torque Split Monitors' },
-          { label: 'Device Charging', value: 'Qi Inductive Wireless Pad + Dual High-Speed USB-C' }
+          { label: 'Center Screen', value: 'High-Resolution Touchscreen with Apple CarPlay' },
+          { label: 'Driver Screen', value: '7.0-Inch Digital Color Driver Display' },
+          { label: 'Phone Connectivity', value: 'Apple CarPlay, Android Auto, & Bluetooth' },
+          { label: 'Cabin Air', value: 'Dual-Zone Auto Climate Control with Dust Filter' }
         ],
         slides: [
           {
             id: 'rav4-info-1',
-            title: '7-Inch Digital TFT Driver Cockpit',
-            subtitle: 'Real-Time Vectoring & Inclinometer Telematics',
-            description: 'Visualizes exact torque percentage delivered to each wheel in real time alongside digital speed and active radar cruise data.',
+            title: '7-Inch Digital Driver Display',
+            subtitle: 'Clear Speed & Driving Information',
+            description: 'Shows speed, all-wheel drive status, and safety alerts directly in your line of sight.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '7.0"',
-            metricLabel: 'Full-Color Multi-Info Display'
+            metricLabel: 'Driver Screen'
           },
           {
             id: 'rav4-info-2',
-            title: 'Floating Central Multimedia Display',
-            subtitle: 'Capacitive Smartphone Touchscreen Hub',
-            description: 'High-contrast matte screen with Apple CarPlay, Android Auto, rear camera guidelines, and vehicle telemetry integration.',
+            title: 'Central Touchscreen with CarPlay',
+            subtitle: 'Phone Navigation & Hands-Free Calling',
+            description: 'Connects your phone for Google Maps, WhatsApp audio, and Spotify with steering wheel controls.',
             imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Touch',
-            metricLabel: 'Capacitive Multi-Gesture'
+            metricLabel: 'Smart Display'
           }
         ]
       },
       {
         id: 'safety',
-        badge: 'ACTIVE RADAR & TNGA RIGIDITY',
-        title: 'Toyota Safety Sense 2.0 & High-Tensile TNGA-K Platform',
-        lead: 'Millimeter-wave radar and monocular camera active safety suite backed by the ultra-rigid TNGA-K platform.',
+        badge: 'SAFETY & DRIVER ASSISTANCE',
+        title: 'Toyota Safety Sense 2.0 & High-Strength Safety Body',
+        lead: 'Smart radar assists with highway cruising and automatic emergency braking, supported by 8 airbags.',
         narrative: [
-          'Safety on Kenyan highways is anchored by Toyota Safety Sense 2.0. The Pre-Collision System uses millimeter-wave radar and an optical camera to detect obstacles, pedestrians, and cyclists, executing automated emergency braking if required.',
-          'Full-Speed Range Dynamic Radar Cruise Control (DRCC) maintains a safe preset distance from preceding traffic down to a full stop. Lane Tracing Assist (LTA) monitors road markings and applies gentle steering torque to keep the vehicle centered.',
-          'Built on the revolutionary TNGA-K platform, the body structure utilizes 57% high-strength tensile steel with structural ring reinforcements, creating an ultra-rigid safety cell that achieved top 5-star ratings in global crash testing.'
+          'Toyota Safety Sense 2.0 watches the road ahead using radar and a windshield camera. If a vehicle ahead brakes suddenly or a pedestrian steps into the road, the system alerts you and brakes automatically if needed.',
+          'Dynamic Radar Cruise Control maintains a safe distance from cars ahead on the highway, automatically speeding up and slowing down with the flow of traffic.',
+          'The reinforced high-strength steel frame and 8 airbags—including knee and side curtain airbags—protect everyone in the car.'
         ],
         specs: [
-          { label: 'Active Radar', value: 'Pre-Collision System (PCS) with Pedestrian Detection' },
-          { label: 'Cruise Control', value: 'Full-Speed Range Dynamic Radar Cruise Control (DRCC)' },
-          { label: 'Lane Guidance', value: 'Lane Tracing Assist (LTA) with Steering Assist' },
-          { label: 'Airbag Protection', value: '8-SRS Airbags including Driver Knee and Pelvis' }
+          { label: 'Crash Prevention', value: 'Pre-Collision Braking with Pedestrian Detection' },
+          { label: 'Highway Cruise', value: 'Radar Cruise Control with Automatic Distance Hold' },
+          { label: 'Lane Safety', value: 'Lane Keeping Assist with Gentle Steering Help' },
+          { label: 'Airbag Protection', value: '8 Airbags (Front, Side, Curtain, and Driver Knee)' }
         ],
         slides: [
           {
             id: 'rav4-safe-1',
-            title: 'Toyota Safety Sense 2.0 Suite',
-            subtitle: 'Millimeter-Wave Radar & Optical Camera Fusion',
-            description: 'Constantly scans highway corridors for emergency obstacles, sudden lane intrusions, and crossing pedestrians.',
+            title: 'Toyota Safety Sense 2.0',
+            subtitle: 'Highway Radar & Collision Avoidance',
+            description: 'Radar and camera watch the road to prevent rear-end collisions and keep safe distance.',
             imageUrl: './vehicles/rav4-adventure.jpg',
-            metric: 'Level 2',
-            metricLabel: 'Semi-Autonomous Radar Assist'
+            metric: 'Radar',
+            metricLabel: 'Safety Assist'
           },
           {
             id: 'rav4-safe-2',
-            title: 'TNGA-K Ring Body Architecture',
-            subtitle: '57% Ultra-High Tensile Steel Safety Cell',
-            description: 'Laser screw welding and structural adhesives deliver 57% higher torsional rigidity than prior generations for peerless crash safety.',
+            title: 'High-Strength Steel Safety Cell',
+            subtitle: 'Reinforced 8-Airbag Crash Protection',
+            description: 'Built with reinforced high-strength steel rings and full-cabin curtain airbags for peace of mind.',
             imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '57%',
-            metricLabel: 'Higher Torsional Rigidity'
+            metric: '8 Airbags',
+            metricLabel: 'Full Cabin Shield'
           }
         ]
       }
@@ -449,10 +449,10 @@ export const VEHICLES: Vehicle[] = [
     id: 'toyota-harrier-hybrid',
     stockNo: 'ALB-4061',
     name: 'Toyota Harrier Hybrid Z Leather Package',
-    moniker: 'The Sculpted Sovereign',
-    essenceQuote: 'Couture craftsmanship draped over whispering hybrid momentum. An oasis of calm amidst the kinetic pulse of the metropolis.',
-    kicker: 'Quiet Opulence',
-    tagline: 'Couture aesthetics. THS II hybrid efficiency with E-Four electric all-wheel drive.',
+    moniker: 'Luxury Hybrid Crossover',
+    essenceQuote: 'A quiet, comfortable luxury SUV with smooth hybrid power. Premium leather seats, dimming panoramic roof, and excellent fuel savings of over 21 km per liter.',
+    kicker: 'Quiet Luxury & Fuel Savings',
+    tagline: 'Premium leather interior with whisper-quiet hybrid all-wheel drive and over 21 km per liter.',
     priceKes: 5200000,
     year: 2021,
     mileageKm: 34100,
@@ -464,7 +464,7 @@ export const VEHICLES: Vehicle[] = [
     engine: '2.5L A25A-FXS Dynamic Force Hybrid',
     power: '222 PS Combined System Output',
     torque: '221 Nm (Engine) + 202 Nm (Front Motor) + 121 Nm (Rear Motor)',
-    fuelEconomy: '21.6 km/L (WLTC Certified)',
+    fuelEconomy: '21.6 km/L (Mixed Cycle)',
     auctionGrade: 'Grade 4.5',
     auctionHall: 'TAA Chubu',
     interiorGrade: 'Grade A (Flawless Leather)',
@@ -479,196 +479,196 @@ export const VEHICLES: Vehicle[] = [
     closerLookPoints: [
       {
         id: 'electrochromic-roof',
-        title: 'Electrochromic Dimming Panorama Roof',
-        subtitle: 'Bespoke Ambient Lighting',
-        description: 'Instant electric phase transition transforms the overhead panoramic glass from crystal transparent to frosted paper glow at the touch of a sensor.',
+        title: 'Dimming Panoramic Glass Roof',
+        subtitle: 'Touch-to-Frosted Sunshade',
+        description: 'Changes instantly from clear glass to a frosted white tint with one touch, blocking harsh tropical sun heat without needing a curtain.',
         imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: '0.1s',
-        metricLabel: 'Transition Speed'
+        metricLabel: 'Frost Speed'
       },
       {
         id: 'saddle-console',
-        title: 'Equestrian Saddle Center Console',
-        subtitle: 'Artisan Leather Craftsmanship',
-        description: 'Bent-wood architectural console cloaked in thick genuine leather with double saddle stitching, creating an intimate cockpit envelope.',
+        title: 'Wide Leather Center Console',
+        subtitle: 'Soft Padded Hand-Stitched Leather',
+        description: 'Wide, comfortable center armrest and console wrapped in soft leather with double stitching.',
         imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        metric: 'Hand-Stitched',
-        metricLabel: 'Bespoke Saddle Hides'
+        metric: 'Genuine',
+        metricLabel: 'Soft Leather'
       },
       {
         id: 'rear-light-strip',
-        title: 'Monolithic LED Horizon Tail Lamp',
-        subtitle: 'Razor-Thin Light Signature',
-        description: 'An unbroken ultra-thin scarlet LED horizon bar spans the full tailgate width, accentuating the flared rear shoulder muscle.',
+        title: 'Full-Width LED Rear Light Bar',
+        subtitle: 'Modern Clean Tail Lights',
+        description: 'A slim, bright horizontal LED strip spanning the full rear tailgate for maximum nighttime visibility and modern style.',
         imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        metric: '1.2mm',
-        metricLabel: 'Optical Light Guide Width'
+        metric: 'LED',
+        metricLabel: 'Light Bar'
       },
       {
         id: 'jbl-surround',
-        title: 'JBL 9-Speaker Acoustic Concert Hall',
-        subtitle: 'Clari-Fi Acoustic Restoration',
-        description: 'Custom tuned 1,200W acoustic array with dedicated rear subwoofer engineered specifically for the acoustic geometry of the Harrier cabin.',
+        title: 'JBL 9-Speaker Premium Audio',
+        subtitle: 'Clear Studio-Quality Sound',
+        description: '9 speakers and a dedicated rear subwoofer deliver clear vocals and rich bass throughout the quiet cabin.',
         imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: '9 Spkrs',
-        metricLabel: 'JBL Premium Surround'
+        metricLabel: 'JBL Audio'
       }
     ],
     editorialFeatures: [
       {
         id: 'seats',
-        badge: 'HAUTE COUTURE LEATHER & SKYROOF',
-        title: 'Genuine Semi-Aniline Leather Lounge & Electrochromic Dimming Panorama Roof',
-        lead: 'Semi-aniline leather hides, equestrian saddle-inspired center console, and an electrochromic glass ceiling that frosts in 0.1 seconds.',
+        badge: 'LEATHER COMFORT & SKYROOF',
+        title: 'Genuine Leather Seats & Touch-Dimming Panoramic Roof',
+        lead: 'Soft ventilated genuine leather seats, a wide leather-trimmed console, and an electric dimming glass roof.',
         narrative: [
-          'The interior of the Harrier Z Leather Package is tailored like haute couture. Upholstered in buttery semi-aniline genuine leather, the seats feature continuous vertical quilting and contrast piping inspired by bespoke luggage.',
-          'Overhead, the Harrier introduces automotive electrochromic dimming glass. At the touch of an overhead capacitive sensor, the panoramic glass transforms from crystal clear transparency to a softly frosted glow, replicating the serene diffuse light of traditional Japanese Shoji paper screens while blocking 99% of infrared solar heat.',
-          'Both front seats feature whisper-quiet dual-tier ventilation and rapid heating, while the driver commands 10-way power memory adjustment paired with easy-entry steering wheel retraction.'
+          'The interior of the Harrier Z Leather Package is built for executive comfort. The genuine leather seats are soft, durable, and shaped to keep your spine relaxed.',
+          'Overhead, the smart panoramic roof changes from transparent glass to a soft frosted shade in a split second at the press of a button, blocking intense sun heat while keeping the cabin bright.',
+          'Both front seats come with built-in cooling ventilation for hot days, fast heating for cold mornings, and 10-way electric power controls for the driver.'
         ],
         specs: [
-          { label: 'Upholstery', value: 'Semi-Aniline Genuine Leather with Vertical Fluting' },
-          { label: 'Overhead Skyroof', value: 'Electrochromic Dimming Glass (0.1s Frost Transition)' },
-          { label: 'Climate Comfort', value: 'Front Seat Heating & Suction-Type Air Ventilation' },
-          { label: 'Driver Ergonomics', value: '10-Way Power Adjustment with Dual-Profile Memory' }
+          { label: 'Seat Material', value: 'Genuine Fluted Leather with Clean Contrast Piping' },
+          { label: 'Panoramic Skyroof', value: 'Electric Dimming Glass (0.1s Fast Frost)' },
+          { label: 'Seat Cooling & Heat', value: 'Front Seat Ventilation Cooling & Rapid Heating' },
+          { label: 'Driver Adjustment', value: '10-Way Power Adjustment with Position Memory' }
         ],
         slides: [
           {
             id: 'harrier-seat-1',
-            title: 'Electrochromic Dimming Panorama Glass',
-            subtitle: 'Shoji-Inspired Diffuse Light Architecture',
-            description: 'Transitions instantly between crystal transparent sky and frosted white shade, eliminating African solar heat without requiring a physical curtain.',
+            title: 'Electric Dimming Panoramic Roof',
+            subtitle: 'Blocks Tropical Sun with One Touch',
+            description: 'Frosts instantly to filter out bright sunlight and heat while keeping the interior naturally lit.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '0.1s',
-            metricLabel: 'Electric Frost Transition'
+            metricLabel: 'Frost Transition'
           },
           {
             id: 'harrier-seat-2',
-            title: 'Semi-Aniline Fluted Leather Armchairs',
-            subtitle: 'Couture Hand-Stitched Genuine Hides',
-            description: 'Gentle ergonomic contouring reduces shoulder tension with whisper-quiet suction seat ventilation.',
+            title: 'Ventilated Genuine Leather Seats',
+            subtitle: 'Cooled & Heated Front Seats',
+            description: 'Soft genuine leather with cooling fans built into the cushions to keep you sweat-free in warm weather.',
             imageUrl: './vehicles/harrier-hybrid.jpg',
-            metric: 'Semi-Aniline',
-            metricLabel: 'Full-Grain Hides'
+            metric: 'Leather',
+            metricLabel: 'Cooled Seats'
           },
           {
             id: 'harrier-seat-3',
-            title: 'Equestrian Saddle Center Console',
-            subtitle: 'Bent-Wood Form Clothed in Double-Stitched Leather',
-            description: 'Flowing console silhouette cradles the shift selector with ambient satin chrome edging and concealed sliding cup covers.',
+            title: 'Padded Leather Center Console',
+            subtitle: 'Spacious Center Armrest',
+            description: 'Soft padded leather console with cup holders and quiet storage cubbies.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: 'Saddle',
-            metricLabel: 'Equestrian Leather Craft'
+            metric: 'Comfort',
+            metricLabel: 'Padded Console'
           }
         ]
       },
       {
         id: 'transmission',
-        badge: 'HYBRID PROPULSION & E-FOUR POWERTRAIN',
-        title: 'Toyota Hybrid System II & Electronic On-Demand E-Four All-Wheel Drive',
-        lead: '222 PS combined system output. Dual electric motor synergy with independent high-torque rear axle propulsion.',
+        badge: 'HYBRID SYSTEM & ALL-WHEEL DRIVE',
+        title: 'Toyota Hybrid System II & Electric E-Four All-Wheel Drive',
+        lead: '222 horsepower combined power. Smooth electric and petrol acceleration with smart all-weather rear grip.',
         narrative: [
-          'The Harrier Hybrid Z pairs Toyota’s acclaimed 2.5-liter A25A-FXS Dynamic Force combustion engine with a high-torque electric transaxle. Working through an electronic continuously variable planetary power-split device, power transition between electric and petrol motive force is imperceptible.',
-          'The E-Four all-wheel-drive system abandons heavy, space-consuming mechanical transfer cases and center drive shafts. Instead, a dedicated 121 Nm electric motor is situated directly on the rear axle, activating automatically in milliseconds whenever front slippage is detected.',
-          'With a world-leading 41% engine thermal efficiency and regenerative deceleration, the Harrier achieves 21.6 km/L certified fuel economy, allowing seamless 1,000 km journeys across East Africa on a single 55-liter tank.'
+          'The Harrier Hybrid Z pairs Toyota’s reliable 2.5-liter petrol engine with powerful electric motors. It switches automatically between electric mode and petrol power with zero jerkiness.',
+          'The E-Four all-wheel-drive system uses an independent electric motor mounted directly on the rear wheels. When you accelerate hard or drive on wet roads, the rear motor engages instantly to provide strong, safe grip.',
+          'With outstanding hybrid efficiency, the Harrier achieves 21.6 km per liter, allowing you to travel roughly 1,000 kilometers on a single 55-liter tank of fuel.'
         ],
         specs: [
-          { label: 'Hybrid Architecture', value: 'Toyota Hybrid System II (THS II) Planetary Split' },
-          { label: 'Combined Output', value: '222 PS (163 kW) System Horsepower' },
-          { label: 'AWD Configuration', value: 'E-Four Electronic On-Demand Rear Electric Motor' },
-          { label: 'Certified Efficiency', value: '21.6 km/L (WLTC Combined Cycle)' }
+          { label: 'Hybrid Drive', value: 'Toyota Hybrid System II (Self-Charging)' },
+          { label: 'Combined Power', value: '222 PS Total System Output' },
+          { label: 'All-Wheel Drive', value: 'E-Four Electronic On-Demand Rear Electric Motor' },
+          { label: 'Fuel Economy', value: '21.6 km/L (Mixed Driving Cycle)' }
         ],
         slides: [
           {
             id: 'harrier-trans-1',
-            title: 'THS II Planetary Power-Split Device',
-            subtitle: 'Electronic Continuously Variable Transaxle',
-            description: 'Blends combustion engine torque and electric motor thrust seamlessly without stepped mechanical gears.',
+            title: 'Smooth Self-Charging Hybrid Power',
+            subtitle: 'Automatic Petrol & Electric Balance',
+            description: 'Drives smoothly on battery power in slow city traffic, switching on the petrol engine seamlessly when you need more speed.',
             imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '222 PS',
-            metricLabel: 'Combined Hybrid Power'
+            metricLabel: 'Total Power'
           },
           {
             id: 'harrier-trans-2',
-            title: 'Independent Rear Axle E-Four Motor',
-            subtitle: 'Dedicated 121 Nm Instant Traction',
-            description: 'Instantly stabilizes chassis in wet mountain switchbacks or sudden acceleration with zero propeller shaft weight penalty.',
+            title: 'Electric E-Four Rear Motor',
+            subtitle: 'Instant Traction on Wet Roads',
+            description: 'Dedicated rear electric motor activates in milliseconds to give you steady control in heavy rain or loose mud.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '121 Nm',
-            metricLabel: 'Rear Axle Instant Torque'
+            metric: 'Instant',
+            metricLabel: 'Rear Wheel Pull'
           }
         ]
       },
       {
         id: 'infotainment',
-        badge: 'DIGITAL COCKPIT & ACOUSTIC SOUNDSTAGE',
-        title: 'Panoramic 12.3-inch Digital Display & JBL 9-Speaker Audio Masterwork',
-        lead: 'Ultra-wide panoramic touchscreen, electrostatic capacitive climate sliders, and JBL Clari-Fi acoustic restoration.',
+        badge: 'TOUCHSCREEN & SOUND SYSTEM',
+        title: 'Wide 12.3-Inch Touchscreen & JBL 9-Speaker Audio',
+        lead: 'Extra-wide navigation display with Apple CarPlay, Android Auto, and custom JBL surround sound.',
         narrative: [
-          'Anchoring the minimalist dashboard is an expansive 12.3-inch widescreen capacitive touchscreen. The split-screen interface allows simultaneous viewing of full-color navigation maps and hybrid energy management telematics.',
-          'Acoustic reproduction is handled by a custom-engineered JBL 9-speaker soundstage. Tuned specifically to the acoustic resonance of the Harrier’s double-glazed cabin glass, Clari-Fi digital audio processing restores lost harmonics from compressed digital streams.',
-          'The driver is further assisted by a full-color 10.5-inch Head-Up Display (HUD) projected directly onto the windshield, alongside a digital rear-view mirror with integrated high-definition front and rear recording cameras.'
+          'The center of the dashboard features a wide 12.3-inch high-definition touchscreen. You can view navigation maps and audio details side by side with easy-to-use menu controls.',
+          'Audio is handled by a 9-speaker JBL premium sound system designed specifically for the Harrier cabin, giving you rich bass and crisp vocals at any volume.',
+          'The driver also benefits from a color Head-Up Display projected onto the windshield, showing speed and GPS turns without looking down.'
         ],
         specs: [
-          { label: 'Panoramic Display', value: '12.3-inch High-Definition Widescreen Interface' },
-          { label: 'Soundstage', value: 'JBL 9-Speaker System with Clari-Fi Acoustic Restoration' },
-          { label: 'Windshield HUD', value: '10.5-inch Full-Color Heads-Up Holographic Projection' },
-          { label: 'Mirror System', value: 'Digital Rear-View Mirror with Dual Drive Recorders' }
+          { label: 'Widescreen Display', value: '12.3-Inch High-Definition Touchscreen' },
+          { label: 'Sound System', value: 'JBL 9-Speaker Audio with Subwoofer' },
+          { label: 'Windshield Display', value: 'Full-Color Head-Up Display (HUD)' },
+          { label: 'Camera Mirror', value: 'Digital Rear-View Camera Mirror' }
         ],
         slides: [
           {
             id: 'harrier-info-1',
-            title: '12.3-Inch Panoramic Touchscreen',
-            subtitle: 'Dual-Zone Split-Screen Command Horizon',
-            description: 'Seamless electrostatic glass interface controlling multimedia, climate, and real-time hybrid drive diagrams.',
+            title: '12.3-Inch Widescreen Touchscreen',
+            subtitle: 'Easy Split-Screen Maps & Music',
+            description: 'Clear, wide screen with Apple CarPlay, Android Auto, and intuitive air conditioning controls.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '12.3"',
-            metricLabel: 'High-Definition Screen Width'
+            metricLabel: 'HD Screen'
           },
           {
             id: 'harrier-info-2',
-            title: 'JBL 9-Speaker Clari-Fi Audio Architecture',
-            subtitle: 'Concert Hall Acoustic Tuning',
-            description: 'Subwoofer and silk dome tweeters calibrated to deliver breathtaking spatial clarity inside the acoustic glass cabin.',
+            title: 'JBL 9-Speaker Premium Sound',
+            subtitle: 'Rich Bass & Crystal-Clear Vocals',
+            description: 'Nine tuned speakers and a powerful rear subwoofer deliver concert-like sound across all rows.',
             imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '1,200 W',
-            metricLabel: 'Acoustic Peak Power'
+            metric: '9 Spkrs',
+            metricLabel: 'JBL Audio'
           }
         ]
       },
       {
         id: 'safety',
-        badge: 'ACTIVE SAFETY & CHASSIS REFINEMENT',
-        title: 'Toyota Safety Sense with Nighttime Pedestrian Radar & Active Cornering Assist',
-        lead: 'Autonomous emergency braking with bicycle and nighttime pedestrian recognition, coupled with active chassis vectoring.',
+        badge: 'SAFETY & DRIVER ASSIST',
+        title: 'Toyota Safety Sense with Nighttime Radar & Quiet Cabin Glass',
+        lead: 'Smart radar emergency braking, blind spot monitoring, and double-pane soundproof glass.',
         narrative: [
-          'The Harrier Hybrid Z is safeguarded by the newest generation of Toyota Safety Sense. Optical and radar fusion sensors detect pedestrians in low-light night conditions and oncoming vehicles during right-hand turns at junctions.',
-          'Active Cornering Assist (ACA) monitors vehicle yaw in rapid directional transitions, applying subtle inside-wheel brake pressure to eliminate understeer and track corners like an executive sports saloon.',
-          'Acoustic double-laminated front side glass and extensive under-carpet sound-damping insulation suppress tyre roar and wind buffeting to near-inaudible decibel levels.'
+          'Toyota Safety Sense monitors the road ahead day and night. The system detects pedestrians and vehicles, alerting you and applying emergency brakes if someone stops suddenly.',
+          'Double-laminated soundproof acoustic glass and heavy under-floor insulation keep highway tire roar, wind noise, and city traffic sounds outside the cabin.',
+          'Parking cameras and clearance sensors display a 360-degree top view of the vehicle to make tight parking spots simple.'
         ],
         specs: [
-          { label: 'Safety Suite', value: 'Toyota Safety Sense Nighttime Pedestrian & Cyclist' },
-          { label: 'Cornering Assist', value: 'Active Cornering Assist (ACA) Yaw Brake Vectoring' },
-          { label: 'Glass Architecture', value: 'Acoustic Dual-Pane Laminated Soundproof Glass' },
-          { label: 'Parking Radar', value: 'Panoramic View Monitor (PVM) with Clearance Sonar' }
+          { label: 'Emergency Braking', value: 'Pre-Collision Braking with Day & Night Detection' },
+          { label: 'Sound Isolation', value: 'Double-Pane Laminated Acoustic Glass' },
+          { label: 'Highway Radar', value: 'Adaptive Cruise Control with Lane Keeping' },
+          { label: 'Parking Cameras', value: '360° Panoramic View Monitor + Parking Sonar' }
         ],
         slides: [
           {
             id: 'harrier-safe-1',
-            title: 'Pre-Collision Radar with Low-Light Vision',
-            subtitle: 'Nighttime Pedestrian & Intersection Detection',
-            description: 'Millimeter-wave radar detects dark obstacles beyond standard headlight beam range and activates automated emergency deceleration.',
+            title: 'Pre-Collision Emergency Braking',
+            subtitle: 'Day & Night Obstacle Detection',
+            description: 'Front radar and camera watch for unexpected stops and pedestrians, braking automatically to prevent accidents.',
             imageUrl: './vehicles/harrier-hybrid.jpg',
-            metric: 'Nighttime',
-            metricLabel: 'Active Optical Sensitivity'
+            metric: 'Radar',
+            metricLabel: 'Collision Guard'
           },
           {
             id: 'harrier-safe-2',
-            title: 'Acoustic Dual-Pane Laminated Glass',
-            subtitle: 'Decibel Isolation Architecture',
-            description: 'Acoustic PVB interlayer sandwiched between tempered glass layers cuts wind and road noise by 6 dB over standard glass.',
+            title: 'Double-Pane Acoustic Soundproof Glass',
+            subtitle: 'Whisper-Quiet Cabin Isolation',
+            description: 'Thick laminated front glass blocks highway wind noise and city traffic roar for a peaceful drive.',
             imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '-6 dB',
-            metricLabel: 'Acoustic Decibel Attenuation'
+            metric: 'Quiet',
+            metricLabel: 'Acoustic Glass'
           }
         ]
       }
@@ -798,25 +798,25 @@ export const VEHICLES: Vehicle[] = [
     id: 'nissan-note-epower',
     stockNo: 'ALB-4059',
     name: 'Nissan Note e-POWER Medalist',
-    moniker: 'The Urban Dynamo',
-    essenceQuote: 'Pure electric acceleration unburdened by plug-in charging. The quintessential agile runabout for the modern metropolis.',
-    kicker: 'Electrified Velocity',
-    tagline: '100% Electric motor drive. Instant 254 Nm torque with zero plug-in hassle.',
+    moniker: 'Smart City Hatchback',
+    essenceQuote: 'Instant electric acceleration with zero plug-in hassle. Quick in traffic, spacious inside, and outstanding fuel savings of up to 34 km per liter.',
+    kicker: 'Fuel-Saver City Cruiser',
+    tagline: '100% Electric motor drive with instant pull, one-pedal driving, and up to 34 km per liter.',
     priceKes: 1850000,
     year: 2018,
     mileageKm: 52400,
     category: 'compact',
-    bodyType: 'Electrified 5-Door Hatchback',
+    bodyType: '5-Door City Hatchback',
     fuelType: 'Series Hybrid (e-POWER)',
-    transmission: 'Single-Speed Fixed Reduction Gearbox',
-    drivetrain: 'Front Wheel Electric Motor Drive',
-    engine: 'EM57 AC Synchronous Electric Motor + 1.2L HR12DE Generator',
+    transmission: 'Single-Speed Smooth Electric Drive',
+    drivetrain: 'Front-Wheel Drive',
+    engine: 'Electric Drive Motor + 1.2L Petrol Generator',
     power: '109 PS (80 kW)',
-    torque: '254 Nm Instant Torque',
-    fuelEconomy: '34.0 km/L (JC08 Certified)',
+    torque: '254 Nm Instant Pull',
+    fuelEconomy: '34.0 km/L (Mixed Cycle)',
     auctionGrade: 'Grade 4.5',
     auctionHall: 'USS Nagoya',
-    interiorGrade: 'Grade A (Medalist Wood Grain & Leather)',
+    interiorGrade: 'Grade A (Medalist Wood & Leather)',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/2103099/2103099-hd_1920_1080_30fps.mp4',
     heroImage: './vehicles/note-epower.jpg',
@@ -828,188 +828,188 @@ export const VEHICLES: Vehicle[] = [
     closerLookPoints: [
       {
         id: 'em57-motor',
-        title: 'EM57 High-Torque Electric Motor',
-        subtitle: 'Nissan LEAF Sourced Propulsion',
-        description: 'Borrowed directly from the world-record Nissan LEAF, the EM57 AC motor unleashes 254 Nm of instantaneous torque the moment the pedal is pressed.',
+        title: 'Instant Electric Motor',
+        subtitle: 'Strong Takeoff Pull',
+        description: 'Drives purely with an electric motor borrowed from the Nissan LEAF, giving you instant pull with no gear lag.',
         imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: '254 Nm',
-        metricLabel: 'Torque from 0 RPM'
+        metricLabel: 'Instant Torque'
       },
       {
         id: 'one-pedal',
-        title: 'e-POWER One-Pedal Drive',
-        subtitle: 'Regenerative Deceleration Mastery',
-        description: 'Modulate acceleration and braking using just the accelerator pedal. Deceleration captures kinetic energy back into the subfloor battery.',
+        title: 'e-Pedal One-Pedal Driving',
+        subtitle: 'Easy Driving in Traffic',
+        description: 'Speed up and slow down smoothly using just the accelerator pedal, making heavy traffic jams relaxing while saving brake pads.',
         imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        metric: '70%',
-        metricLabel: 'Less Brake Pedal Usage'
+        metric: 'e-Pedal',
+        metricLabel: 'Single-Pedal Control'
       },
       {
         id: 'subfloor-battery',
-        title: 'Subfloor Compact Lithium Pack',
-        subtitle: 'Low Center of Gravity',
-        description: 'Tucked beneath the front seats, the lightweight 1.5 kWh buffer battery concentrates chassis mass low for go-kart agile cornering in traffic.',
+        title: 'Floor-Mounted Battery',
+        subtitle: 'Stable Handling & Big Boot',
+        description: 'The compact battery sits under the front seats to keep the car steady around corners while preserving full boot space.',
         imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
-        metric: '1.5 kWh',
-        metricLabel: 'High-Rate Buffer Pack'
+        metric: 'Low Center',
+        metricLabel: 'Chassis Balance'
       },
       {
         id: 'medallist-trim',
-        title: 'Medalist Artisan Cabin Suite',
-        subtitle: 'Piano Black & Brown Leather',
-        description: 'Top-tier Medalist specification featuring bespoke two-tone stitched seating, piano black console fascias, and illuminated entry sills.',
+        title: 'Medalist Luxury Interior',
+        subtitle: 'Woodgrain & Leather Finishes',
+        description: 'Top-of-the-range Japanese Medalist model featuring two-tone stitched leather seats and dark woodgrain trim.',
         imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: 'Medalist',
-        metricLabel: 'Flagship Trim Grade'
+        metricLabel: 'Top Spec'
       }
     ],
     editorialFeatures: [
       {
         id: 'seats',
-        badge: 'URBAN ERGONOMICS & MEDALIST LUXURY',
-        title: 'Medalist Two-Tone Semi-Leather Seats & Cavernous Interior Space',
-        lead: 'Class-leading rear legroom rivaling executive sedans, Zero-Gravity spinal support, and premium two-tone Medalist upholstery.',
+        badge: 'SEATING COMFORT & REAR SPACE',
+        title: 'Medalist Leather Seats & Extra Rear Legroom',
+        lead: 'Generous rear legroom matching larger sedans, Zero-Gravity spinal support, and premium two-tone Medalist leather.',
         narrative: [
-          'Step inside the Note e-POWER Medalist, and expectations of compact hatchback dimensions are instantly overturned. Built on smart packaging principles, the rear passenger compartment boasts legroom comparable to mid-size executive saloons.',
-          'The seats feature Nissan’s Zero-Gravity spinal contouring, finished in the flagship Medalist two-tone jacquard fabric with supple chocolate leather bolsters and contrast copper topstitching.',
-          'With wide-opening 85-degree doors, ingress and egress into tight urban parking bays is effortless. The 60/40 folding rear bench expands boot space effortlessly to accommodate bulk grocery shopping or airport cases.'
+          'Inside the Note e-POWER Medalist, you will be surprised by how roomy the rear seats are. Adults have generous knee room comparable to mid-size sedans.',
+          'The seats are shaped to support your spine naturally, finished in two-tone jacquard fabric with rich brown leather bolsters and contrast copper stitching.',
+          'The wide-opening doors make getting in and out easy in tight parking spots, and the rear seats fold down to create plenty of cargo space for grocery shopping or travel luggage.'
         ],
         specs: [
-          { label: 'Trim Package', value: 'Medalist Flagship Two-Tone Leather & Jacquard' },
-          { label: 'Rear Legroom', value: '643 mm Executive Knee Clearance' },
-          { label: 'Door Aperture', value: '85-Degree Wide Angle Opening Doors' },
-          { label: 'Spinal Ergonomics', value: 'NASA Zero-Gravity Fatigue Reduction' }
+          { label: 'Seat Package', value: 'Medalist Two-Tone Leather & Textured Fabric' },
+          { label: 'Rear Legroom', value: 'Generous Adult Knee Clearance' },
+          { label: 'Door Angle', value: '85-Degree Wide Angle Opening Doors' },
+          { label: 'Seat Ergonomics', value: 'Zero-Gravity Fatigue Reducing Shape' }
         ],
         slides: [
           {
             id: 'note-seat-1',
-            title: 'Medalist Flagship Two-Tone Interior',
-            subtitle: 'Supple Leather Bolsters & Copper Stitching',
-            description: 'Refined chocolate brown leather bolsters paired with textured fabric centers for superior grip and heat dissipation.',
+            title: 'Medalist Two-Tone Interior',
+            subtitle: 'Rich Leather Bolsters & Copper Stitching',
+            description: 'Soft brown leather bolsters paired with textured fabric centers for superior comfort and durability.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Medalist',
             metricLabel: 'Top Japanese Grade'
           },
           {
             id: 'note-seat-2',
-            title: 'Cavernous Rear Footwell Clearance',
-            subtitle: 'Mid-Size Saloon Legroom in a 4-Meter Body',
-            description: 'Generous flat floor architecture provides ample knee and foot clearance for three adult rear passengers.',
+            title: 'Generous Rear Legroom',
+            subtitle: 'Spacious Cabin in an Easy-to-Park Car',
+            description: 'Flat floor design gives three adult passengers plenty of room to stretch their legs on road trips.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '643 mm',
-            metricLabel: 'Rear Knee Clearance'
+            metric: 'Spacious',
+            metricLabel: 'Adult Legroom'
           }
         ]
       },
       {
         id: 'transmission',
-        badge: 'ELECTRIC DRIVETRAIN & REDUCTION GEARBOX',
-        title: 'EM57 Direct Electric Motor & Single-Speed Helical Reduction Drive',
-        lead: '254 Nm of instant electric torque delivered straight to the front wheels through a bulletproof single-speed helical gearbox.',
+        badge: 'ELECTRIC DRIVE & FUEL SAVINGS',
+        title: '100% Electric Motor Drive & Smooth Single-Speed Gearbox',
+        lead: 'Instant 254 Nm of electric torque straight to the wheels with exceptional 34 km per liter fuel savings.',
         narrative: [
-          'The Nissan Note e-POWER runs 100% on electricity generated on board. Propelling the front wheels is the EM57 AC synchronous motor borrowed from the Nissan LEAF, generating a punchy 254 Nm of torque instantly from zero RPM.',
-          'Instead of a sluggish multi-speed automatic or belt-driven CVT that groans under load, torque is transferred through an ultra-compact single-speed helical reduction gearbox with zero gear changes and zero driveline lag.',
-          'The 1.2-liter HR12DE 3-cylinder engine acts exclusively as a silent onboard generator. Because it is mechanically decoupled from the wheels, it runs at its highest thermal efficiency RPM sweet spot, yielding an astonishing 34.0 km/L JC08 fuel economy.',
-          'e-POWER Drive allows full one-pedal driving: simply lift off the accelerator, and regenerative braking decelerates the car firmly while replenishing the battery.'
+          'The Nissan Note e-POWER runs 100% on electric motor power. The wheels are driven directly by an electric motor, giving you 254 Nm of instant torque the moment you step on the gas.',
+          'Because there are no gears shifting up and down, acceleration is completely smooth with no jerky gear changes.',
+          'The small 1.2-liter petrol engine runs quietly only to charge the battery when needed. It never drives the wheels directly, delivering amazing fuel savings of up to 34 km per liter.',
+          'With e-Pedal, taking your foot off the gas slows the car down smoothly while charging the battery, cutting brake wear and making traffic driving effortless.'
         ],
         specs: [
-          { label: 'Traction Drive', value: 'EM57 AC Synchronous Motor (Nissan LEAF Heritage)' },
-          { label: 'Gearbox Type', value: 'Single-Speed Fixed Helical Reduction Gearbox' },
-          { label: 'Instant Torque', value: '254 Nm from 0 RPM (V6-level pull)' },
-          { label: 'Certified Economy', value: '34.0 km/L (JC08 Japanese Certification)' }
+          { label: 'Electric Motor', value: 'High-Torque Synchronous Electric Motor' },
+          { label: 'Gearbox Type', value: 'Smooth Single-Speed Direct Reduction Drive' },
+          { label: 'Instant Pull', value: '254 Nm Instant Torque from 0 RPM' },
+          { label: 'Fuel Economy', value: '34.0 km/L (Certified Mixed Cycle)' }
         ],
         slides: [
           {
             id: 'note-trans-1',
-            title: 'EM57 Electric Traction Motor',
-            subtitle: 'Instantaneous 254 Nm Torque from Standstill',
-            description: 'Surges forward with electric responsiveness, out-accelerating 2.0L turbocharged petrol cars across city intersections.',
+            title: 'Electric Drive Motor',
+            subtitle: 'Instant 254 Nm Pull from Standstill',
+            description: 'Takes off immediately with instant electric response, overtaking easily in city traffic.',
             imageUrl: './vehicles/note-epower.jpg',
             metric: '254 Nm',
-            metricLabel: 'Torque @ 0 RPM'
+            metricLabel: 'Instant Torque'
           },
           {
             id: 'note-trans-2',
-            title: 'Single-Speed Helical Reduction Drive',
-            subtitle: 'No Belts, No Clutch Wear, Direct Mesh',
-            description: 'Bulletproof single-speed gearset ensures zero shift interruption, whisper-quiet operation, and low maintenance.',
+            title: 'Smooth Single-Speed Drive',
+            subtitle: 'Zero Gear Shifts, Zero Jerkiness',
+            description: 'Direct motor drive means zero clutch wear, whisper-quiet operation, and low maintenance costs.',
             imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Single-Speed',
-            metricLabel: 'Fixed Ratio Gearbox'
+            metricLabel: 'Smooth Drive'
           }
         ]
       },
       {
         id: 'infotainment',
-        badge: 'TELEMATICS & PERIMETER VISION',
-        title: 'Intelligent Smart Rear-View Mirror & Digital Cockpit',
-        lead: 'LCD high-definition smart rear-view mirror with 360° Around View monitor, eliminating all blind spots.',
+        badge: 'TOUCHSCREEN & SMART MIRROR',
+        title: 'Smart Digital Camera Mirror & Central Touchscreen',
+        lead: 'High-definition digital rear-view mirror with reverse camera and easy smartphone connectivity.',
         narrative: [
-          'The Note e-POWER Medalist incorporates an Intelligent Smart Rear-View Mirror. At the flip of a toggle, the reflective mirror transforms into a full-color LCD display fed by an external wide-angle camera, providing a clear rearward view unblocked by rear passengers or tall cargo.',
-          'The central console features an integrated touchscreen navigation and audio receiver supporting Bluetooth hands-free, USB media, and reverse camera guidance.',
-          'The Medalist instrument binnacle combines an analog power meter illustrating real-time regeneration and motor output alongside digital battery charge state and trip efficiency computers.'
+          'The Note e-POWER Medalist features a smart digital rear-view mirror. With one flick of a switch, the mirror turns into a camera screen, giving you a crystal-clear view behind the car even with tall passengers or full luggage in the back.',
+          'The central touchscreen connects via Bluetooth for wireless music streaming, hands-free calls, and clear reverse parking guidelines.',
+          'The instrument cluster features an easy-to-read hybrid power gauge that shows when the battery is charging or providing electric boost.'
         ],
         specs: [
-          { label: 'Rearview Mirror', value: 'Smart LCD Digital Rear-View Mirror with Camera Toggle' },
-          { label: 'Camera Array', value: 'Intelligent Around View Monitor (AVM) with Sonar' },
-          { label: 'Instrument Dial', value: 'e-POWER Hybrid Power / Charge Energy Flow Meter' },
-          { label: 'Climate Interface', value: 'Automatic Circular Digital Climate Control Pod' }
+          { label: 'Rearview Mirror', value: 'Smart Digital Rear-View Mirror with Camera View' },
+          { label: 'Parking Vision', value: 'Reverse Camera with Dynamic Guide Lines' },
+          { label: 'Instrument Cluster', value: 'Hybrid Power Flow & Battery Charge Gauge' },
+          { label: 'Climate Control', value: 'Automatic Digital Climate Control with Fast Cool' }
         ],
         slides: [
           {
             id: 'note-info-1',
-            title: 'Smart LCD Digital Rear-View Mirror',
-            subtitle: 'Camera Video Feed Overcoming Cargo Blind Spots',
-            description: 'Switches seamlessly between optical mirror and high-definition wide video stream regardless of backseat passenger heads.',
+            title: 'Smart Camera Rear-View Mirror',
+            subtitle: 'Clear View Even with Full Luggage',
+            description: 'Switches between standard optical mirror and camera video feed so you always see clearly behind you.',
             imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Smart LCD',
-            metricLabel: 'Digital Mirror Display'
+            metricLabel: 'Camera Mirror'
           },
           {
             id: 'note-info-2',
-            title: 'Circular Digital Climate Pod',
-            subtitle: 'Piano Black Integrated Center Stack',
-            description: 'Intuitive circular push-button climate array with clear digital display and rapid cabin defrosting.',
+            title: 'Digital Climate Control Pod',
+            subtitle: 'Quick Cabin Cooling with Digital Controls',
+            description: 'Easy push-button air conditioning with automatic temperature control to keep the cabin cool.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Auto',
-            metricLabel: 'Digital Climate Control'
+            metricLabel: 'Climate Control'
           }
         ]
       },
       {
         id: 'safety',
-        badge: 'ACTIVE SAFETY & RADAR SHIELD',
-        title: 'Nissan Intelligent Mobility Active Safety Shield',
-        lead: 'Intelligent Emergency Braking, Lane Departure Warning, and Erroneous Pedal Acceleration Suppression.',
+        badge: 'SAFETY & DRIVER ASSIST',
+        title: 'Automatic Emergency Braking & Tight Turning Circle',
+        lead: 'Emergency braking with pedestrian detection, lane departure warning, and an ultra-tight 5.2m turning circle.',
         narrative: [
-          'Navigating bustling Nairobi traffic is stress-free thanks to Nissan’s comprehensive Safety Shield. The front optical camera monitors vehicle separation, applying Intelligent Emergency Braking (IEB) if a sudden hazard appears.',
-          'Erroneous Pedal Acceleration Suppression prevents unintended vehicle lunges into walls or storefronts if the driver mistakenly presses the accelerator instead of the brake.',
-          'Combined with Lane Departure Warning and Electronic Stability Control (VDC), the Note provides active peace of mind.'
+          'Driving in city traffic is relaxed thanks to Nissan’s active safety features. The windshield camera watches traffic ahead and applies Intelligent Emergency Braking if a car or pedestrian steps into your path.',
+          'Pedal misoperation protection prevents accidental acceleration if you mistakenly press the gas pedal instead of the brake near walls or parked cars.',
+          'With an ultra-tight 5.2-meter turning circle, U-turns and tight parking maneuvers in crowded Nairobi and Mombasa streets are completely effortless.'
         ],
         specs: [
-          { label: 'Autonomous Braking', value: 'Intelligent Emergency Braking (IEB) with Pedestrian Alert' },
-          { label: 'Pedal Protection', value: 'Erroneous Pedal Acceleration Suppression Shield' },
-          { label: 'Lane Safety', value: 'Lane Departure Warning (LDW) with Acoustic Alert' },
-          { label: 'Turning Radius', value: 'Ultra-Tight 5.2m Urban Turning Circle' }
+          { label: 'Emergency Braking', value: 'Automatic Emergency Braking with Pedestrian Detection' },
+          { label: 'Pedal Safety', value: 'Accidental Acceleration Prevention Shield' },
+          { label: 'Lane Warning', value: 'Lane Departure Warning with Audio Alert' },
+          { label: 'Turning Radius', value: 'Tight 5.2-Meter City Turning Circle' }
         ],
         slides: [
           {
             id: 'note-safe-1',
-            title: 'Intelligent Emergency Braking Suite',
-            subtitle: 'Front Optical Sensor Hazard Mitigation',
-            description: 'Autonomous collision detection and emergency brake intervention safeguards city commuters against sudden halts.',
+            title: 'Automatic Emergency Braking',
+            subtitle: 'Front Camera Collision Prevention',
+            description: 'Monitors cars and pedestrians ahead, applying emergency brakes to prevent city accidents.',
             imageUrl: './vehicles/note-epower.jpg',
-            metric: 'IEB',
-            metricLabel: 'Autonomous City Braking'
+            metric: 'Automatic',
+            metricLabel: 'Safety Braking'
           },
           {
             id: 'note-safe-2',
-            title: '5.2-Meter Turning Radius',
-            subtitle: 'Urban Agility & U-Turn Superiority',
-            description: 'Tight wheel articulation allows painless U-turns and effortless maneuvering in congested parking garages.',
+            title: '5.2-Meter Tight Turning Circle',
+            subtitle: 'Effortless U-Turns & City Parking',
+            description: 'Tight turning radius makes parking in tight supermarket basements and narrow town streets easy.',
             imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '5.2 m',
-            metricLabel: 'Turning Radius'
+            metricLabel: 'Turning Circle'
           }
         ]
       }
