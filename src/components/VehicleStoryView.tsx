@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Play,
   Pause,
   ShieldCheck,
@@ -272,6 +273,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [showAuctionModal, setShowAuctionModal] = useState(false);
   const [acousticMode, setAcousticMode] = useState<'off' | 'ambient' | 'sanctuary'>('off');
   const [copiedToast, setCopiedToast] = useState(false);
+  const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
 
   // Web Audio Simulator
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -400,58 +402,97 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   return (
     <div className="w-full bg-[#09090b] text-[#f4f4f5] pb-32">
       
-      {/* 1. MODEL SWITCHER BAR */}
-      <div className="w-full bg-[#121215]/95 backdrop-blur-md border-b border-[#27272a] py-2.5 px-6 sticky top-[72px] z-30 transition-all">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar py-0.5 min-w-0">
+      {/* 1. SLIM, UNCONGESTED MODEL SUB-BAR */}
+      <div className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-zinc-800 h-12 px-4 sm:px-8 sticky top-16 z-30 transition-all flex items-center">
+        <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between gap-4">
+          
+          {/* Left: Back Link & Elegant Model Selector Dropdown */}
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               onClick={onBackToFleet}
-              className="text-[12px] font-medium text-[#a1a1aa] hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 mr-2 px-3 py-1 bg-[#18181c] border border-[#27272a] rounded-[3px] transition-colors"
+              className="text-xs font-medium text-zinc-400 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 px-2.5 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-md transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Cars</span>
+              <span className="hidden xs:inline">Back to</span>
+              <span>Cars</span>
             </button>
 
-            <span className="text-[11px] font-mono uppercase text-zinc-400 hidden lg:inline mr-1 shrink-0">
-              SWITCH CAR:
-            </span>
-            <div className="flex items-center bg-zinc-900 border border-zinc-800 p-0.5 rounded-md shrink-0">
-              {allVehicles.map((v) => {
-                const isCurrent = v.id === vehicle.id;
-                return (
-                  <button
-                    key={v.id}
-                    onClick={() => {
-                      onSelectVehicle(v);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className={`px-3 py-1 text-[12px] rounded transition-colors shrink-0 cursor-pointer ${
-                      isCurrent
-                        ? 'bg-white text-zinc-950 font-bold'
-                        : 'text-zinc-400 hover:text-white'
-                    }`}
-                  >
-                    {v.name.split(' ')[1]} {v.name.split(' ')[2] || ''}
-                  </button>
-                );
-              })}
+            <span className="text-zinc-700 hidden sm:inline">|</span>
+
+            {/* Model Dropdown Trigger */}
+            <div className="relative">
+              <button
+                onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
+                className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 rounded-md text-xs font-semibold text-white transition-colors cursor-pointer"
+                title="Switch vehicle"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                <span className="font-mono text-zinc-400 text-[11px] hidden sm:inline">{vehicle.stockNo}</span>
+                <span className="truncate max-w-[130px] sm:max-w-[200px]">{vehicle.name}</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-zinc-400 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Elegant Dropdown Menu */}
+              {modelDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-30" onClick={() => setModelDropdownOpen(false)} />
+                  <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 bg-zinc-950/98 backdrop-blur-xl border border-zinc-800 rounded-xl shadow-2xl p-2 z-40 space-y-1">
+                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider px-3 py-1 block">
+                      SWITCH TO ANOTHER CAR
+                    </span>
+                    <div className="max-h-72 overflow-y-auto space-y-1">
+                      {allVehicles.map((v) => {
+                        const isSelected = v.id === vehicle.id;
+                        return (
+                          <button
+                            key={v.id}
+                            onClick={() => {
+                              onSelectVehicle(v);
+                              setModelDropdownOpen(false);
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`w-full flex items-center justify-between p-2 rounded-lg text-left transition-colors cursor-pointer ${
+                              isSelected ? 'bg-zinc-800 text-white' : 'hover:bg-zinc-900 text-zinc-300 hover:text-white'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className="w-10 h-8 rounded bg-zinc-900 overflow-hidden shrink-0 border border-zinc-800">
+                                <img src={v.heroImage} alt={v.name} className="w-full h-full object-cover" />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-xs font-bold truncate">{v.name}</p>
+                                <span className="font-mono text-[10px] text-zinc-400">{v.stockNo} · {v.year}</span>
+                              </div>
+                            </div>
+                            <div className="text-right shrink-0 pl-2">
+                              <span className="font-mono text-xs font-bold text-white block">KES {(v.priceKes / 1000000).toFixed(2)}M</span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
-          <div className="flex items-center gap-4 shrink-0">
+          {/* Right: Cash Price & Primary Action */}
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
             <div className="hidden sm:flex flex-col text-right font-mono">
-              <span className="text-[10px] text-zinc-400 uppercase">CASH PRICE</span>
-              <span className="text-[14px] font-bold text-white">
+              <span className="text-[9.5px] text-zinc-400 uppercase tracking-wider">CASH PRICE</span>
+              <span className="text-[13px] font-bold text-white">
                 KES {vehicle.priceKes.toLocaleString()}
               </span>
             </div>
             <button
               onClick={() => onScheduleTestDrive(vehicle)}
-              className="btn-white !py-1.5 !px-4 text-[12px] whitespace-nowrap cursor-pointer font-semibold"
+              className="btn-white !py-1.5 !px-3.5 !text-xs whitespace-nowrap cursor-pointer font-semibold shadow-sm"
             >
               Book Test Drive
             </button>
           </div>
+
         </div>
       </div>
 

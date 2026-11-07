@@ -72,7 +72,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   const info = titleMap[currentView] || { kicker: 'Alberka Motors', title: 'Quality Japanese Cars' };
 
   return (
-    <div className="hidden sm:block sticky top-[72px] z-30 bg-[#09090b]/90 backdrop-blur-md border-b border-zinc-800">
+    <div className="hidden sm:block sticky top-16 z-30 bg-[#09090b]/90 backdrop-blur-md border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-11 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-red-600" />

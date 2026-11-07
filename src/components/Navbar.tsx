@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-[#27272a] h-[72px] flex items-center justify-center px-6 lg:px-10 sticky top-0 z-50 transition-all">
+      <nav className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-[#27272a] h-16 flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
         <div className="max-w-[1440px] w-full flex items-center justify-between gap-6">
           
           {/* Logo & Brand Name */}
@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[72px] bg-[#09090b]/98 backdrop-blur-xl z-40 p-6 flex flex-col justify-between md:hidden border-t border-[#27272a] overflow-y-auto">
+        <div className="fixed inset-0 top-16 bg-[#09090b]/98 backdrop-blur-xl z-40 p-6 flex flex-col justify-between md:hidden border-t border-[#27272a] overflow-y-auto">
           <div className="space-y-2 pt-2">
             <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block px-3 mb-2">
               Menu
