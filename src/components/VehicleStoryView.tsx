@@ -99,204 +99,195 @@ const EditorialFeatureSection: React.FC<{
   };
 
   return (
-    <section className="w-full bg-[#121215] border-b border-[#27272a] py-16 sm:py-24 px-6 sm:px-10">
-      <div className="max-w-[1400px] mx-auto space-y-10">
+    <section className="w-full bg-[#09090b] border-b border-white/[0.08] py-16 sm:py-24 px-4 sm:px-8">
+      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10">
         
         {/* Section Header */}
-        <div className="space-y-3 max-w-[850px]">
-          <div className="inline-flex items-center gap-2 font-mono text-[11px] text-zinc-400 uppercase font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-            <span className="text-white">FEATURE {String(sectionIndex + 1).padStart(2, '0')} / {String(totalSections).padStart(2, '0')}</span>
-            <span className="text-zinc-600">·</span>
-            <span className="text-zinc-400">{feature.badge}</span>
+        <div className="space-y-3 max-w-[850px] text-left">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+            <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-medium">
+              {String(sectionIndex + 1).padStart(2, '0')} OF {String(totalSections).padStart(2, '0')} — {feature.badge}
+            </span>
           </div>
 
-          <h2 className="text-[28px] sm:text-[38px] font-bold text-white tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-tight">
             {feature.title}
           </h2>
 
-          <p className="text-[16px] text-zinc-400 leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal max-w-2xl">
             {feature.lead}
           </p>
         </div>
 
-        {/* 12-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
-          {/* Column 1: Rolls-Royce Style Media Showcase Slideshow */}
-          <div className="lg:col-span-7 space-y-4">
-            <div 
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-              onClick={() => onOpenLightbox && onOpenLightbox({
-                url: activeSlide.imageUrl,
-                title: `${feature.title} — ${activeSlide.title}`,
-                desc: activeSlide.description
-              })}
-              className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative group shadow-2xl select-none cursor-pointer"
-            >
-              <SkeletonImage
-                key={activeSlide.id || activeSlide.imageUrl}
-                src={activeSlide.imageUrl}
-                alt={activeSlide.title}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
-                containerClassName="w-full h-full"
-              />
+        {/* Master Theatrical Stage */}
+        <div className="space-y-4">
+          <div 
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onClick={() => onOpenLightbox && onOpenLightbox({
+              url: activeSlide.imageUrl,
+              title: `${feature.title} — ${activeSlide.title}`,
+              desc: activeSlide.description
+            })}
+            className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[580px] overflow-hidden bg-black border border-white/[0.08] rounded-2xl relative group shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer"
+          >
+            <SkeletonImage
+              key={activeSlide.id || activeSlide.imageUrl}
+              src={activeSlide.imageUrl}
+              alt={activeSlide.title}
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-102"
+              containerClassName="w-full h-full"
+            />
 
-              {/* Rolls-Royce Slide Counter (01 / 04), Metric & Fullscreen trigger */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-lg border border-zinc-800 flex items-center gap-1.5 shadow-md">
-                  <span className="text-white font-bold">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
-                  <span className="text-zinc-600">/</span>
-                  <span className="text-zinc-400">{String(feature.slides.length).padStart(2, '0')}</span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  {activeSlide.metric && (
-                    <div className="bg-black/85 backdrop-blur-md border border-zinc-800 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-                      <span className="text-xs text-zinc-400 hidden xs:inline">{activeSlide.metricLabel}:</span>
-                      <span className="text-xs font-mono font-bold text-white">{activeSlide.metric}</span>
-                    </div>
-                  )}
-
-                  {onOpenLightbox && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onOpenLightbox({
-                          url: activeSlide.imageUrl,
-                          title: `${feature.title} — ${activeSlide.title}`,
-                          desc: activeSlide.description
-                        });
-                      }}
-                      className="bg-black/80 hover:bg-black text-zinc-300 hover:text-white p-2 rounded-lg border border-zinc-800 transition-colors cursor-pointer backdrop-blur-md"
-                      title="Expand full-screen"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5" />
-                    </button>
-                  )}
-                </div>
+            {/* Top Bar: Slide Counter & Metric Badge */}
+            <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20 pointer-events-none">
+              <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-white rounded-lg border border-white/15 flex items-center gap-2 shadow-lg">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                <span className="font-bold">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
+                <span className="text-zinc-600">/</span>
+                <span className="text-zinc-400">{String(feature.slides.length).padStart(2, '0')}</span>
+                <span className="text-zinc-600 hidden sm:inline">·</span>
+                <span className="text-zinc-300 hidden sm:inline truncate max-w-xs">{activeSlide.title}</span>
               </div>
 
-              {/* Bottom Scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
-                <div className="space-y-1.5 max-w-[560px]">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 block font-semibold">
-                    {activeSlide.subtitle}
-                  </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
-                    {activeSlide.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-zinc-300 line-clamp-2 leading-relaxed">
-                    {activeSlide.description}
-                  </p>
-                </div>
-              </div>
+              <div className="flex items-center gap-2 pointer-events-auto">
+                {activeSlide.metric && (
+                  <div className="bg-black/80 backdrop-blur-md border border-white/15 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-lg">
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase hidden xs:inline">{activeSlide.metricLabel}:</span>
+                    <span className="text-xs font-mono font-bold text-white">{activeSlide.metric}</span>
+                  </div>
+                )}
 
-              {/* Hairline Side Arrows */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSelectSlide(activeSlideIndex === 0 ? feature.slides.length - 1 : activeSlideIndex - 1);
-                }}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
-                title="Previous image"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSelectSlide((activeSlideIndex + 1) % feature.slides.length);
-                }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
-                title="Next image"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-
-              {/* Rolls-Royce Animated Progress Bar - Crisp White */}
-              <div className="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/80 z-20">
-                <div
-                  className="h-full bg-white transition-all ease-linear"
-                  style={{
-                    width: `${isPlaying ? progress : ((activeSlideIndex + 1) / feature.slides.length) * 100}%`,
-                    transitionDuration: isPlaying ? '50ms' : '200ms',
-                  }}
-                />
+                {onOpenLightbox && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenLightbox({
+                        url: activeSlide.imageUrl,
+                        title: `${feature.title} — ${activeSlide.title}`,
+                        desc: activeSlide.description
+                      });
+                    }}
+                    className="bg-black/80 hover:bg-black text-zinc-300 hover:text-white p-2 rounded-lg border border-white/15 transition-colors cursor-pointer backdrop-blur-md shadow-lg"
+                    title="Expand full-screen"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* Slide Navigation Dock with Thumbnails */}
-            <div className="flex items-center justify-between gap-3 p-3 bg-zinc-900/80 border border-zinc-800 rounded-xl">
-              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
-                {feature.slides.map((s, idx) => {
-                  const isActive = activeSlideIndex === idx;
-                  return (
-                    <button
-                      key={s.id || idx}
-                      onClick={() => handleSelectSlide(idx)}
-                      className={`px-3 py-1.5 rounded-lg text-xs transition-all shrink-0 cursor-pointer border flex items-center gap-1.5 ${
-                        isActive
-                          ? 'bg-white text-zinc-950 font-bold border-white'
-                          : 'bg-zinc-950/80 text-zinc-400 hover:text-white border-zinc-800'
-                      }`}
-                    >
-                      <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-950 font-bold' : 'text-zinc-500'}`}>
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <span>{s.title.split(' ')[0]} {s.title.split(' ')[1] || ''}</span>
-                    </button>
-                  );
-                })}
+            {/* Bottom Scrim with Slide Details */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
+              <div className="space-y-1 max-w-2xl text-left">
+                <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-400 block font-medium">
+                  {activeSlide.subtitle}
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                  {activeSlide.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-300 line-clamp-2 leading-relaxed font-normal">
+                  {activeSlide.description}
+                </p>
               </div>
+            </div>
 
-              <div className="flex items-center gap-1.5 shrink-0">
-                <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-8 h-8 rounded-full bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
-                  title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-                >
-                  {isPlaying ? (
-                    <Pause className="w-3.5 h-3.5" />
-                  ) : (
-                    <Play className="w-3.5 h-3.5 ml-0.5 text-white" />
-                  )}
-                </button>
-              </div>
+            {/* Ambient Chevrons */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelectSlide(activeSlideIndex === 0 ? feature.slides.length - 1 : activeSlideIndex - 1);
+              }}
+              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+              title="Previous photo"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelectSlide((activeSlideIndex + 1) % feature.slides.length);
+              }}
+              className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+              title="Next photo"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+
+            {/* Animated Progress Bar */}
+            <div className="absolute bottom-0 inset-x-0 h-[2px] bg-white/10 z-20">
+              <div
+                className="h-full bg-white transition-all ease-linear"
+                style={{
+                  width: `${isPlaying ? progress : ((activeSlideIndex + 1) / feature.slides.length) * 100}%`,
+                  transitionDuration: isPlaying ? '50ms' : '200ms',
+                }}
+              />
             </div>
           </div>
 
-          {/* Column 2: Narrative & Specs */}
-          <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="space-y-3 text-[14.5px] leading-relaxed">
+          {/* Interactive Photographic Thumbnails Strip (Full Titles & Real Images) */}
+          <div className="flex items-center justify-between gap-3 pt-1">
+            <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1">
+              {feature.slides.map((s, idx) => {
+                const isActive = activeSlideIndex === idx;
+                return (
+                  <button
+                    key={s.id || idx}
+                    onClick={() => handleSelectSlide(idx)}
+                    className={`p-1.5 pr-3.5 rounded-xl text-left transition-all shrink-0 cursor-pointer border flex items-center gap-2.5 ${
+                      isActive
+                        ? 'bg-white/10 text-white border-white/40 shadow-lg'
+                        : 'bg-[#0c0c0f] text-zinc-400 hover:text-white border-white/[0.08] hover:border-white/20'
+                    }`}
+                  >
+                    <div className="w-12 h-9 rounded-lg overflow-hidden bg-black shrink-0 border border-white/10">
+                      <img src={s.imageUrl} alt={s.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <span className={`font-mono text-[10px] block ${isActive ? 'text-white font-bold' : 'text-zinc-500'}`}>
+                        0{idx + 1}
+                      </span>
+                      <span className="text-xs font-semibold whitespace-nowrap block">
+                        {s.title}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="shrink-0 pl-2 border-l border-white/[0.08]">
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="w-9 h-9 rounded-lg bg-[#0c0c0f] border border-white/[0.08] hover:border-white/20 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+                title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+              >
+                {isPlaying ? (
+                  <Pause className="w-3.5 h-3.5 text-white" />
+                ) : (
+                  <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-300" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Architectural Two-Column Dossier: Narrative & Specifications */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-4 text-left border-t border-white/[0.08]">
+          
+          {/* Left Column: Narrative Prose */}
+          <div className="lg:col-span-7 space-y-4">
+            <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block font-medium">
+              OVERVIEW & COMFORT
+            </span>
+            <div className="space-y-3.5 text-sm sm:text-[15px] text-zinc-300 leading-relaxed font-normal">
               {feature.narrative.map((para, pIdx) => (
-                <p key={pIdx} className="border-l-2 border-zinc-700 hover:border-zinc-500 transition-colors pl-4 text-zinc-300">
+                <p key={pIdx}>
                   {para}
                 </p>
               ))}
-            </div>
-
-            <div className="pt-2">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-white block mb-3 font-semibold">
-                KEY SPECIFICATIONS
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {feature.specs.map((spec, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="p-3 bg-zinc-900/80 border border-zinc-800 rounded-lg space-y-0.5"
-                  >
-                    <span className="text-[11px] text-zinc-400 uppercase font-mono block">
-                      {spec.label}
-                    </span>
-                    <span className="text-[13.5px] font-bold text-white block">
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="pt-2">
@@ -304,11 +295,33 @@ const EditorialFeatureSection: React.FC<{
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20questions%20regarding%20the%20${encodeURIComponent(feature.title)}%20on%20the%20${encodeURIComponent(vehicleName)}%20(${stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[13px] font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer pt-2 group"
               >
                 <span>Ask our workshop about this car</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-white transition-transform group-hover:translate-x-1" />
               </a>
+            </div>
+          </div>
+
+          {/* Right Column: Architectural Hairline Specification Matrix */}
+          <div className="lg:col-span-5 space-y-2">
+            <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-widest block font-medium">
+              KEY SPECIFICATIONS
+            </span>
+            <div className="border-t border-white/[0.08]">
+              {feature.specs.map((spec, sIdx) => (
+                <div
+                  key={sIdx}
+                  className="py-3 border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5"
+                >
+                  <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider shrink-0">
+                    {spec.label}
+                  </span>
+                  <span className="text-xs sm:text-[13px] font-semibold text-white text-left sm:text-right">
+                    {spec.value}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -1253,26 +1266,28 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       )}
 
       {/* 4. THE MASTER PHOTOGRAPHIC GALLERY (ROLLS-ROYCE STYLE APERTURE) */}
-      <section className="w-full bg-[#121215] py-20 px-6 sm:px-10 border-t border-zinc-800">
-        <div className="max-w-[1400px] mx-auto space-y-10">
+      <section className="w-full bg-[#09090b] py-20 px-4 sm:px-8 border-t border-white/[0.08]">
+        <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10">
           
           {/* Gallery Header & Filter Controls */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2 font-mono text-[11px] text-zinc-400 uppercase font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                <span>INSPECT EVERY ANGLE // PHOTOGRAPHIC ARCHIVE</span>
+              <div className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-medium">
+                  PHOTOGRAPHIC ARCHIVE
+                </span>
               </div>
-              <h2 className="text-[28px] sm:text-[38px] font-bold text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-tight">
                 Authentic High-Resolution Gallery
               </h2>
-              <p className="text-[15px] text-zinc-400 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
                 Direct auction photos, interior leather close-ups, and mechanical inspection shots showing the actual condition of this vehicle.
               </p>
             </div>
 
             {/* Filter Pills */}
-            <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md p-1 border border-zinc-800 rounded-lg overflow-x-auto no-scrollbar shrink-0">
+            <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md p-1 border border-white/[0.08] rounded-xl overflow-x-auto no-scrollbar shrink-0">
               {[
                 { id: 'all', label: `All Photos (${allPhotos.length})` },
                 { id: 'exterior', label: 'Exterior Stance' },
@@ -1285,7 +1300,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     setGalleryFilter(tab.id as any);
                     setActivePhotoIndex(0);
                   }}
-                  className={`px-3 py-1.5 text-xs font-mono rounded-md transition-all cursor-pointer whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 text-xs font-mono rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                     galleryFilter === tab.id
                       ? 'bg-white text-zinc-950 font-bold shadow-sm'
                       : 'text-zinc-400 hover:text-white'
@@ -1298,13 +1313,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
 
           {/* Master 16:9 Theatrical Gallery Stage (Rolls-Royce Bespoke Aperture) */}
-          <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
+          <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-white/[0.08] shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
             <div 
               ref={stageRef}
               onTouchStart={handleTouchGalleryStart}
               onTouchEnd={handleTouchGalleryEnd}
               onClick={() => openLightboxWithIndex(activePhotoIndex)}
-              className="relative w-full h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden select-none cursor-pointer group"
+              className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] overflow-hidden select-none cursor-pointer group"
             >
               <img
                 key={currentPhoto.url}
@@ -1314,17 +1329,18 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               />
 
               {/* Scrim & Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
 
               {/* Top Bar Badges & Controls */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
+              <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20">
                 <div className="flex items-center gap-2">
-                  <div className="bg-black/85 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-md border border-zinc-800 flex items-center gap-1.5 shadow-md">
+                  <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-lg border border-white/15 flex items-center gap-2 shadow-lg">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
                     <span className="text-white font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
                     <span className="text-zinc-600">/</span>
                     <span className="text-zinc-400">{String(filteredPhotos.length).padStart(2, '0')}</span>
                   </div>
-                  <span className="bg-black/85 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-mono text-zinc-300 border border-zinc-800 hidden xs:inline">
+                  <span className="bg-black/80 backdrop-blur-md px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-zinc-300 border border-white/15 hidden xs:inline shadow-lg">
                     {currentPhoto.tag}
                   </span>
                 </div>
@@ -1335,7 +1351,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       e.stopPropagation();
                       setIsGalleryPlaying(!isGalleryPlaying);
                     }}
-                    className="bg-black/80 hover:bg-black text-white p-2.5 rounded-lg border border-zinc-800 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono"
+                    className="bg-black/80 hover:bg-black text-white p-2 sm:px-3 sm:py-1.5 rounded-lg border border-white/15 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono shadow-lg"
                     title={isGalleryPlaying ? 'Pause gallery slideshow' : 'Play gallery slideshow'}
                   >
                     {isGalleryPlaying ? (
@@ -1351,10 +1367,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       e.stopPropagation();
                       openLightboxWithIndex(activePhotoIndex);
                     }}
-                    className="bg-black/80 hover:bg-black text-white p-2.5 rounded-lg border border-zinc-800 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono"
+                    className="bg-black/80 hover:bg-black text-white p-2 sm:px-3 sm:py-1.5 rounded-lg border border-white/15 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono shadow-lg"
                     title="Expand Fullscreen Lightbox"
                   >
-                    <Maximize2 className="w-4 h-4" />
+                    <Maximize2 className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline">Fullscreen</span>
                   </button>
                 </div>
@@ -1362,14 +1378,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               {/* Lower-Third Caption Card */}
               <div className="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 z-20 pointer-events-none">
-                <div className="bg-black/80 backdrop-blur-xl border border-zinc-800 p-4 sm:p-5 rounded-xl max-w-2xl text-left space-y-1">
+                <div className="bg-black/80 backdrop-blur-xl border border-white/15 p-4 sm:p-5 rounded-xl max-w-2xl text-left space-y-1 shadow-2xl">
                   <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold">
-                    {vehicle.name} // {currentPhoto.tag}
+                    {vehicle.name} · {currentPhoto.tag}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
                     {currentPhoto.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
                     {currentPhoto.description}
                   </p>
                 </div>
@@ -1381,7 +1397,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   e.stopPropagation();
                   handlePrevPhoto();
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
+                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white border border-white/15 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
                 title="Previous photo"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -1391,14 +1407,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   e.stopPropagation();
                   handleNextPhoto();
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white border border-white/15 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
                 title="Next photo"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
 
-              {/* Rolls-Royce Animated Timing Progress Bar — Pure Crisp White */}
-              <div className="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/80 z-20">
+              {/* Animated Timing Progress Bar — Pure Crisp White */}
+              <div className="absolute bottom-0 inset-x-0 h-[2px] bg-white/10 z-20">
                 <div
                   className="h-full bg-white transition-all ease-linear"
                   style={{
