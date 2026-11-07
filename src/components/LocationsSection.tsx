@@ -89,7 +89,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors%20Mombasa,%20I%20would%20like%20to%20visit%20your%20Tangana%20Road%20showroom."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-crimson w-full sm:w-auto"
+                className="btn-white font-semibold w-full sm:w-auto"
               >
                 <span>WhatsApp Mombasa Branch</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
@@ -101,7 +101,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
           <div className="bg-[#121215] border border-[#27272a] p-8 sm:p-10 flex flex-col justify-between rounded-[4px]">
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-[11px] text-[#ef4444] uppercase font-bold">NAIROBI BRANCH</span>
+                <span className="font-mono text-[11px] text-zinc-300 uppercase font-bold">NAIROBI BRANCH</span>
                 <span className="text-[11px] font-mono bg-[#18181c] border border-[#27272a] text-[#a1a1aa] px-2.5 py-0.5 rounded-[2px]">
                   WESTLANDS
                 </span>
@@ -114,15 +114,15 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
               <div className="space-y-3 py-5 border-y border-[#27272a] text-[14px]">
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#ef4444]" />
-                  <a href="tel:+254748999333" className="font-mono text-white hover:text-[#ef4444] transition-colors">0748 999 333</a>
+                  <Phone className="w-4 h-4 text-zinc-400" />
+                  <a href="tel:+254748999333" className="font-mono text-white hover:text-zinc-300 transition-colors">0748 999 333</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-[#ef4444]" />
+                  <Mail className="w-4 h-4 text-zinc-400" />
                   <a href="mailto:nairobi@alberkamotors.co.ke" className="font-mono text-[#a1a1aa] hover:text-white transition-colors">nairobi@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Clock className="w-4 h-4 text-[#ef4444]" />
+                  <Clock className="w-4 h-4 text-zinc-400" />
                   <span className="text-[13px] text-[#a1a1aa]">Mon – Sat: 8:30 AM – 6:00 PM (Sunday by appointment)</span>
                 </div>
               </div>
@@ -134,7 +134,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 href="https://wa.me/254748999333?text=Hello%20Alberka%20Motors%20Nairobi,%20I%20would%20like%20to%20visit%20your%20Westlands%20showroom."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-crimson w-full sm:w-auto"
+                className="btn-white font-semibold w-full sm:w-auto"
               >
                 <span>WhatsApp Nairobi Branch</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
@@ -242,7 +242,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button type="submit" className="btn-crimson w-full sm:w-auto">
+                <button type="submit" className="btn-white font-semibold w-full sm:w-auto">
                   <Calendar className="w-4 h-4 mr-2" />
                   <span>Confirm Test Drive on WhatsApp</span>
                 </button>

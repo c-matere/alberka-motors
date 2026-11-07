@@ -107,7 +107,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20saved%20${savedVehicles.length}%20cars%20on%20your%20website:%20${encodeURIComponent(savedVehicles.map(v => `${v.name} (${v.stockNo})`).join(', '))}.%20Please%20let%20me%20know%20their%20availability.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-crimson w-full sm:w-auto text-[13px] !py-2 !px-4"
+              className="btn-white font-semibold w-full sm:w-auto text-[13px] !py-2 !px-4"
             >
               <MessageCircle className="w-4 h-4 mr-1.5" />
               <span>Inquire on All Saved Cars</span>

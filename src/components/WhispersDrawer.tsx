@@ -221,7 +221,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit" className="btn-crimson w-full py-3 text-[14px] justify-center cursor-pointer">
+                  <button type="submit" className="btn-white w-full py-3 text-[14px] justify-center cursor-pointer font-semibold">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     <span>Send via WhatsApp</span>
                   </button>

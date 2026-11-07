@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -9,9 +9,6 @@ import {
   MessageCircle,
   ShieldCheck,
   CheckCircle2,
-  Gauge,
-  Fuel,
-  Sparkles
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
@@ -65,7 +62,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev]);
 
-  // Autoplay timer with smooth animated progress
+  // Autoplay timer with linear progress
   useEffect(() => {
     if (!isPlaying || isHovered || vehicles.length <= 1) return;
 
@@ -93,25 +90,26 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Top Header Row — Rolls-Royce Minimalist Typography & Controls */}
+      {/* Top Header Row — Black & White Precision with Single Red Dot Sprinkle */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-1">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-[11px] font-mono uppercase tracking-widest text-red-500 font-semibold">
+            {/* The single disciplined red punctum */}
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+            <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-zinc-400 font-medium">
               FEATURED SHOWROOM FLEET // MOMBASA & NAIROBI
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">
             Cars Ready for Immediate Delivery
           </h2>
         </div>
 
-        {/* Header Right: Numerical Sequencer + Hairline Circular Controls */}
-        <div className="flex items-center gap-4 shrink-0">
-          {/* Rolls-Royce Slide Counter (01 / 06) */}
-          <div className="text-xs font-mono tracking-wider flex items-center gap-1.5 text-zinc-400 bg-zinc-900/90 border border-zinc-800 px-3 py-1.5 rounded-md">
-            <span className="text-red-500 font-bold">
+        {/* Header Right: Numerical Sequencer + Hairline Controls */}
+        <div className="flex items-center gap-3 shrink-0">
+          {/* Slide Counter (01 / 06) — Crisp Pure White */}
+          <div className="text-xs font-mono tracking-wider flex items-center gap-1.5 text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md">
+            <span className="text-white font-bold">
               {String(activeIndex + 1).padStart(2, '0')}
             </span>
             <span className="text-zinc-600">/</span>
@@ -123,24 +121,24 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           {/* Autoplay Play/Pause */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="w-9 h-9 rounded-md bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
             title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
           >
-            {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-red-500" />}
+            {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-white" />}
           </button>
 
-          {/* Hairline Circular Navigation Arrows */}
-          <div className="flex items-center gap-2">
+          {/* Hairline Navigation Arrows */}
+          <div className="flex items-center gap-1.5">
             <button
               onClick={handlePrev}
-              className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
+              className="w-9 h-9 rounded-md bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
               title="Previous Car (Left Arrow)"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
+              className="w-9 h-9 rounded-md bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
               title="Next Car (Right Arrow)"
             >
               <ChevronRight className="w-4 h-4" />
@@ -157,7 +155,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         </div>
       </div>
 
-      {/* Model Navigation Pills (Rolls-Royce Bespoke Selector) */}
+      {/* Model Navigation Pills — Pure Black & White with Subtle Indicator */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar border-b border-zinc-800/80">
         {vehicles.map((v, idx) => {
           const isActive = idx === activeIndex;
@@ -165,54 +163,52 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             <button
               key={v.id}
               onClick={() => handleSelectIndex(idx)}
-              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs rounded-full whitespace-nowrap transition-all cursor-pointer shrink-0 border ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs rounded-md whitespace-nowrap transition-all cursor-pointer shrink-0 border ${
                 isActive
-                  ? 'bg-zinc-900 text-white border-red-600 shadow-sm'
-                  : 'bg-transparent text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
+                  ? 'bg-white text-zinc-950 font-semibold border-white shadow-sm'
+                  : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
               }`}
             >
-              <span className={`font-mono text-[10px] ${isActive ? 'text-red-500 font-bold' : 'text-zinc-500'}`}>
+              <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-950 font-bold' : 'text-zinc-500'}`}>
                 {String(idx + 1).padStart(2, '0')}
               </span>
-              <span className="font-medium">{v.name.split(' ')[0]} {v.name.split(' ')[1]}</span>
-              {isActive && (
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-              )}
+              <span>{v.name.split(' ')[0]} {v.name.split(' ')[1]}</span>
             </button>
           );
         })}
       </div>
 
-      {/* The Grand Cinematic Showcase Stage */}
-      <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
-        {/* Aspect Ratio Container (16:9 on desktop, responsive on mobile) */}
+      {/* The Grand Theatrical Showcase Stage */}
+      <div className="relative w-full rounded-xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
         <div className="relative w-full h-[460px] sm:h-[560px] md:h-[620px] lg:h-[660px] overflow-hidden">
           
-          {/* Background Image / Video with Ken Burns Subtle Motion */}
+          {/* Media Frame */}
           <div className="absolute inset-0 w-full h-full">
             <img
               key={activeVehicle.id}
               src={activeVehicle.heroImage}
               alt={activeVehicle.name}
-              className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out hover:scale-103"
+              className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out hover:scale-102"
             />
           </div>
 
           {/* Theatrical Vignette & Gradient Scrim */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/40 pointer-events-none hidden sm:block" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/30 pointer-events-none hidden sm:block" />
 
           {/* Top Stage Bar: Badges & Favorite Action */}
           <div className="absolute top-4 sm:top-6 inset-x-4 sm:inset-x-8 flex items-center justify-between z-20">
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-              <span className="bg-red-600 text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
-                {activeVehicle.auctionGrade}
-              </span>
-              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-mono px-3 py-1 rounded-full">
+              {/* Clean Monochrome Grade Badge with single tiny red dot */}
+              <div className="bg-black/85 backdrop-blur-md border border-zinc-700 text-white text-[11px] font-mono px-3 py-1 rounded-md flex items-center gap-1.5 shadow-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                <span className="font-bold">{activeVehicle.auctionGrade}</span>
+              </div>
+              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-mono px-3 py-1 rounded-md">
                 {activeVehicle.stockNo}
               </span>
-              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-emerald-400 text-[11px] font-medium px-3 py-1 rounded-full hidden xs:inline-flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-medium px-3 py-1 rounded-md hidden xs:inline-flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Duty Paid & Cleared</span>
               </span>
             </div>
@@ -220,26 +216,26 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => onToggleFavorite(activeVehicle.id)}
-                className={`p-2.5 rounded-full backdrop-blur-md border transition-all cursor-pointer ${
+                className={`p-2.5 rounded-md backdrop-blur-md border transition-all cursor-pointer ${
                   isFavorite
-                    ? 'bg-red-600 text-white border-red-600'
+                    ? 'bg-white text-zinc-950 border-white font-bold'
                     : 'bg-black/70 text-zinc-300 border-zinc-800 hover:text-white hover:border-zinc-700'
                 }`}
                 title={isFavorite ? 'Remove from saved' : 'Save car'}
               >
-                <Bookmark className={`w-4 h-4 ${isFavorite ? 'fill-white' : ''}`} />
+                <Bookmark className={`w-4 h-4 ${isFavorite ? 'fill-black' : ''}`} />
               </button>
             </div>
           </div>
 
           {/* Bottom Floating Theatrical HUD (Specs + Model Information) */}
           <div className="absolute bottom-4 sm:bottom-8 inset-x-4 sm:inset-x-8 z-20">
-            <div className="bg-[#121215]/90 backdrop-blur-xl border border-zinc-800 rounded-xl p-5 sm:p-7 shadow-2xl max-w-4xl space-y-4">
+            <div className="bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 rounded-xl p-5 sm:p-7 shadow-2xl max-w-4xl space-y-4">
               
               {/* Category & Status */}
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-red-500 font-semibold uppercase tracking-wider">
+                  <span className="text-zinc-300 font-semibold uppercase tracking-wider">
                     {activeVehicle.category.toUpperCase()}
                   </span>
                   <span className="text-zinc-600">•</span>
@@ -256,7 +252,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               {/* Model Name & Tagline */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em]">
                     {activeVehicle.name}
                   </h3>
                   <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
@@ -264,12 +260,12 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   </p>
                 </div>
 
-                {/* Delivered Price */}
+                {/* Delivered Price — Pure White High-Contrast Typography */}
                 <div className="text-left md:text-right shrink-0">
                   <span className="text-[11px] text-zinc-400 uppercase tracking-wider block">
                     Delivered Price
                   </span>
-                  <span className="font-mono text-2xl sm:text-3xl font-extrabold text-white">
+                  <span className="font-mono text-2xl sm:text-3xl font-bold text-white">
                     KES {activeVehicle.priceKes.toLocaleString()}
                   </span>
                 </div>
@@ -297,19 +293,19 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 </div>
                 <div className="bg-zinc-900/70 border border-zinc-800/80 p-2.5 rounded-lg">
                   <span className="text-[10px] text-zinc-400 block mb-0.5">Warranty Included</span>
-                  <span className="font-semibold text-red-400 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" />
+                  <span className="font-semibold text-zinc-200 flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
                     <span>5,000 KM</span>
                   </span>
                 </div>
               </div>
 
-              {/* Actions Row */}
+              {/* Actions Row — High-Contrast Pure White Primary Button */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-zinc-800/80">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => onSelectVehicle(activeVehicle)}
-                    className="btn-white !py-2.5 !px-5 !text-xs !rounded-lg w-full sm:w-auto inline-flex items-center justify-center font-bold"
+                    className="btn-white !py-2.5 !px-5 !text-xs !rounded-md w-full sm:w-auto inline-flex items-center justify-center font-semibold"
                   >
                     <span>View Car Details</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -319,7 +315,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                     href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-crimson !py-2.5 !px-5 !text-xs !rounded-lg w-full sm:w-auto inline-flex items-center justify-center font-semibold"
+                    className="btn-ghost !py-2.5 !px-5 !text-xs !rounded-md w-full sm:w-auto inline-flex items-center justify-center font-medium"
                   >
                     <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
                     <span>WhatsApp Showroom</span>
@@ -334,37 +330,37 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             </div>
           </div>
 
-          {/* Stage Side Navigation Arrows (Floating on image) */}
+          {/* Stage Side Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-black/70 hover:bg-black text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
             title="Previous car"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-black/70 hover:bg-black text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
             title="Next car"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </button>
 
         </div>
 
-        {/* Rolls-Royce Animated Timing Progress Bar */}
-        <div className="w-full h-1 bg-zinc-900 relative overflow-hidden">
+        {/* Rolls-Royce Animated Timing Progress Bar — Pure Crisp White */}
+        <div className="w-full h-[2px] bg-zinc-900 relative overflow-hidden">
           <div
-            className="h-full bg-red-600 transition-all ease-linear"
+            className="h-full bg-white transition-all ease-linear"
             style={{
               width: `${isPlaying && !isHovered ? progress : ((activeIndex + 1) / vehicles.length) * 100}%`,
-              transitionDuration: isPlaying && !isHovered ? '50ms' : '300ms',
+              transitionDuration: isPlaying && !isHovered ? '50ms' : '250ms',
             }}
           />
         </div>
       </div>
 
-      {/* Fleet Thumbnail Runway Strip (Rolls-Royce Gallery Selector) */}
+      {/* Fleet Thumbnail Runway Strip */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-2">
         {vehicles.map((v, idx) => {
           const isActive = idx === activeIndex;
@@ -372,17 +368,17 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             <button
               key={v.id}
               onClick={() => handleSelectIndex(idx)}
-              className={`group text-left p-2.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+              className={`group text-left p-2.5 rounded-lg border transition-all cursor-pointer flex flex-col justify-between ${
                 isActive
-                  ? 'bg-zinc-900 border-red-600 ring-1 ring-red-600/40'
+                  ? 'bg-zinc-900 border-white'
                   : 'bg-[#121215] border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60'
               }`}
             >
-              <div className="aspect-[16/10] w-full rounded-lg overflow-hidden bg-black mb-2 relative">
+              <div className="aspect-[16/10] w-full rounded overflow-hidden bg-black mb-2 relative">
                 <img
                   src={v.heroImage}
                   alt={v.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
                 />
                 <span className="absolute top-1 left-1 bg-black/80 font-mono text-[9px] text-zinc-300 px-1.5 py-0.5 rounded">
                   {v.year}
@@ -393,7 +389,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 <span className="font-semibold text-xs text-white block truncate">
                   {v.name}
                 </span>
-                <span className="font-mono text-[11px] font-bold text-red-400 block mt-0.5">
+                <span className="font-mono text-[11px] font-medium text-zinc-300 block mt-0.5">
                   KES {(v.priceKes / 1000000).toFixed(2)}M
                 </span>
               </div>

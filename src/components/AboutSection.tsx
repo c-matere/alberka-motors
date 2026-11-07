@@ -81,7 +81,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             <div className="pt-2">
               <button
                 onClick={onExploreFleet}
-                className="btn-crimson"
+                className="btn-white font-semibold"
               >
                 <span>Browse Inspected Cars</span>
                 <ArrowRight className="w-4 h-4 ml-1.5" />

@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({
               <span className="font-['Inter'] font-bold text-[15px] text-white block leading-tight">
                 ALBERKA MOTORS (KENYA) LTD
               </span>
-              <span className="font-mono text-[11px] text-[#ef4444] mt-0.5 block font-medium">
+              <span className="font-mono text-[11px] text-zinc-400 mt-0.5 block font-medium">
                 DIRECT JAPANESE IMPORTS // EST. 2000
               </span>
             </div>
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({
               href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-crimson !py-2.5 !px-4 text-[13px]"
+              className="btn-white !py-2.5 !px-4 text-[13px] font-semibold"
             >
               <MessageCircle className="w-4 h-4 mr-1.5" />
               <span>WhatsApp Us (0714 333 888)</span>

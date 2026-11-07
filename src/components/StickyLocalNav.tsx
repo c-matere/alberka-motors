@@ -48,7 +48,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
               href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-crimson !py-1.5 !px-3 !text-xs !rounded"
+              className="btn-white font-semibold !py-1.5 !px-3 !text-xs !rounded"
             >
               <span>WhatsApp Us</span>
             </a>

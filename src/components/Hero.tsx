@@ -6,10 +6,8 @@ import {
   VolumeX,
   ArrowRight,
   ShieldCheck,
-  CheckCircle2,
   ChevronLeft,
   ChevronRight,
-  Sparkles
 } from 'lucide-react';
 
 interface HeroProps {
@@ -132,35 +130,35 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   return (
     <section className="relative w-full bg-[#09090b] pt-10 sm:pt-16 pb-20 sm:pb-28 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
       
-      {/* Subtle Crimson Gradient Glow in Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-[#dc2626]/12 to-transparent blur-3xl pointer-events-none" />
+      {/* Subtle Monochrome Ambient Spotlight in Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none" />
 
       <div className="max-w-[1360px] mx-auto relative z-10 space-y-8">
         
-        {/* Eyebrow Label */}
+        {/* Eyebrow Label with Single Subtle Red Dot */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#18181c] border border-[#27272a] rounded-full">
-          <span className="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse" />
-          <span className="font-mono text-[11px] uppercase tracking-wider text-[#e4e4e7] font-semibold">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-zinc-300 font-medium">
             DIRECT JAPANESE IMPORTS // MOMBASA & NAIROBI
           </span>
         </div>
 
-        {/* Display Hero Title */}
+        {/* Display Hero Title with Razor-Sharp Inter Tracking */}
         <div className="space-y-4 max-w-[1100px] mx-auto">
-          <h1 className="text-[34px] sm:text-[54px] md:text-[66px] lg:text-[74px] font-bold text-white tracking-tight leading-[1.08]">
+          <h1 className="text-[34px] sm:text-[54px] md:text-[66px] lg:text-[74px] font-bold text-white tracking-[-0.035em] leading-[1.08]">
             Clean Japanese Cars. Honest Mileage. Cars You Can Trust.
           </h1>
 
-          <p className="max-w-[760px] mx-auto text-[#a1a1aa] text-[16px] sm:text-[19px] leading-relaxed">
+          <p className="max-w-[760px] mx-auto text-zinc-400 text-[16px] sm:text-[19px] leading-relaxed tracking-[-0.01em]">
             Every vehicle is handpicked from top Japanese auctions, thoroughly serviced in our Mombasa workshop, and backed by a written 5,000 km warranty.
           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+        {/* Action Buttons — Crisp Pure White Primary + Subtle Ghost Secondary */}
+        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
           <button
             onClick={onExploreFleet}
-            className="btn-crimson group py-3 px-6 text-[14.5px] rounded-lg"
+            className="btn-white group py-3 px-6 text-[14px] rounded-md font-semibold"
           >
             <span>Browse Cars in Stock</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -168,16 +166,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost py-3 px-6 text-[14.5px] rounded-lg"
+            className="btn-ghost py-3 px-6 text-[14px] rounded-md font-medium"
           >
-            <ShieldCheck className="w-4 h-4 text-[#ef4444]" />
+            <ShieldCheck className="w-4 h-4 text-zinc-400" />
             <span>Our 100-Point Workshop Check</span>
           </button>
         </div>
 
-        {/* Rolls-Royce Theatrical Model Slideshow Selector */}
-        <div className="pt-6">
-          <div className="flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto pb-2 no-scrollbar">
+        {/* Theatrical Model Slideshow Selector */}
+        <div className="pt-4">
+          <div className="flex items-center justify-center gap-2 sm:gap-2.5 overflow-x-auto pb-2 no-scrollbar">
             {FLAGSHIP_SLIDES.map((slide, idx) => {
               const isActive = idx === activeSlideIdx;
               return (
@@ -187,17 +185,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                     setActiveSlideIdx(idx);
                     setProgress(0);
                   }}
-                  className={`flex items-center gap-2.5 px-4 py-2 rounded-full text-xs transition-all cursor-pointer border ${
+                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs transition-all cursor-pointer border ${
                     isActive
-                      ? 'bg-zinc-900 border-red-600 text-white shadow-lg'
-                      : 'bg-zinc-950/80 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
+                      ? 'bg-white text-zinc-950 font-semibold border-white shadow-sm'
+                      : 'bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
                   }`}
                 >
-                  <span className={`font-mono text-[10px] ${isActive ? 'text-red-500 font-bold' : 'text-zinc-500'}`}>
+                  <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-950 font-bold' : 'text-zinc-500'}`}>
                     0{idx + 1}
                   </span>
-                  <span className="font-semibold">{slide.name.split(' ')[0]} {slide.name.split(' ')[1]}</span>
-                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-red-600" />}
+                  <span>{slide.name.split(' ')[0]} {slide.name.split(' ')[1]}</span>
                 </button>
               );
             })}
@@ -206,7 +203,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
         {/* 21:9 Widescreen Theatrical Stage */}
         <div className="relative w-full mx-auto">
-          <div className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-2xl shadow-2xl">
+          <div className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-xl shadow-2xl">
             
             {/* Cinematic Media (Video or High-Res Image) */}
             {currentSlide.videoUrl ? (
@@ -217,7 +214,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 loop
                 playsInline
                 key={currentSlide.id}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] hover:scale-103 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] hover:scale-102 ease-out"
                 poster={currentSlide.imageUrl}
               >
                 <source src={currentSlide.videoUrl} type="video/mp4" />
@@ -228,17 +225,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 key={currentSlide.id}
                 src={currentSlide.imageUrl}
                 alt={currentSlide.name}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] hover:scale-103 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] hover:scale-102 ease-out"
               />
             )}
 
             {/* Theatrical Vignette & Gradient Scrim */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/20 flex items-end p-6 sm:p-10 pointer-events-none">
               <div className="text-left text-white max-w-[650px] space-y-1.5">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-red-500 block font-semibold">
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-400 block font-medium">
                   FLAGSHIP SHOWCASE // {currentSlide.category}
                 </span>
-                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-[-0.03em] leading-tight">
                   {currentSlide.name}
                 </p>
                 <p className="text-xs sm:text-sm text-zinc-300 hidden sm:block max-w-lg leading-relaxed">
@@ -247,41 +244,42 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </div>
             </div>
 
-            {/* Rolls-Royce Slide Indicator Top Left */}
+            {/* Slide Indicator Top Left */}
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 flex items-center gap-2">
-              <div className="bg-black/80 backdrop-blur-md border border-zinc-800 px-3 py-1.5 rounded-lg text-xs font-mono text-zinc-300 flex items-center gap-1.5 shadow-md">
-                <span className="text-red-500 font-bold">0{activeSlideIdx + 1}</span>
+              <div className="bg-black/80 backdrop-blur-md border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300 flex items-center gap-1.5 shadow-md">
+                <span className="text-white font-bold">0{activeSlideIdx + 1}</span>
                 <span className="text-zinc-600">/</span>
                 <span className="text-zinc-400">0{FLAGSHIP_SLIDES.length}</span>
               </div>
-              <span className="bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-md">
-                {currentSlide.grade}
-              </span>
+              <div className="bg-black/80 backdrop-blur-md border border-zinc-700 text-white text-[11px] font-mono px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                <span className="font-bold">{currentSlide.grade}</span>
+              </div>
             </div>
 
             {/* Controls Top Right */}
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2 z-30">
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 z-30">
               <button
                 onClick={togglePlay}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-full"
+                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
               >
-                {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-red-500" />}
+                {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-white" />}
               </button>
 
               {currentSlide.videoUrl && (
                 <button
                   onClick={toggleMute}
-                  className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-full"
+                  className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-red-500" />}
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
                 </button>
               )}
 
               <button
                 onClick={handlePrev}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-full"
+                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title="Previous car"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -289,20 +287,20 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
               <button
                 onClick={handleNext}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-full"
+                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title="Next car"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Rolls-Royce Animated Timing Progress Line */}
-            <div className="absolute bottom-0 inset-x-0 h-1 bg-zinc-900/80 z-20">
+            {/* Rolls-Royce Animated Timing Progress Line — Crisp Pure White */}
+            <div className="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/80 z-20">
               <div
-                className="h-full bg-red-600 transition-all ease-linear"
+                className="h-full bg-white transition-all ease-linear"
                 style={{
                   width: `${isPlaying ? progress : ((activeSlideIdx + 1) / FLAGSHIP_SLIDES.length) * 100}%`,
-                  transitionDuration: isPlaying ? '50ms' : '300ms',
+                  transitionDuration: isPlaying ? '50ms' : '250ms',
                 }}
               />
             </div>
@@ -331,7 +329,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block mb-1">
                   WORKSHOP SERVICE
                 </span>
-                <span className="text-sm font-bold text-emerald-400 block">
+                <span className="text-sm font-bold text-zinc-200 block">
                   {currentSlide.serviceBadge}
                 </span>
               </div>
@@ -339,7 +337,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block mb-1">
                   DELIVERED PRICE
                 </span>
-                <span className="text-sm font-bold text-red-400 font-mono block">
+                <span className="text-sm font-bold text-white font-mono block">
                   KES {currentSlide.priceKes.toLocaleString()}
                 </span>
               </div>
@@ -348,7 +346,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             <div className="w-full sm:w-auto flex justify-end">
               <button
                 onClick={onExploreFleet}
-                className="btn-crimson !py-2.5 !px-5 w-full sm:w-auto justify-center text-xs rounded-lg font-semibold"
+                className="btn-white !py-2.5 !px-5 w-full sm:w-auto justify-center text-xs rounded-md font-semibold"
               >
                 <span>View Full Showroom</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5" />

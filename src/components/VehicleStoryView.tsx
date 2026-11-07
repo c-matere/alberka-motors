@@ -446,7 +446,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
             <button
               onClick={() => onScheduleTestDrive(vehicle)}
-              className="btn-crimson !py-1.5 !px-4 text-[12px] whitespace-nowrap cursor-pointer"
+              className="btn-white !py-1.5 !px-4 text-[12px] whitespace-nowrap cursor-pointer font-semibold"
             >
               Book Test Drive
             </button>
@@ -835,7 +835,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20with%20exterior%20${encodeURIComponent(activeColor.name)}%20and%20interior%20${encodeURIComponent(activeLeather.name)}.%20Please%20confirm%20availability%20for%20a%20test%20drive.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-crimson !py-2.5 !px-5 text-[13px] w-full sm:w-auto text-center"
+                  className="btn-white !py-2.5 !px-5 text-[13px] w-full sm:w-auto text-center font-semibold"
                 >
                   <span>Inquire on WhatsApp</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -933,7 +933,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 onClick={() => {
                   if (onOpenWhispers) onOpenWhispers();
                 }}
-                className="btn-crimson !py-3 !px-5 text-[13px] cursor-pointer w-full sm:w-auto"
+                className="btn-white !py-3 !px-5 text-[13px] cursor-pointer w-full sm:w-auto font-semibold"
               >
                 <MessageCircle className="w-4 h-4 mr-1.5" />
                 <span>Chat on WhatsApp</span>
@@ -1061,7 +1061,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-crimson w-full sm:w-auto text-center"
+                className="btn-white w-full sm:w-auto text-center font-semibold"
               >
                 <span>Request Original PDF on WhatsApp</span>
                 <ArrowRight className="w-4 h-4 ml-1.5" />

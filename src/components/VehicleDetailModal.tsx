@@ -318,7 +318,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-crimson !py-2.5 !px-5 !text-xs w-full sm:w-auto inline-flex items-center justify-center"
+                className="btn-white font-semibold !py-2.5 !px-5 !text-xs w-full sm:w-auto inline-flex items-center justify-center"
               >
                 <MessageCircle className="w-3.5 h-3.5 mr-2" />
                 <span>WhatsApp Us</span>
@@ -382,7 +382,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-crimson !py-2 !px-4 !text-xs"
+                className="btn-white font-semibold !py-2 !px-4 !text-xs"
               >
                 Request Original PDF via WhatsApp
               </a>

@@ -462,7 +462,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-crimson w-full justify-center !py-3 text-[13px]"
+                  className="btn-white font-semibold w-full justify-center !py-3 text-[13px]"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   <span>Lock in Valuation on WhatsApp</span>

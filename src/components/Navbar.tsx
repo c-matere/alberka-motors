@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Bookmark, Menu, X, ArrowRight, MessageCircle, Phone } from 'lucide-react';
+import { Search, Bookmark, Menu, X, MessageCircle } from 'lucide-react';
 
 interface NavbarProps {
   currentView: string;
@@ -63,10 +63,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="h-9 sm:h-10 w-auto object-contain"
             />
             <div className="flex flex-col text-left pl-3 border-l border-[#27272a]">
-              <span className="font-['Inter'] font-bold text-[15px] tracking-tight text-white leading-tight">
+              <span className="font-bold text-[15px] tracking-[-0.02em] text-white leading-tight">
                 ALBERKA MOTORS
               </span>
-              <span className="font-mono text-[10px] tracking-wider text-[#a1a1aa] leading-none mt-0.5">
+              <span className="font-mono text-[10px] tracking-wider text-zinc-400 leading-none mt-0.5">
                 MOMBASA & NAIROBI
               </span>
             </div>
@@ -83,12 +83,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`relative py-1.5 text-[14px] font-medium transition-colors cursor-pointer ${
                     isActive
                       ? 'text-white'
-                      : 'text-[#a1a1aa] hover:text-white'
+                      : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#dc2626]" />
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white rounded-full" />
                   )}
                 </button>
               );
@@ -101,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Search Trigger */}
             <button
               onClick={onOpenSearch}
-              className="p-2.5 rounded-md hover:bg-[#18181c] text-[#a1a1aa] hover:text-white transition-colors cursor-pointer"
+              className="p-2.5 rounded-md hover:bg-zinc-900 text-zinc-400 hover:text-white transition-colors cursor-pointer"
               title="Search inventory"
             >
               <Search className="w-4 h-4" />
@@ -110,30 +110,30 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Saved Cars (Favorites) */}
             <button
               onClick={onOpenFavorites}
-              className="p-2.5 rounded-md hover:bg-[#18181c] text-[#a1a1aa] hover:text-white transition-colors relative cursor-pointer"
+              className="p-2.5 rounded-md hover:bg-zinc-900 text-zinc-400 hover:text-white transition-colors relative cursor-pointer"
               title="Saved cars"
             >
               <Bookmark className="w-4 h-4" />
               {favoritesCount > 0 && (
-                <span className="absolute 1 top-1.5 right-1.5 bg-[#dc2626] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute top-1.5 right-1.5 bg-white text-zinc-950 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {favoritesCount}
                 </span>
               )}
             </button>
 
-            {/* Primary Action Button (Crimson Red) */}
+            {/* Primary Action Button (Pure White High-Contrast) */}
             <button
               onClick={handleContactClick}
-              className="btn-crimson !py-2.5 !px-4 text-[13px] hidden sm:inline-flex cursor-pointer"
+              className="btn-white !py-2 !px-4 !text-xs !rounded-md hidden sm:inline-flex cursor-pointer font-semibold shadow-sm"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-3.5 h-3.5 text-zinc-950" />
               <span>WhatsApp Us</span>
             </button>
 
             {/* Mobile Nav Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#a1a1aa] hover:text-white cursor-pointer"
+              className="md:hidden p-2 text-zinc-400 hover:text-white cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -147,22 +147,22 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-[72px] bg-[#09090b]/98 backdrop-blur-xl z-40 p-6 flex flex-col justify-between md:hidden border-t border-[#27272a] overflow-y-auto">
           <div className="space-y-2 pt-2">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#a1a1aa] block px-3 mb-2">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block px-3 mb-2">
               Menu
             </span>
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id)}
-                className={`w-full text-left py-3 px-3 rounded-md text-[16px] font-medium flex items-center justify-between transition-colors ${
+                className={`w-full text-left py-3 px-3 rounded-md text-[15px] font-medium flex items-center justify-between transition-colors ${
                   currentView === link.id
-                    ? 'bg-[#18181c] text-white'
-                    : 'text-[#a1a1aa] hover:bg-[#121215] hover:text-white'
+                    ? 'bg-zinc-900 text-white font-semibold'
+                    : 'text-zinc-400 hover:bg-zinc-900/60 hover:text-white'
                 }`}
               >
                 <span>{link.label}</span>
                 {currentView === link.id && (
-                  <span className="w-2 h-2 rounded-full bg-[#dc2626]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                 )}
               </button>
             ))}
@@ -171,12 +171,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-8 border-t border-[#27272a] space-y-3">
             <button
               onClick={handleContactClick}
-              className="btn-crimson w-full py-3.5 text-[14px] justify-center cursor-pointer"
+              className="btn-white w-full py-3 text-[14px] justify-center cursor-pointer font-semibold"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               <span>Chat on WhatsApp (0714 333 888)</span>
             </button>
-            <div className="text-center text-[12px] text-[#71717a] font-mono">
+            <div className="text-center text-[11px] text-zinc-500 font-mono">
               Alberka Motors · Tangana Rd, Mombasa & Westlands, Nairobi
             </div>
           </div>

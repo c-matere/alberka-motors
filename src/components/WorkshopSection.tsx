@@ -369,7 +369,7 @@ export const WorkshopSection: React.FC = () => {
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button type="submit" className="btn-crimson w-full sm:w-auto">
+                <button type="submit" className="btn-white font-semibold w-full sm:w-auto">
                   <Calendar className="w-4 h-4 mr-2" />
                   <span>Send Booking via WhatsApp</span>
                 </button>

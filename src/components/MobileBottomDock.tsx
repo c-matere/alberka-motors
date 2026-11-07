@@ -38,7 +38,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             <span className="text-[12px] font-semibold text-white block truncate">
               {selectedVehicle.name}
             </span>
-            <span className="font-mono text-[13px] font-bold text-red-400 block leading-tight">
+            <span className="font-mono text-[13px] font-bold text-white block leading-tight">
               KES {selectedVehicle.priceKes.toLocaleString()}
             </span>
           </div>
@@ -47,7 +47,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-crimson !py-2 !px-3.5 !text-[12px] !rounded-lg whitespace-nowrap shrink-0 flex items-center"
+            className="btn-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-semibold"
           >
             <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
             <span>WhatsApp Us</span>
@@ -78,13 +78,13 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`flex flex-col items-center justify-center py-1 px-2.5 transition-all cursor-pointer rounded-lg ${
-                isActive ? 'text-red-500' : 'text-zinc-400 hover:text-white'
+                isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
               }`}
             >
-              <div className={`p-0.5 ${isActive ? 'text-red-500' : ''}`}>
+              <div className="p-0.5">
                 <Icon className="w-4 h-4" />
               </div>
-              <span className={`text-[10px] font-medium mt-0.5 ${isActive ? 'text-white font-semibold' : 'text-zinc-400'}`}>
+              <span className={`text-[10px] mt-0.5 ${isActive ? 'text-white font-semibold' : 'text-zinc-400'}`}>
                 {item.label}
               </span>
             </button>
@@ -99,7 +99,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           <div className="p-0.5 relative">
             <Bookmark className="w-4 h-4 text-zinc-400" />
             {favoritesCount > 0 && (
-              <span className="absolute -top-1 -right-1.5 bg-red-600 text-white text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
+              <span className="absolute -top-1 -right-1.5 bg-white text-zinc-950 text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
                 {favoritesCount}
               </span>
             )}
@@ -117,9 +117,9 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           title="Contact Alberka"
         >
           <div className="p-0.5 relative">
-            <MessageCircle className="w-4 h-4 text-red-500" />
+            <MessageCircle className="w-4 h-4 text-zinc-300" />
           </div>
-          <span className="text-[10px] font-medium mt-0.5 text-red-500">Contact</span>
+          <span className="text-[10px] font-medium mt-0.5 text-zinc-300">Contact</span>
         </button>
       </div>
     </div>
