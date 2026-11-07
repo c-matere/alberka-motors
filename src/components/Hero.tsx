@@ -97,6 +97,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
     setProgress(0);
   }, []);
 
+  // Lock body scroll when fullscreen lightbox is open
+  useEffect(() => {
+    if (isHeroLightboxOpen) {
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = orig;
+      };
+    }
+  }, [isHeroLightboxOpen]);
+
   // Keyboard navigation & ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -199,34 +210,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             <ShieldCheck className="w-4 h-4 text-zinc-400" />
             <span>Our 100-Point Workshop Check</span>
           </button>
-        </div>
-
-        {/* Theatrical Model Slideshow Selector */}
-        <div className="pt-4">
-          <div className="flex items-center justify-center gap-2 sm:gap-2.5 overflow-x-auto pb-2 no-scrollbar">
-            {FLAGSHIP_SLIDES.map((slide, idx) => {
-              const isActive = idx === activeSlideIdx;
-              return (
-                <button
-                  key={slide.id}
-                  onClick={() => {
-                    setActiveSlideIdx(idx);
-                    setProgress(0);
-                  }}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs transition-all cursor-pointer border ${
-                    isActive
-                      ? 'bg-white text-zinc-950 font-semibold border-white shadow-sm'
-                      : 'bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
-                  }`}
-                >
-                  <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-950 font-bold' : 'text-zinc-500'}`}>
-                    0{idx + 1}
-                  </span>
-                  <span>{slide.name.split(' ')[0]} {slide.name.split(' ')[1]}</span>
-                </button>
-              );
-            })}
-          </div>
         </div>
 
         {/* 21:9 Widescreen Theatrical Stage */}
@@ -394,18 +377,75 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
           </div>
 
+          {/* Rolls-Royce 3-Segment Timeline Progress Selector */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-5 text-left">
+            {FLAGSHIP_SLIDES.map((slide, idx) => {
+              const isActive = idx === activeSlideIdx;
+              const isCompleted = idx < activeSlideIdx;
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => {
+                    setActiveSlideIdx(idx);
+                    setProgress(0);
+                  }}
+                  className={`group p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+                    isActive
+                      ? 'bg-zinc-900 border-white text-white shadow-xl ring-1 ring-white/30'
+                      : 'bg-[#121215]/80 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className={`font-mono text-xs ${isActive ? 'text-white font-bold' : 'text-zinc-500'}`}>
+                        0{idx + 1}
+                      </span>
+                      <span className="text-sm font-bold text-white tracking-tight truncate">
+                        {slide.name}
+                      </span>
+                    </div>
+                    <span className="font-mono text-xs text-zinc-300 font-semibold shrink-0">
+                      KES {(slide.priceKes / 1000000).toFixed(2)}M
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[11px] text-zinc-400 mb-2.5">
+                    <span className="truncate">{slide.category}</span>
+                    <span className="font-mono text-zinc-500 shrink-0">{slide.grade}</span>
+                  </div>
+
+                  {/* Animated Hairline Segment Progress Rail */}
+                  <div className="w-full h-[3px] bg-zinc-800/80 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-white transition-all ease-linear"
+                      style={{
+                        width: isActive
+                          ? `${isPlaying ? progress : 100}%`
+                          : isCompleted
+                          ? '100%'
+                          : '0%',
+                        transitionDuration: isActive && isPlaying ? '50ms' : '200ms',
+                      }}
+                    />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>
-      {/* Fullscreen Theatrical Hero Lightbox Modal */}
+
+      {/* Rolls-Royce Fullscreen Theatrical Hero Lightbox Modal (Zero-Scroll Viewport) */}
       {isHeroLightboxOpen && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8 animate-fadeIn text-left"
+          className="fixed inset-0 w-screen h-[100dvh] max-h-[100dvh] z-[100] bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn text-left"
           onClick={() => setIsHeroLightboxOpen(false)}
         >
-          {/* Top Bar */}
+          {/* Top Bar: Fixed slim height */}
           <div 
-            className="flex items-center justify-between border-b border-zinc-800/80 pb-4 shrink-0"
+            className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3">
@@ -435,9 +475,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
           </div>
 
-          {/* Center Stage Video / Image */}
+          {/* Center Stage: Constrained, Zero-Scroll Media Viewer */}
           <div 
-            className="relative flex-1 flex items-center justify-center my-4 overflow-hidden select-none"
+            className="flex-1 min-h-0 w-full relative flex items-center justify-center p-3 sm:p-6 overflow-hidden select-none"
             onClick={(e) => e.stopPropagation()}
           >
             {currentSlide.videoUrl ? (
@@ -447,16 +487,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 loop
                 playsInline
                 key={currentSlide.id}
-                className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+                className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl"
               >
                 <source src={currentSlide.videoUrl} type="video/mp4" />
-                <img src={currentSlide.imageUrl} alt={currentSlide.name} className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl" />
+                <img src={currentSlide.imageUrl} alt={currentSlide.name} className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl" />
               </video>
             ) : (
               <img
                 src={currentSlide.imageUrl}
                 alt={currentSlide.name}
-                className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+                className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl pointer-events-none"
               />
             )}
 
@@ -477,12 +517,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </button>
           </div>
 
-          {/* Bottom Bar: Slide Switchers & Action */}
+          {/* Bottom Bar: Fixed slim height */}
           <div 
-            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-800/80 shrink-0"
+            className="h-20 sm:h-24 px-4 sm:px-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
               {FLAGSHIP_SLIDES.map((slide, idx) => (
                 <button
                   key={slide.id}

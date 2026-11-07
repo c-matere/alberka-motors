@@ -71,6 +71,17 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
     setProgress(0);
   };
 
+  // Lock body scroll when fullscreen lightbox is open
+  useEffect(() => {
+    if (isLightboxOpen) {
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = orig;
+      };
+    }
+  }, [isLightboxOpen]);
+
   // Keyboard navigation & ESC handler
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -463,15 +474,15 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         })}
       </div>
 
-      {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal */}
+      {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal (Zero-Scroll Viewport) */}
       {isLightboxOpen && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 w-screen h-[100dvh] max-h-[100dvh] z-[100] bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn"
           onClick={() => setIsLightboxOpen(false)}
         >
-          {/* Top Bar: Vehicle Info, Grade, Counter & Close */}
+          {/* Top Bar: Fixed slim height */}
           <div 
-            className="flex items-center justify-between border-b border-zinc-800/80 pb-4 shrink-0"
+            className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3">
@@ -501,16 +512,16 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             </div>
           </div>
 
-          {/* Center Stage: Theatrical Media Viewer */}
+          {/* Center Stage: Constrained Zero-Scroll Media Viewer */}
           <div 
-            className="relative flex-1 flex items-center justify-center my-4 overflow-hidden select-none"
+            className="flex-1 min-h-0 w-full relative flex items-center justify-center p-3 sm:p-6 overflow-hidden select-none"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               key={`${activeVehicle.id}-${activeAngleIdx}`}
               src={angles[activeAngleIdx]?.url || activeVehicle.heroImage}
               alt={`${activeVehicle.name} - ${angles[activeAngleIdx]?.label || 'Exterior'}`}
-              className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300"
+              className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl transition-all duration-300 pointer-events-none"
             />
 
             {/* Hairline Side Arrows */}
@@ -530,9 +541,9 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             </button>
           </div>
 
-          {/* Bottom Bar: Multi-Angle Switcher & Handover Actions */}
+          {/* Bottom Bar: Fixed slim height */}
           <div 
-            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-800/80 shrink-0"
+            className="h-20 sm:h-24 px-4 sm:px-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
