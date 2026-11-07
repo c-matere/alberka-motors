@@ -63,37 +63,37 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
   return (
-    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 text-[#f4f4f5] border-t border-[#27272a]">
+    <section className="w-full bg-[#09090b] py-12 sm:py-16 px-4 sm:px-8 text-[#f4f4f5] border-t border-[#27272a]">
       <div className="max-w-[1440px] mx-auto">
         
-        {/* Section Header with Single Red Dot */}
-        <div className="text-center max-w-[760px] mx-auto mb-14 space-y-2">
-          <div className="inline-flex items-center gap-2 mb-1">
+        {/* Section Header with Single Red Dot (Compact) */}
+        <div className="text-center max-w-[760px] mx-auto mb-8 space-y-1.5">
+          <div className="inline-flex items-center gap-2 mb-0.5">
             <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-400 font-medium">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-zinc-400 font-medium">
               DUTY-PAID & READY FOR DELIVERY
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-[-0.035em]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.035em]">
             Cars in Stock
           </h1>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed tracking-[-0.01em]">
+          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed tracking-[-0.01em]">
             Every vehicle has passed genuine Japanese auction verification, full servicing at our Mombasa workshop, and includes a 5,000 km written warranty.
           </p>
         </div>
 
-        {/* Filter & Search Bar */}
-        <div className="bg-[#121215] p-5 sm:p-6 border border-zinc-800 rounded-lg mb-12 space-y-4">
+        {/* Filter & Search Bar (Compact) */}
+        <div className="bg-[#121215] p-3.5 sm:p-4 border border-zinc-800 rounded-lg mb-6 space-y-3">
           
           {/* Category Tabs — Pure Black & White */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 rounded-md text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
+                  className={`px-3.5 py-1.5 rounded-md text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
                     isActive
                       ? 'bg-white text-zinc-950 border-white shadow-sm'
                       : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
@@ -106,7 +106,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           </div>
 
           {/* Search Input & Sort Selector */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-1">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
@@ -114,17 +114,17 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 placeholder="Search by model (e.g. Prado, Serena, Harrier, Note)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-black border border-zinc-800 rounded-md text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
+                className="w-full pl-10 pr-4 py-2 bg-black border border-zinc-800 rounded-md text-xs sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
               />
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-zinc-500 font-mono uppercase whitespace-nowrap hidden md:inline">Sort:</span>
+            <div className="flex items-center gap-2.5">
+              <span className="text-[11px] text-zinc-500 font-mono uppercase whitespace-nowrap hidden md:inline">Sort:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 aria-label="Sort vehicles"
-                className="bg-black border border-zinc-800 rounded-md px-3 py-2.5 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer"
+                className="bg-black border border-zinc-800 rounded-md px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer"
               >
                 <option value="featured">Featured First</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -136,17 +136,17 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
 
         {/* Inventory Status Bar */}
-        <div className="flex items-center justify-between text-xs text-zinc-400 font-mono mb-6 px-1">
+        <div className="flex items-center justify-between text-xs text-zinc-400 font-mono mb-4 px-1">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             <span>Showing {filteredVehicles.length} of {vehicles.length} verified cars in stock</span>
           </div>
-          <span className="hidden sm:inline text-zinc-500">Mombasa Yard & Nairobi Handover Available</span>
+          <span className="hidden sm:inline text-zinc-500 text-[11px]">Mombasa Yard & Nairobi Handover Available</span>
         </div>
 
-        {/* Vehicle Grid */}
+        {/* Vehicle Grid (Compact Gaps) */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}
