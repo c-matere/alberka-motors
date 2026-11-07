@@ -1101,39 +1101,39 @@ export const VEHICLES: Vehicle[] = [
     id: 'nissan-serena-highway-star',
     stockNo: 'ALB-4060',
     name: 'Nissan Serena Highway Star e-POWER',
-    moniker: 'The Grand Sanctuary',
-    essenceQuote: 'First-class travel for seven dignitaries. A tranquil lounge on wheels where zero-gravity seating meets dual hands-free access.',
-    kicker: 'Family Hospitality Pinnacle',
-    tagline: '7-Passenger executive lounge. Dual hands-free kick sliding doors.',
+    moniker: 'Spacious Family Cruiser',
+    essenceQuote: 'Comfortable travel for the entire family. A quiet, smooth electric drive with automatic foot-kick sliding doors and seats designed to prevent fatigue on long road trips.',
+    kicker: 'Spacious 7-Seater Comfort',
+    tagline: '7-Passenger family cruiser with quiet electric drive and hands-free automatic sliding doors.',
     priceKes: 2950000,
     year: 2019,
     mileageKm: 61000,
     category: 'van',
-    bodyType: 'Executive 7-Seater MPV',
-    fuelType: 'Series Hybrid (e-POWER)',
-    transmission: 'Fixed Ratio Single-Speed Reduction Drive',
-    drivetrain: 'Front Wheel Electric Motor Drive',
-    engine: 'EM57 High-Output Electric Motor + 1.2L HR12DE Generator',
+    bodyType: '7-Seater Family MPV',
+    fuelType: 'Petrol-Electric Hybrid (e-POWER)',
+    transmission: 'Single-Speed Smooth Electric Drive',
+    drivetrain: 'Front-Wheel Drive',
+    engine: 'Electric Drive Motor + 1.2L Petrol Generator',
     power: '136 PS (100 kW)',
-    torque: '320 Nm Instant Torque',
-    fuelEconomy: '26.2 km/L (JC08 Cycle)',
+    torque: '320 Nm Instant Pull',
+    fuelEconomy: '26.2 km/L (Mixed Cycle)',
     auctionGrade: 'Grade 4.5',
     auctionHall: 'USS Yokohama',
-    interiorGrade: 'Grade A (Pristine Lounge)',
+    interiorGrade: 'Grade A (Clean Interior)',
     status: 'In Stock — Mombasa',
     heroVideo: 'https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4',
     heroImage: './vehicles/serena-highway-star.jpg',
     colors: [
-      { name: 'Midnight Diamond Black', hex: '#141416', imageUrl: './vehicles/serena-highway-star.jpg' },
-      { name: 'Phantom Black Pearl', hex: '#141416', imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600' },
-      { name: 'Deep Cashmere White', hex: '#f5f5f7', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' }
+      { name: 'Diamond Black Pearl', hex: '#141416', imageUrl: './vehicles/serena-highway-star.jpg' },
+      { name: 'Phantom Black Metallic', hex: '#1c1d1f', imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { name: 'Pure Pearl White', hex: '#f5f5f7', imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600' }
     ],
     closerLookPoints: [
       {
         id: 'captain-chairs',
         title: 'Zero-Gravity Captain Seats',
-        subtitle: 'NASA-Inspired Spinal Geometry',
-        description: 'Neutral posture support reduces spinal muscle loading to zero, allowing long-distance cross-country journeys with pristine comfort.',
+        subtitle: 'Designed to Reduce Back Fatigue',
+        description: 'Comfortable seats shaped to support your spine naturally, so you and your passengers stay fresh even on long drives between Nairobi and Mombasa.',
         imageUrl: './vehicles/serena-interior-seats.jpg',
         metric: '2-2-3',
         metricLabel: 'Lounge Seating'
@@ -1141,46 +1141,46 @@ export const VEHICLES: Vehicle[] = [
       {
         id: 'dual-back-door',
         title: 'Dual-Back Opening Tailgate',
-        subtitle: 'Split Upper Glass Access',
-        description: 'Open just the upper glass window in cramped supermarket basements, or deploy the full tailgate for voluminous cargo loading.',
+        subtitle: 'Open Just the Top Glass',
+        description: 'Open just the top glass window when parked close to a wall, or open the full tailgate when loading large luggage and shopping bags.',
         imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: '40 cm',
-        metricLabel: 'Minimum Clearance'
+        metricLabel: 'Minimum Space Needed'
       },
       {
         id: 'kick-doors',
         title: 'Hands-Free Kick Sliding Doors',
-        subtitle: 'Sensory Electric Access',
-        description: 'Simply wave your foot beneath the side sill with key in pocket to slide open both massive passenger apertures.',
+        subtitle: 'Automatic Foot-Sensor Doors',
+        description: 'Wave your foot under the side door while holding the key in your pocket to slide the doors open automatically—even when your hands are full.',
         imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
         metric: 'Dual',
-        metricLabel: 'Power Kick Doors'
+        metricLabel: 'Power Doors'
       },
       {
         id: 'propilot',
         title: 'Nissan ProPILOT Suite',
-        subtitle: 'Single-Lane Highway Autonomy',
-        description: 'Maintains highway lane centering and distance following with automatic full-stop hold in heavy traffic jams.',
+        subtitle: 'Highway Driving Assistance',
+        description: 'Helps you stay safely centered in your lane and keeps a safe distance from cars ahead, automatically stopping and moving in slow traffic.',
         imageUrl: './vehicles/serena-highway-star.jpg',
         metric: 'ProPILOT',
-        metricLabel: 'Radar Autonomy'
+        metricLabel: 'Radar Assist'
       }
     ],
     editorialFeatures: [
       {
         id: 'seats',
-        badge: '1ST CLASS CABIN & SEATING ARCHITECTURE',
-        title: 'Zero-Gravity Captain Lounge & Modular Sanctuary',
-        lead: 'NASA-inspired spinal posture geometry with dual second-row ottomans, creating a fatigue-free travel environment across Kenya.',
+        badge: 'CABIN & SEATING COMFORT',
+        title: 'Zero-Gravity Captain Seats & Spacious Family Cabin',
+        lead: 'Specially shaped seats that support your back and legs, giving everyone plenty of room to relax on long road trips across Kenya.',
         narrative: [
-          'Inspired by NASA research into neutral body posture during zero-gravity spaceflight, Nissan’s Zero-Gravity seats articulate across 14 discrete spinal support zones. By evenly distributing pressure across the thoracic spine, pelvis, and lumbar curve, muscular fatigue is eliminated, transforming 8-hour Nairobi-to-Mombasa treks into restful escapes.',
-          'Second-row occupants enjoy individual high-back captain chairs mounted on ultra-long slide rails. Fold-out articulating calf ottomans, padded flip-down armrests, and private aircraft-grade fold-out meal trays provide the quiet luxury of an intercontinental business class cabin.',
-          'Step-free walk-through aisles permit frictionless passage between rows without tumbling seats. Hands-free dual power sliding doors trigger with a simple foot kick beneath the rocker panel, while the innovative dual-back split glass tailgate grants effortless access in low-ceiling garage bays.'
+          'Nissan shaped these seats to match natural body posture, spreading weight evenly across 14 support points. This stops your back and legs from getting stiff and tired on long highway trips.',
+          'Passengers in the second row get independent captain chairs that slide forward and back on long rails. Each seat comes with fold-out calf rests, armrests, and personal tray tables with cup holders.',
+          'A clear center walk-through aisle lets kids and adults move between rows easily without climbing over seats. The large sliding doors open with a quick foot kick, and the rear door lets you open just the top window in tight parking spots.'
         ],
         specs: [
-          { label: 'Seating Layout', value: '7-Passenger (2+2+3) Walk-Through Lounge' },
-          { label: 'Ergonomic Standard', value: 'NASA Zero-Gravity Spinal Architecture' },
-          { label: 'Second Row VIP', value: 'Dual Captain Chairs with Articulating Ottomans' },
+          { label: 'Seating Layout', value: '7-Passenger (2+2+3) Walk-Through Cabin' },
+          { label: 'Ergonomic Standard', value: 'Zero-Gravity Spinal Support' },
+          { label: 'Second Row VIP', value: 'Dual Captain Chairs with Calf Rests' },
           { label: 'Hands-Free Entry', value: 'Dual Foot-Sensor Electric Sliding Doors' },
           { label: 'Rear Cargo Access', value: 'Dual-Back Split Upper Glass Tailgate' }
         ],
@@ -1188,209 +1188,209 @@ export const VEHICLES: Vehicle[] = [
           {
             id: 'serena-seat-1',
             title: "Zero-Gravity Captain's Lounge",
-            subtitle: 'NASA-Inspired Spinal Geometry & Ottomans',
-            description: 'Dual individual second-row captain chairs with articulating calf supports, dual armrests, and 700mm sliding track adjustment.',
+            subtitle: 'Comfortable Back Support & Leg Rests',
+            description: 'Two individual captain chairs in the middle row with fold-out leg rests, armrests, and 700mm sliding tracks for generous legroom.',
             imageUrl: './vehicles/serena-interior-seats.jpg',
             metric: '14 Points',
-            metricLabel: 'Spinal Pressure Redistribution'
+            metricLabel: 'Spine Support'
           },
           {
             id: 'serena-seat-2',
-            title: 'Walk-Through Modular Aisle',
-            subtitle: 'Step-Free Center Passage & 3rd-Row Fold',
-            description: 'Center walkthrough aisle allows passengers and children to walk between rows freely. 3rd row folds laterally flush with the sidewalls for 1,200L luggage space.',
+            title: 'Walk-Through Center Aisle',
+            subtitle: 'Easy Movement Between Rows',
+            description: 'Center walkway lets passengers move easily between rows. The third row folds up flat against the sides to open up a massive 1,200L luggage boot.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '1,200 L',
-            metricLabel: 'Maximum Cargo Expansion'
+            metricLabel: 'Max Luggage Space'
           },
           {
             id: 'serena-seat-3',
-            title: 'Personal Picnic Trays & Power Hubs',
-            subtitle: 'In-Flight Tray Tables & Multi-Zone USBs',
-            description: 'Each second-row seat features a fold-out airplane-style picnic tray with dual cup holders, grocery hooks, and illuminated 2.4A USB charging ports.',
+            title: 'Personal Tray Tables & USB Ports',
+            subtitle: 'Fold-Out Tables & Phone Chargers',
+            description: 'Each middle seat has an airplane-style fold-down picnic tray with cup holders, bag hooks, and fast USB charging ports.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '6 Ports',
-            metricLabel: 'Fast-Charging USB Terminals'
+            metricLabel: 'Fast USB Outlets'
           },
           {
             id: 'serena-seat-4',
-            title: 'Hands-Free Kick Sliding Doors',
-            subtitle: 'Foot-Wave Ultrasonic Sensor Activation',
-            description: 'A gentle sweep of the foot beneath either front door sill glides the massive 802mm aperture open automatically, even with both hands full.',
+            title: 'Foot-Kick Sliding Doors',
+            subtitle: 'Hands-Free Automatic Entry',
+            description: 'Wave your foot under the side door while holding the smart key to open the door automatically, even when holding heavy bags or children.',
             imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '802 mm',
-            metricLabel: 'Aperture Ingress Width'
+            metricLabel: 'Extra-Wide Door Opening'
           }
         ]
       },
       {
         id: 'transmission',
-        badge: 'POWERTRAIN & GEARBOX ENGINEERING',
-        title: '100% Electric Motor Drive & Single-Speed Helical Reduction Gearbox',
-        lead: 'Direct helical drive without clutch packs or gear ratios. 320 Nm of instant torque delivers relentless, whisper-quiet acceleration.',
+        badge: 'E-POWER HYBRID DRIVE',
+        title: '100% Electric Motor Drive & Smooth Single-Speed Gearbox',
+        lead: 'Direct electric motor drive with zero jerky gear shifts. 320 Nm of instant torque delivers whisper-quiet acceleration from a complete stop.',
         narrative: [
-          'Unlike conventional minivans saddled with stepped automatics or hunting CVT belts, the Serena Highway Star e-POWER relies exclusively on pure electric motor drive. The high-output EM57 AC synchronous motor is coupled directly to a single-speed helical reduction gearbox, transferring torque straight to the front axle without interruption.',
-          'Because there is no manual or stepped automatic gearbox, shift shock and delayed torque curves are eradicated. All 320 Nm of torque is unlocked from zero RPM, yielding instantaneous passing acceleration and silk-smooth refinement in Nairobi stop-and-go jams.',
-          'The 1.2-liter HR12DE 3-cylinder engine is 100% decoupled from the driving wheels. Operating solely as an on-board electrical generation plant, it maintains a constant, thermally-optimized operating RPM to replenish the lithium-ion buffer battery with exceptional 26.2 km/L JC08 fuel economy.',
-          'With Nissan e-Pedal technology, releasing the accelerator instantly transitions the motor into a powerful regenerative generator, decelerating the vehicle smoothly while harvesting kinetic energy to recharge the system.'
+          'Unlike traditional vans with jerky gearboxes, the Serena e-POWER drives exclusively using an electric motor. The motor turns the wheels directly, giving you immediate power the instant you touch the pedal.',
+          'Because there are no gearbox gears shifting up and down, the ride is completely smooth. You get full 320 Nm torque from zero RPM, making overtaking and stop-and-go town driving effortless.',
+          'A quiet 1.2-liter petrol engine runs automatically only when needed to generate electricity for the battery. It never drives the wheels directly, delivering outstanding fuel savings of up to 26 km per liter.',
+          'With Nissan e-Pedal, taking your foot off the accelerator slows down the car smoothly while harvesting energy back into the battery and saving wear on your brakes.'
         ],
         specs: [
-          { label: 'Traction Motor', value: 'EM57 AC Synchronous Electric Motor' },
-          { label: 'Gearbox Architecture', value: 'Single-Speed Fixed Helical Reduction Gear' },
+          { label: 'Traction Motor', value: 'High-Output AC Synchronous Electric Motor' },
+          { label: 'Gearbox Architecture', value: 'Single-Speed Smooth Helical Reduction Gear' },
           { label: 'Peak Torque', value: '320 Nm Instant Torque @ 0–3,008 RPM' },
-          { label: 'Generator Engine', value: '1.2L HR12DE Pure Electric Generator' },
-          { label: 'Deceleration System', value: 'e-Pedal One-Pedal Regenerative Braking' }
+          { label: 'Generator Engine', value: '1.2L Pure Electric Power Generator' },
+          { label: 'Deceleration System', value: 'e-Pedal Smooth Energy Recovery' }
         ],
         slides: [
           {
             id: 'serena-trans-1',
-            title: 'EM57 Traction Motor & Helical Gearbox',
-            subtitle: 'Direct Single-Speed Reduction Assembly',
-            description: 'Zero clutches, zero gear shifting. 320 Nm of instantaneous electric motor torque delivered through precision ground helical gears.',
+            title: 'Electric Motor & Direct Helical Drive',
+            subtitle: 'Smooth One-Speed Acceleration',
+            description: 'Zero clutches and zero gear shifts. 320 Nm of pure electric power moves the vehicle smoothly from a standstill.',
             imageUrl: './vehicles/serena-transmission-gearbox.jpg',
             metric: '320 Nm',
-            metricLabel: 'Instant Torque @ 0 RPM'
+            metricLabel: 'Instant Torque'
           },
           {
             id: 'serena-trans-2',
-            title: 'Decoupled Pure Generator System',
-            subtitle: 'Constant-RPM Thermal Efficiency Champion',
-            description: '1.2L combustion engine functions solely as an acoustic generator, never directly coupled to wheels, delivering stellar 26.2 km/L efficiency.',
+            title: 'Quiet Onboard Generator Engine',
+            subtitle: 'Dedicated Power Generator',
+            description: 'The 1.2L petrol engine acts strictly as an electrical generator for the battery, delivering exceptional 26.2 km/L fuel economy.',
             imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '26.2 km/L',
-            metricLabel: 'JC08 Certified Fuel Economy'
+            metricLabel: 'Certified Fuel Economy'
           },
           {
             id: 'serena-trans-3',
-            title: 'Compact Silicon-Carbide Inverter',
-            subtitle: 'Sub-Millisecond Power Management',
-            description: 'Solid-state inverter manages 3-phase power transfer between generator, traction battery, and drive motor with 98% efficiency.',
+            title: 'Smart Power Inverter',
+            subtitle: 'Efficient Energy Management',
+            description: 'Directs electricity smoothly between the battery, generator, and electric motor with 98% electrical efficiency.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '98%',
-            metricLabel: 'Power Transfer Efficiency'
+            metricLabel: 'Power Efficiency'
           },
           {
             id: 'serena-trans-4',
-            title: 'e-Pedal Regenerative Braking',
-            subtitle: 'Kinetic Recovery & One-Pedal Modularity',
-            description: 'Ease off the throttle to initiate up to 0.15G of smooth regenerative deceleration, recharging the buffer battery while sparing mechanical brake pads.',
+            title: 'e-Pedal One-Pedal Driving',
+            subtitle: 'Smooth Braking & Energy Recharge',
+            description: 'Lifting off the gas pedal slows the car down smoothly while recharging the hybrid battery and extending brake pad life.',
             imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '0.15 G',
-            metricLabel: 'Max Regenerative Braking'
+            metricLabel: 'Smooth Deceleration'
           }
         ]
       },
       {
         id: 'infotainment',
-        badge: 'TELEMATICS & INFOTAINMENT',
-        title: 'Panoramic 10.1" Floating Digital Cockpit & 360° Vision',
-        lead: 'Dual-tier digital command deck, seamless smartphone integration, and 360° Intelligent Around View monitoring with moving object detection.',
+        badge: 'TOUCHSCREEN & CAMERAS',
+        title: '10.1-Inch HD Touchscreen & 360-Degree Camera',
+        lead: 'High-definition central touchscreen with Apple CarPlay and Android Auto, plus a 360-degree bird’s-eye view camera for stress-free parking.',
         narrative: [
-          'The digital cockpit of the Serena Highway Star is organized around an elevated horizon designed to keep the driver’s focus squarely on the tarmac. A high-mounted 7-inch full-color TFT display projects vehicle telematics, e-POWER energy flow, and ProPILOT radar status above the rim of the leather D-cut steering wheel.',
-          'At the center of the dashboard sits the 10.1-inch capacitive HD touchscreen infotainment unit. Supporting Apple CarPlay and Android Auto mirroring, Bluetooth hands-free communication, and multi-format audio playback, it delivers intuitive connectivity.',
-          'Maneuvering in dense city streets or reversing into narrow Mombasa parking stalls is effortless with Nissan’s Intelligent Around View Monitor (AVM). Four wide-angle lenses composite a flawless 360-degree overhead bird’s-eye view with dynamic steering guidelines and Moving Object Detection (MOD).',
-          'The tri-zone automatic climate control incorporates Panasonic Plasmacluster ionizer technology, constantly bathing the cabin in active ions that neutralize airborne odors, pollen, and airborne bacteria.'
+          'The driver instrument screen is positioned high on the dashboard so you can see your speed, hybrid battery level, and safety warnings without looking away from the road.',
+          'The 10.1-inch central touchscreen links directly to your smartphone with Apple CarPlay and Android Auto for GPS maps, music, and hands-free calls.',
+          'Parking in tight Nairobi or Mombasa spaces is effortless with the 360-degree Around View Monitor. Four cameras show an overhead bird’s-eye view, alerting you if pedestrians or objects get close.',
+          'Tri-zone automatic air conditioning cools all three rows evenly and uses air purification filters to keep road dust, smoke, and pollen out of the cabin.'
         ],
         specs: [
-          { label: 'Main Display', value: '10.1-inch High-Definition Capacitive Touchscreen' },
-          { label: 'Driver Instrument Cluster', value: '7.0-inch Full-Color Advanced Drive-Assist TFT' },
+          { label: 'Main Display', value: '10.1-inch High-Definition Touchscreen' },
+          { label: 'Driver Instrument Screen', value: '7.0-inch Full-Color Driver Assist Display' },
           { label: 'Surround Vision', value: '360° Intelligent Around View Monitor (AVM)' },
-          { label: 'Mobile Interfacing', value: 'Apple CarPlay & Android Auto Smartphone Integration' },
-          { label: 'Air Quality Suite', value: 'Tri-Zone Auto Climate + Plasmacluster Ionizer' }
+          { label: 'Smartphone Connection', value: 'Apple CarPlay & Android Auto' },
+          { label: 'Air Quality System', value: 'Tri-Zone Climate Control + Air Filter' }
         ],
         slides: [
           {
             id: 'serena-info-1',
-            title: '10.1" Floating Digital Cockpit',
-            subtitle: 'Capacitive HD Multi-Touch Command Center',
-            description: 'Anti-glare panoramic touchscreen with instant mobile mirroring, multimedia playback, and real-time e-POWER hybrid telemetry.',
+            title: '10.1" High-Definition Touchscreen',
+            subtitle: 'Easy-to-Use Media & Navigation Center',
+            description: 'Clear, anti-glare touchscreen with phone mirroring, music streaming, and real-time hybrid power displays.',
             imageUrl: './vehicles/serena-infotainment-cockpit.jpg',
             metric: '10.1"',
-            metricLabel: 'High-Definition Screen Size'
+            metricLabel: 'HD Screen'
           },
           {
             id: 'serena-info-2',
-            title: '360° Intelligent Around View Monitor',
-            subtitle: 'Synthetic Bird’s-Eye Parking Visualization',
-            description: '4 cameras stitch a real-time overhead perspective. Moving Object Detection alerts drivers to approaching pedestrians or pets.',
+            title: '360-Degree Around View Monitor',
+            subtitle: 'Bird’s-Eye Parking Cameras',
+            description: '4 exterior cameras stitch together a top-down view of the car to make parking and reversing simple and collision-free.',
             imageUrl: 'https://images.pexels.com/photos/261985/pexels-photo-261985.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '360°',
-            metricLabel: 'Synthetic Panoramic View'
+            metricLabel: 'Surround View'
           },
           {
             id: 'serena-info-3',
-            title: '7" TFT Driver Assist Horizon',
-            subtitle: 'Elevated Sightline Instrumentation',
-            description: 'Positioned above the steering rim so speed, radar distance, and hybrid power flow remain in your direct forward peripheral vision.',
+            title: 'Elevated 7-Inch Driver Screen',
+            subtitle: 'Eye-Level Digital Instruments',
+            description: 'Mounted right in your natural sightline so your speed, safety warnings, and battery status are clear without distraction.',
             imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '7.0"',
-            metricLabel: 'Full-Color TFT Instrument'
+            metricLabel: 'Color Screen'
           },
           {
             id: 'serena-info-4',
-            title: 'Plasmacluster Ion Air Sanitization',
-            subtitle: 'Medical-Grade Atmosphere Purification',
-            description: 'Discharges positive and negative ion clusters throughout the air vents to eliminate pollen, dust particles, and microbes.',
+            title: 'Tri-Zone Air Filtration',
+            subtitle: 'Clean Air for All Three Rows',
+            description: 'Separate AC vents for front and rear passengers with built-in air purification to eliminate dust and exhaust fumes.',
             imageUrl: 'https://images.pexels.com/photos/20430089/pexels-photo-20430089.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: 'Tri-Zone',
-            metricLabel: 'Independent Climate Zones'
+            metricLabel: 'Climate Control'
           }
         ]
       },
       {
         id: 'safety',
-        badge: 'AUTONOMOUS RADAR & PASSIVE DEFENSE',
-        title: 'Nissan ProPILOT Autonomous Highway Radar & High-Rigidity Safety Cage',
-        lead: 'Single-lane highway speed and lane centering autonomy, coupled with 360-degree radar collision prevention and 6-SRS airbag curtain.',
+        badge: 'SAFETY & DRIVER ASSIST',
+        title: 'Nissan ProPILOT Highway Assist & Crash Protection',
+        lead: 'Smart radar assist helps you stay in your lane and keep safe distance on highways, supported by automatic braking and 6 airbags.',
         narrative: [
-          'Nissan ProPILOT bridges human driving and autonomy. On expressways and open highways, a forward millimeter-wave radar and optical camera array track preceding vehicles and lane boundaries, steering, accelerating, and braking smoothly to keep the Serena centered in its lane.',
-          'In stop-and-go traffic jams, ProPILOT automatically manages throttle and braking down to a complete standstill, holding position without requiring foot pressure on the brake pedal, and resuming cruise with a simple steering toggle touch.',
-          'Intelligent Emergency Braking (IEB) watches for sudden stops by leading vehicles or crossing pedestrians, providing visual and acoustic alerts before initiating emergency autonomous deceleration.',
-          'The vehicle’s structural skeleton is forged from Nissan’s Zone Body engineering, utilizing high-tensile hot-stamped steel crash rings and 6-SRS airbags that provide full-length side curtain protection across all three seating rows.'
+          'Nissan ProPILOT makes highway driving relaxing. Using radar and a camera, it gently helps steer to keep the vehicle centered in the lane while keeping a safe gap behind cars ahead.',
+          'In slow stop-and-go highway jams, ProPILOT automatically slows down to a full stop and holds your position safely until traffic moves again.',
+          'Intelligent Emergency Braking watches for sudden stops by leading cars or crossing pedestrians, warning you with beeps and braking automatically if needed.',
+          'The body is built with high-strength reinforced steel, with side curtain airbags extending all the way to the third row to protect all seven passengers.'
         ],
         specs: [
-          { label: 'Autonomous Cruise', value: 'Nissan ProPILOT Single-Lane Highway Assist' },
-          { label: 'Radar Architecture', value: '77 GHz Millimeter-Wave + Front Monocular Camera' },
-          { label: 'Collision Mitigation', value: 'Intelligent Emergency Braking (IEB) with Pedestrian Shield' },
-          { label: 'Perimeter Defense', value: '8-Sensor Ultrasonic Sonar Collision Prevention' },
-          { label: 'Safety Cell', value: 'High-Tensile Zone Body + 6-SRS Curtain Airbags' }
+          { label: 'Highway Driver Assist', value: 'Nissan ProPILOT Lane Centering & Cruise' },
+          { label: 'Radar System', value: 'Front Radar + Windshield Camera' },
+          { label: 'Collision Prevention', value: 'Automatic Emergency Braking with Pedestrian Detection' },
+          { label: 'Parking Sonar', value: 'Front and Rear Ultrasonic Parking Sensors' },
+          { label: 'Airbag Protection', value: 'Reinforced Safety Cell + 6 Curtain Airbags' }
         ],
         slides: [
           {
             id: 'serena-safe-1',
-            title: 'ProPILOT Single-Lane Highway Autonomy',
-            subtitle: 'Steering Centering & Distance Hold',
-            description: 'Autonomous steering and throttle tracking reduces driver fatigue during cross-country highway cruises and gridlock jams.',
+            title: 'ProPILOT Highway Driving Assist',
+            subtitle: 'Lane Centering & Distance Control',
+            description: 'Helps steer and control your cruising speed on highways, reducing fatigue during long family road trips.',
             imageUrl: './vehicles/serena-highway-star.jpg',
             metric: 'ProPILOT',
-            metricLabel: 'Autonomous Highway Assist'
+            metricLabel: 'Highway Assist'
           },
           {
             id: 'serena-safe-2',
-            title: 'Intelligent Emergency Braking (IEB)',
-            subtitle: 'Forward Collision & Pedestrian Shield',
-            description: 'Millimeter radar and camera fusion detects sudden stops or pedestrians ahead, applying full autonomous braking if needed.',
+            title: 'Automatic Emergency Braking',
+            subtitle: 'Forward Collision Prevention',
+            description: 'Detects unexpected stops or crossing pedestrians ahead and can apply full emergency braking to avoid accidents.',
             imageUrl: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '10–80 km/h',
-            metricLabel: 'Pedestrian Protection Window'
+            metric: 'Automatic',
+            metricLabel: 'Safety Braking'
           },
           {
             id: 'serena-safe-3',
-            title: '8-Point Ultrasonic Sonar Shield',
-            subtitle: 'Erroneous Pedal Acceleration Prevention',
-            description: 'Front and rear ultrasonic sensors prevent accidental vehicle lunges into walls or obstacles in tight parking spaces.',
+            title: 'Front & Rear Parking Sensors',
+            subtitle: 'Prevents Low-Speed Bumps',
+            description: 'Ultrasonic sensors sound clear warning beeps and prevent accidental throttle taps when parking against walls or pillars.',
             imageUrl: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
             metric: '8 Sensors',
-            metricLabel: 'Perimeter Sonar Coverage'
+            metricLabel: 'Surround Sonar'
           },
           {
             id: 'serena-safe-4',
-            title: 'Zone Body & 3-Row Curtain Airbags',
-            subtitle: 'Occupant Protection Envelope',
-            description: 'Hot-stamped high-tensile steel reinforcements with side curtain airbags extending all the way back to 3rd-row passengers.',
+            title: 'Reinforced Steel Frame & 6 Airbags',
+            subtitle: 'Protection for All Three Rows',
+            description: 'High-strength steel crumple zones with full-length side curtain airbags extending to protect all seven passengers.',
             imageUrl: 'https://images.pexels.com/photos/39578152/pexels-photo-39578152.jpeg?auto=compress&cs=tinysrgb&w=1600',
-            metric: '6 SRS',
-            metricLabel: 'Full 3-Row Airbag Cushion'
+            metric: '6 Airbags',
+            metricLabel: 'Full Cabin Shield'
           }
         ]
       }

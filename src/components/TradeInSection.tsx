@@ -176,9 +176,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </video>
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white">
-              <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider mb-1 font-semibold">
-                TANGANA ROAD, MOMBASA // WESTLANDS, NAIROBI
-              </span>
+              <div className="inline-flex items-center gap-2 mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+                  TANGANA ROAD, MOMBASA // WESTLANDS, NAIROBI
+                </span>
+              </div>
               <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug max-w-[620px]">
                 Quick 20-minute inspection. Full legal transfer. Drive away same day.
               </p>
@@ -214,7 +217,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
               <div>
                 <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WARRANTY</span>
-                <span className="text-[15px] font-bold text-[#ef4444]">5,000 KM on Upgraded Car</span>
+                <span className="text-[15px] font-bold text-white">5,000 KM on Upgraded Car</span>
               </div>
             </div>
           </div>
@@ -247,7 +250,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   value={makeModel}
                   onChange={(e) => setMakeModel(e.target.value)}
                   placeholder="e.g. Toyota Fielder / Mazda CX-5 / Subaru Forester"
-                  className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626] mb-3"
+                  className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white mb-3"
                 />
 
                 {/* Popular Models Pills */}
@@ -260,7 +263,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setMakeModel(m)}
                       className={`text-[11.5px] px-3 py-1 rounded-[2px] transition-all cursor-pointer ${
                         makeModel === m
-                          ? 'bg-[#dc2626] text-white font-medium'
+                          ? 'bg-white text-zinc-950 font-bold'
                           : 'bg-[#18181c] text-[#a1a1aa] border border-[#27272a] hover:text-white'
                       }`}
                     >
@@ -283,7 +286,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setYearTier(yr)}
                       className={`py-2 text-[12px] font-mono rounded-[2px] transition-all cursor-pointer border ${
                         yearTier === yr
-                          ? 'bg-[#dc2626] text-white border-[#dc2626] font-bold'
+                          ? 'bg-white text-zinc-950 border-white font-bold'
                           : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
                       }`}
                     >
@@ -311,12 +314,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setMileageTier(m.id)}
                       className={`p-3 text-left rounded-[2px] transition-all cursor-pointer border ${
                         mileageTier === m.id
-                          ? 'bg-[#18181c] text-white border-[#dc2626]'
+                          ? 'bg-white text-zinc-950 border-white font-bold'
                           : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
                       }`}
                     >
                       <span className="block font-mono text-[12px] font-bold">{m.label}</span>
-                      <span className="block text-[10.5px] text-[#71717a] mt-0.5">{m.desc}</span>
+                      <span className={`block text-[10.5px] mt-0.5 ${mileageTier === m.id ? 'text-zinc-700' : 'text-[#71717a]'}`}>{m.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -351,7 +354,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setConditionTier(c.id)}
                       className={`p-4 text-left rounded-[2px] transition-all cursor-pointer border flex flex-col justify-between ${
                         conditionTier === c.id
-                          ? 'bg-[#18181c] text-white border-[#dc2626]'
+                          ? 'bg-[#18181c] text-white border-white'
                           : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
                       }`}
                     >
@@ -360,7 +363,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                         <p className="text-[12px] text-[#a1a1aa] leading-relaxed">{c.desc}</p>
                       </div>
                       <div className="mt-3 flex items-center justify-end">
-                        <CheckCircle2 className={`w-4 h-4 ${conditionTier === c.id ? 'text-[#ef4444]' : 'text-transparent'}`} />
+                        <CheckCircle2 className={`w-4 h-4 ${conditionTier === c.id ? 'text-white' : 'text-transparent'}`} />
                       </div>
                     </button>
                   ))}
@@ -373,14 +376,14 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             <div className="lg:col-span-5 bg-[#121215] border border-[#27272a] p-6 rounded-[4px] relative lg:sticky lg:top-[90px] space-y-5">
               
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-[#ef4444] block mb-1 font-semibold">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-300 block mb-1 font-semibold">
                   CHOOSE CAR TO UPGRADE TO:
                 </span>
                 <div className="relative mt-1">
                   <select
                     value={targetCarId}
                     onChange={(e) => setTargetCarId(e.target.value)}
-                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
+                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.id}>
@@ -401,7 +404,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span className="bg-[#dc2626] text-white px-2 py-0.5 text-[10px] font-bold rounded-[2px]">
+                  <span className="bg-zinc-900 border border-zinc-700 text-white px-2 py-0.5 text-[10px] font-bold rounded-[2px]">
                     Grade {targetVehicle.auctionGrade}
                   </span>
                 </div>
@@ -415,11 +418,11 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <div className="p-4 bg-[#18181c] border border-[#27272a] rounded-[3px] space-y-2.5">
                 <div className="flex items-center justify-between text-[12px] font-mono">
                   <span className="text-[#a1a1aa]">Deposit Covered by Trade-In</span>
-                  <span className="text-[#ef4444] font-bold">{animatedEquityPercent}% Covered</span>
+                  <span className="text-white font-bold">{animatedEquityPercent}% Covered</span>
                 </div>
                 <div className="w-full h-2 bg-[#09090b] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#dc2626] transition-all duration-300 ease-out"
+                    className="h-full bg-white transition-all duration-300 ease-out"
                     style={{ width: `${animatedEquityPercent}%` }}
                   />
                 </div>
@@ -445,7 +448,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 </div>
                 <div className="py-2.5 flex items-baseline justify-between bg-[#18181c] px-3 -mx-3 mt-1 rounded-[2px]">
                   <div>
-                    <span className="text-[11px] text-[#ef4444] uppercase font-bold block">
+                    <span className="text-[11px] text-zinc-400 uppercase font-bold block">
                       Estimated Balance to Pay
                     </span>
                     <span className="font-mono text-[16px] font-bold text-white">
@@ -507,7 +510,10 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 />
               </div>
               <div className="p-6 space-y-2">
-                <span className="text-[11px] font-mono text-[#ef4444] uppercase font-bold">STEP 01</span>
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase font-bold">STEP 01</span>
+                </div>
                 <h3 className="text-[18px] font-bold text-white">20-Minute Check</h3>
                 <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
                   Drive into our Mombasa or Nairobi showroom. Our technician inspects your car on the hoist and runs a computer scan.
@@ -524,7 +530,10 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 />
               </div>
               <div className="p-6 space-y-2">
-                <span className="text-[11px] font-mono text-[#ef4444] uppercase font-bold">STEP 02</span>
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase font-bold">STEP 02</span>
+                </div>
                 <h3 className="text-[18px] font-bold text-white">Fair Written Offer</h3>
                 <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
                   You get a clear written valuation valid for 7 days. The full amount is credited directly toward your chosen showroom car.
@@ -541,7 +550,10 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 />
               </div>
               <div className="p-6 space-y-2">
-                <span className="text-[11px] font-mono text-[#ef4444] uppercase font-bold">STEP 03</span>
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase font-bold">STEP 03</span>
+                </div>
                 <h3 className="text-[18px] font-bold text-white">Drive Away Same Day</h3>
                 <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
                   We handle the NTSA TIMS logbook transfer on the spot. You collect your new Japanese import with its 5,000 km warranty.
@@ -567,12 +579,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                     onClick={() => setActiveFaq(isOpen ? null : idx)}
                     className="w-full flex items-center justify-between text-left cursor-pointer group"
                   >
-                    <span className="text-[15px] font-medium text-white group-hover:text-[#ef4444] transition-colors">
+                    <span className="text-[15px] font-medium text-white group-hover:text-zinc-300 transition-colors">
                       {faq.q}
                     </span>
                     <ChevronDown
                       className={`w-4 h-4 text-[#a1a1aa] transition-transform duration-200 shrink-0 ml-4 ${
-                        isOpen ? 'rotate-180 text-[#ef4444]' : ''
+                        isOpen ? 'rotate-180 text-white' : ''
                       }`}
                     />
                   </button>

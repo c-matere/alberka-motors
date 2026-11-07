@@ -150,9 +150,9 @@ export function App() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* Highlight Card 1 */}
-                      <div className="bg-[#121215] border border-[#27272a] hover:border-[#dc2626]/50 transition-colors p-8 sm:p-10 flex flex-col justify-between space-y-8 rounded-[4px]">
+                      <div className="bg-[#121215] border border-[#27272a] hover:border-zinc-600 transition-colors p-8 sm:p-10 flex flex-col justify-between space-y-8 rounded-[4px]">
                         <div className="space-y-3">
-                          <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block font-semibold">
+                          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
                             WORKSHOP STANDARD // 01
                           </span>
                           <h3 className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight">
@@ -172,9 +172,9 @@ export function App() {
                       </div>
 
                       {/* Highlight Card 2 */}
-                      <div className="bg-[#121215] border border-[#27272a] hover:border-[#dc2626]/50 transition-colors p-8 sm:p-10 flex flex-col justify-between space-y-8 rounded-[4px]">
+                      <div className="bg-[#121215] border border-[#27272a] hover:border-zinc-600 transition-colors p-8 sm:p-10 flex flex-col justify-between space-y-8 rounded-[4px]">
                         <div className="space-y-3">
-                          <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block font-semibold">
+                          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
                             PEACE OF MIND // 02
                           </span>
                           <h3 className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight">
@@ -291,9 +291,12 @@ export function App() {
                       {/* Mombasa Card */}
                       <div className="bg-[#18181c] p-8 sm:p-10 border border-[#27272a] flex flex-col justify-between space-y-6 rounded-[4px]">
                         <div className="space-y-3">
-                          <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block font-semibold">
-                            MAIN SHOWROOM & WORKSHOP // MOMBASA
-                          </span>
+                          <div className="inline-flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
+                              MAIN SHOWROOM & WORKSHOP // MOMBASA
+                            </span>
+                          </div>
                           <h3 className="text-[22px] font-bold text-white">Mombasa Flagship</h3>
                           <p className="text-[14.5px] text-[#a1a1aa] leading-relaxed">
                             Tangana Road (Opposite AutoXpress / Near Railway Station), Majengo & Nyali Road.
@@ -317,9 +320,12 @@ export function App() {
                       {/* Nairobi Card */}
                       <div className="bg-[#18181c] p-8 sm:p-10 border border-[#27272a] flex flex-col justify-between space-y-6 rounded-[4px]">
                         <div className="space-y-3">
-                          <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block font-semibold">
-                            NAIROBI SHOWROOM // WESTLANDS
-                          </span>
+                          <div className="inline-flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
+                              NAIROBI SHOWROOM // WESTLANDS
+                            </span>
+                          </div>
                           <h3 className="text-[22px] font-bold text-white">Nairobi Westlands Hub</h3>
                           <p className="text-[14.5px] text-[#a1a1aa] leading-relaxed">
                             Mwanzi Road, Westlands, Nairobi. Easy access for city viewings and trade-in appraisals.

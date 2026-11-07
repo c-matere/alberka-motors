@@ -31,7 +31,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
         {/* Header */}
         <div className="p-5 border-b border-[#27272a] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <Bookmark className="w-5 h-5 text-[#ef4444] fill-[#ef4444]" />
+            <Bookmark className="w-5 h-5 text-white fill-white" />
             <h3 className="font-bold text-[16px] text-white">
               Saved Cars ({savedVehicles.length})
             </h3>
@@ -50,7 +50,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
             savedVehicles.map((vehicle) => (
               <div
                 key={vehicle.id}
-                className="p-3.5 border border-[#27272a] hover:border-[#dc2626]/50 rounded-[3px] transition-all bg-[#18181c] flex items-center justify-between gap-4"
+                className="p-3.5 border border-[#27272a] hover:border-zinc-500 rounded-[3px] transition-all bg-[#18181c] flex items-center justify-between gap-4"
               >
                 <div
                   onClick={() => {
@@ -63,9 +63,12 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                     <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                   </div>
                   <div className="min-w-0">
-                    <span className="font-mono text-[10.5px] text-[#ef4444] font-bold block">
-                      {vehicle.stockNo} · Grade {vehicle.auctionGrade}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                      <span className="font-mono text-[10.5px] text-zinc-300 font-bold block">
+                        {vehicle.stockNo} · Grade {vehicle.auctionGrade}
+                      </span>
+                    </div>
                     <h4 className="text-[14.5px] font-bold text-white truncate mt-0.5">
                       {vehicle.name}
                     </h4>
@@ -78,7 +81,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                 <div className="flex items-center gap-2 shrink-0">
                   <button
                     onClick={() => onToggleFavorite(vehicle.id)}
-                    className="p-2 text-[#71717a] hover:text-[#ef4444] transition-colors cursor-pointer"
+                    className="p-2 text-[#71717a] hover:text-white transition-colors cursor-pointer"
                     title="Remove from saved"
                   >
                     <Trash2 className="w-4 h-4" />

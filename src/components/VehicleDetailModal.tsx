@@ -48,9 +48,12 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
         {/* Top Header Bar */}
         <div className="sticky top-0 z-30 bg-[#09090b]/95 backdrop-blur-md px-6 py-4 border-b border-zinc-800 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-red-400 bg-red-950/40 px-2.5 py-1 border border-red-900/40 rounded">
-              {vehicle.stockNo}
-            </span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-700 rounded">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span className="font-mono text-xs text-zinc-300 font-bold">
+                {vehicle.stockNo}
+              </span>
+            </div>
             <span className="text-sm sm:text-base font-bold text-white truncate max-w-[240px] sm:max-w-none">
               {vehicle.name}
             </span>
@@ -61,12 +64,12 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               onClick={() => onToggleFavorite(vehicle.id)}
               className={`p-2 border rounded-lg transition-colors cursor-pointer ${
                 isFavorite
-                  ? 'bg-red-600 text-white border-red-600'
+                  ? 'bg-white text-zinc-950 border-white'
                   : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white'
               }`}
               title="Save vehicle"
             >
-              <Bookmark className={`w-4 h-4 ${isFavorite ? 'fill-white' : ''}`} />
+              <Bookmark className={`w-4 h-4 ${isFavorite ? 'fill-zinc-950' : ''}`} />
             </button>
 
             <button
@@ -85,7 +88,8 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           {/* Main Showcase Hero */}
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-xs uppercase tracking-wider text-red-500 font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span className="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
                 Direct Japanese Import • {vehicle.status}
               </span>
             </div>
@@ -137,7 +141,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 <button
                   onClick={() => setActiveMediaIndex(0)}
                   className={`h-14 w-20 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative ${
-                    activeMediaIndex === 0 ? 'border-red-500 ring-2 ring-red-500/40' : 'border-zinc-800 opacity-70 hover:opacity-100'
+                    activeMediaIndex === 0 ? 'border-white ring-2 ring-white/40' : 'border-zinc-800 opacity-70 hover:opacity-100'
                   }`}
                 >
                   <img src={vehicle.heroImage} alt="Video preview" className="w-full h-full object-cover" />
@@ -151,7 +155,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                     key={i}
                     onClick={() => setActiveMediaIndex(i + 1)}
                     className={`h-14 w-20 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer ${
-                      activeMediaIndex === i + 1 ? 'border-red-500 ring-2 ring-red-500/40' : 'border-zinc-800 opacity-70 hover:opacity-100'
+                      activeMediaIndex === i + 1 ? 'border-white ring-2 ring-white/40' : 'border-zinc-800 opacity-70 hover:opacity-100'
                     }`}
                   >
                     <img src={img.url} alt={img.title} className="w-full h-full object-cover" />
@@ -168,7 +172,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
               <div>
                 <span className="text-xs text-zinc-400 block mb-1">Auction Condition</span>
-                <span className="font-semibold text-sm text-red-400">Grade {vehicle.auctionGrade}</span>
+                <span className="font-semibold text-sm text-white">Grade {vehicle.auctionGrade}</span>
               </div>
               <div>
                 <span className="text-xs text-zinc-400 block mb-1">Transmission</span>
@@ -185,13 +189,13 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           <div className="p-6 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
               <div>
-                <span className="text-xs text-red-500 font-semibold uppercase tracking-wider block mb-1">Bank Asset Financing</span>
+                <span className="text-xs text-zinc-400 font-semibold uppercase tracking-wider block mb-1">Bank Asset Financing</span>
                 <h3 className="text-base font-bold text-white">Monthly Payment Calculator</h3>
                 <p className="text-xs text-zinc-400 mt-0.5">Financing available via NCBA, Stanbic, and I&M Bank Kenya.</p>
               </div>
               <div className="text-left sm:text-right">
                 <span className="text-xs text-zinc-400 block">Estimated Payment</span>
-                <span className="font-mono text-xl font-bold text-red-400">
+                <span className="font-mono text-xl font-bold text-white">
                   KES {monthlyPayment.toLocaleString()}<span className="text-xs font-normal text-zinc-400">/mo</span>
                 </span>
               </div>
@@ -210,7 +214,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   step="5"
                   value={depositPercent}
                   onChange={(e) => setDepositPercent(Number(e.target.value))}
-                  className="w-full accent-red-600 cursor-pointer"
+                  className="w-full accent-white cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-zinc-500 mt-1">
                   <span>15% (Min)</span>
@@ -231,7 +235,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   step="12"
                   value={loanTenureMonths}
                   onChange={(e) => setLoanTenureMonths(Number(e.target.value))}
-                  className="w-full accent-red-600 cursor-pointer"
+                  className="w-full accent-white cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-zinc-500 mt-1">
                   <span>1 Year</span>
@@ -246,14 +250,14 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           <div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
               <div>
-                <span className="text-xs text-red-500 font-semibold uppercase tracking-wider block mb-1">Details</span>
+                <span className="text-xs text-zinc-400 font-semibold uppercase tracking-wider block mb-1">Details</span>
                 <h3 className="text-lg font-bold text-white">Technical Specifications</h3>
               </div>
               <button
                 onClick={() => setShowAuctionModal(true)}
                 className="btn-ghost !py-2 !px-3.5 !text-xs cursor-pointer inline-flex items-center"
               >
-                <FileText className="w-3.5 h-3.5 text-red-500 mr-2" />
+                <FileText className="w-3.5 h-3.5 text-zinc-400 mr-2" />
                 <span>View Japanese Auction Sheet</span>
               </button>
             </div>
@@ -278,7 +282,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           {/* Mombasa Pre-Delivery Inspection Certificate Box */}
           <div className="p-6 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-3">
             <div className="flex items-center gap-3 pb-3 border-b border-zinc-800">
-              <ShieldCheck className="w-5 h-5 text-red-500" />
+              <ShieldCheck className="w-5 h-5 text-zinc-400" />
               <div>
                 <h4 className="text-sm font-semibold text-white">
                   Mombasa 100-Point Inspection Stamp
@@ -340,9 +344,12 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               <X className="w-4 h-4" />
             </button>
 
-            <span className="text-xs uppercase tracking-wider text-red-500 font-semibold block mb-1">
-              Japanese Auction Document
-            </span>
+            <div className="inline-flex items-center gap-2 mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span className="text-xs uppercase tracking-wider text-zinc-400 font-semibold block">
+                Japanese Auction Document
+              </span>
+            </div>
             <h3 className="text-lg font-bold text-white mb-1">
               {vehicle.auctionHall} Auction Sheet
             </h3>
@@ -357,7 +364,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
               <div className="flex justify-between border-b border-zinc-800 pb-1.5">
                 <span className="text-zinc-400">Stock No:</span>
-                <span className="text-red-400 font-medium">{vehicle.stockNo}</span>
+                <span className="text-white font-bold">{vehicle.stockNo}</span>
               </div>
               <div className="flex justify-between border-b border-zinc-800 pb-1.5">
                 <span className="text-zinc-400">Auction Score:</span>

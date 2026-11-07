@@ -35,9 +35,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex items-end p-6 sm:p-10">
               <div className="text-left text-white max-w-[650px]">
-                <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block mb-1 font-semibold">
-                  REPUTATION BUILT ON TRUST
-                </span>
+                <div className="inline-flex items-center gap-2 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+                    REPUTATION BUILT ON TRUST
+                  </span>
+                </div>
                 <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug">
                   Trusted by families, business owners, and corporate clients across Kenya since 2000.
                 </p>
@@ -60,7 +63,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             </div>
             <div>
               <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WARRANTY</span>
-              <span className="text-[16px] font-bold text-[#ef4444]">5,000 KM Written</span>
+              <span className="text-[16px] font-bold text-white">5,000 KM Written</span>
             </div>
           </div>
         </div>
@@ -93,19 +96,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             <h3 className="text-[16px] font-bold text-white uppercase tracking-wider">The Alberka Quality Standard:</h3>
             <div className="space-y-4 text-[14px]">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <p className="text-[#a1a1aa]">
                   <strong className="text-white">Grade 4.5 Minimum:</strong> Clean bodywork, factory original paint depth, and immaculate interior.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <p className="text-[#a1a1aa]">
                   <strong className="text-white">Genuine Mileage:</strong> Every odometer reading is verified by official QISJ and JEVIC certificates.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <p className="text-[#a1a1aa]">
                   <strong className="text-white">Original Paperwork:</strong> You receive the original Japanese export certificate and translated auction sheet with your logbook.
                 </p>

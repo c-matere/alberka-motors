@@ -54,7 +54,10 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
           <div className="bg-[#121215] border border-[#27272a] p-8 sm:p-10 flex flex-col justify-between rounded-[4px]">
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-[11px] text-[#ef4444] uppercase font-bold">MAIN SHOWROOM & WORKSHOP</span>
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="font-mono text-[11px] text-zinc-300 uppercase font-semibold">MAIN SHOWROOM & WORKSHOP</span>
+                </div>
                 <span className="text-[11px] font-mono bg-[#18181c] border border-[#27272a] text-[#a1a1aa] px-2.5 py-0.5 rounded-[2px]">
                   EST. 2000
                 </span>
@@ -67,17 +70,17 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
               <div className="space-y-3 py-5 border-y border-[#27272a] text-[14px]">
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#ef4444]" />
-                  <a href="tel:+254714333888" className="font-mono text-white hover:text-[#ef4444] transition-colors">0714 333 888</a>
+                  <Phone className="w-4 h-4 text-zinc-400" />
+                  <a href="tel:+254714333888" className="font-mono text-white hover:text-zinc-300 transition-colors">0714 333 888</a>
                   <span className="text-[#71717a]">/</span>
-                  <a href="tel:+254737333888" className="font-mono text-white hover:text-[#ef4444] transition-colors">0737 333 888</a>
+                  <a href="tel:+254737333888" className="font-mono text-white hover:text-zinc-300 transition-colors">0737 333 888</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-[#ef4444]" />
+                  <Mail className="w-4 h-4 text-zinc-400" />
                   <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-[#a1a1aa] hover:text-white transition-colors">sales@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Clock className="w-4 h-4 text-[#ef4444]" />
+                  <Clock className="w-4 h-4 text-zinc-400" />
                   <span className="text-[13px] text-[#a1a1aa]">Mon – Sat: 8:00 AM – 6:00 PM (Sunday by appointment)</span>
                 </div>
               </div>
@@ -171,7 +174,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     value={testDriveData.name}
                     onChange={(e) => setTestDriveData({ ...testDriveData, name: e.target.value })}
                     placeholder="e.g. David Mwangi"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
 
@@ -183,7 +186,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     value={testDriveData.phone}
                     onChange={(e) => setTestDriveData({ ...testDriveData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
 
@@ -192,7 +195,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <select
                     value={testDriveData.location}
                     onChange={(e) => setTestDriveData({ ...testDriveData, location: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
                   >
                     <option value="Mombasa — Tangana Road">Mombasa (Tangana Road Flagship)</option>
                     <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
@@ -207,7 +210,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <select
                     value={testDriveData.carName}
                     onChange={(e) => setTestDriveData({ ...testDriveData, carName: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.name}>
@@ -223,7 +226,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     type="date"
                     value={testDriveData.preferredDate}
                     onChange={(e) => setTestDriveData({ ...testDriveData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
 
@@ -232,7 +235,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <select
                     value={testDriveData.timeSlot}
                     onChange={(e) => setTestDriveData({ ...testDriveData, timeSlot: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
                   >
                     <option value="Morning (9:00 AM – 12:00 PM)">Morning (9:00 AM – 12:00 PM)</option>
                     <option value="Afternoon (1:00 PM – 4:00 PM)">Afternoon (1:00 PM – 4:00 PM)</option>

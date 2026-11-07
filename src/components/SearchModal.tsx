@@ -56,7 +56,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         
         {/* Search Input Bar */}
         <div className="p-4 sm:p-5 border-b border-[#27272a] flex items-center gap-3">
-          <Search className="w-5 h-5 text-[#ef4444] shrink-0" />
+          <Search className="w-5 h-5 text-zinc-400 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -88,7 +88,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             <button
               key={i}
               onClick={() => setQuery(qf.label.replace('+', '').toLowerCase())}
-              className="text-[12px] bg-[#121215] border border-[#27272a] px-3 py-1 rounded-[2px] text-[#a1a1aa] hover:text-white hover:border-[#dc2626] transition-colors whitespace-nowrap cursor-pointer"
+              className="text-[12px] bg-[#121215] border border-[#27272a] px-3 py-1 rounded-[2px] text-[#a1a1aa] hover:text-white hover:border-white transition-colors whitespace-nowrap cursor-pointer"
             >
               {qf.label}
             </button>
@@ -113,14 +113,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-[10.5px] text-[#ef4444] font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                      <span className="font-mono text-[10.5px] text-zinc-300 font-bold">
                         {vehicle.stockNo}
                       </span>
                       <span className="text-[10px] font-mono bg-[#18181c] border border-[#27272a] px-1.5 py-0.2 rounded-[2px] text-[#a1a1aa]">
                         Grade {vehicle.auctionGrade}
                       </span>
                     </div>
-                    <h4 className="text-[14.5px] font-bold text-white group-hover:text-[#ef4444] transition-colors truncate mt-0.5">
+                    <h4 className="text-[14.5px] font-bold text-white group-hover:text-zinc-200 transition-colors truncate mt-0.5">
                       {vehicle.name}
                     </h4>
                     <p className="text-[12px] text-[#a1a1aa]">
@@ -133,7 +134,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   <span className="font-mono text-[14px] font-bold text-white block">
                     KES {vehicle.priceKes.toLocaleString()}
                   </span>
-                  <span className="text-[11px] text-[#a1a1aa] flex items-center justify-end gap-1 mt-0.5 group-hover:text-[#ef4444] transition-colors">
+                  <span className="text-[11px] text-[#a1a1aa] flex items-center justify-end gap-1 mt-0.5 group-hover:text-white transition-colors">
                     <span>View Car</span>
                     <ArrowRight className="w-3 h-3" />
                   </span>

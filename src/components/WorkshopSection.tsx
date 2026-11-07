@@ -143,9 +143,12 @@ export const WorkshopSection: React.FC = () => {
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex items-end p-6 sm:p-10">
               <div className="text-left text-white max-w-[650px]">
-                <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block mb-1 font-semibold">
-                  TANGANA ROAD FACILITY // MOMBASA
-                </span>
+                <div className="inline-flex items-center gap-2 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+                    TANGANA ROAD FACILITY // MOMBASA
+                  </span>
+                </div>
                 <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug">
                   100-Point Pre-Delivery Check with Written Inspection Certificate
                 </p>
@@ -164,7 +167,7 @@ export const WorkshopSection: React.FC = () => {
             </div>
             <div>
               <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WRITTEN WARRANTY</span>
-              <span className="text-[15px] font-bold text-[#ef4444]">5,000 KM Engine & Gearbox</span>
+              <span className="text-[15px] font-bold text-white">5,000 KM Engine & Gearbox</span>
             </div>
             <div>
               <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">INSPECTION MARKS</span>
@@ -196,12 +199,12 @@ export const WorkshopSection: React.FC = () => {
                   onClick={() => setActiveStage(i)}
                   className={`p-4 text-left transition-all rounded-[3px] cursor-pointer flex flex-col justify-between h-[96px] ${
                     isActive
-                      ? 'bg-[#18181c] border-2 border-[#dc2626]'
+                      ? 'bg-[#18181c] border-2 border-white'
                       : 'bg-[#18181c] hover:bg-[#202025] border border-[#27272a]'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-[#ef4444]' : 'text-[#a1a1aa]'}`} />
-                  <span className={`text-[12px] font-medium leading-tight ${isActive ? 'text-white' : 'text-[#a1a1aa]'}`}>
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-[#a1a1aa]'}`} />
+                  <span className={`text-[12px] font-medium leading-tight ${isActive ? 'text-white font-semibold' : 'text-[#a1a1aa]'}`}>
                     {st.title.split('. ')[1]}
                   </span>
                 </button>
@@ -213,9 +216,12 @@ export const WorkshopSection: React.FC = () => {
           <div className="bg-[#18181c] p-6 sm:p-8 border border-[#27272a] rounded-[3px] space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#27272a]">
               <div>
-                <span className="font-mono text-[10.5px] text-[#ef4444] uppercase tracking-wider block font-semibold mb-0.5">
-                  STAGE {activeStage + 1} OF 6
-                </span>
+                <div className="inline-flex items-center gap-2 mb-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-wider font-semibold">
+                    STAGE {activeStage + 1} OF 6
+                  </span>
+                </div>
                 <h3 className="text-[22px] font-bold text-white">{stages[activeStage].title}</h3>
                 <p className="text-[14px] text-[#d4d4d8] mt-0.5">{stages[activeStage].tagline}</p>
               </div>
@@ -235,7 +241,7 @@ export const WorkshopSection: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {stages[activeStage].checklist.map((item, idx) => (
                   <div key={idx} className="flex items-start gap-2.5 text-[14px] text-[#e4e4e7]">
-                    <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -259,7 +265,7 @@ export const WorkshopSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-[#27272a]">
             <div className="space-y-3">
               <h4 className="text-[15px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#ef4444]" />
+                <ShieldCheck className="w-4 h-4 text-white" />
                 What Is Covered
               </h4>
               <ul className="space-y-2 text-[14px] text-[#a1a1aa]">
@@ -272,7 +278,7 @@ export const WorkshopSection: React.FC = () => {
 
             <div className="space-y-3">
               <h4 className="text-[15px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                <FileCheck className="w-4 h-4 text-[#ef4444]" />
+                <FileCheck className="w-4 h-4 text-white" />
                 Customer Support
               </h4>
               <ul className="space-y-2 text-[14px] text-[#a1a1aa]">
@@ -312,7 +318,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.name}
                     onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
 
@@ -324,7 +330,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.phone}
                     onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
 
@@ -333,7 +339,7 @@ export const WorkshopSection: React.FC = () => {
                   <select
                     value={bookingData.serviceType}
                     onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
                   >
                     <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
                     <option value="5,000 km Periodic Service">5,000 KM Routine Service</option>
@@ -353,7 +359,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.vehicleModel}
                     onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
                     placeholder="e.g. Toyota RAV4 (KDD 123X)"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
 
@@ -363,7 +369,7 @@ export const WorkshopSection: React.FC = () => {
                     type="date"
                     value={bookingData.preferredDate}
                     onChange={(e) => setBookingData({ ...bookingData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-[#dc2626]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
                   />
                 </div>
               </div>

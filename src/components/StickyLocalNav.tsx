@@ -40,7 +40,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
           <div className="flex items-center gap-4 shrink-0">
             <div className="hidden sm:flex flex-col text-right">
               <span className="text-[10px] text-zinc-400">Delivered Price</span>
-              <span className="font-mono text-xs font-bold text-red-400">
+              <span className="font-mono text-xs font-bold text-white">
                 KES {selectedVehicle.priceKes.toLocaleString()}
               </span>
             </div>
@@ -75,7 +75,8 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
     <div className="hidden sm:block sticky top-[72px] z-30 bg-[#09090b]/90 backdrop-blur-md border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-11 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-red-500 font-semibold">{info.kicker}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+          <span className="text-white font-semibold">{info.kicker}</span>
           <span className="text-zinc-600">•</span>
           <span className="text-zinc-300 font-medium truncate">{info.title}</span>
         </div>
@@ -86,7 +87,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
               onClick={() => onNavigate('workshop')}
               className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5 cursor-pointer"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
+              <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
               <span>5,000 KM Warranty</span>
             </button>
           )}
@@ -94,7 +95,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
           {currentView !== 'inventory' && (
             <button
               onClick={() => onNavigate('inventory')}
-              className="text-xs text-red-400 hover:text-red-300 font-medium cursor-pointer"
+              className="text-xs text-white hover:text-zinc-300 font-semibold cursor-pointer"
             >
               View All Cars →
             </button>
