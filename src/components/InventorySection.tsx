@@ -28,7 +28,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     { id: 'suv', label: 'SUVs & 4WD', count: vehicles.filter(v => v.category === 'suv').length },
     { id: 'hybrid', label: 'Hybrids', count: vehicles.filter(v => v.category === 'hybrid' || v.fuelType.includes('Hybrid') || v.fuelType.includes('e-POWER')).length },
     { id: 'van', label: '7-Seaters & Vans', count: vehicles.filter(v => v.category === 'van').length },
-    { id: 'compact', label: 'Hatchbacks', count: vehicles.filter(v => v.category === 'compact').length },
+    { id: 'compact', label: 'Hatchbacks', count: vehicles.filter(v => v.category === 'compact' || v.bodyType.toLowerCase().includes('hatchback')).length },
   ];
 
   const filteredVehicles = useMemo(() => {
@@ -37,6 +37,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         if (activeCategory === 'all') return true;
         if (activeCategory === 'hybrid') {
           return v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power');
+        }
+        if (activeCategory === 'compact') {
+          return v.category === 'compact' || v.bodyType.toLowerCase().includes('hatchback');
         }
         return v.category === activeCategory;
       })
@@ -132,9 +135,18 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           </div>
         </div>
 
+        {/* Inventory Status Bar */}
+        <div className="flex items-center justify-between text-xs text-zinc-400 font-mono mb-6 px-1">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span>Showing {filteredVehicles.length} of {vehicles.length} verified cars in stock</span>
+          </div>
+          <span className="hidden sm:inline text-zinc-500">Mombasa Yard & Nairobi Handover Available</span>
+        </div>
+
         {/* Vehicle Grid */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}
