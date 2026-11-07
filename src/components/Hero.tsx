@@ -97,7 +97,32 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
     setProgress(0);
   }, []);
 
-  // Bulletproof body scroll lock (iOS Safari & Desktop)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNext();
+      else handlePrev();
+    }
+    setTouchStartX(null);
+  };
+
+  // Keyboard navigation & Esc handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'Escape') setIsHeroLightboxOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleNext, handlePrev]);
+
+  // Body scroll lock during fullscreen theater lightbox
   useEffect(() => {
     if (isHeroLightboxOpen) {
       const scrollY = window.scrollY;
@@ -115,33 +140,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
     }
   }, [isHeroLightboxOpen]);
 
-  // Keyboard navigation & ESC
+  // Smooth timing progress rail
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsHeroLightboxOpen(false);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Touch gesture swipe handling
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) handleNext();
-      else handlePrev();
-    }
-    setTouchStartX(null);
-  };
-
-  // Autoplay timer with linear progress
-  useEffect(() => {
-    if (!isPlaying || isHeroLightboxOpen) return;
+    if (!isPlaying) return;
 
     const intervalMs = 50;
     const step = (intervalMs / SLIDE_INTERVAL) * 100;
@@ -174,58 +175,59 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   };
 
   return (
-    <section className="relative w-full bg-[#09090b] pt-10 sm:pt-16 pb-20 sm:pb-28 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
+    <section className="relative w-full bg-[#09090b] pt-12 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
       
       {/* Subtle Monochrome Ambient Spotlight in Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-b from-white/[0.035] to-transparent blur-3xl pointer-events-none" />
 
-      <div className="max-w-[1360px] mx-auto relative z-10 space-y-8">
+      <div className="max-w-[1360px] mx-auto relative z-10 space-y-7">
         
-        {/* Eyebrow Label with Single Subtle Red Dot */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#18181c] border border-[#27272a] rounded-full">
-          <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-zinc-300 font-medium">
-            DIRECT JAPANESE IMPORTS // MOMBASA & NAIROBI
+        {/* Minimalist Eyebrow Label with Single Subtle Red Dot */}
+        <div className="inline-flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+          <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-medium">
+            JAPANESE AUTOMOTIVE ATELIER · MOMBASA & NAIROBI
           </span>
         </div>
 
-        {/* Display Hero Title with Razor-Sharp Inter Tracking */}
-        <div className="space-y-4 max-w-[1100px] mx-auto">
-          <h1 className="text-[34px] sm:text-[54px] md:text-[66px] lg:text-[74px] font-bold text-white tracking-[-0.035em] leading-[1.08]">
-            Clean Japanese Cars. Honest Mileage. Cars You Can Trust.
+        {/* Display Hero Title with Editorial Inter Tracking */}
+        <div className="space-y-4 max-w-[1020px] mx-auto">
+          <h1 className="text-[38px] sm:text-[58px] md:text-[70px] lg:text-[78px] font-bold text-white tracking-[-0.04em] leading-[1.04]">
+            Japanese Provenance.<br />
+            Delivered Without Compromise.
           </h1>
 
-          <p className="max-w-[760px] mx-auto text-zinc-400 text-[16px] sm:text-[19px] leading-relaxed tracking-[-0.01em]">
-            Every vehicle is handpicked from top Japanese auctions, thoroughly serviced in our Mombasa workshop, and backed by a written 5,000 km warranty.
+          <p className="max-w-[660px] mx-auto text-zinc-400 text-[15px] sm:text-[18px] leading-relaxed font-normal">
+            Personally bid at Tokyo auctions. Fully serviced in our Mombasa workshop. Handed over with verified mileage and a 5,000 km written warranty.
           </p>
         </div>
 
-        {/* Action Buttons — Crisp Pure White Primary + Subtle Ghost Secondary */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+        {/* Action Buttons — Crisp Pure White Primary + Minimal Ghost Secondary */}
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
           <button
             onClick={onExploreFleet}
-            className="btn-white group py-3 px-6 text-[14px] rounded-md font-semibold"
+            className="btn-white group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
           >
-            <span>Browse Cars in Stock</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <span>Explore In-Stock Collection</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost py-3 px-6 text-[14px] rounded-md font-medium"
+            className="btn-ghost py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-medium tracking-tight inline-flex items-center gap-2 text-zinc-300"
           >
             <ShieldCheck className="w-4 h-4 text-zinc-400" />
-            <span>Our 100-Point Workshop Check</span>
+            <span>Our Workshop Standards</span>
           </button>
         </div>
 
-        {/* 21:9 Widescreen Theatrical Stage */}
-        <div className="relative w-full mx-auto">
+        {/* 21:9 Widescreen Theatrical Cinema Stage */}
+        <div className="relative w-full mx-auto pt-4">
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => setIsHeroLightboxOpen(true)}
-            className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-xl shadow-2xl select-none cursor-pointer group"
+            className="w-full aspect-[16/10] sm:aspect-[21/9.5] max-h-[640px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.8)] select-none cursor-pointer group"
           >
             
             {/* Cinematic Media (Video or High-Res Image) */}
@@ -252,42 +254,49 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               />
             )}
 
-            {/* Theatrical Vignette & Gradient Scrim */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/20 flex items-end p-6 sm:p-10 pointer-events-none">
-              <div className="text-left text-white max-w-[650px] space-y-1.5">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-400 block font-medium">
-                  FLAGSHIP SHOWCASE // {currentSlide.category}
+            {/* Theatrical Scrim Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
+
+            {/* Slide Information Overlay — Bottom Left */}
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-8 text-left z-20 pointer-events-none max-w-xl">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-zinc-400 block mb-1">
+                {currentSlide.category} · {currentSlide.year}
+              </span>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-[-0.03em] leading-tight mb-1">
+                {currentSlide.name}
+              </h2>
+              <p className="text-xs sm:text-sm text-zinc-300 hidden md:block leading-relaxed line-clamp-1 mb-2">
+                {currentSlide.tagline}
+              </p>
+              <div className="flex items-center gap-3 font-mono text-xs text-zinc-300">
+                <span className="font-bold text-white text-sm sm:text-base">
+                  KES {currentSlide.priceKes.toLocaleString()}
                 </span>
-                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-[-0.03em] leading-tight">
-                  {currentSlide.name}
-                </p>
-                <p className="text-xs sm:text-sm text-zinc-300 hidden sm:block max-w-lg leading-relaxed">
-                  {currentSlide.tagline}
-                </p>
+                <span className="text-zinc-600">·</span>
+                <span>{currentSlide.mileageKm.toLocaleString()} KM</span>
+                <span className="text-zinc-600">·</span>
+                <span className="text-emerald-400">{currentSlide.serviceBadge}</span>
               </div>
             </div>
 
-            {/* Slide Indicator Top Left */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 flex items-center gap-2">
-              <div className="bg-black/80 backdrop-blur-md border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300 flex items-center gap-1.5 shadow-md">
-                <span className="text-white font-bold">0{activeSlideIdx + 1}</span>
-                <span className="text-zinc-600">/</span>
-                <span className="text-zinc-400">0{FLAGSHIP_SLIDES.length}</span>
-              </div>
-              <div className="bg-black/80 backdrop-blur-md border border-zinc-700 text-white text-[11px] font-mono px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-md">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+            {/* Slide Capsule Top Left */}
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
+              <div className="bg-black/80 backdrop-blur-md border border-white/15 px-3 py-1 rounded-md text-[11px] font-mono text-white flex items-center gap-2 shadow-lg">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
                 <span className="font-bold">{currentSlide.grade}</span>
+                <span className="text-zinc-600">|</span>
+                <span className="text-zinc-300">{currentSlide.auctionHall}</span>
               </div>
             </div>
 
-            {/* Controls Top Right */}
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 z-30">
+            {/* Minimalist Hairline Controls Top Right */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 z-20">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsHeroLightboxOpen(true);
                 }}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
+                className="w-8 h-8 sm:w-9 sm:h-9 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
                 title="Fullscreen Theater Mode"
               >
                 <Maximize2 className="w-3.5 h-3.5" />
@@ -298,7 +307,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   e.stopPropagation();
                   togglePlay();
                 }}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
+                className="w-8 h-8 sm:w-9 sm:h-9 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
                 title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-white" />}
@@ -310,7 +319,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
+                  className="w-8 h-8 sm:w-9 sm:h-9 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
                   {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -322,7 +331,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   e.stopPropagation();
                   handlePrev();
                 }}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
+                className="w-8 h-8 sm:w-9 sm:h-9 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
                 title="Previous car"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -333,17 +342,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   e.stopPropagation();
                   handleNext();
                 }}
-                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
+                className="w-8 h-8 sm:w-9 sm:h-9 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
                 title="Next car"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Rolls-Royce Animated Timing Progress Line — Crisp Pure White */}
-            <div className="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/80 z-20">
+            {/* Rolls-Royce Timing Progress Line at Bottom Rim */}
+            <div className="absolute bottom-0 inset-x-0 h-[2px] bg-white/15 z-20">
               <div
-                className="h-full bg-white transition-all ease-linear"
+                className="h-full bg-white transition-all ease-linear shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                 style={{
                   width: `${isPlaying ? progress : ((activeSlideIdx + 1) / FLAGSHIP_SLIDES.length) * 100}%`,
                   transitionDuration: isPlaying ? '50ms' : '250ms',
@@ -352,56 +361,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
           </div>
 
-          {/* Floating Spec Inset Banner */}
-          <div className="max-w-[1000px] mx-auto -mt-8 sm:-mt-10 relative z-20 bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 p-5 sm:p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left shadow-2xl">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 w-full sm:w-auto">
-              <div>
-                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block mb-1">
-                  AUCTION GRADE
-                </span>
-                <span className="text-sm font-bold text-white block">
-                  {currentSlide.auctionHall} {currentSlide.grade}
-                </span>
-              </div>
-              <div>
-                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block mb-1">
-                  YEAR & MILEAGE
-                </span>
-                <span className="text-sm font-bold text-white block">
-                  {currentSlide.year} • {currentSlide.mileageKm.toLocaleString()} KM
-                </span>
-              </div>
-              <div>
-                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block mb-1">
-                  WORKSHOP SERVICE
-                </span>
-                <span className="text-sm font-bold text-zinc-200 block">
-                  {currentSlide.serviceBadge}
-                </span>
-              </div>
-              <div>
-                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block mb-1">
-                  DELIVERED PRICE
-                </span>
-                <span className="text-sm font-bold text-white font-mono block">
-                  KES {currentSlide.priceKes.toLocaleString()}
-                </span>
-              </div>
-            </div>
-
-            <div className="w-full sm:w-auto flex justify-end">
-              <button
-                onClick={onExploreFleet}
-                className="btn-white !py-2.5 !px-5 w-full sm:w-auto justify-center text-xs rounded-md font-semibold"
-              >
-                <span>View Full Showroom</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Rolls-Royce 3-Segment Timeline Progress Selector */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-5 text-left">
+          {/* Sleek Minimalist 3-Model Hairline Switcher */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 text-left">
             {FLAGSHIP_SLIDES.map((slide, idx) => {
               const isActive = idx === activeSlideIdx;
               const isCompleted = idx < activeSlideIdx;
@@ -412,33 +373,28 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                     setActiveSlideIdx(idx);
                     setProgress(0);
                   }}
-                  className={`group p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+                  className={`p-3.5 sm:p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
                     isActive
-                      ? 'bg-zinc-900 border-white text-white shadow-xl ring-1 ring-white/30'
-                      : 'bg-[#121215]/80 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
+                      ? 'bg-white/[0.04] border-white/35 text-white shadow-lg'
+                      : 'bg-transparent border-white/[0.07] text-zinc-400 hover:text-white hover:border-white/20'
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-2 mb-2.5">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className={`font-mono text-xs ${isActive ? 'text-white font-bold' : 'text-zinc-500'}`}>
-                        0{idx + 1}
-                      </span>
-                      <span className="text-sm font-bold text-white tracking-tight truncate">
-                        {slide.name}
-                      </span>
-                    </div>
-                    <span className="font-mono text-xs text-zinc-300 font-semibold shrink-0">
+                  <div className="flex items-baseline justify-between gap-2 mb-1">
+                    <span className="text-xs sm:text-[13px] font-bold text-white tracking-tight truncate">
+                      {slide.name}
+                    </span>
+                    <span className="font-mono text-xs text-zinc-300 shrink-0 font-medium">
                       KES {(slide.priceKes / 1000000).toFixed(2)}M
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] text-zinc-400 mb-2.5">
-                    <span className="truncate">{slide.category}</span>
-                    <span className="font-mono text-zinc-500 shrink-0">{slide.grade}</span>
+                  <div className="flex items-center justify-between text-[11px] text-zinc-400 font-mono mb-2">
+                    <span className="truncate">{slide.year} · {slide.mileageKm.toLocaleString()} KM</span>
+                    <span>{slide.grade}</span>
                   </div>
 
                   {/* Animated Hairline Segment Progress Rail */}
-                  <div className="w-full h-[3px] bg-zinc-800/80 rounded-full overflow-hidden">
+                  <div className="w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-white transition-all ease-linear"
                       style={{
@@ -460,13 +416,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
       </div>
 
-      {/* Rolls-Royce Fullscreen Theatrical Hero Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
+      {/* Rolls-Royce Fullscreen Theatrical Hero Lightbox Modal */}
       {isHeroLightboxOpen && (
         <div 
           className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn text-left"
           onClick={() => setIsHeroLightboxOpen(false)}
         >
-          {/* Top Bar: Fixed slim height */}
+          {/* Top Bar */}
           <div 
             className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
@@ -498,7 +454,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
           </div>
 
-          {/* Center Stage: Constrained, Zero-Scroll Media Viewer */}
+          {/* Center Stage */}
           <div 
             className="flex-1 min-h-0 w-full relative flex items-center justify-center p-3 sm:p-6 overflow-hidden select-none"
             onClick={(e) => e.stopPropagation()}
@@ -540,7 +496,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </button>
           </div>
 
-          {/* Bottom Bar: Responsive & Zero-Scroll */}
+          {/* Bottom Bar */}
           <div 
             className="shrink-0 border-t border-zinc-800/80 bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-3"
             onClick={(e) => e.stopPropagation()}
@@ -578,7 +534,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 className="btn-white !py-2.5 !px-4 text-xs font-semibold cursor-pointer"
               >
                 <span>Browse All Cars</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
               </button>
             </div>
           </div>

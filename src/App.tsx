@@ -130,27 +130,27 @@ export function App() {
                 />
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
-                <section className="w-full bg-[#09090b] py-14 sm:py-20 px-4 sm:px-8 border-b border-[#27272a]">
-                  <div className="max-w-[1440px] mx-auto space-y-8">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-zinc-800/80">
-                      <div className="space-y-1.5">
+                <section className="w-full bg-[#09090b] py-20 sm:py-28 px-4 sm:px-8 border-b border-white/[0.07]">
+                  <div className="max-w-[1440px] mx-auto space-y-10">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/[0.07]">
+                      <div className="space-y-2">
                         <div className="inline-flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                          <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-zinc-400 font-medium">
-                            MOMBASA DUTY-PAID & READY FOR DELIVERY
+                          <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-medium">
+                            VERIFIED IN-STOCK COLLECTION
                           </span>
                         </div>
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                          Verified Cars in Stock
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em]">
+                          Current Vehicles in Stock
                         </h2>
                         <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl leading-relaxed">
-                          Personally inspected at Japanese auctions, serviced with fresh Castrol fluids at our Mombasa workshop, and covered by a 5,000 km written warranty.
+                          Handpicked at Tokyo auctions, fully serviced at our Mombasa workshop, and covered by a 5,000 km written warranty.
                         </p>
                       </div>
 
                       <button
                         onClick={() => handleNavigate('inventory')}
-                        className="btn-ghost !text-xs !py-2.5 !px-4 self-start sm:self-auto inline-flex items-center gap-1.5 shrink-0"
+                        className="btn-ghost !text-xs !py-2.5 !px-4 self-start sm:self-auto inline-flex items-center gap-2 shrink-0"
                       >
                         <span>View All Cars ({VEHICLES.length})</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -158,7 +158,7 @@ export function App() {
                     </div>
 
                     {/* Compact 4-Card Responsive Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                       {VEHICLES.map((vehicle) => (
                         <VehicleCard
                           key={vehicle.id}
@@ -173,57 +173,57 @@ export function App() {
                 </section>
 
                 {/* Architectural 3-Pillar Proof Dossier */}
-                <section className="w-full bg-[#0c0c0f] py-16 sm:py-24 px-4 sm:px-8 border-b border-[#27272a]">
-                  <div className="max-w-[1440px] mx-auto space-y-12">
-                    <div className="text-center max-w-[760px] mx-auto space-y-2">
+                <section className="w-full bg-[#070709] py-20 sm:py-28 px-4 sm:px-8 border-b border-white/[0.07]">
+                  <div className="max-w-[1440px] mx-auto space-y-14">
+                    <div className="text-center max-w-[760px] mx-auto space-y-2.5">
                       <div className="inline-flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-zinc-400 font-medium">
-                          THE ALBERKA MOTORS STANDARD
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-medium">
+                          THE ALBERKA STANDARD
                         </span>
                       </div>
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                        Clean Japanese Cars. Honest Mileage. No Surprises.
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">
+                        Three Principles of Provenance
                       </h2>
-                      <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                        We eliminate the uncertainty of buying an imported car in Kenya with end-to-end dealer accountability.
+                      <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
+                        We eliminate the uncertainty of imported cars in Kenya through transparent Japanese documentation and complete dealer accountability.
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                       {/* Pillar 01 */}
-                      <div className="relative bg-[#0e0e11] hover:bg-[#121216] border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                      <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                         <div className="space-y-4">
                           <div className="flex items-center justify-between font-mono text-[10.5px]">
                             <span className="text-zinc-400 uppercase tracking-wider font-semibold">
-                              AUCTION VERIFICATION // 01
+                              PROVENANCE // 01
                             </span>
-                            <span className="bg-zinc-900 border border-zinc-800 text-zinc-300 px-2 py-0.5 rounded">
+                            <span className="bg-black/60 border border-white/10 text-zinc-300 px-2.5 py-0.5 rounded">
                               USS Tokyo & TAA
                             </span>
                           </div>
                           <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
-                            Bought directly in Japan. Never from middlemen.
+                            Direct Japanese Auction Selection
                           </h3>
                           <p className="text-xs sm:text-[13px] text-zinc-400 leading-relaxed">
-                            We personally bid on every car at premier Japanese auction houses. We check genuine auction grading sheets, verify export certificates, and guarantee authentic JEVIC odometers before shipping to Mombasa.
+                            We personally bid on every car at premier Japanese auction houses. We verify genuine auction sheets, export certificates, and guarantee authentic JEVIC odometers before shipping to Mombasa.
                           </p>
-                          <div className="pt-2 border-t border-zinc-800/80 grid grid-cols-3 gap-2 text-left font-mono">
+                          <div className="pt-3 border-t border-white/[0.08] grid grid-cols-3 gap-2 text-left font-mono">
                             <div>
-                              <span className="text-[9px] text-zinc-400 uppercase block">Standard</span>
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Standard</span>
                               <span className="text-xs font-bold text-white">Grade 4.5+</span>
                             </div>
-                            <div className="border-l border-zinc-800/80 pl-2">
-                              <span className="text-[9px] text-zinc-400 uppercase block">Odometer</span>
-                              <span className="text-xs font-bold text-white">JEVIC Verified</span>
+                            <div className="border-l border-white/[0.08] pl-2.5">
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Odometer</span>
+                              <span className="text-xs font-bold text-white">JEVIC Certified</span>
                             </div>
-                            <div className="border-l border-zinc-800/80 pl-2">
-                              <span className="text-[9px] text-zinc-400 uppercase block">Sheet</span>
+                            <div className="border-l border-white/[0.08] pl-2.5">
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Sheet</span>
                               <span className="text-xs font-bold text-white">Original Copy</span>
                             </div>
                           </div>
                         </div>
-                        <div className="pt-5 mt-4 border-t border-zinc-800/60">
+                        <div className="pt-5 mt-5 border-t border-white/[0.06]">
                           <button
                             onClick={() => handleNavigate('about')}
                             className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
@@ -235,38 +235,38 @@ export function App() {
                       </div>
 
                       {/* Pillar 02 */}
-                      <div className="relative bg-[#0e0e11] hover:bg-[#121216] border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                      <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                         <div className="space-y-4">
                           <div className="flex items-center justify-between font-mono text-[10.5px]">
                             <span className="text-zinc-400 uppercase tracking-wider font-semibold">
-                              MOMBASA WORKSHOP // 02
+                              PREPARATION // 02
                             </span>
-                            <span className="bg-zinc-900 border border-zinc-800 text-zinc-300 px-2 py-0.5 rounded">
-                              Tangana Road
+                            <span className="bg-black/60 border border-white/10 text-zinc-300 px-2.5 py-0.5 rounded">
+                              Tangana Workshop
                             </span>
                           </div>
                           <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
-                            Full pre-delivery service before handover.
+                            Complete In-House Pre-Delivery Service
                           </h3>
                           <p className="text-xs sm:text-[13px] text-zinc-400 leading-relaxed">
-                            Every car goes straight to our dedicated Mombasa workshop. Our mechanics install fresh Castrol synthetic engine oil, replace oil and air filters, overhaul brakes, check suspension, and run computer diagnostics.
+                            Every car goes straight to our dedicated Mombasa workshop. Our mechanics install fresh Castrol synthetic engine oil, OEM filters, overhaul brakes, check suspension, and run OBD diagnostics.
                           </p>
-                          <div className="pt-2 border-t border-zinc-800/80 grid grid-cols-3 gap-2 text-left font-mono">
+                          <div className="pt-3 border-t border-white/[0.08] grid grid-cols-3 gap-2 text-left font-mono">
                             <div>
-                              <span className="text-[9px] text-zinc-400 uppercase block">Engine Oil</span>
-                              <span className="text-xs font-bold text-white">Castrol Synthetic</span>
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Engine Oil</span>
+                              <span className="text-xs font-bold text-white">Castrol Edge</span>
                             </div>
-                            <div className="border-l border-zinc-800/80 pl-2">
-                              <span className="text-[9px] text-zinc-400 uppercase block">Filters</span>
+                            <div className="border-l border-white/[0.08] pl-2.5">
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Filters</span>
                               <span className="text-xs font-bold text-white">Fresh OEM</span>
                             </div>
-                            <div className="border-l border-zinc-800/80 pl-2">
-                              <span className="text-[9px] text-zinc-400 uppercase block">Scan</span>
+                            <div className="border-l border-white/[0.08] pl-2.5">
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Scan</span>
                               <span className="text-xs font-bold text-white">Computer OBD</span>
                             </div>
                           </div>
                         </div>
-                        <div className="pt-5 mt-4 border-t border-zinc-800/60">
+                        <div className="pt-5 mt-5 border-t border-white/[0.06]">
                           <button
                             onClick={() => handleNavigate('workshop')}
                             className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
@@ -278,38 +278,38 @@ export function App() {
                       </div>
 
                       {/* Pillar 03 */}
-                      <div className="relative bg-[#0e0e11] hover:bg-[#121216] border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                      <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                         <div className="space-y-4">
                           <div className="flex items-center justify-between font-mono text-[10.5px]">
                             <span className="text-zinc-400 uppercase tracking-wider font-semibold">
-                              DEALER ACCOUNTABILITY // 03
+                              ACCOUNTABILITY // 03
                             </span>
-                            <span className="bg-emerald-950/60 border border-emerald-800 text-emerald-400 px-2 py-0.5 rounded font-bold">
+                            <span className="bg-emerald-950/60 border border-emerald-800 text-emerald-400 px-2.5 py-0.5 rounded font-bold">
                               5,000 KM Written
                             </span>
                           </div>
                           <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
-                            Written warranty covering engine & gearbox.
+                            Written Warranty Certificate
                           </h3>
                           <p className="text-xs sm:text-[13px] text-zinc-400 leading-relaxed">
                             You receive an official written warranty certificate upon collection. If any mechanical fault develops in the engine or transmission, our Mombasa technical team handles it directly with zero hassle.
                           </p>
-                          <div className="pt-2 border-t border-zinc-800/80 grid grid-cols-3 gap-2 text-left font-mono">
+                          <div className="pt-3 border-t border-white/[0.08] grid grid-cols-3 gap-2 text-left font-mono">
                             <div>
-                              <span className="text-[9px] text-zinc-400 uppercase block">Coverage</span>
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Coverage</span>
                               <span className="text-xs font-bold text-emerald-400">5,000 KM</span>
                             </div>
-                            <div className="border-l border-zinc-800/80 pl-2">
-                              <span className="text-[9px] text-zinc-400 uppercase block">Components</span>
+                            <div className="border-l border-white/[0.08] pl-2.5">
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Protection</span>
                               <span className="text-xs font-bold text-white">Engine & Gearbox</span>
                             </div>
-                            <div className="border-l border-zinc-800/80 pl-2">
-                              <span className="text-[9px] text-zinc-400 uppercase block">Support</span>
+                            <div className="border-l border-white/[0.08] pl-2.5">
+                              <span className="text-[9px] text-zinc-400 uppercase block mb-0.5">Backing</span>
                               <span className="text-xs font-bold text-white">Direct Dealer</span>
                             </div>
                           </div>
                         </div>
-                        <div className="pt-5 mt-4 border-t border-zinc-800/60">
+                        <div className="pt-5 mt-5 border-t border-white/[0.06]">
                           <button
                             onClick={() => handleNavigate('workshop')}
                             className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
@@ -323,21 +323,8 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Featured Cars Runway Carousel */}
-                <section className="w-full bg-[#09090b] py-20 px-6 sm:px-10 overflow-hidden border-b border-[#27272a]">
-                  <div className="max-w-[1400px] mx-auto">
-                    <ShowroomSlider
-                      vehicles={VEHICLES}
-                      favorites={favorites}
-                      onToggleFavorite={handleToggleFavorite}
-                      onSelectVehicle={handleSelectVehicle}
-                      onViewAll={() => handleNavigate('inventory')}
-                    />
-                  </div>
-                </section>
-
                 {/* Showrooms Overview (Mombasa & Nairobi) */}
-                <section className="w-full bg-[#121215] py-20 px-4 sm:px-8">
+                <section className="w-full bg-[#09090b] py-20 px-4 sm:px-8">
                   <div className="max-w-[1440px] mx-auto space-y-12">
                     <div className="text-center max-w-[700px] mx-auto space-y-2">
                       <div className="inline-flex items-center gap-2">

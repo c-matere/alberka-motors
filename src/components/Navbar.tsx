@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-[#27272a] h-16 flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
+      <nav className="w-full bg-[#09090b]/85 backdrop-blur-xl border-b border-white/[0.08] h-16 flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
         <div className="max-w-[1440px] w-full flex items-center justify-between gap-6">
           
           {/* Logo & Brand Name */}
@@ -60,13 +60,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Motors"
-              className="h-9 sm:h-10 w-auto object-contain"
+              className="h-8 sm:h-9 w-auto object-contain"
             />
-            <div className="flex flex-col text-left pl-3 border-l border-[#27272a]">
-              <span className="font-bold text-[15px] tracking-[-0.02em] text-white leading-tight">
+            <div className="flex flex-col text-left pl-3 border-l border-white/10">
+              <span className="font-bold text-[14.5px] tracking-tight text-white leading-tight">
                 ALBERKA MOTORS
               </span>
-              <span className="font-mono text-[10px] tracking-wider text-zinc-400 leading-none mt-0.5">
+              <span className="font-mono text-[9.5px] tracking-[0.14em] text-zinc-400 leading-none mt-0.5">
                 MOMBASA & NAIROBI
               </span>
             </div>
@@ -80,15 +80,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`relative py-1.5 text-[14px] font-medium transition-colors cursor-pointer ${
+                  className={`relative py-1.5 text-[13.5px] font-medium tracking-tight transition-colors cursor-pointer ${
                     isActive
-                      ? 'text-white'
+                      ? 'text-white font-semibold'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white rounded-full" />
+                    <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
                   )}
                 </button>
               );

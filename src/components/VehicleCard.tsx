@@ -75,7 +75,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   return (
     <div
       ref={disableScrollReveal ? undefined : ref}
-      className={`relative bg-[#0e0e11] hover:bg-[#121216] border border-zinc-800/80 hover:border-zinc-500/80 rounded-2xl p-4 sm:p-5 flex flex-col justify-between group transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:z-10 ${
+      className={`relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-4 sm:p-5 flex flex-col justify-between group transition-all duration-300 hover:shadow-[0_20px_45px_rgba(0,0,0,0.85)] overflow-hidden before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:z-10 ${
         disableScrollReveal ? '' : `scroll-reveal ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
@@ -85,7 +85,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           onClick={() => onSelect(vehicle)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="w-full aspect-[16/10.4] overflow-hidden bg-black border border-white/[0.08] group-hover:border-zinc-700/80 mb-4 relative cursor-pointer rounded-xl transition-colors select-none"
+          className="w-full aspect-[16/10.4] overflow-hidden bg-black border border-white/[0.06] group-hover:border-white/20 mb-4 relative cursor-pointer rounded-xl transition-colors select-none"
         >
           {/* Layered Crossfade Angles */}
           {cardImages.map((img, idx) => (
@@ -192,7 +192,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             <span className="text-zinc-600 hidden xs:inline">·</span>
             <span className="text-zinc-400 text-[11px] hidden xs:inline uppercase">{vehicle.bodyType.split(' ')[0]}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-zinc-400 text-[11px] bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-800">
+          <div className="flex items-center gap-1.5 text-zinc-400 text-[11px] bg-black/60 px-2 py-0.5 rounded border border-white/10">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
             <span className="text-zinc-300 font-mono">#{vehicle.stockNo}</span>
           </div>
@@ -213,7 +213,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </p>
 
         {/* Rolls-Royce Architectural Specification Strip (Hairline Dividers) */}
-        <div className="border-y border-zinc-800/80 py-3 mb-4 grid grid-cols-3 gap-2 text-left">
+        <div className="border-y border-white/[0.08] py-3 mb-4 grid grid-cols-3 gap-2 text-left">
           <div>
             <span className="text-[9px] font-mono uppercase text-zinc-400 tracking-wider block mb-0.5">
               POWERTRAIN
@@ -223,7 +223,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </span>
           </div>
 
-          <div className="border-l border-zinc-800/80 pl-2.5">
+          <div className="border-l border-white/[0.08] pl-2.5">
             <span className="text-[9px] font-mono uppercase text-zinc-400 tracking-wider block mb-0.5">
               CONSUMPTION
             </span>
@@ -232,7 +232,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </span>
           </div>
 
-          <div className="border-l border-zinc-800/80 pl-2.5">
+          <div className="border-l border-white/[0.08] pl-2.5">
             <span className="text-[9px] font-mono uppercase text-zinc-400 tracking-wider block mb-0.5">
               WORKSHOP
             </span>
@@ -244,7 +244,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       </div>
 
       {/* Pricing & Primary Action Footer */}
-      <div className="pt-3.5 border-t border-zinc-800/80 flex items-center justify-between gap-2.5">
+      <div className="pt-3.5 border-t border-white/[0.08] flex items-center justify-between gap-2.5">
         <div>
           <span className="text-[9px] text-zinc-400 uppercase tracking-widest block font-mono mb-0.5">
             MOMBASA DUTY-PAID
