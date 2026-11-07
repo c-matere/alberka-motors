@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Car, Wrench, ArrowLeftRight, Heart, MessageCircle, ArrowLeft, Send } from 'lucide-react';
+import { Compass, Car, Wrench, ArrowLeftRight, Bookmark, MessageCircle, ArrowLeft } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
 interface MobileBottomDockProps {
@@ -19,53 +19,52 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   favoritesCount,
   onOpenFavorites,
 }) => {
-  // If user is deep inside a single vehicle's story, show conversion action dock
+  // If user is viewing a single vehicle story, show conversion dock
   if (selectedVehicle) {
     return (
-      <div className="fixed bottom-3 inset-x-3 z-40 md:hidden animate-apple-up">
-        <div className="bg-[#0f1011]/95 backdrop-blur-xl border border-[#23252a] rounded-[10px] px-3.5 py-2 shadow-2xl flex items-center justify-between gap-3">
+      <div className="fixed bottom-2 inset-x-2 z-40 md:hidden">
+        <div className="bg-[#0f0714]/95 backdrop-blur-xl border border-[rgba(197,168,128,0.35)] px-4 py-2.5 flex items-center justify-between gap-3">
           <button
             onClick={onBackToInventory}
-            className="w-8 h-8 rounded-[6px] bg-[#161718] border border-[#23252a] hover:bg-[#23252a] text-[#ffffff] flex items-center justify-center shrink-0 cursor-pointer active:scale-95 transition-transform"
+            className="w-8 h-8 bg-[#160a1d] border border-[rgba(197,168,128,0.25)] text-[#dfc7a5] flex items-center justify-center shrink-0 cursor-pointer"
             title="Back to fleet"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
           </button>
 
           <div className="min-w-0 flex-1">
-            <span className="text-[11px] text-[#8a8f98] block truncate">
+            <span className="font-['Cinzel'] text-[10px] text-[#c5a880] block truncate uppercase">
               {selectedVehicle.name}
             </span>
-            <span className="font-mono text-[13px] text-[#ffffff] block leading-tight">
+            <span className="font-mono text-[12.5px] text-[#f5f5f7] block leading-tight">
               KES {selectedVehicle.priceKes.toLocaleString()}
             </span>
           </div>
 
           <a
-            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20ready%20to%20reserve%20or%20inspect%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
+            href={`https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20reserve%20a%20private%20inspection%20for%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary !py-1.5 !px-3 text-[12px] font-normal shrink-0 shadow-lg active:scale-95 transition-transform"
+            className="btn-rr-solid !py-2 !px-3 !text-[9.5px] whitespace-nowrap shrink-0"
           >
-            <MessageCircle className="w-3.5 h-3.5 mr-1" />
-            <span>Inquire</span>
+            <MessageCircle className="w-3 h-3 mr-1" />
+            <span>INQUIRE</span>
           </a>
         </div>
       </div>
     );
   }
 
-  // Standard Mobile Thumb Dock (Home, Fleet, Workshop, Valuation, Saved, WhatsApp)
   const navItems = [
-    { id: 'overview', label: 'Home', icon: Home },
-    { id: 'inventory', label: 'Fleet', icon: Car },
-    { id: 'trade-in', label: 'Trade-In', icon: ArrowLeftRight },
-    { id: 'workshop', label: 'Service', icon: Wrench },
+    { id: 'overview', label: 'SANCTUARY', icon: Compass },
+    { id: 'inventory', label: 'THE FLEET', icon: Car },
+    { id: 'trade-in', label: 'COMMISSION', icon: ArrowLeftRight },
+    { id: 'workshop', label: 'ATELIER', icon: Wrench },
   ];
 
   return (
-    <div className="fixed bottom-3 inset-x-3 z-40 md:hidden animate-apple-up">
-      <div className="bg-[#0f1011]/95 backdrop-blur-xl border border-[#23252a] rounded-[10px] px-2 py-1.5 shadow-2xl flex items-center justify-around">
+    <div className="fixed bottom-2 inset-x-2 z-40 md:hidden">
+      <div className="bg-[#0f0714]/95 backdrop-blur-xl border border-[rgba(197,168,128,0.3)] px-2 py-1.5 flex items-center justify-around">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentView === item.id;
@@ -76,49 +75,48 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
                 onNavigate(item.id);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-[6px] transition-all cursor-pointer active:scale-90 ${
-                isActive ? 'text-[#ffffff]' : 'text-[#8a8f98] hover:text-[#d0d6e0]'
+              className={`flex flex-col items-center justify-center py-1 px-2 transition-all cursor-pointer ${
+                isActive ? 'text-[#dfc7a5]' : 'text-[#8c8a94] hover:text-[#f5f5f7]'
               }`}
             >
-              <div className={`p-1 rounded-[4px] ${isActive ? 'bg-[#161718] text-[#e4f222]' : ''}`}>
+              <div className={`p-1 ${isActive ? 'text-[#c5a880]' : ''}`}>
                 <Icon className="w-4 h-4" />
               </div>
-              <span className={`text-[10px] mt-0.5 tracking-tight ${isActive ? 'font-medium text-[#ffffff]' : 'font-normal'}`}>
+              <span className={`font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5 ${isActive ? 'text-[#dfc7a5] font-medium' : 'font-normal'}`}>
                 {item.label}
               </span>
             </button>
           );
         })}
 
-        {/* Saved Vehicles with Live Badge */}
+        {/* Curated Dossier with Badge */}
         <button
           onClick={onOpenFavorites}
-          className="flex flex-col items-center justify-center py-1 px-2.5 text-[#8a8f98] hover:text-[#ffffff] transition-all cursor-pointer active:scale-90 relative"
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#8c8a94] hover:text-[#f5f5f7] transition-all cursor-pointer relative"
         >
-          <div className="p-1 rounded-[4px] relative">
-            <Heart className="w-4 h-4" />
+          <div className="p-1 relative">
+            <Bookmark className="w-4 h-4 text-[#8c8a94]" />
             {favoritesCount > 0 && (
-              <span className="absolute -top-0.5 -right-1 bg-[#e4f222] text-[#08090a] text-[8px] w-3 h-3 rounded-full flex items-center justify-center font-bold">
+              <span className="absolute -top-0.5 -right-1 bg-[#c5a880] text-[#0f0714] text-[8px] font-mono w-3 h-3 flex items-center justify-center font-bold">
                 {favoritesCount}
               </span>
             )}
           </div>
-          <span className="text-[10px] mt-0.5 tracking-tight">Saved</span>
+          <span className="font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5">DOSSIER</span>
         </button>
 
-        {/* Direct WhatsApp Concierge */}
+        {/* Whispers Chat */}
         <a
-          href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20your%20verified%20fleet."
+          href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20the%20fleet."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center py-1 px-2.5 text-[#8a8f98] hover:text-[#ffffff] transition-all cursor-pointer active:scale-90 relative"
-          title="WhatsApp Concierge"
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#8c8a94] hover:text-[#f5f5f7] transition-all cursor-pointer relative"
+          title="Whispers Concierge"
         >
-          <div className="p-1 rounded-[4px] bg-[#161718] border border-[#23252a] relative">
-            <MessageCircle className="w-4 h-4 text-[#ffffff]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#e4f222] absolute top-0.5 right-0.5 animate-pulse" />
+          <div className="p-1 relative">
+            <MessageCircle className="w-4 h-4 text-[#c5a880]" />
           </div>
-          <span className="text-[10px] mt-0.5 tracking-tight">Chat</span>
+          <span className="font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5 text-[#c5a880]">WHISPERS</span>
         </a>
       </div>
     </div>

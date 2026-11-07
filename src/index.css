@@ -1,400 +1,276 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-void: #08090a;
-  --color-carbon: #0f1011;
-  --color-obsidian: #161718;
-  --color-graphite: #23252a;
-  --color-smoke: #383b3f;
-  --color-ash: #62666d;
-  --color-fog: #8a8f98;
-  --color-mist: #d0d6e0;
-  --color-bone: #e5e5e6;
+  /* Rolls-Royce Design System — Nocturnal Palette */
+  --color-purple-spirit: #160a1d;
+  --color-purple-spirit-dark: #0f0714;
+  --color-purple-spirit-light: #261230;
+  --color-obsidian-pitch: #080809;
+  --color-charcoal-atelier: #131316;
+  --color-rose-gold: #c5a880;
+  --color-gold-light: #dfc7a5;
+  --color-gold-dark: #9c815e;
+  --color-fine-bone: #f5f5f7;
   --color-paper: #ffffff;
-  --color-acid-lime: #e4f222;
-  --color-pulse-green: #27a644;
-  --color-coral-red: #eb5757;
-  --color-signal-teal: #02b8cc;
-  --color-iris-violet: #6366f1;
-  --color-lavender: #8b5cf6;
+  --color-silver-mist: #8c8a94;
+  --color-nocturne-ash: #45434d;
+  --color-bb-crimson: #8b1e28;
 
   /* Typography */
-  --font-inter-variable: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-berkeley-mono: 'JetBrains Mono', 'Berkeley Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display: 'Cinzel', 'Riviera Nights', 'Times New Roman', serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Typography — Scale */
-  --text-caption: 13px;
-  --leading-caption: 1.2;
-  --text-body-sm: 15px;
-  --leading-body-sm: 1.6;
-  --tracking-body-sm: -0.165px;
-  --text-body-lg: 20px;
-  --leading-body-lg: 1.33;
-  --tracking-body-lg: -0.24px;
-  --text-subheading: 24px;
-  --leading-subheading: 1.33;
-  --tracking-subheading: -0.288px;
-  --text-heading-sm: 32px;
-  --leading-heading-sm: 1.13;
-  --tracking-heading-sm: -0.704px;
-  --text-heading: 48px;
-  --leading-heading: 1;
-  --tracking-heading: -1.056px;
-  --text-heading-lg: 64px;
-  --leading-heading-lg: 1;
-  --tracking-heading-lg: -1.408px;
-  --text-display: 72px;
-  --leading-display: 1;
-  --tracking-display: -1.584px;
+  /* Zero Radius Luxury Rule */
+  --radius-none: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-full: 0px;
 
-  /* Spacing */
-  --spacing-4: 4px;
-  --spacing-8: 8px;
-  --spacing-12: 12px;
-  --spacing-16: 16px;
-  --spacing-20: 20px;
-  --spacing-24: 24px;
-  --spacing-28: 28px;
-  --spacing-32: 32px;
-  --spacing-36: 36px;
-  --spacing-40: 40px;
-  --spacing-48: 48px;
-  --spacing-56: 56px;
-  --spacing-64: 64px;
-  --spacing-80: 80px;
-  --spacing-96: 96px;
-  --spacing-128: 128px;
-
-  /* Border Radius */
-  --radius-sm: 2px;
-  --radius-md: 6px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
-  --radius-2xl-2: 22px;
-  --radius-full: 400px;
-  --radius-full-2: 9999px;
-
-  /* Shadows */
-  --shadow-sm: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
-  --shadow-md: rgba(0, 0, 0, 0.2) 0px 0px 12px 0px inset;
-  --shadow-subtle: rgb(35, 37, 42) 0px 0px 0px 1px inset;
-  --shadow-subtle-2: rgba(0, 0, 0, 0.2) 0px 0px 0px 1px;
-  --shadow-subtle-3: rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px;
-  --shadow-xl: rgba(8, 9, 10, 0.6) 0px 4px 32px 0px;
-  --shadow-subtle-4: rgba(255, 255, 255, 0.03) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px;
-  --shadow-subtle-5: rgba(0, 0, 0, 0.1) 0px 0px 0px 2px;
+  /* Shadows: Strictly None across the House of Luxury */
+  --shadow-none: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
 }
 
 :root {
-  /* Colors */
-  --color-void: #08090a;
-  --color-carbon: #0f1011;
-  --color-obsidian: #161718;
-  --color-graphite: #23252a;
-  --color-smoke: #383b3f;
-  --color-ash: #62666d;
-  --color-fog: #8a8f98;
-  --color-mist: #d0d6e0;
-  --color-bone: #e5e5e6;
-  --color-paper: #ffffff;
-  --color-acid-lime: #e4f222;
-  --color-pulse-green: #27a644;
-  --color-coral-red: #eb5757;
-  --color-signal-teal: #02b8cc;
-  --color-iris-violet: #6366f1;
-  --color-lavender: #8b5cf6;
+  --color-purple-spirit: #160a1d;
+  --color-purple-spirit-dark: #0f0714;
+  --color-purple-spirit-light: #261230;
+  --color-obsidian-pitch: #080809;
+  --color-charcoal-atelier: #131316;
+  --color-rose-gold: #c5a880;
+  --color-gold-light: #dfc7a5;
+  --color-gold-dark: #9c815e;
+  --color-fine-bone: #f5f5f7;
+  --color-silver-mist: #8c8a94;
+  --color-nocturne-ash: #45434d;
 
-  /* Typography */
-  --font-inter-variable: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-berkeley-mono: 'JetBrains Mono', 'Berkeley Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-  /* Layout */
-  --page-max-width: 1200px;
-  --section-gap: 96px;
-  --card-padding: 24px;
-  --element-gap: 8px;
-
-  /* Named Radii */
-  --radius-cards: 12px;
-  --radius-pills: 9999px;
-  --radius-small: 2px;
-  --radius-badges: 4px;
-  --radius-inputs: 6px;
-  --radius-buttons: 6px;
-
-  /* Surfaces */
-  --surface-void: #08090a;
-  --surface-carbon: #0f1011;
-  --surface-obsidian: #161718;
-  --surface-slate: #23252a;
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  background-color: var(--color-void);
-  color: var(--color-mist);
-  font-family: var(--font-inter-variable);
-  font-feature-settings: 'cv01' on, 'ss03' on, 'zero' on;
+/* Base Canvas & Global Resets */
+body {
+  background-color: #160a1d;
+  color: #f5f5f7;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-void);
-  color: var(--color-mist);
-  font-family: var(--font-inter-variable);
-  font-size: 16px;
-  line-height: 1.5;
+  letter-spacing: -0.01em;
   overflow-x: hidden;
 }
 
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-void);
-  color: var(--color-mist);
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-::selection {
-  background-color: var(--color-acid-lime);
-  color: var(--color-void);
+::-webkit-scrollbar-track {
+  background: #0f0714;
 }
 
-/* Linear Typography Scale & Weights (capped at 510/590, never 700+) */
-.hero-display {
-  font-family: var(--font-inter-variable);
-  font-weight: 510;
-  font-size: clamp(38px, 5.5vw, 68px);
-  line-height: 1.05;
-  letter-spacing: -0.022em;
-  color: var(--color-paper);
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 168, 128, 0.25);
 }
 
-.feature-heading {
-  font-family: var(--font-inter-variable);
-  font-weight: 510;
-  font-size: clamp(26px, 3.4vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.022em;
-  color: var(--color-paper);
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 168, 128, 0.6);
 }
 
-.product-kicker {
-  font-family: var(--font-inter-variable);
-  font-weight: 510;
-  font-size: 20px;
-  line-height: 1.33;
-  letter-spacing: -0.012em;
-  color: var(--color-mist);
+/* Aristocratic Display Typography */
+.rr-title-hero {
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1.08;
+  color: #f5f5f7;
 }
 
-.launch-status-label {
-  font-family: var(--font-berkeley-mono);
+.rr-title-h1 {
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.15;
+  color: #f5f5f7;
+}
+
+.rr-title-h2 {
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  color: #f5f5f7;
+}
+
+.rr-title-h3 {
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  line-height: 1.35;
+  color: #f5f5f7;
+}
+
+.rr-eyebrow {
+  font-family: 'Cinzel', 'Riviera Nights', serif;
   font-weight: 400;
   font-size: 11px;
-  line-height: 1.4;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-fog);
-  display: inline-block;
+  letter-spacing: 0.25em;
+  color: #c5a880;
 }
 
-/* Linear Buttons */
-/* Primary Action Button (Acid Lime Flashlight) */
-.btn-primary,
-.pricing-blue-pill,
-.pricing-red-pill {
-  background-color: var(--color-acid-lime);
-  color: var(--color-void) !important;
-  font-family: var(--font-inter-variable);
-  font-size: 14px;
-  font-weight: 510;
-  line-height: 1.4;
-  letter-spacing: -0.011em;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+.rr-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: #dfc7a5;
+}
+
+.rr-label-spec {
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #8c8a94;
+}
+
+/* Ghost Hairline Action Button */
+.btn-rr-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4), inset 0px 1px 0px rgba(255, 255, 255, 0.2);
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-primary:hover,
-.pricing-blue-pill:hover,
-.pricing-red-pill:hover {
-  background-color: #d6e320;
-  transform: translateY(-0.5px);
-}
-.btn-primary:active,
-.pricing-blue-pill:active,
-.pricing-red-pill:active {
-  transform: translateY(0.5px);
-}
-
-.btn-primary-lg,
-.pricing-blue-pill-lg,
-.pricing-red-pill-lg {
-  background-color: var(--color-acid-lime);
-  color: var(--color-void) !important;
-  font-family: var(--font-inter-variable);
-  font-size: 14px;
-  font-weight: 510;
-  line-height: 1.4;
-  letter-spacing: -0.011em;
-  padding: 10px 20px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4), inset 0px 1px 0px rgba(255, 255, 255, 0.2);
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-primary-lg:hover,
-.pricing-blue-pill-lg:hover,
-.pricing-red-pill-lg:hover {
-  background-color: #d6e320;
-  transform: translateY(-0.5px);
-}
-
-/* Ghost / Outline Button (Hairline 1px #23252a) */
-.btn-ghost,
-.outlined-explore-pill {
-  background-color: transparent;
-  color: var(--color-mist) !important;
-  border: 1px solid var(--color-graphite);
-  font-family: var(--font-inter-variable);
-  font-size: 13px;
+  gap: 12px;
+  padding: 13px 28px;
+  border-radius: 0px !important;
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  background: transparent;
+  color: #f5f5f7;
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-size: 11.5px;
   font-weight: 400;
-  line-height: 1.4;
-  padding: 8px 14px;
-  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.20em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.5s var(--ease-luxury);
+}
+
+.btn-rr-ghost:hover {
+  border-color: #dfc7a5;
+  background-color: #c5a880;
+  color: #0f0714;
+}
+
+/* Bespoke Solid Button */
+.btn-rr-solid {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 12px;
+  padding: 13px 28px;
+  border-radius: 0px !important;
+  border: 1px solid #c5a880;
+  background-color: #c5a880;
+  color: #0f0714;
+  font-family: 'Cinzel', 'Riviera Nights', serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.20em;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.15s ease;
-}
-.btn-ghost:hover,
-.outlined-explore-pill:hover {
-  border-color: var(--color-smoke);
-  color: var(--color-paper) !important;
-  background-color: rgba(255, 255, 255, 0.03);
+  transition: all 0.5s var(--ease-luxury);
 }
 
-/* Neutral White Pill Sign-up Button */
-.btn-white-pill {
-  background-color: var(--color-paper);
-  color: var(--color-void) !important;
-  border-radius: 9999px;
-  padding: 6px 14px;
-  font-family: var(--font-inter-variable);
-  font-size: 13px;
-  font-weight: 510;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-.btn-white-pill:hover {
-  background-color: var(--color-bone);
+.btn-rr-solid:hover {
+  background-color: #dfc7a5;
+  border-color: #dfc7a5;
+  color: #080809;
 }
 
-/* Linear Card (12px radius, Carbon #0f1011 surface, 1px hairline border #23252a) */
-.card-linear,
-.apple-card {
-  background-color: var(--color-carbon);
-  border-radius: 12px;
-  border: 1px solid var(--color-graphite);
-  box-shadow: var(--shadow-sm);
-  transition: border-color 0.2s ease;
-}
-.card-linear:hover,
-.apple-card:hover {
-  border-color: var(--color-smoke);
-}
-
-/* Linear Status Badge (4px radius) */
-.badge-linear {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--color-fog);
-  border-radius: 4px;
-  padding: 1px 6px;
-  font-family: var(--font-inter-variable);
-  font-size: 12px;
-  font-weight: 400;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Berkeley Mono Text */
-.font-mono-code {
-  font-family: var(--font-berkeley-mono);
-  letter-spacing: -0.013em;
-}
-
-/* Linear Input */
-.input-linear {
-  background-color: rgba(255, 255, 255, 0.02);
+/* Atelier Hairline Card */
+.rr-card {
+  background-color: #131316;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--color-mist);
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-family: var(--font-inter-variable);
+  border-radius: 0px !important;
+  transition: border-color 0.5s var(--ease-luxury), background-color 0.5s var(--ease-luxury);
+}
+
+.rr-card:hover {
+  border-color: rgba(197, 168, 128, 0.45);
+  background-color: #160a1d;
+}
+
+/* Minimalist Underline Input for Private Concierge / Whispers Panel */
+.rr-input-whispers {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+  border-radius: 0px !important;
+  padding: 12px 0;
+  color: #f5f5f7;
+  font-family: var(--font-body);
   font-size: 14px;
-  font-weight: 400;
-  transition: border-color 0.15s ease;
-}
-.input-linear:focus {
   outline: none;
-  border-color: var(--color-mist);
+  transition: border-color 0.4s var(--ease-luxury);
 }
 
-/* Floating Capsule */
-.floating-capsule {
-  background: var(--color-carbon);
-  border: 1px solid var(--color-graphite);
-  border-radius: 12px;
-  box-shadow: var(--shadow-xl);
+.rr-input-whispers:focus {
+  border-bottom-color: #dfc7a5;
 }
 
-/* Skeleton Shimmer */
-@keyframes skeletonSweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+.rr-input-whispers::placeholder {
+  color: #45434d;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.skeleton-shimmer {
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
-  animation: skeletonSweep 1.8s infinite ease-in-out;
+/* Hairline Metallic Divider */
+.rr-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(197, 168, 128, 0.35) 50%, transparent 100%);
+  width: 100%;
+  margin: 0;
+  border: none;
 }
 
-/* Utilities */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Subtle Ethereal Ambient Radial Lighting */
+.rr-ambient-glow {
+  background: radial-gradient(circle at 50% 20%, rgba(197, 168, 128, 0.08) 0%, transparent 70%);
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+.rr-ambient-glow-plum {
+  background: radial-gradient(circle at 50% 0%, rgba(38, 18, 48, 0.6) 0%, transparent 75%);
+}
+
+/* Smooth Entrance Transition */
+.view-enter {
+  animation: rrFadeIn 0.8s var(--ease-luxury) forwards;
+}
+
+@keyframes rrFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

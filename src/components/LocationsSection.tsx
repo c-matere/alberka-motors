@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Calendar, CheckCircle2, MessageCircle, Navigation } from 'lucide-react';
+import { Phone, Mail, Clock, Calendar, CheckCircle2, MessageCircle } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
 interface LocationsSectionProps {
@@ -24,188 +24,192 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Hello Alberka Motors, my name is ${testDriveData.name} (${testDriveData.phone}). I would like to schedule a VIP Test Drive for the ${testDriveData.carName} at your ${testDriveData.location} showroom on ${testDriveData.preferredDate || 'the next available date'} (${testDriveData.timeSlot}).`
+      `Salutations Alberka Motors, my name is ${testDriveData.name} (${testDriveData.phone}). I wish to arrange a private viewing and consultation for the ${testDriveData.carName} at your ${testDriveData.location} suite on ${testDriveData.preferredDate || 'the earliest available date'} (${testDriveData.timeSlot}).`
     );
     window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
     setBookingSuccess(true);
   };
 
   return (
-    <section className="w-full bg-[#08090a] py-16 px-4 sm:px-6 text-[#d0d6e0] border-t border-[#23252a]">
-      <div className="max-w-[1200px] mx-auto space-y-16">
+    <section className="w-full bg-[#160a1d] py-20 sm:py-28 px-6 text-[#f5f5f7] border-t border-[rgba(197,168,128,0.18)]">
+      <div className="max-w-[1400px] mx-auto space-y-20">
         
-        {/* Header */}
-        <div className="text-center max-w-[680px] mx-auto">
-          <span className="launch-status-label mb-2">
-            Direct Showrooms & Service Centers
-          </span>
-          <h1 className="hero-display mb-3">
-            Showroom Hubs.
+        {/* Section Header */}
+        <div className="text-center max-w-[800px] mx-auto">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
+            <span className="rr-eyebrow">
+              PRIVATE SHOWROOM SUITES & ATELIERS
+            </span>
+            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
+          </div>
+          <h1 className="rr-title-h1 text-[32px] sm:text-[46px] md:text-[54px] mb-4">
+            THE SHOWROOM SUITES.
           </h1>
-          <p className="text-[14px] sm:text-[15px] text-[#8a8f98] leading-relaxed">
-            Visit our physical showrooms in Mombasa and Nairobi. Experience silent electric e-POWER acceleration, inspect vehicle undercarriages on our hydraulic hoists, and meet our senior team.
+          <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[21px] italic leading-relaxed max-w-[700px] mx-auto">
+            Experience our private hospitality in Mombasa and Nairobi. Sample the silent propulsion of Japanese e-POWER and hybrid engineering, inspect chassis undercarriages on our workshop hoists, and consult our senior curation directors.
           </p>
         </div>
 
         {/* Showrooms Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Mombasa Flagship */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 flex flex-col justify-between hover:border-[#383b3f] transition-all">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="launch-status-label">Coast Operations Hub</span>
-                <span className="text-[11px] font-mono text-[#8a8f98] bg-[#161718] px-2 py-0.5 rounded-[4px] border border-[#23252a]">
-                  Main Workshop On-Site
+          <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 sm:p-10 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="rr-eyebrow">COASTAL ATELIER & HEADQUARTERS</span>
+                <span className="font-['Cinzel'] text-[10px] text-[#c5a880] border border-[rgba(197,168,128,0.3)] px-2.5 py-0.5 uppercase">
+                  MASTER WORKSHOP ON-SITE
                 </span>
               </div>
-              <h2 className="text-[20px] font-medium text-[#ffffff] mb-1.5">Mombasa Flagship Showroom</h2>
-              <p className="text-[13px] text-[#8a8f98] mb-5 leading-relaxed">
+              <h2 className="font-['Cinzel'] text-[22px] sm:text-[26px] text-[#f5f5f7] tracking-wider uppercase">Mombasa Flagship Atelier</h2>
+              <p className="text-[14px] text-[#8c8a94] leading-relaxed font-light">
                 Tangana Road (Opposite AutoXpress / Near the Railway Station), Majengo, Mombasa Island.<br />
-                <span className="text-[12px] text-[#8a8f98] mt-1 block">Nyali Branch: Links Road, Nyali, Mombasa.</span>
+                <span className="text-[12.5px] text-[#dfc7a5] font-['Cinzel'] mt-1 block">Nyali Suite: Links Road, Nyali, Mombasa.</span>
               </p>
 
-              <div className="space-y-2.5 py-4 border-y border-[#23252a] text-[13px]">
-                <div className="flex items-center gap-2.5">
-                  <Phone className="w-3.5 h-3.5 text-[#8a8f98]" />
-                  <a href="tel:+254714333888" className="font-mono text-[#ffffff] hover:text-[#e4f222] transition-colors">+254 714 333888</a>
-                  <span className="text-[#383b3f]">/</span>
-                  <a href="tel:+254737333888" className="font-mono text-[#ffffff] hover:text-[#e4f222] transition-colors">+254 737 333888</a>
+              <div className="space-y-3 py-5 border-y border-[rgba(197,168,128,0.15)] text-[13.5px]">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-[#c5a880]" />
+                  <a href="tel:+254714333888" className="font-mono text-[#f5f5f7] hover:text-[#dfc7a5] transition-colors">+254 714 333888</a>
+                  <span className="text-[rgba(197,168,128,0.3)]">//</span>
+                  <a href="tel:+254737333888" className="font-mono text-[#f5f5f7] hover:text-[#dfc7a5] transition-colors">+254 737 333888</a>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Mail className="w-3.5 h-3.5 text-[#8a8f98]" />
-                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-[#8a8f98] hover:text-[#ffffff] transition-colors">sales@alberkamotors.co.ke</a>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-[#c5a880]" />
+                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-[#8c8a94] hover:text-[#f5f5f7] transition-colors">sales@alberkamotors.co.ke</a>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Clock className="w-3.5 h-3.5 text-[#8a8f98]" />
-                  <span className="font-mono text-[12px] text-[#8a8f98]">Mon – Sat: 08:00 – 18:00 (Sunday by appointment)</span>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-4 h-4 text-[#c5a880]" />
+                  <span className="font-['Cinzel'] text-[11px] text-[#8c8a94] tracking-wider uppercase">Mon – Sat: 08:00 – 18:00 (Sunday by private appointment)</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="font-mono text-[11px] text-[#8a8f98]">Hydraulic hoists & diagnostic bays</span>
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider">Hydraulic Hoists & Diagnostics</span>
               <a
-                href="https://wa.me/254714333888?text=Hello%20Mombasa%20Showroom,%20I%20would%20like%20to%20visit."
+                href="https://wa.me/254714333888?text=Salutations%20Mombasa%20Atelier,%20I%20wish%20to%20reserve%20a%20visit."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary w-full sm:w-auto"
+                className="btn-rr-solid w-full sm:w-auto"
               >
-                Message Mombasa Desk
+                CONNECT WITH MOMBASA DESK
               </a>
             </div>
           </div>
 
           {/* Nairobi Capital Hub */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 flex flex-col justify-between hover:border-[#383b3f] transition-all">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="launch-status-label">Capital City Hub</span>
-                <span className="text-[11px] font-mono text-[#8a8f98] bg-[#161718] px-2 py-0.5 rounded-[4px] border border-[#23252a]">
-                  Westlands Prime
+          <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 sm:p-10 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="rr-eyebrow">CAPITAL CITY EXECUTIVE SUITE</span>
+                <span className="font-['Cinzel'] text-[10px] text-[#c5a880] border border-[rgba(197,168,128,0.3)] px-2.5 py-0.5 uppercase">
+                  WESTLANDS PRIME
                 </span>
               </div>
-              <h2 className="text-[20px] font-medium text-[#ffffff] mb-1.5">Nairobi Westlands Showroom</h2>
-              <p className="text-[13px] text-[#8a8f98] mb-5 leading-relaxed">
+              <h2 className="font-['Cinzel'] text-[22px] sm:text-[26px] text-[#f5f5f7] tracking-wider uppercase">Nairobi Westlands Suite</h2>
+              <p className="text-[14px] text-[#8c8a94] leading-relaxed font-light">
                 Mwanzi Road, Westlands (Directly opposite Westgate Mall Entrance), Nairobi.<br />
-                <span className="text-[12px] text-[#8a8f98] mt-1 block">VIP Enclosed Handover Bay & Secure Customer Parking.</span>
+                <span className="text-[12.5px] text-[#dfc7a5] font-['Cinzel'] mt-1 block">VIP Enclosed Handover Bay & Secure Private Parking.</span>
               </p>
 
-              <div className="space-y-2.5 py-4 border-y border-[#23252a] text-[13px]">
-                <div className="flex items-center gap-2.5">
-                  <Phone className="w-3.5 h-3.5 text-[#8a8f98]" />
-                  <a href="tel:+254748999333" className="font-mono text-[#ffffff] hover:text-[#e4f222] transition-colors">+254 748 999333</a>
+              <div className="space-y-3 py-5 border-y border-[rgba(197,168,128,0.15)] text-[13.5px]">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-[#c5a880]" />
+                  <a href="tel:+254748999333" className="font-mono text-[#f5f5f7] hover:text-[#dfc7a5] transition-colors">+254 748 999333</a>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Mail className="w-3.5 h-3.5 text-[#8a8f98]" />
-                  <a href="mailto:nairobi@alberkamotors.co.ke" className="font-mono text-[#8a8f98] hover:text-[#ffffff] transition-colors">nairobi@alberkamotors.co.ke</a>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-[#c5a880]" />
+                  <a href="mailto:nairobi@alberkamotors.co.ke" className="font-mono text-[#8c8a94] hover:text-[#f5f5f7] transition-colors">nairobi@alberkamotors.co.ke</a>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Clock className="w-3.5 h-3.5 text-[#8a8f98]" />
-                  <span className="font-mono text-[12px] text-[#8a8f98]">Mon – Sat: 08:30 – 18:00 (Sunday by appointment)</span>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-4 h-4 text-[#c5a880]" />
+                  <span className="font-['Cinzel'] text-[11px] text-[#8c8a94] tracking-wider uppercase">Mon – Sat: 08:30 – 18:00 (Sunday by private appointment)</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="font-mono text-[11px] text-[#8a8f98]">Home & office delivery available</span>
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider">Executive Handover & Delivery</span>
               <a
-                href="https://wa.me/254748999333?text=Hello%20Nairobi%20Showroom,%20I%20would%20like%20to%20visit%20Westlands."
+                href="https://wa.me/254748999333?text=Salutations%20Nairobi%20Suite,%20I%20wish%20to%20reserve%20a%20private%20viewing%20in%20Westlands."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary w-full sm:w-auto"
+                className="btn-rr-solid w-full sm:w-auto"
               >
-                Message Nairobi Desk
+                CONNECT WITH NAIROBI DESK
               </a>
             </div>
           </div>
 
         </div>
 
-        {/* VIP Test Drive Booking Studio */}
-        <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-10">
-          <div className="max-w-[580px] mb-6">
-            <span className="launch-status-label mb-1">VIP Concierge</span>
-            <h3 className="text-[20px] font-medium text-[#ffffff]">Schedule a Private Test Drive</h3>
-            <p className="text-[13px] text-[#8a8f98] mt-1">
-              Select your vehicle and preferred hub. We detail, fuel, and park your vehicle in our private customer bay prior to your arrival.
+        {/* Private Viewing Booking Studio */}
+        <div className="bg-[#131316] border border-[rgba(197,168,128,0.3)] p-8 sm:p-12 space-y-6">
+          <div className="max-w-[700px]">
+            <span className="rr-eyebrow mb-2 block">WHISPERS PRIVATE CONCIERGE</span>
+            <h3 className="font-['Cinzel'] text-[24px] text-[#f5f5f7] tracking-wide uppercase">Schedule a Private Viewing & Test Drive</h3>
+            <p className="text-[13.5px] text-[#8c8a94] mt-1 font-light">
+              Select your marquee and preferred showroom suite. We detail, fuel, and park your vehicle in our private customer bay prior to your arrival.
             </p>
           </div>
 
           {bookingSuccess ? (
-            <div className="bg-[#27a644]/10 border border-[#27a644]/30 rounded-[6px] p-6 text-center text-[#27a644]">
-              <CheckCircle2 className="w-7 h-7 mx-auto mb-2" />
-              <h4 className="text-[16px] font-medium">Test Drive Scheduled Successfully</h4>
-              <p className="text-[13px] mt-1 text-[#d0d6e0]">Our concierge is connecting via WhatsApp with your gate entry pass.</p>
+            <div className="bg-[#0f0714] border border-[#c5a880] p-8 text-center text-[#dfc7a5] space-y-2">
+              <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-[#c5a880]" />
+              <h4 className="font-['Cinzel'] text-[18px] tracking-wider uppercase">Viewing Scheduled Successfully</h4>
+              <p className="text-[14px] text-[#8c8a94] font-light">Our concierge is connecting via WhatsApp with your private suite security pass.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-[12px] text-[#8a8f98] mb-1.5">Full Name</label>
+                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">FULL NAME</label>
                   <input
                     type="text"
                     required
                     value={testDriveData.name}
                     onChange={(e) => setTestDriveData({ ...testDriveData, name: e.target.value })}
-                    placeholder="e.g. David Mwangi"
-                    className="w-full px-3.5 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#ffffff] focus:outline-none focus:border-[#383b3f]"
+                    placeholder="E.G. DAVID MWANGI"
+                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-['Cinzel'] tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[12px] text-[#8a8f98] mb-1.5">WhatsApp Contact</label>
+                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">WHATSAPP CONTACT</label>
                   <input
                     type="tel"
                     required
                     value={testDriveData.phone}
                     onChange={(e) => setTestDriveData({ ...testDriveData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-3.5 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#ffffff] focus:outline-none focus:border-[#383b3f]"
+                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-mono tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[12px] text-[#8a8f98] mb-1.5">Preferred Showroom Hub</label>
+                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">PREFERRED SUITE</label>
                   <select
                     value={testDriveData.location}
                     onChange={(e) => setTestDriveData({ ...testDriveData, location: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#d0d6e0] focus:outline-none cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[11px] font-['Cinzel'] tracking-wider text-[#dfc7a5] focus:outline-none cursor-pointer"
                   >
-                    <option value="Mombasa — Tangana Road">Mombasa (Tangana Road Flagship)</option>
-                    <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
-                    <option value="Nairobi — Westlands Mwanzi Rd">Nairobi (Westlands Mwanzi Rd)</option>
+                    <option value="Mombasa — Tangana Road">MOMBASA (TANGANA ROAD FLAGSHIP)</option>
+                    <option value="Mombasa — Nyali Branch">MOMBASA (NYALI SUITE)</option>
+                    <option value="Nairobi — Westlands Mwanzi Rd">NAIROBI (WESTLANDS MWANZI RD)</option>
                   </select>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-[12px] text-[#8a8f98] mb-1.5">Vehicle of Choice</label>
+                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">MARQUE OF CHOICE</label>
                   <select
                     value={testDriveData.carName}
                     onChange={(e) => setTestDriveData({ ...testDriveData, carName: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#d0d6e0] focus:outline-none cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[11px] font-['Cinzel'] tracking-wider text-[#dfc7a5] focus:outline-none cursor-pointer"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.name}>
@@ -216,35 +220,35 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[12px] text-[#8a8f98] mb-1.5">Preferred Date</label>
+                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">PREFERRED DATE</label>
                   <input
                     type="date"
                     value={testDriveData.preferredDate}
                     onChange={(e) => setTestDriveData({ ...testDriveData, preferredDate: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#d0d6e0] focus:outline-none focus:border-[#383b3f]"
+                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-mono tracking-wider text-[#dfc7a5] focus:outline-none focus:border-[#dfc7a5]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[12px] text-[#8a8f98] mb-1.5">Preferred Time Window</label>
+                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">TIME WINDOW</label>
                   <select
                     value={testDriveData.timeSlot}
                     onChange={(e) => setTestDriveData({ ...testDriveData, timeSlot: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#d0d6e0] focus:outline-none cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[11px] font-['Cinzel'] tracking-wider text-[#dfc7a5] focus:outline-none cursor-pointer"
                   >
-                    <option value="Morning (9:00 AM – 12:00 PM)">Morning (09:00 – 12:00)</option>
-                    <option value="Afternoon (1:00 PM – 4:00 PM)">Afternoon (13:00 – 16:00)</option>
-                    <option value="Late Afternoon (4:00 PM – 6:00 PM)">Late Afternoon (16:00 – 18:00)</option>
+                    <option value="Morning (9:00 AM – 12:00 PM)">MORNING (09:00 – 12:00)</option>
+                    <option value="Afternoon (1:00 PM – 4:00 PM)">AFTERNOON (13:00 – 16:00)</option>
+                    <option value="Late Afternoon (4:00 PM – 6:00 PM)">LATE AFTERNOON (16:00 – 18:00)</option>
                   </select>
                 </div>
               </div>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button type="submit" className="btn-primary w-full sm:w-auto cursor-pointer">
-                  <Calendar className="w-4 h-4" />
-                  <span>Confirm Test Drive Booking on WhatsApp</span>
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button type="submit" className="btn-rr-solid w-full sm:w-auto">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  <span>CONFIRM PRIVATE VIEWING ON WHATSAPP</span>
                 </button>
-                <span className="font-mono text-[11px] text-[#8a8f98]">Valid driver's license required on day of drive</span>
+                <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider">Valid driving credentials required upon arrival</span>
               </div>
             </form>
           )}

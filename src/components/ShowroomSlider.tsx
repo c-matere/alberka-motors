@@ -24,7 +24,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
   const sliderRef = useRef<HTMLDivElement>(null);
   const isProgrammaticScroll = useRef(false);
 
-  // Scroll to specific slide
+  // Scroll to specific slide with luxury deceleration
   const scrollToSlide = useCallback((index: number) => {
     if (!sliderRef.current) return;
     const container = sliderRef.current;
@@ -46,7 +46,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
     setTimeout(() => {
       isProgrammaticScroll.current = false;
-    }, 600);
+    }, 700);
   }, []);
 
   const handleNext = () => {
@@ -59,7 +59,6 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
     scrollToSlide(prevIdx);
   };
 
-  // Sync active slide index on scroll
   const handleScroll = () => {
     if (isProgrammaticScroll.current || !sliderRef.current) return;
     const container = sliderRef.current;
@@ -83,7 +82,6 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
     }
   };
 
-  // Auto-play timer (advances every 5.5s unless paused or hovered)
   useEffect(() => {
     if (!isPlaying || isUserInteracting || vehicles.length <= 1) return;
 
@@ -93,45 +91,47 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         scrollToSlide(next);
         return next;
       });
-    }, 5500);
+    }, 6500);
 
     return () => clearInterval(timer);
   }, [isPlaying, isUserInteracting, vehicles.length, scrollToSlide]);
 
   return (
     <div
-      className="w-full relative space-y-6"
+      className="w-full relative space-y-8"
       onMouseEnter={() => setIsUserInteracting(true)}
       onMouseLeave={() => setIsUserInteracting(false)}
     >
-      {/* Slider Header Toolbar */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 px-2">
-        <div>
-          <span className="launch-status-label mb-2">Showroom Lineup</span>
-          <h2 className="feature-heading">Featured vehicles ready for delivery.</h2>
+      {/* Editorial Header Row */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-2">
+        <div className="space-y-2">
+          <span className="rr-eyebrow block">THE ATELIER RUNWAY</span>
+          <h2 className="rr-title-h2 text-[26px] sm:text-[36px]">
+            CURATED MARQUES READY FOR COMMISSION.
+          </h2>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* Navigation Chevron Pills */}
-          <div className="flex items-center gap-1.5 bg-[#0f1011] p-1 rounded-[6px] border border-[#23252a]">
+        <div className="flex items-center gap-4">
+          {/* Aristocratic Controls (0px Radius, Hairline Rose Gold) */}
+          <div className="flex items-center gap-1 bg-[#0f0714] p-1 border border-[rgba(197,168,128,0.25)]">
             <button
               onClick={handlePrev}
-              className="w-7 h-7 rounded-[4px] bg-transparent hover:bg-[#161718] text-[#d0d6e0] hover:text-[#ffffff] flex items-center justify-center transition-all cursor-pointer"
-              title="Previous vehicle slide"
+              className="w-8 h-8 bg-transparent hover:bg-[#160a1d] text-[#c5a880] hover:text-[#dfc7a5] flex items-center justify-center transition-all cursor-pointer"
+              title="Previous Marque"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-7 h-7 rounded-[4px] bg-transparent hover:bg-[#161718] text-[#d0d6e0] hover:text-[#ffffff] flex items-center justify-center transition-all cursor-pointer"
-              title="Next vehicle slide"
+              className="w-8 h-8 bg-transparent hover:bg-[#160a1d] text-[#c5a880] hover:text-[#dfc7a5] flex items-center justify-center transition-all cursor-pointer"
+              title="Next Marque"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-7 h-7 rounded-[4px] bg-transparent hover:bg-[#161718] text-[#d0d6e0] hover:text-[#ffffff] flex items-center justify-center transition-all cursor-pointer"
-              title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+              className="w-8 h-8 bg-transparent hover:bg-[#160a1d] text-[#8c8a94] hover:text-[#f5f5f7] flex items-center justify-center transition-all cursor-pointer"
+              title={isPlaying ? 'Pause Runway' : 'Play Runway'}
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
             </button>
@@ -139,28 +139,28 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
           <button
             onClick={onViewAll}
-            className="btn-ghost cursor-pointer whitespace-nowrap !py-1.5 !px-3.5"
+            className="btn-rr-ghost !py-2 !px-4 !text-[11px] whitespace-nowrap cursor-pointer"
           >
-            <span>All Fleet ({vehicles.length})</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>ENTIRE FLEET ({vehicles.length})</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-1" />
           </button>
         </div>
       </div>
 
-      {/* The Cinematic Horizontal Slides Track */}
+      {/* The Runway Track */}
       <div
         ref={sliderRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 px-3 sm:px-4 no-scrollbar snap-x snap-mandatory scroll-smooth"
-        style={{ scrollPaddingLeft: '16px', scrollPaddingRight: '16px', WebkitOverflowScrolling: 'touch' }}
+        className="flex items-stretch gap-6 overflow-x-auto pb-8 pt-2 px-2 no-scrollbar snap-x snap-mandatory scroll-smooth"
+        style={{ scrollPaddingLeft: '24px', scrollPaddingRight: '24px', WebkitOverflowScrolling: 'touch' }}
       >
         {vehicles.map((vehicle, idx) => {
           const isActive = idx === activeIndex;
           return (
             <div
               key={vehicle.id}
-              className={`showroom-slide snap-center shrink-0 w-[86vw] sm:w-[480px] md:w-[540px] lg:w-[580px] transition-[transform,opacity] duration-350 ease-out ${
-                isActive ? 'scale-100 opacity-100' : 'scale-[0.98] opacity-85 hover:opacity-100'
+              className={`showroom-slide snap-center shrink-0 w-[88vw] sm:w-[480px] md:w-[540px] lg:w-[580px] transition-all duration-700 ease-out ${
+                isActive ? 'scale-100 opacity-100' : 'scale-[0.98] opacity-80 hover:opacity-100'
               }`}
             >
               <VehicleCard
@@ -175,30 +175,30 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         })}
       </div>
 
-      {/* Bottom Progress Indicator Bar & Direct Pagination Pills */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#23252a] px-2">
-        <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 no-scrollbar">
+      {/* Quiet Progress Bar & Track Indicators */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[rgba(197,168,128,0.2)] px-2">
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
           {vehicles.map((v, idx) => {
             const isActive = idx === activeIndex;
             return (
               <button
                 key={v.id}
                 onClick={() => scrollToSlide(idx)}
-                className={`h-1 rounded-[2px] transition-all duration-300 cursor-pointer ${
+                className={`h-[2px] transition-all duration-500 cursor-pointer ${
                   isActive
-                    ? 'w-7 bg-[#e4f222]'
-                    : 'w-2 bg-[#23252a] hover:bg-[#383b3f]'
+                    ? 'w-10 bg-[#c5a880]'
+                    : 'w-3 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(197,168,128,0.4)]'
                 }`}
-                title={`Slide ${idx + 1}: ${v.name}`}
+                title={`Marque ${idx + 1}: ${v.name}`}
               />
             );
           })}
         </div>
 
-        <div className="text-[12px] text-[#8a8f98] font-mono flex items-center gap-2">
-          <span>{activeIndex + 1} / {vehicles.length}</span>
-          <span>·</span>
-          <span className="text-[#ffffff] font-sans font-normal">{vehicles[activeIndex]?.name}</span>
+        <div className="text-[11px] font-['Cinzel'] tracking-widest text-[#8c8a94] flex items-center gap-3">
+          <span className="text-[#c5a880]">{activeIndex + 1} OF {vehicles.length}</span>
+          <span className="text-[rgba(197,168,128,0.4)]">//</span>
+          <span className="text-[#f5f5f7] uppercase">{vehicles[activeIndex]?.name}</span>
         </div>
       </div>
     </div>

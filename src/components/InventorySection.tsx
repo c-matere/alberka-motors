@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, ArrowUpDown, Shield, SlidersHorizontal, Sparkles } from 'lucide-react';
+import { Search, Compass, ArrowRight } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { VehicleCard } from './VehicleCard';
 
@@ -23,17 +23,16 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'year'>('featured');
 
   const categories = [
-    { id: 'all', label: 'All Fleet', count: vehicles.length },
-    { id: 'suv', label: 'SUVs & 4WD', count: vehicles.filter(v => v.category === 'suv').length },
-    { id: 'hybrid', label: 'Hybrids & e-POWER', count: vehicles.filter(v => v.category === 'hybrid' || v.fuelType.includes('Hybrid') || v.fuelType.includes('e-POWER')).length },
-    { id: 'van', label: 'Executive MPVs', count: vehicles.filter(v => v.category === 'van').length },
-    { id: 'compact', label: 'Compact & Crossovers', count: vehicles.filter(v => v.category === 'compact').length },
+    { id: 'all', label: 'ALL MARQUES', count: vehicles.length },
+    { id: 'van', label: 'EXECUTIVE SUITE & MPV', count: vehicles.filter(v => v.category === 'van').length },
+    { id: 'hybrid', label: 'HYBRID VANGUARD', count: vehicles.filter(v => v.category === 'hybrid' || v.fuelType.includes('Hybrid') || v.fuelType.includes('e-POWER')).length },
+    { id: 'suv', label: 'ALL-TERRAIN LUXURY', count: vehicles.filter(v => v.category === 'suv').length },
+    { id: 'compact', label: 'COMPACT ATELIER', count: vehicles.filter(v => v.category === 'compact').length },
   ];
 
   const filteredVehicles = useMemo(() => {
     return vehicles
       .filter((v) => {
-        // Category filter
         if (activeCategory === 'all') return true;
         if (activeCategory === 'hybrid') {
           return v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power');
@@ -41,7 +40,6 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         return v.category === activeCategory;
       })
       .filter((v) => {
-        // Search query
         if (!searchQuery.trim()) return true;
         const q = searchQuery.toLowerCase();
         return (
@@ -56,29 +54,33 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         if (sortBy === 'price-asc') return a.priceKes - b.priceKes;
         if (sortBy === 'price-desc') return b.priceKes - a.priceKes;
         if (sortBy === 'year') return b.year - a.year;
-        return 0; // featured order
+        return 0;
       });
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
   return (
-    <section className="w-full bg-[#08090a] py-10 sm:py-16 px-4 sm:px-6 text-[#d0d6e0] border-t border-[#23252a]">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="w-full bg-[#160a1d] py-16 sm:py-24 px-6 text-[#f5f5f7] border-t border-[rgba(197,168,128,0.15)]">
+      <div className="max-w-[1400px] mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-[640px] mx-auto mb-8 sm:mb-12">
-          <span className="launch-status-label mb-2">
-            Cleared & Ready For Handover
-          </span>
-          <h2 className="hero-display text-[32px] sm:text-[44px] md:text-[52px] mb-3">
-            The Alberka Fleet.
+        <div className="text-center max-w-[800px] mx-auto mb-16">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
+            <span className="rr-eyebrow">
+              CLEARED & COMMISSIONED IN KENYA
+            </span>
+            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
+          </div>
+          <h2 className="rr-title-h1 text-[32px] sm:text-[46px] md:text-[54px] mb-4">
+            THE ALBERKA FLEET.
           </h2>
-          <p className="text-[14px] sm:text-[15px] text-[#8a8f98] leading-relaxed">
-            Every vehicle has completed our comprehensive Mombasa workshop overhaul, includes written warranty coverage, and carries authenticated Grade 4.5+ Japanese auction provenance.
+          <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[20px] italic leading-relaxed max-w-[680px] mx-auto">
+            Every motor car has undergone rigorous mechanical preparation at our Mombasa atelier, carries authenticated Japanese auction provenance, and includes our 5,000 KM written warranty covenant.
           </p>
         </div>
 
-        {/* Filter & Search Bar */}
-        <div className="bg-[#0f1011] p-3.5 sm:p-4 rounded-[12px] border border-[#23252a] mb-8 sm:mb-10 space-y-3.5">
+        {/* Filter & Search Bar — Hard Zero-Radius Box with Rose-Gold Inlay */}
+        <div className="bg-[#131316] p-4 sm:p-6 border border-[rgba(197,168,128,0.25)] mb-12 space-y-4">
           
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
@@ -88,54 +90,54 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3 sm:px-3.5 py-1.5 rounded-[6px] text-[12px] sm:text-[13px] font-normal transition-all shrink-0 cursor-pointer ${
+                  className={`px-4 py-2 font-['Cinzel'] text-[11px] tracking-[0.18em] transition-all shrink-0 cursor-pointer ${
                     isActive
-                      ? 'bg-[#ffffff] text-[#08090a] font-medium'
-                      : 'bg-transparent text-[#8a8f98] hover:text-[#ffffff] border border-[#23252a] hover:border-[#383b3f]'
+                      ? 'bg-[#c5a880] text-[#0f0714] font-medium'
+                      : 'bg-[#0f0714] text-[#8c8a94] hover:text-[#f5f5f7] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(197,168,128,0.4)]'
                   }`}
                 >
-                  {cat.label} <span className="font-mono text-[11px] opacity-75">({cat.count})</span>
+                  {cat.label} <span className="font-mono text-[10px] opacity-75">({cat.count})</span>
                 </button>
               );
             })}
           </div>
 
           {/* Search Input & Sort Selector */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 pt-3 border-t border-[#23252a]">
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-[rgba(255,255,255,0.06)]">
             <div className="relative w-full sm:flex-1">
-              <Search className="w-4 h-4 text-[#8a8f98] absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#8c8a94] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by model, chassis, or stock code..."
-                className="w-full pl-10 pr-4 py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[13px] text-[#ffffff] placeholder:text-[#62666d] focus:outline-none focus:border-[#383b3f]"
+                placeholder="SEARCH BY MODEL, CHASSIS CODE, OR ATELIER STOCK ID..."
+                className="w-full pl-10 pr-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.2)] text-[12px] font-['Cinzel'] tracking-wider text-[#f5f5f7] placeholder:text-[#45434d] focus:outline-none focus:border-[#dfc7a5]"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[11px] font-mono text-[#8a8f98] hover:text-[#ffffff]"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#8c8a94] hover:text-[#f5f5f7]"
                 >
-                  Clear
+                  CLEAR
                 </button>
               )}
             </div>
 
-            <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
-              <span className="text-[12px] text-[#8a8f98] hidden sm:inline">Sort:</span>
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+              <span className="font-['Cinzel'] text-[10px] tracking-wider text-[#8c8a94] hidden sm:inline">SORT:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="px-3 py-1.5 sm:py-2 rounded-[6px] bg-[#161718] border border-[#23252a] text-[12px] text-[#d0d6e0] focus:outline-none cursor-pointer"
+                className="px-3 py-2 bg-[#0f0714] border border-[rgba(197,168,128,0.2)] font-['Cinzel'] text-[11px] tracking-wider text-[#dfc7a5] focus:outline-none cursor-pointer"
               >
-                <option value="featured">Featured Collection</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="year">Newest Year</option>
+                <option value="featured">CURATED COLLECTION</option>
+                <option value="price-asc">ACQUISITION: ASCENDING</option>
+                <option value="price-desc">ACQUISITION: DESCENDING</option>
+                <option value="year">NEWEST YEAR</option>
               </select>
 
-              <span className="font-mono text-[12px] text-[#8a8f98] ml-2 shrink-0">
-                {filteredVehicles.length} {filteredVehicles.length === 1 ? 'unit' : 'units'}
+              <span className="font-mono text-[11px] text-[#8c8a94] ml-2 shrink-0">
+                {filteredVehicles.length} {filteredVehicles.length === 1 ? 'MARQUE' : 'MARQUES'}
               </span>
             </div>
           </div>
@@ -144,7 +146,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
         {/* Vehicles Grid */}
         {filteredVehicles.length > 0 ? (
-          <div key={activeCategory + sortBy} className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-apple-fade">
+          <div key={activeCategory + sortBy} className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}
@@ -156,37 +158,42 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             ))}
           </div>
         ) : (
-          <div className="p-12 text-center bg-[#0f1011] border border-[#23252a] rounded-[12px]">
-            <h3 className="text-[18px] font-medium text-[#ffffff] mb-2">No matching vehicles found</h3>
-            <p className="text-[14px] text-[#8a8f98] mb-6">
-              We update our showroom with fresh vessel arrivals weekly from Tokyo, Yokohama, and Nagoya.
+          <div className="p-16 text-center bg-[#131316] border border-[rgba(197,168,128,0.2)]">
+            <h3 className="font-['Cinzel'] text-[18px] text-[#f5f5f7] tracking-widest mb-3 uppercase">NO MATCHING MARQUES IN CURRENT REPOSITORY</h3>
+            <p className="text-[14px] text-[#8c8a94] mb-8 font-light max-w-[500px] mx-auto">
+              We commission fresh maritime consignments weekly from Tokyo, Yokohama, and Nagoya.
             </p>
             <button
               onClick={() => {
                 setActiveCategory('all');
                 setSearchQuery('');
               }}
-              className="btn-ghost cursor-pointer"
+              className="btn-rr-ghost"
             >
-              Reset Filters
+              RESET CURATION
             </button>
           </div>
         )}
 
-        {/* Custom Bidding Sourcing Callout */}
-        <div className="p-6 sm:p-10 mt-12 bg-[#0f1011] border border-[#23252a] rounded-[12px] text-left flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-[#383b3f] transition-all">
-          <div className="max-w-[560px]">
-            <span className="launch-status-label mb-1">Direct Japanese Bidding</span>
-            <h3 className="text-[20px] font-medium text-[#ffffff] mb-2">Looking for a specific model or color?</h3>
-            <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-              We execute weekly live bids directly at USS Tokyo, CAA, and TAA. Our Japanese team physically inspects your desired vehicle before purchase.
+        {/* Bespoke Japanese Bidding & Custom Commission Atelier */}
+        <div className="p-8 sm:p-12 mt-16 bg-[#131316] border border-[rgba(197,168,128,0.3)] text-left flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-[700px] space-y-3">
+            <span className="rr-eyebrow">
+              PRIVATE COMMISSIONING ATELIER
+            </span>
+            <h3 className="font-['Cinzel'] text-[22px] sm:text-[26px] text-[#f5f5f7] tracking-wide">
+              Seeking a specific marquee, trim, or bespoke hue?
+            </h3>
+            <p className="text-[14px] text-[#8c8a94] leading-relaxed font-light">
+              We execute weekly live bids directly at USS Tokyo, CAA, and TAA. Our Japanese team physically inspects your desired motor car prior to acquisition, ensuring Grade 4.5+ perfection.
             </p>
           </div>
           <button
             onClick={onCustomImportRequest}
-            className="btn-primary shrink-0 cursor-pointer"
+            className="btn-rr-solid shrink-0 w-full md:w-auto text-center"
           >
-            <span>Commission Custom Import</span>
+            <span>COMMISSION BESPOKE IMPORT</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-2" />
           </button>
         </div>
 

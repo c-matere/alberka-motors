@@ -16,7 +16,7 @@ import { SearchModal } from './components/SearchModal';
 import { FavoritesModal } from './components/FavoritesModal';
 import { MobileBottomDock } from './components/MobileBottomDock';
 import { Footer } from './components/Footer';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 export function App() {
   const [currentView, setCurrentView] = useState<string>('overview');
@@ -93,9 +93,9 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#08090a] text-[#d0d6e0]">
+    <div className="min-h-screen flex flex-col bg-[#160a1d] text-[#f5f5f7]">
       
-      {/* 56px Global Linear Navigation */}
+      {/* 64px Invisible Header / Nocturnal Frosted Glass on Scroll */}
       <Navbar
         currentView={selectedVehicle ? 'inventory' : currentView}
         onNavigate={handleNavigate}
@@ -104,7 +104,7 @@ export function App() {
         onOpenFavorites={() => setFavoritesModalOpen(true)}
       />
 
-      {/* 48px Sticky Local Context Navigation */}
+      {/* 48px Sticky Context Navigation Bar */}
       {!selectedVehicle && (
         <StickyLocalNav
           currentView={currentView}
@@ -116,7 +116,7 @@ export function App() {
 
       {/* Main View Router */}
       <main key={selectedVehicle?.id || currentView} className="flex-1 view-enter pb-20 md:pb-0">
-        {/* If an individual vehicle is selected, render the Precision Editorial Story Page */}
+        {/* If an individual vehicle is selected, render the Rolls-Royce Atelier Story View */}
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
@@ -131,70 +131,72 @@ export function App() {
           <>
             {currentView === 'overview' && (
               <>
-                {/* Hero Stage */}
+                {/* 21:9 Ethereal Hero Stage */}
                 <Hero
                   onExploreFleet={() => handleNavigate('inventory')}
                   onExploreWorkshop={() => handleNavigate('workshop')}
                 />
 
-                {/* Highlights Stage — Linear Carbon Card Grid */}
-                <section className="w-full bg-[#08090a] py-20 px-6 border-b border-[#23252a]">
-                  <div className="max-w-[1200px] mx-auto">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-                      <div>
-                        <span className="launch-status-label mb-2">The Alberka Motors Standard</span>
-                        <h2 className="feature-heading">Verified Japanese Provenance.</h2>
+                {/* The Architecture of Perfection — Split Highlight Panels */}
+                <section className="w-full bg-[#160a1d] py-24 px-6 border-b border-[rgba(197,168,128,0.18)]">
+                  <div className="max-w-[1400px] mx-auto space-y-12">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                      <div className="space-y-2">
+                        <span className="rr-eyebrow block">THE ALBERKA PRESTIGE CHARTER</span>
+                        <h2 className="rr-title-h2 text-[26px] sm:text-[36px]">
+                          AUTHENTICATED JAPANESE PROVENANCE.
+                        </h2>
                       </div>
                       <button
                         onClick={() => handleNavigate('workshop')}
-                        className="text-[#d0d6e0] hover:text-[#ffffff] flex items-center gap-1.5 text-[13px] font-normal transition-colors cursor-pointer"
+                        className="btn-rr-ghost !py-2.5 !px-5"
                       >
-                        <span>Explore Mombasa workshop standard</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        <span>EXPLORE TANGANA ROAD ATELIER</span>
+                        <ArrowRight className="w-3.5 h-3.5 ml-2" />
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* Highlight Card 1 */}
-                      <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 flex flex-col justify-between hover:border-[#383b3f] transition-all">
-                        <div className="space-y-2.5">
-                          <span className="font-mono text-[11px] text-[#8a8f98] uppercase tracking-wider block">
-                            Mechanical Protocol // 01
+                      <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 sm:p-10 flex flex-col justify-between space-y-8">
+                        <div className="space-y-3">
+                          <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest block">
+                            MECHANICAL COVENANT // 01
                           </span>
-                          <h3 className="text-[24px] sm:text-[28px] font-medium text-[#ffffff] leading-snug tracking-tight">
-                            Serviced before you turn the key.
+                          <h3 className="font-['Cinzel'] text-[24px] sm:text-[28px] font-normal text-[#f5f5f7] tracking-wider uppercase">
+                            Overhauled before handover.
                           </h3>
-                          <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-                            Every vehicle enters our in-house Mombasa facility on Tangana Road for Castrol synthetic lubrication, genuine OEM filtration, micrometer brake tests, and full OBD-II diagnostics.
+                          <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
+                            Every motor car enters our private facility on Tangana Road for Castrol synthetic lubrication, genuine OEM filtration, micrometer brake tests, and full computerized OBD-II diagnostics.
                           </p>
                         </div>
-                        <div className="pt-6 mt-auto">
+                        <div className="overflow-hidden border border-[rgba(197,168,128,0.2)] bg-[#080809]">
                           <img
                             src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
                             alt="Mombasa In-House Workshop"
-                            className="w-full h-[220px] sm:h-[260px] object-cover rounded-[8px] border border-[#23252a]"
+                            className="w-full h-[240px] sm:h-[280px] object-cover hover:scale-103 transition-transform duration-700"
                           />
                         </div>
                       </div>
 
                       {/* Highlight Card 2 */}
-                      <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 flex flex-col justify-between hover:border-[#383b3f] transition-all">
-                        <div className="space-y-2.5">
-                          <span className="font-mono text-[11px] text-[#8a8f98] uppercase tracking-wider block">
-                            Warranty Covenant // 02
+                      <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 sm:p-10 flex flex-col justify-between space-y-8">
+                        <div className="space-y-3">
+                          <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest block">
+                            WARRANTY CHARTER // 02
                           </span>
-                          <h3 className="text-[24px] sm:text-[28px] font-medium text-[#ffffff] leading-snug tracking-tight">
+                          <h3 className="font-['Cinzel'] text-[24px] sm:text-[28px] font-normal text-[#f5f5f7] tracking-wider uppercase">
                             5,000 KM written peace of mind.
                           </h3>
-                          <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-                            Drive from our showroom straight to your destination. Zero unexpected mechanic visits, zero fluid replacement costs, and comprehensive post-delivery mechanical backing.
+                          <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
+                            Depart from our showroom directly onto the open highway. Zero unexpected mechanic visits, zero fluid replacement costs, and comprehensive post-delivery mechanical backing.
                           </p>
                         </div>
-                        <div className="pt-6 mt-auto">
+                        <div className="overflow-hidden border border-[rgba(197,168,128,0.2)] bg-[#080809]">
                           <img
                             src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
                             alt="Verified Handover"
-                            className="w-full h-[220px] sm:h-[260px] object-cover rounded-[8px] border border-[#23252a]"
+                            className="w-full h-[240px] sm:h-[280px] object-cover hover:scale-103 transition-transform duration-700"
                           />
                         </div>
                       </div>
@@ -202,63 +204,63 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Editorial Product Story */}
-                <section className="w-full bg-[#08090a] py-20 px-6 border-b border-[#23252a]">
-                  <div className="max-w-[1200px] mx-auto space-y-20">
+                {/* Editorial Split-Screen Atelier Spread */}
+                <section className="w-full bg-[#0f0714] py-24 px-6 border-b border-[rgba(197,168,128,0.18)]">
+                  <div className="max-w-[1400px] mx-auto space-y-24">
                     
                     {/* Chapter 1: Sourcing & Auction Integrity */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                      <div className="lg:col-span-5 space-y-3.5">
-                        <span className="launch-status-label">Direct Auction Sourcing</span>
-                        <h2 className="feature-heading">
-                          Sourced at the source. Inspected in Japan.
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                      <div className="lg:col-span-5 space-y-4">
+                        <span className="rr-eyebrow block">DIRECT AUCTION SOURCING</span>
+                        <h2 className="rr-title-h2 text-[26px] sm:text-[36px]">
+                          SOURCED AT THE ORIGIN.<br />INSPECTED IN JAPAN.
                         </h2>
-                        <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-                          Alberka Motors sources vehicles directly from prime Japanese auto auctions (USS Tokyo, TAA, CAA). We verify genuine mileage and auction grading sheets before any vehicle boards the vessel for Mombasa.
+                        <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
+                          Alberka Motors curates vehicles directly from Japan's leading auto auctions (USS Tokyo, TAA, CAA). We verify genuine mileage and auction grading sheets before any vehicle embarks upon maritime transit for Mombasa.
                         </p>
                         <div className="pt-2">
                           <button
                             onClick={() => handleNavigate('about')}
-                            className="text-[#d0d6e0] hover:text-[#ffffff] flex items-center gap-1.5 text-[13px] font-normal transition-colors cursor-pointer"
+                            className="btn-rr-ghost !py-2.5 !px-5"
                           >
-                            <span>Learn about our Japanese sourcing standard</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
+                            <span>THE JAPANESE BIDDING PROTOCOL</span>
+                            <ArrowRight className="w-3.5 h-3.5 ml-2" />
                           </button>
                         </div>
                       </div>
-                      <div className="lg:col-span-7">
+                      <div className="lg:col-span-7 overflow-hidden border border-[rgba(197,168,128,0.25)] bg-[#080809]">
                         <img
                           src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
                           alt="Japanese Auction Sourced Vehicle"
-                          className="w-full h-auto object-cover rounded-[12px] border border-[#23252a]"
+                          className="w-full h-auto object-cover hover:scale-103 transition-transform duration-700"
                         />
                       </div>
                     </div>
 
                     {/* Chapter 2: The Mombasa In-House Workshop */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                      <div className="lg:col-span-7 order-2 lg:order-1">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                      <div className="lg:col-span-7 order-2 lg:order-1 overflow-hidden border border-[rgba(197,168,128,0.25)] bg-[#080809]">
                         <img
                           src="https://images.pexels.com/photos/5309381/pexels-photo-5309381.jpeg?auto=compress&cs=tinysrgb&w=1600"
                           alt="Mombasa Garage Overhaul"
-                          className="w-full h-auto object-cover rounded-[12px] border border-[#23252a]"
+                          className="w-full h-auto object-cover hover:scale-103 transition-transform duration-700"
                         />
                       </div>
-                      <div className="lg:col-span-5 space-y-3.5 order-1 lg:order-2">
-                        <span className="launch-status-label">In-House Mechanical Bays</span>
-                        <h2 className="feature-heading">
-                          Full pre-delivery service on the house.
+                      <div className="lg:col-span-5 space-y-4 order-1 lg:order-2">
+                        <span className="rr-eyebrow block">IN-HOUSE MECHANICAL BAYS</span>
+                        <h2 className="rr-title-h2 text-[26px] sm:text-[36px]">
+                          FULL PRE-DELIVERY SERVICE ON THE HOUSE.
                         </h2>
-                        <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-                          Our dedicated garage on Tangana Road performs full minor and major servicing. When you take delivery, your engine oil is fresh, your filters are brand new, and your brake pads are tested.
+                        <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
+                          Our dedicated facility on Tangana Road performs full minor and major servicing. When you take delivery, your engine lubrication is fresh, your filters are brand new, and your brake pads are tested.
                         </p>
                         <div className="pt-2">
                           <button
                             onClick={() => handleNavigate('workshop')}
-                            className="text-[#d0d6e0] hover:text-[#ffffff] flex items-center gap-1.5 text-[13px] font-normal transition-colors cursor-pointer"
+                            className="btn-rr-solid !py-2.5 !px-5"
                           >
-                            <span>View 100-point servicing checklist</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
+                            <span>VIEW 100-POINT CHECKLIST</span>
+                            <ArrowRight className="w-3.5 h-3.5 ml-2" />
                           </button>
                         </div>
                       </div>
@@ -267,9 +269,9 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Featured Product Showcase Slides */}
-                <section className="w-full bg-[#08090a] py-20 px-6 overflow-hidden border-b border-[#23252a]">
-                  <div className="max-w-[1200px] mx-auto">
+                {/* Featured Runway Carousel */}
+                <section className="w-full bg-[#160a1d] py-24 px-6 overflow-hidden border-b border-[rgba(197,168,128,0.18)]">
+                  <div className="max-w-[1400px] mx-auto">
                     <ShowroomSlider
                       vehicles={VEHICLES}
                       favorites={favorites}
@@ -280,64 +282,68 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Showrooms Overview Section */}
-                <section className="w-full bg-[#08090a] py-20 px-6">
-                  <div className="max-w-[1200px] mx-auto">
-                    <div className="mb-12 text-center max-w-[620px] mx-auto">
-                      <span className="launch-status-label mb-2">Direct Showrooms</span>
-                      <h2 className="feature-heading">Visit us in Mombasa and Nairobi.</h2>
-                      <p className="text-[14px] text-[#8a8f98] mt-2">
-                        Two physical locations supporting trade-in valuations, workshop servicing, and test drives.
+                {/* Showroom Suites Overview */}
+                <section className="w-full bg-[#0f0714] py-24 px-6">
+                  <div className="max-w-[1400px] mx-auto space-y-16">
+                    <div className="text-center max-w-[700px] mx-auto space-y-2">
+                      <span className="rr-eyebrow block">DIRECT SHOWROOM SUITES</span>
+                      <h2 className="rr-title-h2 text-[26px] sm:text-[36px]">
+                        VISIT US IN MOMBASA AND NAIROBI.
+                      </h2>
+                      <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[17px] italic">
+                        Two physical sanctuaries supporting trade-in appraisals, workshop servicing, and private test viewings.
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* Mombasa Card */}
-                      <div className="bg-[#0f1011] p-6 sm:p-8 rounded-[12px] border border-[#23252a] hover:border-[#383b3f] transition-all flex flex-col justify-between">
+                      <div className="bg-[#131316] p-8 sm:p-10 border border-[rgba(197,168,128,0.25)] flex flex-col justify-between space-y-6">
                         <div className="space-y-3">
-                          <span className="font-mono text-[11px] text-[#8a8f98] uppercase tracking-wider block">
-                            Main Branch & Workshop // Est. 2000
+                          <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest block">
+                            MAIN BRANCH & WORKSHOP // EST. 2000
                           </span>
-                          <h3 className="text-[20px] font-medium text-[#ffffff]">Mombasa Flagship Hub</h3>
-                          <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-                            Tangana Road (Opposite AutoXpress / Near the Railway Station), Majengo & Nyali Road.
+                          <h3 className="font-['Cinzel'] text-[22px] text-[#f5f5f7] tracking-wider uppercase">Mombasa Flagship Hub</h3>
+                          <p className="text-[14px] text-[#8c8a94] leading-relaxed font-light">
+                            Tangana Road (Opposite AutoXpress / Near Railway Station), Majengo & Nyali Road.
                           </p>
-                          <div className="text-[13px] text-[#8a8f98] pt-2 space-y-1 font-mono">
+                          <div className="text-[13px] text-[#8c8a94] pt-2 space-y-1 font-mono">
                             <p>Phone: +254 714 333888 / +254 737 333888</p>
                             <p>Email: sales@alberkamotors.co.ke</p>
                           </div>
                         </div>
-                        <div className="pt-6">
+                        <div className="pt-4">
                           <button
                             onClick={() => handleNavigate('locations')}
-                            className="btn-ghost !text-[13px] cursor-pointer"
+                            className="btn-rr-ghost w-full sm:w-auto"
                           >
-                            Explore Mombasa Hub
+                            <span>EXPLORE MOMBASA HUB</span>
+                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                           </button>
                         </div>
                       </div>
 
                       {/* Nairobi Card */}
-                      <div className="bg-[#0f1011] p-6 sm:p-8 rounded-[12px] border border-[#23252a] hover:border-[#383b3f] transition-all flex flex-col justify-between">
+                      <div className="bg-[#131316] p-8 sm:p-10 border border-[rgba(197,168,128,0.25)] flex flex-col justify-between space-y-6">
                         <div className="space-y-3">
-                          <span className="font-mono text-[11px] text-[#8a8f98] uppercase tracking-wider block">
-                            Capital Branch // Westlands
+                          <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest block">
+                            CAPITAL BRANCH // WESTLANDS
                           </span>
-                          <h3 className="text-[20px] font-medium text-[#ffffff]">Nairobi Westlands Hub</h3>
-                          <p className="text-[14px] text-[#8a8f98] leading-relaxed">
-                            Mwanzi Road, Westlands, Nairobi. Convenient access for executive test drives and trade-ins.
+                          <h3 className="font-['Cinzel'] text-[22px] text-[#f5f5f7] tracking-wider uppercase">Nairobi Westlands Hub</h3>
+                          <p className="text-[14px] text-[#8c8a94] leading-relaxed font-light">
+                            Mwanzi Road, Westlands, Nairobi. Convenient access for executive viewings and trade-ins.
                           </p>
-                          <div className="text-[13px] text-[#8a8f98] pt-2 space-y-1 font-mono">
+                          <div className="text-[13px] text-[#8c8a94] pt-2 space-y-1 font-mono">
                             <p>Phone: +254 748 999333</p>
                             <p>Email: nairobi@alberkamotors.co.ke</p>
                           </div>
                         </div>
-                        <div className="pt-6">
+                        <div className="pt-4">
                           <button
                             onClick={() => handleNavigate('locations')}
-                            className="btn-ghost !text-[13px] cursor-pointer"
+                            className="btn-rr-ghost w-full sm:w-auto"
                           >
-                            Explore Nairobi Hub
+                            <span>EXPLORE NAIROBI HUB</span>
+                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                           </button>
                         </div>
                       </div>
@@ -401,7 +407,7 @@ export function App() {
         onOpenFavorites={() => setFavoritesModalOpen(true)}
       />
 
-      {/* Global Apple Multi-Column Footer */}
+      {/* Global Aristocratic Multi-Column Footer */}
       <Footer
         vehicles={VEHICLES}
         onNavigate={handleNavigate}
@@ -416,7 +422,7 @@ export function App() {
         onSelectVehicle={handleSelectVehicle}
       />
 
-      {/* Saved Favorites Drawer/Modal */}
+      {/* Curated Dossier Modal */}
       <FavoritesModal
         isOpen={favoritesModalOpen}
         onClose={() => setFavoritesModalOpen(false)}

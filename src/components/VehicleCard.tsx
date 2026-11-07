@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, ArrowUpRight, Gauge, Shield, Fuel } from 'lucide-react';
+import { Bookmark, ArrowRight, Gauge, Shield, Fuel } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useScrollReveal } from '../hooks/useAnimations';
 import { SkeletonImage } from './SkeletonImage';
@@ -25,99 +25,99 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   return (
     <div
       ref={disableScrollReveal ? undefined : ref}
-      className={`card-linear p-5 sm:p-6 flex flex-col justify-between group active:scale-[0.99] transition-all ${
+      className={`rr-card p-6 flex flex-col justify-between group transition-all duration-500 ${
         disableScrollReveal ? '' : `scroll-reveal ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
       <div>
-        {/* Media Frame — Linear 8px radius, #08090a backdrop, hairline border */}
+        {/* Media Frame — Zero-Radius Architectural Frame */}
         <div 
           onClick={() => onSelect(vehicle)}
-          className="w-full h-[220px] xs:h-[250px] sm:h-[280px] rounded-[8px] overflow-hidden bg-[#08090a] border border-[#23252a] mb-5 relative cursor-pointer group/media"
+          className="w-full h-[220px] xs:h-[260px] sm:h-[280px] overflow-hidden bg-[#080809] border border-[rgba(255,255,255,0.06)] group-hover:border-[rgba(197,168,128,0.35)] mb-6 relative cursor-pointer transition-colors duration-500"
         >
           <SkeletonImage
             src={vehicle.heroImage}
             alt={vehicle.name}
-            className="group-hover/media:scale-102 transition-transform duration-500 ease-out"
+            className="group-hover:scale-105 transition-transform duration-700 ease-out"
             containerClassName="w-full h-full"
             loading="lazy"
           />
 
-          {/* Badges Overlay (Linear 4px badges) */}
-          <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
-            <span className="badge-linear bg-[#08090a]/85 backdrop-blur-md border border-[#23252a] text-[11px] font-mono text-white px-2 py-0.5">
+          {/* Minimalist Japanese Provenance Seal */}
+          <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
+            <span className="font-['Cinzel'] text-[10px] tracking-[0.18em] bg-[#0f0714]/90 text-[#dfc7a5] border border-[rgba(197,168,128,0.3)] px-2.5 py-1 uppercase">
               {vehicle.auctionGrade}
             </span>
-            <span className="badge-linear bg-[#08090a]/85 backdrop-blur-md border border-[#23252a] text-[11px] font-mono text-[#8a8f98] px-2 py-0.5">
+            <span className="font-['Cinzel'] text-[9.5px] tracking-[0.16em] bg-[#0f0714]/90 text-[#8c8a94] border border-[rgba(255,255,255,0.08)] px-2 py-1 uppercase">
               {vehicle.status.split('—')[0]}
             </span>
           </div>
 
-          {/* Favorite Toggle Button */}
+          {/* Curated Dossier Bookmark */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-3 right-3 w-7 h-7 rounded-[4px] backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer z-20 ${
+            className={`absolute top-3 right-3 w-8 h-8 flex items-center justify-center transition-all duration-400 cursor-pointer z-20 ${
               isFavorite 
-                ? 'bg-[#eb5757] text-white' 
-                : 'bg-[#08090a]/70 hover:bg-[#08090a] text-[#8a8f98] hover:text-white border border-[#23252a]'
+                ? 'bg-[#c5a880] text-[#0f0714]' 
+                : 'bg-[#0f0714]/80 hover:bg-[#160a1d] text-[#8c8a94] hover:text-[#dfc7a5] border border-[rgba(197,168,128,0.25)]'
             }`}
-            title={isFavorite ? 'Remove from saved' : 'Save vehicle'}
+            title={isFavorite ? 'Remove from Curated Dossier' : 'Save to Curated Dossier'}
           >
-            <Heart className={`w-3.5 h-3.5 ${isFavorite ? 'fill-white text-white' : ''}`} />
+            <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-[#0f0714]' : ''}`} />
           </button>
         </div>
 
         {/* Identity & Heritage Meta Line */}
-        <div className="flex items-center justify-between text-[12px] text-[#8a8f98] mb-2 font-mono">
-          <span>{vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM</span>
-          <span className="bg-[#161718] border border-[#23252a] px-1.5 py-0.5 rounded-[4px] text-[#8a8f98]">{vehicle.stockNo}</span>
+        <div className="flex items-center justify-between text-[11px] text-[#8c8a94] mb-3 font-mono">
+          <span>{vehicle.year} // {vehicle.mileageKm.toLocaleString()} KM</span>
+          <span className="text-[#c5a880] tracking-widest">{vehicle.stockNo}</span>
         </div>
 
-        {/* Persona Moniker */}
-        <div className="text-[11px] font-mono text-[#8a8f98] tracking-wider uppercase mb-1">
-          {vehicle.moniker}
+        {/* Aristocratic Moniker */}
+        <div className="rr-eyebrow mb-2">
+          {vehicle.moniker || 'BESPOKE JAPANESE MARQUE'}
         </div>
 
-        {/* Model Headline (Linear 20px / 510) */}
+        {/* Marque Headline (Cinzel Uppercase) */}
         <h3
           onClick={() => onSelect(vehicle)}
-          className="text-[19px] sm:text-[21px] font-[510] text-white mb-2 leading-snug tracking-[-0.012em] hover:text-[#d0d6e0] transition-colors cursor-pointer"
+          className="font-['Cinzel'] text-[18px] sm:text-[20px] font-normal text-[#f5f5f7] mb-3 leading-snug tracking-[0.14em] hover:text-[#dfc7a5] transition-colors cursor-pointer uppercase"
         >
           {vehicle.name}
         </h3>
 
         {/* Tagline */}
-        <p className="text-[14px] text-[#8a8f98] line-clamp-2 leading-[1.5] mb-5 font-normal">
+        <p className="text-[13.5px] text-[#8c8a94] line-clamp-2 leading-[1.6] mb-6 font-light">
           {vehicle.tagline}
         </p>
 
-        {/* Mechanical Integrity Badges (Linear 4px chips) */}
-        <div className="flex flex-wrap items-center gap-2 mb-6">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono bg-[#161718] px-2.5 py-1 rounded-[4px] text-[#d0d6e0] border border-[#23252a]">
-            <Gauge className="w-3 h-3 text-[#8a8f98]" />
-            {vehicle.power.split('@')[0]}
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono bg-[#161718] px-2.5 py-1 rounded-[4px] text-[#d0d6e0] border border-[#23252a]">
-            <Fuel className="w-3 h-3 text-[#8a8f98]" />
-            {vehicle.fuelEconomy.split('(')[0]}
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono bg-[#161718] px-2.5 py-1 rounded-[4px] text-[#d0d6e0] border border-[#23252a]">
-            <Shield className="w-3 h-3 text-[#8a8f98]" />
-            5K Cover
-          </span>
+        {/* Engineering Specifications Grid */}
+        <div className="grid grid-cols-3 gap-2 mb-6 text-center">
+          <div className="border border-[rgba(255,255,255,0.06)] bg-[#0f0714] p-2">
+            <span className="font-['Cinzel'] text-[8.5px] text-[#8c8a94] uppercase tracking-wider block mb-0.5">POWERTRAIN</span>
+            <span className="font-mono text-[11px] text-[#dfc7a5] truncate block">{vehicle.power.split('@')[0]}</span>
+          </div>
+          <div className="border border-[rgba(255,255,255,0.06)] bg-[#0f0714] p-2">
+            <span className="font-['Cinzel'] text-[8.5px] text-[#8c8a94] uppercase tracking-wider block mb-0.5">EFFICIENCY</span>
+            <span className="font-mono text-[11px] text-[#dfc7a5] truncate block">{vehicle.fuelEconomy.split('(')[0]}</span>
+          </div>
+          <div className="border border-[rgba(255,255,255,0.06)] bg-[#0f0714] p-2">
+            <span className="font-['Cinzel'] text-[8.5px] text-[#8c8a94] uppercase tracking-wider block mb-0.5">COVENANT</span>
+            <span className="font-mono text-[11px] text-[#c5a880] truncate block">5,000 KM</span>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Conversion & Pricing Row */}
-      <div className="pt-4 border-t border-[#23252a] flex items-center justify-between gap-3">
+      {/* Bottom Valuation & Private Viewing Inquiry */}
+      <div className="pt-5 border-t border-[rgba(197,168,128,0.15)] flex items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] text-[#8a8f98] font-mono uppercase tracking-wider block">
-            Delivered Price
+          <span className="font-['Cinzel'] text-[9px] text-[#8c8a94] uppercase tracking-[0.2em] block">
+            ACQUISITION VALUE
           </span>
-          <span className="text-[18px] sm:text-[20px] font-[510] text-white tracking-[-0.012em]">
+          <span className="font-mono text-[17px] sm:text-[19px] text-[#f5f5f7]">
             KES {vehicle.priceKes.toLocaleString()}
           </span>
         </div>
@@ -125,18 +125,18 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => onSelect(vehicle)}
-            className="btn-ghost !text-[12px] !py-1.5 !px-3 !rounded-[6px] cursor-pointer"
+            className="btn-rr-ghost !text-[10px] !py-2 !px-3 cursor-pointer"
           >
-            <span>Explore</span>
-            <ArrowUpRight className="w-3 h-3" />
+            <span>DOSSIER</span>
+            <ArrowRight className="w-3 h-3 ml-1" />
           </button>
           <a
-            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
+            href={`https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary !text-[12px] !py-1.5 !px-3.5 !rounded-[6px] font-[510]"
+            className="btn-rr-solid !text-[10px] !py-2 !px-3.5 hidden xs:inline-flex"
           >
-            Inquire
+            INQUIRE
           </a>
         </div>
       </div>

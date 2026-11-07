@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Car, Filter, Wrench, MapPin, BadgeDollarSign, Shield, ArrowRight } from 'lucide-react';
+import { Compass, Car, Wrench, MapPin, Shield, ArrowRight } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
 interface SitemapSectionProps {
@@ -14,270 +14,138 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
   onSelectVehicle,
 }) => {
   return (
-    <section className="w-full bg-[#08090a] py-16 px-4 sm:px-6 text-[#d0d6e0] border-t border-[#23252a]">
-      <div className="max-w-[1200px] mx-auto space-y-12">
+    <section className="w-full bg-[#160a1d] py-20 sm:py-28 px-6 text-[#f5f5f7] border-t border-[rgba(197,168,128,0.18)]">
+      <div className="max-w-[1400px] mx-auto space-y-16">
         
         {/* Header */}
-        <div className="text-center max-w-[640px] mx-auto">
-          <span className="launch-status-label mb-2">
-            Architecture & Navigation Index
-          </span>
-          <h1 className="hero-display mb-3">
-            Site Map.
+        <div className="text-center max-w-[800px] mx-auto">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
+            <span className="rr-eyebrow">
+              HOUSE COMPENDIUM & DIRECTORY
+            </span>
+            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
+          </div>
+          <h1 className="rr-title-h1 text-[32px] sm:text-[46px] md:text-[54px] mb-4">
+            THE HOUSE DIRECTORY.
           </h1>
-          <p className="text-[14px] sm:text-[15px] text-[#8a8f98] leading-relaxed">
-            The complete directory of all vehicles, engineering divisions, trade-in studios, showroom locations, and operational policies.
+          <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[21px] italic leading-relaxed max-w-[700px] mx-auto">
+            The comprehensive architectural compendium of all curated marques, mechanical atelier divisions, bespoke exchange studios, private showroom suites, and provenance charters.
           </p>
         </div>
 
-        {/* Directory Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Directory Grid (Hard 0px edges, hairline Rose Gold wire inlay) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           {/* Box 1: Platform Hubs */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 hover:border-[#383b3f] transition-all">
-            <div className="flex items-center gap-2 pb-3.5 mb-4 border-b border-[#23252a]">
-              <Compass className="w-4 h-4 text-[#8a8f98]" />
-              <h3 className="text-[16px] font-medium text-[#ffffff]">Primary Platform</h3>
+          <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 space-y-6">
+            <div className="flex items-center gap-3 pb-4 border-b border-[rgba(197,168,128,0.15)]">
+              <Compass className="w-4 h-4 text-[#c5a880]" />
+              <h3 className="font-['Cinzel'] text-[15px] text-[#f5f5f7] uppercase tracking-wider">Primary Chapters</h3>
             </div>
-            <ul className="space-y-3 text-[13px]">
+            <ul className="space-y-4 text-[13px]">
               <li>
                 <button
                   onClick={() => onNavigate('overview')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                  className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                 >
-                  Overview / Flagship Showcase
+                  SANCTUARY // OVERVIEW
                 </button>
-                <p className="text-[12px] text-[#8a8f98]">Hero cinematic stage & company overview.</p>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Hero cinematic stage & flagship presentation.</p>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('inventory')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                  className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                 >
-                  Curated Showroom Fleet
+                  THE FLEET // CURATED MARQUES
                 </button>
-                <p className="text-[12px] text-[#8a8f98]">Interactive vehicle catalog with filters.</p>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Filterable repository with provenance badges.</p>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('workshop')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                  className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                 >
-                  Mombasa In-House Workshop
+                  THE ATELIER // TANGANA ROAD
                 </button>
-                <p className="text-[12px] text-[#8a8f98]">48-hour overhaul and 100-point protocol.</p>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">48-hour mechanical protocol & 100-point cert.</p>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('trade-in')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                  className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                 >
-                  Trade-In & Valuation Studio
+                  BESPOKE COMMISSION & EXCHANGE
                 </button>
-                <p className="text-[12px] text-[#8a8f98]">Interactive equity appraisal calculator.</p>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Interactive equity appraisal studio.</p>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('about')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                  className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                 >
-                  Heritage & Japanese Bidding
+                  PROVENANCE // JAPANESE BIDDING
                 </button>
-                <p className="text-[12px] text-[#8a8f98]">26-year story and USS Tokyo sourcing.</p>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Twenty-six year heritage & Tokyo auction houses.</p>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                  className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                 >
-                  Showrooms & VIP Test Drives
+                  THE PRIVATE SHOWROOM SUITES
                 </button>
-                <p className="text-[12px] text-[#8a8f98]">Mombasa Tangana/Nyali & Nairobi Westlands.</p>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Mombasa Tangana/Nyali & Nairobi Westlands.</p>
               </li>
             </ul>
           </div>
 
-          {/* Box 2: Dedicated Car Pages */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 hover:border-[#383b3f] transition-all">
-            <div className="flex items-center gap-2 pb-3.5 mb-4 border-b border-[#23252a]">
-              <Car className="w-4 h-4 text-[#8a8f98]" />
-              <h3 className="text-[16px] font-medium text-[#ffffff]">Vehicle Product Pages</h3>
+          {/* Box 2: Dedicated Marque Dossiers */}
+          <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 space-y-6">
+            <div className="flex items-center gap-3 pb-4 border-b border-[rgba(197,168,128,0.15)]">
+              <Car className="w-4 h-4 text-[#c5a880]" />
+              <h3 className="font-['Cinzel'] text-[15px] text-[#f5f5f7] uppercase tracking-wider">Marque Dossiers</h3>
             </div>
-            <ul className="space-y-3 text-[13px]">
+            <ul className="space-y-4 text-[13px]">
               {vehicles.map((v) => (
                 <li key={v.id}>
                   <button
                     onClick={() => onSelectVehicle(v)}
-                    className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
+                    className="font-['Cinzel'] text-[13px] text-[#f5f5f7] hover:text-[#dfc7a5] text-left cursor-pointer transition-colors uppercase tracking-wider block"
                   >
                     {v.name}
                   </button>
-                  <p className="font-mono text-[11px] text-[#8a8f98]">
-                    Stock #{v.stockNo} · KES {v.priceKes.toLocaleString()}
+                  <p className="text-[12px] text-[#8c8a94] font-mono mt-0.5">
+                    {v.stockNo} // Grade {v.auctionGrade} // KES {v.priceKes.toLocaleString()}
                   </p>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Box 3: Technical & Workshop Protocol */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 hover:border-[#383b3f] transition-all">
-            <div className="flex items-center gap-2 pb-3.5 mb-4 border-b border-[#23252a]">
-              <Wrench className="w-4 h-4 text-[#8a8f98]" />
-              <h3 className="text-[16px] font-medium text-[#ffffff]">Workshop & Quality</h3>
+          {/* Box 3: Concierge & Policies */}
+          <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 space-y-6">
+            <div className="flex items-center gap-3 pb-4 border-b border-[rgba(197,168,128,0.15)]">
+              <Shield className="w-4 h-4 text-[#c5a880]" />
+              <h3 className="font-['Cinzel'] text-[15px] text-[#f5f5f7] uppercase tracking-wider">Covenants & Protocols</h3>
             </div>
-            <ul className="space-y-3 text-[13px]">
+            <ul className="space-y-4 text-[13px]">
               <li>
-                <button
-                  onClick={() => onNavigate('workshop')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  100-Point Pre-Delivery Protocol
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Full checklist covering 6 mechanical stages.</p>
+                <span className="font-['Cinzel'] text-[12.5px] text-[#f5f5f7] block uppercase tracking-wider">5,000 KM Written Warranty</span>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Full mechanical backing on engine & transmission.</p>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('workshop')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  5,000 km Warranty Covenant
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Covered powertrain and driveline terms.</p>
+                <span className="font-['Cinzel'] text-[12.5px] text-[#f5f5f7] block uppercase tracking-wider">Grade 4.5+ Auction Guarantee</span>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Zero chassis distortion, authenticated mileage.</p>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('workshop')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Synthetic Lubricant Overhaul
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Castrol Edge synthetic oil specification.</p>
+                <span className="font-['Cinzel'] text-[12.5px] text-[#f5f5f7] block uppercase tracking-wider">NTSA TIMS Legal Indemnity</span>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Immediate legal logbook conveyancing in-house.</p>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('workshop')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Computer Diagnostic Module Scans
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">OBD-II ECU scans using factory software.</p>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('workshop')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Hybrid Battery Health Certification
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Delta voltage & SOH load analysis.</p>
-              </li>
-            </ul>
-          </div>
-
-          {/* Box 4: Showrooms & Desks */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 hover:border-[#383b3f] transition-all">
-            <div className="flex items-center gap-2 pb-3.5 mb-4 border-b border-[#23252a]">
-              <MapPin className="w-4 h-4 text-[#8a8f98]" />
-              <h3 className="text-[16px] font-medium text-[#ffffff]">Locations & Contact</h3>
-            </div>
-            <ul className="space-y-3 text-[13px]">
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Mombasa Island Flagship (Tangana Rd)
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Opposite AutoXpress · Tel: +254 714 333888.</p>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Mombasa Nyali Branch (Links Rd)
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Coast retail showroom & customer reception.</p>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Nairobi Westlands Hub (Mwanzi Rd)
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Opposite Westgate Mall · Tel: +254 748 999333.</p>
-              </li>
-              <li>
-                <a
-                  href="https://wa.me/254714333888"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-normal text-[#8a8f98] hover:text-[#ffffff] transition-colors"
-                >
-                  WhatsApp Support Concierge
-                </a>
-                <p className="text-[12px] text-[#8a8f98]">Instant auction sheet & photo requests.</p>
-              </li>
-            </ul>
-          </div>
-
-          {/* Box 5: Sourcing & Finance */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 hover:border-[#383b3f] transition-all">
-            <div className="flex items-center gap-2 pb-3.5 mb-4 border-b border-[#23252a]">
-              <BadgeDollarSign className="w-4 h-4 text-[#8a8f98]" />
-              <h3 className="text-[16px] font-medium text-[#ffffff]">Financing & Sourcing</h3>
-            </div>
-            <ul className="space-y-3 text-[13px]">
-              <li>
-                <button
-                  onClick={() => onNavigate('trade-in')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Trade-In Valuation Studio
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Apply current vehicle as direct equity.</p>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('about')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  USS Tokyo & TAA Direct Bidding
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Custom auction ordering direct from Japan.</p>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('inventory')}
-                  className="font-normal text-[#ffffff] hover:text-[#e4f222] text-left cursor-pointer transition-colors"
-                >
-                  Asset Finance Partnerships
-                </button>
-                <p className="text-[12px] text-[#8a8f98]">Up to 80% financing via NCBA, Stanbic, I&M.</p>
-              </li>
-            </ul>
-          </div>
-
-          {/* Box 6: Standards & Legal */}
-          <div className="bg-[#0f1011] border border-[#23252a] rounded-[12px] p-6 sm:p-8 hover:border-[#383b3f] transition-all">
-            <div className="flex items-center gap-2 pb-3.5 mb-4 border-b border-[#23252a]">
-              <Shield className="w-4 h-4 text-[#8a8f98]" />
-              <h3 className="text-[16px] font-medium text-[#ffffff]">Import Standards & Legal</h3>
-            </div>
-            <ul className="space-y-3 text-[13px]">
-              <li>
-                <span className="font-normal text-[#ffffff]">KRA Duty Clearance</span>
-                <p className="text-[12px] text-[#8a8f98]">All import duties, VAT, and levies paid in full.</p>
-              </li>
-              <li>
-                <span className="font-normal text-[#ffffff]">QISJ / JEVIC Certification</span>
-                <p className="text-[12px] text-[#8a8f98]">Authenticated Japanese odometer certificates.</p>
-              </li>
-              <li>
-                <span className="font-normal text-[#ffffff]">NTSA TIMS Registration</span>
-                <p className="text-[12px] text-[#8a8f98]">Clean logbook transfer directly into client name.</p>
+                <span className="font-['Cinzel'] text-[12.5px] text-[#f5f5f7] block uppercase tracking-wider">Whispers Private Concierge</span>
+                <p className="text-[12px] text-[#8c8a94] font-light mt-0.5">Direct 24/7 client communication channel.</p>
               </li>
             </ul>
           </div>

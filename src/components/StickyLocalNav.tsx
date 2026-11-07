@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Compass } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
 interface StickyLocalNavProps {
@@ -15,39 +15,42 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   onNavigate,
   onBackToInventory,
 }) => {
-  // If viewing an individual car
+  // If viewing an individual marquee
   if (currentView === 'vehicle-detail' && selectedVehicle) {
     return (
-      <div className="sticky top-[56px] z-40 bg-[#08090a]/90 backdrop-blur-md border-b border-[#23252a] transition-all">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[48px] flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+      <div className="sticky top-[64px] z-40 bg-[#0f0714]/92 backdrop-blur-md border-b border-[rgba(197,168,128,0.2)] transition-all">
+        <div className="max-w-[1500px] mx-auto px-6 h-[50px] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 min-w-0">
             <button
               onClick={onBackToInventory}
-              className="text-[12px] text-[#8a8f98] hover:text-[#ffffff] flex items-center gap-1 cursor-pointer shrink-0 transition-colors"
+              className="font-['Cinzel'] text-[11px] tracking-[0.2em] text-[#8c8a94] hover:text-[#dfc7a5] flex items-center gap-1.5 cursor-pointer shrink-0 transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Fleet</span>
+              <span>THE FLEET</span>
             </button>
-            <span className="text-[#383b3f] shrink-0">/</span>
-            <span className="font-normal text-[#ffffff] text-[13px] sm:text-[14px] tracking-tight truncate max-w-[130px] xs:max-w-[180px] sm:max-w-[320px] md:max-w-none">
+            <span className="text-[rgba(197,168,128,0.3)] shrink-0">/</span>
+            <span className="font-['Cinzel'] text-[12px] tracking-[0.16em] text-[#f5f5f7] truncate">
               {selectedVehicle.name}
             </span>
-            <span className="hidden md:inline text-[11px] text-[#8a8f98] bg-[#0f1011] border border-[#23252a] px-2 py-0.5 rounded-[4px] font-mono shrink-0">
+            <span className="hidden md:inline font-mono text-[10px] tracking-wider text-[#c5a880] border border-[rgba(197,168,128,0.3)] px-2 py-0.5 shrink-0">
               {selectedVehicle.stockNo}
             </span>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span className="text-[14px] font-mono text-[#ffffff] hidden sm:inline">
-              KES {selectedVehicle.priceKes.toLocaleString()}
-            </span>
+          <div className="flex items-center gap-4 shrink-0">
+            <div className="hidden sm:flex flex-col text-right">
+              <span className="text-[9px] font-['Cinzel'] tracking-[0.2em] text-[#8c8a94]">ACQUISITION VALUE</span>
+              <span className="font-mono text-[13px] text-[#f5f5f7]">
+                KES {selectedVehicle.priceKes.toLocaleString()}
+              </span>
+            </div>
             <a
-              href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20ready%20to%20reserve%20or%20inspect%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
+              href={`https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20reserve%20a%20private%20inspection%20for%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary !py-1.5 !px-3.5 text-[12px] whitespace-nowrap"
+              className="btn-rr-solid !py-2 !px-4 !text-[10px]"
             >
-              <span>Inquire / Reserve</span>
+              <span>ACQUIRE / RESERVE</span>
             </a>
           </div>
         </div>
@@ -55,51 +58,57 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
     );
   }
 
-  // Section titles mapping
-  const titleMap: Record<string, string> = {
-    overview: 'The Alberka Prestige Collection',
-    inventory: 'Verified Japanese Fleet',
-    workshop: 'In-House Mechanical Facility',
-    'trade-in': 'Valuation & Trade Exchange',
-    about: 'The Alberka Heritage',
-    locations: 'Mombasa & Nairobi Hubs',
-    sitemap: 'Directory & Navigation Tree',
-    favorites: 'Saved Showroom Fleet',
+  // Section titles mapping in aristocratic vocabulary
+  const titleMap: Record<string, { kicker: string; title: string }> = {
+    overview: { kicker: 'SANCTUARY CHAPTER', title: 'THE ALBERKA PRESTIGE MANIFESTO' },
+    inventory: { kicker: 'CURATED FLEET', title: 'VERIFIED JAPANESE MARQUES' },
+    workshop: { kicker: 'TANGANA ROAD ATELIER', title: 'MASTER MECHANICAL COMMISSIONING' },
+    'trade-in': { kicker: 'BESPOKE EXCHANGE', title: 'VEHICLE APPRAISAL & UPGRADE' },
+    about: { kicker: 'TWENTY-SIX YEAR HERITAGE', title: 'THE PROVENANCE OF ALBERKA MOTORS' },
+    locations: { kicker: 'THE PRIVATE SUITES', title: 'MOMBASA ATELIER & NAIROBI SUITE' },
+    sitemap: { kicker: 'HOUSE DIRECTORY', title: 'ARCHITECTURAL NAVIGATION COMPENDIUM' },
   };
 
-  const currentTitle = titleMap[currentView] || 'Alberka Motors Kenya';
+  const info = titleMap[currentView] || { kicker: 'ALBERKA MOTORS', title: 'HOUSE OF BESPOKE MARQUES' };
 
   return (
-    <div className="hidden sm:block sticky top-[56px] z-40 bg-[#08090a]/90 backdrop-blur-md border-b border-[#23252a]">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[48px] flex items-center justify-between gap-3">
-        <div className="font-normal text-[#ffffff] text-[14px] tracking-tight truncate flex items-center gap-2">
-          <span className="truncate">{currentTitle}</span>
+    <div className="hidden sm:block sticky top-[64px] z-40 bg-[#0f0714]/92 backdrop-blur-md border-b border-[rgba(197,168,128,0.15)]">
+      <div className="max-w-[1500px] mx-auto px-6 h-[48px] flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="font-['Cinzel'] text-[10px] tracking-[0.25em] text-[#c5a880] hidden md:inline">
+            {info.kicker}
+          </span>
+          <span className="text-[rgba(197,168,128,0.3)] hidden md:inline">//</span>
+          <span className="font-['Cinzel'] text-[12px] tracking-[0.16em] text-[#f5f5f7] truncate">
+            {info.title}
+          </span>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           {currentView !== 'workshop' && (
             <button
               onClick={() => onNavigate('workshop')}
-              className="btn-ghost hidden sm:inline-flex cursor-pointer !py-1.5 !px-3 !text-[12px]"
+              className="btn-rr-ghost !py-1.5 !px-3.5 !text-[10px] hidden md:inline-flex"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#8a8f98]" />
-              <span>Certified Warranty</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#c5a880]" />
+              <span>5,000 KM COVENANT</span>
             </button>
           )}
 
           {currentView !== 'inventory' ? (
             <button
               onClick={() => onNavigate('inventory')}
-              className="btn-primary cursor-pointer !py-1.5 !px-3.5 !text-[12px]"
+              className="btn-rr-solid !py-1.5 !px-4 !text-[10px] cursor-pointer"
             >
-              Browse Fleet
+              <span>EXPLORE THE FLEET</span>
             </button>
           ) : (
             <button
               onClick={() => onNavigate('trade-in')}
-              className="btn-ghost cursor-pointer !py-1.5 !px-3 !text-[12px]"
+              className="btn-rr-ghost !py-1.5 !px-4 !text-[10px] cursor-pointer"
             >
-              Trade-In Calculator
+              <Compass className="w-3.5 h-3.5 text-[#c5a880]" />
+              <span>COMMISSION APPRAISAL</span>
             </button>
           )}
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Heart, MessageCircle, Menu, X } from 'lucide-react';
+import { Search, Bookmark, Menu, X, ArrowRight } from 'lucide-react';
 
 interface NavbarProps {
   currentView: string;
@@ -19,13 +19,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'inventory', label: 'Fleet' },
-    { id: 'workshop', label: 'Master Workshop' },
-    { id: 'trade-in', label: 'Trade-In' },
-    { id: 'about', label: 'Heritage' },
-    { id: 'locations', label: 'Showrooms' },
-    { id: 'sitemap', label: 'Directory' },
+    { id: 'overview', label: 'SANCTUARY' },
+    { id: 'inventory', label: 'THE FLEET' },
+    { id: 'workshop', label: 'THE ATELIER' },
+    { id: 'trade-in', label: 'COMMISSION' },
+    { id: 'about', label: 'PROVENANCE' },
+    { id: 'locations', label: 'THE SUITES' },
   ];
 
   const handleLinkClick = (id: string) => {
@@ -36,80 +35,91 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#08090a]/85 backdrop-blur-md border-b border-[#23252a] h-[56px] flex items-center justify-center px-4 sm:px-6 sticky top-0 z-50">
-        <div className="max-w-[1200px] w-full flex items-center justify-between text-[13px]" style={{ letterSpacing: '-0.011em' }}>
+      <nav className="w-full bg-[#160a1d]/90 backdrop-blur-md border-b border-[rgba(197,168,128,0.2)] h-[64px] flex items-center justify-center px-6 sticky top-0 z-50 transition-all duration-500">
+        <div className="max-w-[1500px] w-full flex items-center justify-between">
           
-          {/* Brand Logo */}
+          {/* Brand Insignia */}
           <button
             onClick={() => handleLinkClick('overview')}
-            className="flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+            className="flex items-center gap-3 hover:opacity-85 transition-opacity cursor-pointer shrink-0"
           >
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Motors"
-              className="h-8 sm:h-9 w-auto object-contain"
+              className="h-9 sm:h-10 w-auto object-contain"
             />
+            <div className="hidden lg:flex flex-col text-left pl-3 border-l border-[rgba(197,168,128,0.25)]">
+              <span className="font-['Cinzel'] text-[12px] tracking-[0.25em] text-[#f5f5f7] font-normal leading-tight">
+                ALBERKA MOTORS
+              </span>
+              <span className="font-['Cinzel'] text-[9px] tracking-[0.22em] text-[#c5a880] leading-none mt-0.5">
+                HOUSE OF BESPOKE MARQUES
+              </span>
+            </div>
           </button>
 
-          {/* Desktop Navigation Links (Linear Nav Text Buttons) */}
-          <div className="hidden md:flex items-center gap-1 lg:gap-2">
+          {/* Aristocratic Navigation Links */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => {
               const isActive = currentView === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`px-3 py-1.5 rounded-[6px] transition-colors cursor-pointer text-[13px] font-normal ${
+                  className={`relative py-1 text-[11px] font-['Cinzel'] tracking-[0.22em] transition-colors duration-400 cursor-pointer ${
                     isActive
-                      ? 'text-white bg-white/5 font-medium'
-                      : 'text-[#d0d6e0] hover:text-white hover:bg-white/3'
+                      ? 'text-[#dfc7a5]'
+                      : 'text-[#8c8a94] hover:text-[#f5f5f7]'
                   }`}
                 >
                   {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#c5a880]" />
+                  )}
                 </button>
               );
             })}
           </div>
 
-          {/* Utility Actions */}
-          <div className="flex items-center gap-3 text-[#d0d6e0]">
-            {/* Search Trigger */}
+          {/* Aristocratic Utility Suite */}
+          <div className="flex items-center gap-4 text-[#f5f5f7]">
+            {/* Search Palette Trigger */}
             <button
               onClick={onOpenSearch}
-              className="hover:text-white transition-colors p-1.5 cursor-pointer text-[#8a8f98] hover:bg-white/5 rounded-[6px]"
-              title="Search fleet"
+              className="hover:text-[#dfc7a5] transition-colors p-2 cursor-pointer text-[#8c8a94]"
+              title="Search marques"
             >
               <Search className="w-4 h-4" />
             </button>
 
-            {/* Saved Vehicles Trigger */}
+            {/* Curated Dossier (Favorites) */}
             <button
               onClick={onOpenFavorites}
-              className="hover:text-white transition-colors p-1.5 relative cursor-pointer text-[#8a8f98] hover:bg-white/5 rounded-[6px]"
-              title="Saved vehicles"
+              className="hover:text-[#dfc7a5] transition-colors p-2 relative cursor-pointer text-[#8c8a94]"
+              title="Saved dossier"
             >
-              <Heart className="w-4 h-4" />
+              <Bookmark className="w-4 h-4" />
               {favoritesCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-[#eb5757] text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-mono">
+                <span className="absolute -top-0.5 -right-0.5 bg-[#c5a880] text-[#0f0714] text-[9px] font-['Cinzel'] w-4 h-4 flex items-center justify-center font-semibold">
                   {favoritesCount}
                 </span>
               )}
             </button>
 
-            {/* Linear High-Emphasis Action: Acid Lime Flashlight Button */}
+            {/* Ghost Hairline Action Button: Whispers Private Concierge */}
             <a
-              href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20inquiring%20about%20your%20verified%20fleet."
+              href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20a%20private%20viewing%20or%20bespoke%20commission."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary !text-[13px] !py-1.5 !px-3.5 !rounded-[6px] shrink-0 font-[510] hidden sm:inline-flex"
+              className="btn-rr-ghost !py-2 !px-4 !text-[10.5px] hidden sm:inline-flex"
             >
-              VIP Concierge
+              <span>WHISPERS CONCIERGE</span>
             </a>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Nav Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 text-[#d0d6e0] hover:text-white cursor-pointer"
+              className="md:hidden p-2 text-[#8c8a94] hover:text-[#f5f5f7] cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -118,31 +128,32 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Nocturnal Amethyst Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[56px] bg-[#08090a]/98 backdrop-blur-xl z-40 p-5 sm:p-6 flex flex-col justify-between md:hidden border-t border-[#23252a] overflow-y-auto">
-          <div className="space-y-1 pt-2">
-            <span className="text-[11px] font-mono text-[#8a8f98] uppercase tracking-wider block mb-3">Navigation</span>
+        <div className="fixed inset-0 top-[64px] bg-[#0f0714]/98 backdrop-blur-2xl z-40 p-8 flex flex-col justify-between md:hidden border-t border-[rgba(197,168,128,0.2)] overflow-y-auto">
+          <div className="space-y-4 pt-4">
+            <span className="rr-eyebrow block mb-4">THE HOUSE DIRECTORY</span>
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id)}
-                className="w-full text-left py-2.5 px-3 rounded-[6px] text-[15px] font-normal text-[#d0d6e0] hover:text-white hover:bg-white/5 flex items-center justify-between cursor-pointer transition-colors"
+                className="w-full text-left py-3 border-b border-[rgba(255,255,255,0.06)] font-['Cinzel'] text-[14px] tracking-[0.2em] text-[#8c8a94] hover:text-[#dfc7a5] flex items-center justify-between cursor-pointer transition-colors"
               >
                 <span>{link.label}</span>
-                {currentView === link.id && <span className="text-[11px] font-mono text-[#e4f222]">Active</span>}
+                {currentView === link.id && <span className="text-[10px] text-[#c5a880] tracking-widest font-mono">SELECTED</span>}
               </button>
             ))}
           </div>
 
-          <div className="pt-6 border-t border-[#23252a] space-y-3 pb-8">
+          <div className="pt-8 border-t border-[rgba(197,168,128,0.2)] space-y-4">
             <a
-              href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors"
+              href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary w-full text-center justify-center py-2.5 font-[510]"
+              className="btn-rr-solid w-full text-center justify-center py-3"
             >
-              Direct WhatsApp Concierge
+              <span>CONNECT VIA WHISPERS CONCIERGE</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
             </a>
           </div>
         </div>

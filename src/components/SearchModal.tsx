@@ -30,12 +30,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   const quickFilters = [
-    { label: 'Under 2M', filter: (v: Vehicle) => v.priceKes < 2000000 },
-    { label: '2M – 3.5M', filter: (v: Vehicle) => v.priceKes >= 2000000 && v.priceKes <= 3500000 },
-    { label: '3.5M+', filter: (v: Vehicle) => v.priceKes > 3500000 },
-    { label: 'Hybrids', filter: (v: Vehicle) => v.category === 'hybrid' || v.fuelType.includes('Hybrid') || v.fuelType.includes('POWER') },
-    { label: 'SUVs & 4WD', filter: (v: Vehicle) => v.category === 'suv' },
-    { label: '7-Seaters', filter: (v: Vehicle) => v.category === 'van' || v.name.includes('Prado') },
+    { label: 'UNDER 2.5M' },
+    { label: '2.5M – 4.0M' },
+    { label: '4.0M+' },
+    { label: 'HYBRIDS' },
+    { label: 'SUVs & 4WD' },
+    { label: '7-SEATERS' },
   ];
 
   const results = vehicles.filter((v) => {
@@ -51,47 +51,44 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20 animate-apple-fade">
-      <div className="bg-[#0f1011] w-full max-w-[640px] rounded-t-[12px] sm:rounded-[12px] overflow-hidden shadow-2xl border border-[#23252a] max-h-[88vh] sm:max-h-[80vh] flex flex-col animate-apple-up">
+    <div className="fixed inset-0 z-50 bg-[#080809]/90 backdrop-blur-xl flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20">
+      <div className="bg-[#131316] w-full max-w-[680px] overflow-hidden border border-[rgba(197,168,128,0.35)] max-h-[88vh] sm:max-h-[80vh] flex flex-col">
         
-        {/* Mobile Pull Handle */}
-        <div className="w-8 h-1 rounded-full bg-[#383b3f] mx-auto mt-2.5 mb-1 sm:hidden shrink-0" />
-
         {/* Search Input Bar */}
-        <div className="p-4 border-b border-[#23252a] flex items-center gap-3">
-          <Search className="w-4 h-4 text-[#8a8f98] shrink-0" />
+        <div className="p-5 border-b border-[rgba(197,168,128,0.2)] flex items-center gap-3">
+          <Search className="w-4 h-4 text-[#c5a880] shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search model, stock code, or powertrain (e.g. RAV4, ALB-4062, Hybrid)..."
-            className="w-full text-[14px] text-[#ffffff] placeholder:text-[#62666d] focus:outline-none bg-transparent"
+            placeholder="SEARCH BY MARQUE, ATELIER CODE, OR POWERTRAIN..."
+            className="w-full text-[13px] font-['Cinzel'] tracking-wider text-[#f5f5f7] placeholder:text-[#45434d] focus:outline-none bg-transparent"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="p-1 font-mono text-[11px] text-[#8a8f98] hover:text-[#ffffff] cursor-pointer"
+              className="p-1 font-mono text-[10px] text-[#8c8a94] hover:text-[#f5f5f7] cursor-pointer"
             >
-              Clear
+              CLEAR
             </button>
           )}
           <button
             onClick={onClose}
-            className="p-1 rounded-[4px] text-[#8a8f98] hover:text-[#ffffff] hover:bg-[#161718] cursor-pointer transition-colors"
+            className="p-1 text-[#8c8a94] hover:text-[#f5f5f7] cursor-pointer transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Quick Filter Tags */}
-        <div className="px-4 py-2 bg-[#161718] border-b border-[#23252a] flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-          <span className="font-mono text-[10px] text-[#8a8f98] uppercase tracking-wider mr-1">Quick:</span>
+        <div className="px-5 py-2.5 bg-[#0f0714] border-b border-[rgba(197,168,128,0.15)] flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <span className="font-['Cinzel'] text-[9.5px] text-[#c5a880] uppercase tracking-wider mr-1">CURATED:</span>
           {quickFilters.map((qf, i) => (
             <button
               key={i}
-              onClick={() => setQuery(qf.label.replace('+', ''))}
-              className="font-mono text-[11px] bg-[#0f1011] border border-[#23252a] px-2 py-0.5 rounded-[4px] text-[#8a8f98] hover:text-[#ffffff] hover:border-[#383b3f] transition-colors whitespace-nowrap cursor-pointer"
+              onClick={() => setQuery(qf.label.replace('+', '').toLowerCase())}
+              className="font-['Cinzel'] text-[10px] bg-[#160a1d] border border-[rgba(197,168,128,0.2)] px-2.5 py-1 text-[#8c8a94] hover:text-[#dfc7a5] hover:border-[#dfc7a5] transition-colors whitespace-nowrap cursor-pointer"
             >
               {qf.label}
             </button>
@@ -99,50 +96,41 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Results List */}
-        <div className="max-h-[380px] overflow-y-auto divide-y divide-[#23252a] p-2">
+        <div className="overflow-y-auto divide-y divide-[rgba(197,168,128,0.1)] p-2">
           {results.length > 0 ? (
-            results.map((vehicle) => (
+            results.map((v) => (
               <div
-                key={vehicle.id}
+                key={v.id}
                 onClick={() => {
-                  onSelectVehicle(vehicle);
+                  onSelectVehicle(v);
                   onClose();
                 }}
-                className="p-2.5 rounded-[6px] hover:bg-[#161718] transition-colors cursor-pointer flex items-center justify-between gap-4 group"
+                className="p-3.5 hover:bg-[#160a1d] flex items-center justify-between gap-4 cursor-pointer transition-colors group"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-[6px] overflow-hidden bg-[#161718] border border-[#23252a] shrink-0">
-                    <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="w-16 h-12 bg-[#080809] border border-[rgba(197,168,128,0.2)] overflow-hidden shrink-0">
+                    <SkeletonImage
+                      src={v.heroImage}
+                      alt={v.name}
+                      containerClassName="w-full h-full"
+                    />
                   </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-[10px] text-[#8a8f98] bg-[#08090a] px-1.5 py-0.5 rounded-[3px] border border-[#23252a]">
-                        {vehicle.stockNo}
-                      </span>
-                      <span className="text-[13px] font-normal text-[#ffffff] group-hover:text-[#ffffff] transition-colors">
-                        {vehicle.name}
-                      </span>
-                    </div>
-                    <p className="font-mono text-[11px] text-[#8a8f98] truncate max-w-[280px] sm:max-w-[360px] mt-0.5">
-                      {vehicle.year} · {vehicle.mileageKm.toLocaleString()} km · {vehicle.drivetrain.split('(')[0]}
-                    </p>
+                  <div className="min-w-0">
+                    <span className="font-['Cinzel'] text-[9px] text-[#c5a880] tracking-widest block uppercase">{v.moniker}</span>
+                    <h4 className="font-['Cinzel'] text-[13px] text-[#f5f5f7] truncate group-hover:text-[#dfc7a5] transition-colors uppercase tracking-wider">{v.name}</h4>
+                    <span className="font-mono text-[11px] text-[#8c8a94]">{v.year} // {v.mileageKm.toLocaleString()} KM // Grade {v.auctionGrade}</span>
                   </div>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="font-mono text-[13px] text-[#e4f222] block">
-                    KES {vehicle.priceKes.toLocaleString()}
-                  </span>
-                  <span className="text-[11px] text-[#8a8f98] group-hover:text-[#ffffff] font-normal flex items-center gap-0.5 justify-end transition-colors mt-0.5">
-                    <span>View</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
+                  <span className="font-mono text-[13px] text-[#f5f5f7] block">KES {v.priceKes.toLocaleString()}</span>
+                  <span className="font-['Cinzel'] text-[9px] text-[#8c8a94] uppercase tracking-wider">{v.status.split('—')[0]}</span>
                 </div>
               </div>
             ))
           ) : (
-            <div className="p-8 text-center text-[#8a8f98] text-[13px]">
-              No vehicles matched your search query "{query}".
+            <div className="p-12 text-center text-[#8c8a94] font-['Cinzel'] tracking-wider text-[12px]">
+              NO MATCHING MARQUES FOUND
             </div>
           )}
         </div>
