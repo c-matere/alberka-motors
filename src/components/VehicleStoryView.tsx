@@ -767,29 +767,29 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </div>
 
       {/* 2. HERO: PHOTO, COLOR & METRICS */}
-      <section className="relative w-full pt-12 pb-16 px-6 text-center max-w-[1400px] mx-auto">
-        <div className="relative z-10">
+      <section className="relative w-full pt-16 sm:pt-24 pb-20 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
+        <div className="relative z-10 space-y-6">
           
-          <div className="inline-flex items-center gap-2 mb-3 px-3.5 py-1.5 bg-zinc-900 border border-zinc-800 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-            <span className="font-mono text-[11px] text-zinc-300 uppercase tracking-wider font-semibold">
-              {vehicle.status} · STOCK #{vehicle.stockNo}
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+            <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-medium">
+              JAPANESE AUCTION VERIFIED · GRADE {vehicle.auctionGrade} · {vehicle.auctionHall}
             </span>
           </div>
 
-          <h1 className="text-[34px] sm:text-[50px] md:text-[60px] font-bold text-white mb-3 max-w-[1100px] mx-auto tracking-[-0.035em]">
+          <h1 className="text-[38px] sm:text-[56px] md:text-[68px] font-bold text-white tracking-[-0.04em] leading-[1.05] max-w-[1000px] mx-auto">
             {vehicle.name}
           </h1>
 
-          <p className="max-w-[760px] mx-auto text-zinc-400 text-[16px] sm:text-[19px] leading-relaxed mb-10 tracking-[-0.01em]">
-            "{vehicle.tagline}"
+          <p className="max-w-[680px] mx-auto text-zinc-400 text-base sm:text-lg leading-relaxed font-normal">
+            {vehicle.tagline}
           </p>
 
           {/* Master Visual Canvas */}
-          <div className="relative w-full max-w-[1100px] mx-auto mb-8">
+          <div className="relative w-full max-w-[1140px] mx-auto pt-4">
             <div 
               onClick={() => openPhotoByUrl(activeColor.imageUrl)}
-              className="w-full h-[360px] sm:h-[480px] lg:h-[540px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative shadow-2xl cursor-pointer group"
+              className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[600px] overflow-hidden bg-black border border-white/[0.08] rounded-2xl relative shadow-[0_24px_60px_rgba(0,0,0,0.85)] cursor-pointer group select-none"
             >
               <SkeletonImage
                 key={activeColor.name}
@@ -800,13 +800,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               />
 
               {/* Fullscreen Expand Action Pill */}
-              <div className="absolute top-4 right-4 z-20">
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     openPhotoByUrl(activeColor.imageUrl);
                   }}
-                  className="bg-black/80 hover:bg-black text-white px-3 py-1.5 rounded-lg border border-zinc-800 text-xs font-mono flex items-center gap-1.5 transition-colors cursor-pointer backdrop-blur-md shadow-md"
+                  className="bg-black/75 hover:bg-black text-white px-3 py-1.5 rounded-lg border border-white/15 text-xs font-mono flex items-center gap-1.5 transition-colors cursor-pointer backdrop-blur-md shadow-md"
                   title="Expand photo fullscreen"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
@@ -814,67 +814,78 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </button>
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
                 <div className="text-left text-white space-y-0.5">
-                  <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest font-semibold block">
-                    COLOR OPTION
+                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block">
+                    PAINT FINISH
                   </span>
-                  <p className="text-[18px] sm:text-[22px] font-bold text-white tracking-tight">
-                    {activeColor.name} · Grade {vehicle.auctionGrade} Quality
+                  <p className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                    {activeColor.name}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Color Switcher */}
-            <div className="p-3 max-w-[440px] mx-auto -mt-6 relative z-20 flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-lg shadow-2xl">
-              <div className="text-left pl-2">
-                <span className="text-[10px] text-zinc-400 uppercase font-mono block">Paint Finish</span>
-                <span className="text-[13px] font-bold text-white truncate max-w-[180px] block">
-                  {activeColor.name}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 pr-2">
+            {/* Color Swatch Selector */}
+            <div className="flex items-center justify-center gap-3 pt-5">
+              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
+                {activeColor.name}
+              </span>
+              <div className="flex items-center gap-2">
                 {vehicle.colors.map((c, idx) => {
                   const isSelected = selectedColorIndex === idx;
                   return (
                     <button
                       key={idx}
                       onClick={() => setSelectedColorIndex(idx)}
-                      className={`w-7 h-7 rounded-full transition-all cursor-pointer relative flex items-center justify-center ${
-                        isSelected ? 'ring-2 ring-white scale-110' : 'opacity-60 hover:opacity-100'
+                      className={`w-5 h-5 rounded-full transition-all cursor-pointer relative ${
+                        isSelected ? 'ring-2 ring-white scale-110' : 'opacity-40 hover:opacity-100'
                       }`}
                       style={{ backgroundColor: c.hex }}
                       title={c.name}
-                    >
-                      {isSelected && (
-                        <span className="w-2 h-2 rounded-full bg-white shadow-sm" />
-                      )}
-                    </button>
+                    />
                   );
                 })}
               </div>
             </div>
-          </div>
 
-          {/* Metric Summary Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[960px] mx-auto pt-6 text-left">
-            <div className="bg-zinc-900/70 border border-zinc-800 p-4 rounded-lg">
-              <span className="text-[11px] font-mono text-zinc-400 uppercase block mb-1">Year & Mileage</span>
-              <span className="font-mono text-[15px] font-bold text-white">{vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM</span>
-            </div>
-            <div className="bg-zinc-900/70 border border-zinc-800 p-4 rounded-lg">
-              <span className="text-[11px] font-mono text-zinc-400 uppercase block mb-1">Auction Grade</span>
-              <span className="font-mono text-[15px] font-bold text-white">{vehicle.auctionGrade} / {vehicle.interiorGrade}</span>
-            </div>
-            <div className="bg-zinc-900/70 border border-zinc-800 p-4 rounded-lg">
-              <span className="text-[11px] font-mono text-zinc-400 uppercase block mb-1">Drivetrain</span>
-              <span className="text-[15px] font-bold text-white">{vehicle.drivetrain.split('(')[0]}</span>
-            </div>
-            <div className="bg-zinc-900/70 border border-zinc-800 p-4 rounded-lg">
-              <span className="text-[11px] font-mono text-zinc-400 uppercase block mb-1">Delivered Price</span>
-              <span className="font-mono text-[15px] font-bold text-white">KES {vehicle.priceKes.toLocaleString()}</span>
+            {/* Architectural Metric Matrix (Hairline Dividers) */}
+            <div className="border-y border-white/[0.08] py-6 max-w-[1100px] mx-auto mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
+              <div>
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">
+                  YEAR & MILEAGE
+                </span>
+                <span className="font-mono text-base font-bold text-white">
+                  {vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM
+                </span>
+              </div>
+
+              <div className="sm:border-l sm:border-white/[0.08] sm:pl-6">
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">
+                  AUCTION GRADE
+                </span>
+                <span className="font-mono text-base font-bold text-white">
+                  {vehicle.auctionGrade} ({vehicle.auctionHall})
+                </span>
+              </div>
+
+              <div className="border-t sm:border-t-0 sm:border-l border-white/[0.08] pt-4 sm:pt-0 sm:pl-6">
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">
+                  POWERTRAIN
+                </span>
+                <span className="text-base font-bold text-white truncate block">
+                  {vehicle.drivetrain.split('(')[0]}
+                </span>
+              </div>
+
+              <div className="border-t sm:border-t-0 sm:border-l border-white/[0.08] pt-4 sm:pt-0 sm:pl-6">
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">
+                  DELIVERED CASH
+                </span>
+                <span className="font-mono text-base font-bold text-white">
+                  KES {vehicle.priceKes.toLocaleString()}
+                </span>
+              </div>
             </div>
           </div>
         </div>
