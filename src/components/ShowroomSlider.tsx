@@ -9,6 +9,8 @@ import {
   MessageCircle,
   ShieldCheck,
   CheckCircle2,
+  Maximize2,
+  X,
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
@@ -28,43 +30,76 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
   onViewAll,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeAngleIdx, setActiveAngleIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const SLIDE_DURATION = 6500; // 6.5s per slide
   const activeVehicle = vehicles[activeIndex] || vehicles[0];
   const isFavorite = favorites.includes(activeVehicle?.id);
 
+  // Multi-angle gallery views for the active car
+  const angles = [
+    { label: 'Front Stance', url: activeVehicle.heroImage },
+    ...(activeVehicle.gallery[1] ? [{ label: 'Cockpit & Cabin', url: activeVehicle.gallery[1].url }] : []),
+    ...(activeVehicle.gallery[0] && activeVehicle.gallery[0].url !== activeVehicle.heroImage
+      ? [{ label: 'Details', url: activeVehicle.gallery[0].url }]
+      : activeVehicle.gallery[2]
+      ? [{ label: 'Rear Stance', url: activeVehicle.gallery[2].url }]
+      : []),
+  ];
+
   // Next / Previous slide handlers
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % vehicles.length);
+    setActiveAngleIdx(0);
     setProgress(0);
   }, [vehicles.length]);
 
   const handlePrev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + vehicles.length) % vehicles.length);
+    setActiveAngleIdx(0);
     setProgress(0);
   }, [vehicles.length]);
 
   const handleSelectIndex = (idx: number) => {
     setActiveIndex(idx);
+    setActiveAngleIdx(0);
     setProgress(0);
   };
 
-  // Keyboard navigation
+  // Keyboard navigation & ESC handler
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') handleNext();
       if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'Escape') setIsLightboxOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev]);
 
+  // Touch gesture swipe handling
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) handleNext();
+      else handlePrev();
+    }
+    setTouchStartX(null);
+  };
+
   // Autoplay timer with linear progress
   useEffect(() => {
-    if (!isPlaying || isHovered || vehicles.length <= 1) return;
+    if (!isPlaying || isHovered || isLightboxOpen || vehicles.length <= 1) return;
 
     const intervalMs = 50;
     const step = (intervalMs / SLIDE_DURATION) * 100;
@@ -80,7 +115,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
     }, intervalMs);
 
     return () => clearInterval(timer);
-  }, [isPlaying, isHovered, vehicles.length, handleNext]);
+  }, [isPlaying, isHovered, isLightboxOpen, vehicles.length, handleNext]);
 
   if (!activeVehicle) return null;
 
@@ -180,14 +215,18 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
       {/* The Grand Theatrical Showcase Stage */}
       <div className="relative w-full rounded-xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
-        <div className="relative w-full h-[460px] sm:h-[560px] md:h-[620px] lg:h-[660px] overflow-hidden">
+        <div 
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full h-[460px] sm:h-[560px] md:h-[620px] lg:h-[660px] overflow-hidden select-none"
+        >
           
-          {/* Media Frame */}
+          {/* Media Frame with smooth angle rendering */}
           <div className="absolute inset-0 w-full h-full">
             <img
-              key={activeVehicle.id}
-              src={activeVehicle.heroImage}
-              alt={activeVehicle.name}
+              key={`${activeVehicle.id}-${activeAngleIdx}`}
+              src={angles[activeAngleIdx]?.url || activeVehicle.heroImage}
+              alt={`${activeVehicle.name} - ${angles[activeAngleIdx]?.label || 'Exterior'}`}
               className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out hover:scale-102"
             />
           </div>
@@ -196,8 +235,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20 pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/30 pointer-events-none hidden sm:block" />
 
-          {/* Top Stage Bar: Badges & Favorite Action */}
-          <div className="absolute top-4 sm:top-6 inset-x-4 sm:inset-x-8 flex items-center justify-between z-20">
+          {/* Top Stage Bar: Badges, Angle Switcher & Fullscreen Action */}
+          <div className="absolute top-4 sm:top-6 inset-x-4 sm:inset-x-8 flex items-center justify-between z-20 gap-3">
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
               {/* Clean Monochrome Grade Badge with single tiny red dot */}
               <div className="bg-black/85 backdrop-blur-md border border-zinc-700 text-white text-[11px] font-mono px-3 py-1 rounded-md flex items-center gap-1.5 shadow-md">
@@ -207,13 +246,39 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-mono px-3 py-1 rounded-md">
                 {activeVehicle.stockNo}
               </span>
-              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-medium px-3 py-1 rounded-md hidden xs:inline-flex items-center gap-1.5">
+              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-medium px-3 py-1 rounded-md hidden md:inline-flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Duty Paid & Cleared</span>
               </span>
             </div>
 
             <div className="flex items-center gap-2">
+              {/* Multi-Angle Mini Pills */}
+              <div className="hidden xs:flex items-center gap-1 bg-black/75 backdrop-blur-md p-1 border border-zinc-800 rounded-lg">
+                {angles.map((ang, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveAngleIdx(idx)}
+                    className={`px-2.5 py-1 text-[11px] rounded font-mono transition-all cursor-pointer ${
+                      activeAngleIdx === idx
+                        ? 'bg-white text-zinc-950 font-bold'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    {ang.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Fullscreen Lightbox Button */}
+              <button
+                onClick={() => setIsLightboxOpen(true)}
+                className="p-2.5 rounded-md backdrop-blur-md border border-zinc-800 bg-black/70 hover:bg-black text-zinc-300 hover:text-white transition-all cursor-pointer"
+                title="Expand full-screen theatrical gallery (Space / Click)"
+              >
+                <Maximize2 className="w-4 h-4" />
+              </button>
+
               <button
                 onClick={() => onToggleFavorite(activeVehicle.id)}
                 className={`p-2.5 rounded-md backdrop-blur-md border transition-all cursor-pointer ${
@@ -397,6 +462,129 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           );
         })}
       </div>
+
+      {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal */}
+      {isLightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8 animate-fadeIn"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          {/* Top Bar: Vehicle Info, Grade, Counter & Close */}
+          <div 
+            className="flex items-center justify-between border-b border-zinc-800/80 pb-4 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider">
+                {activeVehicle.stockNo} · {activeVehicle.name}
+              </span>
+              <span className="text-zinc-600 hidden sm:inline">|</span>
+              <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
+                Grade {activeVehicle.auctionGrade} · {activeVehicle.auctionHall}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
+                <span className="text-white font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
+                <span className="text-zinc-600"> / </span>
+                <span className="text-zinc-400">{String(vehicles.length).padStart(2, '0')}</span>
+              </div>
+              <button
+                onClick={() => setIsLightboxOpen(false)}
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
+                title="Close fullscreen view (Esc)"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Center Stage: Theatrical Media Viewer */}
+          <div 
+            className="relative flex-1 flex items-center justify-center my-4 overflow-hidden select-none"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              key={`${activeVehicle.id}-${activeAngleIdx}`}
+              src={angles[activeAngleIdx]?.url || activeVehicle.heroImage}
+              alt={`${activeVehicle.name} - ${angles[activeAngleIdx]?.label || 'Exterior'}`}
+              className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300"
+            />
+
+            {/* Hairline Side Arrows */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              title="Previous car (Left Arrow)"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              title="Next car (Right Arrow)"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Bottom Bar: Multi-Angle Switcher & Handover Actions */}
+          <div 
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-800/80 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
+              {angles.map((ang, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveAngleIdx(idx)}
+                  className={`px-3 py-1.5 text-xs rounded-md font-mono border transition-all cursor-pointer whitespace-nowrap ${
+                    activeAngleIdx === idx
+                      ? 'bg-white text-zinc-950 font-bold border-white'
+                      : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
+                  }`}
+                >
+                  <span>{ang.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+              <div className="text-left sm:text-right font-mono">
+                <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-base sm:text-lg font-bold text-white">
+                  KES {activeVehicle.priceKes.toLocaleString()}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost !py-2.5 !px-4 text-xs font-medium"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+                  <span>WhatsApp</span>
+                </a>
+
+                <button
+                  onClick={() => {
+                    setIsLightboxOpen(false);
+                    onSelectVehicle(activeVehicle);
+                  }}
+                  className="btn-white !py-2.5 !px-4 text-xs font-semibold cursor-pointer"
+                >
+                  <span>View Details</span>
+                  <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </section>
   );

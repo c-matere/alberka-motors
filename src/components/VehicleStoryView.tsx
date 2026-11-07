@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -23,7 +23,11 @@ import {
   Palette,
   Copy,
   Check,
-  Award
+  Award,
+  Maximize2,
+  X,
+  ZoomIn,
+  Eye
 } from 'lucide-react';
 import { Vehicle, EditorialFeature, FeatureSlide } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
@@ -49,9 +53,11 @@ const EditorialFeatureSection: React.FC<{
   totalSections: number;
   vehicleName: string;
   stockNo: string;
-}> = ({ feature, sectionIndex, totalSections, vehicleName, stockNo }) => {
+  onOpenLightbox?: (photo: { url: string; title: string; desc?: string }) => void;
+}> = ({ feature, sectionIndex, totalSections, vehicleName, stockNo, onOpenLightbox }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const activeSlide: FeatureSlide =
     feature.slides[activeSlideIndex] || feature.slides[0];
@@ -63,6 +69,20 @@ const EditorialFeatureSection: React.FC<{
     }, 5500);
     return () => clearInterval(interval);
   }, [isPlaying, feature.slides.length]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length);
+      else setActiveSlideIndex((prev) => (prev === 0 ? feature.slides.length - 1 : prev - 1));
+    }
+    setTouchStartX(null);
+  };
 
   return (
     <section className="w-full bg-[#121215] border-b border-[#27272a] py-16 sm:py-24 px-6 sm:px-10">
@@ -91,30 +111,50 @@ const EditorialFeatureSection: React.FC<{
           
           {/* Column 1: Rolls-Royce Style Media Showcase Slideshow */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative group shadow-2xl">
+            <div 
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative group shadow-2xl select-none"
+            >
               <SkeletonImage
                 key={activeSlide.id || activeSlide.imageUrl}
                 src={activeSlide.imageUrl}
                 alt={activeSlide.title}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 cursor-pointer"
                 containerClassName="w-full h-full"
               />
 
-              {/* Rolls-Royce Slide Counter (01 / 04) & Metric */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+              {/* Rolls-Royce Slide Counter (01 / 04), Metric & Fullscreen trigger */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
                 <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-lg border border-zinc-800 flex items-center gap-1.5 shadow-md">
                   <span className="text-white font-bold">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
                   <span className="text-zinc-600">/</span>
                   <span className="text-zinc-400">{String(feature.slides.length).padStart(2, '0')}</span>
                 </div>
 
-                {activeSlide.metric && (
-                  <div className="bg-black/85 backdrop-blur-md border border-zinc-800 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-md">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-                    <span className="text-xs text-zinc-400 hidden xs:inline">{activeSlide.metricLabel}:</span>
-                    <span className="text-xs font-mono font-bold text-white">{activeSlide.metric}</span>
-                  </div>
-                )}
+                <div className="flex items-center gap-2">
+                  {activeSlide.metric && (
+                    <div className="bg-black/85 backdrop-blur-md border border-zinc-800 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-md">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                      <span className="text-xs text-zinc-400 hidden xs:inline">{activeSlide.metricLabel}:</span>
+                      <span className="text-xs font-mono font-bold text-white">{activeSlide.metric}</span>
+                    </div>
+                  )}
+
+                  {onOpenLightbox && (
+                    <button
+                      onClick={() => onOpenLightbox({
+                        url: activeSlide.imageUrl,
+                        title: `${feature.title} — ${activeSlide.title}`,
+                        desc: activeSlide.description
+                      })}
+                      className="bg-black/80 hover:bg-black text-zinc-300 hover:text-white p-2 rounded-lg border border-zinc-800 transition-colors cursor-pointer backdrop-blur-md"
+                      title="Expand full-screen"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Bottom Scrim */}
@@ -274,6 +314,117 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [acousticMode, setAcousticMode] = useState<'off' | 'ambient' | 'sanctuary'>('off');
   const [copiedToast, setCopiedToast] = useState(false);
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
+
+  // Master Photographic Gallery & Lightbox state
+  const [galleryFilter, setGalleryFilter] = useState<'all' | 'exterior' | 'interior' | 'details'>('all');
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+  const [isGalleryLightboxOpen, setIsGalleryLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [touchGalleryStartX, setTouchGalleryStartX] = useState<number | null>(null);
+
+  // Compile full photo suite for the active car
+  const allPhotos = [
+    {
+      id: 'hero-front',
+      title: `${vehicle.name} — Front Stance`,
+      category: 'exterior' as const,
+      tag: 'Front Stance',
+      description: `Original Japanese auction condition. Chrome styling and clean bodywork from ${vehicle.auctionHall}.`,
+      url: vehicle.heroImage,
+    },
+    ...vehicle.gallery.map((g, idx) => {
+      const isInterior =
+        g.title.toLowerCase().includes('cockpit') ||
+        g.title.toLowerCase().includes('interior') ||
+        g.title.toLowerCase().includes('seat') ||
+        g.title.toLowerCase().includes('lounge') ||
+        g.title.toLowerCase().includes('saddle');
+      const isDetail =
+        g.title.toLowerCase().includes('wheel') ||
+        g.title.toLowerCase().includes('grille') ||
+        g.title.toLowerCase().includes('tail') ||
+        g.title.toLowerCase().includes('tailgate') ||
+        g.title.toLowerCase().includes('lamp') ||
+        g.title.toLowerCase().includes('glass');
+      return {
+        id: `gallery-${idx}`,
+        title: g.title,
+        category: (isInterior ? 'interior' : isDetail ? 'details' : 'exterior') as 'exterior' | 'interior' | 'details',
+        tag: isInterior ? 'Cabin Interior' : isDetail ? 'Details & Wheels' : 'Exterior Stance',
+        description: g.description,
+        url: g.url,
+      };
+    }),
+    ...vehicle.editorialFeatures.flatMap((f) =>
+      f.slides.slice(0, 2).map((s, idx) => ({
+        id: `${f.id}-${idx}`,
+        title: `${f.title} — ${s.title}`,
+        category: (f.id === 'seats' || f.id === 'infotainment' ? 'interior' : 'details') as 'exterior' | 'interior' | 'details',
+        tag: f.id === 'seats' || f.id === 'infotainment' ? 'Interior' : 'Engineering',
+        description: s.description,
+        url: s.imageUrl,
+      }))
+    ),
+  ].filter((item, index, self) => index === self.findIndex((t) => t.url === item.url));
+
+  const filteredPhotos = allPhotos.filter((p) => {
+    if (galleryFilter === 'all') return true;
+    return p.category === galleryFilter;
+  });
+
+  const currentPhoto = filteredPhotos[activePhotoIndex] || filteredPhotos[0] || allPhotos[0];
+
+  const openLightboxWithIndex = (idx: number) => {
+    setLightboxIndex(idx);
+    setIsGalleryLightboxOpen(true);
+  };
+
+  const handleNextPhoto = useCallback(() => {
+    setActivePhotoIndex((prev) => (prev + 1) % filteredPhotos.length);
+  }, [filteredPhotos.length]);
+
+  const handlePrevPhoto = useCallback(() => {
+    setActivePhotoIndex((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
+  }, [filteredPhotos.length]);
+
+  const handleNextLightbox = useCallback(() => {
+    setLightboxIndex((prev) => (prev + 1) % filteredPhotos.length);
+  }, [filteredPhotos.length]);
+
+  const handlePrevLightbox = useCallback(() => {
+    setLightboxIndex((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
+  }, [filteredPhotos.length]);
+
+  // Touch handlers for gallery viewport
+  const handleTouchGalleryStart = (e: React.TouchEvent) => {
+    setTouchGalleryStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchGalleryEnd = (e: React.TouchEvent) => {
+    if (touchGalleryStartX === null) return;
+    const diff = touchGalleryStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNextPhoto();
+      else handlePrevPhoto();
+    }
+    setTouchGalleryStartX(null);
+  };
+
+  // Keyboard navigation & ESC
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsGalleryLightboxOpen(false);
+        setShowAuctionModal(false);
+      }
+      if (isGalleryLightboxOpen) {
+        if (e.key === 'ArrowRight') handleNextLightbox();
+        if (e.key === 'ArrowLeft') handlePrevLightbox();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isGalleryLightboxOpen, handleNextLightbox, handlePrevLightbox]);
 
   // Web Audio Simulator
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -890,7 +1041,216 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
       </section>
 
-      {/* 4. DEDICATED FEATURE SPREADS */}
+      {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS */}
+      {vehicle.closerLookPoints && vehicle.closerLookPoints.length > 0 && (
+        <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 border-t border-zinc-800">
+          <div className="max-w-[1400px] mx-auto space-y-12">
+            
+            <div className="space-y-2 max-w-3xl">
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] text-zinc-400 uppercase font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                <span>CLOSER LOOK // 4 KEY ADVANTAGES</span>
+              </div>
+              <h2 className="text-[28px] sm:text-[38px] font-bold text-white tracking-tight leading-tight">
+                Engineered for Daily Life & Kenyan Roads
+              </h2>
+              <p className="text-[15px] sm:text-[16px] text-zinc-400 leading-relaxed">
+                Key mechanical, comfort, and interior features handpicked for durability and effortless everyday driving.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {vehicle.closerLookPoints.map((point, pIdx) => (
+                <div
+                  key={point.id || pIdx}
+                  onClick={() => openLightboxWithIndex(0)}
+                  className="bg-[#121215] border border-zinc-800 hover:border-zinc-700 rounded-xl overflow-hidden group transition-all duration-300 flex flex-col justify-between cursor-pointer shadow-lg"
+                >
+                  <div className="w-full h-48 sm:h-52 overflow-hidden bg-black relative">
+                    <img
+                      src={point.imageUrl}
+                      alt={point.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                    <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-800 text-[11px] font-mono text-white font-bold flex items-center gap-1.5 shadow-md">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                      <span>{point.metric}</span>
+                    </div>
+                  </div>
+
+                  <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block mb-1">
+                        {point.subtitle}
+                      </span>
+                      <h3 className="text-base font-bold text-white leading-snug">
+                        {point.title}
+                      </h3>
+                      <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+                        {point.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                      <span>{point.metricLabel}</span>
+                      <span className="text-white font-bold">{point.metric}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* 4. THE MASTER PHOTOGRAPHIC GALLERY (ROLLS-ROYCE STYLE APERTURE) */}
+      <section className="w-full bg-[#121215] py-20 px-6 sm:px-10 border-t border-zinc-800">
+        <div className="max-w-[1400px] mx-auto space-y-10">
+          
+          {/* Gallery Header & Filter Controls */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] text-zinc-400 uppercase font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                <span>INSPECT EVERY ANGLE // PHOTOGRAPHIC ARCHIVE</span>
+              </div>
+              <h2 className="text-[28px] sm:text-[38px] font-bold text-white tracking-tight leading-tight">
+                Authentic High-Resolution Gallery
+              </h2>
+              <p className="text-[15px] text-zinc-400 leading-relaxed">
+                Direct auction photos, interior leather close-ups, and mechanical inspection shots showing the actual condition of this vehicle.
+              </p>
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md p-1 border border-zinc-800 rounded-lg overflow-x-auto no-scrollbar shrink-0">
+              {[
+                { id: 'all', label: `All Photos (${allPhotos.length})` },
+                { id: 'exterior', label: 'Exterior Stance' },
+                { id: 'interior', label: 'Cabin & Seats' },
+                { id: 'details', label: 'Details & Wheels' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setGalleryFilter(tab.id as any);
+                    setActivePhotoIndex(0);
+                  }}
+                  className={`px-3 py-1.5 text-xs font-mono rounded-md transition-all cursor-pointer whitespace-nowrap ${
+                    galleryFilter === tab.id
+                      ? 'bg-white text-zinc-950 font-bold shadow-sm'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Master 16:9 Theatrical Gallery Stage */}
+          <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
+            <div 
+              onTouchStart={handleTouchGalleryStart}
+              onTouchEnd={handleTouchGalleryEnd}
+              className="relative w-full h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden select-none"
+            >
+              <img
+                key={currentPhoto.url}
+                src={currentPhoto.url}
+                alt={currentPhoto.title}
+                className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out hover:scale-102"
+              />
+
+              {/* Scrim & Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/20 pointer-events-none" />
+
+              {/* Top Bar Badges */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
+                <div className="flex items-center gap-2">
+                  <div className="bg-black/85 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-md border border-zinc-800 flex items-center gap-1.5 shadow-md">
+                    <span className="text-white font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
+                    <span className="text-zinc-600">/</span>
+                    <span className="text-zinc-400">{String(filteredPhotos.length).padStart(2, '0')}</span>
+                  </div>
+                  <span className="bg-black/85 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-mono text-zinc-300 border border-zinc-800 hidden xs:inline">
+                    {currentPhoto.tag}
+                  </span>
+                </div>
+
+                <button
+                  onClick={() => openLightboxWithIndex(activePhotoIndex)}
+                  className="bg-black/80 hover:bg-black text-white p-2.5 rounded-lg border border-zinc-800 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono"
+                  title="Expand Fullscreen Lightbox"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                  <span className="hidden sm:inline">Fullscreen</span>
+                </button>
+              </div>
+
+              {/* Lower-Third Caption Card */}
+              <div className="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 z-20 pointer-events-none">
+                <div className="bg-black/80 backdrop-blur-xl border border-zinc-800 p-4 sm:p-5 rounded-xl max-w-2xl text-left space-y-1">
+                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold">
+                    {vehicle.name} // {currentPhoto.tag}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                    {currentPhoto.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                    {currentPhoto.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Hairline Stage Controls */}
+              <button
+                onClick={handlePrevPhoto}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
+                title="Previous photo"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={handleNextPhoto}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
+                title="Next photo"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+            </div>
+
+            {/* Filmstrip Runway Strip */}
+            <div className="p-3 bg-zinc-950 border-t border-zinc-800/80 flex items-center gap-2.5 overflow-x-auto no-scrollbar">
+              {filteredPhotos.map((photo, idx) => {
+                const isActive = idx === activePhotoIndex;
+                return (
+                  <button
+                    key={photo.id || idx}
+                    onClick={() => setActivePhotoIndex(idx)}
+                    className={`h-16 w-24 sm:w-28 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative ${
+                      isActive
+                        ? 'border-white ring-2 ring-white/50 scale-102'
+                        : 'border-zinc-800 opacity-60 hover:opacity-100'
+                    }`}
+                  >
+                    <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
+                    <span className="absolute bottom-1 left-1 bg-black/85 font-mono text-[9px] text-zinc-300 px-1 rounded">
+                      0{idx + 1}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. DEDICATED FEATURE SPREADS */}
       <div className="w-full">
         {vehicle.editorialFeatures.map((feat, idx) => (
           <EditorialFeatureSection
@@ -900,6 +1260,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             totalSections={vehicle.editorialFeatures.length}
             vehicleName={vehicle.name}
             stockNo={vehicle.stockNo}
+            onOpenLightbox={(photo) => {
+              const matchingIdx = filteredPhotos.findIndex((p) => p.url === photo.url);
+              if (matchingIdx >= 0) openLightboxWithIndex(matchingIdx);
+              else openLightboxWithIndex(0);
+            }}
           />
         ))}
       </div>
@@ -1110,6 +1475,115 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </a>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* Rolls-Royce Bespoke Fullscreen Gallery Lightbox Modal */}
+      {isGalleryLightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8 animate-fadeIn select-none"
+          onClick={() => setIsGalleryLightboxOpen(false)}
+        >
+          {/* Top Bar */}
+          <div 
+            className="flex items-center justify-between border-b border-zinc-800/80 pb-4 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider">
+                {vehicle.stockNo} · {vehicle.name}
+              </span>
+              <span className="text-zinc-600 hidden sm:inline">|</span>
+              <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
+                {filteredPhotos[lightboxIndex]?.title || currentPhoto.title}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
+                <span className="text-white font-bold">{String(lightboxIndex + 1).padStart(2, '0')}</span>
+                <span className="text-zinc-600"> / </span>
+                <span className="text-zinc-400">{String(filteredPhotos.length).padStart(2, '0')}</span>
+              </div>
+              <button
+                onClick={() => setIsGalleryLightboxOpen(false)}
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
+                title="Close fullscreen view (Esc)"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Center Stage Media */}
+          <div 
+            className="relative flex-1 flex items-center justify-center my-4 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={filteredPhotos[lightboxIndex]?.url || currentPhoto.url}
+              alt={filteredPhotos[lightboxIndex]?.title || currentPhoto.title}
+              className="max-h-[74vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300"
+            />
+
+            {/* Hairline Nav Controls */}
+            <button
+              onClick={handlePrevLightbox}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              title="Previous photo (Left Arrow)"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={handleNextLightbox}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              title="Next photo (Right Arrow)"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Bottom Bar: Filmstrip & Inquire Action */}
+          <div 
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-800/80 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
+              {filteredPhotos.map((p, idx) => (
+                <button
+                  key={p.id || idx}
+                  onClick={() => setLightboxIndex(idx)}
+                  className={`h-12 w-16 sm:w-20 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
+                    lightboxIndex === idx
+                      ? 'border-white ring-2 ring-white/50'
+                      : 'border-zinc-800 opacity-50 hover:opacity-100'
+                  }`}
+                >
+                  <img src={p.url} alt={p.title} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+              <div className="text-left sm:text-right font-mono">
+                <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-base sm:text-lg font-bold text-white">
+                  KES {vehicle.priceKes.toLocaleString()}
+                </span>
+              </div>
+
+              <a
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-white !py-2.5 !px-5 text-xs font-semibold"
+              >
+                <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+                <span>Inquire on WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       )}

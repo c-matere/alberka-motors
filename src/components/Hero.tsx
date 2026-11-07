@@ -8,6 +8,8 @@ import {
   ShieldCheck,
   ChevronLeft,
   ChevronRight,
+  Maximize2,
+  X,
 } from 'lucide-react';
 
 interface HeroProps {
@@ -77,7 +79,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   const [activeSlideIdx, setActiveSlideIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+  const [isHeroLightboxOpen, setIsHeroLightboxOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const SLIDE_INTERVAL = 7000;
@@ -93,9 +97,33 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
     setProgress(0);
   }, []);
 
+  // Keyboard navigation & ESC
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsHeroLightboxOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Touch gesture swipe handling
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) handleNext();
+      else handlePrev();
+    }
+    setTouchStartX(null);
+  };
+
   // Autoplay timer with linear progress
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || isHeroLightboxOpen) return;
 
     const intervalMs = 50;
     const step = (intervalMs / SLIDE_INTERVAL) * 100;
@@ -203,7 +231,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
         {/* 21:9 Widescreen Theatrical Stage */}
         <div className="relative w-full mx-auto">
-          <div className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-xl shadow-2xl">
+          <div 
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-xl shadow-2xl select-none"
+          >
             
             {/* Cinematic Media (Video or High-Res Image) */}
             {currentSlide.videoUrl ? (
@@ -259,6 +291,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
             {/* Controls Top Right */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 z-30">
+              <button
+                onClick={() => setIsHeroLightboxOpen(true)}
+                className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
+                title="Fullscreen Theater Mode"
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+              </button>
+
               <button
                 onClick={togglePlay}
                 className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
@@ -357,6 +397,131 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         </div>
 
       </div>
+      {/* Fullscreen Theatrical Hero Lightbox Modal */}
+      {isHeroLightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8 animate-fadeIn text-left"
+          onClick={() => setIsHeroLightboxOpen(false)}
+        >
+          {/* Top Bar */}
+          <div 
+            className="flex items-center justify-between border-b border-zinc-800/80 pb-4 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider">
+                {currentSlide.name}
+              </span>
+              <span className="text-zinc-600 hidden sm:inline">|</span>
+              <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
+                {currentSlide.category} · {currentSlide.grade}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
+                <span className="text-white font-bold">0{activeSlideIdx + 1}</span>
+                <span className="text-zinc-600"> / </span>
+                <span className="text-zinc-400">0{FLAGSHIP_SLIDES.length}</span>
+              </div>
+              <button
+                onClick={() => setIsHeroLightboxOpen(false)}
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
+                title="Close fullscreen (Esc)"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Center Stage Video / Image */}
+          <div 
+            className="relative flex-1 flex items-center justify-center my-4 overflow-hidden select-none"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {currentSlide.videoUrl ? (
+              <video
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+                key={currentSlide.id}
+                className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+              >
+                <source src={currentSlide.videoUrl} type="video/mp4" />
+                <img src={currentSlide.imageUrl} alt={currentSlide.name} className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl" />
+              </video>
+            ) : (
+              <img
+                src={currentSlide.imageUrl}
+                alt={currentSlide.name}
+                className="max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+              />
+            )}
+
+            {/* Hairline Nav Controls */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              title="Previous car"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              title="Next car"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Bottom Bar: Slide Switchers & Action */}
+          <div 
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-800/80 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+              {FLAGSHIP_SLIDES.map((slide, idx) => (
+                <button
+                  key={slide.id}
+                  onClick={() => setActiveSlideIdx(idx)}
+                  className={`px-3 py-1.5 text-xs rounded-md font-mono border transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
+                    activeSlideIdx === idx
+                      ? 'bg-white text-zinc-950 font-bold border-white'
+                      : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white'
+                  }`}
+                >
+                  <span className={`text-[10px] ${activeSlideIdx === idx ? 'text-zinc-950 font-bold' : 'text-zinc-500'}`}>0{idx + 1}</span>
+                  <span>{slide.name}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+              <div className="text-left sm:text-right font-mono">
+                <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-base sm:text-lg font-bold text-white">
+                  KES {currentSlide.priceKes.toLocaleString()}
+                </span>
+              </div>
+
+              <button
+                onClick={() => {
+                  setIsHeroLightboxOpen(false);
+                  onExploreFleet();
+                }}
+                className="btn-white !py-2.5 !px-4 text-xs font-semibold cursor-pointer"
+              >
+                <span>Browse All Cars</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 };

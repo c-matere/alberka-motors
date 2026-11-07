@@ -7,6 +7,8 @@ import {
   MessageCircle,
   FileText,
   Bookmark,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
@@ -102,7 +104,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
             {/* Media Viewer */}
             <div className="space-y-4">
-              <div className="w-full h-72 sm:h-96 rounded-xl overflow-hidden bg-black border border-zinc-800 relative">
+              <div className="w-full h-72 sm:h-96 rounded-xl overflow-hidden bg-black border border-zinc-800 relative select-none">
                 {activeMediaIndex === 0 ? (
                   <video
                     autoPlay
@@ -123,8 +125,31 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   />
                 )}
 
+                {/* Counter Badge */}
+                <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded text-xs font-mono text-zinc-300 border border-zinc-800 z-10">
+                  <span className="text-white font-bold">{String(activeMediaIndex + 1).padStart(2, '0')}</span>
+                  <span className="text-zinc-600"> / </span>
+                  <span className="text-zinc-400">{String(vehicle.gallery.length + 1).padStart(2, '0')}</span>
+                </div>
+
+                {/* Hairline Side Arrows */}
+                <button
+                  onClick={() => setActiveMediaIndex((prev) => (prev === 0 ? vehicle.gallery.length : prev - 1))}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+                  title="Previous image"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setActiveMediaIndex((prev) => (prev + 1) % (vehicle.gallery.length + 1))}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+                  title="Next image"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+
                 {/* Media Title Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-zinc-900/90 backdrop-blur-md p-3.5 border border-zinc-800 rounded-lg text-left">
+                <div className="absolute bottom-4 left-4 right-4 bg-zinc-900/90 backdrop-blur-md p-3.5 border border-zinc-800 rounded-lg text-left z-10">
                   <span className="text-xs font-semibold text-white block">
                     {activeMediaIndex === 0 ? 'Road Test Video' : vehicle.gallery[activeMediaIndex - 1]?.title}
                   </span>

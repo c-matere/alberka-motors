@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Bookmark, ArrowRight, MessageCircle } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useScrollReveal } from '../hooks/useAnimations';
@@ -22,6 +22,20 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   const { ref, isVisible } = useScrollReveal({ threshold: 0.05 });
   const shouldReveal = disableScrollReveal || isVisible;
 
+  // Multi-angle preview array: Front, Interior, Rear/Details
+  const cardImages = [
+    { url: vehicle.heroImage, label: 'Front' },
+    ...(vehicle.gallery[1] ? [{ url: vehicle.gallery[1].url, label: 'Cabin' }] : []),
+    ...(vehicle.gallery[0] && vehicle.gallery[0].url !== vehicle.heroImage
+      ? [{ url: vehicle.gallery[0].url, label: 'Detail' }]
+      : vehicle.gallery[2]
+      ? [{ url: vehicle.gallery[2].url, label: 'Rear' }]
+      : []),
+  ].slice(0, 3);
+
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const currentImage = cardImages[activeImageIdx] || cardImages[0];
+
   return (
     <div
       ref={disableScrollReveal ? undefined : ref}
@@ -30,14 +44,15 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       }`}
     >
       <div>
-        {/* Media Frame */}
+        {/* Media Frame with Multi-Angle Gallery Switcher */}
         <div 
           onClick={() => onSelect(vehicle)}
           className="w-full h-[220px] xs:h-[260px] sm:h-[270px] overflow-hidden bg-black border border-zinc-800 group-hover:border-zinc-700 mb-5 relative cursor-pointer rounded-md transition-colors"
         >
           <SkeletonImage
-            src={vehicle.heroImage}
-            alt={vehicle.name}
+            key={currentImage.url}
+            src={currentImage.url}
+            alt={`${vehicle.name} - ${currentImage.label}`}
             className="group-hover:scale-103 transition-transform duration-500 ease-out"
             containerClassName="w-full h-full"
             loading="lazy"
@@ -69,6 +84,33 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           >
             <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-black' : ''}`} />
           </button>
+
+          {/* Mini Gallery Angle Indicator Dots (Rolls-Royce Bespoke Cards) */}
+          {cardImages.length > 1 && (
+            <div 
+              className="absolute bottom-2.5 inset-x-0 flex items-center justify-center gap-1.5 z-20 pointer-events-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-black/75 backdrop-blur-md px-2 py-1 rounded-full border border-zinc-800/80 flex items-center gap-1.5 shadow-md">
+                {cardImages.map((img, idx) => {
+                  const isActive = idx === activeImageIdx;
+                  return (
+                    <button
+                      key={idx}
+                      onMouseEnter={() => setActiveImageIdx(idx)}
+                      onClick={() => setActiveImageIdx(idx)}
+                      className={`transition-all rounded-full cursor-pointer ${
+                        isActive
+                          ? 'w-4 h-1.5 bg-white'
+                          : 'w-1.5 h-1.5 bg-zinc-600 hover:bg-zinc-400'
+                      }`}
+                      title={`View ${img.label}`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Year, Mileage & Stock ID */}
