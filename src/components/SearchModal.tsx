@@ -30,12 +30,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   const quickFilters = [
-    { label: 'UNDER 2.5M' },
+    { label: 'Under 2.5M' },
     { label: '2.5M – 4.0M' },
     { label: '4.0M+' },
-    { label: 'HYBRIDS' },
+    { label: 'Hybrids' },
     { label: 'SUVs & 4WD' },
-    { label: '7-SEATERS' },
+    { label: '7-Seaters' },
   ];
 
   const results = vehicles.filter((v) => {
@@ -51,44 +51,44 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#080809]/90 backdrop-blur-xl flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20">
-      <div className="bg-[#131316] w-full max-w-[680px] overflow-hidden border border-[rgba(197,168,128,0.35)] max-h-[88vh] sm:max-h-[80vh] flex flex-col">
+    <div className="fixed inset-0 z-50 bg-[#09090b]/90 backdrop-blur-md flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20">
+      <div className="bg-[#121215] w-full max-w-[680px] overflow-hidden border border-[#27272a] rounded-[4px] max-h-[88vh] sm:max-h-[80vh] flex flex-col text-[#f4f4f5] shadow-2xl">
         
         {/* Search Input Bar */}
-        <div className="p-5 border-b border-[rgba(197,168,128,0.2)] flex items-center gap-3">
-          <Search className="w-4 h-4 text-[#c5a880] shrink-0" />
+        <div className="p-4 sm:p-5 border-b border-[#27272a] flex items-center gap-3">
+          <Search className="w-5 h-5 text-[#ef4444] shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="SEARCH BY MARQUE, ATELIER CODE, OR POWERTRAIN..."
-            className="w-full text-[13px] font-['Cinzel'] tracking-wider text-[#f5f5f7] placeholder:text-[#45434d] focus:outline-none bg-transparent"
+            placeholder="Search by model, stock number, or fuel type..."
+            className="w-full text-[15px] font-medium text-white placeholder:text-[#71717a] focus:outline-none bg-transparent"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="p-1 font-mono text-[10px] text-[#8c8a94] hover:text-[#f5f5f7] cursor-pointer"
+              className="text-[11px] font-mono text-[#a1a1aa] hover:text-white cursor-pointer px-2 py-1"
             >
-              CLEAR
+              Clear
             </button>
           )}
           <button
             onClick={onClose}
-            className="p-1 text-[#8c8a94] hover:text-[#f5f5f7] cursor-pointer transition-colors"
+            className="p-1 text-[#a1a1aa] hover:text-white cursor-pointer transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Quick Filter Tags */}
-        <div className="px-5 py-2.5 bg-[#0f0714] border-b border-[rgba(197,168,128,0.15)] flex items-center gap-2 overflow-x-auto no-scrollbar">
-          <span className="font-['Cinzel'] text-[9.5px] text-[#c5a880] uppercase tracking-wider mr-1">CURATED:</span>
+        <div className="px-5 py-2.5 bg-[#18181c] border-b border-[#27272a] flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <span className="text-[11px] font-mono text-[#71717a] uppercase mr-1">Quick:</span>
           {quickFilters.map((qf, i) => (
             <button
               key={i}
               onClick={() => setQuery(qf.label.replace('+', '').toLowerCase())}
-              className="font-['Cinzel'] text-[10px] bg-[#160a1d] border border-[rgba(197,168,128,0.2)] px-2.5 py-1 text-[#8c8a94] hover:text-[#dfc7a5] hover:border-[#dfc7a5] transition-colors whitespace-nowrap cursor-pointer"
+              className="text-[12px] bg-[#121215] border border-[#27272a] px-3 py-1 rounded-[2px] text-[#a1a1aa] hover:text-white hover:border-[#dc2626] transition-colors whitespace-nowrap cursor-pointer"
             >
               {qf.label}
             </button>
@@ -96,43 +96,63 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Results List */}
-        <div className="overflow-y-auto divide-y divide-[rgba(197,168,128,0.1)] p-2">
+        <div className="overflow-y-auto divide-y divide-[#27272a] p-2">
           {results.length > 0 ? (
-            results.map((v) => (
+            results.map((vehicle) => (
               <div
-                key={v.id}
+                key={vehicle.id}
                 onClick={() => {
-                  onSelectVehicle(v);
+                  onSelectVehicle(vehicle);
                   onClose();
                 }}
-                className="p-3.5 hover:bg-[#160a1d] flex items-center justify-between gap-4 cursor-pointer transition-colors group"
+                className="p-3.5 hover:bg-[#18181c] transition-colors flex items-center justify-between gap-4 cursor-pointer group rounded-[2px]"
               >
-                <div className="flex items-center gap-4 min-w-0">
-                  <div className="w-16 h-12 bg-[#080809] border border-[rgba(197,168,128,0.2)] overflow-hidden shrink-0">
-                    <SkeletonImage
-                      src={v.heroImage}
-                      alt={v.name}
-                      containerClassName="w-full h-full"
-                    />
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <div className="w-20 h-14 overflow-hidden rounded-[2px] bg-[#09090b] border border-[#27272a] shrink-0">
+                    <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                   </div>
                   <div className="min-w-0">
-                    <span className="font-['Cinzel'] text-[9px] text-[#c5a880] tracking-widest block uppercase">{v.moniker}</span>
-                    <h4 className="font-['Cinzel'] text-[13px] text-[#f5f5f7] truncate group-hover:text-[#dfc7a5] transition-colors uppercase tracking-wider">{v.name}</h4>
-                    <span className="font-mono text-[11px] text-[#8c8a94]">{v.year} // {v.mileageKm.toLocaleString()} KM // Grade {v.auctionGrade}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[10.5px] text-[#ef4444] font-bold">
+                        {vehicle.stockNo}
+                      </span>
+                      <span className="text-[10px] font-mono bg-[#18181c] border border-[#27272a] px-1.5 py-0.2 rounded-[2px] text-[#a1a1aa]">
+                        Grade {vehicle.auctionGrade}
+                      </span>
+                    </div>
+                    <h4 className="text-[14.5px] font-bold text-white group-hover:text-[#ef4444] transition-colors truncate mt-0.5">
+                      {vehicle.name}
+                    </h4>
+                    <p className="text-[12px] text-[#a1a1aa]">
+                      {vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM · {vehicle.engine}
+                    </p>
                   </div>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="font-mono text-[13px] text-[#f5f5f7] block">KES {v.priceKes.toLocaleString()}</span>
-                  <span className="font-['Cinzel'] text-[9px] text-[#8c8a94] uppercase tracking-wider">{v.status.split('—')[0]}</span>
+                  <span className="font-mono text-[14px] font-bold text-white block">
+                    KES {vehicle.priceKes.toLocaleString()}
+                  </span>
+                  <span className="text-[11px] text-[#a1a1aa] flex items-center justify-end gap-1 mt-0.5 group-hover:text-[#ef4444] transition-colors">
+                    <span>View Car</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </span>
                 </div>
               </div>
             ))
           ) : (
-            <div className="p-12 text-center text-[#8c8a94] font-['Cinzel'] tracking-wider text-[12px]">
-              NO MATCHING MARQUES FOUND
+            <div className="py-16 text-center text-[#71717a] space-y-2">
+              <Search className="w-8 h-8 text-[#27272a] mx-auto" />
+              <p className="text-[15px] font-bold text-white">No cars match your search.</p>
+              <p className="text-[13px] text-[#a1a1aa]">Try searching for Toyota, Prado, Harrier, or Hybrid.</p>
             </div>
           )}
+        </div>
+
+        {/* Footer Info */}
+        <div className="p-3 bg-[#18181c] border-t border-[#27272a] flex items-center justify-between text-[11px] text-[#71717a] font-mono px-5">
+          <span>{results.length} vehicles found</span>
+          <span>Press ESC to close</span>
         </div>
 
       </div>

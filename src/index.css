@@ -1,64 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  /* Rolls-Royce Design System — Nocturnal Palette */
-  --color-purple-spirit: #160a1d;
-  --color-purple-spirit-dark: #0f0714;
-  --color-purple-spirit-light: #261230;
-  --color-obsidian-pitch: #080809;
-  --color-charcoal-atelier: #131316;
-  --color-rose-gold: #c5a880;
-  --color-gold-light: #dfc7a5;
-  --color-gold-dark: #9c815e;
-  --color-fine-bone: #f5f5f7;
-  --color-paper: #ffffff;
-  --color-silver-mist: #8c8a94;
-  --color-nocturne-ash: #45434d;
-  --color-bb-crimson: #8b1e28;
+  /* Alberka Motors Design System — Obsidian Black, Charcoal, Ash White, Crimson Red */
+  --color-obsidian: #09090b;
+  --color-obsidian-deep: #050506;
+  --color-charcoal: #121215;
+  --color-charcoal-elevated: #18181c;
+  --color-charcoal-muted: #202025;
+  --color-border-charcoal: #27272a;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
 
-  /* Typography */
-  --font-display: 'Cinzel', 'Riviera Nights', 'Times New Roman', serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography Colors */
+  --color-pure-white: #ffffff;
+  --color-ash-white: #f4f4f5;
+  --color-ash-light: #e4e4e7;
+  --color-muted-grey: #a1a1aa;
+  --color-dark-grey: #71717a;
+
+  /* Signature Brand Accent: Crimson Red (Alberka Logo) */
+  --color-crimson: #dc2626;
+  --color-crimson-light: #ef4444;
+  --color-crimson-dark: #b91c1c;
+  --color-crimson-glow: rgba(220, 38, 38, 0.22);
+
+  /* Clean Modern Typography */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Zero Radius Luxury Rule */
+  /* Crisp Architectural 4px & 0px Geometry */
   --radius-none: 0px;
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-full: 0px;
-
-  /* Shadows: Strictly None across the House of Luxury */
-  --shadow-none: none;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-xl: none;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-full: 9999px;
 }
 
 :root {
-  --color-purple-spirit: #160a1d;
-  --color-purple-spirit-dark: #0f0714;
-  --color-purple-spirit-light: #261230;
-  --color-obsidian-pitch: #080809;
-  --color-charcoal-atelier: #131316;
-  --color-rose-gold: #c5a880;
-  --color-gold-light: #dfc7a5;
-  --color-gold-dark: #9c815e;
-  --color-fine-bone: #f5f5f7;
-  --color-silver-mist: #8c8a94;
-  --color-nocturne-ash: #45434d;
+  --color-obsidian: #09090b;
+  --color-charcoal: #121215;
+  --color-charcoal-elevated: #18181c;
+  --color-pure-white: #ffffff;
+  --color-ash-white: #f4f4f5;
+  --color-muted-grey: #a1a1aa;
+  --color-crimson: #dc2626;
+  --color-crimson-light: #ef4444;
 
-  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-clean: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Base Canvas & Global Resets */
 body {
-  background-color: #160a1d;
-  color: #f5f5f7;
+  background-color: #09090b;
+  color: #f4f4f5;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,208 +60,182 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Luxury Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f0714;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(197, 168, 128, 0.25);
+  background: #27272a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(197, 168, 128, 0.6);
+  background: #dc2626;
 }
 
-/* Aristocratic Display Typography */
-.rr-title-hero {
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+/* Modern Clean Display Typography */
+.brand-title-hero, .rr-title-hero {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1.08;
-  color: #f5f5f7;
+  color: #ffffff;
 }
 
-.rr-title-h1 {
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-weight: 400;
+.brand-title-h1, .rr-title-h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.brand-title-h2, .rr-title-h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.brand-title-h3, .rr-title-h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: #f4f4f5;
+}
+
+.brand-eyebrow, .rr-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  line-height: 1.15;
-  color: #f5f5f7;
+  color: #ef4444;
 }
 
-.rr-title-h2 {
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  line-height: 1.25;
-  color: #f5f5f7;
-}
-
-.rr-title-h3 {
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.10em;
-  line-height: 1.35;
-  color: #f5f5f7;
-}
-
-.rr-eyebrow {
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-weight: 400;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: #c5a880;
-}
-
-.rr-quote {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  line-height: 1.5;
-  color: #dfc7a5;
-}
-
-.rr-label-spec {
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: #8c8a94;
-}
-
-/* Ghost Hairline Action Button */
-.btn-rr-ghost {
+/* Crimson Red Primary Action Button */
+.btn-crimson, .btn-rr-solid {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 13px 28px;
-  border-radius: 0px !important;
-  border: 1px solid rgba(197, 168, 128, 0.4);
-  background: transparent;
-  color: #f5f5f7;
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-size: 11.5px;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.20em;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: 1px solid #dc2626;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.5s var(--ease-luxury);
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.25);
 }
 
-.btn-rr-ghost:hover {
-  border-color: #dfc7a5;
-  background-color: #c5a880;
-  color: #0f0714;
+.btn-crimson:hover, .btn-rr-solid:hover {
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
 }
 
-/* Bespoke Solid Button */
-.btn-rr-solid {
+/* Clean Ghost Outline Button */
+.btn-ghost, .btn-rr-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 13px 28px;
-  border-radius: 0px !important;
-  border: 1px solid #c5a880;
-  background-color: #c5a880;
-  color: #0f0714;
-  font-family: 'Cinzel', 'Riviera Nights', serif;
-  font-size: 11.5px;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: 1px solid #27272a;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #f4f4f5;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.20em;
+  letter-spacing: -0.01em;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.5s var(--ease-luxury);
+  transition: all 0.25s ease;
 }
 
-.btn-rr-solid:hover {
-  background-color: #dfc7a5;
-  border-color: #dfc7a5;
-  color: #080809;
+.btn-ghost:hover, .btn-rr-ghost:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
 }
 
-/* Atelier Hairline Card */
-.rr-card {
-  background-color: #131316;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0px !important;
-  transition: border-color 0.5s var(--ease-luxury), background-color 0.5s var(--ease-luxury);
+/* Pure White High-Contrast Button */
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  color: #09090b;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
-.rr-card:hover {
-  border-color: rgba(197, 168, 128, 0.45);
-  background-color: #160a1d;
+.btn-white:hover {
+  background-color: #f4f4f5;
+  transform: translateY(-1px);
 }
 
-/* Minimalist Underline Input for Private Concierge / Whispers Panel */
-.rr-input-whispers {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(197, 168, 128, 0.3);
-  border-radius: 0px !important;
-  padding: 12px 0;
-  color: #f5f5f7;
-  font-family: var(--font-body);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.4s var(--ease-luxury);
+/* Obsidian Charcoal Card */
+.brand-card, .rr-card {
+  background-color: #121215;
+  border: 1px solid #27272a;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
-.rr-input-whispers:focus {
-  border-bottom-color: #dfc7a5;
+.brand-card:hover, .rr-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  background-color: #16161a;
 }
 
-.rr-input-whispers::placeholder {
-  color: #45434d;
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Hairline Metallic Divider */
-.rr-hairline {
+/* Hairline Divider */
+.brand-divider, .rr-hairline {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(197, 168, 128, 0.35) 50%, transparent 100%);
+  background: #27272a;
   width: 100%;
   margin: 0;
   border: none;
 }
 
-/* Subtle Ethereal Ambient Radial Lighting */
-.rr-ambient-glow {
-  background: radial-gradient(circle at 50% 20%, rgba(197, 168, 128, 0.08) 0%, transparent 70%);
-}
-
-.rr-ambient-glow-plum {
-  background: radial-gradient(circle at 50% 0%, rgba(38, 18, 48, 0.6) 0%, transparent 75%);
+/* Subtle Ambient Glow */
+.brand-glow-crimson {
+  background: radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.12) 0%, transparent 70%);
 }
 
 /* Smooth Entrance Transition */
 .view-enter {
-  animation: rrFadeIn 0.8s var(--ease-luxury) forwards;
+  animation: cleanFadeIn 0.4s ease-out forwards;
 }
 
-@keyframes rrFadeIn {
+@keyframes cleanFadeIn {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;

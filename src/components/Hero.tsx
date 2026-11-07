@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Play, Pause, Volume2, VolumeX, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
-import { StarlightCanopy } from './StarlightCanopy';
+import { Play, Pause, Volume2, VolumeX, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onExploreFleet: () => void;
@@ -30,132 +29,124 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   };
 
   return (
-    <section className="relative w-full bg-[#160a1d] pt-16 sm:pt-24 pb-20 sm:pb-32 px-6 text-center text-[#f5f5f7] overflow-hidden">
+    <section className="relative w-full bg-[#09090b] pt-12 sm:pt-20 pb-20 sm:pb-28 px-6 sm:px-10 text-center text-[#f4f4f5] overflow-hidden">
       
-      {/* Starlight Headliner Canopy Effect */}
-      <StarlightCanopy density={55} />
+      {/* Subtle Crimson Gradient Glow in Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-[#dc2626]/12 to-transparent blur-3xl pointer-events-none" />
 
-      {/* Nocturnal Atmospheric Spotlight */}
-      <div className="absolute inset-0 rr-ambient-glow-plum pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-gradient-to-b from-[#261230]/40 to-transparent blur-3xl pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
+      <div className="max-w-[1360px] mx-auto relative z-10">
         
-        {/* Eyebrow Inscription */}
-        <div className="inline-flex items-center gap-3 mb-6">
-          <div className="h-[1px] w-8 bg-[rgba(197,168,128,0.4)]" />
-          <span className="rr-eyebrow">
-            THE HOUSE OF ALBERKA // EST. 2000 // MOMBASA & NAIROBI
+        {/* Eyebrow Label */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#18181c] border border-[#27272a] rounded-full mb-6">
+          <span className="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse" />
+          <span className="font-mono text-[11px] uppercase tracking-wider text-[#e4e4e7] font-medium">
+            DIRECT JAPANESE IMPORTS // MOMBASA & NAIROBI
           </span>
-          <div className="h-[1px] w-8 bg-[rgba(197,168,128,0.4)]" />
         </div>
 
-        {/* Display Hero Title (Riviera / Cinzel Uppercase) */}
-        <h1 className="rr-title-hero text-[34px] sm:text-[54px] md:text-[68px] lg:text-[76px] mb-6 max-w-[1200px] mx-auto tracking-[0.16em]">
-          PURVEYORS OF TRANSCENDENT MOTOR CARS.
+        {/* Display Hero Title */}
+        <h1 className="text-[36px] sm:text-[56px] md:text-[68px] lg:text-[76px] font-bold text-white mb-6 max-w-[1100px] mx-auto tracking-tight leading-[1.06]">
+          Clean Japanese Cars. Honest Mileage. Cars You Can Trust.
         </h1>
 
-        {/* Serif Narrative Quote / Subtitle */}
-        <p className="max-w-[820px] mx-auto text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[22px] italic leading-[1.6] mb-10 sm:mb-12">
-          Direct Japanese auction provenance, curated with unhurried discernment, and mechanically perfected in our private Mombasa coastal atelier.
+        {/* Subtitle with Clear, Simple Copy */}
+        <p className="max-w-[760px] mx-auto text-[#a1a1aa] text-[17px] sm:text-[20px] leading-relaxed mb-10 sm:mb-12">
+          Every vehicle is handpicked from top Japanese auctions, thoroughly serviced in our Mombasa workshop, and backed by a written 5,000 km warranty.
         </p>
 
-        {/* Aristocratic Action Suite */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-16 sm:mb-20">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-16 sm:mb-20">
           <button
             onClick={onExploreFleet}
-            className="btn-rr-solid group"
+            className="btn-crimson group py-3 px-6 text-[15px]"
           >
-            <span>COMMISSION THE FLEET</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-500 group-hover:translate-x-1" />
+            <span>Browse Cars in Stock</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-rr-ghost"
+            className="btn-ghost py-3 px-6 text-[15px]"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />
-            <span>ENTER THE ATELIER</span>
+            <ShieldCheck className="w-4 h-4 text-[#ef4444]" />
+            <span>Our 100-Point Workshop Check</span>
           </button>
         </div>
 
-        {/* 21:9 Cinemascope Stage Frame (Zero Radius, Hairline Metallic Border) */}
+        {/* 21:9 Widescreen Video Stage */}
         <div className="relative w-full mx-auto">
-          <div className="w-full h-[320px] xs:h-[420px] sm:h-[540px] md:h-[680px] overflow-hidden relative bg-[#0f0714] border border-[rgba(197,168,128,0.25)]">
+          <div className="w-full h-[320px] xs:h-[420px] sm:h-[540px] md:h-[640px] overflow-hidden relative bg-[#121215] border border-[#27272a] rounded-[6px]">
             
-            {/* Cinematic Slow-Glide Video Loop */}
+            {/* Cinematic Video Loop */}
             <video
               ref={videoRef}
               autoPlay
               muted
               loop
               playsInline
-              className="w-full h-full object-cover scale-100 transition-transform duration-[12000ms] hover:scale-105 ease-out"
+              className="w-full h-full object-cover scale-100 transition-transform duration-[8000ms] hover:scale-103 ease-out"
               poster="/vehicles/flagship-hero.jpg"
             >
               <source src="https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4" type="video/mp4" />
-              <img src="/vehicles/flagship-hero.jpg" alt="Alberka Motors Flagship Marque" className="w-full h-full object-cover" />
+              <img src="/vehicles/flagship-hero.jpg" alt="Alberka Motors Flagship Vehicle" className="w-full h-full object-cover" />
             </video>
 
-            {/* Rolls-Royce Style Gradient Scrim */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#160a1d] via-[#160a1d]/30 to-[#0f0714]/40 flex items-end p-6 sm:p-12 pointer-events-none">
-              <div className="text-left text-[#f5f5f7] max-w-[700px]">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-1.5 h-1.5 bg-[#c5a880]" />
-                  <span className="font-['Cinzel'] text-[10.5px] uppercase tracking-[0.25em] text-[#c5a880]">
-                    FLAGSHIP NISSAN SERENA HIGHWAY STAR // BESPOKE E-POWER
-                  </span>
-                </div>
-                <p className="font-['Cinzel'] text-[20px] sm:text-[28px] font-light leading-snug tracking-[0.12em] text-[#f5f5f7]">
-                  The Sanctuary of Motion. Zero Auction Mysteries.
+            {/* Gradient Scrim */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex items-end p-6 sm:p-10 pointer-events-none">
+              <div className="text-left text-white max-w-[650px]">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#ef4444] block mb-1 font-semibold">
+                  FEATURED INVENTORY // MOMBASA SHOWROOM
+                </span>
+                <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug">
+                  Nissan Serena Highway Star e-POWER · Pristine Japanese Condition
                 </p>
               </div>
             </div>
 
-            {/* Video Controls (Hairline Zero-Radius Buttons) */}
+            {/* Video Controls */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2 z-30">
               <button
                 onClick={togglePlay}
-                className="w-9 h-9 bg-[#0f0714]/80 hover:bg-[#160a1d] text-[#c5a880] border border-[rgba(197,168,128,0.3)] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer"
-                title={isPlaying ? 'Pause Motion' : 'Play Motion'}
+                className="w-9 h-9 bg-[#09090b]/80 hover:bg-[#18181c] text-white border border-[#27272a] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-[4px]"
+                title={isPlaying ? 'Pause Video' : 'Play Video'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-9 h-9 bg-[#0f0714]/80 hover:bg-[#160a1d] text-[#c5a880] border border-[rgba(197,168,128,0.3)] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer"
-                title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+                className="w-9 h-9 bg-[#09090b]/80 hover:bg-[#18181c] text-white border border-[#27272a] backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-[4px]"
+                title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
 
-          {/* Floating Atelier Spec Inset (Hard 0px edges, hairline rose-gold wire inlay) */}
-          <div className="max-w-[960px] mx-auto -mt-8 sm:-mt-12 relative z-20 bg-[#131316] border border-[rgba(197,168,128,0.3)] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10 w-full sm:w-auto">
+          {/* Floating Spec Inset Banner */}
+          <div className="max-w-[980px] mx-auto -mt-8 sm:-mt-10 relative z-20 bg-[#121215] border border-[#27272a] p-6 sm:p-7 rounded-[4px] flex flex-col sm:flex-row items-center justify-between gap-6 text-left shadow-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 w-full sm:w-auto">
               <div>
-                <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-[0.2em] block mb-1">
-                  PROVENANCE
+                <span className="font-mono text-[10px] text-[#a1a1aa] uppercase tracking-wider block mb-1">
+                  AUCTION GRADE
                 </span>
-                <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7] tracking-wider block">
+                <span className="text-[15px] font-bold text-white block">
                   USS Tokyo Grade 4.5+
                 </span>
               </div>
               <div>
-                <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-[0.2em] block mb-1">
-                  ATELIER DISCIPLINE
+                <span className="font-mono text-[10px] text-[#a1a1aa] uppercase tracking-wider block mb-1">
+                  PRE-DELIVERY SERVICE
                 </span>
-                <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7] tracking-wider block">
-                  100-Point Pre-Delivery
+                <span className="text-[15px] font-bold text-white block">
+                  100-Point Mombasa Check
                 </span>
               </div>
               <div>
-                <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-[0.2em] block mb-1">
-                  WARRANTY COVENANT
+                <span className="font-mono text-[10px] text-[#a1a1aa] uppercase tracking-wider block mb-1">
+                  WARRANTY
                 </span>
-                <span className="font-['Cinzel'] text-[14px] text-[#c5a880] tracking-wider block">
-                  5,000 KM Written Protection
+                <span className="text-[15px] font-bold text-[#ef4444] block">
+                  5,000 KM Engine & Gearbox
                 </span>
               </div>
             </div>
@@ -163,10 +154,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             <div className="w-full sm:w-auto flex justify-end">
               <button
                 onClick={onExploreFleet}
-                className="btn-rr-solid !py-2.5 !px-5 w-full sm:w-auto justify-center"
+                className="btn-crimson !py-2.5 !px-5 w-full sm:w-auto justify-center text-[13px]"
               >
-                <span>COMMISSION VIEWING</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-2" />
+                <span>View All Cars</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
               </button>
             </div>
           </div>

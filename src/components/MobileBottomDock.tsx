@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Car, Wrench, ArrowLeftRight, Bookmark, MessageCircle, ArrowLeft } from 'lucide-react';
+import { Home, Car, Wrench, ArrowLeftRight, Bookmark, MessageCircle, ArrowLeft } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
 interface MobileBottomDockProps {
@@ -21,36 +21,36 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   onOpenFavorites,
   onOpenWhispers,
 }) => {
-  // If user is viewing a single vehicle story, show conversion dock
+  // If user is viewing a single vehicle story, show simple conversion dock
   if (selectedVehicle) {
     return (
       <div className="fixed bottom-2 inset-x-2 z-40 md:hidden">
-        <div className="bg-[#0f0714]/95 backdrop-blur-xl border border-[rgba(197,168,128,0.35)] px-4 py-2.5 flex items-center justify-between gap-3">
+        <div className="bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 rounded-xl px-4 py-2.5 flex items-center justify-between gap-3 shadow-2xl">
           <button
             onClick={onBackToInventory}
-            className="w-8 h-8 bg-[#160a1d] border border-[rgba(197,168,128,0.25)] text-[#dfc7a5] flex items-center justify-center shrink-0 cursor-pointer"
-            title="Back to fleet"
+            className="w-9 h-9 bg-zinc-900 border border-zinc-700 text-zinc-300 rounded-lg flex items-center justify-center shrink-0 cursor-pointer hover:bg-zinc-800"
+            title="Back to cars"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-4 h-4" />
           </button>
 
           <div className="min-w-0 flex-1">
-            <span className="font-['Cinzel'] text-[10px] text-[#c5a880] block truncate uppercase">
+            <span className="text-[12px] font-semibold text-white block truncate">
               {selectedVehicle.name}
             </span>
-            <span className="font-mono text-[12.5px] text-[#f5f5f7] block leading-tight">
+            <span className="font-mono text-[13px] font-bold text-red-400 block leading-tight">
               KES {selectedVehicle.priceKes.toLocaleString()}
             </span>
           </div>
 
           <a
-            href={`https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20reserve%20a%20private%20inspection%20for%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
+            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-rr-solid !py-2 !px-3 !text-[9.5px] whitespace-nowrap shrink-0"
+            className="btn-crimson !py-2 !px-3.5 !text-[12px] !rounded-lg whitespace-nowrap shrink-0 flex items-center"
           >
-            <MessageCircle className="w-3 h-3 mr-1" />
-            <span>INQUIRE</span>
+            <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+            <span>WhatsApp Us</span>
           </a>
         </div>
       </div>
@@ -58,15 +58,15 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   }
 
   const navItems = [
-    { id: 'overview', label: 'SANCTUARY', icon: Compass },
-    { id: 'inventory', label: 'THE FLEET', icon: Car },
-    { id: 'trade-in', label: 'COMMISSION', icon: ArrowLeftRight },
-    { id: 'workshop', label: 'ATELIER', icon: Wrench },
+    { id: 'overview', label: 'Home', icon: Home },
+    { id: 'inventory', label: 'Cars', icon: Car },
+    { id: 'trade-in', label: 'Trade-In', icon: ArrowLeftRight },
+    { id: 'workshop', label: 'Workshop', icon: Wrench },
   ];
 
   return (
     <div className="fixed bottom-2 inset-x-2 z-40 md:hidden">
-      <div className="bg-[#0f0714]/95 backdrop-blur-xl border border-[rgba(197,168,128,0.3)] px-2 py-1.5 flex items-center justify-around">
+      <div className="bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 rounded-xl px-2 py-1.5 flex items-center justify-around shadow-2xl">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentView === item.id;
@@ -77,49 +77,49 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
                 onNavigate(item.id);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`flex flex-col items-center justify-center py-1 px-2 transition-all cursor-pointer ${
-                isActive ? 'text-[#dfc7a5]' : 'text-[#8c8a94] hover:text-[#f5f5f7]'
+              className={`flex flex-col items-center justify-center py-1 px-2.5 transition-all cursor-pointer rounded-lg ${
+                isActive ? 'text-red-500' : 'text-zinc-400 hover:text-white'
               }`}
             >
-              <div className={`p-1 ${isActive ? 'text-[#c5a880]' : ''}`}>
+              <div className={`p-0.5 ${isActive ? 'text-red-500' : ''}`}>
                 <Icon className="w-4 h-4" />
               </div>
-              <span className={`font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5 ${isActive ? 'text-[#dfc7a5] font-medium' : 'font-normal'}`}>
+              <span className={`text-[10px] font-medium mt-0.5 ${isActive ? 'text-white font-semibold' : 'text-zinc-400'}`}>
                 {item.label}
               </span>
             </button>
           );
         })}
 
-        {/* Curated Dossier with Badge */}
+        {/* Saved Cars with Badge */}
         <button
           onClick={onOpenFavorites}
-          className="flex flex-col items-center justify-center py-1 px-2 text-[#8c8a94] hover:text-[#f5f5f7] transition-all cursor-pointer relative"
+          className="flex flex-col items-center justify-center py-1 px-2.5 text-zinc-400 hover:text-white transition-all cursor-pointer relative"
         >
-          <div className="p-1 relative">
-            <Bookmark className="w-4 h-4 text-[#8c8a94]" />
+          <div className="p-0.5 relative">
+            <Bookmark className="w-4 h-4 text-zinc-400" />
             {favoritesCount > 0 && (
-              <span className="absolute -top-0.5 -right-1 bg-[#c5a880] text-[#0f0714] text-[8px] font-mono w-3 h-3 flex items-center justify-center font-bold">
+              <span className="absolute -top-1 -right-1.5 bg-red-600 text-white text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
                 {favoritesCount}
               </span>
             )}
           </div>
-          <span className="font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5">DOSSIER</span>
+          <span className="text-[10px] font-medium mt-0.5 text-zinc-400">Saved</span>
         </button>
 
-        {/* Whispers Chat */}
+        {/* Contact WhatsApp */}
         <button
           onClick={() => {
             if (onOpenWhispers) onOpenWhispers();
-            else window.open('https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20the%20fleet.', '_blank');
+            else window.open('https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20would%20like%20more%20details%20about%20your%20cars.', '_blank');
           }}
-          className="flex flex-col items-center justify-center py-1 px-2 text-[#8c8a94] hover:text-[#f5f5f7] transition-all cursor-pointer relative"
-          title="Whispers Concierge"
+          className="flex flex-col items-center justify-center py-1 px-2.5 text-zinc-400 hover:text-white transition-all cursor-pointer relative"
+          title="Contact Alberka"
         >
-          <div className="p-1 relative">
-            <MessageCircle className="w-4 h-4 text-[#c5a880]" />
+          <div className="p-0.5 relative">
+            <MessageCircle className="w-4 h-4 text-red-500" />
           </div>
-          <span className="font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5 text-[#c5a880]">WHISPERS</span>
+          <span className="text-[10px] font-medium mt-0.5 text-red-500">Contact</span>
         </button>
       </div>
     </div>

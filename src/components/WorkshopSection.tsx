@@ -30,79 +30,79 @@ export const WorkshopSection: React.FC = () => {
     {
       id: 'fluids',
       icon: Droplet,
-      title: '1. Fluid Overhaul',
-      tagline: '100% Full Synthetic Castrol Specification',
-      description: 'Unlike standard commercial dealerships who merely inspect the dipstick, our coastal atelier drains and renews the complete engine lubrication with high-specification full synthetic oil (0W-20 or 0W-16). Fresh OEM filtration, brake fluid hydroscopic boiling point validation, and inverter coolant specific gravity calibration.',
+      title: '1. Oil & Fluids Service',
+      tagline: '100% Castrol Full Synthetic Oil',
+      description: 'We never just top up fluids. We drain and replace the engine oil with high-grade Castrol Edge synthetic oil (0W-20 or 0W-16). We fit fresh genuine OEM oil filters, test brake fluid boiling point, and top up long-life radiator coolant.',
       checklist: [
-        'Castrol EDGE Titanium 0W-20 / 0W-16 fully synthetic oil',
-        'Genuine Toyota / Nissan OEM oil filter and crush washer replacement',
-        'Brake fluid boiling point test (>230°C requirement)',
-        'Inverter and radiator coolant concentration calibrated to -35°C'
+        'Castrol EDGE Titanium fully synthetic engine oil',
+        'Genuine OEM oil filter and fresh sump washer',
+        'Brake fluid boiling point tested for heat safety',
+        'Radiator & hybrid inverter coolant checked and topped up'
       ]
     },
     {
       id: 'brakes',
       icon: Disc,
-      title: '2. Brakes & Rotors',
-      tagline: 'Micrometric Disc & Pad Verification',
-      description: 'All 4 wheels removed. Digital vernier micrometer measurement of rotor disc runout to eradicate high-speed highway brake judder. Pad friction thickness measured: minimum 80% thickness required, otherwise fresh ceramic pads are fitted automatically.',
+      title: '2. Brakes & Suspension',
+      tagline: 'Micrometer Disc & Pad Thickness Testing',
+      description: 'We take all four wheels off to inspect brake discs and pads with digital micrometers. If brake pads have less than 80% life left, we fit brand new ceramic pads immediately. Caliper slide pins are cleaned and greased.',
       checklist: [
-        'Rotor thickness compared to factory minimum discard limit',
-        'Caliper slide pins degreased and relubricated with high-temp synthetic grease',
-        'Handbrake / electronic parking brake actuator holding force tested',
-        'ABS hydraulic valve block actuation test'
+        'Brake disc thickness measured against factory limits',
+        'Brake pads inspected; renewed if under 80% wear limit',
+        'Electronic parking brake and handbrake holding test',
+        'Suspension bushings, ball joints, and shock absorbers checked'
       ]
     },
     {
       id: 'diagnostics',
       icon: Activity,
-      title: '3. ECU Diagnostics',
-      tagline: 'Factory OEM Software Module Health Scan',
-      description: 'Full computerized interrogation using factory Toyota Techstream, Nissan Consult, and Honda HDS diagnostic software. Scans all electronic controllers: Engine ECM, Transmission TCM, Hybrid Inverter, ABS/VSC, and SRS Airbag modules for past or pending trouble codes.',
+      title: '3. Computer Diagnostics',
+      tagline: 'Full OBD-II Health Scan',
+      description: 'We connect factory diagnostic scanners (Toyota Techstream, Nissan Consult, Honda HDS) to test every onboard computer. We check the engine, transmission, hybrid system, ABS, and airbags for any hidden faults.',
       checklist: [
-        'Zero Diagnostic Trouble Codes (DTCs) confirmation',
-        'Live data oxygen sensor switching speed & fuel trims',
-        'Variable valve timing (VVT-i / VTC) target vs actual angle',
-        'Electronic throttle body adaptation and idle reset'
+        'Zero active or historical fault codes (DTCs)',
+        'Live oxygen sensor and fuel injection test',
+        'VVT-i / variable valve timing live operational scan',
+        'Electronic throttle body cleaned and idle recalibrated'
       ]
     },
     {
       id: 'hybrid',
       icon: BatteryCharging,
-      title: '4. Hybrid & Battery',
-      tagline: 'Cell-Level Voltage Delta & Health Certification',
-      description: 'High-voltage traction battery packs evaluated under full acceleration load. Delta voltage across individual block pairs must remain within 0.02V. 12V auxiliary starting battery conductance and CCA load tested at minimum 90% health.',
+      title: '4. Hybrid & Battery Test',
+      tagline: 'Cell-Level Voltage & Health Certification',
+      description: 'For hybrid and e-POWER vehicles, our technicians test the high-voltage traction battery pack under acceleration. We ensure all cell blocks hold uniform voltage and clean the cooling fan duct to prevent overheating in Kenyan traffic.',
       checklist: [
-        'Traction battery state-of-health (SOH) minimum 92% benchmark',
-        'Cooling fan filter cleaned and duct obstruction cleared',
-        'Inverter high-voltage insulation resistance measurement',
-        'Alternator charging voltage tested under full electrical load (14.2V)'
+        'Hybrid battery health verified above 90% benchmark',
+        'Battery cooling fan and air intake filter cleaned',
+        'Inverter high-voltage insulation and pump check',
+        '12V starter battery CCA load tested for reliable starts'
       ]
     },
     {
       id: 'climate',
       icon: Wind,
-      title: '5. Climate & Air',
-      tagline: 'Ultrasonic Antibacterial Sterilization',
-      description: 'Engine air filter replaced to maximize fuel economy. Interior AC pollen filter replaced with activated carbon filter. Ultrasonic evaporator core chemical misting to neutralize coastal tropical mold and bacteria, ensuring hospital-grade clean air.',
+      title: '5. Air Conditioning & Filters',
+      tagline: 'Ice-Cold A/C & Fresh Cabin Air',
+      description: 'We replace the engine air filter for better fuel consumption and install a brand new cabin AC filter. We pressure-test the AC compressor and gas levels so your air conditioning blows ice-cold even under hot coastal sun.',
       checklist: [
-        'New pleated engine intake air filtration element',
-        'Activated carbon anti-allergen cabin filter installed',
-        'AC compressor clutch gap and pressure manifold test (R134a/R1234yf)',
-        'Vent outlet air temperature measured below 6°C at maximum cooling'
+        'Brand new engine air filter installed',
+        'New activated carbon cabin pollen filter installed',
+        'AC compressor pressure and refrigerant gas test',
+        'Vent output temperature tested below 6°C at max cooling'
       ]
     },
     {
       id: 'detailing',
       icon: Sparkles,
-      title: '6. Studio Detailing',
-      tagline: '3-Stage Paint Sealant & Steam Extraction',
-      description: 'After port transit and maritime shipping, every vehicle undergoes multi-stage decontamination. Clay bar treatment removes embedded maritime industrial fallout, followed by a hydrophobic polymer wax sealant and deep steam upholstery extraction.',
+      title: '6. Full Car Wash & Polish',
+      tagline: 'Interior Deep Cleaning & Paint Sealant',
+      description: 'After sea transit from Japan, the vehicle gets a thorough multi-stage decontamination wash, clay bar paint smoothing, protective wax sealant, and deep steam extraction for all seats and carpets.',
       checklist: [
-        'Iron fallout remover & clay bar paint surface decontamination',
-        'Dual-action machine polish with hydrophobic sealant',
-        'Hot steam extraction of all seat upholstery and carpet fibers',
-        'UV protectant application to all exterior rubbers and engine plastics'
+        'Thorough exterior wash and paint decontamination',
+        'Machine wax polish for long-lasting paint shine',
+        'Steam cleaning of all fabric and leather seats',
+        'UV protectant applied to dashboard and rubber seals'
       ]
     }
   ];
@@ -110,86 +110,82 @@ export const WorkshopSection: React.FC = () => {
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Salutations Alberka Motors Workshop, my name is ${bookingData.name} (${bookingData.phone}). I would like to schedule a ${bookingData.serviceType} for my vehicle (${bookingData.vehicleModel}) on ${bookingData.preferredDate || 'the earliest available date'}.`
+      `Hello Alberka Motors Workshop, my name is ${bookingData.name} (${bookingData.phone}). I would like to book a ${bookingData.serviceType} for my vehicle (${bookingData.vehicleModel}) on ${bookingData.preferredDate || 'the earliest available date'}.`
     );
     window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
     setBookingSubmitted(true);
   };
 
   return (
-    <section className="w-full bg-[#160a1d] py-20 sm:py-28 px-6 text-[#f5f5f7] border-t border-[rgba(197,168,128,0.18)]">
-      <div className="max-w-[1400px] mx-auto space-y-20">
+    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 text-[#f4f4f5] border-t border-[#27272a]">
+      <div className="max-w-[1400px] mx-auto space-y-16">
         
         {/* Section Header */}
-        <div className="text-center max-w-[800px] mx-auto">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
-            <span className="rr-eyebrow">
-              TANGANA ROAD ATELIER // MOMBASA // EST. 2000
-            </span>
-            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
-          </div>
-          <h1 className="rr-title-h1 text-[32px] sm:text-[46px] md:text-[54px] mb-4">
-            THE ARCHITECTURE OF MECHANICAL PERFECTION.
+        <div className="text-center max-w-[780px] mx-auto">
+          <span className="brand-eyebrow block mb-2">
+            IN-HOUSE SERVICE CENTER // TANGANA ROAD, MOMBASA
+          </span>
+          <h1 className="text-[32px] sm:text-[46px] font-bold text-white tracking-tight mb-4">
+            Our Mombasa Workshop & 5,000 KM Warranty
           </h1>
-          <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[21px] italic leading-relaxed max-w-[680px] mx-auto">
-            We never outsource mechanical commissioning. Every motor car cleared from the port of Mombasa enters our specialized mechanical facility for a mandatory 48-hour overhaul before private handover.
+          <p className="text-[16px] sm:text-[18px] text-[#a1a1aa] leading-relaxed">
+            We don't outsource mechanical checks. Every car cleared from the Port of Mombasa comes directly to our workshop for a full 100-point service and inspection before delivery.
           </p>
         </div>
 
-        {/* Workshop Hero Video Stage */}
+        {/* Video & Workshop Highlights */}
         <div className="relative w-full mx-auto">
-          <div className="w-full h-[400px] md:h-[520px] overflow-hidden relative bg-[#080809] border border-[rgba(197,168,128,0.3)]">
+          <div className="w-full h-[360px] md:h-[480px] overflow-hidden relative bg-[#121215] border border-[#27272a] rounded-[4px]">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src="https://videos.pexels.com/video-files/5309381/5309381-hd_1920_1080_25fps.mp4" type="video/mp4" />
               <img src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Workshop bay" className="w-full h-full object-cover" />
             </video>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0714] via-[#0f0714]/40 to-transparent flex items-end p-8 sm:p-12">
-              <div className="text-left text-[#f5f5f7] max-w-[700px]">
-                <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-[0.25em] block mb-2">
-                  TANGANA ROAD COASTAL ATELIER // MOMBASA
+            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex items-end p-6 sm:p-10">
+              <div className="text-left text-white max-w-[650px]">
+                <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block mb-1 font-semibold">
+                  TANGANA ROAD FACILITY // MOMBASA
                 </span>
-                <p className="font-['Cinzel'] text-[20px] sm:text-[26px] font-normal leading-snug text-[#f5f5f7] tracking-wider uppercase">
-                  100-Point Verification Protocol with written handover certificate.
+                <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug">
+                  100-Point Pre-Delivery Check with Written Inspection Certificate
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-[#131316] border border-[rgba(197,168,128,0.35)] p-6 sm:p-8 max-w-[960px] mx-auto -mt-10 relative z-20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
+          <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-8 max-w-[960px] mx-auto -mt-8 relative z-20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left rounded-[4px] shadow-2xl">
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">ATELIER DURATION</span>
-              <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7]">48-Hour Protocol</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">SERVICE DURATION</span>
+              <span className="text-[15px] font-bold text-white">48-Hour Protocol</span>
             </div>
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">LUBRICATION CODE</span>
-              <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7]">Castrol Full Synthetic</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">ENGINE OIL</span>
+              <span className="text-[15px] font-bold text-white">Castrol Full Synthetic</span>
             </div>
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">WARRANTY COVENANT</span>
-              <span className="font-['Cinzel'] text-[14px] text-[#c5a880]">5,000 KM Written</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WRITTEN WARRANTY</span>
+              <span className="text-[15px] font-bold text-[#ef4444]">5,000 KM Engine & Gearbox</span>
             </div>
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">INSPECTION MARKS</span>
-              <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7]">100 Certified Points</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">INSPECTION MARKS</span>
+              <span className="text-[15px] font-bold text-white">100 Certified Points</span>
             </div>
           </div>
         </div>
 
         {/* Interactive 6-Stage Protocol Explorer */}
-        <div className="bg-[#131316] p-8 sm:p-12 border border-[rgba(197,168,128,0.25)] space-y-8">
+        <div className="bg-[#121215] p-6 sm:p-10 border border-[#27272a] rounded-[4px] space-y-6">
           <div className="max-w-[700px]">
-            <span className="rr-eyebrow mb-2 block">PRE-DELIVERY DISCIPLINE</span>
-            <h2 className="font-['Cinzel'] text-[24px] sm:text-[30px] text-[#f5f5f7] tracking-wide uppercase">
-              The 100-Point Atelier Inspection Protocol
+            <span className="brand-eyebrow mb-1 block">OUR 100-POINT CHECKLIST</span>
+            <h2 className="text-[24px] sm:text-[30px] font-bold text-white tracking-tight">
+              What We Check Before Handover
             </h2>
-            <p className="text-[14.5px] text-[#8c8a94] mt-2 leading-relaxed font-light">
-              Select a stage below to examine our exact procedures, testing thresholds, and OEM component renewals.
+            <p className="text-[15px] text-[#a1a1aa] mt-1 leading-relaxed">
+              Click any stage below to see what our technicians inspect, service, and replace before you collect your car.
             </p>
           </div>
 
-          {/* Stage Selector Buttons (Hard 0px edges) */}
+          {/* Stage Selector Buttons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {stages.map((st, i) => {
               const Icon = st.icon;
@@ -198,14 +194,14 @@ export const WorkshopSection: React.FC = () => {
                 <button
                   key={st.id}
                   onClick={() => setActiveStage(i)}
-                  className={`p-3.5 text-left transition-all duration-400 cursor-pointer flex flex-col justify-between h-[90px] ${
+                  className={`p-4 text-left transition-all rounded-[3px] cursor-pointer flex flex-col justify-between h-[96px] ${
                     isActive
-                      ? 'bg-[#0f0714] border border-[#c5a880]'
-                      : 'bg-[#0f0714] hover:bg-[#160a1d] border border-[rgba(255,255,255,0.06)]'
+                      ? 'bg-[#18181c] border-2 border-[#dc2626]'
+                      : 'bg-[#18181c] hover:bg-[#202025] border border-[#27272a]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#c5a880]' : 'text-[#8c8a94]'}`} />
-                  <span className={`font-['Cinzel'] text-[11px] tracking-wider uppercase ${isActive ? 'text-[#dfc7a5]' : 'text-[#8c8a94]'}`}>
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-[#ef4444]' : 'text-[#a1a1aa]'}`} />
+                  <span className={`text-[12px] font-medium leading-tight ${isActive ? 'text-white' : 'text-[#a1a1aa]'}`}>
                     {st.title.split('. ')[1]}
                   </span>
                 </button>
@@ -214,32 +210,32 @@ export const WorkshopSection: React.FC = () => {
           </div>
 
           {/* Active Stage Detailed Breakdown */}
-          <div className="bg-[#0f0714] p-8 border border-[rgba(197,168,128,0.2)] space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-[rgba(197,168,128,0.15)]">
+          <div className="bg-[#18181c] p-6 sm:p-8 border border-[#27272a] rounded-[3px] space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#27272a]">
               <div>
-                <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest block mb-1">
-                  STAGE 0{activeStage + 1} OF 06
+                <span className="font-mono text-[10.5px] text-[#ef4444] uppercase tracking-wider block font-semibold mb-0.5">
+                  STAGE {activeStage + 1} OF 6
                 </span>
-                <h3 className="font-['Cinzel'] text-[22px] text-[#f5f5f7] tracking-wider uppercase">{stages[activeStage].title}</h3>
-                <p className="font-['Cormorant_Garamond'] text-[16px] italic text-[#dfc7a5]">{stages[activeStage].tagline}</p>
+                <h3 className="text-[22px] font-bold text-white">{stages[activeStage].title}</h3>
+                <p className="text-[14px] text-[#d4d4d8] mt-0.5">{stages[activeStage].tagline}</p>
               </div>
-              <span className="font-['Cinzel'] text-[10px] tracking-widest text-[#c5a880] border border-[rgba(197,168,128,0.3)] px-3 py-1 uppercase">
-                MANDATORY ATELIER PASS
+              <span className="font-mono text-[11px] font-semibold text-[#27a644] bg-[#27a644]/10 border border-[#27a644]/30 px-3 py-1 rounded-[2px] w-fit">
+                MANDATORY WORKSHOP PASS
               </span>
             </div>
 
-            <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
+            <p className="text-[14.5px] text-[#a1a1aa] leading-relaxed">
               {stages[activeStage].description}
             </p>
 
             <div className="pt-2">
-              <span className="font-['Cinzel'] text-[10px] uppercase tracking-[0.2em] text-[#c5a880] block mb-4">
-                LABORATORY VERIFICATION CRITERIA:
+              <span className="font-mono text-[11px] uppercase tracking-wider text-white block mb-3 font-semibold">
+                CHECKLIST PROCEDURES:
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {stages[activeStage].checklist.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-[13.5px] text-[#f5f5f7] font-light">
-                    <span className="w-1.5 h-1.5 bg-[#c5a880] shrink-0 mt-2" />
+                  <div key={idx} className="flex items-start gap-2.5 text-[14px] text-[#e4e4e7]">
+                    <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -248,136 +244,136 @@ export const WorkshopSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 5,000 KM Warranty Covenant */}
-        <div className="bg-[#131316] p-8 sm:p-12 border border-[rgba(197,168,128,0.25)] space-y-8">
+        {/* 5,000 KM Warranty Section */}
+        <div className="bg-[#121215] p-6 sm:p-10 border border-[#27272a] rounded-[4px] space-y-6">
           <div className="max-w-[700px]">
-            <span className="rr-eyebrow mb-2 block">PEACE OF MIND</span>
-            <h2 className="font-['Cinzel'] text-[24px] sm:text-[30px] text-[#f5f5f7] tracking-wide uppercase">
-              The 5,000 KM Warranty Covenant.
+            <span className="brand-eyebrow mb-1 block">WRITTEN WARRANTY</span>
+            <h2 className="text-[24px] sm:text-[30px] font-bold text-white tracking-tight">
+              Our 5,000 KM Written Warranty
             </h2>
-            <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[17px] italic mt-2 leading-relaxed">
-              Every retail passenger motor car includes our formal written warranty backing you for 5,000 kilometers or 90 days from handover date.
+            <p className="text-[15px] text-[#a1a1aa] mt-1 leading-relaxed">
+              Every passenger car sold at Alberka Motors comes with a formal written warranty covering you for 5,000 km or 90 days from the handover date.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-[rgba(197,168,128,0.15)]">
-            <div className="space-y-4">
-              <h4 className="font-['Cinzel'] text-[14px] text-[#f5f5f7] tracking-wider uppercase flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#c5a880]" />
-                COVERED SYSTEMS
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-[#27272a]">
+            <div className="space-y-3">
+              <h4 className="text-[15px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#ef4444]" />
+                What Is Covered
               </h4>
-              <ul className="space-y-2.5 text-[13.5px] text-[#8c8a94] font-light">
-                <li>• Engine cylinder block, head, valves, pistons, and camshaft assemblies</li>
-                <li>• Automatic transmission, torque converter, and CVT belt/pulley assemblies</li>
-                <li>• Hybrid electric drive motors, reduction gears, and inverter circuits</li>
-                <li>• Engine starter motor, alternator charging system, and cooling water pump</li>
+              <ul className="space-y-2 text-[14px] text-[#a1a1aa]">
+                <li>• Engine cylinder block, head, valves, pistons, and camshaft</li>
+                <li>• Automatic transmission, torque converter, and CVT assembly</li>
+                <li>• Hybrid electric drive motor, reduction gear, and inverter circuit</li>
+                <li>• Starter motor, alternator charging system, and engine water pump</li>
               </ul>
             </div>
 
-            <div className="space-y-4">
-              <h4 className="font-['Cinzel'] text-[14px] text-[#f5f5f7] tracking-wider uppercase flex items-center gap-2">
-                <FileCheck className="w-4 h-4 text-[#c5a880]" />
-                CLIENT ASSURANCE
+            <div className="space-y-3">
+              <h4 className="text-[15px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <FileCheck className="w-4 h-4 text-[#ef4444]" />
+                Customer Support
               </h4>
-              <ul className="space-y-2.5 text-[13.5px] text-[#8c8a94] font-light">
-                <li>• Complimentary intermediate 2,500 km fluid check at either Mombasa or Nairobi suite</li>
-                <li>• Priority WhatsApp direct connection to our Master Diagnostic Technician</li>
-                <li>• Guaranteed access to genuine OEM Japanese spare parts at atelier cost</li>
-                <li>• Complete written handover inspection cert signed by the lead engineer</li>
+              <ul className="space-y-2 text-[14px] text-[#a1a1aa]">
+                <li>• Free 2,500 km intermediate fluid check at our Mombasa or Nairobi showroom</li>
+                <li>• Direct WhatsApp support from our workshop technical team</li>
+                <li>• Direct access to genuine Japanese spare parts at fair dealer prices</li>
+                <li>• Official inspection handover certificate signed by our head technician</li>
               </ul>
             </div>
           </div>
         </div>
 
-        {/* Schedule Service Form */}
-        <div className="bg-[#131316] p-8 sm:p-12 border border-[rgba(197,168,128,0.3)] space-y-6">
+        {/* Service Booking Form */}
+        <div className="bg-[#121215] p-6 sm:p-10 border border-[#27272a] rounded-[4px] space-y-6">
           <div className="max-w-[650px]">
-            <span className="rr-eyebrow mb-2 block">ATELIER DESK</span>
-            <h3 className="font-['Cinzel'] text-[22px] text-[#f5f5f7] tracking-wide uppercase">Schedule an Atelier Appointment</h3>
-            <p className="text-[13.5px] text-[#8c8a94] mt-1 font-light">
-              Available for existing Alberka Motors clientele and prospective pre-purchase inspection inquiries.
+            <span className="brand-eyebrow mb-1 block">BOOK SERVICE</span>
+            <h3 className="text-[22px] font-bold text-white tracking-tight">Book a Workshop Appointment</h3>
+            <p className="text-[14px] text-[#a1a1aa] mt-0.5">
+              Available for Alberka clients and pre-purchase vehicle inspections in Mombasa.
             </p>
           </div>
 
           {bookingSubmitted ? (
-            <div className="bg-[#0f0714] border border-[#c5a880] p-8 text-center text-[#dfc7a5] space-y-2">
-              <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-[#c5a880]" />
-              <h4 className="font-['Cinzel'] text-[18px] tracking-wider uppercase">Appointment Request Dispatched</h4>
-              <p className="text-[14px] text-[#8c8a94] font-light">Our Mombasa atelier coordinator is opening your WhatsApp ticket immediately.</p>
+            <div className="bg-[#18181c] border border-[#27a644] p-8 text-center text-white space-y-2 rounded-[4px]">
+              <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-[#27a644]" />
+              <h4 className="text-[18px] font-bold">Booking Request Sent!</h4>
+              <p className="text-[14px] text-[#a1a1aa]">Our workshop team in Mombasa is opening your WhatsApp message right now.</p>
             </div>
           ) : (
-            <form onSubmit={handleBookingSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <form onSubmit={handleBookingSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div>
-                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">CLIENT NAME</label>
+                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1.5">Your Name</label>
                   <input
                     type="text"
                     required
                     value={bookingData.name}
                     onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
-                    placeholder="E.G. SAMUEL KARANI"
-                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-['Cinzel'] tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5]"
+                    placeholder="e.g. Samuel Karani"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
                   />
                 </div>
 
                 <div>
-                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">WHATSAPP PHONE</label>
+                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1.5">Phone Number (WhatsApp)</label>
                   <input
                     type="tel"
                     required
                     value={bookingData.phone}
                     onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-mono tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-[#dc2626]"
                   />
                 </div>
 
                 <div>
-                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">SERVICE TYPE</label>
+                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1.5">Service Type</label>
                   <select
                     value={bookingData.serviceType}
                     onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[11px] font-['Cinzel'] tracking-wider text-[#dfc7a5] focus:outline-none cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
                   >
-                    <option value="100-Point Pre-Purchase Check">100-POINT PRE-PURCHASE CHECK</option>
-                    <option value="5,000 km Periodic Service">5,000 KM PERIODIC SERVICE</option>
-                    <option value="Computerized OBD-II Diagnostic Scan">COMPUTERIZED OBD-II DIAGNOSTIC SCAN</option>
-                    <option value="Hybrid Battery Health Assessment">HYBRID BATTERY HEALTH ASSESSMENT</option>
-                    <option value="Studio Ceramic Paint Sealant">STUDIO CERAMIC PAINT SEALANT</option>
+                    <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
+                    <option value="5,000 km Periodic Service">5,000 KM Routine Service</option>
+                    <option value="Computerized OBD-II Diagnostic Scan">Computerized OBD-II Diagnostic Scan</option>
+                    <option value="Hybrid Battery Health Assessment">Hybrid Battery Health Assessment</option>
+                    <option value="Deep Steam Detailing & Polish">Deep Steam Detailing & Polish</option>
                   </select>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">MARQUE & REGISTRATION</label>
+                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1.5">Car Model & Reg</label>
                   <input
                     type="text"
                     required
                     value={bookingData.vehicleModel}
                     onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
-                    placeholder="E.G. TOYOTA RAV4 (KDD 123X)"
-                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-['Cinzel'] tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5]"
+                    placeholder="e.g. Toyota RAV4 (KDD 123X)"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626]"
                   />
                 </div>
 
                 <div>
-                  <label className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider block mb-2">PREFERRED APPOINTMENT DATE</label>
+                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1.5">Preferred Date</label>
                   <input
                     type="date"
                     value={bookingData.preferredDate}
                     onChange={(e) => setBookingData({ ...bookingData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-mono tracking-wider text-[#dfc7a5] focus:outline-none focus:border-[#dfc7a5]"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-[#dc2626]"
                   />
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button type="submit" className="btn-rr-solid w-full sm:w-auto">
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button type="submit" className="btn-crimson w-full sm:w-auto">
                   <Calendar className="w-4 h-4 mr-2" />
-                  <span>CONFIRM SERVICE BOOKING ON WHATSAPP</span>
+                  <span>Send Booking via WhatsApp</span>
                 </button>
-                <span className="font-mono text-[11px] text-[#8c8a94]">MON – SAT: 08:00 – 18:00 EAT</span>
+                <span className="font-mono text-[12px] text-[#71717a]">Opening Hours: Mon – Sat: 8:00 AM – 6:00 PM</span>
               </div>
             </form>
           )}

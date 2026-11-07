@@ -24,7 +24,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
   const sliderRef = useRef<HTMLDivElement>(null);
   const isProgrammaticScroll = useRef(false);
 
-  // Scroll to specific slide with luxury deceleration
+  // Scroll to specific slide
   const scrollToSlide = useCallback((index: number) => {
     if (!sliderRef.current) return;
     const container = sliderRef.current;
@@ -46,7 +46,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
     setTimeout(() => {
       isProgrammaticScroll.current = false;
-    }, 700);
+    }, 500);
   }, []);
 
   const handleNext = () => {
@@ -91,7 +91,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         scrollToSlide(next);
         return next;
       });
-    }, 6500);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [isPlaying, isUserInteracting, vehicles.length, scrollToSlide]);
@@ -102,36 +102,36 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       onMouseEnter={() => setIsUserInteracting(true)}
       onMouseLeave={() => setIsUserInteracting(false)}
     >
-      {/* Editorial Header Row */}
+      {/* Header Row */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-2">
         <div className="space-y-2">
-          <span className="rr-eyebrow block">THE ATELIER RUNWAY</span>
-          <h2 className="rr-title-h2 text-[26px] sm:text-[36px]">
-            CURATED MARQUES READY FOR COMMISSION.
+          <span className="brand-eyebrow block">FEATURED INVENTORY</span>
+          <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight">
+            Cars Ready for Immediate Delivery
           </h2>
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Aristocratic Controls (0px Radius, Hairline Rose Gold) */}
-          <div className="flex items-center gap-1 bg-[#0f0714] p-1 border border-[rgba(197,168,128,0.25)]">
+          {/* Controls */}
+          <div className="flex items-center gap-1 bg-[#18181c] p-1 border border-[#27272a] rounded-[4px]">
             <button
               onClick={handlePrev}
-              className="w-8 h-8 bg-transparent hover:bg-[#160a1d] text-[#c5a880] hover:text-[#dfc7a5] flex items-center justify-center transition-all cursor-pointer"
-              title="Previous Marque"
+              className="w-8 h-8 bg-transparent hover:bg-[#27272a] text-[#a1a1aa] hover:text-white flex items-center justify-center transition-all cursor-pointer rounded-[2px]"
+              title="Previous Car"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-8 h-8 bg-transparent hover:bg-[#160a1d] text-[#c5a880] hover:text-[#dfc7a5] flex items-center justify-center transition-all cursor-pointer"
-              title="Next Marque"
+              className="w-8 h-8 bg-transparent hover:bg-[#27272a] text-[#a1a1aa] hover:text-white flex items-center justify-center transition-all cursor-pointer rounded-[2px]"
+              title="Next Car"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-8 h-8 bg-transparent hover:bg-[#160a1d] text-[#8c8a94] hover:text-[#f5f5f7] flex items-center justify-center transition-all cursor-pointer"
-              title={isPlaying ? 'Pause Runway' : 'Play Runway'}
+              className="w-8 h-8 bg-transparent hover:bg-[#27272a] text-[#a1a1aa] hover:text-white flex items-center justify-center transition-all cursor-pointer rounded-[2px]"
+              title={isPlaying ? 'Pause Auto-scroll' : 'Play Auto-scroll'}
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
             </button>
@@ -139,19 +139,19 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
           <button
             onClick={onViewAll}
-            className="btn-rr-ghost !py-2 !px-4 !text-[11px] whitespace-nowrap cursor-pointer"
+            className="btn-ghost !py-2 !px-4 text-[13px] whitespace-nowrap cursor-pointer"
           >
-            <span>ENTIRE FLEET ({vehicles.length})</span>
-            <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            <span>View All Cars ({vehicles.length})</span>
+            <ArrowRight className="w-4 h-4 ml-1.5" />
           </button>
         </div>
       </div>
 
-      {/* The Runway Track */}
+      {/* Runway Track */}
       <div
         ref={sliderRef}
         onScroll={handleScroll}
-        className="flex items-stretch gap-6 overflow-x-auto pb-8 pt-2 px-2 no-scrollbar snap-x snap-mandatory scroll-smooth"
+        className="flex items-stretch gap-6 overflow-x-auto pb-6 pt-2 px-2 no-scrollbar snap-x snap-mandatory scroll-smooth"
         style={{ scrollPaddingLeft: '24px', scrollPaddingRight: '24px', WebkitOverflowScrolling: 'touch' }}
       >
         {vehicles.map((vehicle, idx) => {
@@ -159,8 +159,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           return (
             <div
               key={vehicle.id}
-              className={`showroom-slide snap-center shrink-0 w-[88vw] sm:w-[480px] md:w-[540px] lg:w-[580px] transition-all duration-700 ease-out ${
-                isActive ? 'scale-100 opacity-100' : 'scale-[0.98] opacity-80 hover:opacity-100'
+              className={`showroom-slide snap-center shrink-0 w-[88vw] sm:w-[460px] md:w-[500px] lg:w-[540px] transition-all duration-500 ease-out ${
+                isActive ? 'scale-100 opacity-100' : 'scale-[0.98] opacity-85 hover:opacity-100'
               }`}
             >
               <VehicleCard
@@ -175,8 +175,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         })}
       </div>
 
-      {/* Quiet Progress Bar & Track Indicators */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[rgba(197,168,128,0.2)] px-2">
+      {/* Track Progress Indicators */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#27272a] px-2">
         <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
           {vehicles.map((v, idx) => {
             const isActive = idx === activeIndex;
@@ -184,21 +184,21 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               <button
                 key={v.id}
                 onClick={() => scrollToSlide(idx)}
-                className={`h-[2px] transition-all duration-500 cursor-pointer ${
+                className={`h-[2px] transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'w-10 bg-[#c5a880]'
-                    : 'w-3 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(197,168,128,0.4)]'
+                    ? 'w-10 bg-[#dc2626]'
+                    : 'w-3 bg-[#27272a] hover:bg-[#71717a]'
                 }`}
-                title={`Marque ${idx + 1}: ${v.name}`}
+                title={`Car ${idx + 1}: ${v.name}`}
               />
             );
           })}
         </div>
 
-        <div className="text-[11px] font-['Cinzel'] tracking-widest text-[#8c8a94] flex items-center gap-3">
-          <span className="text-[#c5a880]">{activeIndex + 1} OF {vehicles.length}</span>
-          <span className="text-[rgba(197,168,128,0.4)]">//</span>
-          <span className="text-[#f5f5f7] uppercase">{vehicles[activeIndex]?.name}</span>
+        <div className="text-[12px] font-mono text-[#a1a1aa] flex items-center gap-3">
+          <span className="text-[#ef4444] font-medium">{activeIndex + 1} OF {vehicles.length}</span>
+          <span>·</span>
+          <span className="text-white font-medium">{vehicles[activeIndex]?.name}</span>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, ArrowRight, Gauge, Shield, Fuel } from 'lucide-react';
+import { Bookmark, ArrowRight, Gauge, Shield, Fuel, MessageCircle } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useScrollReveal } from '../hooks/useAnimations';
 import { SkeletonImage } from './SkeletonImage';
@@ -25,99 +25,94 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   return (
     <div
       ref={disableScrollReveal ? undefined : ref}
-      className={`rr-card p-6 flex flex-col justify-between group transition-all duration-500 ${
+      className={`bg-[#121215] border border-[#27272a] hover:border-[#dc2626]/60 rounded-[4px] p-5 flex flex-col justify-between group transition-all duration-300 ${
         disableScrollReveal ? '' : `scroll-reveal ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
       <div>
-        {/* Media Frame — Zero-Radius Architectural Frame */}
+        {/* Media Frame */}
         <div 
           onClick={() => onSelect(vehicle)}
-          className="w-full h-[220px] xs:h-[260px] sm:h-[280px] overflow-hidden bg-[#080809] border border-[rgba(255,255,255,0.06)] group-hover:border-[rgba(197,168,128,0.35)] mb-6 relative cursor-pointer transition-colors duration-500"
+          className="w-full h-[220px] xs:h-[260px] sm:h-[270px] overflow-hidden bg-[#09090b] border border-[#27272a] group-hover:border-[#dc2626]/40 mb-5 relative cursor-pointer rounded-[3px] transition-colors"
         >
           <SkeletonImage
             src={vehicle.heroImage}
             alt={vehicle.name}
-            className="group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="group-hover:scale-104 transition-transform duration-500 ease-out"
             containerClassName="w-full h-full"
             loading="lazy"
           />
 
-          {/* Minimalist Japanese Provenance Seal */}
+          {/* Badges */}
           <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
-            <span className="font-['Cinzel'] text-[10px] tracking-[0.18em] bg-[#0f0714]/90 text-[#dfc7a5] border border-[rgba(197,168,128,0.3)] px-2.5 py-1 uppercase">
-              {vehicle.auctionGrade}
+            <span className="font-mono text-[10.5px] font-bold bg-[#dc2626] text-white px-2.5 py-0.5 rounded-[2px] shadow-sm">
+              Grade {vehicle.auctionGrade}
             </span>
-            <span className="font-['Cinzel'] text-[9.5px] tracking-[0.16em] bg-[#0f0714]/90 text-[#8c8a94] border border-[rgba(255,255,255,0.08)] px-2 py-1 uppercase">
+            <span className="font-mono text-[10px] bg-[#09090b]/90 text-[#e4e4e7] border border-[#27272a] px-2 py-0.5 rounded-[2px]">
               {vehicle.status.split('—')[0]}
             </span>
           </div>
 
-          {/* Curated Dossier Bookmark */}
+          {/* Save Car Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-3 right-3 w-8 h-8 flex items-center justify-center transition-all duration-400 cursor-pointer z-20 ${
+            className={`absolute top-3 right-3 w-8 h-8 rounded-[3px] flex items-center justify-center transition-all cursor-pointer z-20 ${
               isFavorite 
-                ? 'bg-[#c5a880] text-[#0f0714]' 
-                : 'bg-[#0f0714]/80 hover:bg-[#160a1d] text-[#8c8a94] hover:text-[#dfc7a5] border border-[rgba(197,168,128,0.25)]'
+                ? 'bg-[#dc2626] text-white' 
+                : 'bg-[#09090b]/80 hover:bg-[#18181c] text-[#a1a1aa] hover:text-white border border-[#27272a]'
             }`}
-            title={isFavorite ? 'Remove from Curated Dossier' : 'Save to Curated Dossier'}
+            title={isFavorite ? 'Remove from saved cars' : 'Save car'}
           >
-            <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-[#0f0714]' : ''}`} />
+            <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-white' : ''}`} />
           </button>
         </div>
 
-        {/* Identity & Heritage Meta Line */}
-        <div className="flex items-center justify-between text-[11px] text-[#8c8a94] mb-3 font-mono">
-          <span>{vehicle.year} // {vehicle.mileageKm.toLocaleString()} KM</span>
-          <span className="text-[#c5a880] tracking-widest">{vehicle.stockNo}</span>
+        {/* Year, Mileage & Stock ID */}
+        <div className="flex items-center justify-between text-[12px] text-[#a1a1aa] mb-2 font-mono">
+          <span>{vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM</span>
+          <span className="text-[#ef4444] font-medium">{vehicle.stockNo}</span>
         </div>
 
-        {/* Aristocratic Moniker */}
-        <div className="rr-eyebrow mb-2">
-          {vehicle.moniker || 'BESPOKE JAPANESE MARQUE'}
-        </div>
-
-        {/* Marque Headline (Cinzel Uppercase) */}
+        {/* Vehicle Name */}
         <h3
           onClick={() => onSelect(vehicle)}
-          className="font-['Cinzel'] text-[18px] sm:text-[20px] font-normal text-[#f5f5f7] mb-3 leading-snug tracking-[0.14em] hover:text-[#dfc7a5] transition-colors cursor-pointer uppercase"
+          className="text-[19px] sm:text-[20px] font-bold text-white mb-2 leading-snug hover:text-[#ef4444] transition-colors cursor-pointer"
         >
           {vehicle.name}
         </h3>
 
-        {/* Tagline */}
-        <p className="text-[13.5px] text-[#8c8a94] line-clamp-2 leading-[1.6] mb-6 font-light">
+        {/* Short Description */}
+        <p className="text-[13.5px] text-[#a1a1aa] line-clamp-2 leading-relaxed mb-5">
           {vehicle.tagline}
         </p>
 
-        {/* Engineering Specifications Grid */}
-        <div className="grid grid-cols-3 gap-2 mb-6 text-center">
-          <div className="border border-[rgba(255,255,255,0.06)] bg-[#0f0714] p-2">
-            <span className="font-['Cinzel'] text-[8.5px] text-[#8c8a94] uppercase tracking-wider block mb-0.5">POWERTRAIN</span>
-            <span className="font-mono text-[11px] text-[#dfc7a5] truncate block">{vehicle.power.split('@')[0]}</span>
+        {/* Quick Specs 3-Box Grid */}
+        <div className="grid grid-cols-3 gap-2 mb-6 text-center text-[12px]">
+          <div className="border border-[#27272a] bg-[#18181c] p-2 rounded-[2px]">
+            <span className="text-[10px] text-[#71717a] uppercase block mb-0.5 font-mono">Engine</span>
+            <span className="font-medium text-white truncate block">{vehicle.engine.split(' ')[0]}</span>
           </div>
-          <div className="border border-[rgba(255,255,255,0.06)] bg-[#0f0714] p-2">
-            <span className="font-['Cinzel'] text-[8.5px] text-[#8c8a94] uppercase tracking-wider block mb-0.5">EFFICIENCY</span>
-            <span className="font-mono text-[11px] text-[#dfc7a5] truncate block">{vehicle.fuelEconomy.split('(')[0]}</span>
+          <div className="border border-[#27272a] bg-[#18181c] p-2 rounded-[2px]">
+            <span className="text-[10px] text-[#71717a] uppercase block mb-0.5 font-mono">Fuel</span>
+            <span className="font-medium text-white truncate block">{vehicle.fuelType}</span>
           </div>
-          <div className="border border-[rgba(255,255,255,0.06)] bg-[#0f0714] p-2">
-            <span className="font-['Cinzel'] text-[8.5px] text-[#8c8a94] uppercase tracking-wider block mb-0.5">COVENANT</span>
-            <span className="font-mono text-[11px] text-[#c5a880] truncate block">5,000 KM</span>
+          <div className="border border-[#27272a] bg-[#18181c] p-2 rounded-[2px]">
+            <span className="text-[10px] text-[#71717a] uppercase block mb-0.5 font-mono">Warranty</span>
+            <span className="font-medium text-[#ef4444] truncate block">5,000 KM</span>
           </div>
         </div>
       </div>
 
-      {/* Bottom Valuation & Private Viewing Inquiry */}
-      <div className="pt-5 border-t border-[rgba(197,168,128,0.15)] flex items-center justify-between gap-4">
+      {/* Price & Action Buttons */}
+      <div className="pt-4 border-t border-[#27272a] flex items-center justify-between gap-3">
         <div>
-          <span className="font-['Cinzel'] text-[9px] text-[#8c8a94] uppercase tracking-[0.2em] block">
-            ACQUISITION VALUE
+          <span className="text-[10px] text-[#71717a] uppercase tracking-wider block font-mono">
+            Delivered Price
           </span>
-          <span className="font-mono text-[17px] sm:text-[19px] text-[#f5f5f7]">
+          <span className="font-mono text-[18px] sm:text-[20px] font-bold text-white">
             KES {vehicle.priceKes.toLocaleString()}
           </span>
         </div>
@@ -125,18 +120,19 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => onSelect(vehicle)}
-            className="btn-rr-ghost !text-[10px] !py-2 !px-3 cursor-pointer"
+            className="btn-ghost !text-[12px] !py-2 !px-3 cursor-pointer"
           >
-            <span>DOSSIER</span>
-            <ArrowRight className="w-3 h-3 ml-1" />
+            <span>View Car</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-1" />
           </button>
           <a
-            href={`https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo}).`}
+            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-rr-solid !text-[10px] !py-2 !px-3.5 hidden xs:inline-flex"
+            className="btn-crimson !text-[12px] !py-2 !px-3 hidden xs:inline-flex"
+            title="Chat on WhatsApp"
           >
-            INQUIRE
+            <MessageCircle className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>

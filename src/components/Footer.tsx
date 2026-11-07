@@ -1,5 +1,6 @@
 import React from 'react';
 import { Vehicle } from '../data/vehicles';
+import { MessageCircle, Phone, Mail } from 'lucide-react';
 
 interface FooterProps {
   vehicles: Vehicle[];
@@ -13,180 +14,165 @@ export const Footer: React.FC<FooterProps> = ({
   onSelectVehicle,
 }) => {
   return (
-    <footer className="w-full bg-[#0f0714] border-t border-[rgba(197,168,128,0.2)] text-[#8c8a94] text-[13px] py-20 px-6">
+    <footer className="w-full bg-[#09090b] border-t border-[#27272a] text-[#a1a1aa] text-[13px] py-16 px-6 sm:px-10">
       <div className="max-w-[1400px] mx-auto">
         
-        {/* Footnote Disclaimers */}
-        <div className="border-b border-[rgba(197,168,128,0.15)] pb-10 mb-12 space-y-3 leading-[1.7] text-[12px] text-[#8c8a94] font-light">
+        {/* Disclaimers & Consumer Assurance */}
+        <div className="border-b border-[#27272a] pb-8 mb-10 space-y-3 leading-relaxed text-[12px] text-[#71717a]">
           <p>
-            1. <strong className="text-[#dfc7a5] font-['Cinzel'] uppercase">5,000 KM Warranty Covenant:</strong> The Alberka Motors 5,000 km / 90-Day Warranty applies to all verified retail passenger motor cars. Encompasses internal lubricated engine mechanical components and automatic transmission/transaxle assemblies. Subject to standard operating guidelines and verified service records at our approved coastal atelier facilities.
+            1. <strong className="text-white">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop in Mombasa.
           </p>
           <p>
-            2. <strong className="text-[#dfc7a5] font-['Cinzel'] uppercase">Acquisition Valuation Transparency:</strong> All stated values in Kenya Shillings (KES) are inclusive of 16% VAT, Import Duty, Excise Duty, and Railway Development Levy. Number plate registration and logbook conveyancing handled directly by our Mombasa legal documentation desk.
+            2. <strong className="text-white">Clear, All-Inclusive Prices:</strong> All prices listed in Kenya Shillings (KES) include 16% VAT, KRA Import Duty, Excise Duty, and Railway Development Levy. NTSA TIMS logbook transfer handled directly by our conveyancing desk.
           </p>
           <p>
-            3. <strong className="text-[#dfc7a5] font-['Cinzel'] uppercase">Japanese Auction Authenticity:</strong> Grade 4.5+ motor cars represent top-tier cosmetic and mechanical condition with genuine odometer distance certified by QISJ or JEVIC pre-export inspections.
+            3. <strong className="text-white">Japanese Auction Verification:</strong> Every car comes with an authentic Japanese export certificate and verified QISJ or JEVIC odometer verification sheet.
           </p>
         </div>
 
-        {/* Brand Insignia & Heritage Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 border-b border-[rgba(197,168,128,0.15)]">
+        {/* Brand Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 border-b border-[#27272a]">
           <div className="flex items-center gap-4">
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Motors Kenya"
               className="h-10 w-auto object-contain"
             />
-            <div className="border-l border-[rgba(197,168,128,0.25)] pl-4">
-              <span className="font-['Cinzel'] text-[14px] tracking-[0.25em] text-[#f5f5f7] block leading-tight">
+            <div className="border-l border-[#27272a] pl-4">
+              <span className="font-['Inter'] font-bold text-[15px] text-white block leading-tight">
                 ALBERKA MOTORS (KENYA) LTD
               </span>
-              <span className="font-['Cinzel'] text-[10px] tracking-[0.2em] text-[#c5a880] mt-0.5 block">
-                HOUSE OF BESPOKE JAPANESE MARQUES // EST. 2000
+              <span className="font-mono text-[11px] text-[#ef4444] mt-0.5 block font-medium">
+                DIRECT JAPANESE IMPORTS // EST. 2000
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a
-              href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20consult%20the%20concierge."
+              href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-rr-ghost !py-2 !px-4 !text-[11px]"
+              className="btn-crimson !py-2.5 !px-4 text-[13px]"
             >
-              WHISPERS PRIVATE CONCIERGE
+              <MessageCircle className="w-4 h-4 mr-1.5" />
+              <span>WhatsApp Us (0714 333 888)</span>
             </a>
           </div>
         </div>
 
-        {/* Structured Multi-Column Directory */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-16">
+        {/* Multi-Column Directory */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-14 text-[13px]">
           
           <div>
-            <h4 className="font-['Cinzel'] text-[#dfc7a5] text-[11px] mb-4 uppercase tracking-[0.2em]">THE FLEET</h4>
-            <ul className="space-y-2.5 text-[12.5px]">
+            <h4 className="font-bold text-white text-[13px] mb-3 uppercase tracking-wider">Showroom Fleet</h4>
+            <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  All Showroom Marques
+                <button onClick={() => onNavigate('inventory')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  All Cars in Stock
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  All-Terrain Luxury SUVs
+                <button onClick={() => onNavigate('inventory')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  SUVs & 4WD
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Hybrids & e-POWER Vanguard
+                <button onClick={() => onNavigate('inventory')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Hybrids & e-POWER
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Executive Suites & MPVs
+                <button onClick={() => onNavigate('inventory')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  7-Seater Vans & MPVs
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Compact Crossovers
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-['Cinzel'] text-[#dfc7a5] text-[11px] mb-4 uppercase tracking-[0.2em]">FLAGSHIP MARQUES</h4>
-            <ul className="space-y-2.5 text-[12.5px]">
-              {vehicles.slice(0, 5).map((v) => (
-                <li key={v.id}>
-                  <button
-                    onClick={() => onSelectVehicle(v)}
-                    className="text-[#8c8a94] hover:text-[#f5f5f7] text-left truncate max-w-[180px] cursor-pointer transition-colors"
-                  >
-                    {v.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-['Cinzel'] text-[#dfc7a5] text-[11px] mb-4 uppercase tracking-[0.2em]">THE ATELIERS</h4>
-            <ul className="space-y-2.5 text-[12.5px]">
-              <li>
-                <button onClick={() => onNavigate('workshop')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Tangana Road Mechanical Bays
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('workshop')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  100-Point Inspection Protocol
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('workshop')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  5,000 KM Written Covenant
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('trade-in')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Trade-In Equity Appraisal
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('trade-in')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Asset Finance Partnership
+                <button onClick={() => onNavigate('inventory')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Compact Hatchbacks
                 </button>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-['Cinzel'] text-[#dfc7a5] text-[11px] mb-4 uppercase tracking-[0.2em]">THE PRIVATE SUITES</h4>
-            <ul className="space-y-2.5 text-[12.5px]">
+            <h4 className="font-bold text-white text-[13px] mb-3 uppercase tracking-wider">Services</h4>
+            <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Mombasa — Tangana Rd Atelier
+                <button onClick={() => onNavigate('workshop')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Mombasa Workshop Service
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Mombasa — Nyali Suite
+                <button onClick={() => onNavigate('workshop')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  100-Point Inspection Check
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Nairobi — Westlands Suite
+                <button onClick={() => onNavigate('workshop')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  5,000 KM Written Warranty
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Maritime Port Logistics
+                <button onClick={() => onNavigate('trade-in')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Trade In Your Old Car
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('trade-in')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Asset Finance Estimates
                 </button>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-['Cinzel'] text-[#dfc7a5] text-[11px] mb-4 uppercase tracking-[0.2em]">PROVENANCE</h4>
-            <ul className="space-y-2.5 text-[12.5px]">
+            <h4 className="font-bold text-white text-[13px] mb-3 uppercase tracking-wider">Showrooms</h4>
+            <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('about')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  USS Tokyo & CAA Bidding
+                <button onClick={() => onNavigate('locations')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Mombasa — Tangana Road
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  QISJ & JEVIC Standards
+                <button onClick={() => onNavigate('locations')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Mombasa — Nyali Branch
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  Twenty-Six Year Heritage
+                <button onClick={() => onNavigate('locations')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Nairobi — Westlands (Mwanzi Rd)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('sitemap')} className="text-[#8c8a94] hover:text-[#f5f5f7] text-left cursor-pointer transition-colors">
-                  House Directory Index
+                <button onClick={() => onNavigate('locations')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Book a VIP Test Drive
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-white text-[13px] mb-3 uppercase tracking-wider">About Alberka</h4>
+            <ul className="space-y-2">
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Our 26-Year Heritage
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Japanese Auction Sourcing
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  QISJ & JEVIC Odometer Guarantee
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('sitemap')} className="text-[#a1a1aa] hover:text-white text-left cursor-pointer transition-colors">
+                  Site Directory & Links
                 </button>
               </li>
             </ul>
@@ -195,11 +181,11 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Copyright Strip */}
-        <div className="pt-8 border-t border-[rgba(197,168,128,0.15)] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8c8a94] font-mono">
-          <p>© {new Date().getFullYear()} Alberka Motors (Kenya) Ltd. Purveyors of Transcendent Japanese Motor Cars.</p>
-          <div className="flex items-center gap-4 text-[#8c8a94]">
+        <div className="pt-6 border-t border-[#27272a] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#71717a] font-mono">
+          <p>© {new Date().getFullYear()} Alberka Motors (Kenya) Ltd. Clean Japanese Imports Since 2000.</p>
+          <div className="flex items-center gap-3">
             <span>Mombasa · Nairobi</span>
-            <span className="text-[rgba(197,168,128,0.4)]">//</span>
+            <span>·</span>
             <span>KRA & QISJ Compliant</span>
           </div>
         </div>

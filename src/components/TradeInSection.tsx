@@ -103,12 +103,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
   const remainingCashMax = Math.max(0, targetVehicle.priceKes - valuation.min);
   const equityPercent = Math.min(100, Math.round((avgTradeCredit / targetVehicle.priceKes) * 100));
 
-  const animatedMin = useAnimatedNumber(valuation.min, 500);
-  const animatedMax = useAnimatedNumber(valuation.max, 500);
-  const animatedAvg = useAnimatedNumber(avgTradeCredit, 500);
-  const animatedCashMin = useAnimatedNumber(remainingCashMin, 500);
-  const animatedCashMax = useAnimatedNumber(remainingCashMax, 500);
-  const animatedEquityPercent = useAnimatedNumber(equityPercent, 450);
+  const animatedMin = useAnimatedNumber(valuation.min, 400);
+  const animatedMax = useAnimatedNumber(valuation.max, 400);
+  const animatedAvg = useAnimatedNumber(avgTradeCredit, 400);
+  const animatedCashMin = useAnimatedNumber(remainingCashMin, 400);
+  const animatedCashMax = useAnimatedNumber(remainingCashMax, 400);
+  const animatedEquityPercent = useAnimatedNumber(equityPercent, 400);
 
   const popularModels = [
     'Toyota Fielder 1.5G',
@@ -121,47 +121,43 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
 
   const faqs = [
     {
-      q: 'Can I exchange a motor car currently under active bank logbook financing?',
-      a: 'Yes. Our legal conveyancing desk communicates directly with your financier to procure an official settlement statement. We clear the outstanding balance directly and apply all residual equity towards your chosen showroom marque.'
+      q: 'Can I trade in a car that is currently under bank financing?',
+      a: 'Yes. We get an official settlement letter from your bank, pay off the loan balance directly, and apply whatever equity remains toward your new car.'
     },
     {
-      q: 'For what duration is the preliminary appraisal binding?',
-      a: 'Online figures reflect live clearing values. Upon completion of our 20-minute hydraulic hoist evaluation at our Mombasa or Nairobi atelier, you receive a written binding valuation letter valid for 7 calendar days.'
+      q: 'How long is the trade-in valuation valid?',
+      a: 'Online estimates give you a realistic range. When you bring the car to our Mombasa or Nairobi showroom for a quick 20-minute check, you get a written valuation valid for 7 days.'
     },
     {
-      q: 'May I reserve a maritime consignment currently at sea using my exchange equity?',
-      a: 'Certainly. Your trade equity can be credited immediately against any incoming Japanese vessel shipment currently bound for the Port of Mombasa.'
+      q: 'Can I trade in my old car against an incoming Japanese shipment?',
+      a: 'Yes! Your trade-in value can be credited immediately to reserve any car currently on the ship coming to Mombasa.'
     },
     {
-      q: 'What legal documentation is required for the appraisal ceremony?',
-      a: 'Please present your original NTSA TIMS Logbook, National Identification or Passport, KRA PIN certificate, and any verified Japanese or local maintenance records.'
+      q: 'What documents do I need to bring?',
+      a: 'Just bring your original NTSA TIMS Logbook, your National ID or Passport, and KRA PIN certificate.'
     }
   ];
 
   return (
-    <section className="w-full bg-[#160a1d] py-20 sm:py-28 px-6 text-[#f5f5f7] border-t border-[rgba(197,168,128,0.18)]">
-      <div className="max-w-[1400px] mx-auto space-y-20">
+    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 text-[#f4f4f5] border-t border-[#27272a]">
+      <div className="max-w-[1400px] mx-auto space-y-16">
         
-        {/* 1. HERO OPENING */}
-        <div className="text-center max-w-[800px] mx-auto">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
-            <span className="rr-eyebrow">
-              EQUITY APPRAISAL & BESPOKE UPGRADE // MOMBASA & NAIROBI
-            </span>
-            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
-          </div>
-          <h1 className="rr-title-h1 text-[32px] sm:text-[46px] md:text-[54px] mb-4">
-            THE BESPOKE EXCHANGE ATELIER.
+        {/* Section Header */}
+        <div className="text-center max-w-[780px] mx-auto">
+          <span className="brand-eyebrow block mb-2">
+            TRADE-IN & UPGRADE // MOMBASA & NAIROBI
+          </span>
+          <h1 className="text-[32px] sm:text-[46px] font-bold text-white tracking-tight mb-4">
+            Trade In Your Old Car
           </h1>
-          <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[21px] italic leading-relaxed max-w-[700px] mx-auto">
-            Convert your current motor car keys into immediate deposit equity. Eliminate retail friction, tire-kickers, and prolonged classifieds. Transition seamlessly into verified Japanese provenance backed by our 5,000 km warranty covenant.
+          <p className="text-[16px] sm:text-[18px] text-[#a1a1aa] leading-relaxed">
+            Turn your current car keys into immediate deposit equity. Avoid online classified headaches and tire-kickers. Upgrade into a clean Japanese import backed by our 5,000 km warranty.
           </p>
         </div>
 
-        {/* 2. VIDEO STAGE (Zero Radius, Hairline Rose Gold Inlay) */}
+        {/* Video Banner */}
         <div className="relative w-full mx-auto">
-          <div className="w-full h-[360px] sm:h-[440px] md:h-[500px] overflow-hidden relative bg-[#080809] border border-[rgba(197,168,128,0.3)]">
+          <div className="w-full h-[320px] sm:h-[420px] md:h-[480px] overflow-hidden relative bg-[#121215] border border-[#27272a] rounded-[4px]">
             <video
               ref={videoRef}
               autoPlay
@@ -174,33 +170,31 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4" type="video/mp4" />
               <img
                 src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Alberka Motors Trade Exchange"
+                alt="Alberka Motors Trade In"
                 className="w-full h-full object-cover"
               />
             </video>
 
-            {/* Gradient Scrim & Aristocratic Typography */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0714] via-[#0f0714]/30 to-transparent flex flex-col justify-end p-8 sm:p-12 text-[#f5f5f7]">
-              <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-[0.25em] mb-2">
-                TANGANA ROAD ATELIER // WESTLANDS PRIVATE SUITE
+            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white">
+              <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider mb-1 font-semibold">
+                TANGANA ROAD, MOMBASA // WESTLANDS, NAIROBI
               </span>
-              <p className="font-['Cinzel'] text-[18px] sm:text-[24px] font-normal leading-snug text-[#f5f5f7] tracking-wider uppercase max-w-[650px]">
-                "A pristine 20-minute hoist appraisal. Full legal indemnity. Same-day handover."
+              <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug max-w-[620px]">
+                Quick 20-minute inspection. Full legal transfer. Drive away same day.
               </p>
             </div>
 
-            {/* Video Controls */}
             <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
               <button
                 onClick={togglePlay}
-                className="w-8 h-8 bg-[#0f0714]/80 hover:bg-[#160a1d] border border-[rgba(197,168,128,0.3)] flex items-center justify-center text-[#c5a880] transition-all cursor-pointer"
-                title={isPlaying ? 'Pause motion' : 'Play motion'}
+                className="w-8 h-8 bg-[#09090b]/80 hover:bg-[#18181c] border border-[#27272a] flex items-center justify-center text-white transition-all cursor-pointer rounded-[3px]"
+                title={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-8 h-8 bg-[#0f0714]/80 hover:bg-[#160a1d] border border-[rgba(197,168,128,0.3)] flex items-center justify-center text-[#c5a880] transition-all cursor-pointer"
+                className="w-8 h-8 bg-[#09090b]/80 hover:bg-[#18181c] border border-[#27272a] flex items-center justify-center text-white transition-all cursor-pointer rounded-[3px]"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -208,69 +202,66 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </div>
           </div>
 
-          {/* Hard 0px Capsule Strip */}
-          <div className="bg-[#131316] border border-[rgba(197,168,128,0.35)] p-6 sm:p-8 max-w-[960px] mx-auto -mt-10 relative z-20">
+          <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-8 max-w-[960px] mx-auto -mt-8 relative z-20 rounded-[4px] shadow-2xl">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
               <div>
-                <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">HOIST EVALUATION</span>
-                <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7]">20-Minute Protocol</span>
+                <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">INSPECTION TIME</span>
+                <span className="text-[15px] font-bold text-white">20-Minute Check</span>
               </div>
               <div>
-                <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">LEGAL CONVEYANCING</span>
-                <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7]">100% NTSA TIMS Indemnity</span>
+                <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">PAPERWORK</span>
+                <span className="text-[15px] font-bold text-white">Full NTSA TIMS Transfer</span>
               </div>
               <div>
-                <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">HANDOVER COVENANT</span>
-                <span className="font-['Cinzel'] text-[14px] text-[#c5a880]">5,000 KM Written Warranty</span>
+                <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WARRANTY</span>
+                <span className="text-[15px] font-bold text-[#ef4444]">5,000 KM on Upgraded Car</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 3. SPLIT-SCREEN TRADE-UP ATELIER */}
-        <div className="space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-2">
-              <span className="rr-eyebrow block">REAL-TIME APPRAISAL ATELIER</span>
-              <h2 className="rr-title-h2 text-[26px] sm:text-[34px]">
-                CONFIGURE YOUR UPGRADE.
-              </h2>
-            </div>
-            <p className="text-[14px] text-[#8c8a94] max-w-[460px] font-light">
-              Calibrate your current vehicle profile and match it in real time against any Grade 4.5+ marque in our showroom repository.
+        {/* Trade-In Calculator & Match Studio */}
+        <div className="space-y-6">
+          <div>
+            <span className="brand-eyebrow block mb-1">INSTANT TRADE CALCULATOR</span>
+            <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight">
+              Calculate Your Trade-In Value
+            </h2>
+            <p className="text-[15px] text-[#a1a1aa] mt-1 max-w-[600px]">
+              Select your current car details below and match against any car in our showroom.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Column: Your Current Vehicle Inputs (7 Cols) */}
-            <div className="lg:col-span-7 bg-[#131316] border border-[rgba(197,168,128,0.25)] p-6 sm:p-8 space-y-6">
+            <div className="lg:col-span-7 bg-[#121215] border border-[#27272a] p-6 sm:p-8 space-y-6 rounded-[4px]">
               
               {/* Make & Model */}
               <div>
-                <label className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-wider block mb-2">
-                  01 // CURRENT MOTOR CAR MAKE & MODEL
+                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
+                  1. Current Car Make & Model
                 </label>
                 <input
                   type="text"
                   value={makeModel}
                   onChange={(e) => setMakeModel(e.target.value)}
-                  placeholder="E.G. TOYOTA FIELDER / MAZDA CX-5 / SUBARU FORESTER"
-                  className="w-full px-4 py-2.5 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-['Cinzel'] tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5] mb-3"
+                  placeholder="e.g. Toyota Fielder / Mazda CX-5 / Subaru Forester"
+                  className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-[#dc2626] mb-3"
                 />
 
-                {/* Quick Model Pills */}
+                {/* Popular Models Pills */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] mr-1 uppercase">FREQUENT:</span>
+                  <span className="text-[11px] text-[#71717a] font-mono mr-1">Popular:</span>
                   {popularModels.map((m) => (
                     <button
                       key={m}
                       type="button"
                       onClick={() => setMakeModel(m)}
-                      className={`text-[10px] font-['Cinzel'] tracking-wider px-3 py-1 border transition-all cursor-pointer ${
+                      className={`text-[11.5px] px-3 py-1 rounded-[2px] transition-all cursor-pointer ${
                         makeModel === m
-                          ? 'bg-[#c5a880] text-[#0f0714] border-[#c5a880] font-medium'
-                          : 'bg-[#0f0714] text-[#8c8a94] border-[rgba(255,255,255,0.06)] hover:text-[#f5f5f7]'
+                          ? 'bg-[#dc2626] text-white font-medium'
+                          : 'bg-[#18181c] text-[#a1a1aa] border border-[#27272a] hover:text-white'
                       }`}
                     >
                       {m}
@@ -279,10 +270,10 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 </div>
               </div>
 
-              {/* Year of Manufacture Segmented Pills */}
+              {/* Year */}
               <div>
-                <label className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-wider block mb-2">
-                  02 // YEAR OF MANUFACTURE
+                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
+                  2. Year of Manufacture
                 </label>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {['2023', '2021', '2019', '2018', '2016', '2014'].map((yr) => (
@@ -290,10 +281,10 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       key={yr}
                       type="button"
                       onClick={() => setYearTier(yr)}
-                      className={`py-2 text-[11px] font-mono transition-all cursor-pointer border ${
+                      className={`py-2 text-[12px] font-mono rounded-[2px] transition-all cursor-pointer border ${
                         yearTier === yr
-                          ? 'bg-[#0f0714] text-[#c5a880] border-[#c5a880]'
-                          : 'bg-[#0f0714] text-[#8c8a94] border-[rgba(255,255,255,0.06)] hover:text-[#f5f5f7]'
+                          ? 'bg-[#dc2626] text-white border-[#dc2626] font-bold'
+                          : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
                       }`}
                     >
                       {yr === '2023' ? '2023+' : yr === '2014' ? '<2015' : yr}
@@ -302,78 +293,74 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 </div>
               </div>
 
-              {/* Odometer Mileage */}
+              {/* Mileage */}
               <div>
-                <label className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-wider block mb-2">
-                  03 // ODOMETER DISTANCE
+                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
+                  3. Current Odometer Mileage
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { id: 'low', label: '< 60,000 KM', desc: 'Minimal Use' },
-                    { id: 'mid', label: '60k – 110k KM', desc: 'Standard' },
-                    { id: 'high', label: '110k – 160k KM', desc: 'Active' },
-                    { id: 'max', label: '160,000+ KM', desc: 'Extensive' },
+                    { id: 'low', label: '< 60,000 KM', desc: 'Low Mileage' },
+                    { id: 'mid', label: '60k – 110k KM', desc: 'Average' },
+                    { id: 'high', label: '110k – 160k KM', desc: 'Active Use' },
+                    { id: 'max', label: '160,000+ KM', desc: 'High Mileage' },
                   ].map((m) => (
                     <button
                       key={m.id}
                       type="button"
                       onClick={() => setMileageTier(m.id)}
-                      className={`p-3 text-left transition-all cursor-pointer border ${
+                      className={`p-3 text-left rounded-[2px] transition-all cursor-pointer border ${
                         mileageTier === m.id
-                          ? 'bg-[#0f0714] text-[#f5f5f7] border-[#c5a880]'
-                          : 'bg-[#0f0714] text-[#8c8a94] border-[rgba(255,255,255,0.06)] hover:text-[#f5f5f7]'
+                          ? 'bg-[#18181c] text-white border-[#dc2626]'
+                          : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
                       }`}
                     >
-                      <span className="block font-mono text-[11px] font-medium">{m.label}</span>
-                      <span className="block font-['Cinzel'] text-[9px] text-[#8c8a94] tracking-wider uppercase mt-0.5">
-                        {m.desc}
-                      </span>
+                      <span className="block font-mono text-[12px] font-bold">{m.label}</span>
+                      <span className="block text-[10.5px] text-[#71717a] mt-0.5">{m.desc}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Cosmetic & Mechanical Condition */}
+              {/* Condition */}
               <div>
-                <label className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-wider block mb-2">
-                  04 // MECHANICAL & COSMETIC CONDITION
+                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
+                  4. Vehicle Condition
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     {
                       id: 'excellent',
-                      title: 'Pristine Original',
-                      desc: 'Factory paintwork, zero incident history, agent service dossier.'
+                      title: 'Excellent',
+                      desc: 'Clean original paint, no accident history, full service record.'
                     },
                     {
                       id: 'good',
-                      title: 'Normal Patina',
-                      desc: 'Minor cosmetic stone chips, sound engine compression.'
+                      title: 'Good / Normal',
+                      desc: 'Minor daily wear, good engine and gearbox condition.'
                     },
                     {
                       id: 'fair',
-                      title: 'Requires Service',
-                      desc: 'Clearcoat wear, bumper stone chips, or minor suspension renewal needed.'
+                      title: 'Needs Work',
+                      desc: 'Paint scratches, dents, or suspension repairs needed.'
                     }
                   ].map((c) => (
                     <button
                       key={c.id}
                       type="button"
                       onClick={() => setConditionTier(c.id)}
-                      className={`p-4 text-left transition-all cursor-pointer border flex flex-col justify-between ${
+                      className={`p-4 text-left rounded-[2px] transition-all cursor-pointer border flex flex-col justify-between ${
                         conditionTier === c.id
-                          ? 'bg-[#0f0714] text-[#f5f5f7] border-[#c5a880]'
-                          : 'bg-[#0f0714] text-[#8c8a94] border-[rgba(255,255,255,0.06)] hover:text-[#f5f5f7]'
+                          ? 'bg-[#18181c] text-white border-[#dc2626]'
+                          : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
                       }`}
                     >
                       <div>
-                        <span className="block font-['Cinzel'] text-[12px] font-normal text-[#f5f5f7] uppercase mb-1">{c.title}</span>
-                        <p className="text-[11px] text-[#8c8a94] leading-relaxed font-light">
-                          {c.desc}
-                        </p>
+                        <span className="block text-[14px] font-bold text-white mb-1">{c.title}</span>
+                        <p className="text-[12px] text-[#a1a1aa] leading-relaxed">{c.desc}</p>
                       </div>
                       <div className="mt-3 flex items-center justify-end">
-                        <CheckCircle2 className={`w-3.5 h-3.5 ${conditionTier === c.id ? 'text-[#c5a880]' : 'text-transparent'}`} />
+                        <CheckCircle2 className={`w-4 h-4 ${conditionTier === c.id ? 'text-[#ef4444]' : 'text-transparent'}`} />
                       </div>
                     </button>
                   ))}
@@ -382,16 +369,18 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
 
             </div>
 
-            {/* Right Column: Live Cinematic Exchange Card (5 Cols) */}
-            <div className="lg:col-span-5 bg-[#131316] border border-[rgba(197,168,128,0.3)] p-6 relative lg:sticky lg:top-[80px] space-y-6">
+            {/* Right Column: Live Match Card (5 Cols) */}
+            <div className="lg:col-span-5 bg-[#121215] border border-[#27272a] p-6 rounded-[4px] relative lg:sticky lg:top-[90px] space-y-5">
               
               <div>
-                <span className="rr-eyebrow mb-1 block">TARGET MARQUE MATCH</span>
-                <div className="relative mt-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#ef4444] block mb-1 font-semibold">
+                  CHOOSE CAR TO UPGRADE TO:
+                </span>
+                <div className="relative mt-1">
                   <select
                     value={targetCarId}
                     onChange={(e) => setTargetCarId(e.target.value)}
-                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-[#0f0714] border border-[rgba(197,168,128,0.25)] text-[12px] font-['Cinzel'] tracking-wider text-[#f5f5f7] focus:outline-none focus:border-[#dfc7a5] cursor-pointer"
+                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13px] text-white focus:outline-none focus:border-[#dc2626] cursor-pointer"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.id}>
@@ -399,109 +388,96 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="w-4 h-4 text-[#8c8a94] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <ChevronDown className="w-4 h-4 text-[#a1a1aa] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
               </div>
 
-              {/* Photo of Selected Vehicle */}
-              <div className="w-full h-[200px] sm:h-[230px] overflow-hidden bg-[#080809] relative group border border-[rgba(197,168,128,0.2)]">
+              {/* Target Car Preview */}
+              <div className="w-full h-[180px] sm:h-[210px] overflow-hidden bg-[#09090b] relative rounded-[3px] border border-[#27272a]">
                 <SkeletonImage
                   src={targetVehicle.heroImage}
                   alt={targetVehicle.name}
-                  className="transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover"
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span className="bg-[#0f0714]/90 backdrop-blur-md px-2.5 py-0.5 font-['Cinzel'] text-[9.5px] text-[#dfc7a5] border border-[rgba(197,168,128,0.25)]">
-                    GRADE {targetVehicle.auctionGrade}
-                  </span>
-                  <span className="bg-[#0f0714]/90 backdrop-blur-md px-2.5 py-0.5 font-['Cinzel'] text-[9.5px] text-[#8c8a94] border border-[rgba(255,255,255,0.06)]">
-                    {targetVehicle.status}
+                  <span className="bg-[#dc2626] text-white px-2 py-0.5 text-[10px] font-bold rounded-[2px]">
+                    Grade {targetVehicle.auctionGrade}
                   </span>
                 </div>
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-[#0f0714]/95 backdrop-blur-md px-3.5 py-2 border border-[rgba(197,168,128,0.2)] flex items-center justify-between">
-                  <div>
-                    <span className="font-['Cinzel'] text-[11px] text-[#f5f5f7] uppercase tracking-wider">{targetVehicle.name}</span>
-                  </div>
-                  <span className="font-mono text-[12px] text-[#c5a880]">KES {targetVehicle.priceKes.toLocaleString()}</span>
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-[#09090b]/95 px-3 py-2 border border-[#27272a] flex items-center justify-between rounded-[2px]">
+                  <span className="text-[12px] font-bold text-white">{targetVehicle.name}</span>
+                  <span className="font-mono text-[13px] font-bold text-white">KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
-              {/* Equity Progress Bar */}
-              <div className="p-4 bg-[#0f0714] border border-[rgba(197,168,128,0.2)] space-y-3">
-                <div className="flex items-center justify-between text-[11px] font-['Cinzel'] tracking-wider">
-                  <span className="text-[#8c8a94]">TRADE EQUITY RATIO</span>
-                  <span className="text-[#c5a880]">{animatedEquityPercent}% COVERED</span>
+              {/* Equity Ratio Bar */}
+              <div className="p-4 bg-[#18181c] border border-[#27272a] rounded-[3px] space-y-2.5">
+                <div className="flex items-center justify-between text-[12px] font-mono">
+                  <span className="text-[#a1a1aa]">Deposit Covered by Trade-In</span>
+                  <span className="text-[#ef4444] font-bold">{animatedEquityPercent}% Covered</span>
                 </div>
-                <div className="w-full h-1.5 bg-[#160a1d] overflow-hidden">
+                <div className="w-full h-2 bg-[#09090b] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#c5a880] transition-all duration-500 ease-out"
+                    className="h-full bg-[#dc2626] transition-all duration-300 ease-out"
                     style={{ width: `${animatedEquityPercent}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between font-mono text-[10.5px] text-[#8c8a94]">
-                  <span>Credit: ~KES {animatedAvg.toLocaleString()}</span>
-                  <span>Target: KES {targetVehicle.priceKes.toLocaleString()}</span>
+                <div className="flex items-center justify-between font-mono text-[11px] text-[#71717a]">
+                  <span>Your Credit: ~KES {animatedAvg.toLocaleString()}</span>
+                  <span>Car Price: KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
-              {/* Financial Calculation Breakdown */}
-              <div className="divide-y divide-[rgba(197,168,128,0.15)] text-[13px]">
-                <div className="py-2.5 flex items-center justify-between">
-                  <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider">ESTIMATED TRADE CREDIT</span>
-                  <span className="font-mono text-[#f5f5f7]">
+              {/* Breakdown */}
+              <div className="divide-y divide-[#27272a] text-[13px]">
+                <div className="py-2 flex items-center justify-between">
+                  <span className="text-[#a1a1aa]">Estimated Trade-in Credit</span>
+                  <span className="font-mono font-bold text-white">
                     KES {animatedMin.toLocaleString()} – {animatedMax.toLocaleString()}
                   </span>
                 </div>
-                <div className="py-2.5 flex items-center justify-between">
-                  <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase tracking-wider">TARGET ACQUISITION VALUE</span>
-                  <span className="font-mono text-[#f5f5f7]">
+                <div className="py-2 flex items-center justify-between">
+                  <span className="text-[#a1a1aa]">Selected Car Price</span>
+                  <span className="font-mono font-bold text-white">
                     KES {targetVehicle.priceKes.toLocaleString()}
                   </span>
                 </div>
-                <div className="py-3 flex items-baseline justify-between bg-[#0f0714] -mx-3 px-3 mt-1">
+                <div className="py-2.5 flex items-baseline justify-between bg-[#18181c] px-3 -mx-3 mt-1 rounded-[2px]">
                   <div>
-                    <span className="font-['Cinzel'] text-[9.5px] text-[#c5a880] uppercase tracking-wider block">
-                      REMAINING CASH BALANCE REQUIRED
+                    <span className="text-[11px] text-[#ef4444] uppercase font-bold block">
+                      Estimated Balance to Pay
                     </span>
-                    <span className="font-mono text-[16px] text-[#dfc7a5]">
+                    <span className="font-mono text-[16px] font-bold text-white">
                       KES {animatedCashMin.toLocaleString()} – {animatedCashMax.toLocaleString()}
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] text-[#8c8a94] border border-[rgba(197,168,128,0.3)] px-2 py-0.5">
-                    Net Balance
-                  </span>
+                  <span className="text-[11px] text-[#a1a1aa]">Bank financing available</span>
                 </div>
               </div>
 
-              {/* Conversion Buttons */}
-              <div className="space-y-3 pt-2">
+              {/* Action Buttons */}
+              <div className="space-y-2 pt-2">
                 <a
-                  href={`https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20used%20your%20Trade-In%20Atelier%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Preliminary%20Trade%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20Upgrading%20to:%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
+                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-rr-solid w-full justify-center !py-3 text-[11px]"
+                  className="btn-crimson w-full justify-center !py-3 text-[13px]"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  <span>LOCK IN VALUATION ON WHATSAPP</span>
+                  <span>Lock in Valuation on WhatsApp</span>
                 </a>
 
                 {onSelectVehicle && (
                   <button
                     type="button"
                     onClick={() => onSelectVehicle(targetVehicle)}
-                    className="btn-rr-ghost w-full justify-center !py-2.5 text-[11px] cursor-pointer"
+                    className="btn-ghost w-full justify-center !py-2 text-[12px] cursor-pointer"
                   >
-                    <span>INSPECT {targetVehicle.name} DOSSIER</span>
+                    <span>View {targetVehicle.name} Details</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                   </button>
                 )}
-              </div>
-
-              <div className="text-center">
-                <span className="font-['Cinzel'] text-[9px] text-[#8c8a94] tracking-widest uppercase">
-                  Binding formal certificate issued after 20-min mechanical check.
-                </span>
               </div>
 
             </div>
@@ -509,124 +485,99 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
           </div>
         </div>
 
-        {/* 4. THE 3 PHASES OF THE EXCHANGE */}
+        {/* 3 Simple Steps */}
         <div>
-          <div className="text-center max-w-[700px] mx-auto mb-16 space-y-2">
-            <span className="rr-eyebrow block">THE HANDOVER ARCHITECTURE</span>
-            <h2 className="rr-title-h2 text-[26px] sm:text-[34px]">
-              HOW THE TRADE EXCHANGE OPERATES.
+          <div className="text-center max-w-[700px] mx-auto mb-12 space-y-2">
+            <span className="brand-eyebrow block">HOW IT WORKS</span>
+            <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight">
+              Trade In Your Car in 3 Easy Steps
             </h2>
-            <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[17px] italic">
-              No protracted negotiations. No dealing with unverified bank drafts. Complete handover in 3 structured phases.
+            <p className="text-[15px] text-[#a1a1aa]">
+              No back-and-forth arguments. No bounced checks. Transparent trade-ins in one visit.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Phase 1 */}
-            <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] flex flex-col justify-between overflow-hidden">
-              <div className="h-[220px] w-full overflow-hidden bg-[#080809]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-[#121215] border border-[#27272a] rounded-[4px] overflow-hidden flex flex-col justify-between">
+              <div className="h-[200px] w-full overflow-hidden bg-[#09090b]">
                 <img
                   src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="20-Minute Mechanical Hoist Inspection"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 space-y-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest">PHASE 01</span>
-                  <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase">TANGANA RD / MWANZI RD</span>
-                </div>
-                <h3 className="font-['Cinzel'] text-[18px] text-[#f5f5f7] tracking-wider uppercase">
-                  20-Minute Hoist Diagnostics
-                </h3>
-                <p className="text-[13.5px] text-[#8c8a94] leading-relaxed font-light">
-                  Drive into our Mombasa or Nairobi bays. Our senior engineer hoists your motor car, measures brake rotor tolerances, inspects underbody chassis rails, and runs an OBD-II diagnostic.
+              <div className="p-6 space-y-2">
+                <span className="text-[11px] font-mono text-[#ef4444] uppercase font-bold">STEP 01</span>
+                <h3 className="text-[18px] font-bold text-white">20-Minute Check</h3>
+                <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
+                  Drive into our Mombasa or Nairobi showroom. Our technician inspects your car on the hoist and runs a computer scan.
                 </p>
               </div>
             </div>
 
-            {/* Phase 2 */}
-            <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] flex flex-col justify-between overflow-hidden">
-              <div className="h-[220px] w-full overflow-hidden bg-[#080809]">
+            <div className="bg-[#121215] border border-[#27272a] rounded-[4px] overflow-hidden flex flex-col justify-between">
+              <div className="h-[200px] w-full overflow-hidden bg-[#09090b]">
                 <img
                   src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Certified Equity Lock"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 space-y-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest">PHASE 02</span>
-                  <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase">BINDING 7 DAYS</span>
-                </div>
-                <h3 className="font-['Cinzel'] text-[18px] text-[#f5f5f7] tracking-wider uppercase">
-                  Certified Equity Lock
-                </h3>
-                <p className="text-[13.5px] text-[#8c8a94] leading-relaxed font-light">
-                  Receive an official binding valuation letter. The agreed valuation amount is deducted directly from your selected Grade 4.5+ showroom marque with zero hidden broker margins.
+              <div className="p-6 space-y-2">
+                <span className="text-[11px] font-mono text-[#ef4444] uppercase font-bold">STEP 02</span>
+                <h3 className="text-[18px] font-bold text-white">Fair Written Offer</h3>
+                <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
+                  You get a clear written valuation valid for 7 days. The full amount is credited directly toward your chosen showroom car.
                 </p>
               </div>
             </div>
 
-            {/* Phase 3 */}
-            <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] flex flex-col justify-between overflow-hidden">
-              <div className="h-[220px] w-full overflow-hidden bg-[#080809]">
+            <div className="bg-[#121215] border border-[#27272a] rounded-[4px] overflow-hidden flex flex-col justify-between">
+              <div className="h-[200px] w-full overflow-hidden bg-[#09090b]">
                 <img
                   src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Drive Away Same Day"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 space-y-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-widest">PHASE 03</span>
-                  <span className="font-['Cinzel'] text-[10px] text-[#8c8a94] uppercase">5,000 KM WARRANTY</span>
-                </div>
-                <h3 className="font-['Cinzel'] text-[18px] text-[#f5f5f7] tracking-wider uppercase">
-                  Drive Away Same Day
-                </h3>
-                <p className="text-[13.5px] text-[#8c8a94] leading-relaxed font-light">
-                  Our legal desk completes NTSA TIMS logbook conveyancing and encumbrance release. You turn the key on your verified Japanese import, backed by our in-house 5,000 km warranty covenant.
+              <div className="p-6 space-y-2">
+                <span className="text-[11px] font-mono text-[#ef4444] uppercase font-bold">STEP 03</span>
+                <h3 className="text-[18px] font-bold text-white">Drive Away Same Day</h3>
+                <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
+                  We handle the NTSA TIMS logbook transfer on the spot. You collect your new Japanese import with its 5,000 km warranty.
                 </p>
               </div>
             </div>
-
           </div>
         </div>
 
-        {/* 5. FREQUENTLY ASKED QUESTIONS */}
-        <div className="bg-[#131316] border border-[rgba(197,168,128,0.25)] p-8 sm:p-12 space-y-6">
-          <div className="max-w-[700px]">
-            <span className="rr-eyebrow mb-1 block">LEGAL CONVEYANCING & CLARITY</span>
-            <h2 className="font-['Cinzel'] text-[24px] text-[#f5f5f7] tracking-wider uppercase">
-              Frequently Addressed Inquiries.
-            </h2>
-            <p className="text-[13.5px] text-[#8c8a94] mt-2 font-light">
-              Essential knowledge regarding trading your motor car at Alberka Motors Kenya.
-            </p>
+        {/* FAQs */}
+        <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-10 rounded-[4px] space-y-6">
+          <div>
+            <span className="brand-eyebrow mb-1 block">FREQUENTLY ASKED QUESTIONS</span>
+            <h2 className="text-[24px] font-bold text-white">Common Questions About Trade-Ins</h2>
           </div>
 
-          <div className="divide-y divide-[rgba(197,168,128,0.15)]">
+          <div className="divide-y divide-[#27272a]">
             {faqs.map((faq, idx) => {
               const isOpen = activeFaq === idx;
               return (
-                <div key={idx} className="py-5">
+                <div key={idx} className="py-4">
                   <button
                     onClick={() => setActiveFaq(isOpen ? null : idx)}
                     className="w-full flex items-center justify-between text-left cursor-pointer group"
                   >
-                    <span className="font-['Cinzel'] text-[14px] text-[#f5f5f7] group-hover:text-[#dfc7a5] transition-colors uppercase tracking-wider">
+                    <span className="text-[15px] font-medium text-white group-hover:text-[#ef4444] transition-colors">
                       {faq.q}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 text-[#c5a880] transition-transform duration-300 shrink-0 ml-4 ${
-                        isOpen ? 'rotate-180' : ''
+                      className={`w-4 h-4 text-[#a1a1aa] transition-transform duration-200 shrink-0 ml-4 ${
+                        isOpen ? 'rotate-180 text-[#ef4444]' : ''
                       }`}
                     />
                   </button>
                   {isOpen && (
-                    <p className="mt-3 text-[14px] text-[#8c8a94] leading-relaxed font-light">
+                    <p className="mt-2.5 text-[14px] text-[#a1a1aa] leading-relaxed">
                       {faq.a}
                     </p>
                   )}

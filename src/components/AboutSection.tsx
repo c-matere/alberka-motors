@@ -9,144 +9,139 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onExploreLocations }) => {
   return (
-    <section className="w-full bg-[#160a1d] py-20 sm:py-28 px-6 text-[#f5f5f7] border-t border-[rgba(197,168,128,0.18)]">
-      <div className="max-w-[1400px] mx-auto space-y-20">
+    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 text-[#f4f4f5] border-t border-[#27272a]">
+      <div className="max-w-[1400px] mx-auto space-y-16">
         
         {/* Section Header */}
-        <div className="text-center max-w-[800px] mx-auto">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
-            <span className="rr-eyebrow">
-              ESTABLISHED 2000 // TWENTY-SIX YEARS OF PROVENANCE
-            </span>
-            <div className="h-[1px] w-6 bg-[rgba(197,168,128,0.4)]" />
-          </div>
-          <h1 className="rr-title-h1 text-[32px] sm:text-[46px] md:text-[54px] mb-4">
-            TWENTY-SIX YEARS.<br />
-            FOUR THOUSAND HANDOVERS.
+        <div className="text-center max-w-[780px] mx-auto">
+          <span className="brand-eyebrow block mb-2">
+            ABOUT ALBERKA MOTORS // ESTABLISHED 2000
+          </span>
+          <h1 className="text-[32px] sm:text-[46px] font-bold text-white tracking-tight mb-4">
+            26 Years in Kenya.<br />Over 4,000 Happy Drivers.
           </h1>
-          <p className="text-[#dfc7a5] font-['Cormorant_Garamond'] text-[18px] sm:text-[21px] italic leading-relaxed max-w-[700px] mx-auto">
-            Founded in Mombasa in the year 2000, Alberka Motors was established to transcend commercial mediocrity: eliminating uncertainty, concealed structural compromises, and speculative broker margins surrounding imported Japanese motor cars.
+          <p className="text-[16px] sm:text-[18px] text-[#a1a1aa] leading-relaxed">
+            Founded in Mombasa in 2000, Alberka Motors was built on one straightforward rule: no hidden accident damage, no tampered odometers, and fair, transparent pricing.
           </p>
         </div>
 
-        {/* Heritage Video Stage */}
+        {/* Video Stage */}
         <div className="relative w-full mx-auto">
-          <div className="w-full h-[380px] md:h-[480px] overflow-hidden relative bg-[#080809] border border-[rgba(197,168,128,0.3)]">
+          <div className="w-full h-[360px] md:h-[460px] overflow-hidden relative bg-[#121215] border border-[#27272a] rounded-[4px]">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4" type="video/mp4" />
               <img src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Alberka Motors Heritage" className="w-full h-full object-cover" />
             </video>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0714] via-[#0f0714]/30 to-transparent flex items-end p-8 sm:p-12">
-              <div className="text-left text-[#f5f5f7] max-w-[650px]">
-                <span className="font-['Cinzel'] text-[10px] text-[#c5a880] uppercase tracking-[0.25em] block mb-2">
-                  CONTINUOUS PROVENANCE
+            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex items-end p-6 sm:p-10">
+              <div className="text-left text-white max-w-[650px]">
+                <span className="font-mono text-[11px] text-[#ef4444] uppercase tracking-wider block mb-1 font-semibold">
+                  REPUTATION BUILT ON TRUST
                 </span>
-                <p className="font-['Cinzel'] text-[20px] sm:text-[26px] font-normal leading-snug text-[#f5f5f7] tracking-wider uppercase">
-                  Serving Kenyan families, corporate leaders, and diplomatic missions since 2000.
+                <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug">
+                  Trusted by families, business owners, and corporate clients across Kenya since 2000.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-[#131316] border border-[rgba(197,168,128,0.35)] p-6 sm:p-8 max-w-[960px] mx-auto -mt-10 relative z-20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
+          <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-8 max-w-[960px] mx-auto -mt-8 relative z-20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left rounded-[4px] shadow-2xl">
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">FOUNDATION</span>
-              <span className="font-['Cinzel'] text-[15px] text-[#f5f5f7]">Year 2000</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">FOUNDED</span>
+              <span className="text-[16px] font-bold text-white">Year 2000</span>
             </div>
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">CURATED HANDOVERS</span>
-              <span className="font-['Cinzel'] text-[15px] text-[#f5f5f7]">4,000+ Marques</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">CARS DELIVERED</span>
+              <span className="text-[16px] font-bold text-white">4,000+ Vehicles</span>
             </div>
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">AUCTION GRADING</span>
-              <span className="font-['Cinzel'] text-[15px] text-[#dfc7a5]">Grade 4.5+ Benchmark</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">AUCTION QUALITY</span>
+              <span className="text-[16px] font-bold text-white">Grade 4.5+ Average</span>
             </div>
             <div>
-              <span className="font-['Cinzel'] text-[9.5px] text-[#8c8a94] uppercase tracking-wider block mb-1">WARRANTY</span>
-              <span className="font-['Cinzel'] text-[15px] text-[#c5a880]">5,000 KM Written</span>
+              <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WARRANTY</span>
+              <span className="text-[16px] font-bold text-[#ef4444]">5,000 KM Written</span>
             </div>
           </div>
         </div>
 
-        {/* Story Chapter 1: Direct Japanese Bidding */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-8">
+        {/* Story Chapter 1: Direct Bidding */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center pt-6">
           <div className="space-y-4">
-            <span className="rr-eyebrow block">AUCTION SOURCING DISCIPLINE</span>
-            <h2 className="rr-title-h2 text-[26px] sm:text-[34px]">
-              DIRECT AUCTION BIDDING.<br />NEVER THIRD-PARTY BROKERS.
+            <span className="brand-eyebrow block">HOW WE SOURCE CARS</span>
+            <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight leading-tight">
+              Direct Auction Bidding in Japan.<br />Zero Middlemen.
             </h2>
-            <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
-              Conventional commercial car lots in Kenya acquire stock through grey-market intermediaries who conceal cosmetic imperfections, roll back digital odometers, and bypass mechanical overhaul.
+            <p className="text-[15px] text-[#a1a1aa] leading-relaxed">
+              Many car sellers buy from random brokers who roll back odometers or conceal previous accident repairs. We don't do that.
             </p>
-            <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
-              Alberka Motors operates as an accredited direct bidder across Japan's premier auction houses: <strong className="text-[#dfc7a5] font-['Cinzel'] tracking-wider">USS TOKYO</strong>, <strong className="text-[#dfc7a5] font-['Cinzel'] tracking-wider">CAA CHUBU</strong>, and <strong className="text-[#dfc7a5] font-['Cinzel'] tracking-wider">TAA YOKOHAMA</strong>. Our Japanese inspectors physically examine each vehicle's undercarriage, chassis rails, and factory seam welds prior to submitting a single bid.
+            <p className="text-[15px] text-[#a1a1aa] leading-relaxed">
+              Alberka Motors bids directly at Japan's top auction houses: <strong className="text-white">USS Tokyo</strong>, <strong className="text-white">CAA Chubu</strong>, and <strong className="text-white">TAA Yokohama</strong>. Our Japanese inspection agents physically check the engine, chassis, and body panels before we place a single bid.
             </p>
             <div className="pt-2">
               <button
                 onClick={onExploreFleet}
-                className="btn-rr-solid !py-2.5 !px-5"
+                className="btn-crimson"
               >
-                <span>EXPLORE VERIFIED INVENTORY</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-2" />
+                <span>Browse Inspected Cars</span>
+                <ArrowRight className="w-4 h-4 ml-1.5" />
               </button>
             </div>
           </div>
 
-          <div className="bg-[#131316] border border-[rgba(197,168,128,0.3)] p-8 space-y-6">
-            <h3 className="font-['Cinzel'] text-[16px] text-[#f5f5f7] tracking-wider uppercase">The Alberka Motors Sourcing Covenant:</h3>
-            <div className="space-y-4 text-[13.5px]">
+          <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-8 space-y-4 rounded-[4px]">
+            <h3 className="text-[16px] font-bold text-white uppercase tracking-wider">The Alberka Quality Standard:</h3>
+            <div className="space-y-4 text-[14px]">
               <div className="flex items-start gap-3">
-                <span className="w-1.5 h-1.5 bg-[#c5a880] shrink-0 mt-2" />
-                <p className="text-[#8c8a94] font-light">
-                  <strong className="text-[#f5f5f7] font-normal font-['Cinzel'] uppercase">Strict Grade 4.5 Minimum:</strong> Zero structural incident history, authentic factory paint depth verified, interior Grade A or B only.
+                <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                <p className="text-[#a1a1aa]">
+                  <strong className="text-white">Grade 4.5 Minimum:</strong> Clean bodywork, factory original paint depth, and immaculate interior.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="w-1.5 h-1.5 bg-[#c5a880] shrink-0 mt-2" />
-                <p className="text-[#8c8a94] font-light">
-                  <strong className="text-[#f5f5f7] font-normal font-['Cinzel'] uppercase">Authenticated Distance:</strong> Odometer readings verified by QISJ and JEVIC pre-export inspection certificates.
+                <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                <p className="text-[#a1a1aa]">
+                  <strong className="text-white">Genuine Mileage:</strong> Every odometer reading is verified by official QISJ and JEVIC certificates.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="w-1.5 h-1.5 bg-[#c5a880] shrink-0 mt-2" />
-                <p className="text-[#8c8a94] font-light">
-                  <strong className="text-[#f5f5f7] font-normal font-['Cinzel'] uppercase">Unfiltered Documentation:</strong> Original Japanese Export Certificate and official translated auction inspection sheet provided directly to the client.
+                <CheckCircle2 className="w-4 h-4 text-[#ef4444] shrink-0 mt-0.5" />
+                <p className="text-[#a1a1aa]">
+                  <strong className="text-white">Original Paperwork:</strong> You receive the original Japanese export certificate and translated auction sheet with your logbook.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Story Chapter 2: Coast to Capital Logistics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-10 border-t border-[rgba(197,168,128,0.18)]">
-          <div className="order-2 md:order-1 overflow-hidden border border-[rgba(197,168,128,0.25)] bg-[#080809]">
+        {/* Story Chapter 2: Coast to Nairobi */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center pt-8 border-t border-[#27272a]">
+          <div className="order-2 md:order-1 overflow-hidden border border-[#27272a] bg-[#121215] rounded-[4px]">
             <SkeletonImage
               src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt="Port of Mombasa Operations"
-              containerClassName="w-full h-[280px] sm:h-[340px]"
+              containerClassName="w-full h-[260px] sm:h-[320px]"
             />
           </div>
 
           <div className="order-1 md:order-2 space-y-4">
-            <span className="rr-eyebrow block">INTEGRATED LOGISTICAL ARCHITECTURE</span>
-            <h2 className="rr-title-h2 text-[26px] sm:text-[34px]">
-              MOMBASA ENTRY.<br />NAIROBI CONVENIENCE.
+            <span className="brand-eyebrow block">FROM SHIP TO ROAD</span>
+            <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight leading-tight">
+              Mombasa Port Entry.<br />Nairobi Showroom Pickup.
             </h2>
-            <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
-              With our primary technical atelier located in Mombasa, our consignments roll directly off container vessels into our private workshop bays on Tangana Road. They never sit in unshaded bonded customs holding yards exposed to maritime salt corrosion.
+            <p className="text-[15px] text-[#a1a1aa] leading-relaxed">
+              Because our main technical workshop is right in Mombasa, our vehicles roll off container ships directly into our private workshop on Tangana Road. They are never left in dusty or exposed holding yards.
             </p>
-            <p className="text-[14.5px] text-[#8c8a94] leading-relaxed font-light">
-              Vehicles destined for Nairobi clients are transported via enclosed flatbed carriers directly to our Westlands executive suite, arriving pristine and ready for immediate logbook conveyancing.
+            <p className="text-[15px] text-[#a1a1aa] leading-relaxed">
+              For Nairobi clients, we transport your car via enclosed carrier to our Westlands branch, fully serviced, detailed, and ready for you to drive away.
             </p>
             <div className="pt-2">
               <button
                 onClick={onExploreLocations}
-                className="btn-rr-ghost !py-2.5 !px-5"
+                className="btn-ghost"
               >
-                <span>VIEW OUR SHOWROOM SUITES</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-2" />
+                <span>Showroom Directions</span>
+                <ArrowRight className="w-4 h-4 ml-1.5" />
               </button>
             </div>
           </div>
