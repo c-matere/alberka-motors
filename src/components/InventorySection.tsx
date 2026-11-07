@@ -84,9 +84,6 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.035em]">
             Cars in Stock
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed tracking-[-0.01em]">
-            Every vehicle has passed genuine Japanese auction verification, full servicing at our Mombasa workshop, and includes a 5,000 km written warranty.
-          </p>
         </div>
 
         {/* Filter & Search Bar (Machined Obsidian Architecture) */}

@@ -165,14 +165,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         </div>
 
         {/* Display Hero Title with Editorial Air and Restraint */}
-        <div className="space-y-5 max-w-[980px] mx-auto">
+        <div className="space-y-4 max-w-[980px] mx-auto">
           <h1 className="text-[40px] sm:text-[62px] md:text-[76px] lg:text-[84px] font-bold text-white tracking-[-0.04em] leading-[1.02]">
-            Japanese Provenance.<br />
-            Delivered Without Compromise.
+            Japanese Provenance.
           </h1>
 
-          <p className="max-w-[620px] mx-auto text-zinc-400 text-base sm:text-[18px] leading-relaxed font-normal">
-            Hand-selected at Tokyo auctions. Precision-serviced in Mombasa. Backed by honest mileage and a 5,000 km written warranty across Kenya.
+          <p className="max-w-[540px] mx-auto text-zinc-400 text-base sm:text-[18px] leading-relaxed font-normal">
+            Grade 4.5+ auction imports, fully prepared in Mombasa.
           </p>
         </div>
 

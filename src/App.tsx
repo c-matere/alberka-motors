@@ -172,7 +172,7 @@ export function App() {
                 {/* Architectural 3-Pillar Proof Dossier */}
                 <section className="w-full bg-[#070709] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/[0.07]">
                   <div className="max-w-[1240px] mx-auto space-y-16">
-                    <div className="text-center max-w-[680px] mx-auto space-y-3">
+                    <div className="text-center max-w-[680px] mx-auto space-y-2">
                       <div className="inline-flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
@@ -182,23 +182,20 @@ export function App() {
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-[-0.035em]">
                         Three Principles of Provenance
                       </h2>
-                      <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-                        Transparent Japanese documentation, rigorous pre-delivery workshop overhaul, and direct written dealer accountability.
-                      </p>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                       {/* Pillar 01 */}
                       <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                           <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
                             PROVENANCE // 01
                           </span>
                           <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                            Direct Tokyo Auction Selection
+                            Tokyo Auction Selection
                           </h3>
                           <p className="text-sm text-zinc-400 leading-relaxed">
-                            Every car is personally bid at premier Japanese auction houses (USS Tokyo, TAA, CAA). We verify genuine auction sheets, export certificates, and guarantee authentic JEVIC odometers before shipping to Mombasa.
+                            Handpicked at USS Tokyo and CAA. Original Japanese auction sheets and verified JEVIC mileage certificates.
                           </p>
                         </div>
                         <div className="pt-6 mt-6 border-t border-white/[0.07]">
@@ -206,7 +203,7 @@ export function App() {
                             onClick={() => handleNavigate('about')}
                             className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
                           >
-                            <span>How We Source Cars</span>
+                            <span>Auction Process</span>
                             <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
                           </button>
                         </div>
@@ -214,15 +211,15 @@ export function App() {
 
                       {/* Pillar 02 */}
                       <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                           <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
                             PREPARATION // 02
                           </span>
                           <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                            Mombasa In-House Workshop Overhaul
+                            Mombasa Workshop Overhaul
                           </h3>
                           <p className="text-sm text-zinc-400 leading-relaxed">
-                            Arrives directly at our Tangana Road facility in Mombasa. We install fresh Castrol synthetic engine oil, OEM filters, overhaul brakes, check suspension, and run computer diagnostics before handover.
+                            Complete pre-delivery service at Tangana Road. Castrol Edge synthetic oil, OEM filters, and full computerized diagnostics.
                           </p>
                         </div>
                         <div className="pt-6 mt-6 border-t border-white/[0.07]">
@@ -238,15 +235,15 @@ export function App() {
 
                       {/* Pillar 03 */}
                       <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                           <span className="font-mono text-xs text-emerald-400 uppercase tracking-widest block font-semibold">
                             ACCOUNTABILITY // 03
                           </span>
                           <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                            5,000 KM Written Dealer Warranty
+                            5,000 KM Written Warranty
                           </h3>
                           <p className="text-sm text-zinc-400 leading-relaxed">
-                            You receive an official written warranty certificate covering engine and gearbox. If any mechanical fault develops, our technical team handles it directly with zero hassle.
+                            Written dealer warranty covering engine and gearbox, supported directly by our Mombasa technical workshop.
                           </p>
                         </div>
                         <div className="pt-6 mt-6 border-t border-white/[0.07]">
@@ -274,11 +271,8 @@ export function App() {
                         </span>
                       </div>
                       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                        Visit Us in Mombasa or Nairobi
+                        Showrooms
                       </h2>
-                      <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                        Drop by to test drive any car in stock, get an instant trade-in valuation, or chat with our team.
-                      </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
