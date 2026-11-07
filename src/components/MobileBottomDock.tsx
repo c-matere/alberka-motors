@@ -24,8 +24,8 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   // If user is viewing a single vehicle story, show simple conversion dock
   if (selectedVehicle) {
     return (
-      <div className="fixed bottom-2 inset-x-2 z-40 md:hidden">
-        <div className="bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 rounded-xl px-4 py-2.5 flex items-center justify-between gap-3 shadow-2xl">
+      <div className="fixed bottom-2 sm:bottom-3 inset-x-2.5 max-w-lg mx-auto z-40 md:hidden pb-[env(safe-area-inset-bottom,0px)]">
+        <div className="bg-[#0c0c0f]/95 backdrop-blur-xl border border-white/[0.12] rounded-xl px-4 py-2.5 flex items-center justify-between gap-3 shadow-2xl">
           <button
             onClick={onBackToInventory}
             className="w-9 h-9 bg-zinc-900 border border-zinc-700 text-zinc-300 rounded-lg flex items-center justify-center shrink-0 cursor-pointer hover:bg-zinc-800"
@@ -65,8 +65,8 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   ];
 
   return (
-    <div className="fixed bottom-2 inset-x-2 z-40 md:hidden">
-      <div className="bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 rounded-xl px-2 py-1.5 flex items-center justify-around shadow-2xl">
+    <div className="fixed bottom-2 sm:bottom-3 inset-x-2.5 max-w-lg mx-auto z-40 md:hidden pb-[env(safe-area-inset-bottom,0px)]">
+      <div className="bg-[#0c0c0f]/95 backdrop-blur-xl border border-white/[0.12] rounded-2xl px-2 py-1.5 flex items-center justify-around shadow-2xl">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentView === item.id;

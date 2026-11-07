@@ -73,14 +73,8 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     <section className="w-full bg-[#09090b] py-12 sm:py-16 px-4 sm:px-8 text-[#f4f4f5] border-t border-[#27272a]">
       <div className="max-w-[1440px] mx-auto">
         
-        {/* Section Header with Single Red Dot (Compact) */}
-        <div className="text-center max-w-[760px] mx-auto mb-8 space-y-1.5">
-          <div className="inline-flex items-center gap-2 mb-0.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-zinc-400 font-medium">
-              DUTY-PAID & READY FOR DELIVERY
-            </span>
-          </div>
+        {/* Section Header */}
+        <div className="text-center max-w-[760px] mx-auto mb-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.035em]">
             Cars in Stock
           </h1>
@@ -90,7 +84,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         <div className="relative bg-[#0e0e11] p-4 sm:p-5 border border-zinc-800/90 rounded-2xl mb-6 space-y-3.5 before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent">
           
           {/* Category Tabs — Pure Black & White with Hairline Borders */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar -webkit-overflow-scrolling-touch">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
@@ -100,7 +94,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                     setActiveCategory(cat.id);
                     setSearchQuery('');
                   }}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
+                  className={`px-3.5 py-2 sm:py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
                     isActive
                       ? 'bg-white text-zinc-950 border-white shadow-sm'
                       : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
@@ -112,16 +106,16 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             })}
           </div>
 
-          {/* Search Input & Sort Selector */}
+          {/* Search Input & Sort Selector — text-[16px] prevents iOS auto-zoom on mobile focus */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-1">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search by model or stock number (e.g. Prado, Serena, Harrier, ALB-4062)..."
+                placeholder="Search by model or stock number (e.g. Prado, Serena, Harrier)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-black border border-zinc-800 rounded-lg text-xs sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-black border border-zinc-800 rounded-lg text-[16px] sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
               />
             </div>
 
@@ -131,7 +125,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 aria-label="Sort vehicles"
-                className="bg-black border border-zinc-800 rounded-lg px-3 py-2.5 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer"
+                className="bg-black border border-zinc-800 rounded-lg px-3 py-2.5 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer w-full sm:w-auto"
               >
                 <option value="featured">Featured First</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -152,7 +146,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 <button
                   key={tag.query}
                   onClick={() => setSearchQuery(isSelected ? '' : tag.query)}
-                  className={`text-[11px] font-mono px-2.5 py-1 rounded-md transition-all cursor-pointer border ${
+                  className={`text-[11px] font-mono px-3 py-1.5 sm:py-1 rounded-md transition-all cursor-pointer border ${
                     isSelected
                       ? 'bg-white text-zinc-950 font-bold border-white'
                       : 'bg-zinc-900/60 text-zinc-300 border-zinc-800 hover:border-zinc-600 hover:text-white'
@@ -216,7 +210,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
               <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-[0.14em] font-medium">
-                LOOKING FOR A SPECIFIC CAR?
+                CUSTOM AUCTION IMPORT
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-white tracking-[-0.025em]">

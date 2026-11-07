@@ -179,7 +179,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <div className="inline-flex items-center gap-2 mb-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                 <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
-                  TANGANA ROAD, MOMBASA // WESTLANDS, NAIROBI
+                  MOMBASA & NAIROBI
                 </span>
               </div>
               <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug max-w-[620px]">

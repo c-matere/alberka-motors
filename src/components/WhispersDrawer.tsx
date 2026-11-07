@@ -62,7 +62,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
               <div className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                 <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold block">
-                  CUSTOMER CARE & INQUIRIES
+                  DIRECT CONCIERGE
                 </span>
               </div>
               <h2 className="text-[20px] font-bold text-white tracking-tight">

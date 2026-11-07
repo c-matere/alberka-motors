@@ -63,7 +63,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by model, stock number, or fuel type..."
-            className="w-full text-[15px] font-medium text-white placeholder:text-[#71717a] focus:outline-none bg-transparent"
+            className="w-full text-[16px] sm:text-[15px] font-medium text-white placeholder:text-[#71717a] focus:outline-none bg-transparent"
           />
           {query && (
             <button

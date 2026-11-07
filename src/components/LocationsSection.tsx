@@ -56,7 +56,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               <div className="flex items-center justify-between mb-2">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                  <span className="font-mono text-[11px] text-zinc-300 uppercase font-semibold">MAIN SHOWROOM & WORKSHOP</span>
+                  <span className="font-mono text-[11px] text-zinc-300 uppercase font-semibold">MOMBASA FLAGSHIP</span>
                 </div>
                 <span className="text-[11px] font-mono bg-[#18181c] border border-[#27272a] text-[#a1a1aa] px-2.5 py-0.5 rounded-[2px]">
                   EST. 2000

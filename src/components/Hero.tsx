@@ -27,13 +27,12 @@ interface FlagshipSlide {
   priceKes: number;
   videoUrl?: string;
   imageUrl: string;
-  serviceBadge: string;
 }
 
 const FLAGSHIP_SLIDES: FlagshipSlide[] = [
   {
     id: 'nissan-serena',
-    category: '7-Seater Family Hybrid',
+    category: '7-Seater Hybrid',
     name: 'Nissan Serena Highway Star e-POWER',
     tagline: 'Quiet electric drive with 3-row comfort. Drives smoothly on electric power with no plug needed.',
     year: 2019,
@@ -43,11 +42,10 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     priceKes: 3850000,
     videoUrl: 'https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4',
     imageUrl: './vehicles/serena-highway-star.jpg',
-    serviceBadge: '100-Point Mombasa Check',
   },
   {
     id: 'toyota-harrier',
-    category: 'Luxury Hybrid SUV',
+    category: 'Hybrid SUV',
     name: 'Toyota Harrier Hybrid E-Four',
     tagline: 'Quiet and comfortable with smart all-wheel drive. Premium comfort with great fuel savings.',
     year: 2018,
@@ -56,11 +54,10 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     auctionHall: 'CAA Tokyo',
     priceKes: 4850000,
     imageUrl: './vehicles/harrier-hybrid.jpg',
-    serviceBadge: 'Hybrid Battery Tested',
   },
   {
     id: 'toyota-rav4',
-    category: 'All-Weather Family SUV',
+    category: 'AWD SUV',
     name: 'Toyota RAV4 Adventure AWD',
     tagline: 'Smart All-Wheel Drive with 200mm ground clearance. Built tough for city driving and country roads.',
     year: 2020,
@@ -69,7 +66,6 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     auctionHall: 'USS Tokyo',
     priceKes: 4450000,
     imageUrl: './vehicles/rav4-adventure.jpg',
-    serviceBadge: 'Inspected & Road-Ready',
   },
 ];
 
@@ -160,13 +156,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         <div className="inline-flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
           <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
-            JAPANESE AUTOMOTIVE ATELIER · MOMBASA & NAIROBI
+            MOMBASA & NAIROBI
           </span>
         </div>
 
         {/* Display Hero Title with Editorial Air and Restraint */}
         <div className="space-y-4 max-w-[980px] mx-auto">
-          <h1 className="text-[40px] sm:text-[62px] md:text-[76px] lg:text-[84px] font-bold text-white tracking-[-0.04em] leading-[1.02]">
+          <h1 className="text-[38px] sm:text-[62px] md:text-[76px] lg:text-[84px] font-bold text-white tracking-[-0.04em] leading-[1.02]">
             Japanese Provenance.
           </h1>
 
@@ -200,7 +196,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => setIsHeroLightboxOpen(true)}
-            className="w-full aspect-[16/10] sm:aspect-[21/9.5] max-h-[620px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group"
+            className="w-full min-h-[350px] xs:min-h-[390px] sm:min-h-0 aspect-[16/11] sm:aspect-[21/9.5] max-h-[620px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group"
           >
             
             {/* Cinematic Media (Video or Image) */}
@@ -228,7 +224,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             )}
 
             {/* Subtle Scrim Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/25 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
 
             {/* Left Top: Discreet Provenance Seal */}
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
@@ -266,28 +262,26 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </button>
             </div>
 
-            {/* Slide Information Overlay — Bottom Left */}
-            <div className="absolute bottom-5 sm:bottom-7 left-5 sm:left-8 text-left z-20 pointer-events-none max-w-xl">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-zinc-400 block mb-1">
+            {/* Slide Information Overlay — Bottom Left with generous right margin for mobile clearance */}
+            <div className="absolute bottom-4 sm:bottom-7 left-4 sm:left-8 pr-28 sm:pr-0 text-left z-20 pointer-events-none max-w-xl">
+              <span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-zinc-400 block mb-0.5 sm:mb-1">
                 {currentSlide.category} · {currentSlide.year}
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-tight mb-2">
+              <h2 className="text-lg xs:text-xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-snug sm:leading-tight mb-1.5 sm:mb-2 line-clamp-2">
                 {currentSlide.name}
               </h2>
-              <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px] text-zinc-300">
-                <span className="font-bold text-white text-base sm:text-lg">
+              <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] text-zinc-300">
+                <span className="font-bold text-white text-sm sm:text-lg">
                   KES {currentSlide.priceKes.toLocaleString()}
                 </span>
                 <span className="text-zinc-600">·</span>
                 <span>{currentSlide.mileageKm.toLocaleString()} KM</span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-emerald-400">{currentSlide.serviceBadge}</span>
               </div>
             </div>
 
             {/* Right Bottom: Subtle Slide Segment Rails */}
             <div 
-              className="absolute bottom-5 sm:bottom-7 right-5 sm:right-8 z-20 flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10"
+              className="absolute bottom-4 sm:bottom-7 right-4 sm:right-8 z-20 flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               {FLAGSHIP_SLIDES.map((_, idx) => (
@@ -394,9 +388,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             onClick={(e) => e.stopPropagation()}
           >
             <div className="text-left font-mono">
-              <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED CASH PRICE</span>
+              <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">PRICE (KES)</span>
               <span className="text-lg font-bold text-white">
-                KES {currentSlide.priceKes.toLocaleString()}
+                {currentSlide.priceKes.toLocaleString()}
               </span>
             </div>
 

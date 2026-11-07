@@ -773,7 +773,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           <div className="inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
             <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-medium">
-              JAPANESE AUCTION VERIFIED · GRADE {vehicle.auctionGrade} · {vehicle.auctionHall}
+              GRADE {vehicle.auctionGrade} · {vehicle.auctionHall}
             </span>
           </div>
 
@@ -831,15 +831,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
                 {activeColor.name}
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 {vehicle.colors.map((c, idx) => {
                   const isSelected = selectedColorIndex === idx;
                   return (
                     <button
                       key={idx}
                       onClick={() => setSelectedColorIndex(idx)}
-                      className={`w-5 h-5 rounded-full transition-all cursor-pointer relative ${
-                        isSelected ? 'ring-2 ring-white scale-110' : 'opacity-40 hover:opacity-100'
+                      className={`w-6 h-6 rounded-full transition-all cursor-pointer relative ${
+                        isSelected ? 'ring-2 ring-white scale-110 shadow-md' : 'opacity-50 hover:opacity-100'
                       }`}
                       style={{ backgroundColor: c.hex }}
                       title={c.name}

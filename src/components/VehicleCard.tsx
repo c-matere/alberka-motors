@@ -88,7 +88,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg ${
+            className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg ${
               isFavorite 
                 ? 'bg-white text-zinc-950 font-bold border-white' 
                 : 'bg-black/75 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/15'
@@ -122,8 +122,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           <span>{getPowertrainBadge(vehicle)}</span>
         </div>
 
-        {/* Clean Line 2: Vehicle Model Title */}
-        <h3 className="text-lg sm:text-[20px] font-bold text-white tracking-[-0.025em] leading-snug group-hover:text-zinc-200 transition-colors truncate mb-2">
+        {/* Clean Line 2: Vehicle Model Title (Full Model Title, 2 Lines Max) */}
+        <h3 className="text-lg sm:text-[20px] font-bold text-white tracking-[-0.025em] leading-snug group-hover:text-zinc-200 transition-colors line-clamp-2 min-h-[1.75rem] sm:min-h-[2.75rem] mb-2">
           {vehicle.name}
         </h3>
       </div>

@@ -107,7 +107,7 @@ export function App() {
       />
 
       {/* Main View Router */}
-      <main key={selectedVehicle?.id || currentView} className="flex-1 view-enter pb-20 md:pb-0">
+      <main key={selectedVehicle?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0">
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
@@ -133,13 +133,7 @@ export function App() {
                 <section className="w-full bg-[#09090b] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/[0.07]">
                   <div className="max-w-[1240px] mx-auto space-y-12">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/[0.07]">
-                      <div className="space-y-2">
-                        <div className="inline-flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                          <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
-                            VERIFIED IN-STOCK COLLECTION
-                          </span>
-                        </div>
+                      <div>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-[-0.035em]">
                           Vehicles in Stock
                         </h2>
@@ -172,13 +166,7 @@ export function App() {
                 {/* Architectural 3-Pillar Proof Dossier */}
                 <section className="w-full bg-[#070709] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/[0.07]">
                   <div className="max-w-[1240px] mx-auto space-y-16">
-                    <div className="text-center max-w-[680px] mx-auto space-y-2">
-                      <div className="inline-flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
-                          THE ALBERKA STANDARD
-                        </span>
-                      </div>
+                    <div className="text-center max-w-[680px] mx-auto">
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-[-0.035em]">
                         Three Principles of Provenance
                       </h2>
@@ -189,7 +177,7 @@ export function App() {
                       <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                         <div className="space-y-3">
                           <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
-                            PROVENANCE // 01
+                            01 PROVENANCE
                           </span>
                           <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
                             Tokyo Auction Selection
@@ -213,7 +201,7 @@ export function App() {
                       <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                         <div className="space-y-3">
                           <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
-                            PREPARATION // 02
+                            02 PREPARATION
                           </span>
                           <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
                             Mombasa Workshop Overhaul
@@ -236,8 +224,8 @@ export function App() {
                       {/* Pillar 03 */}
                       <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                         <div className="space-y-3">
-                          <span className="font-mono text-xs text-emerald-400 uppercase tracking-widest block font-semibold">
-                            ACCOUNTABILITY // 03
+                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                            03 WARRANTY
                           </span>
                           <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
                             5,000 KM Written Warranty
@@ -263,13 +251,7 @@ export function App() {
                 {/* Showrooms Overview (Mombasa & Nairobi) */}
                 <section className="w-full bg-[#09090b] py-20 px-4 sm:px-8">
                   <div className="max-w-[1440px] mx-auto space-y-12">
-                    <div className="text-center max-w-[700px] mx-auto space-y-2">
-                      <div className="inline-flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-zinc-400 font-medium">
-                          SHOWROOM LOCATIONS
-                        </span>
-                      </div>
+                    <div className="text-center max-w-[700px] mx-auto">
                       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
                         Showrooms
                       </h2>
@@ -282,7 +264,7 @@ export function App() {
                           <div className="inline-flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                             <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
-                              MAIN SHOWROOM & WORKSHOP // MOMBASA
+                              MOMBASA FLAGSHIP
                             </span>
                           </div>
                           <h3 className="text-xl sm:text-2xl font-bold text-white">Mombasa Flagship</h3>
@@ -311,7 +293,7 @@ export function App() {
                           <div className="inline-flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                             <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
-                              NAIROBI SHOWROOM // WESTLANDS
+                              NAIROBI WESTLANDS
                             </span>
                           </div>
                           <h3 className="text-xl sm:text-2xl font-bold text-white">Nairobi Westlands Hub</h3>
