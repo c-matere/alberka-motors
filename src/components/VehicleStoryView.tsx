@@ -57,6 +57,7 @@ const EditorialFeatureSection: React.FC<{
 }> = ({ feature, sectionIndex, totalSections, vehicleName, stockNo, onOpenLightbox }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const activeSlide: FeatureSlide =
@@ -64,11 +65,24 @@ const EditorialFeatureSection: React.FC<{
 
   useEffect(() => {
     if (!isPlaying || feature.slides.length <= 1) return;
-    const interval = setInterval(() => {
-      setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length);
-    }, 5500);
-    return () => clearInterval(interval);
+    const intervalMs = 50;
+    const step = (intervalMs / 5500) * 100;
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          setActiveSlideIndex((curr) => (curr + 1) % feature.slides.length);
+          return 0;
+        }
+        return prev + step;
+      });
+    }, intervalMs);
+    return () => clearInterval(timer);
   }, [isPlaying, feature.slides.length]);
+
+  const handleSelectSlide = (idx: number) => {
+    setActiveSlideIndex(idx);
+    setProgress(0);
+  };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
@@ -78,8 +92,8 @@ const EditorialFeatureSection: React.FC<{
     if (touchStartX === null) return;
     const diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) {
-      if (diff > 0) setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length);
-      else setActiveSlideIndex((prev) => (prev === 0 ? feature.slides.length - 1 : prev - 1));
+      if (diff > 0) handleSelectSlide((activeSlideIndex + 1) % feature.slides.length);
+      else handleSelectSlide(activeSlideIndex === 0 ? feature.slides.length - 1 : activeSlideIndex - 1);
     }
     setTouchStartX(null);
   };
@@ -114,13 +128,18 @@ const EditorialFeatureSection: React.FC<{
             <div 
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
-              className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative group shadow-2xl select-none"
+              onClick={() => onOpenLightbox && onOpenLightbox({
+                url: activeSlide.imageUrl,
+                title: `${feature.title} — ${activeSlide.title}`,
+                desc: activeSlide.description
+              })}
+              className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative group shadow-2xl select-none cursor-pointer"
             >
               <SkeletonImage
                 key={activeSlide.id || activeSlide.imageUrl}
                 src={activeSlide.imageUrl}
                 alt={activeSlide.title}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 cursor-pointer"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
                 containerClassName="w-full h-full"
               />
 
@@ -143,11 +162,14 @@ const EditorialFeatureSection: React.FC<{
 
                   {onOpenLightbox && (
                     <button
-                      onClick={() => onOpenLightbox({
-                        url: activeSlide.imageUrl,
-                        title: `${feature.title} — ${activeSlide.title}`,
-                        desc: activeSlide.description
-                      })}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenLightbox({
+                          url: activeSlide.imageUrl,
+                          title: `${feature.title} — ${activeSlide.title}`,
+                          desc: activeSlide.description
+                        });
+                      }}
                       className="bg-black/80 hover:bg-black text-zinc-300 hover:text-white p-2 rounded-lg border border-zinc-800 transition-colors cursor-pointer backdrop-blur-md"
                       title="Expand full-screen"
                     >
@@ -174,20 +196,20 @@ const EditorialFeatureSection: React.FC<{
 
               {/* Hairline Side Arrows */}
               <button
-                onClick={() =>
-                  setActiveSlideIndex((prev) =>
-                    prev === 0 ? feature.slides.length - 1 : prev - 1
-                  )
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelectSlide(activeSlideIndex === 0 ? feature.slides.length - 1 : activeSlideIndex - 1);
+                }}
                 className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
                 title="Previous image"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
-                onClick={() =>
-                  setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length)
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelectSlide((activeSlideIndex + 1) % feature.slides.length);
+                }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
                 title="Next image"
               >
@@ -195,11 +217,12 @@ const EditorialFeatureSection: React.FC<{
               </button>
 
               {/* Rolls-Royce Animated Progress Bar - Crisp White */}
-              <div className="absolute bottom-0 inset-x-0 h-1 bg-zinc-900/80 z-20">
+              <div className="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/80 z-20">
                 <div
-                  className="h-full bg-white transition-all duration-300"
+                  className="h-full bg-white transition-all ease-linear"
                   style={{
-                    width: `${((activeSlideIndex + 1) / feature.slides.length) * 100}%`,
+                    width: `${isPlaying ? progress : ((activeSlideIndex + 1) / feature.slides.length) * 100}%`,
+                    transitionDuration: isPlaying ? '50ms' : '200ms',
                   }}
                 />
               </div>
@@ -213,7 +236,7 @@ const EditorialFeatureSection: React.FC<{
                   return (
                     <button
                       key={s.id || idx}
-                      onClick={() => setActiveSlideIndex(idx)}
+                      onClick={() => handleSelectSlide(idx)}
                       className={`px-3 py-1.5 rounded-lg text-xs transition-all shrink-0 cursor-pointer border flex items-center gap-1.5 ${
                         isActive
                           ? 'bg-white text-zinc-950 font-bold border-white'
@@ -320,9 +343,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isGalleryLightboxOpen, setIsGalleryLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [isGalleryPlaying, setIsGalleryPlaying] = useState(false);
+  const [galleryProgress, setGalleryProgress] = useState(0);
   const [touchGalleryStartX, setTouchGalleryStartX] = useState<number | null>(null);
 
-  // Compile full photo suite for the active car
+  const activeThumbRef = useRef<HTMLButtonElement | null>(null);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+
+  // Compile full photo suite for the active car (including colors, gallery, closer look & features)
   const allPhotos = [
     {
       id: 'hero-front',
@@ -332,6 +360,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       description: `Original Japanese auction condition. Chrome styling and clean bodywork from ${vehicle.auctionHall}.`,
       url: vehicle.heroImage,
     },
+    ...vehicle.colors.map((c, idx) => ({
+      id: `color-${idx}`,
+      title: `${vehicle.name} — ${c.name}`,
+      category: 'exterior' as const,
+      tag: 'Exterior Color',
+      description: `Factory Japanese enamel in ${c.name}.`,
+      url: c.imageUrl,
+    })),
     ...vehicle.gallery.map((g, idx) => {
       const isInterior =
         g.title.toLowerCase().includes('cockpit') ||
@@ -355,12 +391,30 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         url: g.url,
       };
     }),
+    ...(vehicle.closerLookPoints || []).map((p, idx) => {
+      const isInterior =
+        p.title.toLowerCase().includes('seat') ||
+        p.title.toLowerCase().includes('cockpit') ||
+        p.title.toLowerCase().includes('leather');
+      const isDetail =
+        p.title.toLowerCase().includes('engine') ||
+        p.title.toLowerCase().includes('drive') ||
+        p.title.toLowerCase().includes('tailgate');
+      return {
+        id: `closer-${p.id || idx}`,
+        title: `${p.title} (${p.metric})`,
+        category: (isInterior ? 'interior' : isDetail ? 'details' : 'exterior') as 'exterior' | 'interior' | 'details',
+        tag: 'Closer Look',
+        description: p.description,
+        url: p.imageUrl,
+      };
+    }),
     ...vehicle.editorialFeatures.flatMap((f) =>
-      f.slides.slice(0, 2).map((s, idx) => ({
+      f.slides.map((s, idx) => ({
         id: `${f.id}-${idx}`,
         title: `${f.title} — ${s.title}`,
         category: (f.id === 'seats' || f.id === 'infotainment' ? 'interior' : 'details') as 'exterior' | 'interior' | 'details',
-        tag: f.id === 'seats' || f.id === 'infotainment' ? 'Interior' : 'Engineering',
+        tag: f.id === 'seats' || f.id === 'infotainment' ? 'Cabin Interior' : 'Engineering',
         description: s.description,
         url: s.imageUrl,
       }))
@@ -373,27 +427,63 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   });
 
   const currentPhoto = filteredPhotos[activePhotoIndex] || filteredPhotos[0] || allPhotos[0];
-
-  const openLightboxWithIndex = (idx: number) => {
-    setLightboxIndex(idx);
-    setIsGalleryLightboxOpen(true);
-  };
+  const activeLightboxPhoto = allPhotos[lightboxIndex] || allPhotos[0];
 
   const handleNextPhoto = useCallback(() => {
     setActivePhotoIndex((prev) => (prev + 1) % filteredPhotos.length);
+    setGalleryProgress(0);
   }, [filteredPhotos.length]);
 
   const handlePrevPhoto = useCallback(() => {
     setActivePhotoIndex((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
+    setGalleryProgress(0);
   }, [filteredPhotos.length]);
+
+  const handleSelectPhoto = (idx: number) => {
+    setActivePhotoIndex(idx);
+    setGalleryProgress(0);
+    stageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
 
   const handleNextLightbox = useCallback(() => {
-    setLightboxIndex((prev) => (prev + 1) % filteredPhotos.length);
-  }, [filteredPhotos.length]);
+    setLightboxIndex((prev) => (prev + 1) % allPhotos.length);
+  }, [allPhotos.length]);
 
   const handlePrevLightbox = useCallback(() => {
-    setLightboxIndex((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
-  }, [filteredPhotos.length]);
+    setLightboxIndex((prev) => (prev - 1 + allPhotos.length) % allPhotos.length);
+  }, [allPhotos.length]);
+
+  const openPhotoByUrl = (url: string) => {
+    let idx = allPhotos.findIndex((p) => p.url === url);
+    if (idx === -1) idx = 0;
+    setLightboxIndex(idx);
+    setIsGalleryLightboxOpen(true);
+  };
+
+  const openLightboxWithIndex = (idx: number) => {
+    const targetUrl = filteredPhotos[idx]?.url;
+    let targetIdx = allPhotos.findIndex((p) => p.url === targetUrl);
+    if (targetIdx === -1) targetIdx = idx;
+    setLightboxIndex(targetIdx);
+    setIsGalleryLightboxOpen(true);
+  };
+
+  // Master Gallery Autoplay with Rolls-Royce timing
+  useEffect(() => {
+    if (!isGalleryPlaying || isGalleryLightboxOpen || filteredPhotos.length <= 1) return;
+    const intervalMs = 50;
+    const step = (intervalMs / 5000) * 100;
+    const timer = setInterval(() => {
+      setGalleryProgress((prev) => {
+        if (prev >= 100) {
+          handleNextPhoto();
+          return 0;
+        }
+        return prev + step;
+      });
+    }, intervalMs);
+    return () => clearInterval(timer);
+  }, [isGalleryPlaying, isGalleryLightboxOpen, filteredPhotos.length, handleNextPhoto]);
 
   // Touch handlers for gallery viewport
   const handleTouchGalleryStart = (e: React.TouchEvent) => {
@@ -410,28 +500,34 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     setTouchGalleryStartX(null);
   };
 
-  // Lock body scroll when fullscreen lightbox or auction modal is open
+  // Bulletproof body scroll lock (iOS Safari & Desktop)
   useEffect(() => {
     if (isGalleryLightboxOpen || showAuctionModal) {
-      const orig = document.body.style.overflow;
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
       return () => {
-        document.body.style.overflow = orig;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
       };
     }
   }, [isGalleryLightboxOpen, showAuctionModal]);
 
-  const openPhotoByUrl = (url: string) => {
-    let idx = filteredPhotos.findIndex((p) => p.url === url);
-    if (idx === -1) {
-      idx = allPhotos.findIndex((p) => p.url === url);
-      if (idx !== -1) {
-        setGalleryFilter('all');
-      }
+  // Auto-scroll active thumbnail into center view in lightbox
+  useEffect(() => {
+    if (isGalleryLightboxOpen && activeThumbRef.current) {
+      activeThumbRef.current.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
     }
-    setLightboxIndex(idx >= 0 ? idx : 0);
-    setIsGalleryLightboxOpen(true);
-  };
+  }, [lightboxIndex, isGalleryLightboxOpen]);
 
   // Keyboard navigation & ESC
   useEffect(() => {
@@ -691,16 +787,34 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
           {/* Master Visual Canvas */}
           <div className="relative w-full max-w-[1100px] mx-auto mb-8">
-            <div className="w-full h-[360px] sm:h-[480px] lg:h-[540px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative shadow-2xl">
+            <div 
+              onClick={() => openPhotoByUrl(activeColor.imageUrl)}
+              className="w-full h-[360px] sm:h-[480px] lg:h-[540px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative shadow-2xl cursor-pointer group"
+            >
               <SkeletonImage
                 key={activeColor.name}
                 src={activeColor.imageUrl}
                 alt={`${vehicle.name} in ${activeColor.name}`}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-102"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
                 containerClassName="w-full h-full"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6 sm:p-8">
+              {/* Fullscreen Expand Action Pill */}
+              <div className="absolute top-4 right-4 z-20">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openPhotoByUrl(activeColor.imageUrl);
+                  }}
+                  className="bg-black/80 hover:bg-black text-white px-3 py-1.5 rounded-lg border border-zinc-800 text-xs font-mono flex items-center gap-1.5 transition-colors cursor-pointer backdrop-blur-md shadow-md"
+                  title="Expand photo fullscreen"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Fullscreen</span>
+                </button>
+              </div>
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
                 <div className="text-left text-white space-y-0.5">
                   <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest font-semibold block">
                     COLOR OPTION
@@ -1172,24 +1286,26 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
           </div>
 
-          {/* Master 16:9 Theatrical Gallery Stage */}
+          {/* Master 16:9 Theatrical Gallery Stage (Rolls-Royce Bespoke Aperture) */}
           <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
             <div 
+              ref={stageRef}
               onTouchStart={handleTouchGalleryStart}
               onTouchEnd={handleTouchGalleryEnd}
-              className="relative w-full h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden select-none"
+              onClick={() => openLightboxWithIndex(activePhotoIndex)}
+              className="relative w-full h-[400px] sm:h-[520px] md:h-[620px] overflow-hidden select-none cursor-pointer group"
             >
               <img
                 key={currentPhoto.url}
                 src={currentPhoto.url}
                 alt={currentPhoto.title}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out hover:scale-102"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out group-hover:scale-102"
               />
 
               {/* Scrim & Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/20 pointer-events-none" />
 
-              {/* Top Bar Badges */}
+              {/* Top Bar Badges & Controls */}
               <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
                 <div className="flex items-center gap-2">
                   <div className="bg-black/85 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-md border border-zinc-800 flex items-center gap-1.5 shadow-md">
@@ -1202,14 +1318,35 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   </span>
                 </div>
 
-                <button
-                  onClick={() => openLightboxWithIndex(activePhotoIndex)}
-                  className="bg-black/80 hover:bg-black text-white p-2.5 rounded-lg border border-zinc-800 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono"
-                  title="Expand Fullscreen Lightbox"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                  <span className="hidden sm:inline">Fullscreen</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsGalleryPlaying(!isGalleryPlaying);
+                    }}
+                    className="bg-black/80 hover:bg-black text-white p-2.5 rounded-lg border border-zinc-800 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono"
+                    title={isGalleryPlaying ? 'Pause gallery slideshow' : 'Play gallery slideshow'}
+                  >
+                    {isGalleryPlaying ? (
+                      <Pause className="w-3.5 h-3.5" />
+                    ) : (
+                      <Play className="w-3.5 h-3.5 ml-0.5 text-white" />
+                    )}
+                    <span className="hidden sm:inline">{isGalleryPlaying ? 'Pause' : 'Auto Play'}</span>
+                  </button>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openLightboxWithIndex(activePhotoIndex);
+                    }}
+                    className="bg-black/80 hover:bg-black text-white p-2.5 rounded-lg border border-zinc-800 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono"
+                    title="Expand Fullscreen Lightbox"
+                  >
+                    <Maximize2 className="w-4 h-4" />
+                    <span className="hidden sm:inline">Fullscreen</span>
+                  </button>
+                </div>
               </div>
 
               {/* Lower-Third Caption Card */}
@@ -1229,30 +1366,47 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               {/* Hairline Stage Controls */}
               <button
-                onClick={handlePrevPhoto}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevPhoto();
+                }}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
                 title="Previous photo"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
-                onClick={handleNextPhoto}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextPhoto();
+                }}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
                 title="Next photo"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
 
+              {/* Rolls-Royce Animated Timing Progress Bar — Pure Crisp White */}
+              <div className="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/80 z-20">
+                <div
+                  className="h-full bg-white transition-all ease-linear"
+                  style={{
+                    width: `${isGalleryPlaying ? galleryProgress : ((activePhotoIndex + 1) / filteredPhotos.length) * 100}%`,
+                    transitionDuration: isGalleryPlaying ? '50ms' : '200ms',
+                  }}
+                />
+              </div>
+
             </div>
 
-            {/* Filmstrip Runway Strip */}
+            {/* Filmstrip Runway Strip with Instant Stage Focus */}
             <div className="p-3 bg-zinc-950 border-t border-zinc-800/80 flex items-center gap-2.5 overflow-x-auto no-scrollbar">
               {filteredPhotos.map((photo, idx) => {
                 const isActive = idx === activePhotoIndex;
                 return (
                   <button
                     key={photo.id || idx}
-                    onClick={() => setActivePhotoIndex(idx)}
+                    onClick={() => handleSelectPhoto(idx)}
                     className={`h-16 w-24 sm:w-28 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative ${
                       isActive
                         ? 'border-white ring-2 ring-white/50 scale-102'
@@ -1498,10 +1652,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
       )}
 
-      {/* Rolls-Royce Bespoke Fullscreen Gallery Lightbox Modal (Zero-Scroll Viewport) */}
+      {/* Rolls-Royce Bespoke Fullscreen Gallery Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
       {isGalleryLightboxOpen && (
         <div 
-          className="fixed inset-0 w-screen h-[100dvh] max-h-[100dvh] z-[100] bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn"
+          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
           onClick={() => setIsGalleryLightboxOpen(false)}
         >
           {/* Top Bar: Fixed slim height */}
@@ -1509,22 +1663,22 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {vehicle.stockNo} · {vehicle.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
-                {filteredPhotos[lightboxIndex]?.title || currentPhoto.title}
+              <span className="text-xs text-zinc-400 font-mono hidden md:inline truncate">
+                {activeLightboxPhoto.title}
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
                 <span className="text-white font-bold">{String(lightboxIndex + 1).padStart(2, '0')}</span>
                 <span className="text-zinc-600"> / </span>
-                <span className="text-zinc-400">{String(filteredPhotos.length).padStart(2, '0')}</span>
+                <span className="text-zinc-400">{String(allPhotos.length).padStart(2, '0')}</span>
               </div>
               <button
                 onClick={() => setIsGalleryLightboxOpen(false)}
@@ -1542,41 +1696,43 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={filteredPhotos[lightboxIndex]?.url || currentPhoto.url}
-              alt={filteredPhotos[lightboxIndex]?.title || currentPhoto.title}
+              key={activeLightboxPhoto.url}
+              src={activeLightboxPhoto.url}
+              alt={activeLightboxPhoto.title}
               className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl transition-all duration-300 pointer-events-none"
             />
 
             {/* Hairline Nav Controls */}
             <button
               onClick={handlePrevLightbox}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous photo (Left Arrow)"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNextLightbox}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next photo (Right Arrow)"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
-          {/* Bottom Bar: Fixed slim height */}
+          {/* Bottom Bar: Responsive & Zero-Scroll */}
           <div 
-            className="h-20 sm:h-24 px-4 sm:px-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0"
+            className="shrink-0 border-t border-zinc-800/80 bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
-              {filteredPhotos.map((p, idx) => (
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto py-1">
+              {allPhotos.map((p, idx) => (
                 <button
                   key={p.id || idx}
+                  ref={lightboxIndex === idx ? activeThumbRef : undefined}
                   onClick={() => setLightboxIndex(idx)}
-                  className={`h-12 w-16 sm:w-20 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
+                  className={`h-11 sm:h-12 w-16 sm:w-20 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
                     lightboxIndex === idx
-                      ? 'border-white ring-2 ring-white/50'
+                      ? 'border-white ring-2 ring-white/60 scale-105'
                       : 'border-zinc-800 opacity-50 hover:opacity-100'
                   }`}
                 >
@@ -1585,10 +1741,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               ))}
             </div>
 
-            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+            <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto shrink-0">
               <div className="text-left sm:text-right font-mono">
-                <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
-                <span className="text-base sm:text-lg font-bold text-white">
+                <span className="text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-sm sm:text-base font-bold text-white">
                   KES {vehicle.priceKes.toLocaleString()}
                 </span>
               </div>
@@ -1597,7 +1753,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-white !py-2.5 !px-5 text-xs font-semibold"
+                className="btn-white !py-2 !px-4 text-xs font-semibold"
               >
                 <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
                 <span>Inquire on WhatsApp</span>

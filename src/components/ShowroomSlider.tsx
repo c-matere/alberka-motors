@@ -71,13 +71,20 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
     setProgress(0);
   };
 
-  // Lock body scroll when fullscreen lightbox is open
+  // Bulletproof body scroll lock (iOS Safari & Desktop)
   useEffect(() => {
     if (isLightboxOpen) {
-      const orig = document.body.style.overflow;
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
       return () => {
-        document.body.style.overflow = orig;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
       };
     }
   }, [isLightboxOpen]);
@@ -229,7 +236,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         <div 
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="relative w-full h-[460px] sm:h-[560px] md:h-[620px] lg:h-[660px] overflow-hidden select-none"
+          onClick={() => setIsLightboxOpen(true)}
+          className="relative w-full h-[460px] sm:h-[560px] md:h-[620px] lg:h-[660px] overflow-hidden select-none cursor-pointer group"
         >
           
           {/* Media Frame with smooth angle rendering */}
@@ -238,7 +246,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               key={`${activeVehicle.id}-${activeAngleIdx}`}
               src={angles[activeAngleIdx]?.url || activeVehicle.heroImage}
               alt={`${activeVehicle.name} - ${angles[activeAngleIdx]?.label || 'Exterior'}`}
-              className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out hover:scale-102"
+              className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out group-hover:scale-102"
             />
           </div>
 
@@ -269,7 +277,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 {angles.map((ang, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setActiveAngleIdx(idx)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveAngleIdx(idx);
+                    }}
                     className={`px-2.5 py-1 text-[11px] rounded font-mono transition-all cursor-pointer ${
                       activeAngleIdx === idx
                         ? 'bg-white text-zinc-950 font-bold'
@@ -283,7 +294,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
               {/* Fullscreen Lightbox Button */}
               <button
-                onClick={() => setIsLightboxOpen(true)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsLightboxOpen(true);
+                }}
                 className="p-2.5 rounded-md backdrop-blur-md border border-zinc-800 bg-black/70 hover:bg-black text-zinc-300 hover:text-white transition-all cursor-pointer"
                 title="Expand full-screen theatrical gallery (Space / Click)"
               >
@@ -291,7 +305,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               </button>
 
               <button
-                onClick={() => onToggleFavorite(activeVehicle.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleFavorite(activeVehicle.id);
+                }}
                 className={`p-2.5 rounded-md backdrop-blur-md border transition-all cursor-pointer ${
                   isFavorite
                     ? 'bg-white text-zinc-950 border-white font-bold'
@@ -474,10 +491,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         })}
       </div>
 
-      {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal (Zero-Scroll Viewport) */}
+      {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
       {isLightboxOpen && (
         <div 
-          className="fixed inset-0 w-screen h-[100dvh] max-h-[100dvh] z-[100] bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn"
+          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
           onClick={() => setIsLightboxOpen(false)}
         >
           {/* Top Bar: Fixed slim height */}
@@ -485,18 +502,18 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {activeVehicle.stockNo} · {activeVehicle.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
+              <span className="text-xs text-zinc-400 font-mono hidden md:inline truncate">
                 Grade {activeVehicle.auctionGrade} · {activeVehicle.auctionHall}
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
                 <span className="text-white font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
                 <span className="text-zinc-600"> / </span>
@@ -527,26 +544,26 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             {/* Hairline Side Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous car (Left Arrow)"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next car (Right Arrow)"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
-          {/* Bottom Bar: Fixed slim height */}
+          {/* Bottom Bar: Responsive & Zero-Scroll */}
           <div 
-            className="h-20 sm:h-24 px-4 sm:px-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0"
+            className="shrink-0 border-t border-zinc-800/80 bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-3"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto py-1">
               {angles.map((ang, idx) => (
                 <button
                   key={idx}
@@ -562,7 +579,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               ))}
             </div>
 
-            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto shrink-0">
               <div className="text-left sm:text-right font-mono">
                 <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
                 <span className="text-base sm:text-lg font-bold text-white">
@@ -575,7 +592,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-ghost !py-2.5 !px-4 text-xs font-medium"
+                  className="btn-ghost !py-2 !px-3.5 text-xs font-medium"
                 >
                   <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
                   <span>WhatsApp</span>
@@ -586,7 +603,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                     setIsLightboxOpen(false);
                     onSelectVehicle(activeVehicle);
                   }}
-                  className="btn-white !py-2.5 !px-4 text-xs font-semibold cursor-pointer"
+                  className="btn-white !py-2 !px-3.5 text-xs font-semibold cursor-pointer"
                 >
                   <span>View Details</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-1.5" />

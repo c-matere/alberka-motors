@@ -97,13 +97,20 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
     setProgress(0);
   }, []);
 
-  // Lock body scroll when fullscreen lightbox is open
+  // Bulletproof body scroll lock (iOS Safari & Desktop)
   useEffect(() => {
     if (isHeroLightboxOpen) {
-      const orig = document.body.style.overflow;
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
       return () => {
-        document.body.style.overflow = orig;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
       };
     }
   }, [isHeroLightboxOpen]);
@@ -217,7 +224,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-xl shadow-2xl select-none"
+            onClick={() => setIsHeroLightboxOpen(true)}
+            className="w-full h-[340px] xs:h-[420px] sm:h-[520px] md:h-[620px] overflow-hidden relative bg-black border border-zinc-800 rounded-xl shadow-2xl select-none cursor-pointer group"
           >
             
             {/* Cinematic Media (Video or High-Res Image) */}
@@ -229,7 +237,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 loop
                 playsInline
                 key={currentSlide.id}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] hover:scale-102 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
                 poster={currentSlide.imageUrl}
               >
                 <source src={currentSlide.videoUrl} type="video/mp4" />
@@ -240,7 +248,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 key={currentSlide.id}
                 src={currentSlide.imageUrl}
                 alt={currentSlide.name}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] hover:scale-102 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
               />
             )}
 
@@ -275,7 +283,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             {/* Controls Top Right */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 z-30">
               <button
-                onClick={() => setIsHeroLightboxOpen(true)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsHeroLightboxOpen(true);
+                }}
                 className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title="Fullscreen Theater Mode"
               >
@@ -283,7 +294,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </button>
 
               <button
-                onClick={togglePlay}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  togglePlay();
+                }}
                 className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
               >
@@ -292,7 +306,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
               {currentSlide.videoUrl && (
                 <button
-                  onClick={toggleMute}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMute();
+                  }}
                   className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
@@ -301,7 +318,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               )}
 
               <button
-                onClick={handlePrev}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
                 className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title="Previous car"
               >
@@ -309,7 +329,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </button>
 
               <button
-                onClick={handleNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
                 className="w-9 h-9 bg-black/80 hover:bg-zinc-900 text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-md"
                 title="Next car"
               >
@@ -437,10 +460,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
       </div>
 
-      {/* Rolls-Royce Fullscreen Theatrical Hero Lightbox Modal (Zero-Scroll Viewport) */}
+      {/* Rolls-Royce Fullscreen Theatrical Hero Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
       {isHeroLightboxOpen && (
         <div 
-          className="fixed inset-0 w-screen h-[100dvh] max-h-[100dvh] z-[100] bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn text-left"
+          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn text-left"
           onClick={() => setIsHeroLightboxOpen(false)}
         >
           {/* Top Bar: Fixed slim height */}
@@ -448,18 +471,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {currentSlide.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
+              <span className="text-xs text-zinc-400 font-mono hidden sm:inline truncate">
                 {currentSlide.category} · {currentSlide.grade}
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
                 <span className="text-white font-bold">0{activeSlideIdx + 1}</span>
                 <span className="text-zinc-600"> / </span>
@@ -503,26 +526,26 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             {/* Hairline Nav Controls */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous car"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next car"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
-          {/* Bottom Bar: Fixed slim height */}
+          {/* Bottom Bar: Responsive & Zero-Scroll */}
           <div 
-            className="h-20 sm:h-24 px-4 sm:px-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0"
+            className="shrink-0 border-t border-zinc-800/80 bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-3"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto py-1">
               {FLAGSHIP_SLIDES.map((slide, idx) => (
                 <button
                   key={slide.id}
@@ -539,7 +562,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               ))}
             </div>
 
-            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto shrink-0">
               <div className="text-left sm:text-right font-mono">
                 <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
                 <span className="text-base sm:text-lg font-bold text-white">

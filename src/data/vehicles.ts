@@ -332,7 +332,7 @@ export const VEHICLES: Vehicle[] = [
         title: 'Form Follows Fortitude.',
         narrative: [
           'The RAV4 Adventure was conceived not as a suburban crossover wearing rugged cladding, but as an authentic expression of mechanical utility. Its octagon-inspired body contours echo chiseled mountain basalt.',
-          'Beneath the polygonal wheel arches lies an uncompromising Japanese chassis: wide-track geometry, reinforced suspension mounting points, and Dynamic Torque Vectoring All-Wheel Drive calibrated for relentless traction.'
+          'Built on Toyota’s rigid global chassis with wide-track stability, strong suspension points, and smart all-wheel drive for dependable grip on rough Kenyan terrain.'
         ],
         imageUrl: './vehicles/rav4-adventure.jpg',
         videoUrl: 'https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4',
@@ -359,11 +359,11 @@ export const VEHICLES: Vehicle[] = [
       },
       {
         id: 'sanctuary',
-        tabLabel: 'The Sanctuary',
-        eyebrow: 'Interior Architecture',
-        title: 'Ergonomic Sanctuary.',
+        tabLabel: 'Cabin Comfort',
+        eyebrow: 'Interior Comfort',
+        title: 'Comfortable, Quiet Cabin.',
         narrative: [
-          'Inside, tactile orange accents puncture a purposeful graphite palette. Rubberized grip textures on HVAC dials, deep door pockets, and SofTex upholstered sport bolsters create an environment of purposeful serenity.'
+          'Inside, bright orange stitching highlights durable SofTex sport seats. Easy-grip climate dials, deep door storage, and thick sound insulation keep long road trips comfortable and quiet.'
         ],
         imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
         highlights: [
@@ -708,11 +708,11 @@ export const VEHICLES: Vehicle[] = [
       },
       {
         id: 'sanctuary',
-        tabLabel: 'The Sanctuary',
-        eyebrow: 'Tactile Haute Couture',
-        title: 'Hand-Crafted Equine Serenity.',
+        tabLabel: 'Cabin Comfort',
+        eyebrow: 'Quiet Cabin',
+        title: 'Quiet Luxury Interior.',
         narrative: [
-          'The interior evokes the rich warmth of equestrian tack rooms. Bent-wood curves, semi-aniline leather, and ambient piping create a quiet haven sheltered from city noise.'
+          'The Harrier interior features rich leather seats, smooth curved wood trim, and ambient lighting designed to keep out city traffic noise.'
         ],
         imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
         highlights: [
@@ -791,7 +791,7 @@ export const VEHICLES: Vehicle[] = [
       'Hybrid high-voltage battery health diagnostic & individual cell resistance check',
       'Inverter cooling system fluid change & bleed with genuine Toyota SLLC',
       'Electrochromic panoramic roof electrical phase circuit diagnostic',
-      'Leather conditioning with bespoke beeswax hide-food cream'
+      'Deep leather cleaning and conditioning with premium protective cream'
     ]
   },
   {
@@ -1034,11 +1034,11 @@ export const VEHICLES: Vehicle[] = [
       },
       {
         id: 'sanctuary',
-        tabLabel: 'The Sanctuary',
+        tabLabel: 'Cabin Comfort',
         eyebrow: 'Medalist Cabin',
-        title: 'Bespoke Executive Appointments.',
+        title: 'Executive Cabin Finish.',
         narrative: [
-          'The Medalist grade elevates the cabin with piano black fascias, genuine leather-wrapped steering wheel, and dual-tone stitched seats that rival luxury sedans.'
+          'The Medalist grade elevates the cabin with piano black trim, genuine leather-wrapped steering wheel, and dual-tone stitched seats for comfortable daily commuting.'
         ],
         imageUrl: 'https://images.pexels.com/photos/1633602/pexels-photo-1633602.jpeg?auto=compress&cs=tinysrgb&w=1600',
         highlights: [
@@ -1400,10 +1400,10 @@ export const VEHICLES: Vehicle[] = [
         id: 'essence',
         tabLabel: 'The Essence',
         eyebrow: 'Hospitality Refined',
-        title: 'Hospitality elevated to automotive high art.',
+        title: 'First-Class Family Comfort.',
         narrative: [
-          'The Serena Highway Star e-POWER redefines executive family transit. It treats every passenger not as cargo, but as an honored guest in an acoustic sanctuary.',
-          'Powered by Nissan’s electric motor drive, the lurching gear changes of traditional minivans are eradicated, replaced by whisper-quiet linear momentum.'
+          'The Serena Highway Star e-POWER makes every family trip quiet and relaxing. With thick double acoustic glass and smooth electric motor drive, passengers enjoy a peaceful, vibration-free ride.',
+          'Because the wheels are powered directly by an electric motor, there is no annoying gear shifting—just smooth, instant power from the moment you tap the pedal.'
         ],
         imageUrl: './vehicles/serena-highway-star.jpg',
         videoUrl: 'https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4',
