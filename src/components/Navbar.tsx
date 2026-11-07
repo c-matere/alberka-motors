@@ -7,6 +7,7 @@ interface NavbarProps {
   favoritesCount: number;
   onOpenSearch: () => void;
   onOpenFavorites: () => void;
+  onOpenWhispers?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,6 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   favoritesCount,
   onOpenSearch,
   onOpenFavorites,
+  onOpenWhispers,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -31,6 +33,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     onNavigate(id);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleWhispersClick = () => {
+    if (onOpenWhispers) {
+      onOpenWhispers();
+      setMobileMenuOpen(false);
+    } else {
+      window.open(
+        'https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20a%20private%20viewing%20or%20bespoke%20commission.',
+        '_blank'
+      );
+    }
   };
 
   return (
@@ -107,14 +121,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {/* Ghost Hairline Action Button: Whispers Private Concierge */}
-            <a
-              href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20a%20private%20viewing%20or%20bespoke%20commission."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-rr-ghost !py-2 !px-4 !text-[10.5px] hidden sm:inline-flex"
+            <button
+              onClick={handleWhispersClick}
+              className="btn-rr-ghost !py-2 !px-4 !text-[10.5px] hidden sm:inline-flex cursor-pointer"
             >
               <span>WHISPERS CONCIERGE</span>
-            </a>
+            </button>
 
             {/* Mobile Nav Toggle */}
             <button
@@ -146,15 +158,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-8 border-t border-[rgba(197,168,128,0.2)] space-y-4">
-            <a
-              href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-rr-solid w-full text-center justify-center py-3"
+            <button
+              onClick={handleWhispersClick}
+              className="btn-rr-solid w-full text-center justify-center py-3 cursor-pointer"
             >
               <span>CONNECT VIA WHISPERS CONCIERGE</span>
               <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
+            </button>
           </div>
         </div>
       )}

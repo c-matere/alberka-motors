@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { StarlightCanopy } from './StarlightCanopy';
 
 interface HeroProps {
   onExploreFleet: () => void;
@@ -31,6 +32,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   return (
     <section className="relative w-full bg-[#160a1d] pt-16 sm:pt-24 pb-20 sm:pb-32 px-6 text-center text-[#f5f5f7] overflow-hidden">
       
+      {/* Starlight Headliner Canopy Effect */}
+      <StarlightCanopy density={55} />
+
       {/* Nocturnal Atmospheric Spotlight */}
       <div className="absolute inset-0 rr-ambient-glow-plum pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-gradient-to-b from-[#261230]/40 to-transparent blur-3xl pointer-events-none" />

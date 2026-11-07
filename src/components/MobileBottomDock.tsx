@@ -9,6 +9,7 @@ interface MobileBottomDockProps {
   onBackToInventory: () => void;
   favoritesCount: number;
   onOpenFavorites: () => void;
+  onOpenWhispers?: () => void;
 }
 
 export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
@@ -18,6 +19,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   onBackToInventory,
   favoritesCount,
   onOpenFavorites,
+  onOpenWhispers,
 }) => {
   // If user is viewing a single vehicle story, show conversion dock
   if (selectedVehicle) {
@@ -106,10 +108,11 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
         </button>
 
         {/* Whispers Chat */}
-        <a
-          href="https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20the%20fleet."
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => {
+            if (onOpenWhispers) onOpenWhispers();
+            else window.open('https://wa.me/254714333888?text=Salutations%20Alberka%20Motors.%20I%20wish%20to%20inquire%20regarding%20the%20fleet.', '_blank');
+          }}
           className="flex flex-col items-center justify-center py-1 px-2 text-[#8c8a94] hover:text-[#f5f5f7] transition-all cursor-pointer relative"
           title="Whispers Concierge"
         >
@@ -117,7 +120,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             <MessageCircle className="w-4 h-4 text-[#c5a880]" />
           </div>
           <span className="font-['Cinzel'] text-[8.5px] tracking-wider uppercase mt-0.5 text-[#c5a880]">WHISPERS</span>
-        </a>
+        </button>
       </div>
     </div>
   );

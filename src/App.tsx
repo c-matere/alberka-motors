@@ -14,6 +14,7 @@ import { LocationsSection } from './components/LocationsSection';
 import { SitemapSection } from './components/SitemapSection';
 import { SearchModal } from './components/SearchModal';
 import { FavoritesModal } from './components/FavoritesModal';
+import { WhispersDrawer } from './components/WhispersDrawer';
 import { MobileBottomDock } from './components/MobileBottomDock';
 import { Footer } from './components/Footer';
 import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
@@ -24,6 +25,7 @@ export function App() {
   const [testDriveTargetVehicle, setTestDriveTargetVehicle] = useState<Vehicle | null>(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
+  const [whispersDrawerOpen, setWhispersDrawerOpen] = useState(false);
 
   // Favorites state persisted in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -102,6 +104,7 @@ export function App() {
         favoritesCount={favorites.length}
         onOpenSearch={() => setSearchModalOpen(true)}
         onOpenFavorites={() => setFavoritesModalOpen(true)}
+        onOpenWhispers={() => setWhispersDrawerOpen(true)}
       />
 
       {/* 48px Sticky Context Navigation Bar */}
@@ -126,6 +129,7 @@ export function App() {
             isFavorite={favorites.includes(selectedVehicle.id)}
             onToggleFavorite={handleToggleFavorite}
             onScheduleTestDrive={handleScheduleTestDrive}
+            onOpenWhispers={() => setWhispersDrawerOpen(true)}
           />
         ) : (
           <>
@@ -405,6 +409,7 @@ export function App() {
         onBackToInventory={() => handleNavigate('inventory')}
         favoritesCount={favorites.length}
         onOpenFavorites={() => setFavoritesModalOpen(true)}
+        onOpenWhispers={() => setWhispersDrawerOpen(true)}
       />
 
       {/* Global Aristocratic Multi-Column Footer */}
@@ -429,6 +434,14 @@ export function App() {
         favorites={favorites}
         vehicles={VEHICLES}
         onToggleFavorite={handleToggleFavorite}
+        onSelectVehicle={handleSelectVehicle}
+      />
+
+      {/* Whispers Private Concierge Drawer */}
+      <WhispersDrawer
+        isOpen={whispersDrawerOpen}
+        onClose={() => setWhispersDrawerOpen(false)}
+        vehicles={VEHICLES}
         onSelectVehicle={handleSelectVehicle}
       />
 
