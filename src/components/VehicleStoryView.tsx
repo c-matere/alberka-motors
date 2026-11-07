@@ -87,102 +87,117 @@ const EditorialFeatureSection: React.FC<{
         {/* 12-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Column 1: Media Showcase */}
-          <div className="lg:col-span-7 space-y-3">
-            <div className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-[#09090b] border border-[#27272a] rounded-[4px] relative group">
+          {/* Column 1: Rolls-Royce Style Media Showcase Slideshow */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="w-full h-[360px] sm:h-[440px] lg:h-[480px] overflow-hidden bg-black border border-zinc-800 rounded-xl relative group shadow-2xl">
               <SkeletonImage
                 key={activeSlide.id || activeSlide.imageUrl}
                 src={activeSlide.imageUrl}
                 alt={activeSlide.title}
-                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
                 containerClassName="w-full h-full"
               />
 
-              {/* Floating Slide Counter & Metric */}
-              <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                <span className="bg-[#09090b]/85 px-3 py-1 text-[11px] font-mono text-white rounded-[2px] border border-[#27272a]">
-                  Image {activeSlideIndex + 1} of {feature.slides.length}
-                </span>
+              {/* Rolls-Royce Slide Counter (01 / 04) & Metric */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+                <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-lg border border-zinc-800 flex items-center gap-1.5 shadow-md">
+                  <span className="text-red-500 font-bold">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
+                  <span className="text-zinc-600">/</span>
+                  <span className="text-zinc-400">{String(feature.slides.length).padStart(2, '0')}</span>
+                </div>
 
                 {activeSlide.metric && (
-                  <div className="bg-[#09090b]/90 border border-[#27272a] px-3 py-1 flex items-center gap-2 rounded-[2px]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444]" />
-                    <span className="text-[11px] text-[#a1a1aa] hidden xs:inline">{activeSlide.metricLabel}:</span>
-                    <span className="text-[12px] font-mono font-bold text-white">{activeSlide.metric}</span>
+                  <div className="bg-black/85 backdrop-blur-md border border-zinc-800 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                    <span className="text-xs text-zinc-400 hidden xs:inline">{activeSlide.metricLabel}:</span>
+                    <span className="text-xs font-mono font-bold text-white">{activeSlide.metric}</span>
                   </div>
                 )}
               </div>
 
               {/* Bottom Scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
-                <div className="space-y-1 max-w-[560px]">
-                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-[#ef4444] block font-semibold">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
+                <div className="space-y-1.5 max-w-[560px]">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-red-500 block font-semibold">
                     {activeSlide.subtitle}
                   </span>
-                  <h3 className="text-[18px] sm:text-[20px] font-bold text-white leading-snug">
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
                     {activeSlide.title}
                   </h3>
-                  <p className="text-[13px] text-[#d4d4d8] line-clamp-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-zinc-300 line-clamp-2 leading-relaxed">
                     {activeSlide.description}
                   </p>
                 </div>
               </div>
+
+              {/* Hairline Side Arrows */}
+              <button
+                onClick={() =>
+                  setActiveSlideIndex((prev) =>
+                    prev === 0 ? feature.slides.length - 1 : prev - 1
+                  )
+                }
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
+                title="Previous image"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() =>
+                  setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length)
+                }
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white border border-zinc-700/60 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
+                title="Next image"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+
+              {/* Rolls-Royce Animated Progress Bar */}
+              <div className="absolute bottom-0 inset-x-0 h-1 bg-zinc-900/80 z-20">
+                <div
+                  className="h-full bg-red-600 transition-all duration-300"
+                  style={{
+                    width: `${((activeSlideIndex + 1) / feature.slides.length) * 100}%`,
+                  }}
+                />
+              </div>
             </div>
 
-            {/* Slide Navigation Dock */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 bg-[#18181c] border border-[#27272a] rounded-[3px]">
-              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+            {/* Slide Navigation Dock with Thumbnails */}
+            <div className="flex items-center justify-between gap-3 p-3 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
                 {feature.slides.map((s, idx) => {
                   const isActive = activeSlideIndex === idx;
                   return (
                     <button
                       key={s.id || idx}
                       onClick={() => setActiveSlideIndex(idx)}
-                      className={`px-3 py-1 rounded-[2px] text-[12px] transition-all shrink-0 cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-lg text-xs transition-all shrink-0 cursor-pointer border flex items-center gap-1.5 ${
                         isActive
-                          ? 'bg-[#dc2626] text-white font-medium'
-                          : 'bg-[#09090b] text-[#a1a1aa] hover:text-white border border-[#27272a]'
+                          ? 'bg-zinc-800 text-white font-semibold border-red-600'
+                          : 'bg-zinc-950/80 text-zinc-400 hover:text-white border-zinc-800'
                       }`}
                     >
+                      <span className={`font-mono text-[10px] ${isActive ? 'text-red-500 font-bold' : 'text-zinc-500'}`}>
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
                       <span>{s.title.split(' ')[0]} {s.title.split(' ')[1] || ''}</span>
                     </button>
                   );
                 })}
               </div>
 
-              <div className="flex items-center justify-end gap-1.5 shrink-0">
-                <button
-                  onClick={() =>
-                    setActiveSlideIndex((prev) =>
-                      prev === 0 ? feature.slides.length - 1 : prev - 1
-                    )
-                  }
-                  className="w-8 h-8 bg-[#09090b] hover:bg-[#202025] border border-[#27272a] rounded-[2px] flex items-center justify-center text-white cursor-pointer"
-                  title="Previous"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-8 h-8 bg-[#09090b] hover:bg-[#202025] border border-[#27272a] rounded-[2px] flex items-center justify-center text-[#a1a1aa] hover:text-white cursor-pointer"
-                  title={isPlaying ? 'Pause' : 'Play'}
+                  className="w-8 h-8 rounded-full bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+                  title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
                 >
                   {isPlaying ? (
                     <Pause className="w-3.5 h-3.5" />
                   ) : (
-                    <Play className="w-3.5 h-3.5 ml-0.5" />
+                    <Play className="w-3.5 h-3.5 ml-0.5 text-red-500" />
                   )}
-                </button>
-
-                <button
-                  onClick={() =>
-                    setActiveSlideIndex((prev) => (prev + 1) % feature.slides.length)
-                  }
-                  className="w-8 h-8 bg-[#09090b] hover:bg-[#202025] border border-[#27272a] rounded-[2px] flex items-center justify-center text-white cursor-pointer"
-                  title="Next"
-                >
-                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
