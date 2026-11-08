@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, Bookmark, Menu, X, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, Bookmark, Menu, X, MessageCircle, ArrowRight, MapPin } from 'lucide-react';
 
 interface NavbarProps {
   currentView: string;
@@ -20,14 +20,25 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Clean, straightforward navigation links
+  // Editorial navigation links with descriptive subtext for mobile menu
   const navLinks = [
-    { id: 'inventory', label: 'Showroom' },
-    { id: 'trade-in', label: 'Trade-In' },
-    { id: 'workshop', label: 'Workshop & Warranty' },
-    { id: 'about', label: 'Why Alberka' },
-    { id: 'locations', label: 'Locations' },
+    { id: 'inventory', index: '01', label: 'Showroom Fleet', desc: 'Verified Tokyo stock & Japanese imports' },
+    { id: 'trade-in', index: '02', label: 'Trade-In & Upgrade', desc: '20-min hoist check & equity appraisal' },
+    { id: 'workshop', index: '03', label: 'Workshop & Warranty', desc: '100-point overhaul & 5,000 km warranty' },
+    { id: 'about', index: '04', label: '26-Year Provenance', desc: 'Direct auction bidding at USS Tokyo & CAA' },
+    { id: 'locations', index: '05', label: 'Showroom Hubs', desc: 'Tangana Rd, Mombasa & Westlands, Nairobi' },
   ];
+
+  // Prevent background body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
 
   const handleLinkClick = (id: string) => {
     onNavigate(id);
@@ -49,10 +60,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b]/85 backdrop-blur-xl border-b border-white/[0.08] h-16 flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
-        <div className="max-w-[1440px] w-full flex items-center justify-between gap-6">
+      <nav className="w-full bg-[#09090b]/90 backdrop-blur-2xl border-b border-white/[0.08] h-16 sm:h-[68px] flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
+        <div className="max-w-[1440px] w-full flex items-center justify-between gap-4">
           
-          {/* Logo & Brand Name */}
+          {/* Logo & Brand Emblem */}
           <button
             onClick={() => handleLinkClick('overview')}
             className="flex items-center gap-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
@@ -62,124 +73,173 @@ export const Navbar: React.FC<NavbarProps> = ({
               alt="Alberka Motors"
               className="h-8 sm:h-9 w-auto object-contain"
             />
-            <div className="flex flex-col text-left pl-3 border-l border-white/10">
-              <span className="font-bold text-[14.5px] tracking-tight text-white leading-tight">
+            <div className="flex flex-col text-left pl-3 border-l border-white/15">
+              <span className="font-bold text-sm sm:text-[14.5px] tracking-tight text-white leading-tight">
                 ALBERKA MOTORS
               </span>
-              <span className="font-mono text-[9.5px] tracking-[0.14em] text-zinc-400 leading-none mt-0.5">
+              <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-400 leading-none mt-0.5">
                 MOMBASA & NAIROBI
               </span>
             </div>
           </button>
 
-          {/* Clean, Spacious Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          {/* Desktop Floating Segmented Controller (Apple / Leica Aesthetic) */}
+          <div className="hidden lg:inline-flex items-center gap-1 bg-black/60 backdrop-blur-xl border border-white/[0.08] p-1.5 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
             {navLinks.map((link) => {
               const isActive = currentView === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`relative py-1.5 text-[13.5px] font-medium tracking-tight transition-colors cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
                     isActive
-                      ? 'text-white font-semibold'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-white text-zinc-950 font-bold shadow-sm'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
-                  )}
                 </button>
               );
             })}
           </div>
 
           {/* Right Action Suite */}
-          <div className="flex items-center gap-3 sm:gap-4 text-white">
+          <div className="flex items-center gap-2.5 sm:gap-3 text-white">
             
-            {/* Search Trigger */}
+            {/* Quick Search Capsule */}
             <button
               onClick={onOpenSearch}
-              className="p-2.5 rounded-md hover:bg-zinc-900 text-zinc-400 hover:text-white transition-colors cursor-pointer"
-              title="Search inventory"
+              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+              title="Search inventory (⌘K)"
             >
               <Search className="w-4 h-4" />
             </button>
 
-            {/* Saved Cars (Favorites) */}
+            {/* Saved Cars Capsule with Badge */}
             <button
               onClick={onOpenFavorites}
-              className="p-2.5 rounded-md hover:bg-zinc-900 text-zinc-400 hover:text-white transition-colors relative cursor-pointer"
-              title="Saved cars"
+              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer relative"
+              title="Saved vehicles"
             >
               <Bookmark className="w-4 h-4" />
               {favoritesCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 bg-white text-zinc-950 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md">
                   {favoritesCount}
                 </span>
               )}
             </button>
 
-            {/* Primary Action Button (Pure White High-Contrast) */}
+            {/* WhatsApp VIP Concierge Pill */}
             <button
               onClick={handleContactClick}
-              className="btn-white !py-2 !px-4 !text-xs !rounded-md hidden sm:inline-flex cursor-pointer font-semibold shadow-sm"
+              className="btn-white !py-2 !px-4 !text-xs !rounded-full hidden sm:inline-flex cursor-pointer font-semibold shadow-sm items-center gap-1.5"
             >
               <MessageCircle className="w-3.5 h-3.5 text-zinc-950" />
               <span>WhatsApp Us</span>
             </button>
 
-            {/* Mobile Nav Toggle */}
+            {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-zinc-400 hover:text-white cursor-pointer"
+              className="lg:hidden w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 hover:text-white cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* Editorial Luxury Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 bg-[#09090b]/98 backdrop-blur-xl z-40 p-6 flex flex-col justify-between md:hidden border-t border-[#27272a] overflow-y-auto animate-slideDown">
-          <div className="space-y-2 pt-2">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block px-3 mb-2">
-              Menu
+        <div className="fixed inset-0 top-16 sm:top-[68px] bg-[#09090b]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-white/[0.08] overflow-y-auto animate-slideDown">
+          
+          {/* Main Editorial Menu Links */}
+          <div className="space-y-3 pt-2">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500 block px-2 mb-2 font-semibold">
+              INDEX // NAVIGATION
             </span>
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleLinkClick(link.id)}
-                className={`w-full text-left py-3 px-3 rounded-md text-[15px] font-medium flex items-center justify-between transition-colors ${
-                  currentView === link.id
-                    ? 'bg-zinc-900 text-white font-semibold'
-                    : 'text-zinc-400 hover:bg-zinc-900/60 hover:text-white'
-                }`}
-              >
-                <span>{link.label}</span>
-                {currentView === link.id && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                )}
-              </button>
-            ))}
-          </div>
+            
+            <div className="space-y-1">
+              {navLinks.map((link) => {
+                const isActive = currentView === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => handleLinkClick(link.id)}
+                    className={`w-full text-left p-3.5 rounded-xl transition-all flex items-center justify-between group ${
+                      isActive
+                        ? 'bg-zinc-900 border border-white/20'
+                        : 'hover:bg-zinc-900/60 border border-transparent'
+                    }`}
+                  >
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[10px] text-zinc-500 font-semibold">{link.index}</span>
+                        <span className={`text-base font-bold tracking-tight ${isActive ? 'text-white' : 'text-zinc-200 group-hover:text-white'}`}>
+                          {link.label}
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-400 pl-6 leading-relaxed">
+                        {link.desc}
+                      </p>
+                    </div>
 
-          <div className="pt-8 border-t border-[#27272a] space-y-3">
-            <button
-              onClick={handleContactClick}
-              className="btn-white w-full py-3 text-[14px] justify-center cursor-pointer font-semibold"
-            >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              <span>Chat on WhatsApp (0714 333 888)</span>
-            </button>
-            <div className="text-center text-[11px] text-zinc-500 font-mono">
-              Alberka Motors · Tangana Rd, Mombasa & Westlands, Nairobi
+                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-zinc-600'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Quick Action Utility Bar */}
+            <div className="grid grid-cols-2 gap-2.5 pt-4">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenSearch();
+                }}
+                className="p-3 bg-[#0c0c0f] border border-white/[0.08] rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-white/20 transition-colors"
+              >
+                <Search className="w-4 h-4 text-zinc-400 shrink-0" />
+                <div>
+                  <span className="text-xs font-bold text-white block">Search Cars</span>
+                  <span className="text-[10px] font-mono text-zinc-500">Quick catalog scan</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenFavorites();
+                }}
+                className="p-3 bg-[#0c0c0f] border border-white/[0.08] rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-white/20 transition-colors"
+              >
+                <Bookmark className="w-4 h-4 text-zinc-400 shrink-0" />
+                <div>
+                  <span className="text-xs font-bold text-white block">Saved Cars ({favoritesCount})</span>
+                  <span className="text-[10px] font-mono text-zinc-500">Compare selection</span>
+                </div>
+              </button>
             </div>
           </div>
+
+          {/* Footer & Direct Hotline */}
+          <div className="pt-6 border-t border-white/[0.08] space-y-3 mt-6">
+            <button
+              onClick={handleContactClick}
+              className="btn-white w-full py-3 text-xs sm:text-sm font-semibold justify-center inline-flex items-center gap-2 shadow-lg"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Chat on WhatsApp (0714 333 888)</span>
+            </button>
+            
+            <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-500 font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span>Mombasa Tangana Rd · Nairobi Westlands Hub</span>
+            </div>
+          </div>
+
         </div>
       )}
     </>

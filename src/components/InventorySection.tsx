@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, ArrowRight } from 'lucide-react';
+import { Search, X, SlidersHorizontal, ArrowRight, ArrowUpDown } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { VehicleCard } from './VehicleCard';
 
@@ -22,12 +22,12 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'year'>('featured');
 
-  // Simple, direct categories
+  // Curated categories
   const categories = [
-    { id: 'all', label: 'All Cars', count: vehicles.length },
+    { id: 'all', label: 'All Fleet', count: vehicles.length },
     { id: 'suv', label: 'SUVs & 4WD', count: vehicles.filter(v => v.category === 'suv').length },
     { id: 'hybrid', label: 'Hybrids', count: vehicles.filter(v => v.category === 'hybrid' || v.fuelType.includes('Hybrid') || v.fuelType.includes('e-POWER')).length },
-    { id: 'van', label: '7-Seaters & Vans', count: vehicles.filter(v => v.category === 'van').length },
+    { id: 'van', label: '7-Seaters', count: vehicles.filter(v => v.category === 'van').length },
     { id: 'compact', label: 'Hatchbacks', count: vehicles.filter(v => v.category === 'compact' || v.bodyType.toLowerCase().includes('hatchback')).length },
   ];
 
@@ -70,115 +70,134 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   ];
 
   return (
-    <section className="w-full bg-[#09090b] py-12 sm:py-16 px-4 sm:px-8 text-[#f4f4f5] border-t border-[#27272a]">
-      <div className="max-w-[1440px] mx-auto">
+    <section className="w-full bg-[#09090b] py-14 sm:py-20 px-4 sm:px-8 text-[#f4f4f5] border-t border-white/[0.08]">
+      <div className="max-w-[1240px] mx-auto space-y-10 sm:space-y-12">
         
         {/* Section Header */}
-        <div className="text-center max-w-[760px] mx-auto mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.035em]">
-            Cars in Stock
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
+              VERIFIED INVENTORY · MOMBASA & NAIROBI
+            </span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-bold text-white tracking-[-0.035em] leading-[1.05]">
+            Vehicles in Stock
           </h1>
+          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+            Handpicked Japanese auction imports, inspected and fully prepped with a 5,000 km written warranty.
+          </p>
         </div>
 
-        {/* Filter & Search Bar (Machined Obsidian Architecture) */}
-        <div className="relative bg-[#0e0e11] p-4 sm:p-5 border border-zinc-800/90 rounded-2xl mb-6 space-y-3.5 before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent">
+        {/* Unified Luxury Aperture Search & Filter Console */}
+        <div className="space-y-4 max-w-4xl mx-auto">
           
-          {/* Category Tabs — Pure Black & White with Hairline Borders */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar -webkit-overflow-scrolling-touch">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setSearchQuery('');
-                  }}
-                  className={`px-3.5 py-2 sm:py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 cursor-pointer border ${
-                    isActive
-                      ? 'bg-white text-zinc-950 border-white shadow-sm'
-                      : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
-                  }`}
-                >
-                  {cat.label} <span className="font-mono opacity-80 text-[11px]">({cat.count})</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Search Input & Sort Selector — text-[16px] prevents iOS auto-zoom on mobile focus */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-1">
-            <div className="relative flex-1">
-              <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          {/* Main Search Capsule */}
+          <div className="relative bg-[#0c0c0f] border border-white/[0.12] hover:border-white/25 focus-within:border-white/40 focus-within:shadow-[0_0_30px_rgba(255,255,255,0.06)] rounded-2xl p-2 sm:p-2.5 flex items-center justify-between gap-3 transition-all duration-300 shadow-2xl">
+            <div className="flex items-center gap-3 flex-1 min-w-0 pl-2">
+              <Search className="w-4 h-4 text-zinc-400 shrink-0" />
               <input
                 type="text"
-                placeholder="Search by model or stock number (e.g. Prado, Serena, Harrier)..."
+                placeholder="Search model, grade, or stock number (e.g. Harrier, RAV4, Grade 4.5)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-black border border-zinc-800 rounded-lg text-[16px] sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
+                className="w-full bg-transparent text-sm sm:text-[15px] font-medium text-white placeholder:text-zinc-500 focus:outline-none"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="p-1 text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
+                  title="Clear search"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
             </div>
 
-            <div className="flex items-center gap-2.5">
-              <span className="text-[11px] text-zinc-500 font-mono uppercase whitespace-nowrap hidden md:inline">Sort:</span>
+            {/* Integrated Sort Selector */}
+            <div className="flex items-center gap-2 pl-3 border-l border-white/[0.1] shrink-0 pr-1">
+              <ArrowUpDown className="w-3.5 h-3.5 text-zinc-400 hidden sm:inline" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 aria-label="Sort vehicles"
-                className="bg-black border border-zinc-800 rounded-lg px-3 py-2.5 text-xs text-zinc-200 focus:outline-none focus:border-white cursor-pointer w-full sm:w-auto"
+                className="bg-transparent text-xs font-mono text-zinc-300 focus:outline-none cursor-pointer pr-1 py-1"
               >
-                <option value="featured">Featured First</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="year">Newest Model Year</option>
+                <option value="featured" className="bg-[#121215] text-white">Featured</option>
+                <option value="price-asc" className="bg-[#121215] text-white">Price: Low to High</option>
+                <option value="price-desc" className="bg-[#121215] text-white">Price: High to Low</option>
+                <option value="year" className="bg-[#121215] text-white">Newest Year</option>
               </select>
             </div>
           </div>
 
-          {/* Quick Model Tags for Zero-Typing Filtering */}
-          <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider mr-1">
-              QUICK FILTER:
-            </span>
-            {quickTags.map((tag) => {
-              const isSelected = searchQuery.toLowerCase() === tag.query.toLowerCase();
-              return (
-                <button
-                  key={tag.query}
-                  onClick={() => setSearchQuery(isSelected ? '' : tag.query)}
-                  className={`text-[11px] font-mono px-3 py-1.5 sm:py-1 rounded-md transition-all cursor-pointer border ${
-                    isSelected
-                      ? 'bg-white text-zinc-950 font-bold border-white'
-                      : 'bg-zinc-900/60 text-zinc-300 border-zinc-800 hover:border-zinc-600 hover:text-white'
-                  }`}
-                >
-                  {tag.label}
-                </button>
-              );
-            })}
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="text-[11px] font-mono px-2 py-1 text-zinc-400 hover:text-white underline cursor-pointer ml-1"
-              >
-                Clear
-              </button>
-            )}
+          {/* Minimalist Segmented Category Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+            
+            {/* Category Pills Strip */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar -webkit-overflow-scrolling-touch">
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategory(cat.id);
+                      setSearchQuery('');
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-white text-zinc-950 font-semibold shadow-sm'
+                        : 'bg-[#0c0c0f] text-zinc-400 hover:text-white hover:bg-zinc-900 border border-white/[0.08]'
+                    }`}
+                  >
+                    <span>{cat.label}</span>
+                    <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-600 font-bold' : 'text-zinc-500'}`}>
+                      {cat.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Quick Model Chips */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider hidden md:inline mr-1">
+                Suggested:
+              </span>
+              {quickTags.map((tag) => {
+                const isSelected = searchQuery.toLowerCase() === tag.query.toLowerCase();
+                return (
+                  <button
+                    key={tag.query}
+                    onClick={() => setSearchQuery(isSelected ? '' : tag.query)}
+                    className={`text-[11px] font-mono px-2.5 py-1 rounded-md transition-all cursor-pointer border ${
+                      isSelected
+                        ? 'bg-white text-zinc-950 font-bold border-white'
+                        : 'bg-black text-zinc-400 border-white/10 hover:border-white/30 hover:text-white'
+                    }`}
+                  >
+                    {tag.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
         </div>
 
-        {/* Inventory Status Bar */}
-        <div className="flex items-center justify-between text-xs text-zinc-400 font-mono mb-4 px-1">
+        {/* Live Inventory Status Bar */}
+        <div className="flex items-center justify-between text-xs text-zinc-400 font-mono pt-2 border-t border-white/[0.06] px-1">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>Showing {filteredVehicles.length} of {vehicles.length} verified cars in stock</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Showing {filteredVehicles.length} of {vehicles.length} verified vehicles in stock</span>
           </div>
-          <span className="hidden sm:inline text-zinc-500 text-[11px]">Mombasa Yard & Nairobi Handover Available</span>
+          <span className="hidden sm:inline text-zinc-500 text-[11px]">Tangana Rd, Mombasa & Westlands, Nairobi</span>
         </div>
 
-        {/* Vehicle Grid (Generous Luxury 2-Column Spacing) */}
+        {/* Vehicle Grid (Generous 2-Column Exhibition Runway) */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-[1240px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
             {filteredVehicles.map((vehicle, idx) => (
               <VehicleCard
                 key={vehicle.id}
@@ -191,34 +210,46 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-[#121215] border border-zinc-800 rounded-lg p-8 space-y-4">
-            <h3 className="text-xl font-bold text-white tracking-tight">No matching cars found</h3>
-            <p className="text-sm text-zinc-400 max-w-md mx-auto">
-              We update our inventory weekly with fresh Japanese shipments. Tell us what car you are looking for and we will find it at auction in Japan.
+          <div className="text-center py-20 bg-[#0c0c0f] border border-white/[0.08] rounded-2xl p-8 space-y-4 max-w-xl mx-auto">
+            <div className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center mx-auto text-zinc-400">
+              <Search className="w-5 h-5" />
+            </div>
+            <h3 className="text-xl font-bold text-white tracking-tight">No vehicles match your search</h3>
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-sm mx-auto leading-relaxed">
+              We replenish our showroom weekly with fresh Japanese arrivals. Request a custom import on order and our Tokyo agents will bid directly for your preferred model.
             </p>
             <button
-              onClick={onCustomImportRequest}
-              className="btn-white !py-2.5 !px-5 mt-2 cursor-pointer font-semibold"
+              onClick={() => {
+                setSearchQuery('');
+                setActiveCategory('all');
+              }}
+              className="btn-ghost !py-2 !px-4 text-xs font-semibold cursor-pointer mr-2"
             >
-              <span>Request Custom Import on Order</span>
+              Reset Filters
+            </button>
+            <button
+              onClick={onCustomImportRequest}
+              className="btn-white !py-2 !px-4 text-xs font-semibold cursor-pointer"
+            >
+              Order from Japan
             </button>
           </div>
         )}
 
         {/* Custom Import Banner */}
-        <div className="mt-16 p-8 sm:p-10 bg-[#121215] border border-zinc-800 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="space-y-2 text-left">
+        <div className="relative bg-[#0c0c0f] border border-white/[0.08] rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+          <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-[0.14em] font-medium">
-                CUSTOM AUCTION IMPORT
+              <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-semibold">
+                CUSTOM AUCTION ORDER
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-[-0.025em]">
-              Import Any Car Directly from Japan
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Import Any Vehicle Directly from Japan
             </h3>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-              We bid on your behalf at USS Tokyo, handle shipping, KRA customs clearance, and deliver to your doorstep in Mombasa or Nairobi.
+              Our Japanese agents bid on your behalf at USS Tokyo and CAA Chubu. We handle container shipping, KRA customs clearance, and port handover in Mombasa or Nairobi.
             </p>
           </div>
 
@@ -226,10 +257,10 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20looking%20to%20import%20a%20specific%20vehicle%20on%20order%20from%20Japan.%20Please%20guide%20me%20on%20the%20process."
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-white shrink-0 text-center font-semibold"
+            className="btn-white py-3 px-6 text-xs sm:text-sm font-semibold shrink-0 inline-flex items-center gap-2 w-full md:w-auto justify-center"
           >
-            <span>Talk to an Import Specialist</span>
-            <ArrowRight className="w-4 h-4 ml-1.5" />
+            <span>Consult an Import Specialist</span>
+            <ArrowRight className="w-4 h-4" />
           </a>
         </div>
 
