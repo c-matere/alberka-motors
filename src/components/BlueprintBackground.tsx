@@ -2,14 +2,37 @@ import React, { useEffect, useState } from 'react';
 
 export const BlueprintBackground: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
+  const [scrollFactor, setScrollFactor] = useState(0);
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
       setIsTouch(true);
-      return;
     }
 
+    // Dynamic scroll observer: Dim above the fold so video has total focus,
+    // brightening smoothly as user scrolls down into inventory & sections.
+    let ticking = false;
+    const updateScroll = () => {
+      const y = window.scrollY || window.pageYOffset || 0;
+      // Above the fold (y <= 50px): factor is 0 (very dim)
+      // Between 50px and 520px: smoothly transitions from 0.0 to 1.0
+      const factor = Math.min(1, Math.max(0, (y - 50) / 470));
+      setScrollFactor(factor);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateScroll();
+
+    // Damped mouse follow for desktop
     let animationFrameId: number;
     let targetX = -1000;
     let targetY = -1000;
@@ -28,32 +51,43 @@ export const BlueprintBackground: React.FC = () => {
       animationFrameId = requestAnimationFrame(updatePosition);
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    animationFrameId = requestAnimationFrame(updatePosition);
+    if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+      animationFrameId = requestAnimationFrame(updatePosition);
+    }
 
     return () => {
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
+
+  // Dynamic Opacity Computations (Dim above the fold; brightening on scroll)
+  const gridOpacity = 0.06 + scrollFactor * 0.44; // 0.06 (very dim) -> 0.50 (crisp CAD)
+  const carOpacity = 0.02 + scrollFactor * 0.28;  // 0.02 (dimmed) -> 0.30 (visible blueprint)
+  const softboxOpacity = 0.3 + scrollFactor * 0.45; // 0.30 -> 0.75
+  const midGlowOpacity = 0.08 + scrollFactor * 0.24;
 
   return (
     <div
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#09090c]"
     >
-      {/* 1. Luminous Overhead Studio Softbox Illumination */}
+      {/* 1. Studio Overhead Softbox Lights (Luminous Photographic Depth) */}
       <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1920px] h-[900px] opacity-60"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1920px] h-[900px] transition-opacity duration-300 ease-out"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.11) 0%, rgba(148, 163, 184, 0.035) 50%, transparent 80%)',
+          opacity: softboxOpacity,
+          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.12) 0%, rgba(148, 163, 184, 0.035) 50%, transparent 80%)',
         }}
       />
       
       {/* Mid-page Warm Titanium Studio Ambient Glow */}
       <div 
-        className="absolute top-[40vh] right-[6%] w-[700px] h-[700px] rounded-full blur-[160px] opacity-25"
+        className="absolute top-[40vh] right-[6%] w-[700px] h-[700px] rounded-full blur-[160px] transition-opacity duration-300 ease-out"
         style={{
+          opacity: midGlowOpacity,
           background: 'radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(140, 120, 80, 0.015) 60%, transparent 75%)',
         }}
       />
@@ -70,10 +104,11 @@ export const BlueprintBackground: React.FC = () => {
         />
       )}
 
-      {/* 3. STATIC ARCHITECTURAL CAD GRID (Crisp 45% Opacity with Light Blur) */}
+      {/* 3. STATIC ARCHITECTURAL CAD GRID (Dim above the fold; brightening dynamically as you scroll) */}
       <div 
-        className="absolute inset-0 opacity-[0.45]"
+        className="absolute inset-0 transition-opacity duration-300 ease-out"
         style={{
+          opacity: gridOpacity,
           filter: 'blur(0.65px)',
         }}
       >
@@ -84,7 +119,7 @@ export const BlueprintBackground: React.FC = () => {
           <defs>
             {/* Subdivided 30px Minor Grid */}
             <pattern
-              id="blueprint-grid-minor-v3"
+              id="blueprint-grid-minor-v4"
               width="30"
               height="30"
               patternUnits="userSpaceOnUse"
@@ -99,12 +134,12 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* 120px Major Drafting Grid with Crosshairs & Targets */}
             <pattern
-              id="blueprint-grid-major-v3"
+              id="blueprint-grid-major-v4"
               width="120"
               height="120"
               patternUnits="userSpaceOnUse"
             >
-              <rect width="120" height="120" fill="url(#blueprint-grid-minor-v3)" />
+              <rect width="120" height="120" fill="url(#blueprint-grid-minor-v4)" />
               
               {/* Major Datum Lines */}
               <path
@@ -139,31 +174,34 @@ export const BlueprintBackground: React.FC = () => {
             </pattern>
 
             {/* Radial Vignette */}
-            <radialGradient id="grid-fade-mask-v3" cx="50%" cy="30%" r="85%">
+            <radialGradient id="grid-fade-mask-v4" cx="50%" cy="30%" r="85%">
               <stop offset="0%" stopColor="#fff" stopOpacity="1.0" />
               <stop offset="55%" stopColor="#fff" stopOpacity="0.85" />
               <stop offset="85%" stopColor="#fff" stopOpacity="0.55" />
               <stop offset="100%" stopColor="#fff" stopOpacity="0.3" />
             </radialGradient>
 
-            <mask id="grid-mask-v3">
-              <rect width="100%" height="100%" fill="url(#grid-fade-mask-v3)" />
+            <mask id="grid-mask-v4">
+              <rect width="100%" height="100%" fill="url(#grid-fade-mask-v4)" />
             </mask>
           </defs>
 
           <rect
             width="100%"
             height="100%"
-            fill="url(#blueprint-grid-major-v3)"
-            mask="url(#grid-mask-v3)"
+            fill="url(#blueprint-grid-major-v4)"
+            mask="url(#grid-mask-v4)"
           />
         </svg>
       </div>
 
       {/* 4. ADVANCED LATE-STAGE BENTLEY ARCHITECTURAL CAD SCHEMATIC */}
-      {/* Featuring iconic Bentley twin-crystal headlamps, muscular rear haunches, matrix grille lattice, multi-rib surface isolines & tooling release annotations */}
+      {/* Dimmed above the fold so video has 100% focus; brightening up as you scroll to reveal through transparent glass cards */}
       <div 
-        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] opacity-[0.28] pointer-events-none select-none"
+        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] pointer-events-none select-none transition-opacity duration-300 ease-out"
+        style={{
+          opacity: carOpacity,
+        }}
       >
         <svg
           viewBox="0 0 1400 620"
@@ -173,22 +211,22 @@ export const BlueprintBackground: React.FC = () => {
         >
           <defs>
             {/* Diamond Matrix Grille Hatch Pattern */}
-            <pattern id="bentley-matrix-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <pattern id="bentley-matrix-hatch-v4" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
               <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
               <line x1="0" y1="0" x2="8" y2="0" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
             </pattern>
 
-            <radialGradient id="bentley-fade" cx="50%" cy="50%" r="65%">
+            <radialGradient id="bentley-fade-v4" cx="50%" cy="50%" r="65%">
               <stop offset="0%" stopColor="#fff" stopOpacity="1" />
               <stop offset="65%" stopColor="#fff" stopOpacity="0.8" />
               <stop offset="100%" stopColor="#fff" stopOpacity="0" />
             </radialGradient>
-            <mask id="bentley-mask">
-              <rect width="1400" height="620" fill="url(#bentley-fade)" />
+            <mask id="bentley-mask-v4">
+              <rect width="1400" height="620" fill="url(#bentley-fade-v4)" />
             </mask>
           </defs>
 
-          <g mask="url(#bentley-mask)">
+          <g mask="url(#bentley-mask-v4)">
             {/* Ground Plane */}
             <line x1="100" y1="440" x2="1300" y2="440" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" strokeDasharray="8 4" />
 
@@ -214,15 +252,13 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* ================= BENTLEY CONTINENTAL / FLYING SPUR ARCHITECTURAL SILHOUETTE ================= */}
             {/* Iconic Bentley Matrix Grille Prow */}
-            <rect x="172" y="275" width="22" height="110" fill="url(#bentley-matrix-hatch)" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" rx="3" />
+            <rect x="172" y="275" width="22" height="110" fill="url(#bentley-matrix-hatch-v4)" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" rx="3" />
             <line x1="183" y1="275" x2="183" y2="385" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.4" />
 
             {/* Bentley Twin Crystal Jewel Headlamps (Iconic Round Facets) */}
-            {/* Outer Large Matrix Headlamp */}
             <circle cx="218" cy="295" r="15" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" />
             <circle cx="218" cy="295" r="10" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" strokeDasharray="2 2" />
             <circle cx="218" cy="295" r="4" fill="rgba(255, 255, 255, 0.7)" />
-            {/* Inner Smaller Matrix Lamp */}
             <circle cx="248" cy="292" r="10" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" />
             <circle cx="248" cy="292" r="3" fill="rgba(255, 255, 255, 0.65)" />
 
@@ -269,15 +305,13 @@ export const BlueprintBackground: React.FC = () => {
               strokeWidth="1.8"
             />
 
-            {/* Volumetric CAD Surface Mesh Isolines (Showing the 3D clay surfacing of the bonnet & muscular haunch) */}
-            {/* Bonnet Power Bulge Contours */}
+            {/* Volumetric CAD Surface Mesh Isolines */}
             <path d="M 230 275 C 310 265, 410 258, 490 258" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.9" strokeDasharray="4 3" />
             <path d="M 240 265 C 320 255, 420 248, 500 248" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" strokeDasharray="3 3" />
-            {/* Muscular Rear Shoulder Surface Slices */}
             <path d="M 870 260 C 930 250, 1000 250, 1070 265" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" strokeDasharray="4 3" />
             <path d="M 890 275 C 950 268, 1010 268, 1080 282" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.8" strokeDasharray="3 3" />
 
-            {/* Greenhouse Window Aperture (Frameless Glasshouse Arc) */}
+            {/* Greenhouse Window Aperture */}
             <path
               d="M 525 248 
                  C 580 182, 660 152, 750 145 
@@ -288,7 +322,6 @@ export const BlueprintBackground: React.FC = () => {
               strokeWidth="1.2"
               strokeDasharray="4 2"
             />
-            {/* Flying B-Pillar & Rear Quarter Glass Spar */}
             <line x1="770" y1="145" x2="760" y2="280" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1.2" />
             <line x1="930" y1="165" x2="920" y2="275" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" strokeDasharray="3 2" />
 
@@ -297,13 +330,10 @@ export const BlueprintBackground: React.FC = () => {
             <ellipse cx="1248" cy="385" rx="6" ry="3.5" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
 
             {/* ================= BENTLEY DIRECTIONAL FORGED ALLOY WHEEL ASSEMBLIES ================= */}
-            {/* Front Wheel: (330, 415) */}
             <g transform="translate(330, 415)">
               <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.6" />
               <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" strokeDasharray="4 3" />
-              {/* Carbon-Ceramic Brake Rotor with Cross-Drilled Holes */}
               <circle cx="0" cy="0" r="42" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.8" strokeDasharray="2 2" />
-              {/* 10-Spoke Directional Forged Blades */}
               {[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map((deg) => {
                 const rad = (deg * Math.PI) / 180;
                 const x1 = Math.cos(rad) * 16;
@@ -314,14 +344,12 @@ export const BlueprintBackground: React.FC = () => {
                   <line key={deg} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" />
                 );
               })}
-              {/* Center Hub with Bentley Winged B Motif Tag */}
               <circle cx="0" cy="0" r="16" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" fill="rgba(0,0,0,0.6)" />
               <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.9)" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
                 B
               </text>
             </g>
 
-            {/* Rear Wheel: (980, 415) */}
             <g transform="translate(980, 415)">
               <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.6" />
               <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" strokeDasharray="4 3" />
@@ -353,7 +381,6 @@ export const BlueprintBackground: React.FC = () => {
             </g>
 
             {/* ================= LATE-STAGE CAD TOOLING RELEASE ANNOTATIONS ================= */}
-            {/* Wheelbase Dimension Line: 3,194 mm */}
             <g transform="translate(0, 500)">
               <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" />
               <path d="M 330 -5 L 330 5 M 980 -5 L 980 5" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.2" />
@@ -363,7 +390,6 @@ export const BlueprintBackground: React.FC = () => {
               </text>
             </g>
 
-            {/* Overall Vehicle Length: 5,316 mm */}
             <g transform="translate(0, 535)">
               <line x1="172" y1="0" x2="1255" y2="0" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" strokeDasharray="5 3" />
               <path d="M 172 -4 L 172 4 M 1255 -4 L 1255 4" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" />
@@ -372,7 +398,6 @@ export const BlueprintBackground: React.FC = () => {
               </text>
             </g>
 
-            {/* Height Dimension Line: 1,484 mm */}
             <g transform="translate(110, 0)">
               <line x1="0" y1="130" x2="0" y2="440" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" />
               <path d="M -4 130 L 4 130 M -4 440 L 4 440" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" />
@@ -381,7 +406,6 @@ export const BlueprintBackground: React.FC = () => {
               </text>
             </g>
 
-            {/* Aerodynamic Tooling Surface Release Callout */}
             <g transform="translate(860, 95)">
               <line x1="0" y1="0" x2="50" y2="-30" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
               <line x1="50" y1="-30" x2="200" y2="-30" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
@@ -400,7 +424,6 @@ export const BlueprintBackground: React.FC = () => {
               </text>
             </g>
 
-            {/* Official Advanced Styling Studio Title Block */}
             <g transform="translate(1040, 50)">
               <rect x="0" y="0" width="280" height="58" fill="rgba(0, 0, 0, 0.7)" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.9" rx="4" />
               <text x="14" y="20" fill="rgba(255, 255, 255, 0.95)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" fontWeight="600" letterSpacing="0.14em">
