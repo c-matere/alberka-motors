@@ -221,7 +221,7 @@ export const WorkshopSection: React.FC = () => {
           </div>
 
           {/* Active Stage Detailed Breakdown */}
-          <div className="relative bg-[#0c0c10]/75 backdrop-blur-xl p-6 sm:p-8 border border-white/[0.12] rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.55)]">
+          <div className="relative bg-[#0c0d14]/35 backdrop-blur-md p-6 sm:p-8 border border-white/[0.15] rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/[0.08]">
               <div>
                 <div className="inline-flex items-center gap-2 mb-1">
@@ -302,7 +302,7 @@ export const WorkshopSection: React.FC = () => {
         </div>
 
         {/* Service Booking Form */}
-        <div className="relative bg-[#0c0c10]/75 backdrop-blur-xl p-8 sm:p-10 border border-white/[0.12] rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.55)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+        <div className="relative bg-[#0c0d14]/35 backdrop-blur-md p-8 sm:p-10 border border-white/[0.15] rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.45)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
           <div className="max-w-xl space-y-1">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
               SCHEDULE APPOINTMENT

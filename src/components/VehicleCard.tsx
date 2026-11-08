@@ -50,7 +50,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-[#0c0c10]/75 hover:bg-[#111116]/85 backdrop-blur-xl border border-white/[0.12] hover:border-white/25 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 shadow-[0_12px_36px_rgba(0,0,0,0.55)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.75)] hover:-translate-y-0.5 cursor-pointer select-none overflow-hidden ${
+      className={`group relative bg-[#0c0d14]/30 hover:bg-[#12131c]/45 backdrop-blur-md border border-white/[0.15] hover:border-white/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 shadow-[0_12px_36px_rgba(0,0,0,0.35)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.55)] hover:-translate-y-0.5 cursor-pointer select-none overflow-hidden ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
@@ -59,7 +59,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         <div 
           onMouseEnter={() => cardImages[1] && setActiveImageIdx(1)}
           onMouseLeave={() => setActiveImageIdx(0)}
-          className="w-full aspect-[16/10.4] overflow-hidden bg-black border border-white/[0.06] group-hover:border-white/20 mb-4 relative rounded-xl transition-colors"
+          className="w-full aspect-[16/10.4] overflow-hidden bg-black/60 border border-white/[0.1] group-hover:border-white/25 mb-4 relative rounded-xl transition-colors"
         >
           {/* Smooth Crossfade Media */}
           {cardImages.map((img, idx) => (

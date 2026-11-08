@@ -5,13 +5,11 @@ export const BlueprintBackground: React.FC = () => {
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    // Detect touch device
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
       setIsTouch(true);
       return;
     }
 
-    // Damped mouse follow for desktop ambient spotlight
     let animationFrameId: number;
     let targetX = -1000;
     let targetY = -1000;
@@ -44,19 +42,19 @@ export const BlueprintBackground: React.FC = () => {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#09090c]"
     >
-      {/* 1. Studio Overhead Softbox Lights (Luminous Depth) */}
+      {/* 1. Luminous Overhead Studio Softbox Illumination */}
       <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1920px] h-[850px] opacity-50"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1920px] h-[900px] opacity-60"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.09) 0%, rgba(148, 163, 184, 0.03) 50%, transparent 80%)',
+          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.11) 0%, rgba(148, 163, 184, 0.035) 50%, transparent 80%)',
         }}
       />
       
-      {/* Mid-page Titanium Ambient Glow */}
+      {/* Mid-page Warm Titanium Studio Ambient Glow */}
       <div 
-        className="absolute top-[40vh] right-[5%] w-[650px] h-[650px] rounded-full blur-[160px] opacity-25"
+        className="absolute top-[40vh] right-[6%] w-[700px] h-[700px] rounded-full blur-[160px] opacity-25"
         style={{
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, rgba(140, 120, 80, 0.015) 60%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(140, 120, 80, 0.015) 60%, transparent 75%)',
         }}
       />
 
@@ -67,16 +65,16 @@ export const BlueprintBackground: React.FC = () => {
           style={{
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
-            background: 'radial-gradient(circle 400px at center, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.01) 45%, transparent 75%)',
+            background: 'radial-gradient(circle 400px at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 45%, transparent 75%)',
           }}
         />
       )}
 
-      {/* 3. STATIC ARCHITECTURAL CAD GRID (Increased Opacity, Soft Blur, Completely Stationary) */}
+      {/* 3. STATIC ARCHITECTURAL CAD GRID (Crisp 45% Opacity with Light Blur) */}
       <div 
         className="absolute inset-0 opacity-[0.45]"
         style={{
-          filter: 'blur(0.7px)',
+          filter: 'blur(0.65px)',
         }}
       >
         <svg
@@ -86,7 +84,7 @@ export const BlueprintBackground: React.FC = () => {
           <defs>
             {/* Subdivided 30px Minor Grid */}
             <pattern
-              id="blueprint-grid-minor-static"
+              id="blueprint-grid-minor-v3"
               width="30"
               height="30"
               patternUnits="userSpaceOnUse"
@@ -101,12 +99,12 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* 120px Major Drafting Grid with Crosshairs & Targets */}
             <pattern
-              id="blueprint-grid-major-static"
+              id="blueprint-grid-major-v3"
               width="120"
               height="120"
               patternUnits="userSpaceOnUse"
             >
-              <rect width="120" height="120" fill="url(#blueprint-grid-minor-static)" />
+              <rect width="120" height="120" fill="url(#blueprint-grid-minor-v3)" />
               
               {/* Major Datum Lines */}
               <path
@@ -119,7 +117,7 @@ export const BlueprintBackground: React.FC = () => {
               {/* Corner Crosshairs (+) */}
               <path
                 d="M -6 0 L 6 0 M 0 -6 L 0 6"
-                stroke="rgba(255, 255, 255, 0.65)"
+                stroke="rgba(255, 255, 255, 0.7)"
                 strokeWidth="1.4"
               />
 
@@ -136,106 +134,133 @@ export const BlueprintBackground: React.FC = () => {
                 cx="60"
                 cy="60"
                 r="1.2"
-                fill="rgba(255, 255, 255, 0.4)"
+                fill="rgba(255, 255, 255, 0.45)"
               />
             </pattern>
 
-            {/* Soft Radial Mask so grid gently dissipates towards the outer corners */}
-            <radialGradient id="grid-fade-mask-static" cx="50%" cy="30%" r="85%">
+            {/* Radial Vignette */}
+            <radialGradient id="grid-fade-mask-v3" cx="50%" cy="30%" r="85%">
               <stop offset="0%" stopColor="#fff" stopOpacity="1.0" />
               <stop offset="55%" stopColor="#fff" stopOpacity="0.85" />
               <stop offset="85%" stopColor="#fff" stopOpacity="0.55" />
               <stop offset="100%" stopColor="#fff" stopOpacity="0.3" />
             </radialGradient>
 
-            <mask id="grid-mask-static">
-              <rect width="100%" height="100%" fill="url(#grid-fade-mask-static)" />
+            <mask id="grid-mask-v3">
+              <rect width="100%" height="100%" fill="url(#grid-fade-mask-v3)" />
             </mask>
           </defs>
 
           <rect
             width="100%"
             height="100%"
-            fill="url(#blueprint-grid-major-static)"
-            mask="url(#grid-mask-static)"
+            fill="url(#blueprint-grid-major-v3)"
+            mask="url(#grid-mask-v3)"
           />
         </svg>
       </div>
 
-      {/* 4. ROLLS-ROYCE / BENTLEY WORK-IN-PROGRESS SCHEMATIC (Significantly Reduced Opacity to 0.09, Completely Stationary) */}
+      {/* 4. ADVANCED LATE-STAGE BENTLEY ARCHITECTURAL CAD SCHEMATIC */}
+      {/* Featuring iconic Bentley twin-crystal headlamps, muscular rear haunches, matrix grille lattice, multi-rib surface isolines & tooling release annotations */}
       <div 
-        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] opacity-[0.09] pointer-events-none select-none"
+        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] opacity-[0.16] pointer-events-none select-none"
         style={{
-          filter: 'blur(0.8px)',
+          filter: 'blur(0.7px)',
         }}
       >
         <svg
-          viewBox="0 0 1400 600"
+          viewBox="0 0 1400 620"
           className="w-full h-full text-slate-300"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <radialGradient id="car-draft-fade-static" cx="50%" cy="50%" r="65%">
+            {/* Diamond Matrix Grille Hatch Pattern */}
+            <pattern id="bentley-matrix-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
+              <line x1="0" y1="0" x2="8" y2="0" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
+            </pattern>
+
+            <radialGradient id="bentley-fade" cx="50%" cy="50%" r="65%">
               <stop offset="0%" stopColor="#fff" stopOpacity="1" />
-              <stop offset="65%" stopColor="#fff" stopOpacity="0.75" />
+              <stop offset="65%" stopColor="#fff" stopOpacity="0.8" />
               <stop offset="100%" stopColor="#fff" stopOpacity="0" />
             </radialGradient>
-            <mask id="car-mask-static">
-              <rect width="1400" height="600" fill="url(#car-draft-fade-static)" />
+            <mask id="bentley-mask">
+              <rect width="1400" height="620" fill="url(#bentley-fade)" />
             </mask>
           </defs>
 
-          <g mask="url(#car-mask-static)">
-            {/* Clay-Modeling Automotive Station Planes (STA Lines) */}
-            {[200, 320, 440, 560, 680, 800, 920, 1040, 1160].map((x) => (
+          <g mask="url(#bentley-mask)">
+            {/* Ground Plane */}
+            <line x1="100" y1="440" x2="1300" y2="440" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" strokeDasharray="8 4" />
+
+            {/* Automotive Station Planes (STA Lines) */}
+            {[180, 280, 380, 480, 580, 680, 780, 880, 980, 1080, 1180, 1260].map((x) => (
               <g key={x}>
-                <line x1={x} y1="120" x2={x} y2="470" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="0.8" strokeDasharray="3 4" />
-                <text x={x + 3} y="482" fill="rgba(255, 255, 255, 0.45)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
+                <line x1={x} y1="120" x2={x} y2="470" stroke="rgba(255, 255, 255, 0.16)" strokeWidth="0.8" strokeDasharray="3 4" />
+                <text x={x + 3} y="482" fill="rgba(255, 255, 255, 0.45)" fontSize="7" fontFamily="JetBrains Mono, monospace">
                   STA {x}
                 </text>
               </g>
             ))}
 
-            {/* Automotive Waterline Slices (WL 100 - WL 400) */}
-            {[200, 270, 340, 410].map((y, idx) => (
+            {/* Waterline Slices (WL 100 - WL 400) */}
+            {[190, 250, 310, 370, 430].map((y, idx) => (
               <g key={y}>
-                <line x1="120" y1={y} x2="1280" y2={y} stroke="rgba(255, 255, 255, 0.18)" strokeWidth="0.8" strokeDasharray="4 6" />
-                <text x="125" y={y - 4} fill="rgba(255, 255, 255, 0.45)" fontSize="7" fontFamily="JetBrains Mono, monospace">
-                  WL {400 - idx * 100}
+                <line x1="120" y1={y} x2="1280" y2={y} stroke="rgba(255, 255, 255, 0.15)" strokeWidth="0.8" strokeDasharray="4 6" />
+                <text x="125" y={y - 4} fill="rgba(255, 255, 255, 0.4)" fontSize="7" fontFamily="JetBrains Mono, monospace">
+                  WL {400 - idx * 75}
                 </text>
               </g>
             ))}
 
-            {/* Aerodynamic Wind-Tunnel Streamlines */}
+            {/* ================= BENTLEY CONTINENTAL / FLYING SPUR ARCHITECTURAL SILHOUETTE ================= */}
+            {/* Iconic Bentley Matrix Grille Prow */}
+            <rect x="172" y="275" width="22" height="110" fill="url(#bentley-matrix-hatch)" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" rx="3" />
+            <line x1="183" y1="275" x2="183" y2="385" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.4" />
+
+            {/* Bentley Twin Crystal Jewel Headlamps (Iconic Round Facets) */}
+            {/* Outer Large Matrix Headlamp */}
+            <circle cx="218" cy="295" r="15" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" />
+            <circle cx="218" cy="295" r="10" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" strokeDasharray="2 2" />
+            <circle cx="218" cy="295" r="4" fill="rgba(255, 255, 255, 0.7)" />
+            {/* Inner Smaller Matrix Lamp */}
+            <circle cx="248" cy="292" r="10" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" />
+            <circle cx="248" cy="292" r="3" fill="rgba(255, 255, 255, 0.65)" />
+
+            {/* Signature Bentley "Power Line": arcs aggressively over front wheel and descends through the door */}
             <path
-              d="M 80 270 C 240 270, 380 300, 520 220 C 660 140, 880 150, 1060 210 C 1200 260, 1300 275, 1340 280"
-              stroke="rgba(148, 163, 184, 0.45)"
-              strokeWidth="1.2"
-              strokeDasharray="6 4"
-            />
-            <path
-              d="M 80 310 C 260 310, 420 330, 540 250 C 680 170, 920 180, 1080 250 C 1220 300, 1300 315, 1340 320"
-              stroke="rgba(148, 163, 184, 0.35)"
-              strokeWidth="0.9"
-              strokeDasharray="3 3"
+              d="M 194 285 
+                 C 230 265, 300 250, 360 250 
+                 C 430 250, 520 280, 680 300 
+                 L 830 305"
+              stroke="rgba(255, 255, 255, 0.85)"
+              strokeWidth="1.6"
             />
 
-            {/* Ground Plane */}
-            <line x1="120" y1="440" x2="1280" y2="440" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" strokeDasharray="8 4" />
-
-            {/* Rolls-Royce / Bentley Coachwork Silhouette */}
+            {/* Signature Bentley "Rear Haunch Line": muscular swell rising powerfully over rear axle */}
             <path
-              d="M 180 410 
-                 L 180 340 
-                 C 180 280, 210 260, 240 255 
-                 L 530 255 
-                 C 560 255, 620 190, 710 155 
-                 C 820 115, 980 135, 1070 190 
-                 C 1140 230, 1195 270, 1235 285 
-                 L 1260 295 
-                 C 1275 330, 1270 375, 1260 405 
-                 L 1245 415 
+              d="M 760 310 
+                 C 820 270, 900 240, 970 240 
+                 C 1060 240, 1140 260, 1220 290 
+                 L 1255 310"
+              stroke="rgba(255, 255, 255, 0.9)"
+              strokeWidth="1.8"
+            />
+
+            {/* Main Outer Coachwork Bodyline (Coupe / GT Swept Arc) */}
+            <path
+              d="M 172 385 
+                 L 172 340 
+                 C 172 285, 205 270, 240 268 
+                 L 490 260 
+                 C 530 258, 600 185, 690 152 
+                 C 810 115, 960 135, 1060 185 
+                 C 1130 220, 1185 260, 1225 278 
+                 L 1255 290 
+                 C 1270 325, 1265 375, 1255 405 
+                 L 1240 415 
                  L 1120 415 
                  C 1115 345, 1055 295, 980 295 
                  C 905 295, 845 345, 840 415 
@@ -243,57 +268,80 @@ export const BlueprintBackground: React.FC = () => {
                  C 465 345, 405 295, 330 295 
                  C 255 295, 195 345, 190 415 
                  Z"
-              stroke="rgba(255, 255, 255, 0.85)"
+              stroke="rgba(255, 255, 255, 0.8)"
               strokeWidth="1.8"
             />
 
-            {/* Signature Coachline Crease */}
+            {/* Volumetric CAD Surface Mesh Isolines (Showing the 3D clay surfacing of the bonnet & muscular haunch) */}
+            {/* Bonnet Power Bulge Contours */}
+            <path d="M 230 275 C 310 265, 410 258, 490 258" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.9" strokeDasharray="4 3" />
+            <path d="M 240 265 C 320 255, 420 248, 500 248" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" strokeDasharray="3 3" />
+            {/* Muscular Rear Shoulder Surface Slices */}
+            <path d="M 870 260 C 930 250, 1000 250, 1070 265" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" strokeDasharray="4 3" />
+            <path d="M 890 275 C 950 268, 1010 268, 1080 282" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.8" strokeDasharray="3 3" />
+
+            {/* Greenhouse Window Aperture (Frameless Glasshouse Arc) */}
             <path
-              d="M 195 290 C 340 285, 640 275, 940 285 C 1100 292, 1210 310, 1255 315"
-              stroke="rgba(255, 255, 255, 0.65)"
+              d="M 525 248 
+                 C 580 182, 660 152, 750 145 
+                 C 870 135, 970 158, 1035 204 
+                 C 1070 228, 1095 255, 1105 268 
+                 L 525 248 Z"
+              stroke="rgba(255, 255, 255, 0.55)"
               strokeWidth="1.2"
-              strokeDasharray="6 3"
-            />
-
-            {/* Upright Front Pantheon Grille Silhouette & Mascot Datum */}
-            <line x1="180" y1="260" x2="180" y2="400" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.4" />
-            <circle cx="180" cy="245" r="4" stroke="rgba(255, 255, 255, 0.65)" strokeWidth="0.8" />
-
-            {/* Greenhouse Window Arcs */}
-            <path
-              d="M 550 250 
-                 C 600 185, 680 155, 770 148 
-                 C 890 138, 990 162, 1055 208 
-                 C 1090 232, 1115 260, 1125 272 
-                 L 550 250 Z"
-              stroke="rgba(255, 255, 255, 0.5)"
-              strokeWidth="1.1"
               strokeDasharray="4 2"
             />
+            {/* Flying B-Pillar & Rear Quarter Glass Spar */}
+            <line x1="770" y1="145" x2="760" y2="280" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1.2" />
+            <line x1="930" y1="165" x2="920" y2="275" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" strokeDasharray="3 2" />
 
-            {/* Reverse Coach Doors Cutlines & Dual Centered Handles */}
-            <line x1="780" y1="147" x2="770" y2="415" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1.2" />
-            <line x1="970" y1="168" x2="955" y2="415" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" strokeDasharray="3 2" />
-            <rect x="762" y="278" width="8" height="3" fill="rgba(255, 255, 255, 0.75)" rx="1" />
-            <rect x="774" y="278" width="8" height="3" fill="rgba(255, 255, 255, 0.75)" rx="1" />
+            {/* Twin Oval Exhaust Tailpipe Cross-Section Wireframe */}
+            <ellipse cx="1248" cy="385" rx="10" ry="6" stroke="rgba(255, 255, 255, 0.75)" strokeWidth="1.2" />
+            <ellipse cx="1248" cy="385" rx="6" ry="3.5" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
 
-            {/* Front Wheel Hub (330, 415) */}
+            {/* ================= BENTLEY DIRECTIONAL FORGED ALLOY WHEEL ASSEMBLIES ================= */}
+            {/* Front Wheel: (330, 415) */}
             <g transform="translate(330, 415)">
-              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.6" />
+              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.6" />
               <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" strokeDasharray="4 3" />
-              <circle cx="0" cy="0" r="18" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.2" />
-              <text x="0" y="3" textAnchor="middle" fill="rgba(255, 255, 255, 0.65)" fontSize="7" fontFamily="JetBrains Mono, monospace">
-                RR
+              {/* Carbon-Ceramic Brake Rotor with Cross-Drilled Holes */}
+              <circle cx="0" cy="0" r="42" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.8" strokeDasharray="2 2" />
+              {/* 10-Spoke Directional Forged Blades */}
+              {[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map((deg) => {
+                const rad = (deg * Math.PI) / 180;
+                const x1 = Math.cos(rad) * 16;
+                const y1 = Math.sin(rad) * 16;
+                const x2 = Math.cos(rad + 0.15) * 54;
+                const y2 = Math.sin(rad + 0.15) * 54;
+                return (
+                  <line key={deg} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" />
+                );
+              })}
+              {/* Center Hub with Bentley Winged B Motif Tag */}
+              <circle cx="0" cy="0" r="16" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" fill="rgba(0,0,0,0.6)" />
+              <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.9)" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
+                B
               </text>
             </g>
 
-            {/* Rear Wheel Hub (980, 415) */}
+            {/* Rear Wheel: (980, 415) */}
             <g transform="translate(980, 415)">
-              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.6" />
+              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.6" />
               <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" strokeDasharray="4 3" />
-              <circle cx="0" cy="0" r="18" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.2" />
-              <text x="0" y="3" textAnchor="middle" fill="rgba(255, 255, 255, 0.65)" fontSize="7" fontFamily="JetBrains Mono, monospace">
-                RR
+              <circle cx="0" cy="0" r="42" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.8" strokeDasharray="2 2" />
+              {[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map((deg) => {
+                const rad = (deg * Math.PI) / 180;
+                const x1 = Math.cos(rad) * 16;
+                const y1 = Math.sin(rad) * 16;
+                const x2 = Math.cos(rad + 0.15) * 54;
+                const y2 = Math.sin(rad + 0.15) * 54;
+                return (
+                  <line key={deg} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.9" />
+                );
+              })}
+              <circle cx="0" cy="0" r="16" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.2" fill="rgba(0,0,0,0.6)" />
+              <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.9)" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
+                B
               </text>
             </g>
 
@@ -302,21 +350,70 @@ export const BlueprintBackground: React.FC = () => {
               <circle cx="0" cy="0" r="11" stroke="rgba(255, 255, 255, 0.75)" strokeWidth="1" />
               <path d="M 0 -16 L 0 16 M -16 0 L 16 0" stroke="rgba(255, 255, 255, 0.75)" strokeWidth="1" />
               <circle cx="0" cy="0" r="3" fill="rgba(255, 255, 255, 0.9)" />
-            </g>
-
-            {/* Dimension Lines */}
-            <g transform="translate(0, 500)">
-              <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" />
-              <path d="M 330 -5 L 330 5 M 980 -5 L 980 5" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.2" />
-              <text x="655" y="-9" textAnchor="middle" fill="rgba(255, 255, 255, 0.8)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.16em">
-                |← LONG WHEELBASE PLATFORM: 3,450 mm →|
+              <text x="18" y="4" fill="rgba(255, 255, 255, 0.7)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+                ⌖ CG / DYNAMIC 48:52 REAR BIAS
               </text>
             </g>
 
+            {/* ================= LATE-STAGE CAD TOOLING RELEASE ANNOTATIONS ================= */}
+            {/* Wheelbase Dimension Line: 3,194 mm */}
+            <g transform="translate(0, 500)">
+              <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" />
+              <path d="M 330 -5 L 330 5 M 980 -5 L 980 5" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.2" />
+              <path d="M 336 -3 L 330 0 L 336 3 M 974 -3 L 980 0 L 974 3" fill="rgba(255, 255, 255, 0.7)" />
+              <text x="655" y="-9" textAnchor="middle" fill="rgba(255, 255, 255, 0.85)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.16em">
+                |← MSB CHASSIS WHEELBASE: 3,194 mm →|
+              </text>
+            </g>
+
+            {/* Overall Vehicle Length: 5,316 mm */}
             <g transform="translate(0, 535)">
-              <line x1="180" y1="0" x2="1260" y2="0" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" strokeDasharray="5 3" />
-              <text x="720" y="-7" textAnchor="middle" fill="rgba(255, 255, 255, 0.65)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
-                TOTAL LENGTH OVERALL: 5,450 mm
+              <line x1="172" y1="0" x2="1255" y2="0" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" strokeDasharray="5 3" />
+              <path d="M 172 -4 L 172 4 M 1255 -4 L 1255 4" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" />
+              <text x="715" y="-7" textAnchor="middle" fill="rgba(255, 255, 255, 0.7)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
+                TOTAL LENGTH OVERALL: 5,316 mm · TRACK WIDTH: 1,671 mm
+              </text>
+            </g>
+
+            {/* Height Dimension Line: 1,484 mm */}
+            <g transform="translate(110, 0)">
+              <line x1="0" y1="130" x2="0" y2="440" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" />
+              <path d="M -4 130 L 4 130 M -4 440 L 4 440" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" />
+              <text x="-8" y="295" textAnchor="end" fill="rgba(255, 255, 255, 0.65)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em" transform="rotate(-90 -8 295)">
+                OVERALL HEIGHT: 1,484 mm
+              </text>
+            </g>
+
+            {/* Aerodynamic Tooling Surface Release Callout */}
+            <g transform="translate(860, 95)">
+              <line x1="0" y1="0" x2="50" y2="-30" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
+              <line x1="50" y1="-30" x2="200" y2="-30" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
+              <circle cx="0" cy="0" r="2.5" fill="rgba(255, 255, 255, 0.9)" />
+              <text x="55" y="-35" fill="rgba(255, 255, 255, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
+                CLASS-A FASTBACK HAUNCH R: 1,220mm // ZERO-LIFT SPEC
+              </text>
+            </g>
+
+            <g transform="translate(240, 220)">
+              <line x1="0" y1="0" x2="-40" y2="-35" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
+              <line x1="-40" y1="-35" x2="-160" y2="-35" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
+              <circle cx="0" cy="0" r="2.5" fill="rgba(255, 255, 255, 0.9)" />
+              <text x="-160" y="-40" fill="rgba(255, 255, 255, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
+                MATRIX PROW RAKE 88.5° // DRAG COEFFICIENT Cd: 0.29
+              </text>
+            </g>
+
+            {/* Official Advanced Styling Studio Title Block */}
+            <g transform="translate(1040, 50)">
+              <rect x="0" y="0" width="280" height="58" fill="rgba(0, 0, 0, 0.7)" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.9" rx="4" />
+              <text x="14" y="20" fill="rgba(255, 255, 255, 0.95)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" fontWeight="600" letterSpacing="0.14em">
+                BENTLEY ADVANCED STYLING STUDIO
+              </text>
+              <text x="14" y="35" fill="rgba(148, 163, 184, 0.85)" fontSize="8" fontFamily="JetBrains Mono, monospace">
+                STAGE 04: PRODUCTION TOOLING RELEASE
+              </text>
+              <text x="14" y="47" fill="rgba(148, 163, 184, 0.6)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
+                TORSIONAL RIGIDITY: 34,000 Nm/deg · W12 / V8 HYBRID
               </text>
             </g>
           </g>
