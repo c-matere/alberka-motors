@@ -334,10 +334,6 @@ export function App() {
                         <div className="relative h-full bg-[#0e0e11] hover:bg-[#121216] p-7 sm:p-9 border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl flex flex-col justify-between space-y-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                           <div className="space-y-4">
                             <div className="inline-flex items-center gap-2">
-                              <div className="live-beacon">
-                                <span className="live-beacon-ping" />
-                                <span className="live-beacon-dot" />
-                              </div>
                               <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
                                 MOMBASA FLAGSHIP
                               </span>
@@ -368,10 +364,6 @@ export function App() {
                         <div className="relative h-full bg-[#0e0e11] hover:bg-[#121216] p-7 sm:p-9 border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl flex flex-col justify-between space-y-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
                           <div className="space-y-4">
                             <div className="inline-flex items-center gap-2">
-                              <div className="live-beacon">
-                                <span className="live-beacon-ping" />
-                                <span className="live-beacon-dot" />
-                              </div>
                               <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
                                 NAIROBI WESTLANDS
                               </span>

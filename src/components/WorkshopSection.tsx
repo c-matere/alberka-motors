@@ -122,10 +122,6 @@ export const WorkshopSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
-            <div className="live-beacon">
-              <span className="live-beacon-ping" />
-              <span className="live-beacon-dot" />
-            </div>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
               MOMBASA TECHNICAL WORKSHOP · TANGANA ROAD
             </span>
@@ -229,7 +225,6 @@ export const WorkshopSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/[0.08]">
               <div>
                 <div className="inline-flex items-center gap-2 mb-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                   <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">
                     STAGE 0{activeStage + 1} OF 06
                   </span>

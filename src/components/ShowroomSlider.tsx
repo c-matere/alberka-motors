@@ -147,8 +147,6 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-1">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            {/* The single disciplined red punctum */}
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
             <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-zinc-400 font-medium">
               FEATURED SHOWROOM FLEET // MOMBASA & NAIROBI
             </span>
@@ -259,7 +257,6 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
               {/* Clean Monochrome Grade Badge with single tiny red dot */}
               <div className="bg-black/85 backdrop-blur-md border border-zinc-700 text-white text-[11px] font-mono px-3 py-1 rounded-md flex items-center gap-1.5 shadow-md">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                 <span className="font-bold">{activeVehicle.auctionGrade}</span>
               </div>
               <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-mono px-3 py-1 rounded-md">
@@ -503,7 +500,6 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
               <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {activeVehicle.stockNo} · {activeVehicle.name}
               </span>

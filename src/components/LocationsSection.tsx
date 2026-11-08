@@ -37,10 +37,6 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         {/* Section Header */}
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
-            <div className="live-beacon">
-              <span className="live-beacon-ping" />
-              <span className="live-beacon-dot" />
-            </div>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
               PHYSICAL HUBS · MOMBASA & NAIROBI
             </span>
@@ -61,10 +57,6 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-1">
                 <div className="inline-flex items-center gap-2">
-                  <div className="live-beacon">
-                    <span className="live-beacon-ping" />
-                    <span className="live-beacon-dot" />
-                  </div>
                   <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-widest font-semibold">MOMBASA FLAGSHIP</span>
                 </div>
                 <span className="text-[10px] font-mono bg-zinc-900 border border-white/10 text-zinc-400 px-2 py-0.5 rounded">
@@ -114,10 +106,6 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-1">
                 <div className="inline-flex items-center gap-2">
-                  <div className="live-beacon">
-                    <span className="live-beacon-ping" />
-                    <span className="live-beacon-dot" />
-                  </div>
                   <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-widest font-semibold">NAIROBI BRANCH</span>
                 </div>
                 <span className="text-[10px] font-mono bg-zinc-900 border border-white/10 text-zinc-400 px-2 py-0.5 rounded">

@@ -148,10 +148,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         
         {/* Minimalist Provenance Eyebrow */}
         <div className="inline-flex items-center gap-2 animate-hero-1">
-          <div className="live-beacon">
-            <span className="live-beacon-ping" />
-            <span className="live-beacon-dot" />
-          </div>
           <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
             MOMBASA & NAIROBI
           </span>
@@ -172,7 +168,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         <div className="flex flex-wrap items-center justify-center gap-3.5 pt-1 animate-hero-4">
           <button
             onClick={onExploreFleet}
-            className="btn-white btn-glint group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
+            className="btn-white group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
           >
             <span>Explore Collection</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -205,7 +201,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 loop
                 playsInline
                 key={currentSlide.id}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-103 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
                 poster={currentSlide.imageUrl}
               >
                 <source src={currentSlide.videoUrl} type="video/mp4" />
@@ -216,7 +212,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 key={currentSlide.id}
                 src={currentSlide.imageUrl}
                 alt={currentSlide.name}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-103 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
               />
             )}
 
@@ -225,12 +221,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
             {/* Left Top: Discreet Provenance Seal */}
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
-              <div className="bg-black/75 backdrop-blur-md border border-white/15 px-3 py-1 rounded-md text-[11px] font-mono text-white flex items-center gap-2 shadow-lg">
-                <div className="live-beacon">
-                  <span className="live-beacon-ping" />
-                  <span className="live-beacon-dot" />
-                </div>
-                <span>{currentSlide.grade}</span>
+              <div className="bg-black/75 backdrop-blur-md border border-white/15 px-3 py-1 rounded-md text-[11px] font-mono text-white flex items-center gap-1.5 shadow-lg">
+                <span className="text-white font-bold">{currentSlide.grade}</span>
                 <span className="text-zinc-600">·</span>
                 <span className="text-zinc-300">{currentSlide.auctionHall}</span>
               </div>
@@ -295,14 +287,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   title={`Slide ${idx + 1}`}
                 >
                   {idx === activeSlideIdx ? (
-                    <div className="relative h-1 w-8 sm:w-10 bg-white/20 rounded-full overflow-hidden">
+                    <div className="relative h-[2px] w-8 sm:w-11 bg-white/20 rounded-full overflow-hidden">
                       <div
                         key={`hero-progress-${activeSlideIdx}`}
-                        className="h-full bg-white rounded-full animate-hero-progress shadow-[0_0_8px_rgba(255,255,255,0.9)]"
+                        className="h-full bg-white rounded-full animate-hero-progress"
                       />
                     </div>
                   ) : (
-                    <div className="h-1 w-2 rounded-full bg-white/30 group-hover:bg-white/60 transition-all duration-300" />
+                    <div className="h-[2px] w-2 rounded-full bg-white/30 group-hover:bg-white/60 transition-all duration-300" />
                   )}
                 </button>
               ))}
@@ -324,7 +316,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
               <span className="font-mono text-sm text-white font-bold uppercase tracking-wider truncate">
                 {currentSlide.name}
               </span>

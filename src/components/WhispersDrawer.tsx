@@ -67,7 +67,6 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
           <div className="p-6 border-b border-[#27272a] flex items-center justify-between">
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                 <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold block">
                   DIRECT CONCIERGE
                 </span>

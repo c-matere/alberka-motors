@@ -15,10 +15,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
         {/* Section Header */}
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
-            <div className="live-beacon">
-              <span className="live-beacon-ping" />
-              <span className="live-beacon-dot" />
-            </div>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
               HERITAGE & PROVENANCE · ESTABLISHED 2000
             </span>

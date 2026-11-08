@@ -146,10 +146,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/[0.08]">
           <div className="space-y-3 text-left">
             <div className="inline-flex items-center gap-2">
-              <div className="live-beacon">
-                <span className="live-beacon-ping" />
-                <span className="live-beacon-dot" />
-              </div>
               <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
                 EDITORIAL JOURNAL · AUTOMOTIVE RESEARCH
               </span>
@@ -360,7 +356,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
               <div className="space-y-0.5">
                 <div className="inline-flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                   <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-400 font-semibold">
                     EDITORIAL DESK
                   </span>

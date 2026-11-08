@@ -19,7 +19,6 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
         {/* Header */}
         <div className="text-center max-w-xl mx-auto space-y-2">
           <div className="inline-flex items-center justify-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
               DIRECTORY & NAVIGATION
             </span>

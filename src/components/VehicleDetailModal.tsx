@@ -51,7 +51,6 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
         <div className="sticky top-0 z-30 bg-[#09090b]/95 backdrop-blur-md px-6 py-4 border-b border-zinc-800 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-700 rounded">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
               <span className="font-mono text-xs text-zinc-300 font-bold">
                 {vehicle.stockNo}
               </span>
@@ -90,7 +89,6 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           {/* Main Showcase Hero */}
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
               <span className="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
                 Direct Japanese Import • {vehicle.status}
               </span>
@@ -370,7 +368,6 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             </button>
 
             <div className="inline-flex items-center gap-2 mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
               <span className="text-xs uppercase tracking-wider text-zinc-400 font-semibold block">
                 Japanese Auction Document
               </span>

@@ -106,7 +106,6 @@ const EditorialFeatureSection: React.FC<{
         {/* Section Header */}
         <div className="space-y-3 max-w-[850px] text-left">
           <div className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
             <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-medium">
               {String(sectionIndex + 1).padStart(2, '0')} OF {String(totalSections).padStart(2, '0')} — {feature.badge}
             </span>
@@ -144,7 +143,6 @@ const EditorialFeatureSection: React.FC<{
             {/* Top Bar: Slide Counter & Metric Badge */}
             <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20 pointer-events-none">
               <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-white rounded-lg border border-white/15 flex items-center gap-2 shadow-lg">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
                 <span className="font-bold">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
                 <span className="text-zinc-600">/</span>
                 <span className="text-zinc-400">{String(feature.slides.length).padStart(2, '0')}</span>
@@ -714,7 +712,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 rounded-md text-xs font-semibold text-white transition-colors cursor-pointer"
                 title="Switch vehicle"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
                 <span className="font-mono text-zinc-400 text-[11px] hidden sm:inline">{vehicle.stockNo}</span>
                 <span className="truncate max-w-[130px] sm:max-w-[200px]">{vehicle.name}</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-zinc-400 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
@@ -789,7 +786,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         <div className="relative z-10 space-y-6">
           
           <div className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
             <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-medium">
               GRADE {vehicle.auctionGrade} · {vehicle.auctionHall}
             </span>
@@ -1216,7 +1212,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             
             <div className="space-y-2 max-w-3xl">
               <div className="inline-flex items-center gap-2 font-mono text-[11px] text-zinc-400 uppercase font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                 <span>CLOSER LOOK // 4 KEY ADVANTAGES</span>
               </div>
               <h2 className="text-[28px] sm:text-[38px] font-bold text-white tracking-tight leading-tight">
@@ -1241,7 +1236,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-800 text-[11px] font-mono text-white font-bold flex items-center gap-1.5 shadow-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                       <span>{point.metric}</span>
                     </div>
                   </div>
@@ -1280,7 +1274,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
             <div className="space-y-2 max-w-2xl">
               <div className="inline-flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
                 <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-medium">
                   PHOTOGRAPHIC ARCHIVE
                 </span>
@@ -1342,7 +1335,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20">
                 <div className="flex items-center gap-2">
                   <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-300 rounded-lg border border-white/15 flex items-center gap-2 shadow-lg">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
                     <span className="text-white font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
                     <span className="text-zinc-600">/</span>
                     <span className="text-zinc-400">{String(filteredPhotos.length).padStart(2, '0')}</span>
@@ -1705,7 +1697,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
               <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {vehicle.stockNo} · {vehicle.name}
               </span>

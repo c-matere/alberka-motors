@@ -109,10 +109,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         
         {/* Category & Metadata Pill */}
         <div className="inline-flex items-center gap-2.5 font-mono text-xs text-zinc-400">
-          <div className="live-beacon">
-            <span className="live-beacon-ping" />
-            <span className="live-beacon-dot" />
-          </div>
           <span className="uppercase text-white font-semibold tracking-wider">{post.category}</span>
           <span>·</span>
           <span>{post.readTime}</span>
@@ -171,10 +167,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         {/* Executive Takeaways Box */}
         <div className="relative bg-[#0c0c0f] border border-white/[0.08] hover:border-white/20 rounded-2xl p-6 sm:p-8 space-y-4 before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent transition-colors">
           <div className="flex items-center gap-2">
-            <div className="live-beacon">
-              <span className="live-beacon-ping" />
-              <span className="live-beacon-dot" />
-            </div>
             <span className="font-mono text-xs uppercase tracking-wider text-white font-bold">
               EXECUTIVE SUMMARY & ESSENTIAL TAKEAWAY
             </span>

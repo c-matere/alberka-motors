@@ -79,12 +79,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
           {/* Top Left: Authentic Japanese Provenance Seal */}
           <div className="absolute top-3 left-3 z-20 pointer-events-none">
-            <div className="font-mono text-[10.5px] font-semibold bg-black/80 backdrop-blur-md text-white border border-white/15 px-2.5 py-1 rounded-md flex items-center gap-2 shadow-lg">
-              <div className="live-beacon">
-                <span className="live-beacon-ping" />
-                <span className="live-beacon-dot" />
-              </div>
-              <span>Grade {vehicle.auctionGrade}</span>
+            <div className="font-mono text-[10.5px] font-semibold bg-black/80 backdrop-blur-md text-white border border-white/15 px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-lg">
+              <span className="text-white font-bold">Grade {vehicle.auctionGrade}</span>
               <span className="text-zinc-600">·</span>
               <span className="text-zinc-300 font-normal">{vehicle.auctionHall}</span>
             </div>

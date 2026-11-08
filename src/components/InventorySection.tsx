@@ -75,10 +75,6 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       {/* 1. Section Editorial Title Bar (Scrolls naturally) */}
       <div className="pt-12 sm:pt-16 pb-6 px-4 sm:px-8 max-w-[1240px] mx-auto text-center space-y-3">
         <div className="inline-flex items-center gap-2">
-          <div className="live-beacon">
-            <span className="live-beacon-ping" />
-            <span className="live-beacon-dot" />
-          </div>
           <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
             VERIFIED INVENTORY · MOMBASA & NAIROBI
           </span>
@@ -207,10 +203,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         {/* Results Counter Bar */}
         <div className="flex items-center justify-between text-xs text-zinc-400 font-mono px-1">
           <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
             <span>Showing {filteredVehicles.length} of {vehicles.length} verified vehicles in stock</span>
           </div>
           <span className="hidden sm:inline text-zinc-500 text-[11px]">Tangana Rd, Mombasa & Westlands, Nairobi</span>
@@ -263,7 +256,6 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         <div className="relative bg-[#0c0c0f] border border-white/[0.08] rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent mt-12">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
               <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-semibold">
                 CUSTOM AUCTION ORDER
               </span>

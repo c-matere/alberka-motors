@@ -71,7 +71,6 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
                       <span className="font-mono text-[10.5px] text-zinc-300 font-bold block">
                         {vehicle.stockNo} · Grade {vehicle.auctionGrade}
                       </span>
