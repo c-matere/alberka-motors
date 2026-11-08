@@ -139,7 +139,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   };
 
   return (
-    <section className="w-full bg-[#09090b] py-14 sm:py-20 px-4 sm:px-8 text-[#f4f4f5] border-t border-white/[0.08]">
+    <section className="w-full bg-transparent py-14 sm:py-20 px-4 sm:px-8 text-[#f4f4f5] border-t border-white/[0.08]">
       <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16">
         
         {/* Section Header with "Write Article" Action */}

@@ -63,7 +63,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
   return (
-    <section className="w-full bg-[#09090b] text-[#f4f4f5] border-t border-white/[0.08] relative">
+    <section className="w-full bg-transparent text-[#f4f4f5] border-t border-white/[0.08] relative">
       
       {/* 1. Section Editorial Title Bar (Scrolls naturally with generous breathing space) */}
       <div className="pt-16 sm:pt-24 pb-10 sm:pb-14 px-4 sm:px-8 max-w-[1240px] mx-auto text-center space-y-4">

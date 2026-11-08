@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigate,
 }) => {
   return (
-    <footer className="w-full bg-[#09090b] border-t border-white/[0.08] text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
+    <footer className="w-full bg-[#070709]/85 backdrop-blur-md border-t border-white/[0.08] text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
       <div className="max-w-[1240px] mx-auto">
         
         {/* Disclaimers & Consumer Assurance */}

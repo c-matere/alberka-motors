@@ -116,7 +116,7 @@ export const WorkshopSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-4 sm:px-8 text-[#f4f4f5] border-t border-white/[0.08]">
+    <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-[#f4f4f5] border-t border-white/[0.08]">
       <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20">
         
         {/* Section Header */}

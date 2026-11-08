@@ -80,7 +80,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   };
 
   return (
-    <article className="w-full bg-[#09090b] text-[#f4f4f5] pb-24 sm:pb-32">
+    <article className="w-full bg-transparent text-[#f4f4f5] pb-24 sm:pb-32">
       
       {/* 1. Sticky Breadcrumb & Top Bar with Hairline Reading Progress */}
       <div className="sticky top-16 sm:top-[68px] z-30 bg-[#09090b]/90 backdrop-blur-xl border-b border-white/[0.08] px-4 sm:px-8 py-3 transition-all">

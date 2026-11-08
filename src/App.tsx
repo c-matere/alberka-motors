@@ -20,6 +20,7 @@ import { MobileBottomDock } from './components/MobileBottomDock';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { Footer } from './components/Footer';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
+import { BlueprintBackground } from './components/BlueprintBackground';
 import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
@@ -173,7 +174,9 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#09090b] text-[#f4f4f5]">
+    <div className="min-h-screen flex flex-col bg-[#09090b] text-[#f4f4f5] relative">
+      {/* Studio Blueprint & Atmospheric Canvas */}
+      <BlueprintBackground />
       
       {/* Clean Single Top Navigation Bar */}
       <Navbar
@@ -219,7 +222,7 @@ export function App() {
                 />
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
-                <section className="w-full bg-[#09090b] py-24 sm:py-36 px-4 sm:px-8 border-b border-white/[0.07]">
+                <section className="w-full bg-transparent py-24 sm:py-36 px-4 sm:px-8 border-b border-white/[0.07]">
                   <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-white/[0.07]">
                       <div>
@@ -257,7 +260,7 @@ export function App() {
                 </section>
 
                 {/* Open Architectural 3-Pillar Provenance Manifesto (No heavy boxes - Zen whitespace) */}
-                <section className="w-full bg-[#070709] py-28 sm:py-40 px-4 sm:px-8 border-b border-white/[0.07]">
+                <section className="w-full bg-[#070709]/50 backdrop-blur-[2px] py-28 sm:py-40 px-4 sm:px-8 border-b border-white/[0.07]">
                   <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-24">
                     <div className="max-w-2xl text-left">
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400 block mb-3">
@@ -349,7 +352,7 @@ export function App() {
                 </section>
 
                 {/* Serene Showrooms Dispatch (Mombasa & Nairobi - Crisp, uncluttered layout) */}
-                <section className="w-full bg-[#09090b] py-28 sm:py-36 px-4 sm:px-8 border-b border-white/[0.07]">
+                <section className="w-full bg-transparent py-28 sm:py-36 px-4 sm:px-8 border-b border-white/[0.07]">
                   <div className="max-w-[1240px] mx-auto space-y-16">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-white/[0.07]">
                       <div>

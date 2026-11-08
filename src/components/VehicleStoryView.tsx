@@ -692,7 +692,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const activeVeneer = veneerFinishes[selectedVeneerIndex];
 
   return (
-    <div className="w-full bg-[#09090b] text-[#f4f4f5] pb-32">
+    <div className="w-full bg-transparent text-[#f4f4f5] pb-32">
       
       {/* 1. SLIM, UNCONGESTED MODEL SUB-BAR */}
       <div className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-zinc-800 h-12 px-4 sm:px-8 sticky top-16 z-30 transition-all flex items-center">

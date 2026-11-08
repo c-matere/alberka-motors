@@ -139,7 +139,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   };
 
   return (
-    <section className="relative w-full bg-[#09090b] pt-16 sm:pt-24 pb-20 sm:pb-32 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
+    <section className="relative w-full bg-transparent pt-16 sm:pt-24 pb-20 sm:pb-32 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
       
       {/* Subtle Monochrome Ambient Spotlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none animate-ambient-spotlight" />
