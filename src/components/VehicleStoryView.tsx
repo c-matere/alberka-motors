@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { Vehicle, EditorialFeature, FeatureSlide } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
+import { SectionGradientFade } from './SectionGradientFade';
 
 interface VehicleStoryViewProps {
   vehicle: Vehicle;
@@ -103,8 +104,12 @@ const EditorialFeatureSection: React.FC<{
   };
 
   return (
-    <section className="w-full bg-[#09090b] border-b border-white/[0.08] py-16 sm:py-24 px-4 sm:px-8">
-      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10">
+    <section className="w-full bg-transparent relative py-16 sm:py-24 px-4 sm:px-8">
+      {/* Atmospheric Top & Bottom Black Gradient Fades */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10 relative z-10">
         
         {/* Section Header */}
         <div className="space-y-3 max-w-[850px] text-left">
@@ -695,14 +700,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     <div className="w-full bg-transparent text-[#f4f4f5] pb-32">
       
       {/* 1. SLIM, UNCONGESTED MODEL SUB-BAR */}
-      <div className="w-full bg-[#09090b]/95 backdrop-blur-md border-b border-zinc-800 h-12 px-4 sm:px-8 sticky top-16 z-30 transition-all flex items-center">
+      <div className="w-full bg-[#09090b]/85 backdrop-blur-xl border-b border-white/[0.08] h-12 px-4 sm:px-8 sticky top-16 sm:top-[68px] z-30 transition-all flex items-center">
         <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between gap-4">
           
           {/* Left: Back Link & Elegant Model Selector Dropdown */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               onClick={onBackToFleet}
-              className="text-xs font-medium text-zinc-400 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 px-2.5 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-md transition-colors"
+              className="text-xs font-medium text-zinc-300 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 px-2.5 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] rounded-md transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span className="hidden xs:inline">Back to</span>
@@ -715,7 +720,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <div className="relative">
               <button
                 onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 rounded-md text-xs font-semibold text-white transition-colors cursor-pointer"
+                className="flex items-center gap-2 px-3 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/20 rounded-md text-xs font-semibold text-white transition-colors cursor-pointer"
                 title="Switch vehicle"
               >
                 <span className="font-mono text-zinc-400 text-[11px] hidden sm:inline">{vehicle.stockNo}</span>
@@ -871,8 +876,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </div>
 
-            {/* Architectural Metric Matrix (Hairline Dividers) */}
-            <div className="border-y border-white/[0.08] py-6 max-w-[1100px] mx-auto mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
+            {/* Architectural Metric Matrix (Gradient Feather Dividers) */}
+            <div className="py-6 max-w-[1100px] mx-auto mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left relative before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/15 after:to-transparent">
               <div>
                 <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-1">
                   YEAR & MILEAGE
@@ -913,9 +918,16 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
       </section>
 
+      {/* Section Gradient Fade Transition */}
+      <SectionGradientFade />
+
       {/* 3. CUSTOM SPECIFICATIONS SUITE */}
-      <section className="w-full bg-[#121215] py-16 px-6 sm:px-10 border-y border-zinc-800">
-        <div className="max-w-[1400px] mx-auto space-y-8">
+      <section className="w-full bg-transparent relative py-16 px-6 sm:px-10">
+        {/* Soft black gradient fades */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+        <div className="max-w-[1400px] mx-auto space-y-8 relative z-10">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
@@ -946,7 +958,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={() => setBespokeTab(tab.id as any)}
                   className={`flex items-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 px-3 sm:px-4 text-xs font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
                     isActive
-                      ? 'border-white text-white bg-zinc-900'
+                      ? 'border-white text-white bg-white/[0.08]'
                       : 'border-transparent text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -958,8 +970,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             })}
           </div>
 
-          {/* Tab Panes */}
-          <div className="bg-zinc-900/60 p-6 sm:p-8 border border-zinc-800 rounded-xl">
+          {/* Tab Panes with Crystalline Glassmorphism */}
+          <div className="bg-white/[0.035] backdrop-blur-[2px] p-6 sm:p-8 border border-white/[0.12] rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
             {bespokeTab === 'exterior' && (
               <div className="space-y-6">
                 <div>
@@ -1359,10 +1371,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
       </section>
 
+      {/* Section Gradient Fade Transition */}
+      <SectionGradientFade />
+
       {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS */}
       {vehicle.closerLookPoints && vehicle.closerLookPoints.length > 0 && (
-        <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 border-t border-zinc-800">
-          <div className="max-w-[1400px] mx-auto space-y-12">
+        <section className="w-full bg-transparent relative py-16 sm:py-24 px-6 sm:px-10">
+          {/* Soft black gradient fades */}
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+          <div className="max-w-[1400px] mx-auto space-y-12 relative z-10">
             
             <div className="space-y-2 max-w-3xl">
               <div className="inline-flex items-center gap-2 font-mono text-[11px] text-zinc-400 uppercase font-semibold">
@@ -1381,15 +1400,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 <div
                   key={point.id || pIdx}
                   onClick={() => openPhotoByUrl(point.imageUrl)}
-                  className="bg-[#121215] border border-zinc-800 hover:border-zinc-500 rounded-xl overflow-hidden group transition-all duration-400 ease-out flex flex-col justify-between cursor-pointer shadow-lg hover:-translate-y-1.5 hover:shadow-2xl active:scale-[0.99]"
+                  className="bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden group transition-colors duration-300 flex flex-col justify-between cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
-                  <div className="w-full h-48 sm:h-52 overflow-hidden bg-black relative">
+                  <div className="w-full h-48 sm:h-52 overflow-hidden bg-black/50 relative border-b border-white/[0.08]">
                     <img
                       src={point.imageUrl}
                       alt={point.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-800 text-[11px] font-mono text-white font-bold flex items-center gap-1.5 shadow-md">
+                    <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded border border-white/15 text-[11px] font-mono text-white font-bold flex items-center gap-1.5 shadow-md">
                       <span>{point.metric}</span>
                     </div>
                   </div>
@@ -1407,7 +1426,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                    <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-400 font-mono">
                       <span>{point.metricLabel}</span>
                       <span className="text-white font-bold">{point.metric}</span>
                     </div>
@@ -1420,9 +1439,16 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </section>
       )}
 
+      {/* Section Gradient Fade Transition */}
+      <SectionGradientFade />
+
       {/* 4. THE MASTER PHOTOGRAPHIC GALLERY (ROLLS-ROYCE STYLE APERTURE) */}
-      <section className="w-full bg-[#09090b] py-20 px-4 sm:px-8 border-t border-white/[0.08]">
-        <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10">
+      <section className="w-full bg-transparent relative py-20 px-4 sm:px-8">
+        {/* Soft black gradient fades */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+        <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10 relative z-10">
           
           {/* Gallery Header & Filter Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
@@ -1610,21 +1636,30 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       {/* 5. DEDICATED FEATURE SPREADS */}
       <div className="w-full">
         {vehicle.editorialFeatures.map((feat, idx) => (
-          <EditorialFeatureSection
-            key={feat.id}
-            feature={feat}
-            sectionIndex={idx}
-            totalSections={vehicle.editorialFeatures.length}
-            vehicleName={vehicle.name}
-            stockNo={vehicle.stockNo}
-            onOpenLightbox={(photo) => openPhotoByUrl(photo.url)}
-          />
+          <React.Fragment key={feat.id}>
+            <EditorialFeatureSection
+              feature={feat}
+              sectionIndex={idx}
+              totalSections={vehicle.editorialFeatures.length}
+              vehicleName={vehicle.name}
+              stockNo={vehicle.stockNo}
+              onOpenLightbox={(photo) => openPhotoByUrl(photo.url)}
+            />
+            {idx < vehicle.editorialFeatures.length - 1 && <SectionGradientFade />}
+          </React.Fragment>
         ))}
       </div>
 
+      {/* Section Gradient Fade Transition */}
+      <SectionGradientFade />
+
       {/* 5. TECHNICAL ARCHIVES & AUCTION SHEET */}
-      <section className="w-full bg-[#09090b] py-20 px-6 sm:px-10 border-t border-[#27272a]">
-        <div className="max-w-[1400px] mx-auto space-y-10">
+      <section className="w-full bg-transparent relative py-20 px-6 sm:px-10">
+        {/* Soft black gradient fades */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+        <div className="max-w-[1400px] mx-auto space-y-10 relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div className="space-y-2">
               <span className="brand-eyebrow block">FACTORY SPECS & INSPECTION</span>
@@ -1642,35 +1677,35 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </button>
           </div>
 
-          {/* Technical Specs 4-Column Grid */}
+          {/* Technical Specs 4-Column Grid with Crystalline Glassmorphism */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 bg-[#121215] border border-zinc-800 rounded-lg space-y-1.5">
-              <span className="text-[10.5px] font-mono text-zinc-500 uppercase block">Engine & Power</span>
+            <div className="p-5 bg-white/[0.035] backdrop-blur-[2px] border border-white/[0.12] rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+              <span className="text-[10.5px] font-mono text-zinc-400 uppercase block">Engine & Power</span>
               <p className="font-bold text-white text-[15px]">{vehicle.engine}</p>
-              <p className="text-[13px] text-zinc-400 font-mono">{vehicle.power} · {vehicle.torque}</p>
+              <p className="text-[13px] text-zinc-300 font-mono">{vehicle.power} · {vehicle.torque}</p>
             </div>
 
-            <div className="p-5 bg-[#121215] border border-zinc-800 rounded-lg space-y-1.5">
-              <span className="text-[10.5px] font-mono text-zinc-500 uppercase block">Fuel & Efficiency</span>
+            <div className="p-5 bg-white/[0.035] backdrop-blur-[2px] border border-white/[0.12] rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+              <span className="text-[10.5px] font-mono text-zinc-400 uppercase block">Fuel & Efficiency</span>
               <p className="font-bold text-white text-[15px]">{vehicle.fuelType}</p>
-              <p className="text-[13px] text-zinc-400 font-mono">{vehicle.fuelEconomy}</p>
+              <p className="text-[13px] text-zinc-300 font-mono">{vehicle.fuelEconomy}</p>
             </div>
 
-            <div className="p-5 bg-[#121215] border border-zinc-800 rounded-lg space-y-1.5">
-              <span className="text-[10.5px] font-mono text-zinc-500 uppercase block">Auction Provenance</span>
+            <div className="p-5 bg-white/[0.035] backdrop-blur-[2px] border border-white/[0.12] rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+              <span className="text-[10.5px] font-mono text-zinc-400 uppercase block">Auction Provenance</span>
               <p className="font-bold text-white text-[15px]">{vehicle.auctionHall}</p>
               <p className="text-[13px] text-white font-mono font-bold">Grade {vehicle.auctionGrade} · Interior {vehicle.interiorGrade}</p>
             </div>
 
-            <div className="p-5 bg-[#121215] border border-zinc-800 rounded-lg space-y-1.5">
-              <span className="text-[10.5px] font-mono text-zinc-500 uppercase block">Warranty Protection</span>
+            <div className="p-5 bg-white/[0.035] backdrop-blur-[2px] border border-white/[0.12] rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+              <span className="text-[10.5px] font-mono text-zinc-400 uppercase block">Warranty Protection</span>
               <p className="font-bold text-white text-[15px]">5,000 KM Written</p>
-              <p className="text-[13px] text-zinc-400">Engine & Gearbox Included</p>
+              <p className="text-[13px] text-zinc-300">Engine & Gearbox Included</p>
             </div>
           </div>
 
-          {/* Action Bottom Bar */}
-          <div className="p-8 bg-[#121215] border border-[#27272a] rounded-[4px] flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* Action Bottom Bar with Crystalline Glassmorphism */}
+          <div className="p-8 bg-white/[0.035] backdrop-blur-[2px] border border-white/[0.12] rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
             <div className="space-y-1 text-left">
               <span className="text-[11px] font-mono text-[#71717a] uppercase block">
                 DELIVERED HANDOVER PRICE
