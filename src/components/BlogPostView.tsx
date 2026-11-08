@@ -109,7 +109,10 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         
         {/* Category & Metadata Pill */}
         <div className="inline-flex items-center gap-2.5 font-mono text-xs text-zinc-400">
-          <span className="w-2 h-2 rounded-full bg-red-600" />
+          <div className="live-beacon">
+            <span className="live-beacon-ping" />
+            <span className="live-beacon-dot" />
+          </div>
           <span className="uppercase text-white font-semibold tracking-wider">{post.category}</span>
           <span>·</span>
           <span>{post.readTime}</span>
@@ -148,11 +151,11 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
 
       {/* 3. Widescreen Hero Cover Media */}
       <div className="max-w-[1100px] mx-auto px-4 sm:px-8 mb-12 sm:mb-16">
-        <div className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[560px] overflow-hidden rounded-2xl border border-white/[0.08] bg-black shadow-[0_24px_60px_rgba(0,0,0,0.85)] relative">
+        <div className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[560px] overflow-hidden rounded-2xl border border-white/[0.08] hover:border-white/20 bg-black shadow-[0_24px_60px_rgba(0,0,0,0.85)] relative group transition-colors">
           <img
             src={post.coverImage}
             alt={post.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
             <span className="font-mono text-[11px] text-zinc-400 tracking-wider">
@@ -166,9 +169,12 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
       <div className="max-w-[760px] mx-auto px-4 sm:px-8 space-y-10 text-left">
         
         {/* Executive Takeaways Box */}
-        <div className="relative bg-[#0c0c0f] border border-white/[0.08] rounded-2xl p-6 sm:p-8 space-y-4 before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+        <div className="relative bg-[#0c0c0f] border border-white/[0.08] hover:border-white/20 rounded-2xl p-6 sm:p-8 space-y-4 before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent transition-colors">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+            <div className="live-beacon">
+              <span className="live-beacon-ping" />
+              <span className="live-beacon-dot" />
+            </div>
             <span className="font-mono text-xs uppercase tracking-wider text-white font-bold">
               EXECUTIVE SUMMARY & ESSENTIAL TAKEAWAY
             </span>

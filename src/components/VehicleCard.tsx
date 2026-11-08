@@ -80,7 +80,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {/* Top Left: Authentic Japanese Provenance Seal */}
           <div className="absolute top-3 left-3 z-20 pointer-events-none">
             <div className="font-mono text-[10.5px] font-semibold bg-black/80 backdrop-blur-md text-white border border-white/15 px-2.5 py-1 rounded-md flex items-center gap-2 shadow-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+              <div className="live-beacon">
+                <span className="live-beacon-ping" />
+                <span className="live-beacon-dot" />
+              </div>
               <span>Grade {vehicle.auctionGrade}</span>
               <span className="text-zinc-600">·</span>
               <span className="text-zinc-300 font-normal">{vehicle.auctionHall}</span>
@@ -93,14 +96,14 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg ${
+            className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-110 active:scale-95 ${
               isFavorite 
                 ? 'bg-white text-zinc-950 font-bold border-white' 
                 : 'bg-black/75 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/15'
             }`}
             title={isFavorite ? 'Remove from saved cars' : 'Save car'}
           >
-            <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-black' : ''}`} />
+            <Bookmark className={`w-3.5 h-3.5 transition-transform ${isFavorite ? 'fill-black animate-heartbeat' : ''}`} />
           </button>
 
           {/* Bottom Right: Discreet Multi-Angle Indicator */}

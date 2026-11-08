@@ -148,7 +148,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         
         {/* Minimalist Provenance Eyebrow */}
         <div className="inline-flex items-center gap-2 animate-hero-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+          <div className="live-beacon">
+            <span className="live-beacon-ping" />
+            <span className="live-beacon-dot" />
+          </div>
           <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
             MOMBASA & NAIROBI
           </span>
@@ -169,7 +172,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         <div className="flex flex-wrap items-center justify-center gap-3.5 pt-1 animate-hero-4">
           <button
             onClick={onExploreFleet}
-            className="btn-white group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
+            className="btn-white btn-glint group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
           >
             <span>Explore Collection</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -177,9 +180,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-medium tracking-tight inline-flex items-center gap-2 text-zinc-300"
+            className="btn-ghost group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-medium tracking-tight inline-flex items-center gap-2 text-zinc-300 hover:text-white transition-colors"
           >
-            <ShieldCheck className="w-4 h-4 text-zinc-400" />
+            <ShieldCheck className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
             <span>Our Workshop Standard</span>
           </button>
         </div>
@@ -190,7 +193,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => setIsHeroLightboxOpen(true)}
-            className="w-full min-h-[350px] xs:min-h-[390px] sm:min-h-0 aspect-[16/11] sm:aspect-[21/9.5] max-h-[620px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group"
+            className="w-full min-h-[350px] xs:min-h-[390px] sm:min-h-0 aspect-[16/11] sm:aspect-[21/9.5] max-h-[620px] overflow-hidden relative bg-black border border-white/[0.08] hover:border-white/20 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group transition-all duration-500"
           >
             
             {/* Cinematic Media (Video or Image) */}
@@ -202,7 +205,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 loop
                 playsInline
                 key={currentSlide.id}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-103 ease-out"
                 poster={currentSlide.imageUrl}
               >
                 <source src={currentSlide.videoUrl} type="video/mp4" />
@@ -213,7 +216,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 key={currentSlide.id}
                 src={currentSlide.imageUrl}
                 alt={currentSlide.name}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
+                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-103 ease-out"
               />
             )}
 
@@ -223,7 +226,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             {/* Left Top: Discreet Provenance Seal */}
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
               <div className="bg-black/75 backdrop-blur-md border border-white/15 px-3 py-1 rounded-md text-[11px] font-mono text-white flex items-center gap-2 shadow-lg">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                <div className="live-beacon">
+                  <span className="live-beacon-ping" />
+                  <span className="live-beacon-dot" />
+                </div>
                 <span>{currentSlide.grade}</span>
                 <span className="text-zinc-600">·</span>
                 <span className="text-zinc-300">{currentSlide.auctionHall}</span>
@@ -238,7 +244,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="w-8 h-8 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
+                  className="w-8 h-8 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
                   {isMuted ? <VolumeX className="w-3.5 h-3.5 text-zinc-300" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -249,7 +255,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   e.stopPropagation();
                   setIsHeroLightboxOpen(true);
                 }}
-                className="w-8 h-8 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md"
+                className="w-8 h-8 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
                 title="Fullscreen Theater Mode"
               >
                 <Maximize2 className="w-3.5 h-3.5 text-zinc-300" />
@@ -257,7 +263,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
 
             {/* Slide Information Overlay — Bottom Left with generous right margin for mobile clearance */}
-            <div className="absolute bottom-4 sm:bottom-7 left-4 sm:left-8 pr-28 sm:pr-0 text-left z-20 pointer-events-none max-w-xl">
+            <div
+              key={currentSlide.id}
+              className="absolute bottom-4 sm:bottom-7 left-4 sm:left-8 pr-28 sm:pr-0 text-left z-20 pointer-events-none max-w-xl animate-slide-text"
+            >
               <span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-zinc-400 block mb-0.5 sm:mb-1">
                 {currentSlide.category} · {currentSlide.year}
               </span>
@@ -273,22 +282,29 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </div>
             </div>
 
-            {/* Right Bottom: Subtle Slide Segment Rails */}
+            {/* Right Bottom: Subtle Slide Segment Rails with Progressive Timeline */}
             <div 
-              className="absolute bottom-4 sm:bottom-7 right-4 sm:right-8 z-20 flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10"
+              className="absolute bottom-4 sm:bottom-7 right-4 sm:right-8 z-20 flex items-center gap-2 bg-black/75 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               {FLAGSHIP_SLIDES.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveSlideIdx(idx)}
-                  className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === activeSlideIdx
-                      ? 'w-6 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]'
-                      : 'w-2 bg-white/30 hover:bg-white/60'
-                  }`}
+                  className="cursor-pointer group flex items-center p-0.5"
                   title={`Slide ${idx + 1}`}
-                />
+                >
+                  {idx === activeSlideIdx ? (
+                    <div className="relative h-1 w-8 sm:w-10 bg-white/20 rounded-full overflow-hidden">
+                      <div
+                        key={`hero-progress-${activeSlideIdx}`}
+                        className="h-full bg-white rounded-full animate-hero-progress shadow-[0_0_8px_rgba(255,255,255,0.9)]"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-1 w-2 rounded-full bg-white/30 group-hover:bg-white/60 transition-all duration-300" />
+                  )}
+                </button>
               ))}
             </div>
           </div>

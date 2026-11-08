@@ -92,9 +92,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium pill-interactive cursor-pointer whitespace-nowrap ${
                     isActive
-                      ? 'bg-white text-zinc-950 font-bold shadow-sm'
+                      ? 'bg-white text-zinc-950 font-bold shadow-sm scale-[1.02]'
                       : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
                   }`}
                 >
@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Quick Search Capsule */}
             <button
               onClick={onOpenSearch}
-              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
               title="Search inventory (⌘K)"
             >
               <Search className="w-4 h-4" />
@@ -119,12 +119,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Saved Cars Capsule with Badge */}
             <button
               onClick={onOpenFavorites}
-              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer relative"
+              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
               title="Saved vehicles"
             >
               <Bookmark className="w-4 h-4" />
               {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md">
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-heartbeat">
                   {favoritesCount}
                 </span>
               )}
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* WhatsApp VIP Concierge Pill */}
             <button
               onClick={handleContactClick}
-              className="btn-white !py-2 !px-4 !text-xs !rounded-full hidden sm:inline-flex cursor-pointer font-semibold shadow-sm items-center gap-1.5"
+              className="btn-white btn-glint !py-2 !px-4 !text-xs !rounded-full hidden sm:inline-flex cursor-pointer font-semibold shadow-sm items-center gap-1.5"
             >
               <MessageCircle className="w-3.5 h-3.5 text-zinc-950" />
               <span>WhatsApp Us</span>

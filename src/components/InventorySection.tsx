@@ -75,7 +75,10 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       {/* 1. Section Editorial Title Bar (Scrolls naturally) */}
       <div className="pt-12 sm:pt-16 pb-6 px-4 sm:px-8 max-w-[1240px] mx-auto text-center space-y-3">
         <div className="inline-flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+          <div className="live-beacon">
+            <span className="live-beacon-ping" />
+            <span className="live-beacon-dot" />
+          </div>
           <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
             VERIFIED INVENTORY · MOMBASA & NAIROBI
           </span>
@@ -146,9 +149,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                       setActiveCategory(cat.id);
                       setSearchQuery('');
                     }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium pill-interactive shrink-0 cursor-pointer flex items-center gap-1.5 ${
                       isActive
-                        ? 'bg-white text-zinc-950 font-bold shadow-md'
+                        ? 'bg-white text-zinc-950 font-bold shadow-md scale-[1.02]'
                         : 'bg-[#0c0c0f] text-zinc-400 hover:text-white hover:bg-zinc-900 border border-white/[0.08]'
                     }`}
                   >
@@ -174,9 +177,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                   <button
                     key={tag.query}
                     onClick={() => setSearchQuery(isSelected ? '' : tag.query)}
-                    className={`text-[11px] font-mono px-2.5 py-1 rounded-md transition-all cursor-pointer border ${
+                    className={`text-[11px] font-mono px-2.5 py-1 rounded-md pill-interactive cursor-pointer border ${
                       isSelected
-                        ? 'bg-white text-zinc-950 font-bold border-white shadow-sm'
+                        ? 'bg-white text-zinc-950 font-bold border-white shadow-sm scale-[1.02]'
                         : 'bg-black text-zinc-400 border-white/10 hover:border-white/25 hover:text-white'
                     }`}
                   >
@@ -204,7 +207,10 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         {/* Results Counter Bar */}
         <div className="flex items-center justify-between text-xs text-zinc-400 font-mono px-1">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
             <span>Showing {filteredVehicles.length} of {vehicles.length} verified vehicles in stock</span>
           </div>
           <span className="hidden sm:inline text-zinc-500 text-[11px]">Tangana Rd, Mombasa & Westlands, Nairobi</span>

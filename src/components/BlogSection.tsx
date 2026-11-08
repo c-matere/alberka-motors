@@ -146,7 +146,10 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/[0.08]">
           <div className="space-y-3 text-left">
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+              <div className="live-beacon">
+                <span className="live-beacon-ping" />
+                <span className="live-beacon-dot" />
+              </div>
               <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
                 EDITORIAL JOURNAL · AUTOMOTIVE RESEARCH
               </span>
@@ -162,7 +165,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => setIsWriteModalOpen(true)}
-              className="btn-white py-2.5 px-5 text-xs font-semibold inline-flex items-center gap-2 cursor-pointer shadow-lg hover:scale-102 transition-transform"
+              className="btn-white btn-glint py-2.5 px-5 text-xs font-semibold inline-flex items-center gap-2 cursor-pointer shadow-lg hover:scale-102 active:scale-95 transition-all"
             >
               <Plus className="w-4 h-4 text-zinc-950" />
               <span>Write & Publish Article</span>
