@@ -1,17 +1,12 @@
 import React, { useState, useRef } from 'react';
 import {
-  Calculator,
   ArrowRight,
   CheckCircle2,
-  Shield,
-  FileText,
   MessageCircle,
   Play,
   Pause,
   Volume2,
   VolumeX,
-  Sparkles,
-  ArrowUpRight,
   ChevronDown
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
@@ -122,42 +117,45 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
   const faqs = [
     {
       q: 'Can I trade in a car that is currently under bank financing?',
-      a: 'Yes. We get an official settlement letter from your bank, pay off the loan balance directly, and apply whatever equity remains toward your new car.'
+      a: 'Yes. We obtain an official settlement letter from your financial institution, disburse the outstanding loan balance directly, and credit all remaining equity towards your chosen vehicle.'
     },
     {
       q: 'How long is the trade-in valuation valid?',
-      a: 'Online estimates give you a realistic range. When you bring the car to our Mombasa or Nairobi showroom for a quick 20-minute check, you get a written valuation valid for 7 days.'
+      a: 'Our online calculator provides a realistic estimate. Following a 20-minute mechanical hoist check at our Mombasa or Nairobi showroom, you receive a written appraisal valid for 7 days.'
     },
     {
-      q: 'Can I trade in my old car against an incoming Japanese shipment?',
-      a: 'Yes! Your trade-in value can be credited immediately to reserve any car currently on the ship coming to Mombasa.'
+      q: 'Can I trade in against an incoming Japanese shipment?',
+      a: 'Yes. Your verified trade-in equity can be allocated immediately as a reservation deposit on any vessel currently in transit to Mombasa.'
     },
     {
-      q: 'What documents do I need to bring?',
-      a: 'Just bring your original NTSA TIMS Logbook, your National ID or Passport, and KRA PIN certificate.'
+      q: 'Which documentation is required at appraisal?',
+      a: 'Original NTSA TIMS Logbook, your National ID or Passport, and KRA PIN certificate.'
     }
   ];
 
   return (
-    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-6 sm:px-10 text-[#f4f4f5] border-t border-[#27272a]">
-      <div className="max-w-[1400px] mx-auto space-y-16">
+    <section className="w-full bg-[#09090b] py-16 sm:py-24 px-4 sm:px-8 text-[#f4f4f5] border-t border-white/[0.08]">
+      <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20">
         
         {/* Section Header */}
-        <div className="text-center max-w-[780px] mx-auto">
-          <span className="brand-eyebrow block mb-2">
-            TRADE-IN & UPGRADE // MOMBASA & NAIROBI
-          </span>
-          <h1 className="text-[32px] sm:text-[46px] font-bold text-white tracking-tight mb-4">
-            Trade In Your Old Car
+        <div className="text-center max-w-[800px] mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
+              EQUITY CONVERSION · MOMBASA & NAIROBI
+            </span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-[-0.035em] leading-[1.05]">
+            Trade In Your Current Vehicle
           </h1>
-          <p className="text-[16px] sm:text-[18px] text-[#a1a1aa] leading-relaxed">
-            Turn your current car keys into immediate deposit equity. Avoid online classified headaches and tire-kickers. Upgrade into a clean Japanese import backed by our 5,000 km warranty.
+          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed font-normal max-w-2xl mx-auto">
+            Convert your existing car keys into immediate deposit equity. Avoid private classified friction and upgrade directly into an inspected Japanese import backed by our 5,000 km warranty.
           </p>
         </div>
 
-        {/* Video Banner */}
-        <div className="relative w-full mx-auto">
-          <div className="w-full h-[320px] sm:h-[420px] md:h-[480px] overflow-hidden relative bg-[#121215] border border-[#27272a] rounded-[4px]">
+        {/* Video Cinema Banner */}
+        <div className="space-y-8">
+          <div className="w-full aspect-[16/9] sm:aspect-[21/9.5] max-h-[500px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
             <video
               ref={videoRef}
               autoPlay
@@ -175,29 +173,26 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               />
             </video>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white">
-              <div className="inline-flex items-center gap-2 mb-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
-                  MOMBASA & NAIROBI
-                </span>
-              </div>
-              <p className="text-[20px] sm:text-[26px] font-bold text-white leading-snug max-w-[620px]">
-                Quick 20-minute inspection. Full legal transfer. Drive away same day.
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white pointer-events-none">
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block mb-1">
+                APPRAISAL PROTOCOL
+              </span>
+              <p className="text-xl sm:text-2xl font-bold text-white leading-tight max-w-xl">
+                20-minute hoist check. Direct NTSA transfer. Same-day handover.
               </p>
             </div>
 
             <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
               <button
                 onClick={togglePlay}
-                className="w-8 h-8 bg-[#09090b]/80 hover:bg-[#18181c] border border-[#27272a] flex items-center justify-center text-white transition-all cursor-pointer rounded-[3px]"
+                className="w-8 h-8 bg-black/75 hover:bg-black border border-white/15 flex items-center justify-center text-white transition-all cursor-pointer rounded-lg backdrop-blur-md"
                 title={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-8 h-8 bg-[#09090b]/80 hover:bg-[#18181c] border border-[#27272a] flex items-center justify-center text-white transition-all cursor-pointer rounded-[3px]"
+                className="w-8 h-8 bg-black/75 hover:bg-black border border-white/15 flex items-center justify-center text-white transition-all cursor-pointer rounded-lg backdrop-blur-md"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -205,66 +200,70 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </div>
           </div>
 
-          <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-8 max-w-[960px] mx-auto -mt-8 relative z-20 rounded-[4px] shadow-2xl">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-              <div>
-                <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">INSPECTION TIME</span>
-                <span className="text-[15px] font-bold text-white">20-Minute Check</span>
-              </div>
-              <div>
-                <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">PAPERWORK</span>
-                <span className="text-[15px] font-bold text-white">Full NTSA TIMS Transfer</span>
-              </div>
-              <div>
-                <span className="font-mono text-[10px] text-[#71717a] uppercase tracking-wider block mb-1">WARRANTY</span>
-                <span className="text-[15px] font-bold text-white">5,000 KM on Upgraded Car</span>
-              </div>
+          {/* Architectural Metric Matrix (Hairline Dividers) */}
+          <div className="border-y border-white/[0.08] py-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+            <div>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">INSPECTION TIME</span>
+              <span className="text-base sm:text-lg font-bold text-white block">20-Minute Check</span>
+              <span className="text-xs text-zinc-400">Hoist & diagnostic scan</span>
+            </div>
+            <div>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">DOCUMENTATION</span>
+              <span className="text-base sm:text-lg font-bold text-white block">Full NTSA TIMS Transfer</span>
+              <span className="text-xs text-zinc-400">Handled directly on site</span>
+            </div>
+            <div>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">WARRANTY CONTINUITY</span>
+              <span className="text-base sm:text-lg font-bold text-white block">5,000 KM Written</span>
+              <span className="text-xs text-zinc-400">Applied to your new vehicle</span>
             </div>
           </div>
         </div>
 
         {/* Trade-In Calculator & Match Studio */}
         <div className="space-y-6">
-          <div>
-            <span className="brand-eyebrow block mb-1">INSTANT TRADE CALCULATOR</span>
-            <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight">
+          <div className="max-w-xl space-y-1.5 text-left">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
+              VALUATION STUDIO
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Calculate Your Trade-In Value
             </h2>
-            <p className="text-[15px] text-[#a1a1aa] mt-1 max-w-[600px]">
-              Select your current car details below and match against any car in our showroom.
+            <p className="text-sm text-zinc-400">
+              Select your current car specifications to calculate immediate deposit credit against our verified showroom stock.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Column: Your Current Vehicle Inputs (7 Cols) */}
-            <div className="lg:col-span-7 bg-[#121215] border border-[#27272a] p-6 sm:p-8 space-y-6 rounded-[4px]">
+            <div className="lg:col-span-7 relative bg-[#0c0c0f] border border-white/[0.08] p-6 sm:p-8 space-y-6 rounded-2xl text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               
               {/* Make & Model */}
               <div>
-                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
-                  1. Current Car Make & Model
+                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-2 font-medium">
+                  01. Current Vehicle Model
                 </label>
                 <input
                   type="text"
                   value={makeModel}
                   onChange={(e) => setMakeModel(e.target.value)}
                   placeholder="e.g. Toyota Fielder / Mazda CX-5 / Subaru Forester"
-                  className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white mb-3"
+                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white transition-colors mb-3"
                 />
 
-                {/* Popular Models Pills */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] text-[#71717a] font-mono mr-1">Popular:</span>
+                {/* Popular Models Chips */}
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-[10px] text-zinc-500 font-mono mr-1 uppercase">Sample:</span>
                   {popularModels.map((m) => (
                     <button
                       key={m}
                       type="button"
                       onClick={() => setMakeModel(m)}
-                      className={`text-[11.5px] px-3 py-1 rounded-[2px] transition-all cursor-pointer ${
+                      className={`text-xs px-2.5 py-1 rounded-md transition-all cursor-pointer border ${
                         makeModel === m
-                          ? 'bg-white text-zinc-950 font-bold'
-                          : 'bg-[#18181c] text-[#a1a1aa] border border-[#27272a] hover:text-white'
+                          ? 'bg-white text-zinc-950 font-bold border-white'
+                          : 'bg-black text-zinc-400 border-white/10 hover:text-white hover:border-white/25'
                       }`}
                     >
                       {m}
@@ -275,8 +274,8 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
 
               {/* Year */}
               <div>
-                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
-                  2. Year of Manufacture
+                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-2 font-medium">
+                  02. Year of Manufacture
                 </label>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {['2023', '2021', '2019', '2018', '2016', '2014'].map((yr) => (
@@ -284,10 +283,10 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       key={yr}
                       type="button"
                       onClick={() => setYearTier(yr)}
-                      className={`py-2 text-[12px] font-mono rounded-[2px] transition-all cursor-pointer border ${
+                      className={`py-2 text-xs font-mono rounded-lg transition-all cursor-pointer border ${
                         yearTier === yr
                           ? 'bg-white text-zinc-950 border-white font-bold'
-                          : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
+                          : 'bg-black text-zinc-400 border-white/10 hover:text-white hover:border-white/25'
                       }`}
                     >
                       {yr === '2023' ? '2023+' : yr === '2014' ? '<2015' : yr}
@@ -298,8 +297,8 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
 
               {/* Mileage */}
               <div>
-                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
-                  3. Current Odometer Mileage
+                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-2 font-medium">
+                  03. Odometer Mileage
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
@@ -312,14 +311,14 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       key={m.id}
                       type="button"
                       onClick={() => setMileageTier(m.id)}
-                      className={`p-3 text-left rounded-[2px] transition-all cursor-pointer border ${
+                      className={`p-3 text-left rounded-lg transition-all cursor-pointer border ${
                         mileageTier === m.id
                           ? 'bg-white text-zinc-950 border-white font-bold'
-                          : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
+                          : 'bg-black text-zinc-400 border-white/10 hover:text-white hover:border-white/25'
                       }`}
                     >
-                      <span className="block font-mono text-[12px] font-bold">{m.label}</span>
-                      <span className={`block text-[10.5px] mt-0.5 ${mileageTier === m.id ? 'text-zinc-700' : 'text-[#71717a]'}`}>{m.desc}</span>
+                      <span className="block font-mono text-xs font-bold">{m.label}</span>
+                      <span className={`block text-[10px] mt-0.5 ${mileageTier === m.id ? 'text-zinc-700' : 'text-zinc-500'}`}>{m.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -327,40 +326,40 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
 
               {/* Condition */}
               <div>
-                <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-2 font-medium">
-                  4. Vehicle Condition
+                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-2 font-medium">
+                  04. Overall Condition
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     {
                       id: 'excellent',
-                      title: 'Excellent',
-                      desc: 'Clean original paint, no accident history, full service record.'
+                      title: 'Pristine',
+                      desc: 'Original paint, zero accident history, full service history.'
                     },
                     {
                       id: 'good',
-                      title: 'Good / Normal',
-                      desc: 'Minor daily wear, good engine and gearbox condition.'
+                      title: 'Normal Wear',
+                      desc: 'Minor daily patina, sound mechanical and transmission state.'
                     },
                     {
                       id: 'fair',
-                      title: 'Needs Work',
-                      desc: 'Paint scratches, dents, or suspension repairs needed.'
+                      title: 'Needs Service',
+                      desc: 'Exterior scratches, suspension or minor wear present.'
                     }
                   ].map((c) => (
                     <button
                       key={c.id}
                       type="button"
                       onClick={() => setConditionTier(c.id)}
-                      className={`p-4 text-left rounded-[2px] transition-all cursor-pointer border flex flex-col justify-between ${
+                      className={`p-4 text-left rounded-xl transition-all cursor-pointer border flex flex-col justify-between ${
                         conditionTier === c.id
-                          ? 'bg-[#18181c] text-white border-white'
-                          : 'bg-[#09090b] text-[#a1a1aa] border-[#27272a] hover:text-white'
+                          ? 'bg-zinc-900 text-white border-white shadow-md'
+                          : 'bg-black text-zinc-400 border-white/10 hover:text-white hover:border-white/25'
                       }`}
                     >
                       <div>
-                        <span className="block text-[14px] font-bold text-white mb-1">{c.title}</span>
-                        <p className="text-[12px] text-[#a1a1aa] leading-relaxed">{c.desc}</p>
+                        <span className="block text-sm font-bold text-white mb-1">{c.title}</span>
+                        <p className="text-xs text-zinc-400 leading-relaxed">{c.desc}</p>
                       </div>
                       <div className="mt-3 flex items-center justify-end">
                         <CheckCircle2 className={`w-4 h-4 ${conditionTier === c.id ? 'text-white' : 'text-transparent'}`} />
@@ -373,17 +372,17 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </div>
 
             {/* Right Column: Live Match Card (5 Cols) */}
-            <div className="lg:col-span-5 bg-[#121215] border border-[#27272a] p-6 rounded-[4px] relative lg:sticky lg:top-[90px] space-y-5">
+            <div className="lg:col-span-5 relative bg-[#0c0c0f] border border-white/[0.08] p-6 rounded-2xl relative lg:sticky lg:top-[90px] space-y-5 text-left before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-300 block mb-1 font-semibold">
-                  CHOOSE CAR TO UPGRADE TO:
+                <span className="text-[10.5px] font-mono uppercase tracking-wider text-zinc-400 block mb-1.5 font-semibold">
+                  SELECT TARGET UPGRADE:
                 </span>
-                <div className="relative mt-1">
+                <div className="relative">
                   <select
                     value={targetCarId}
                     onChange={(e) => setTargetCarId(e.target.value)}
-                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
+                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-black border border-white/15 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.id}>
@@ -391,12 +390,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="w-4 h-4 text-[#a1a1aa] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <ChevronDown className="w-4 h-4 text-zinc-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
               </div>
 
               {/* Target Car Preview */}
-              <div className="w-full h-[180px] sm:h-[210px] overflow-hidden bg-[#09090b] relative rounded-[3px] border border-[#27272a]">
+              <div className="w-full aspect-[16/10] overflow-hidden bg-black relative rounded-xl border border-white/10">
                 <SkeletonImage
                   src={targetVehicle.heroImage}
                   alt={targetVehicle.name}
@@ -404,58 +403,58 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span className="bg-zinc-900 border border-zinc-700 text-white px-2 py-0.5 text-[10px] font-bold rounded-[2px]">
+                  <span className="bg-black/80 backdrop-blur-md border border-white/15 text-white px-2 py-0.5 text-[10px] font-bold rounded">
                     Grade {targetVehicle.auctionGrade}
                   </span>
                 </div>
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-[#09090b]/95 px-3 py-2 border border-[#27272a] flex items-center justify-between rounded-[2px]">
-                  <span className="text-[12px] font-bold text-white">{targetVehicle.name}</span>
-                  <span className="font-mono text-[13px] font-bold text-white">KES {targetVehicle.priceKes.toLocaleString()}</span>
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-black/85 backdrop-blur-md px-3 py-2 border border-white/10 flex items-center justify-between rounded-lg">
+                  <span className="text-xs font-bold text-white truncate mr-2">{targetVehicle.name}</span>
+                  <span className="font-mono text-xs font-bold text-white shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
               {/* Equity Ratio Bar */}
-              <div className="p-4 bg-[#18181c] border border-[#27272a] rounded-[3px] space-y-2.5">
-                <div className="flex items-center justify-between text-[12px] font-mono">
-                  <span className="text-[#a1a1aa]">Deposit Covered by Trade-In</span>
+              <div className="p-4 bg-zinc-950 border border-white/[0.08] rounded-xl space-y-2.5">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-zinc-400">Equity Covered by Trade-In</span>
                   <span className="text-white font-bold">{animatedEquityPercent}% Covered</span>
                 </div>
-                <div className="w-full h-2 bg-[#09090b] rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-white transition-all duration-300 ease-out"
                     style={{ width: `${animatedEquityPercent}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between font-mono text-[11px] text-[#71717a]">
-                  <span>Your Credit: ~KES {animatedAvg.toLocaleString()}</span>
-                  <span>Car Price: KES {targetVehicle.priceKes.toLocaleString()}</span>
+                <div className="flex items-center justify-between font-mono text-[10.5px] text-zinc-500">
+                  <span>Credit: ~KES {animatedAvg.toLocaleString()}</span>
+                  <span>Vehicle: KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
               {/* Breakdown */}
-              <div className="divide-y divide-[#27272a] text-[13px]">
-                <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#a1a1aa]">Estimated Trade-in Credit</span>
+              <div className="divide-y divide-white/[0.08] text-xs sm:text-sm">
+                <div className="py-2.5 flex items-center justify-between">
+                  <span className="text-zinc-400">Estimated Trade-In Credit</span>
                   <span className="font-mono font-bold text-white">
                     KES {animatedMin.toLocaleString()} – {animatedMax.toLocaleString()}
                   </span>
                 </div>
-                <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#a1a1aa]">Selected Car Price</span>
+                <div className="py-2.5 flex items-center justify-between">
+                  <span className="text-zinc-400">Target Vehicle Price</span>
                   <span className="font-mono font-bold text-white">
                     KES {targetVehicle.priceKes.toLocaleString()}
                   </span>
                 </div>
-                <div className="py-2.5 flex items-baseline justify-between bg-[#18181c] px-3 -mx-3 mt-1 rounded-[2px]">
+                <div className="py-3 flex items-baseline justify-between bg-zinc-900/60 px-3 -mx-3 mt-1 rounded-lg">
                   <div>
-                    <span className="text-[11px] text-zinc-400 uppercase font-bold block">
+                    <span className="text-[10.5px] text-zinc-400 uppercase font-bold block">
                       Estimated Balance to Pay
                     </span>
-                    <span className="font-mono text-[16px] font-bold text-white">
+                    <span className="font-mono text-sm sm:text-base font-bold text-white">
                       KES {animatedCashMin.toLocaleString()} – {animatedCashMax.toLocaleString()}
                     </span>
                   </div>
-                  <span className="text-[11px] text-[#a1a1aa]">Bank financing available</span>
+                  <span className="text-[11px] text-zinc-400">Bank finance eligible</span>
                 </div>
               </div>
 
@@ -465,20 +464,20 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-white font-semibold w-full justify-center !py-3 text-[13px]"
+                  className="btn-white py-3 text-xs sm:text-sm font-semibold w-full justify-center inline-flex items-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  <span>Lock in Valuation on WhatsApp</span>
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Lock In Appraisal on WhatsApp</span>
                 </a>
 
                 {onSelectVehicle && (
                   <button
                     type="button"
                     onClick={() => onSelectVehicle(targetVehicle)}
-                    className="btn-ghost w-full justify-center !py-2 text-[12px] cursor-pointer"
+                    className="btn-ghost w-full justify-center py-2 text-xs cursor-pointer inline-flex items-center gap-1.5"
                   >
                     <span>View {targetVehicle.name} Details</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
@@ -489,20 +488,22 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
         </div>
 
         {/* 3 Simple Steps */}
-        <div>
-          <div className="text-center max-w-[700px] mx-auto mb-12 space-y-2">
-            <span className="brand-eyebrow block">HOW IT WORKS</span>
-            <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-tight">
-              Trade In Your Car in 3 Easy Steps
+        <div className="space-y-8">
+          <div className="text-center max-w-xl mx-auto space-y-2">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
+              TRANSACTION FLOW
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Trade In Your Car in 3 Steps
             </h2>
-            <p className="text-[15px] text-[#a1a1aa]">
-              No back-and-forth arguments. No bounced checks. Transparent trade-ins in one visit.
+            <p className="text-sm text-zinc-400">
+              Zero classified haggling. Direct dealer conveyancing in a single visit.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-[#121215] border border-[#27272a] rounded-[4px] overflow-hidden flex flex-col justify-between">
-              <div className="h-[200px] w-full overflow-hidden bg-[#09090b]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-xl before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+              <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="20-Minute Mechanical Hoist Inspection"
@@ -512,17 +513,17 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <div className="p-6 space-y-2">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                  <span className="text-[11px] font-mono text-zinc-400 uppercase font-bold">STEP 01</span>
+                  <span className="text-[10px] font-mono text-zinc-400 uppercase font-bold">STEP 01</span>
                 </div>
-                <h3 className="text-[18px] font-bold text-white">20-Minute Check</h3>
-                <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
-                  Drive into our Mombasa or Nairobi showroom. Our technician inspects your car on the hoist and runs a computer scan.
+                <h3 className="text-lg font-bold text-white">20-Minute Hoist Check</h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                  Drive into Mombasa or Nairobi. Our technician conducts a hoist inspection and electronic diagnostic scan.
                 </p>
               </div>
             </div>
 
-            <div className="bg-[#121215] border border-[#27272a] rounded-[4px] overflow-hidden flex flex-col justify-between">
-              <div className="h-[200px] w-full overflow-hidden bg-[#09090b]">
+            <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-xl before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+              <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Certified Equity Lock"
@@ -532,17 +533,17 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <div className="p-6 space-y-2">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                  <span className="text-[11px] font-mono text-zinc-400 uppercase font-bold">STEP 02</span>
+                  <span className="text-[10px] font-mono text-zinc-400 uppercase font-bold">STEP 02</span>
                 </div>
-                <h3 className="text-[18px] font-bold text-white">Fair Written Offer</h3>
-                <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
-                  You get a clear written valuation valid for 7 days. The full amount is credited directly toward your chosen showroom car.
+                <h3 className="text-lg font-bold text-white">Written Valuation Offer</h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                  Receive a written appraisal valid for 7 days. The full valuation credits directly towards your new car.
                 </p>
               </div>
             </div>
 
-            <div className="bg-[#121215] border border-[#27272a] rounded-[4px] overflow-hidden flex flex-col justify-between">
-              <div className="h-[200px] w-full overflow-hidden bg-[#09090b]">
+            <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-xl before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+              <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Drive Away Same Day"
@@ -552,11 +553,11 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <div className="p-6 space-y-2">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                  <span className="text-[11px] font-mono text-zinc-400 uppercase font-bold">STEP 03</span>
+                  <span className="text-[10px] font-mono text-zinc-400 uppercase font-bold">STEP 03</span>
                 </div>
-                <h3 className="text-[18px] font-bold text-white">Drive Away Same Day</h3>
-                <p className="text-[14px] text-[#a1a1aa] leading-relaxed">
-                  We handle the NTSA TIMS logbook transfer on the spot. You collect your new Japanese import with its 5,000 km warranty.
+                <h3 className="text-lg font-bold text-white">Drive Away Same Day</h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                  We complete the NTSA TIMS logbook transfer on the spot. Collect your fresh Japanese import with warranty.
                 </p>
               </div>
             </div>
@@ -564,13 +565,15 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
         </div>
 
         {/* FAQs */}
-        <div className="bg-[#121215] border border-[#27272a] p-6 sm:p-10 rounded-[4px] space-y-6">
+        <div className="relative bg-[#0c0c0f] border border-white/[0.08] p-8 sm:p-10 rounded-2xl space-y-6 text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
           <div>
-            <span className="brand-eyebrow mb-1 block">FREQUENTLY ASKED QUESTIONS</span>
-            <h2 className="text-[24px] font-bold text-white">Common Questions About Trade-Ins</h2>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block mb-1">
+              QUESTIONS & ANSWERS
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Trade-In Guidelines</h2>
           </div>
 
-          <div className="divide-y divide-[#27272a]">
+          <div className="divide-y divide-white/[0.08]">
             {faqs.map((faq, idx) => {
               const isOpen = activeFaq === idx;
               return (
@@ -579,17 +582,17 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                     onClick={() => setActiveFaq(isOpen ? null : idx)}
                     className="w-full flex items-center justify-between text-left cursor-pointer group"
                   >
-                    <span className="text-[15px] font-medium text-white group-hover:text-zinc-300 transition-colors">
+                    <span className="text-sm sm:text-base font-medium text-white group-hover:text-zinc-300 transition-colors">
                       {faq.q}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 text-[#a1a1aa] transition-transform duration-200 shrink-0 ml-4 ${
+                      className={`w-4 h-4 text-zinc-400 transition-transform duration-200 shrink-0 ml-4 ${
                         isOpen ? 'rotate-180 text-white' : ''
                       }`}
                     />
                   </button>
                   {isOpen && (
-                    <p className="mt-2.5 text-[14px] text-[#a1a1aa] leading-relaxed">
+                    <p className="mt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-3xl">
                       {faq.a}
                     </p>
                   )}
