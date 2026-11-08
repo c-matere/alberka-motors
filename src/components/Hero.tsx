@@ -185,6 +185,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
         {/* 21:9 Widescreen Theatrical Cinema Stage — Pure, Uncluttered Visual Frame */}
         <div className="relative w-full mx-auto pt-4 sm:pt-6 animate-hero-5">
+          {/* Blueprint Precision Corner Registration Brackets */}
+          <div className="absolute top-2.5 sm:top-4.5 -left-1.5 w-3.5 h-3.5 border-t-2 border-l-2 border-white/40 pointer-events-none z-20" />
+          <div className="absolute top-2.5 sm:top-4.5 -right-1.5 w-3.5 h-3.5 border-t-2 border-r-2 border-white/40 pointer-events-none z-20" />
+          <div className="absolute bottom-6 sm:bottom-7 -left-1.5 w-3.5 h-3.5 border-b-2 border-l-2 border-white/40 pointer-events-none z-20" />
+          <div className="absolute bottom-6 sm:bottom-7 -right-1.5 w-3.5 h-3.5 border-b-2 border-r-2 border-white/40 pointer-events-none z-20" />
+
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -299,6 +305,21 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Blueprint CAD Datum Telemetry Bar */}
+          <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 pt-3 px-1 tracking-wider uppercase select-none">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse" />
+              <span className="text-zinc-300 font-semibold">CAD GRID: 120mm</span>
+              <span className="text-zinc-600 hidden xs:inline">·</span>
+              <span className="hidden xs:inline text-zinc-400">CHASSIS ELEVATION 0° // TOKYO AUCTION STAGE</span>
+            </span>
+            <span className="text-zinc-400 flex items-center gap-2">
+              <span className="hidden sm:inline">TANGANA RD HOIST INSPECTED</span>
+              <span className="text-zinc-600 hidden sm:inline">·</span>
+              <span className="text-zinc-300 font-semibold">5,000 KM WARRANTY</span>
+            </span>
           </div>
         </div>
 

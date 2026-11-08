@@ -50,10 +50,17 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-[#0b0b0e] hover:bg-[#101014] border border-white/[0.07] hover:border-white/20 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] hover:-translate-y-0.5 cursor-pointer select-none overflow-hidden ${
+      className={`group relative bg-[#0b0b0e] hover:bg-[#101014] border border-white/[0.08] hover:border-white/25 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] hover:-translate-y-0.5 cursor-pointer select-none overflow-hidden ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
+      {/* Blueprint Technical Registration Marks */}
+      <span className="absolute top-2 right-2 font-mono text-[9px] text-zinc-600 group-hover:text-zinc-400 transition-colors pointer-events-none select-none">
+        +
+      </span>
+      <span className="absolute bottom-2 left-2 font-mono text-[9px] text-zinc-600 group-hover:text-zinc-400 transition-colors pointer-events-none select-none">
+        +
+      </span>
       <div>
         {/* Widescreen 16:10 Theatrical Media Aperture */}
         <div 

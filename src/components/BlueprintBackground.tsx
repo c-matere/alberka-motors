@@ -5,7 +5,6 @@ export const BlueprintBackground: React.FC = () => {
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    // Detect touch device to avoid running mouse listeners
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
       setIsTouch(true);
       return;
@@ -23,9 +22,8 @@ export const BlueprintBackground: React.FC = () => {
     };
 
     const updatePosition = () => {
-      // Damped smooth interpolation for luxury fluid lag
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
       setMousePos({ x: Math.round(currentX), y: Math.round(currentY) });
       animationFrameId = requestAnimationFrame(updatePosition);
     };
@@ -42,101 +40,76 @@ export const BlueprintBackground: React.FC = () => {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-[#09090b]"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#09090b]"
     >
-      {/* 1. Studio Overhead Softbox Lights (Dimensional Atmospheric Depth) */}
-      <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1800px] h-[750px] opacity-40"
-        style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.09) 0%, rgba(161, 161, 170, 0.03) 45%, transparent 75%)',
-        }}
-      />
-      
-      {/* Secondary Warm Titanium Ambient Haze (Mid-page studio bounce) */}
-      <div 
-        className="absolute top-[40vh] right-[10%] w-[600px] h-[600px] rounded-full blur-[140px] opacity-20"
-        style={{
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, rgba(140, 120, 80, 0.02) 50%, transparent 70%)',
-        }}
-      />
-
-      {/* Tertiary Cool Platinum Haze (Lower page studio bounce) */}
-      <div 
-        className="absolute bottom-[20vh] left-[5%] w-[700px] h-[700px] rounded-full blur-[150px] opacity-25"
-        style={{
-          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(113, 113, 122, 0.02) 50%, transparent 70%)',
-        }}
-      />
-
-      {/* 2. Interactive Specular Inspection Spotlight (Desktop Only) */}
-      {!isTouch && mousePos.x >= 0 && (
-        <div
-          className="absolute w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-700 pointer-events-none"
-          style={{
-            left: `${mousePos.x}px`,
-            top: `${mousePos.y}px`,
-            background: 'radial-gradient(circle 400px at center, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 70%)',
-          }}
-        />
-      )}
-
-      {/* 3. Architectural CAD Blueprint Grid Layer */}
+      {/* 1. Visible Architectural CAD Blueprint Grid Layer */}
       <svg
-        className="absolute inset-0 w-full h-full opacity-[0.45] mix-blend-screen"
+        className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Subdivided 32px Minor Grid */}
+          {/* Subdivided 30px Minor Grid (Subtle but clearly visible) */}
           <pattern
             id="blueprint-grid-minor"
-            width="32"
-            height="32"
+            width="30"
+            height="30"
             patternUnits="userSpaceOnUse"
           >
             <path
-              d="M 32 0 L 0 0 0 32"
+              d="M 30 0 L 0 0 0 30"
               fill="none"
-              stroke="rgba(255, 255, 255, 0.025)"
-              strokeWidth="0.75"
+              stroke="rgba(255, 255, 255, 0.065)"
+              strokeWidth="0.8"
             />
           </pattern>
 
-          {/* 160px Major Drafting Grid with Crosshairs */}
+          {/* 120px Major Drafting Grid with Crosshairs & Registration Targets */}
           <pattern
             id="blueprint-grid-major"
-            width="160"
-            height="160"
+            width="120"
+            height="120"
             patternUnits="userSpaceOnUse"
           >
-            <rect width="160" height="160" fill="url(#blueprint-grid-minor)" />
-            {/* Major Line */}
+            <rect width="120" height="120" fill="url(#blueprint-grid-minor)" />
+            
+            {/* Major Datum Lines */}
             <path
-              d="M 160 0 L 0 0 0 160"
+              d="M 120 0 L 0 0 0 120"
               fill="none"
-              stroke="rgba(255, 255, 255, 0.05)"
-              strokeWidth="1"
+              stroke="rgba(255, 255, 255, 0.13)"
+              strokeWidth="1.2"
             />
-            {/* Corner Crosshair (+) */}
+
+            {/* Corner Crosshair (+) with high visible contrast */}
             <path
-              d="M -4 0 L 4 0 M 0 -4 L 0 4"
-              stroke="rgba(255, 255, 255, 0.18)"
-              strokeWidth="1"
+              d="M -7 0 L 7 0 M 0 -7 L 0 7"
+              stroke="rgba(255, 255, 255, 0.45)"
+              strokeWidth="1.4"
             />
-            {/* Center Registration Mark */}
+
+            {/* Target Precision Dot at Intersection */}
             <circle
-              cx="80"
-              cy="80"
-              r="1"
-              fill="rgba(255, 255, 255, 0.12)"
+              cx="0"
+              cy="0"
+              r="1.8"
+              fill="rgba(255, 255, 255, 0.75)"
+            />
+
+            {/* Center Cadence Dot */}
+            <circle
+              cx="60"
+              cy="60"
+              r="1.2"
+              fill="rgba(255, 255, 255, 0.25)"
             />
           </pattern>
 
-          {/* Radial Vignette Mask to softly fade grid toward edges & lower depths */}
-          <radialGradient id="blueprint-vignette" cx="50%" cy="25%" r="75%">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.85" />
-            <stop offset="35%" stopColor="#fff" stopOpacity="0.55" />
-            <stop offset="70%" stopColor="#fff" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#fff" stopOpacity="0.02" />
+          {/* Vignette Mask that preserves visible blueprint lines across the entire page */}
+          <radialGradient id="blueprint-vignette" cx="50%" cy="30%" r="85%">
+            <stop offset="0%" stopColor="#fff" stopOpacity="1.0" />
+            <stop offset="45%" stopColor="#fff" stopOpacity="0.85" />
+            <stop offset="75%" stopColor="#fff" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0.45" />
           </radialGradient>
 
           <mask id="blueprint-mask">
@@ -153,26 +126,62 @@ export const BlueprintBackground: React.FC = () => {
         />
       </svg>
 
-      {/* 4. Technical Architectural Blueprint Watermarks (Tokyo-Mombasa Axis) */}
-      <div className="absolute top-24 left-6 sm:left-12 opacity-25 hidden md:block select-none pointer-events-none">
-        <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-400 space-y-0.5 border-l border-white/20 pl-3">
-          <div>DATUM: TOKYO · PACIFIC SHIPPING LINE</div>
-          <div>COORDINATES: 35°41&apos;N 139°46&apos;E // USS TOKYO</div>
-          <div>INSPECTION PROTOCOL: JEVIC / QISJ VERIFIED</div>
+      {/* 2. Overhead Studio Softbox Lights (Luminous Photographic Depth) */}
+      <div 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1800px] h-[750px] opacity-70"
+        style={{
+          background: 'radial-gradient(ellipse 65% 45% at 50% 0%, rgba(255, 255, 255, 0.12) 0%, rgba(161, 161, 170, 0.04) 50%, transparent 80%)',
+        }}
+      />
+      
+      {/* Mid-page Warm Titanium Studio Bounce */}
+      <div 
+        className="absolute top-[45vh] right-[5%] w-[650px] h-[650px] rounded-full blur-[140px] opacity-35"
+        style={{
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(140, 120, 80, 0.02) 60%, transparent 80%)',
+        }}
+      />
+
+      {/* Lower-page Cool Platinum Studio Bounce */}
+      <div 
+        className="absolute bottom-[15vh] left-[5%] w-[750px] h-[750px] rounded-full blur-[160px] opacity-40"
+        style={{
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(113, 113, 122, 0.02) 60%, transparent 80%)',
+        }}
+      />
+
+      {/* 3. Interactive Specular Inspection Spotlight (Desktop Cursor Follow) */}
+      {!isTouch && mousePos.x >= 0 && (
+        <div
+          className="absolute w-[700px] h-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-transform duration-75"
+          style={{
+            left: `${mousePos.x}px`,
+            top: `${mousePos.y}px`,
+            background: 'radial-gradient(circle 350px at center, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 70%)',
+          }}
+        />
+      )}
+
+      {/* 4. Architectural Technical Blueprint Watermarks (Visible Tokyo-Mombasa Engineering Axis) */}
+      <div className="absolute top-28 left-6 sm:left-10 opacity-70 hidden md:block select-none pointer-events-none">
+        <div className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-400 space-y-1 border-l-2 border-white/30 pl-3.5 bg-black/40 backdrop-blur-sm py-1.5 pr-3 rounded-r">
+          <div className="text-white font-semibold">CAD GRID: 120mm · DATUM: TOKYO</div>
+          <div>PACIFIC VESSEL TRANSIT // 35°41&apos;N 139°46&apos;E</div>
+          <div className="text-zinc-500">USS TOKYO & CAA CHASSIS AUDIT</div>
         </div>
       </div>
 
-      <div className="absolute top-24 right-6 sm:right-12 opacity-25 hidden md:block select-none pointer-events-none text-right">
-        <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-400 space-y-0.5 border-r border-white/20 pr-3">
-          <div>TERMINUS: MOMBASA PORT · HUB 01</div>
-          <div>COORDINATES: 04°03&apos;S 39°40&apos;E // TANGANA RD</div>
-          <div>WARRANTY STANDARD: 5,000 KM STRICT POWERTRAIN</div>
+      <div className="absolute top-28 right-6 sm:right-10 opacity-70 hidden md:block select-none pointer-events-none text-right">
+        <div className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-400 space-y-1 border-r-2 border-white/30 pr-3.5 bg-black/40 backdrop-blur-sm py-1.5 pl-3 rounded-l">
+          <div className="text-white font-semibold">TERMINUS: MOMBASA PORT · HUB 01</div>
+          <div>TANGANA RD WORKSHOP // 04°03&apos;S 39°40&apos;E</div>
+          <div className="text-zinc-500">5,000 KM MECHANICAL HOIST CERTIFIED</div>
         </div>
       </div>
 
       {/* 5. 35mm Analog Micro-Grain Texture Overlay (Anti-Banding) */}
       <div
-        className="absolute inset-0 opacity-[0.025] mix-blend-overlay pointer-events-none"
+        className="absolute inset-0 opacity-[0.035] mix-blend-overlay pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}

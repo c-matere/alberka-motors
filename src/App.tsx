@@ -189,7 +189,7 @@ export function App() {
       />
 
       {/* Main View Router */}
-      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0">
+      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0 relative z-10">
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
