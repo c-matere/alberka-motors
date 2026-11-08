@@ -50,7 +50,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-[#0b0b0e] hover:bg-[#111115] border border-white/[0.08] hover:border-white/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] hover:-translate-y-1 cursor-pointer select-none overflow-hidden before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:z-10 ${
+      className={`group relative bg-[#0b0b0e] hover:bg-[#101014] border border-white/[0.07] hover:border-white/20 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] hover:-translate-y-0.5 cursor-pointer select-none overflow-hidden ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
@@ -92,14 +92,14 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-110 active:scale-95 ${
+            className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 ${
               isFavorite 
-                ? 'bg-white text-zinc-950 font-bold border-white' 
-                : 'bg-black/75 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/15'
+                ? 'bg-white text-zinc-950 font-bold border-white opacity-100' 
+                : 'bg-black/60 hover:bg-black/90 text-zinc-400 hover:text-white border border-white/10 opacity-70 group-hover:opacity-100'
             }`}
             title={isFavorite ? 'Remove from saved cars' : 'Save car'}
           >
-            <Bookmark className={`w-3.5 h-3.5 transition-transform ${isFavorite ? 'fill-black animate-heartbeat' : ''}`} />
+            <Bookmark className={`w-3.5 h-3.5 transition-transform ${isFavorite ? 'fill-black' : ''}`} />
           </button>
 
           {/* Bottom Right: Discreet Multi-Angle Indicator */}

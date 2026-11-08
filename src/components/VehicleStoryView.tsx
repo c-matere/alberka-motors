@@ -28,7 +28,10 @@ import {
   Maximize2,
   X,
   ZoomIn,
-  Eye
+  Eye,
+  Navigation,
+  Gauge,
+  Compass
 } from 'lucide-react';
 import { Vehicle, EditorialFeature, FeatureSlide } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
@@ -344,7 +347,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedLeatherIndex, setSelectedLeatherIndex] = useState(0);
   const [selectedVeneerIndex, setSelectedVeneerIndex] = useState(0);
-  const [bespokeTab, setBespokeTab] = useState<'exterior' | 'interior' | 'veneer' | 'acoustics'>('exterior');
+  const [bespokeTab, setBespokeTab] = useState<'exterior' | 'interior' | 'veneer' | 'acoustics' | 'kenya-road'>('exterior');
+  const [routeMode, setRouteMode] = useState<'expressway' | 'mombasa' | 'rift-valley'>('expressway');
+  const [selectedInspectorPoint, setSelectedInspectorPoint] = useState<string>('front');
   const [showAuctionModal, setShowAuctionModal] = useState(false);
   const [acousticMode, setAcousticMode] = useState<'off' | 'ambient' | 'sanctuary'>('off');
   const [copiedToast, setCopiedToast] = useState(false);
@@ -930,6 +935,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               { id: 'interior', label: '2. Seat Leather', icon: Armchair },
               { id: 'veneer', label: '3. Dashboard Trim', icon: Layers },
               { id: 'acoustics', label: '4. Cabin Quietness', icon: Volume2 },
+              { id: 'kenya-road', label: '5. Kenyan Route Simulator', icon: Navigation },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = bespokeTab === tab.id;
@@ -1163,6 +1169,152 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     <span className="text-[10px] font-mono text-zinc-500 uppercase block">ROAD SUSPENSION</span>
                     <span className="text-base font-bold text-white block mt-1">SMOOTH DAMPING</span>
                     <span className="text-xs text-zinc-400 block">Kenyan highway calibration</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {bespokeTab === 'kenya-road' && (
+              <div className="space-y-6">
+                <div>
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold block mb-1">
+                    KENYAN OPERATING SUITABILITY · WORKSHOP PROTOCOL
+                  </span>
+                  <h3 className="text-xl font-bold text-white tracking-tight">
+                    Route Simulation: {vehicle.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl leading-relaxed">
+                    Test how this vehicle's powertrain, clearance, and cooling respond across Kenya's three distinct driving environments.
+                  </p>
+                </div>
+
+                {/* 3 Corridor Route Selector */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[
+                    {
+                      id: 'expressway',
+                      title: 'Nairobi Expressway & City',
+                      corridor: 'Westlands · JKIA · Kilimani',
+                      highlight: 'Stop-and-Go & 80 km/h Cruise',
+                    },
+                    {
+                      id: 'mombasa',
+                      title: 'Mombasa Coastal Highway',
+                      corridor: 'Nyali · Port · SGR Corridor',
+                      highlight: 'Tropical 34°C & Saline Air',
+                    },
+                    {
+                      id: 'rift-valley',
+                      title: 'Rift Valley & Upcountry',
+                      corridor: 'Mai Mahiu · Nakuru · Naivasha',
+                      highlight: 'Steep Gradients & Road Ruts',
+                    },
+                  ].map((route) => {
+                    const isSelected = routeMode === route.id;
+                    return (
+                      <button
+                        key={route.id}
+                        onClick={() => setRouteMode(route.id as any)}
+                        className={`p-4 rounded-xl border text-left transition-all cursor-pointer space-y-1.5 ${
+                          isSelected
+                            ? 'bg-zinc-900 border-white shadow-lg'
+                            : 'bg-zinc-950/60 border-zinc-800 hover:border-zinc-700 text-zinc-400'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+                            {route.corridor}
+                          </span>
+                          {isSelected && <span className="w-2 h-2 rounded-full bg-emerald-400" />}
+                        </div>
+                        <h4 className="text-sm font-bold text-white">{route.title}</h4>
+                        <p className="text-[11px] text-zinc-400">{route.highlight}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Dynamic Telemetry Matrix */}
+                <div className="p-5 bg-black border border-zinc-800 rounded-xl space-y-5">
+                  <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+                    <div className="flex items-center gap-2">
+                      <Gauge className="w-4 h-4 text-zinc-400" />
+                      <span className="font-mono text-xs text-white uppercase tracking-wider font-semibold">
+                        LIVE SIMULATED TELEMETRY
+                      </span>
+                    </div>
+                    <span className="font-mono text-[11px] text-emerald-400">
+                      CALIBRATED FOR KENYA
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div className="p-3 bg-zinc-900/70 border border-zinc-800/80 rounded-lg">
+                      <span className="font-mono text-[10px] text-zinc-400 uppercase block mb-1">
+                        EST. CONSUMPTION
+                      </span>
+                      <span className="font-mono text-lg font-bold text-white block">
+                        {routeMode === 'expressway'
+                          ? (vehicle.fuelType.toLowerCase().includes('hybrid') || vehicle.fuelType.toLowerCase().includes('power') ? '21.4 Km/L' : '13.8 Km/L')
+                          : routeMode === 'mombasa'
+                          ? (vehicle.fuelType.toLowerCase().includes('hybrid') || vehicle.fuelType.toLowerCase().includes('power') ? '19.8 Km/L' : '15.2 Km/L')
+                          : (vehicle.fuelType.toLowerCase().includes('hybrid') || vehicle.fuelType.toLowerCase().includes('power') ? '17.6 Km/L' : '12.4 Km/L')}
+                      </span>
+                      <span className="text-[10.5px] text-zinc-400 mt-0.5 block">
+                        {routeMode === 'expressway' ? 'Regenerative braking active' : routeMode === 'mombasa' ? 'Aerodynamic continuous cruise' : 'Climbing gear torque hold'}
+                      </span>
+                    </div>
+
+                    <div className="p-3 bg-zinc-900/70 border border-zinc-800/80 rounded-lg">
+                      <span className="font-mono text-[10px] text-zinc-400 uppercase block mb-1">
+                        CLEARANCE SAFETY
+                      </span>
+                      <span className="font-mono text-lg font-bold text-white block">
+                        195 - 200 MM
+                      </span>
+                      <span className="text-[10.5px] text-zinc-400 mt-0.5 block">
+                        {routeMode === 'rift-valley' ? '+45mm margin over severe ruts' : 'Zero scrape on suburban bumps'}
+                      </span>
+                    </div>
+
+                    <div className="p-3 bg-zinc-900/70 border border-zinc-800/80 rounded-lg">
+                      <span className="font-mono text-[10px] text-zinc-400 uppercase block mb-1">
+                        CABIN NOISE LEVEL
+                      </span>
+                      <span className="font-mono text-lg font-bold text-white block">
+                        {routeMode === 'expressway' ? '40 dB' : routeMode === 'mombasa' ? '43 dB' : '44 dB'}
+                      </span>
+                      <span className="text-[10.5px] text-zinc-400 mt-0.5 block">
+                        Acoustic insulation sealed
+                      </span>
+                    </div>
+
+                    <div className="p-3 bg-zinc-900/70 border border-zinc-800/80 rounded-lg">
+                      <span className="font-mono text-[10px] text-zinc-400 uppercase block mb-1">
+                        DRIVETRAIN RESPONSE
+                      </span>
+                      <span className="font-mono text-lg font-bold text-white block">
+                        {vehicle.drivetrain.includes('AWD') ? 'Dynamic AWD' : 'Intelligent 2WD'}
+                      </span>
+                      <span className="text-[10.5px] text-zinc-400 mt-0.5 block">
+                        {routeMode === 'rift-valley' ? 'Active torque split to rear wheels' : 'Smooth fuel-efficient forward pull'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Mechanical Technical Advice */}
+                  <div className="p-4 bg-zinc-900/40 border border-zinc-800 rounded-lg text-left space-y-1">
+                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block font-semibold">
+                      ALBERKA WORKSHOP VERDICT:
+                    </span>
+                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                      {routeMode === 'expressway' &&
+                        `In dense Nairobi traffic and highway merges, ${vehicle.name}'s powertrain excels with instantaneous throttle response. Regenerative braking captures energy during jams on Uhuru Highway, extending brake pad longevity by up to 40%.`}
+                      {routeMode === 'mombasa' &&
+                        `On the high-speed coastal corridor, ${vehicle.name}'s dual-fan tropicalized cooling matrix easily manages 34°C ambient humidity. Factory underbody sealant applied at our Mombasa facility prevents salt-mist oxidation along Nyali and Diani routes.`}
+                      {routeMode === 'rift-valley' &&
+                        `Climbing Mai Mahiu or handling unpaved access roads into Naivasha and Nanyuki, the suspension dampening absorbs washboard ripples smoothly. Generous ground clearance ensures the oil sump and catalytic converter remain safely shielded.`}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1587,7 +1739,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </button>
             </div>
 
-            {/* Score Grid & Authentic Vermilion Japanese Hanko Stamp */}
+            {/* Score Grid & Authentic Japanese Hanko Stamp */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-4 bg-zinc-900/80 border border-zinc-800 rounded-lg flex flex-col justify-between">
                 <div>
@@ -1596,7 +1748,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   <span className="text-[11px] text-zinc-400 mt-1 block">Pristine Original Condition</span>
                 </div>
                 <div className="mt-3 pt-2 border-t border-zinc-800 flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full border border-red-600 flex items-center justify-center text-red-500 text-[10px] font-bold">
+                  <div className="w-6 h-6 rounded-full border border-white/25 flex items-center justify-center text-white text-[10px] font-bold">
                     合
                   </div>
                   <span className="text-[11px] text-zinc-300 font-mono font-semibold">USS VERIFIED</span>
@@ -1628,11 +1780,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </div>
 
-            {/* Vehicle Inspection Blueprint Matrix */}
+            {/* Vehicle Inspection Blueprint Matrix (Interactive Japanese Inspector Decoder) */}
             <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-lg space-y-4">
               <div className="flex items-center justify-between border-b border-zinc-800 pb-2 text-[11px] font-mono">
                 <span className="text-zinc-300 uppercase font-semibold">
-                  PANEL & CHASSIS INSPECTION CODES (JAPANESE STANDARD)
+                  INTERACTIVE PANEL & CHASSIS INSPECTOR (JAPANESE STANDARD)
                 </span>
                 <span className="text-emerald-400 font-bold">
                   FRAME DISTORTION: 0%
@@ -1640,22 +1792,40 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[12px] font-mono">
-                <div className="p-2.5 bg-[#121215] border border-[#27272a] rounded-[2px]">
-                  <span className="text-white block font-bold">FRONT BUMPER</span>
-                  <span className="text-[#a1a1aa]">A1 · Clean hairline</span>
-                </div>
-                <div className="p-2.5 bg-[#121215] border border-[#27272a] rounded-[2px]">
-                  <span className="text-white block font-bold">LEFT FLANK</span>
-                  <span className="text-[#a1a1aa]">O · Factory original paint</span>
-                </div>
-                <div className="p-2.5 bg-[#121215] border border-[#27272a] rounded-[2px]">
-                  <span className="text-white block font-bold">RIGHT FLANK</span>
-                  <span className="text-[#a1a1aa]">O · Factory original paint</span>
-                </div>
-                <div className="p-2.5 bg-[#121215] border border-[#27272a] rounded-[2px]">
-                  <span className="text-white block font-bold">PILLARS & ROOF</span>
-                  <span className="text-[#27a644] font-bold">XX: NONE · Zero repair</span>
-                </div>
+                {[
+                  { id: 'front', label: 'FRONT BUMPER', code: 'A1 · Clean hairline', detail: 'Code A1: Negligible scratch under 5cm. Factory plastic bumper clip pins intact, zero curb deformation.' },
+                  { id: 'left', label: 'LEFT FLANK', code: 'O · Factory original', detail: 'Code O: Original factory paint verified. Digital micrometer paint thickness 112μm, zero re-sprays.' },
+                  { id: 'right', label: 'RIGHT FLANK', code: 'O · Factory original', detail: 'Code O: Zero door dings, flawless panel alignment with factory door seams and weatherstripping.' },
+                  { id: 'roof', label: 'PILLARS & ROOF', code: 'XX: NONE · Zero repair', detail: 'Code XX None: All A/B/C pillars and roof retain original factory robotic spot welds. Zero damage.' },
+                ].map((pt) => {
+                  const isSelected = selectedInspectorPoint === pt.id;
+                  return (
+                    <button
+                      key={pt.id}
+                      onClick={() => setSelectedInspectorPoint(pt.id)}
+                      className={`p-2.5 rounded-[4px] border text-left transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-zinc-800 border-white shadow-md'
+                          : 'bg-[#121215] border-[#27272a] hover:border-zinc-700'
+                      }`}
+                    >
+                      <span className="text-white block font-bold text-[11px]">{pt.label}</span>
+                      <span className="text-zinc-400 text-[11px] block mt-0.5">{pt.code}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="p-3 bg-black/60 border border-zinc-800/80 rounded text-left">
+                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold mb-1">
+                  DECODED INSPECTION REPORT:
+                </span>
+                <p className="text-xs text-zinc-300 leading-relaxed font-mono">
+                  {selectedInspectorPoint === 'front' && 'Front Bumper: Minor microscopic clearcoat hairline. Grille clips, radar sensor bracket, and fog housings original OEM.'}
+                  {selectedInspectorPoint === 'left' && 'Left Flank: Factory clearcoat intact. Rocker panels and wheel arches free of corrosion or salt pit marks.'}
+                  {selectedInspectorPoint === 'right' && 'Right Flank: Pristine reflection line. Zero parking indentation, glass etching matches chassis VIN.'}
+                  {selectedInspectorPoint === 'roof' && 'Pillars & Roof: Laser alignment 100% square. Headliner shows zero sagging or water leak evidence.'}
+                </p>
               </div>
 
               <p className="text-[13px] text-[#a1a1aa] leading-relaxed">
