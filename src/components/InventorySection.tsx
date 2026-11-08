@@ -63,7 +63,10 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
   return (
-    <section className="w-full bg-transparent text-[#f4f4f5] border-t border-white/[0.08] relative">
+    <section className="w-full bg-transparent text-[#f4f4f5] relative">
+      {/* Soft black top & bottom gradient dissolves */}
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
       
       {/* 1. Section Editorial Title Bar (Scrolls naturally with generous breathing space) */}
       <div className="pt-16 sm:pt-24 pb-10 sm:pb-14 px-4 sm:px-8 max-w-[1240px] mx-auto text-center space-y-4">

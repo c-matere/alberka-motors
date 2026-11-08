@@ -12,11 +12,13 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigate,
 }) => {
   return (
-    <footer className="w-full bg-[#070709]/85 backdrop-blur-md border-t border-white/[0.08] text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
-      <div className="max-w-[1240px] mx-auto">
+    <footer className="w-full bg-[#070709]/85 backdrop-blur-md relative text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
+      {/* Smooth top gradient fade into black */}
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+      <div className="max-w-[1240px] mx-auto relative z-10">
         
         {/* Disclaimers & Consumer Assurance */}
-        <div className="border-b border-white/[0.08] pb-8 mb-10 space-y-2.5 leading-relaxed text-xs text-zinc-400">
+        <div className="pb-8 mb-10 space-y-2.5 leading-relaxed text-xs text-zinc-400 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/10 after:via-white/5 after:to-transparent">
           <p>
             1. <strong className="text-white">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop in Mombasa.
           </p>
@@ -29,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Brand Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 border-b border-white/[0.08]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/10 after:via-white/5 after:to-transparent">
           <div className="flex items-center gap-4">
             <img
               src="/alberka-logo-cropped.png"
@@ -183,8 +185,8 @@ export const Footer: React.FC<FooterProps> = ({
 
         </div>
 
-        {/* Bottom Copyright Strip */}
-        <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
+        {/* Bottom Copyright Strip with Gradient Feather Divider */}
+        <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/[0.08] after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
           <p>© {new Date().getFullYear()} Alberka Motors (Kenya) Ltd. Direct Japanese Imports Since 2000.</p>
           <div className="flex items-center gap-3">
             <span>Mombasa · Nairobi</span>

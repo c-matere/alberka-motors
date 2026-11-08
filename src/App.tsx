@@ -21,6 +21,7 @@ import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { Footer } from './components/Footer';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
+import { SectionGradientFade } from './components/SectionGradientFade';
 import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
@@ -222,9 +223,13 @@ export function App() {
                 />
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
-                <section className="w-full bg-transparent py-24 sm:py-36 px-4 sm:px-8 border-b border-white/[0.07]">
-                  <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-white/[0.07]">
+                <section className="w-full bg-transparent py-24 sm:py-36 px-4 sm:px-8 relative">
+                  {/* Atmospheric Top & Bottom Black Gradient Fades */}
+                  <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+                  <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/15 after:via-white/5 after:to-transparent">
                       <div>
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 block mb-2">
                           AVAILABLE FLEET · MOMBASA & NAIROBI
@@ -259,9 +264,16 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Open Architectural 3-Pillar Provenance Manifesto (No heavy boxes - Zen whitespace) */}
-                <section className="w-full bg-[#070709]/50 backdrop-blur-[2px] py-28 sm:py-40 px-4 sm:px-8 border-b border-white/[0.07]">
-                  <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-24">
+                {/* Section Gradient Fade Transition */}
+                <SectionGradientFade />
+
+                {/* Open Architectural 3-Pillar Provenance Manifesto */}
+                <section className="w-full bg-[#070709]/40 backdrop-blur-[2px] py-28 sm:py-40 px-4 sm:px-8 relative">
+                  {/* Atmospheric Top & Bottom Black Gradient Fades */}
+                  <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+                  <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-24 relative z-10">
                     <div className="max-w-2xl text-left">
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400 block mb-3">
                         THE ALBERKA COVENANT
@@ -351,10 +363,17 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Serene Showrooms Dispatch (Mombasa & Nairobi - Crisp, uncluttered layout) */}
-                <section className="w-full bg-transparent py-28 sm:py-36 px-4 sm:px-8 border-b border-white/[0.07]">
-                  <div className="max-w-[1240px] mx-auto space-y-16">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-white/[0.07]">
+                {/* Section Gradient Fade Transition */}
+                <SectionGradientFade />
+
+                {/* Serene Showrooms Dispatch (Mombasa & Nairobi) */}
+                <section className="w-full bg-transparent py-28 sm:py-36 px-4 sm:px-8 relative">
+                  {/* Atmospheric Top & Bottom Black Gradient Fades */}
+                  <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
+
+                  <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/15 after:via-white/5 after:to-transparent">
                       <div>
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 block mb-2">
                           PRIVATE APPOINTMENTS & INSPECTIONS
@@ -414,6 +433,9 @@ export function App() {
                     </div>
                   </div>
                 </section>
+
+                {/* Section Gradient Fade Transition into Footer */}
+                <SectionGradientFade />
               </>
             )}
 
