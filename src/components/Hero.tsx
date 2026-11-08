@@ -305,9 +305,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
       </div>
 
-      {/* Atmospheric Bottom Black Gradient Fade */}
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none z-10" />
-
       {/* Fullscreen Theatrical Hero Lightbox Modal */}
       {isHeroLightboxOpen && typeof document !== 'undefined' && createPortal(
         <div 

@@ -32,9 +32,6 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
   return (
     <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-[#f4f4f5] relative">
-      {/* Soft black top & bottom gradient dissolves */}
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
       <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 relative z-10">
         
         {/* Section Header */}

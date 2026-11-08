@@ -105,10 +105,6 @@ const EditorialFeatureSection: React.FC<{
 
   return (
     <section className="w-full bg-transparent relative py-16 sm:py-24 px-4 sm:px-8">
-      {/* Atmospheric Top & Bottom Black Gradient Fades */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
-
       <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10 relative z-10">
         
         {/* Section Header */}
@@ -924,10 +920,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
       {/* 3. CUSTOM SPECIFICATIONS SUITE */}
       <section className="w-full bg-transparent relative py-16 px-6 sm:px-10">
-        {/* Soft black gradient fades */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
-
         <div className="max-w-[1400px] mx-auto space-y-8 relative z-10">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -1378,10 +1370,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS */}
       {vehicle.closerLookPoints && vehicle.closerLookPoints.length > 0 && (
         <section className="w-full bg-transparent relative py-16 sm:py-24 px-6 sm:px-10">
-          {/* Soft black gradient fades */}
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
-
           <div className="max-w-[1400px] mx-auto space-y-12 relative z-10">
             
             <div className="space-y-2 max-w-3xl">
@@ -1445,10 +1433,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
       {/* 4. THE MASTER PHOTOGRAPHIC GALLERY (ROLLS-ROYCE STYLE APERTURE) */}
       <section className="w-full bg-transparent relative py-20 px-4 sm:px-8">
-        {/* Soft black gradient fades */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
-
         <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10 relative z-10">
           
           {/* Gallery Header & Filter Controls */}
@@ -1656,10 +1640,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
       {/* 5. TECHNICAL ARCHIVES & AUCTION SHEET */}
       <section className="w-full bg-transparent relative py-20 px-6 sm:px-10">
-        {/* Soft black gradient fades */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#09090c] to-transparent pointer-events-none" />
-
         <div className="max-w-[1400px] mx-auto space-y-10 relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div className="space-y-2">

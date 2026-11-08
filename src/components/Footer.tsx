@@ -12,9 +12,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigate,
 }) => {
   return (
-    <footer className="w-full bg-[#070709]/85 backdrop-blur-md relative text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
-      {/* Smooth top gradient fade into black */}
-      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#09090c] to-transparent pointer-events-none" />
+    <footer className="w-full bg-transparent relative text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
       <div className="max-w-[1240px] mx-auto relative z-10">
         
         {/* Disclaimers & Consumer Assurance */}
