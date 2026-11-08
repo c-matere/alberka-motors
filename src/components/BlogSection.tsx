@@ -1,48 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
-  Calendar,
-  Clock,
-  User,
   ArrowRight,
   Plus,
   X,
-  CheckCircle2,
-  Share2,
-  MessageCircle,
-  Tag,
   Search,
   Sparkles,
-  ChevronLeft
+  Calendar,
+  Clock,
+  User,
+  Tag
 } from 'lucide-react';
-import { BlogPost, INITIAL_BLOG_POSTS } from '../data/blogs';
+import { BlogPost } from '../data/blogs';
 import { SkeletonImage } from './SkeletonImage';
 
 interface BlogSectionProps {
-  onNavigateHome: () => void;
-  onNavigateInventory: () => void;
+  blogs: BlogPost[];
+  onSelectPost: (post: BlogPost) => void;
+  onAddPost: (post: BlogPost) => void;
+  onNavigateHome?: () => void;
+  onNavigateInventory?: () => void;
 }
 
 export const BlogSection: React.FC<BlogSectionProps> = ({
+  blogs,
+  onSelectPost,
+  onAddPost,
   onNavigateHome,
   onNavigateInventory,
 }) => {
-  const [blogs, setBlogs] = useState<BlogPost[]>(() => {
-    try {
-      const saved = localStorage.getItem('alberka_blogs');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch {}
-    return INITIAL_BLOG_POSTS;
-  });
-
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedArticle, setSelectedArticle] = useState<BlogPost | null>(null);
   const [isWriteModalOpen, setIsWriteModalOpen] = useState<boolean>(false);
-  const [copiedToast, setCopiedToast] = useState(false);
 
   // Authoring Form State
   const [formData, setFormData] = useState({
@@ -58,23 +47,16 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     tags: 'Japan Auction, Kenya, Maintenance',
   });
 
-  // Persist to localStorage
+  // Lock scroll when write modal is active
   useEffect(() => {
-    try {
-      localStorage.setItem('alberka_blogs', JSON.stringify(blogs));
-    } catch {}
-  }, [blogs]);
-
-  // Lock scroll when modal or article reader is active
-  useEffect(() => {
-    if (selectedArticle || isWriteModalOpen) {
+    if (isWriteModalOpen) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = prev;
       };
     }
-  }, [selectedArticle, isWriteModalOpen]);
+  }, [isWriteModalOpen]);
 
   const categories = [
     { id: 'all', label: 'All Articles' },
@@ -103,32 +85,44 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
     e.preventDefault();
     if (!formData.title.trim() || !formData.content.trim()) return;
 
+    const slug = formData.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
     const newPost: BlogPost = {
       id: `blog-${Date.now()}`,
-      slug: formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-      title: formData.title,
-      subtitle: formData.subtitle || formData.excerpt,
+      slug: slug || `post-${Date.now()}`,
+      title: formData.title.trim(),
+      subtitle: formData.subtitle.trim() || formData.excerpt.trim(),
       category: formData.category,
-      coverImage: formData.coverImage,
+      coverImage: formData.coverImage.trim(),
       author: {
-        name: formData.authorName,
-        role: formData.authorRole,
+        name: formData.authorName.trim(),
+        role: formData.authorRole.trim(),
       },
       publishedDate: new Date().toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',
         year: 'numeric',
       }),
-      readTime: formData.readTime || '4 min read',
-      excerpt: formData.excerpt || formData.content.slice(0, 160) + '...',
-      content: formData.content.split('\n\n').filter((p) => p.trim().length > 0),
-      tags: formData.tags.split(',').map((t) => t.trim()).filter(Boolean),
+      readTime: formData.readTime.trim() || '4 min read',
+      excerpt: formData.excerpt.trim() || formData.content.slice(0, 160) + '...',
+      content: formData.content
+        .split('\n\n')
+        .map((p) => p.trim())
+        .filter((p) => p.length > 0),
+      tags: formData.tags
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean),
       featured: false,
     };
 
-    setBlogs([newPost, ...blogs]);
+    onAddPost(newPost);
     setIsWriteModalOpen(false);
-    setSelectedArticle(newPost);
+    onSelectPost(newPost);
+
     // Reset form
     setFormData({
       title: '',
@@ -142,15 +136,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
       content: '',
       tags: 'Japan Auction, Kenya, Maintenance',
     });
-  };
-
-  const handleShareArticle = (art: BlogPost) => {
-    const shareUrl = window.location.href;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(`${art.title} — ${shareUrl}`);
-      setCopiedToast(true);
-      setTimeout(() => setCopiedToast(false), 2500);
-    }
   };
 
   return (
@@ -235,7 +220,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         {/* Featured Editorial Story */}
         {featuredArticle && !searchQuery && activeCategory === 'all' && (
           <div
-            onClick={() => setSelectedArticle(featuredArticle)}
+            onClick={() => onSelectPost(featuredArticle)}
             className="group relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-[0_24px_60px_rgba(0,0,0,0.85)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent text-left"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
@@ -277,7 +262,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   </div>
 
                   <span className="btn-ghost !text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5 group-hover:bg-white group-hover:text-zinc-950 transition-colors">
-                    <span>Read Article</span>
+                    <span>Read Full Story</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -291,7 +276,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
           {(searchQuery || activeCategory !== 'all' ? filteredBlogs : standardArticles).map((article) => (
             <div
               key={article.id}
-              onClick={() => setSelectedArticle(article)}
+              onClick={() => onSelectPost(article)}
               className="group relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.85)] cursor-pointer before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
             >
               <div>
@@ -329,7 +314,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               <div className="p-6 pt-0 border-t border-white/[0.06] mt-4 flex items-center justify-between">
                 <span className="text-xs text-zinc-400 font-mono">{article.author.name}</span>
                 <span className="text-xs text-white font-semibold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                  <span>Read</span>
+                  <span>Read Story</span>
                   <ArrowRight className="w-3 h-3" />
                 </span>
               </div>
@@ -358,136 +343,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         )}
 
       </div>
-
-      {/* Full Article Reader Modal (Distraction-Free Editorial Layout) */}
-      {selectedArticle && (
-        <div 
-          className="fixed inset-0 z-[9999] bg-[#09090b]/95 backdrop-blur-2xl overflow-y-auto p-4 sm:p-8 flex justify-center animate-fadeIn"
-          onClick={() => setSelectedArticle(null)}
-        >
-          <div 
-            className="w-full max-w-3xl bg-[#0e0e12] border border-white/[0.12] rounded-2xl p-6 sm:p-12 my-auto shadow-2xl space-y-8 text-left animate-scaleIn relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Top Navigation & Close */}
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-              <button
-                onClick={() => setSelectedArticle(null)}
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors cursor-pointer"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                <span>Back to Journal</span>
-              </button>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleShareArticle(selectedArticle)}
-                  className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer"
-                  title="Copy link"
-                >
-                  <Share2 className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  onClick={() => setSelectedArticle(null)}
-                  className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            {/* Article Header */}
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 font-mono text-xs text-zinc-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                <span className="uppercase text-white font-semibold">{selectedArticle.category}</span>
-                <span>·</span>
-                <span>{selectedArticle.readTime}</span>
-                <span>·</span>
-                <span>{selectedArticle.publishedDate}</span>
-              </div>
-
-              <h1 className="text-2xl sm:text-4xl font-bold text-white tracking-[-0.03em] leading-tight">
-                {selectedArticle.title}
-              </h1>
-
-              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
-                {selectedArticle.subtitle}
-              </p>
-            </div>
-
-            {/* Hero Article Media */}
-            <div className="w-full aspect-[16/9] overflow-hidden rounded-xl border border-white/10 bg-black">
-              <img
-                src={selectedArticle.coverImage}
-                alt={selectedArticle.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Author Byline Card */}
-            <div className="p-4 bg-black/60 border border-white/[0.08] rounded-xl flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-white font-bold font-mono text-xs">
-                  {selectedArticle.author.name.charAt(0)}
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-white block">{selectedArticle.author.name}</span>
-                  <span className="text-[11px] text-zinc-400 font-mono block">{selectedArticle.author.role}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-[11px]">
-                <Clock className="w-3.5 h-3.5" />
-                <span>{selectedArticle.readTime}</span>
-              </div>
-            </div>
-
-            {/* Article Prose Content */}
-            <div className="prose prose-invert max-w-none space-y-5 text-sm sm:text-base text-zinc-300 leading-relaxed">
-              {selectedArticle.content.map((paragraph, idx) => (
-                <p key={idx} className="leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            {/* Article Tags */}
-            <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-white/[0.08]">
-              <Tag className="w-3.5 h-3.5 text-zinc-500 mr-1" />
-              {selectedArticle.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="font-mono text-[11px] bg-zinc-900 border border-white/10 text-zinc-400 px-2.5 py-1 rounded"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Reader Footer Action Bar */}
-            <div className="p-6 bg-gradient-to-r from-zinc-950 to-black border border-white/[0.08] rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
-              <div>
-                <span className="text-xs font-bold text-white block">Questions about this topic?</span>
-                <span className="text-[11px] text-zinc-400">Consult our Mombasa workshop team or inspect our verified stock.</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 w-full sm:w-auto">
-                <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20read%20your%20article%20'${encodeURIComponent(selectedArticle.title)}'%20and%20would%20like%20to%20consult%20your%20team.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-white !text-xs !py-2.5 !px-4 w-full sm:w-auto justify-center"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
-                  <span>Ask Technical Team</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      )}
 
       {/* Authoring Modal Studio ("Write Blogs") */}
       {isWriteModalOpen && (
@@ -623,14 +478,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               </div>
             </form>
           </div>
-        </div>
-      )}
-
-      {/* Share Toast */}
-      {copiedToast && (
-        <div className="fixed bottom-6 right-6 z-[9999] bg-white text-zinc-950 px-4 py-2.5 rounded-lg shadow-2xl text-xs font-mono font-bold flex items-center gap-2 animate-fadeIn">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-          <span>Article link copied to clipboard</span>
         </div>
       )}
 

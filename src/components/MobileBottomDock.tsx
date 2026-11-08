@@ -1,12 +1,15 @@
 import React from 'react';
 import { Home, Car, Wrench, ArrowLeftRight, Bookmark, MessageCircle, ArrowLeft } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
+import { BlogPost } from '../data/blogs';
 
 interface MobileBottomDockProps {
   currentView: string;
   selectedVehicle: Vehicle | null;
+  selectedBlogPost?: BlogPost | null;
   onNavigate: (view: string) => void;
   onBackToInventory: () => void;
+  onBackToJournal?: () => void;
   favoritesCount: number;
   onOpenFavorites: () => void;
   onOpenWhispers?: () => void;
@@ -15,8 +18,10 @@ interface MobileBottomDockProps {
 export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   currentView,
   selectedVehicle,
+  selectedBlogPost,
   onNavigate,
   onBackToInventory,
+  onBackToJournal,
   favoritesCount,
   onOpenFavorites,
   onOpenWhispers,
@@ -51,6 +56,42 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           >
             <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
             <span>WhatsApp Us</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  // If user is viewing a single blog article, show dedicated journal dock
+  if (selectedBlogPost) {
+    return (
+      <div className="fixed bottom-2 sm:bottom-3 inset-x-2.5 max-w-lg mx-auto z-40 md:hidden pb-[env(safe-area-inset-bottom,0px)]">
+        <div className="bg-[#0c0c0f]/95 backdrop-blur-xl border border-white/[0.12] rounded-xl px-4 py-2.5 flex items-center justify-between gap-3 shadow-2xl">
+          <button
+            onClick={onBackToJournal}
+            className="w-9 h-9 bg-zinc-900 border border-zinc-700 text-zinc-300 rounded-lg flex items-center justify-center shrink-0 cursor-pointer hover:bg-zinc-800"
+            title="Back to Journal"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+
+          <div className="min-w-0 flex-1">
+            <span className="text-[12px] font-semibold text-white block truncate">
+              {selectedBlogPost.title}
+            </span>
+            <span className="font-mono text-[11px] text-zinc-400 block leading-tight">
+              {selectedBlogPost.category} · {selectedBlogPost.readTime}
+            </span>
+          </div>
+
+          <a
+            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20reading%20'${encodeURIComponent(selectedBlogPost.title)}'%20and%20would%20like%20to%20consult%20your%20team.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-semibold"
+          >
+            <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+            <span>Consult</span>
           </a>
         </div>
       </div>

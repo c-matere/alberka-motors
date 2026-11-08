@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { VEHICLES, Vehicle } from './data/vehicles';
+import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { VehicleCard } from './components/VehicleCard';
 import { VehicleStoryView } from './components/VehicleStoryView';
+import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
 import { WorkshopSection } from './components/WorkshopSection';
 import { TradeInSection } from './components/TradeInSection';
@@ -22,6 +24,7 @@ import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 export function App() {
   const [currentView, setCurrentView] = useState<string>('overview');
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPost | null>(null);
   const [testDriveTargetVehicle, setTestDriveTargetVehicle] = useState<Vehicle | null>(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
@@ -43,41 +46,90 @@ export function App() {
     } catch {}
   }, [favorites]);
 
+  // Blogs state persisted in localStorage
+  const [blogs, setBlogs] = useState<BlogPost[]>(() => {
+    try {
+      const saved = localStorage.getItem('alberka_blogs');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {}
+    return INITIAL_BLOG_POSTS;
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('alberka_blogs', JSON.stringify(blogs));
+    } catch {}
+  }, [blogs]);
+
   // URL Hash Sync for Browser Navigation
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
+      
+      // Car detail page: #car-toyota-harrier-hybrid
       if (hash.startsWith('car-')) {
         const carId = hash.replace('car-', '');
         const found = VEHICLES.find((v) => v.id === carId);
         if (found) {
           setSelectedVehicle(found);
+          setSelectedBlogPost(null);
           window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
         }
       }
-      if (['overview', 'inventory', 'workshop', 'trade-in', 'about', 'locations', 'sitemap'].includes(hash)) {
+
+      // Blog detail item page: #blog-uss-tokyo-auction-sheet-guide
+      if (hash.startsWith('blog-')) {
+        const blogSlug = hash.replace('blog-', '');
+        const foundBlog = blogs.find((b) => b.slug === blogSlug || b.id === blogSlug);
+        if (foundBlog) {
+          setSelectedBlogPost(foundBlog);
+          setSelectedVehicle(null);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+      }
+
+      // Section views: #overview, #inventory, #workshop, #trade-in, #blog, #about, #locations, #sitemap
+      if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(hash)) {
         setCurrentView(hash);
         setSelectedVehicle(null);
+        setSelectedBlogPost(null);
       }
     };
 
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [blogs]);
 
   const handleNavigate = (view: string) => {
     setCurrentView(view);
     setSelectedVehicle(null);
+    setSelectedBlogPost(null);
     window.location.hash = view;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectVehicle = (vehicle: Vehicle) => {
     setSelectedVehicle(vehicle);
+    setSelectedBlogPost(null);
     window.location.hash = `car-${vehicle.id}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectBlogPost = (post: BlogPost) => {
+    setSelectedBlogPost(post);
+    setSelectedVehicle(null);
+    window.location.hash = `blog-${post.slug}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleAddBlogPost = (newPost: BlogPost) => {
+    setBlogs((prev) => [newPost, ...prev]);
   };
 
   const handleToggleFavorite = (id: string) => {
@@ -89,6 +141,7 @@ export function App() {
   const handleScheduleTestDrive = (vehicle: Vehicle) => {
     setTestDriveTargetVehicle(vehicle);
     setSelectedVehicle(null);
+    setSelectedBlogPost(null);
     setCurrentView('locations');
     window.location.hash = 'locations';
     window.scrollTo({ top: 600, behavior: 'smooth' });
@@ -99,7 +152,7 @@ export function App() {
       
       {/* Clean Single Top Navigation Bar */}
       <Navbar
-        currentView={selectedVehicle ? 'inventory' : currentView}
+        currentView={selectedVehicle ? 'inventory' : selectedBlogPost ? 'blog' : currentView}
         onNavigate={handleNavigate}
         favoritesCount={favorites.length}
         onOpenSearch={() => setSearchModalOpen(true)}
@@ -108,7 +161,7 @@ export function App() {
       />
 
       {/* Main View Router */}
-      <main key={selectedVehicle?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0">
+      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0">
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
@@ -118,6 +171,16 @@ export function App() {
             isFavorite={favorites.includes(selectedVehicle.id)}
             onToggleFavorite={handleToggleFavorite}
             onScheduleTestDrive={handleScheduleTestDrive}
+            onOpenWhispers={() => setWhispersDrawerOpen(true)}
+          />
+        ) : selectedBlogPost ? (
+          <BlogPostView
+            post={selectedBlogPost}
+            allPosts={blogs}
+            allVehicles={VEHICLES}
+            onBackToJournal={() => handleNavigate('blog')}
+            onSelectPost={handleSelectBlogPost}
+            onSelectVehicle={handleSelectVehicle}
             onOpenWhispers={() => setWhispersDrawerOpen(true)}
           />
         ) : (
@@ -347,6 +410,9 @@ export function App() {
 
             {currentView === 'blog' && (
               <BlogSection
+                blogs={blogs}
+                onSelectPost={handleSelectBlogPost}
+                onAddPost={handleAddBlogPost}
                 onNavigateHome={() => handleNavigate('overview')}
                 onNavigateInventory={() => handleNavigate('inventory')}
               />
@@ -386,10 +452,12 @@ export function App() {
 
       {/* Mobile Bottom Dock */}
       <MobileBottomDock
-        currentView={currentView}
+        currentView={selectedBlogPost ? 'blog' : currentView}
         selectedVehicle={selectedVehicle}
+        selectedBlogPost={selectedBlogPost}
         onNavigate={handleNavigate}
         onBackToInventory={() => handleNavigate('inventory')}
+        onBackToJournal={() => handleNavigate('blog')}
         favoritesCount={favorites.length}
         onOpenFavorites={() => setFavoritesModalOpen(true)}
         onOpenWhispers={() => setWhispersDrawerOpen(true)}
