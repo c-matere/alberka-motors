@@ -61,24 +61,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b] sm:bg-[#09090b]/90 sm:backdrop-blur-2xl border-b border-white/[0.08] h-16 sm:h-[68px] flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
-        <div className="max-w-[1440px] w-full flex items-center justify-between gap-4">
+      <nav className="w-full bg-[#09090b]/90 backdrop-blur-xl border-b border-white/[0.06] h-14 sm:h-[68px] flex items-center justify-center px-3.5 sm:px-8 sticky top-0 z-50 transition-all">
+        <div className="max-w-[1440px] w-full flex items-center justify-between gap-3 sm:gap-4">
           
           {/* Logo & Brand Emblem */}
           <button
             onClick={() => handleLinkClick('overview')}
-            className="flex items-center gap-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+            className="flex items-center gap-2.5 sm:gap-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
           >
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Motors"
-              className="h-8 sm:h-9 w-auto object-contain"
+              className="h-7 sm:h-9 w-auto object-contain"
             />
-            <div className="flex flex-col text-left pl-3 border-l border-white/15">
-              <span className="font-bold text-sm sm:text-[14.5px] tracking-tight text-white leading-tight">
+            <div className="flex flex-col text-left sm:pl-3 sm:border-l sm:border-white/15">
+              <span className="font-bold text-[13.5px] sm:text-[14.5px] tracking-tight text-white leading-tight">
                 ALBERKA MOTORS
               </span>
-              <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-400 leading-none mt-0.5">
+              <span className="hidden sm:block font-mono text-[9px] tracking-[0.16em] text-zinc-400 leading-none mt-0.5">
                 MOMBASA & NAIROBI
               </span>
             </div>
@@ -105,15 +105,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right Action Suite */}
-          <div className="flex items-center gap-2.5 sm:gap-3 text-white">
+          <div className="flex items-center gap-1 sm:gap-3 text-white">
             
-            {/* Quick Search Capsule with Keyboard Shortcut Hint */}
+            {/* Quick Search Button (Ghost icon on mobile, Capsule pill on desktop) */}
             <button
               onClick={onOpenSearch}
-              className="h-9 px-2.5 sm:px-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
+              className="w-9 h-9 sm:h-9 sm:px-3 rounded-full sm:bg-white/[0.04] sm:hover:bg-white/[0.08] sm:border sm:border-white/[0.08] sm:hover:border-white/20 text-zinc-400 hover:text-white flex items-center justify-center sm:gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
               title="Search inventory (⌘K / Ctrl+K)"
+              aria-label="Search inventory"
             >
-              <Search className="w-3.5 h-3.5 text-zinc-400" />
+              <Search className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               <span className="hidden xl:inline text-xs text-zinc-400 font-medium">Search fleet</span>
               <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white/[0.06] text-zinc-400 border border-white/10 rounded">
                 ⌘K
@@ -143,13 +144,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>WhatsApp Us</span>
             </button>
 
-            {/* Mobile Menu Toggle Button */}
+            {/* Mobile Menu Toggle Button - Refined Ghost Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-zinc-300 hover:text-white cursor-pointer"
+              className="lg:hidden w-9 h-9 rounded-full text-zinc-300 hover:text-white hover:bg-white/[0.06] flex items-center justify-center cursor-pointer transition-colors active:scale-95"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
@@ -158,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Editorial Luxury Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 sm:top-[68px] bg-[#09090b]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-white/[0.08] overflow-y-auto animate-slideDown">
+        <div className="fixed inset-0 top-14 sm:top-[68px] bg-[#09090b]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-white/[0.08] overflow-y-auto animate-slideDown">
           
           {/* Main Editorial Menu Links */}
           <div className="space-y-3 pt-2">

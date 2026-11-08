@@ -139,36 +139,36 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   };
 
   return (
-    <section className="relative w-full bg-transparent pt-3 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
+    <section className="relative w-full bg-transparent pt-2 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
       
       {/* Subtle Monochrome Ambient Spotlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none animate-ambient-spotlight" />
 
-      <div className="max-w-[1240px] mx-auto relative z-10 space-y-3 sm:space-y-4">
+      <div className="max-w-[1240px] mx-auto relative z-10 space-y-2.5 sm:space-y-4">
         
-        {/* Minimalist Provenance Eyebrow */}
-        <div className="inline-flex items-center gap-2 animate-hero-1">
+        {/* Minimalist Provenance Eyebrow (Hidden on mobile to preserve vertical air) */}
+        <div className="hidden sm:inline-flex items-center gap-2 animate-hero-1">
           <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-400">
             MOMBASA & NAIROBI
           </span>
         </div>
 
         {/* Display Hero Title with Editorial Air and Restraint - Compact for Above-the-Fold Video */}
-        <div className="space-y-1.5 max-w-[980px] mx-auto">
-          <h1 className="text-[30px] xs:text-[38px] sm:text-[50px] md:text-[58px] font-bold text-white tracking-[-0.035em] leading-[1.05] animate-hero-2">
+        <div className="space-y-1 sm:space-y-1.5 max-w-[980px] mx-auto">
+          <h1 className="text-[26px] xs:text-[34px] sm:text-[50px] md:text-[58px] font-bold text-white tracking-[-0.035em] leading-[1.1] animate-hero-2">
             Japanese Provenance.
           </h1>
 
-          <p className="max-w-[500px] mx-auto text-zinc-400 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
+          <p className="max-w-[460px] mx-auto text-zinc-400 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
             Grade 4.5+ auction imports, fully prepared in Mombasa.
           </p>
         </div>
 
         {/* Clean, Decisive Action Pair */}
-        <div className="flex flex-col xs:flex-row items-center justify-center gap-2.5 pt-0.5 animate-hero-4 max-w-md mx-auto xs:max-w-none">
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-2.5 pt-0.5 animate-hero-4 max-w-md mx-auto xs:max-w-none">
           <button
             onClick={onExploreFleet}
-            className="btn-white group w-full xs:w-auto py-2.5 px-5 text-xs sm:text-[13px] rounded-lg font-semibold tracking-tight inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+            className="btn-white group py-2 px-3.5 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-semibold tracking-tight inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
           >
             <span>Explore Collection</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -176,10 +176,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost group w-full xs:w-auto py-2.5 px-5 text-xs sm:text-[13px] rounded-lg font-medium tracking-tight inline-flex items-center justify-center gap-1.5 text-zinc-300 hover:text-white transition-colors cursor-pointer"
+            className="btn-ghost group py-2 px-3 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-medium tracking-tight inline-flex items-center justify-center gap-1.5 text-zinc-300 hover:text-white transition-colors cursor-pointer"
           >
             <ShieldCheck className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
-            <span>Our Workshop Standard</span>
+            <span className="hidden xs:inline">Our Workshop Standard</span>
+            <span className="xs:hidden">Workshop</span>
           </button>
         </div>
 

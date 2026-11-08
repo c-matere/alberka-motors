@@ -699,19 +699,19 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   return (
     <div className="w-full bg-transparent text-[#f4f4f5] pb-32">
       
-      {/* 1. SLIM, UNCONGESTED MODEL SUB-BAR */}
-      <div className="w-full bg-[#09090b]/85 backdrop-blur-xl border-b border-white/[0.08] h-12 px-4 sm:px-8 sticky top-16 sm:top-[68px] z-30 transition-all flex items-center">
-        <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between gap-4">
+      {/* 1. SLIM, UNCONGESTED MODEL SUB-BAR (Static and non-intrusive on mobile, sticky on desktop) */}
+      <div className="w-full bg-[#09090b]/85 backdrop-blur-xl border-b border-white/[0.08] h-11 sm:h-12 px-3 sm:px-8 relative sm:sticky sm:top-[68px] z-30 transition-all flex items-center">
+        <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between gap-2.5 sm:gap-4">
           
           {/* Left: Back Link & Elegant Model Selector Dropdown */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               onClick={onBackToFleet}
-              className="text-xs font-medium text-zinc-300 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 px-2.5 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] rounded-md transition-colors"
+              className="text-xs font-medium text-zinc-300 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 px-2 sm:px-2.5 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] rounded-md transition-colors"
+              title="Back to cars"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline">Back to</span>
-              <span>Cars</span>
+              <span className="hidden sm:inline">Back to Cars</span>
             </button>
 
             <span className="text-zinc-700 hidden sm:inline">|</span>
@@ -720,11 +720,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <div className="relative">
               <button
                 onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/20 rounded-md text-xs font-semibold text-white transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/20 rounded-md text-xs font-semibold text-white transition-colors cursor-pointer"
                 title="Switch vehicle"
               >
                 <span className="font-mono text-zinc-400 text-[11px] hidden sm:inline">{vehicle.stockNo}</span>
-                <span className="truncate max-w-[130px] sm:max-w-[200px]">{vehicle.name}</span>
+                <span className="truncate max-w-[125px] xs:max-w-[160px] sm:max-w-[200px]">{vehicle.name}</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-zinc-400 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -774,16 +774,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
 
           {/* Right: Cash Price & Primary Action */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            <div className="hidden sm:flex flex-col text-right font-mono">
-              <span className="text-[9.5px] text-zinc-400 uppercase tracking-wider">CASH PRICE</span>
-              <span className="text-[13px] font-bold text-white">
-                KES {vehicle.priceKes.toLocaleString()}
+          <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
+            <div className="flex flex-col text-right font-mono">
+              <span className="text-[9.5px] text-zinc-400 uppercase tracking-wider hidden sm:block">CASH PRICE</span>
+              <span className="text-xs sm:text-[13px] font-bold text-white">
+                <span className="sm:hidden">KES {(vehicle.priceKes / 1000000).toFixed(2)}M</span>
+                <span className="hidden sm:inline">KES {vehicle.priceKes.toLocaleString()}</span>
               </span>
             </div>
             <button
               onClick={() => onScheduleTestDrive(vehicle)}
-              className="btn-white !py-1.5 !px-3.5 !text-xs whitespace-nowrap cursor-pointer font-semibold shadow-sm"
+              className="btn-white !py-1.5 !px-3.5 !text-xs whitespace-nowrap cursor-pointer font-semibold shadow-sm hidden sm:inline-flex"
             >
               Book Test Drive
             </button>
@@ -793,7 +794,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </div>
 
       {/* 2. HERO: PHOTO, COLOR & METRICS */}
-      <section className="relative w-full pt-16 sm:pt-24 pb-20 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
+      <section className="relative w-full pt-8 sm:pt-20 pb-16 sm:pb-20 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
         <div className="relative z-10 space-y-6">
           
           <div className="inline-flex items-center gap-2">

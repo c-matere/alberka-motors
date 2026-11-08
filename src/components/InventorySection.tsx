@@ -82,7 +82,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       </div>
 
       {/* 2. STREAMLINED LOW-PROFILE COMMAND STRIP (Single unified aperture — Zero visual noise) */}
-      <div className="sticky top-16 sm:top-[68px] z-30 bg-[#09090b]/95 backdrop-blur-2xl border-y border-white/[0.08] py-2 sm:py-2.5 px-3 sm:px-8 shadow-[0_16px_36px_rgba(0,0,0,0.6)] transition-all">
+      <div className="sticky top-14 sm:top-[68px] z-30 bg-[#09090b]/95 backdrop-blur-2xl border-y border-white/[0.08] py-2 sm:py-2.5 px-3 sm:px-8 shadow-[0_16px_36px_rgba(0,0,0,0.6)] transition-all">
         <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2 sm:gap-4">
           
           {/* Top Row on Mobile / Left Section on Desktop: Search Bar + Mobile Sort side-by-side */}
