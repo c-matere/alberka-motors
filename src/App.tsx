@@ -3,7 +3,6 @@ import { VEHICLES, Vehicle } from './data/vehicles';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { VehicleCard } from './components/VehicleCard';
-import { ShowroomSlider } from './components/ShowroomSlider';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { InventorySection } from './components/InventorySection';
 import { WorkshopSection } from './components/WorkshopSection';

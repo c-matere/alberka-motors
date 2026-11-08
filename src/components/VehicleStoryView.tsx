@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -466,9 +467,20 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     setLightboxIndex((prev) => (prev - 1 + allPhotos.length) % allPhotos.length);
   }, [allPhotos.length]);
 
-  const openPhotoByUrl = (url: string) => {
-    let idx = allPhotos.findIndex((p) => p.url === url);
-    if (idx === -1) idx = 0;
+  const openPhotoByUrl = (url: string, title?: string, desc?: string) => {
+    const clean = (u: string) => u.replace(/^\.\//, '/');
+    let idx = allPhotos.findIndex((p) => clean(p.url) === clean(url) || p.url.includes(url) || url.includes(p.url));
+    if (idx === -1) {
+      allPhotos.push({
+        id: `custom-${Date.now()}`,
+        title: title || vehicle.name,
+        category: 'exterior',
+        tag: 'Detail',
+        description: desc || vehicle.tagline,
+        url,
+      });
+      idx = allPhotos.length - 1;
+    }
     setLightboxIndex(idx);
     setIsGalleryLightboxOpen(true);
   };
@@ -513,20 +525,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     setTouchGalleryStartX(null);
   };
 
-  // Bulletproof body scroll lock (iOS Safari & Desktop)
+  // Bulletproof body scroll lock (Clean & Reliable)
   useEffect(() => {
     if (isGalleryLightboxOpen || showAuctionModal) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        window.scrollTo(0, scrollY);
+        document.body.style.overflow = originalOverflow;
       };
     }
   }, [isGalleryLightboxOpen, showAuctionModal]);
@@ -1679,15 +1684,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         </div>
       )}
 
-      {/* Rolls-Royce Bespoke Fullscreen Gallery Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
-      {isGalleryLightboxOpen && (
+      {/* Rolls-Royce Bespoke Fullscreen Gallery Lightbox Modal (Guaranteed Viewport Portal) */}
+      {isGalleryLightboxOpen && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
+          className="fixed inset-0 z-[9999] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn"
           onClick={() => setIsGalleryLightboxOpen(false)}
         >
           {/* Top Bar: Fixed slim height */}
           <div 
-            className="h-14 sm:h-16 px-4 sm:px-8 border-b border-zinc-800/80 flex items-center justify-between shrink-0"
+            className="h-14 sm:h-16 px-4 sm:px-8 border-b border-white/[0.08] flex items-center justify-between shrink-0"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
@@ -1726,20 +1731,20 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               key={activeLightboxPhoto.url}
               src={activeLightboxPhoto.url}
               alt={activeLightboxPhoto.title}
-              className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl transition-all duration-300 pointer-events-none"
+              className="max-h-[72vh] sm:max-h-[78vh] max-w-[95vw] w-auto h-auto object-contain rounded-xl shadow-2xl transition-all duration-300 pointer-events-none"
             />
 
             {/* Hairline Nav Controls */}
             <button
               onClick={handlePrevLightbox}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-white/15 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous photo (Left Arrow)"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNextLightbox}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-white/15 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next photo (Right Arrow)"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -1748,7 +1753,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
           {/* Bottom Bar: Responsive & Zero-Scroll */}
           <div 
-            className="shrink-0 border-t border-zinc-800/80 bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5"
+            className="shrink-0 border-t border-white/[0.08] bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto py-1">
@@ -1760,7 +1765,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   className={`h-11 sm:h-12 w-16 sm:w-20 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
                     lightboxIndex === idx
                       ? 'border-white ring-2 ring-white/60 scale-105'
-                      : 'border-zinc-800 opacity-50 hover:opacity-100'
+                      : 'border-white/15 opacity-50 hover:opacity-100'
                   }`}
                 >
                   <img src={p.url} alt={p.title} className="w-full h-full object-cover" />
@@ -1787,7 +1792,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </div>

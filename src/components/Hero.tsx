@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Volume2,
   VolumeX,
@@ -115,17 +116,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   // Body scroll lock during fullscreen theater lightbox
   useEffect(() => {
     if (isHeroLightboxOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        window.scrollTo(0, scrollY);
+        document.body.style.overflow = originalOverflow;
       };
     }
   }, [isHeroLightboxOpen]);
@@ -303,9 +297,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
       </div>
 
       {/* Fullscreen Theatrical Hero Lightbox Modal */}
-      {isHeroLightboxOpen && (
+      {isHeroLightboxOpen && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn text-left"
+          className="fixed inset-0 z-[9999] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none animate-fadeIn text-left"
           onClick={() => setIsHeroLightboxOpen(false)}
         >
           {/* Top Bar */}
@@ -405,7 +399,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </section>
