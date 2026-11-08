@@ -220,7 +220,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         {featuredArticle && !searchQuery && activeCategory === 'all' && (
           <div
             onClick={() => onSelectPost(featuredArticle)}
-            className="group relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-[0_24px_60px_rgba(0,0,0,0.85)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent text-left"
+            className="group relative bg-[#0c0c10]/75 hover:bg-[#111116]/85 backdrop-blur-xl border border-white/[0.12] hover:border-white/25 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.65)] hover:shadow-[0_28px_65px_rgba(0,0,0,0.85)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent text-left"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-7 aspect-[16/10] sm:aspect-[21/11] lg:h-full overflow-hidden bg-black relative">
@@ -276,7 +276,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             <div
               key={article.id}
               onClick={() => onSelectPost(article)}
-              className="group relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.85)] cursor-pointer before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
+              className="group relative bg-[#0c0c10]/75 hover:bg-[#111116]/85 backdrop-blur-xl border border-white/[0.12] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 shadow-[0_12px_36px_rgba(0,0,0,0.55)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.75)] cursor-pointer before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
             >
               <div>
                 <div className="aspect-[16/10] w-full overflow-hidden bg-black relative">

@@ -236,7 +236,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Column: Your Current Vehicle Inputs (7 Cols) */}
-            <div className="lg:col-span-7 relative bg-[#0c0c0f] border border-white/[0.08] p-6 sm:p-8 space-y-6 rounded-2xl text-left">
+            <div className="lg:col-span-7 relative bg-[#0c0c10]/75 backdrop-blur-xl border border-white/[0.12] p-6 sm:p-8 space-y-6 rounded-2xl text-left shadow-[0_16px_40px_rgba(0,0,0,0.55)]">
               
               {/* Make & Model */}
               <div>
@@ -371,7 +371,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </div>
 
             {/* Right Column: Live Match Card (5 Cols) */}
-            <div className="lg:col-span-5 bg-[#0c0c0f] border border-white/[0.08] p-6 rounded-2xl lg:sticky lg:top-[90px] space-y-5 text-left">
+            <div className="lg:col-span-5 bg-[#0c0c10]/80 backdrop-blur-xl border border-white/[0.12] p-6 rounded-2xl lg:sticky lg:top-[90px] space-y-5 text-left shadow-[0_16px_40px_rgba(0,0,0,0.55)]">
               
               <div>
                 <span className="text-[10.5px] font-mono uppercase tracking-wider text-zinc-400 block mb-1.5 font-semibold">
@@ -501,7 +501,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-xl before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="relative bg-[#0c0c10]/75 hover:bg-[#111116]/85 backdrop-blur-xl border border-white/[0.12] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 shadow-[0_12px_36px_rgba(0,0,0,0.55)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -520,7 +520,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
             </div>
 
-            <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-xl before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="relative bg-[#0c0c10]/75 hover:bg-[#111116]/85 backdrop-blur-xl border border-white/[0.12] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 shadow-[0_12px_36px_rgba(0,0,0,0.55)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -539,7 +539,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
             </div>
 
-            <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-xl before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="relative bg-[#0c0c10]/75 hover:bg-[#111116]/85 backdrop-blur-xl border border-white/[0.12] hover:border-white/25 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 shadow-[0_12px_36px_rgba(0,0,0,0.55)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
