@@ -165,10 +165,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         </div>
 
         {/* Clean, Decisive Action Pair */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-1 animate-hero-4">
+        <div className="flex flex-col xs:flex-row items-center justify-center gap-3 pt-1 animate-hero-4 max-w-md mx-auto xs:max-w-none">
           <button
             onClick={onExploreFleet}
-            className="btn-white group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
+            className="btn-white group w-full xs:w-auto py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center justify-center gap-2"
           >
             <span>Explore Collection</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -176,7 +176,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-medium tracking-tight inline-flex items-center gap-2 text-zinc-300 hover:text-white transition-colors"
+            className="btn-ghost group w-full xs:w-auto py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-medium tracking-tight inline-flex items-center justify-center gap-2 text-zinc-300 hover:text-white transition-colors"
           >
             <ShieldCheck className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
             <span>Our Workshop Standard</span>
@@ -184,12 +184,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         </div>
 
         {/* 21:9 Widescreen Theatrical Cinema Stage — Pure, Uncluttered Visual Frame */}
-        <div className="relative w-full mx-auto pt-6 animate-hero-5">
+        <div className="relative w-full mx-auto pt-4 sm:pt-6 animate-hero-5">
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => setIsHeroLightboxOpen(true)}
-            className="w-full min-h-[350px] xs:min-h-[390px] sm:min-h-0 aspect-[16/11] sm:aspect-[21/9.5] max-h-[620px] overflow-hidden relative bg-black border border-white/[0.08] hover:border-white/20 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group transition-all duration-500"
+            className="w-full min-h-[340px] xs:min-h-[380px] sm:min-h-0 aspect-[16/11.5] sm:aspect-[21/9.5] max-h-[620px] overflow-hidden relative bg-black border border-white/[0.08] hover:border-white/20 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group transition-all duration-500"
           >
             
             {/* Cinematic Media (Video or Image) */}
@@ -220,8 +220,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
 
             {/* Left Top: Discreet Provenance Seal */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
-              <div className="bg-black/75 backdrop-blur-md border border-white/15 px-3 py-1 rounded-md text-[11px] font-mono text-white flex items-center gap-1.5 shadow-lg">
+            <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
+              <div className="bg-black/75 backdrop-blur-md border border-white/15 px-2.5 sm:px-3 py-1 rounded-md text-[10.5px] sm:text-[11px] font-mono text-white flex items-center gap-1.5 shadow-lg">
                 <span className="text-white font-bold">{currentSlide.grade}</span>
                 <span className="text-zinc-600">·</span>
                 <span className="text-zinc-300">{currentSlide.auctionHall}</span>
@@ -229,7 +229,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             </div>
 
             {/* Right Top: Minimal Audio & Fullscreen Toggle */}
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 z-20">
+            <div className="absolute top-3 right-3 sm:top-6 sm:right-6 flex items-center gap-1.5 z-20">
               {currentSlide.videoUrl && (
                 <button
                   onClick={(e) => {
@@ -254,19 +254,19 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </button>
             </div>
 
-            {/* Slide Information Overlay — Bottom Left with generous right margin for mobile clearance */}
+            {/* Slide Information Overlay — Bottom Left with generous clearance for mobile indicators */}
             <div
               key={currentSlide.id}
-              className="absolute bottom-4 sm:bottom-7 left-4 sm:left-8 pr-28 sm:pr-0 text-left z-20 pointer-events-none max-w-xl animate-slide-text"
+              className="absolute bottom-3 xs:bottom-4 sm:bottom-7 left-3 xs:left-4 sm:left-8 pr-20 xs:pr-24 sm:pr-0 text-left z-20 pointer-events-none max-w-xl animate-slide-text"
             >
-              <span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-zinc-400 block mb-0.5 sm:mb-1">
+              <span className="font-mono text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.16em] text-zinc-400 block mb-0.5 sm:mb-1">
                 {currentSlide.category} · {currentSlide.year}
               </span>
-              <h2 className="text-lg xs:text-xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-snug sm:leading-tight mb-1.5 sm:mb-2 line-clamp-2">
+              <h2 className="text-base xs:text-lg sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-snug sm:leading-tight mb-1 sm:mb-2 line-clamp-2">
                 {currentSlide.name}
               </h2>
-              <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] text-zinc-300">
-                <span className="font-bold text-white text-sm sm:text-lg">
+              <div className="flex items-center gap-2 font-mono text-xs sm:text-[13px] text-zinc-300">
+                <span className="font-bold text-white text-xs xs:text-sm sm:text-lg">
                   KES {currentSlide.priceKes.toLocaleString()}
                 </span>
                 <span className="text-zinc-600">·</span>
@@ -276,7 +276,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
             {/* Right Bottom: Subtle Slide Segment Rails with Progressive Timeline */}
             <div 
-              className="absolute bottom-4 sm:bottom-7 right-4 sm:right-8 z-20 flex items-center gap-2 bg-black/75 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/10"
+              className="absolute bottom-3 xs:bottom-4 sm:bottom-7 right-3 xs:right-4 sm:right-8 z-20 flex items-center gap-1.5 sm:gap-2 bg-black/80 backdrop-blur-md px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               {FLAGSHIP_SLIDES.map((_, idx) => (
@@ -287,14 +287,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   title={`Slide ${idx + 1}`}
                 >
                   {idx === activeSlideIdx ? (
-                    <div className="relative h-[2px] w-8 sm:w-11 bg-white/20 rounded-full overflow-hidden">
+                    <div className="relative h-[2px] w-6 sm:w-11 bg-white/20 rounded-full overflow-hidden">
                       <div
                         key={`hero-progress-${activeSlideIdx}`}
                         className="h-full bg-white rounded-full animate-hero-progress"
                       />
                     </div>
                   ) : (
-                    <div className="h-[2px] w-2 rounded-full bg-white/30 group-hover:bg-white/60 transition-all duration-300" />
+                    <div className="h-[2px] w-1.5 sm:w-2 rounded-full bg-white/30 group-hover:bg-white/60 transition-all duration-300" />
                   )}
                 </button>
               ))}

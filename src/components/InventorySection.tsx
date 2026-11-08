@@ -79,31 +79,49 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       </div>
 
       {/* 2. STREAMLINED LOW-PROFILE COMMAND STRIP (Single unified aperture — Zero visual noise) */}
-      <div className="sticky top-16 sm:top-[68px] z-30 bg-[#09090b]/95 backdrop-blur-2xl border-y border-white/[0.08] py-2.5 sm:py-3 px-4 sm:px-8 shadow-[0_16px_36px_rgba(0,0,0,0.6)] transition-all">
-        <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-4">
+      <div className="sticky top-16 sm:top-[68px] z-30 bg-[#09090b]/95 backdrop-blur-2xl border-y border-white/[0.08] py-2 sm:py-2.5 px-3 sm:px-8 shadow-[0_16px_36px_rgba(0,0,0,0.6)] transition-all">
+        <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2 sm:gap-4">
           
-          {/* Left: Refined Search Capsule */}
-          <div className="relative bg-[#0c0c0f] border border-white/[0.1] hover:border-white/20 focus-within:border-white/40 rounded-xl px-3 py-1.5 flex items-center gap-2.5 transition-all duration-300 md:w-80 lg:w-96 shrink-0">
-            <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-            <input
-              type="text"
-              placeholder="Search fleet, grade, powertrain..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent text-[14px] sm:text-xs font-medium text-white placeholder:text-zinc-500 focus:outline-none"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="p-0.5 text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
-                title="Clear search"
+          {/* Top Row on Mobile / Left Section on Desktop: Search Bar + Mobile Sort side-by-side */}
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <div className="relative bg-[#0c0c0f] border border-white/[0.1] hover:border-white/20 focus-within:border-white/40 rounded-xl px-3 py-1.5 flex items-center gap-2.5 transition-all duration-300 flex-1 md:w-80 lg:w-96 shrink-0">
+              <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search fleet, grade, powertrain..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent text-[16px] sm:text-xs font-medium text-white placeholder:text-zinc-500 focus:outline-none"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="p-0.5 text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
+                  title="Clear search"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+
+            {/* Mobile Sort Dropdown (Sits comfortably beside search bar on mobile) */}
+            <div className="flex md:hidden items-center gap-1 shrink-0 bg-[#0c0c0f] border border-white/[0.08] rounded-xl px-2.5 py-2">
+              <ArrowUpDown className="w-3 h-3 text-zinc-400" />
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                aria-label="Sort vehicles"
+                className="bg-transparent text-xs font-mono text-zinc-300 focus:outline-none cursor-pointer pr-1"
               >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            )}
+                <option value="featured" className="bg-[#121215] text-white">Featured</option>
+                <option value="price-asc" className="bg-[#121215] text-white">Price: Low</option>
+                <option value="price-desc" className="bg-[#121215] text-white">Price: High</option>
+                <option value="year" className="bg-[#121215] text-white">Year</option>
+              </select>
+            </div>
           </div>
 
-          {/* Center: Fluid Touch-Scrollable Category Pill Rail */}
+          {/* Fluid Touch-Scrollable Category Pill Rail */}
           <div className="overflow-x-auto no-scrollbar -webkit-overflow-scrolling-touch py-0.5 flex-1 min-w-0">
             <div className="flex items-center gap-1.5 min-w-max">
               {categories.map((cat) => {
@@ -131,9 +149,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             </div>
           </div>
 
-          {/* Right: Sleek Sort Dropdown */}
-          <div className="flex items-center gap-1.5 shrink-0 self-end md:self-auto bg-[#0c0c0f] border border-white/[0.08] rounded-lg px-2.5 py-1">
-            <ArrowUpDown className="w-3 h-3 text-zinc-400 hidden sm:inline" />
+          {/* Desktop Sort Dropdown */}
+          <div className="hidden md:flex items-center gap-1.5 shrink-0 bg-[#0c0c0f] border border-white/[0.08] rounded-lg px-2.5 py-1">
+            <ArrowUpDown className="w-3 h-3 text-zinc-400" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}

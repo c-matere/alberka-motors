@@ -129,15 +129,15 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
           {/* Form Content */}
           <div className="p-6">
             {isSubmitted ? (
-              <div className="p-8 text-center bg-[#18181c] border border-[#27a644] rounded-[4px] space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-[#27a644] mx-auto" />
-                <h3 className="text-[18px] font-bold text-white">Message Dispatched!</h3>
-                <p className="text-[14px] text-[#a1a1aa]">
+              <div className="p-8 text-center bg-[#18181c] border border-emerald-500/30 rounded-xl space-y-3">
+                <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                <h3 className="text-lg font-bold text-white">Message Dispatched!</h3>
+                <p className="text-xs sm:text-sm text-zinc-400">
                   We are opening WhatsApp with your details. Our sales team in Mombasa will assist you right away.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="btn-ghost !text-[12px] !py-2 !px-4 mt-2"
+                  className="btn-ghost !text-xs !py-2 !px-4 mt-2"
                 >
                   Submit Another Inquiry
                 </button>
@@ -145,36 +145,36 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1">Your Full Name</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Your Full Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1">WhatsApp Phone Number</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">WhatsApp Phone Number</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 {activeTab !== 'bidding' && (
                   <div>
-                    <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1">Car Model</label>
+                    <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Car Model</label>
                     <select
                       value={formData.vehicleId}
                       onChange={(e) => setFormData({ ...formData, vehicleId: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
+                      className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
                     >
                       {vehicles.map((v) => (
                         <option key={v.id} value={v.id}>
@@ -188,11 +188,11 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                 {activeTab === 'viewing' && (
                   <>
                     <div>
-                      <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1">Preferred Showroom</label>
+                      <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Preferred Showroom</label>
                       <select
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[13.5px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white cursor-pointer"
+                        className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
                       >
                         <option value="Mombasa — Tangana Road Showroom">Mombasa (Tangana Road Flagship)</option>
                         <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
@@ -201,19 +201,19 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                     </div>
 
                     <div>
-                      <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1">Preferred Date</label>
+                      <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Preferred Date</label>
                       <input
                         type="date"
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] font-mono text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
+                        className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
                       />
                     </div>
                   </>
                 )}
 
                 <div>
-                  <label className="text-[12px] font-mono uppercase text-[#a1a1aa] block mb-1">
+                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">
                     {activeTab === 'bidding' ? 'Car Model & Specifications Desired' : 'Special Notes or Questions'}
                   </label>
                   <textarea
@@ -225,13 +225,13 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                         ? 'e.g. Looking for a 2019 Toyota Prado TX-L White with sunroof, budget KES 5.5M'
                         : 'Any specific requests, financing questions, or trade-in info...'
                     }
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-[#27272a] rounded-[3px] text-[14px] text-white focus:outline-none focus:border-white focus:ring-1 focus:ring-white"
+                    className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit" className="btn-white w-full py-3 text-[14px] justify-center cursor-pointer font-semibold">
-                    <MessageCircle className="w-4 h-4 mr-2" />
+                  <button type="submit" className="btn-white w-full py-3 text-xs sm:text-sm justify-center cursor-pointer font-semibold rounded-lg shadow-lg inline-flex items-center gap-2">
+                    <MessageCircle className="w-4 h-4" />
                     <span>Send via WhatsApp</span>
                   </button>
                 </div>

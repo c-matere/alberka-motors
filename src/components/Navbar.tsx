@@ -230,7 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Footer & Direct Hotline */}
-          <div className="pt-6 border-t border-white/[0.08] space-y-3 mt-6">
+          <div className="pt-6 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] sm:pb-6 border-t border-white/[0.08] space-y-3 mt-6">
             <button
               onClick={handleContactClick}
               className="btn-white w-full py-3 text-xs sm:text-sm font-semibold justify-center inline-flex items-center gap-2 shadow-lg"

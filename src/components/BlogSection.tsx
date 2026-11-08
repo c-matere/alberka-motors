@@ -380,7 +380,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="e.g. 2026 KRA Valuation Changes on Japanese Imports"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
                 />
               </div>
 
@@ -390,7 +390,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white cursor-pointer"
                   >
                     <option value="Provenance">Provenance (Auction & Sourcing)</option>
                     <option value="Engineering">Engineering (Workshop & Mechanics)</option>
@@ -406,7 +406,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     value={formData.readTime}
                     onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
                     placeholder="e.g. 5 min read"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
@@ -418,7 +418,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="A one-sentence non-obvious thesis for the reader..."
                   value={formData.subtitle}
                   onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white"
+                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
                 />
               </div>
 
@@ -429,7 +429,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   required
                   value={formData.coverImage}
                   onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm font-mono text-zinc-300 focus:outline-none focus:border-white"
+                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-300 focus:outline-none focus:border-white"
                 />
               </div>
 
@@ -443,7 +443,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="Write the full technical article here. Use two line breaks between paragraphs..."
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full p-4 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white leading-relaxed resize-y"
+                  className="w-full p-4 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white leading-relaxed resize-y"
                 />
               </div>
 
@@ -454,7 +454,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   value={formData.tags}
                   onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
                   placeholder="e.g. Auction Sheets, Hybrid, Mombasa"
-                  className="w-full px-4 py-2 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white font-mono"
+                  className="w-full px-4 py-2 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white font-mono"
                 />
               </div>
 

@@ -92,11 +92,12 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 ${
+            className={`absolute top-3 right-3 w-9 h-9 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 ${
               isFavorite 
                 ? 'bg-white text-zinc-950 font-bold border-white opacity-100' 
-                : 'bg-black/60 hover:bg-black/90 text-zinc-400 hover:text-white border border-white/10 opacity-70 group-hover:opacity-100'
+                : 'bg-black/60 hover:bg-black/90 text-zinc-400 hover:text-white border border-white/10 opacity-80 sm:opacity-70 group-hover:opacity-100'
             }`}
+            aria-label={isFavorite ? 'Remove from saved cars' : 'Save car'}
             title={isFavorite ? 'Remove from saved cars' : 'Save car'}
           >
             <Bookmark className={`w-3.5 h-3.5 transition-transform ${isFavorite ? 'fill-black' : ''}`} />

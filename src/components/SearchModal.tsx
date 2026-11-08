@@ -98,7 +98,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="bg-[#101014] w-full max-w-[680px] overflow-hidden border border-white/[0.1] rounded-2xl max-h-[88vh] sm:max-h-[80vh] flex flex-col text-[#f4f4f5] shadow-[0_24px_60px_rgba(0,0,0,0.9)] animate-scaleIn"
+        className="bg-[#101014] w-full max-w-[680px] overflow-hidden border-t sm:border border-white/[0.1] rounded-t-2xl sm:rounded-2xl max-h-[90vh] sm:max-h-[80vh] flex flex-col text-[#f4f4f5] shadow-[0_24px_60px_rgba(0,0,0,0.9)] animate-scaleIn"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
@@ -213,7 +213,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Footer Info with Keyboard Navigation Hints */}
-        <div className="p-3 bg-black/50 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-zinc-400 font-mono px-5">
+        <div className="p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] sm:pb-3 bg-black/50 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-zinc-400 font-mono px-5">
           <span>{results.length} vehicles found</span>
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline-flex items-center gap-1">

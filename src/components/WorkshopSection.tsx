@@ -330,7 +330,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.name}
                     onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
@@ -342,7 +342,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.phone}
                     onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
@@ -351,7 +351,7 @@ export const WorkshopSection: React.FC = () => {
                   <select
                     value={bookingData.serviceType}
                     onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
                   >
                     <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
                     <option value="5,000 km Periodic Service">5,000 KM Routine Service</option>
@@ -371,7 +371,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.vehicleModel}
                     onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
                     placeholder="e.g. Toyota RAV4 (KDD 123X)"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
@@ -381,7 +381,7 @@ export const WorkshopSection: React.FC = () => {
                     type="date"
                     value={bookingData.preferredDate}
                     onChange={(e) => setBookingData({ ...bookingData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
               </div>

@@ -35,7 +35,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className={`bg-[#101014] w-full overflow-hidden border border-white/[0.1] rounded-2xl flex flex-col max-h-[88vh] shadow-[0_24px_60px_rgba(0,0,0,0.9)] animate-scaleIn transition-all ${
+        className={`bg-[#101014] w-full overflow-hidden border-t sm:border border-white/[0.1] rounded-t-2xl sm:rounded-2xl flex flex-col max-h-[90vh] sm:max-h-[88vh] shadow-[0_24px_60px_rgba(0,0,0,0.9)] animate-scaleIn transition-all ${
           viewMode === 'compare' && savedVehicles.length >= 2 ? 'max-w-[920px]' : 'max-w-[660px]'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -266,7 +266,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
 
         {/* Footer Actions */}
         {savedVehicles.length > 0 && (
-          <div className="p-4 border-t border-white/[0.08] bg-black/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="p-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:pb-4 border-t border-white/[0.08] bg-black/60 flex flex-col sm:flex-row items-center justify-between gap-3">
             <span className="text-xs font-mono text-zinc-400">
               {savedVehicles.length} vehicle{savedVehicles.length > 1 ? 's' : ''} saved for comparison
             </span>

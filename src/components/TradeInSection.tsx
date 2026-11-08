@@ -248,7 +248,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   value={makeModel}
                   onChange={(e) => setMakeModel(e.target.value)}
                   placeholder="e.g. Toyota Fielder / Mazda CX-5 / Subaru Forester"
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-sm text-white focus:outline-none focus:border-white transition-colors mb-3"
+                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors mb-3"
                 />
 
                 {/* Popular Models Chips */}
@@ -381,7 +381,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   <select
                     value={targetCarId}
                     onChange={(e) => setTargetCarId(e.target.value)}
-                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-black border border-white/15 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
+                    className="w-full appearance-none px-4 py-2.5 pr-10 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
                   >
                     {vehicles.map((v) => (
                       <option key={v.id} value={v.id}>

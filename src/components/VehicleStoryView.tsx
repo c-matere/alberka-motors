@@ -932,11 +932,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           {/* Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar border-b border-zinc-800">
             {[
-              { id: 'exterior', label: '1. Exterior Colors', icon: Palette },
-              { id: 'interior', label: '2. Seat Leather', icon: Armchair },
-              { id: 'veneer', label: '3. Dashboard Trim', icon: Layers },
-              { id: 'acoustics', label: '4. Cabin Quietness', icon: Volume2 },
-              { id: 'kenya-road', label: '5. Kenyan Route Simulator', icon: Navigation },
+              { id: 'exterior', label: '1. Exterior Colors', shortLabel: 'Colors', icon: Palette },
+              { id: 'interior', label: '2. Seat Leather', shortLabel: 'Leather', icon: Armchair },
+              { id: 'veneer', label: '3. Dashboard Trim', shortLabel: 'Trim', icon: Layers },
+              { id: 'acoustics', label: '4. Cabin Quietness', shortLabel: 'Quietness', icon: Volume2 },
+              { id: 'kenya-road', label: '5. Kenyan Route Simulator', shortLabel: 'Route Sim', icon: Navigation },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = bespokeTab === tab.id;
@@ -944,14 +944,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 <button
                   key={tab.id}
                   onClick={() => setBespokeTab(tab.id as any)}
-                  className={`flex items-center gap-2 py-3 px-4 text-xs font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
+                  className={`flex items-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 px-3 sm:px-4 text-xs font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
                     isActive
                       ? 'border-white text-white bg-zinc-900'
                       : 'border-transparent text-zinc-400 hover:text-white'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{tab.label}</span>
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span className="sm:hidden">{tab.shortLabel}</span>
+                  <span className="hidden sm:inline">{tab.label}</span>
                 </button>
               );
             })}
