@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b]/90 backdrop-blur-2xl border-b border-white/[0.08] h-16 sm:h-[68px] flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
+      <nav className="w-full bg-[#09090b] sm:bg-[#09090b]/90 sm:backdrop-blur-2xl border-b border-white/[0.08] h-16 sm:h-[68px] flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all">
         <div className="max-w-[1440px] w-full flex items-center justify-between gap-4">
           
           {/* Logo & Brand Emblem */}
@@ -120,10 +120,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               </kbd>
             </button>
 
-            {/* Saved Cars Capsule with Badge */}
+            {/* Saved Cars Capsule with Badge (Hidden on mobile where it lives in the persistent bottom dock) */}
             <button
               onClick={onOpenFavorites}
-              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
+              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white hidden sm:flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
               title="Saved vehicles"
             >
               <Bookmark className="w-4 h-4" />
