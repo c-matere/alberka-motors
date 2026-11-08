@@ -22,11 +22,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   // Editorial navigation links with descriptive subtext for mobile menu
   const navLinks = [
-    { id: 'inventory', index: '01', label: 'Showroom Fleet', desc: 'Verified Tokyo stock & Japanese imports' },
-    { id: 'trade-in', index: '02', label: 'Trade-In & Upgrade', desc: '20-min hoist check & equity appraisal' },
-    { id: 'workshop', index: '03', label: 'Workshop & Warranty', desc: '100-point overhaul & 5,000 km warranty' },
-    { id: 'about', index: '04', label: '26-Year Provenance', desc: 'Direct auction bidding at USS Tokyo & CAA' },
-    { id: 'locations', index: '05', label: 'Showroom Hubs', desc: 'Tangana Rd, Mombasa & Westlands, Nairobi' },
+    { id: 'inventory', index: '01', label: 'Showroom', desc: 'Verified Tokyo stock & Japanese imports' },
+    { id: 'trade-in', index: '02', label: 'Trade-In', desc: '20-min hoist check & equity appraisal' },
+    { id: 'workshop', index: '03', label: 'Workshop', desc: '100-point overhaul & 5,000 km warranty' },
+    { id: 'blog', index: '04', label: 'Journal', desc: 'Technical guides, auction decoding & Kenyan market research' },
+    { id: 'about', index: '05', label: 'Why Alberka', desc: '26-year heritage & direct Japanese auction sourcing' },
+    { id: 'locations', index: '06', label: 'Locations', desc: 'Tangana Rd, Mombasa & Westlands, Nairobi' },
   ];
 
   // Prevent background body scroll when mobile menu is open

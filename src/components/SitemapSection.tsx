@@ -70,6 +70,15 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('blog')}
+                  className="font-medium text-white hover:text-zinc-300 text-left cursor-pointer transition-colors block"
+                >
+                  The Alberka Journal (Blog)
+                </button>
+                <p className="text-xs text-zinc-400">Technical research, auction sheets, and Kenya guides.</p>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('trade-in')}
                   className="font-medium text-white hover:text-zinc-300 text-left cursor-pointer transition-colors block"
                 >

@@ -154,6 +154,11 @@ export const Footer: React.FC<FooterProps> = ({
             <h4 className="font-mono text-[11px] font-bold text-white uppercase tracking-wider mb-3">About Alberka</h4>
             <ul className="space-y-2">
               <li>
+                <button onClick={() => onNavigate('blog')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                  The Alberka Journal (Blog)
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('about')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
                   26-Year Provenance
                 </button>

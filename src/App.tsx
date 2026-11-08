@@ -9,6 +9,7 @@ import { WorkshopSection } from './components/WorkshopSection';
 import { TradeInSection } from './components/TradeInSection';
 import { AboutSection } from './components/AboutSection';
 import { LocationsSection } from './components/LocationsSection';
+import { BlogSection } from './components/BlogSection';
 import { SitemapSection } from './components/SitemapSection';
 import { SearchModal } from './components/SearchModal';
 import { FavoritesModal } from './components/FavoritesModal';
@@ -343,6 +344,13 @@ export function App() {
             )}
 
             {currentView === 'workshop' && <WorkshopSection />}
+
+            {currentView === 'blog' && (
+              <BlogSection
+                onNavigateHome={() => handleNavigate('overview')}
+                onNavigateInventory={() => handleNavigate('inventory')}
+              />
+            )}
 
             {currentView === 'trade-in' && (
               <TradeInSection
