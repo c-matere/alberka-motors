@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, MessageCircle, Calendar, FileText, Phone, Mail, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 
@@ -46,14 +47,20 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
     setIsSubmitted(true);
   };
 
-  return (
-    <div className="fixed inset-0 z-50 bg-[#09090b]/90 backdrop-blur-md flex justify-end">
+  return createPortal(
+    <div 
+      className="fixed inset-0 z-[9999] bg-[#09090b]/90 backdrop-blur-md flex justify-end animate-fadeIn"
+      onClick={onClose}
+    >
       
       {/* Click outside backdrop */}
-      <div className="flex-1 hidden md:block" onClick={onClose} />
+      <div className="flex-1 hidden md:block" />
 
       {/* Drawer Panel */}
-      <div className="w-full max-w-[540px] h-full bg-[#121215] border-l border-[#27272a] flex flex-col justify-between overflow-y-auto text-[#f4f4f5]">
+      <div 
+        className="w-full max-w-[540px] h-full bg-[#121215] border-l border-[#27272a] flex flex-col justify-between overflow-y-auto text-[#f4f4f5] animate-slideInRight"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Header Bar */}
         <div>
@@ -250,6 +257,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

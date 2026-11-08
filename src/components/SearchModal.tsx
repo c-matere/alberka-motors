@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Search, X, ArrowRight, Gauge, Fuel, Shield } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
@@ -50,9 +51,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     );
   });
 
-  return (
-    <div className="fixed inset-0 z-50 bg-[#09090b]/90 backdrop-blur-md flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20">
-      <div className="bg-[#121215] w-full max-w-[680px] overflow-hidden border border-[#27272a] rounded-[4px] max-h-[88vh] sm:max-h-[80vh] flex flex-col text-[#f4f4f5] shadow-2xl">
+  return createPortal(
+    <div 
+      className="fixed inset-0 z-[9999] bg-[#09090b]/90 backdrop-blur-md flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20 animate-fadeIn"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-[#121215] w-full max-w-[680px] overflow-hidden border border-[#27272a] rounded-[4px] max-h-[88vh] sm:max-h-[80vh] flex flex-col text-[#f4f4f5] shadow-2xl animate-scaleIn"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Search Input Bar */}
         <div className="p-4 sm:p-5 border-b border-[#27272a] flex items-center gap-3">
@@ -157,6 +164,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

@@ -15,6 +15,7 @@ import { FavoritesModal } from './components/FavoritesModal';
 import { WhispersDrawer } from './components/WhispersDrawer';
 import { MobileBottomDock } from './components/MobileBottomDock';
 import { Footer } from './components/Footer';
+import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
@@ -149,13 +150,14 @@ export function App() {
 
                     {/* Expansive 2x2 Exhibition Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
-                      {VEHICLES.map((vehicle) => (
+                      {VEHICLES.map((vehicle, idx) => (
                         <VehicleCard
                           key={vehicle.id}
                           vehicle={vehicle}
                           isFavorite={favorites.includes(vehicle.id)}
                           onToggleFavorite={handleToggleFavorite}
                           onSelect={handleSelectVehicle}
+                          staggerIndex={idx}
                         />
                       ))}
                     </div>
@@ -173,76 +175,82 @@ export function App() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                       {/* Pillar 01 */}
-                      <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-3">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
-                            01 PROVENANCE
-                          </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                            Tokyo Auction Selection
-                          </h3>
-                          <p className="text-sm text-zinc-400 leading-relaxed">
-                            Handpicked at USS Tokyo and CAA. Original Japanese auction sheets and verified JEVIC mileage certificates.
-                          </p>
+                      <ScrollRevealBox delay={0}>
+                        <div className="relative h-full bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                          <div className="space-y-3">
+                            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                              01 PROVENANCE
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                              Tokyo Auction Selection
+                            </h3>
+                            <p className="text-sm text-zinc-400 leading-relaxed">
+                              Handpicked at USS Tokyo and CAA. Original Japanese auction sheets and verified JEVIC mileage certificates.
+                            </p>
+                          </div>
+                          <div className="pt-6 mt-6 border-t border-white/[0.07]">
+                            <button
+                              onClick={() => handleNavigate('about')}
+                              className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                            >
+                              <span>Auction Process</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                          </div>
                         </div>
-                        <div className="pt-6 mt-6 border-t border-white/[0.07]">
-                          <button
-                            onClick={() => handleNavigate('about')}
-                            className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                          >
-                            <span>Auction Process</span>
-                            <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
-                          </button>
-                        </div>
-                      </div>
+                      </ScrollRevealBox>
 
                       {/* Pillar 02 */}
-                      <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-3">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
-                            02 PREPARATION
-                          </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                            Mombasa Workshop Overhaul
-                          </h3>
-                          <p className="text-sm text-zinc-400 leading-relaxed">
-                            Complete pre-delivery service at Tangana Road. Castrol Edge synthetic oil, OEM filters, and full computerized diagnostics.
-                          </p>
+                      <ScrollRevealBox delay={75}>
+                        <div className="relative h-full bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                          <div className="space-y-3">
+                            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                              02 PREPARATION
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                              Mombasa Workshop Overhaul
+                            </h3>
+                            <p className="text-sm text-zinc-400 leading-relaxed">
+                              Complete pre-delivery service at Tangana Road. Castrol Edge synthetic oil, OEM filters, and full computerized diagnostics.
+                            </p>
+                          </div>
+                          <div className="pt-6 mt-6 border-t border-white/[0.07]">
+                            <button
+                              onClick={() => handleNavigate('workshop')}
+                              className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                            >
+                              <span>Workshop Checklist</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                          </div>
                         </div>
-                        <div className="pt-6 mt-6 border-t border-white/[0.07]">
-                          <button
-                            onClick={() => handleNavigate('workshop')}
-                            className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                          >
-                            <span>Workshop Checklist</span>
-                            <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
-                          </button>
-                        </div>
-                      </div>
+                      </ScrollRevealBox>
 
                       {/* Pillar 03 */}
-                      <div className="relative bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-3">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
-                            03 WARRANTY
-                          </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                            5,000 KM Written Warranty
-                          </h3>
-                          <p className="text-sm text-zinc-400 leading-relaxed">
-                            Written dealer warranty covering engine and gearbox, supported directly by our Mombasa technical workshop.
-                          </p>
+                      <ScrollRevealBox delay={150}>
+                        <div className="relative h-full bg-[#0c0c0f] hover:bg-[#111115] border border-white/[0.08] hover:border-white/25 rounded-2xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                          <div className="space-y-3">
+                            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                              03 WARRANTY
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                              5,000 KM Written Warranty
+                            </h3>
+                            <p className="text-sm text-zinc-400 leading-relaxed">
+                              Written dealer warranty covering engine and gearbox, supported directly by our Mombasa technical workshop.
+                            </p>
+                          </div>
+                          <div className="pt-6 mt-6 border-t border-white/[0.07]">
+                            <button
+                              onClick={() => handleNavigate('workshop')}
+                              className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                            >
+                              <span>Warranty Terms</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                          </div>
                         </div>
-                        <div className="pt-6 mt-6 border-t border-white/[0.07]">
-                          <button
-                            onClick={() => handleNavigate('workshop')}
-                            className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                          >
-                            <span>Warranty Terms</span>
-                            <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
-                          </button>
-                        </div>
-                      </div>
+                      </ScrollRevealBox>
                     </div>
                   </div>
                 </section>
@@ -258,62 +266,66 @@ export function App() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                       {/* Mombasa Card */}
-                      <div className="relative bg-[#0e0e11] hover:bg-[#121216] p-7 sm:p-9 border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl flex flex-col justify-between space-y-6 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-4">
-                          <div className="inline-flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
-                              MOMBASA FLAGSHIP
-                            </span>
+                      <ScrollRevealBox delay={0}>
+                        <div className="relative h-full bg-[#0e0e11] hover:bg-[#121216] p-7 sm:p-9 border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl flex flex-col justify-between space-y-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                          <div className="space-y-4">
+                            <div className="inline-flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
+                                MOMBASA FLAGSHIP
+                              </span>
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white">Mombasa Flagship</h3>
+                            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                              Tangana Road (Opposite AutoXpress / Near Railway Station), Majengo & Nyali Road.
+                            </p>
+                            <div className="text-xs text-zinc-300 pt-2 space-y-1 font-mono border-t border-zinc-800/80">
+                              <p className="text-zinc-400">Phone: <span className="text-white">0714 333 888 / 0737 333 888</span></p>
+                              <p className="text-zinc-400">Email: <span className="text-white">sales@alberkamotors.co.ke</span></p>
+                            </div>
                           </div>
-                          <h3 className="text-xl sm:text-2xl font-bold text-white">Mombasa Flagship</h3>
-                          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                            Tangana Road (Opposite AutoXpress / Near Railway Station), Majengo & Nyali Road.
-                          </p>
-                          <div className="text-xs text-zinc-300 pt-2 space-y-1 font-mono border-t border-zinc-800/80">
-                            <p className="text-zinc-400">Phone: <span className="text-white">0714 333 888 / 0737 333 888</span></p>
-                            <p className="text-zinc-400">Email: <span className="text-white">sales@alberkamotors.co.ke</span></p>
+                          <div className="pt-2">
+                            <button
+                              onClick={() => handleNavigate('locations')}
+                              className="btn-ghost !text-xs !py-2.5 !px-4 w-full sm:w-auto cursor-pointer group"
+                            >
+                              <span>Mombasa Details & Map</span>
+                              <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                            </button>
                           </div>
                         </div>
-                        <div className="pt-2">
-                          <button
-                            onClick={() => handleNavigate('locations')}
-                            className="btn-ghost !text-xs !py-2.5 !px-4 w-full sm:w-auto cursor-pointer"
-                          >
-                            <span>Mombasa Details & Map</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                          </button>
-                        </div>
-                      </div>
+                      </ScrollRevealBox>
 
                       {/* Nairobi Card */}
-                      <div className="relative bg-[#0e0e11] hover:bg-[#121216] p-7 sm:p-9 border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl flex flex-col justify-between space-y-6 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-                        <div className="space-y-4">
-                          <div className="inline-flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
-                              NAIROBI WESTLANDS
-                            </span>
+                      <ScrollRevealBox delay={75}>
+                        <div className="relative h-full bg-[#0e0e11] hover:bg-[#121216] p-7 sm:p-9 border border-zinc-800/90 hover:border-zinc-500/80 rounded-2xl flex flex-col justify-between space-y-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+                          <div className="space-y-4">
+                            <div className="inline-flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider block font-semibold">
+                                NAIROBI WESTLANDS
+                              </span>
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white">Nairobi Westlands Hub</h3>
+                            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                              Mwanzi Road, Westlands, Nairobi. Easy access for city viewings and trade-in appraisals.
+                            </p>
+                            <div className="text-xs text-zinc-300 pt-2 space-y-1 font-mono border-t border-zinc-800/80">
+                              <p className="text-zinc-400">Phone: <span className="text-white">0748 999 333</span></p>
+                              <p className="text-zinc-400">Email: <span className="text-white">nairobi@alberkamotors.co.ke</span></p>
+                            </div>
                           </div>
-                          <h3 className="text-xl sm:text-2xl font-bold text-white">Nairobi Westlands Hub</h3>
-                          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                            Mwanzi Road, Westlands, Nairobi. Easy access for city viewings and trade-in appraisals.
-                          </p>
-                          <div className="text-xs text-zinc-300 pt-2 space-y-1 font-mono border-t border-zinc-800/80">
-                            <p className="text-zinc-400">Phone: <span className="text-white">0748 999 333</span></p>
-                            <p className="text-zinc-400">Email: <span className="text-white">nairobi@alberkamotors.co.ke</span></p>
+                          <div className="pt-2">
+                            <button
+                              onClick={() => handleNavigate('locations')}
+                              className="btn-ghost !text-xs !py-2.5 !px-4 w-full sm:w-auto cursor-pointer group"
+                            >
+                              <span>Nairobi Details & Map</span>
+                              <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                            </button>
                           </div>
                         </div>
-                        <div className="pt-2">
-                          <button
-                            onClick={() => handleNavigate('locations')}
-                            className="btn-ghost !text-xs !py-2.5 !px-4 w-full sm:w-auto cursor-pointer"
-                          >
-                            <span>Nairobi Details & Map</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                          </button>
-                        </div>
-                      </div>
+                      </ScrollRevealBox>
                     </div>
                   </div>
                 </section>

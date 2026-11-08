@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 bg-[#09090b]/98 backdrop-blur-xl z-40 p-6 flex flex-col justify-between md:hidden border-t border-[#27272a] overflow-y-auto">
+        <div className="fixed inset-0 top-16 bg-[#09090b]/98 backdrop-blur-xl z-40 p-6 flex flex-col justify-between md:hidden border-t border-[#27272a] overflow-y-auto animate-slideDown">
           <div className="space-y-2 pt-2">
             <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block px-3 mb-2">
               Menu

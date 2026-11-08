@@ -9,6 +9,7 @@ interface VehicleCardProps {
   onToggleFavorite: (id: string) => void;
   onSelect: (vehicle: Vehicle) => void;
   disableScrollReveal?: boolean;
+  staggerIndex?: number;
 }
 
 export const VehicleCard: React.FC<VehicleCardProps> = ({
@@ -17,9 +18,13 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   onToggleFavorite,
   onSelect,
   disableScrollReveal = false,
+  staggerIndex = 0,
 }) => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.05 });
   const shouldReveal = disableScrollReveal || isVisible;
+
+  const delays = ['', 'delay-75', 'delay-150', 'delay-225'];
+  const delayClass = delays[staggerIndex % 4] || '';
 
   // Curated 2-angle studio suite: Exterior Stance & Interior Cabin
   const cardImages = [
@@ -45,8 +50,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-[#0b0b0e] hover:bg-[#111115] border border-white/[0.08] hover:border-white/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] cursor-pointer select-none overflow-hidden before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:z-10 ${
-        disableScrollReveal ? '' : `scroll-reveal ${shouldReveal ? 'is-visible' : ''}`
+      className={`group relative bg-[#0b0b0e] hover:bg-[#111115] border border-white/[0.08] hover:border-white/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_24px_50px_rgba(0,0,0,0.85)] hover:-translate-y-1 cursor-pointer select-none overflow-hidden before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:z-10 ${
+        disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
       <div>

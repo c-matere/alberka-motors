@@ -179,13 +179,14 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         {/* Vehicle Grid (Generous Luxury 2-Column Spacing) */}
         {filteredVehicles.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-[1240px] mx-auto">
-            {filteredVehicles.map((vehicle) => (
+            {filteredVehicles.map((vehicle, idx) => (
               <VehicleCard
                 key={vehicle.id}
                 vehicle={vehicle}
                 isFavorite={favorites.includes(vehicle.id)}
                 onToggleFavorite={onToggleFavorite}
                 onSelect={onSelectVehicle}
+                staggerIndex={idx}
               />
             ))}
           </div>

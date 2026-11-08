@@ -849,15 +849,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
                 {activeColor.name}
               </span>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-3">
                 {vehicle.colors.map((c, idx) => {
                   const isSelected = selectedColorIndex === idx;
                   return (
                     <button
                       key={idx}
                       onClick={() => setSelectedColorIndex(idx)}
-                      className={`w-6 h-6 rounded-full transition-all cursor-pointer relative ${
-                        isSelected ? 'ring-2 ring-white scale-110 shadow-md' : 'opacity-50 hover:opacity-100'
+                      className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer relative ${
+                        isSelected 
+                          ? 'ring-2 ring-white ring-offset-2 ring-offset-[#09090b] scale-125 shadow-lg' 
+                          : 'opacity-40 hover:opacity-100 hover:scale-110'
                       }`}
                       style={{ backgroundColor: c.hex }}
                       title={c.name}
@@ -1230,13 +1232,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 <div
                   key={point.id || pIdx}
                   onClick={() => openPhotoByUrl(point.imageUrl)}
-                  className="bg-[#121215] border border-zinc-800 hover:border-zinc-700 rounded-xl overflow-hidden group transition-all duration-300 flex flex-col justify-between cursor-pointer shadow-lg"
+                  className="bg-[#121215] border border-zinc-800 hover:border-zinc-500 rounded-xl overflow-hidden group transition-all duration-400 ease-out flex flex-col justify-between cursor-pointer shadow-lg hover:-translate-y-1.5 hover:shadow-2xl active:scale-[0.99]"
                 >
                   <div className="w-full h-48 sm:h-52 overflow-hidden bg-black relative">
                     <img
                       src={point.imageUrl}
                       alt={point.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-800 text-[11px] font-mono text-white font-bold flex items-center gap-1.5 shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
@@ -1556,9 +1558,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </section>
 
       {/* Japanese Auction Sheet Dossier Modal */}
-      {showAuctionModal && (
-        <div className="fixed inset-0 z-50 bg-[#09090b]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          <div className="max-w-[760px] w-full bg-[#121215] border border-[#27272a] p-6 sm:p-8 space-y-6 text-left my-auto rounded-[4px] shadow-2xl relative text-[#f4f4f5]">
+      {showAuctionModal && typeof document !== 'undefined' && createPortal(
+        <div 
+          className="fixed inset-0 z-[9999] bg-[#09090b]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-fadeIn"
+          onClick={() => setShowAuctionModal(false)}
+        >
+          <div 
+            className="max-w-[760px] w-full bg-[#121215] border border-[#27272a] p-6 sm:p-8 space-y-6 text-left my-auto rounded-[4px] shadow-2xl relative text-[#f4f4f5] animate-scaleIn"
+            onClick={(e) => e.stopPropagation()}
+          >
             
             {/* Header & Close */}
             <div className="flex items-start justify-between border-b border-[#27272a] pb-4">
@@ -1681,7 +1689,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Rolls-Royce Bespoke Fullscreen Gallery Lightbox Modal (Guaranteed Viewport Portal) */}

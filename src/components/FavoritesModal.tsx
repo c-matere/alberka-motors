@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, Bookmark, ArrowRight, Trash2, MessageCircle } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
@@ -24,9 +25,15 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
 
   const savedVehicles = vehicles.filter((v) => favorites.includes(v.id));
 
-  return (
-    <div className="fixed inset-0 z-50 bg-[#09090b]/90 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6 text-[#f4f4f5]">
-      <div className="bg-[#121215] w-full max-w-[660px] overflow-hidden border border-[#27272a] rounded-[4px] flex flex-col max-h-[88vh] shadow-2xl">
+  return createPortal(
+    <div 
+      className="fixed inset-0 z-[9999] bg-[#09090b]/90 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6 text-[#f4f4f5] animate-fadeIn"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-[#121215] w-full max-w-[660px] overflow-hidden border border-[#27272a] rounded-[4px] flex flex-col max-h-[88vh] shadow-2xl animate-scaleIn"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Header */}
         <div className="p-5 border-b border-[#27272a] flex items-center justify-between">
@@ -119,6 +126,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
         )}
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

@@ -142,12 +142,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
     <section className="relative w-full bg-[#09090b] pt-16 sm:pt-24 pb-20 sm:pb-32 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
       
       {/* Subtle Monochrome Ambient Spotlight */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-b from-white/[0.03] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none animate-ambient-spotlight" />
 
       <div className="max-w-[1240px] mx-auto relative z-10 space-y-8 sm:space-y-10">
         
         {/* Minimalist Provenance Eyebrow */}
-        <div className="inline-flex items-center gap-2">
+        <div className="inline-flex items-center gap-2 animate-hero-1">
           <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
           <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400">
             MOMBASA & NAIROBI
@@ -156,17 +156,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
         {/* Display Hero Title with Editorial Air and Restraint */}
         <div className="space-y-4 max-w-[980px] mx-auto">
-          <h1 className="text-[38px] sm:text-[62px] md:text-[76px] lg:text-[84px] font-bold text-white tracking-[-0.04em] leading-[1.02]">
+          <h1 className="text-[38px] sm:text-[62px] md:text-[76px] lg:text-[84px] font-bold text-white tracking-[-0.04em] leading-[1.02] animate-hero-2">
             Japanese Provenance.
           </h1>
 
-          <p className="max-w-[540px] mx-auto text-zinc-400 text-base sm:text-[18px] leading-relaxed font-normal">
+          <p className="max-w-[540px] mx-auto text-zinc-400 text-base sm:text-[18px] leading-relaxed font-normal animate-hero-3">
             Grade 4.5+ auction imports, fully prepared in Mombasa.
           </p>
         </div>
 
         {/* Clean, Decisive Action Pair */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-1">
+        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-1 animate-hero-4">
           <button
             onClick={onExploreFleet}
             className="btn-white group py-3 px-6 text-xs sm:text-[13.5px] rounded-lg font-semibold tracking-tight inline-flex items-center gap-2"
@@ -185,7 +185,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         </div>
 
         {/* 21:9 Widescreen Theatrical Cinema Stage — Pure, Uncluttered Visual Frame */}
-        <div className="relative w-full mx-auto pt-6">
+        <div className="relative w-full mx-auto pt-6 animate-hero-5">
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
