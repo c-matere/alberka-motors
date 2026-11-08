@@ -107,13 +107,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Action Suite */}
           <div className="flex items-center gap-2.5 sm:gap-3 text-white">
             
-            {/* Quick Search Capsule */}
+            {/* Quick Search Capsule with Keyboard Shortcut Hint */}
             <button
               onClick={onOpenSearch}
-              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
-              title="Search inventory (⌘K)"
+              className="h-9 px-2.5 sm:px-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
+              title="Search inventory (⌘K / Ctrl+K)"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-3.5 h-3.5 text-zinc-400" />
+              <span className="hidden xl:inline text-xs text-zinc-400 font-medium">Search fleet</span>
+              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white/[0.06] text-zinc-400 border border-white/10 rounded">
+                ⌘K
+              </kbd>
             </button>
 
             {/* Saved Cars Capsule with Badge */}

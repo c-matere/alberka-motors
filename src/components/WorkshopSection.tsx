@@ -221,7 +221,7 @@ export const WorkshopSection: React.FC = () => {
           </div>
 
           {/* Active Stage Detailed Breakdown */}
-          <div className="relative bg-[#0c0c0f] p-6 sm:p-8 border border-white/[0.08] rounded-2xl space-y-6 text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+          <div className="relative bg-[#0c0c0f] p-6 sm:p-8 border border-white/[0.08] rounded-2xl space-y-6 text-left">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/[0.08]">
               <div>
                 <div className="inline-flex items-center gap-2 mb-1">
@@ -259,7 +259,7 @@ export const WorkshopSection: React.FC = () => {
         </div>
 
         {/* 5,000 KM Warranty Section */}
-        <div className="relative bg-[#0c0c0f] p-8 sm:p-10 border border-white/[0.08] rounded-2xl space-y-8 text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+        <div className="relative bg-[#0c0c0f] p-8 sm:p-10 border border-white/[0.08] rounded-2xl space-y-8 text-left">
           <div className="max-w-2xl space-y-1">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
               WRITTEN WARRANTY

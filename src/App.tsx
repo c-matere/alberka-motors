@@ -17,6 +17,7 @@ import { SearchModal } from './components/SearchModal';
 import { FavoritesModal } from './components/FavoritesModal';
 import { WhispersDrawer } from './components/WhispersDrawer';
 import { MobileBottomDock } from './components/MobileBottomDock';
+import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { Footer } from './components/Footer';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
@@ -105,6 +106,30 @@ export function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [blogs]);
+
+  // Global Keyboard Shortcuts (Cmd+K / Ctrl+K search, Escape modal dismissal, Slash shortcut)
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchModalOpen((prev) => !prev);
+        return;
+      }
+      if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement)?.tagName)) {
+        e.preventDefault();
+        setSearchModalOpen(true);
+        return;
+      }
+      if (e.key === 'Escape') {
+        setSearchModalOpen(false);
+        setFavoritesModalOpen(false);
+        setWhispersDrawerOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
 
   const handleNavigate = (view: string) => {
     setCurrentView(view);
@@ -443,6 +468,9 @@ export function App() {
         )}
       </main>
 
+      {/* Floating Scroll to Top Action Button */}
+      <ScrollToTopButton />
+
       {/* Mobile Bottom Dock */}
       <MobileBottomDock
         currentView={selectedBlogPost ? 'blog' : currentView}
@@ -479,6 +507,7 @@ export function App() {
         vehicles={VEHICLES}
         onToggleFavorite={handleToggleFavorite}
         onSelectVehicle={handleSelectVehicle}
+        onBrowseFleet={() => handleNavigate('inventory')}
       />
 
       {/* WhatsApp / Concierge Contact Drawer */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowLeft,
   Share2,
@@ -10,7 +10,8 @@ import {
   CheckCircle2,
   ArrowRight,
   ShieldCheck,
-  ExternalLink
+  ExternalLink,
+  Check
 } from 'lucide-react';
 import { BlogPost } from '../data/blogs';
 import { Vehicle } from '../data/vehicles';
@@ -36,6 +37,19 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   onOpenWhispers,
 }) => {
   const [copiedToast, setCopiedToast] = useState(false);
+  const [readProgress, setReadProgress] = useState(0);
+
+  // Dynamic Reading Progress calculation
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight <= 0) return;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setReadProgress(Math.min(100, Math.max(0, progress)));
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Find related articles (same category or excluding current)
   const relatedPosts = allPosts
@@ -68,8 +82,16 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   return (
     <article className="w-full bg-[#09090b] text-[#f4f4f5] pb-24 sm:pb-32">
       
-      {/* 1. Sticky Breadcrumb & Top Bar */}
+      {/* 1. Sticky Breadcrumb & Top Bar with Hairline Reading Progress */}
       <div className="sticky top-16 sm:top-[68px] z-30 bg-[#09090b]/90 backdrop-blur-xl border-b border-white/[0.08] px-4 sm:px-8 py-3 transition-all">
+        {/* Hairline reading progress indicator */}
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-white/[0.08] overflow-hidden">
+          <div
+            className="h-full bg-white transition-all duration-150 ease-out"
+            style={{ width: `${readProgress}%` }}
+          />
+        </div>
+
         <div className="max-w-[1000px] mx-auto flex items-center justify-between gap-4">
           <button
             onClick={onBackToJournal}

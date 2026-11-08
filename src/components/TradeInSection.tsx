@@ -236,7 +236,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Column: Your Current Vehicle Inputs (7 Cols) */}
-            <div className="lg:col-span-7 relative bg-[#0c0c0f] border border-white/[0.08] p-6 sm:p-8 space-y-6 rounded-2xl text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="lg:col-span-7 relative bg-[#0c0c0f] border border-white/[0.08] p-6 sm:p-8 space-y-6 rounded-2xl text-left">
               
               {/* Make & Model */}
               <div>
@@ -371,7 +371,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </div>
 
             {/* Right Column: Live Match Card (5 Cols) */}
-            <div className="lg:col-span-5 relative bg-[#0c0c0f] border border-white/[0.08] p-6 rounded-2xl relative lg:sticky lg:top-[90px] space-y-5 text-left before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="lg:col-span-5 bg-[#0c0c0f] border border-white/[0.08] p-6 rounded-2xl lg:sticky lg:top-[90px] space-y-5 text-left">
               
               <div>
                 <span className="text-[10.5px] font-mono uppercase tracking-wider text-zinc-400 block mb-1.5 font-semibold">

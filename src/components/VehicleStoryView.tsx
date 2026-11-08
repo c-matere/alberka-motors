@@ -556,6 +556,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       if (e.key === 'Escape') {
         setIsGalleryLightboxOpen(false);
         setShowAuctionModal(false);
+        setModelDropdownOpen(false);
       }
       if (isGalleryLightboxOpen) {
         if (e.key === 'ArrowRight') handleNextLightbox();
@@ -1336,7 +1337,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={handleCopySpec}
                   className="btn-ghost !text-[12px] !py-2.5 !px-4 cursor-pointer w-full sm:w-auto"
                 >
-                  {copiedToast ? <Check className="w-4 h-4 text-[#27a644]" /> : <Copy className="w-4 h-4" />}
+                  {copiedToast ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   <span>{copiedToast ? 'Copied to Clipboard' : 'Copy Specs'}</span>
                 </button>
 
