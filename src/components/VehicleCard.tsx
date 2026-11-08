@@ -50,7 +50,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-[#0c0d14]/30 hover:bg-[#12131c]/45 backdrop-blur-md border border-white/[0.15] hover:border-white/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-500 shadow-[0_12px_36px_rgba(0,0,0,0.35)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.55)] hover:-translate-y-0.5 cursor-pointer select-none overflow-hidden ${
+      className={`group relative bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-colors duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)] cursor-pointer select-none overflow-hidden ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
@@ -59,7 +59,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         <div 
           onMouseEnter={() => cardImages[1] && setActiveImageIdx(1)}
           onMouseLeave={() => setActiveImageIdx(0)}
-          className="w-full aspect-[16/10.4] overflow-hidden bg-black/60 border border-white/[0.1] group-hover:border-white/25 mb-4 relative rounded-xl transition-colors"
+          className="w-full aspect-[16/10.4] overflow-hidden bg-black/40 border border-white/[0.08] mb-4 relative rounded-xl transition-colors"
         >
           {/* Smooth Crossfade Media */}
           {cardImages.map((img, idx) => (
@@ -67,7 +67,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               key={img.url}
               src={img.url}
               alt={`${vehicle.name} - ${img.label}`}
-              className={`absolute inset-0 w-full h-full object-cover group-hover:scale-104 transition-all duration-700 ease-out ${
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
                 idx === activeImageIdx ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
               }`}
               loading="lazy"

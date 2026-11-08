@@ -58,14 +58,14 @@ export const BlueprintBackground: React.FC = () => {
         }}
       />
 
-      {/* 2. Interactive Specular Inspection Spotlight (Desktop Only) */}
+      {/* 2. Interactive Specular Inspection Spotlight (Desktop Only - Does the Heavy Lifting on Hover) */}
       {!isTouch && mousePos.x >= 0 && (
         <div
-          className="absolute w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-transform duration-100 hidden md:block"
+          className="absolute w-[850px] h-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-transform duration-75 hidden md:block"
           style={{
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
-            background: 'radial-gradient(circle 400px at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 45%, transparent 75%)',
+            background: 'radial-gradient(circle 420px at center, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, transparent 75%)',
           }}
         />
       )}
@@ -163,10 +163,7 @@ export const BlueprintBackground: React.FC = () => {
       {/* 4. ADVANCED LATE-STAGE BENTLEY ARCHITECTURAL CAD SCHEMATIC */}
       {/* Featuring iconic Bentley twin-crystal headlamps, muscular rear haunches, matrix grille lattice, multi-rib surface isolines & tooling release annotations */}
       <div 
-        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] opacity-[0.16] pointer-events-none select-none"
-        style={{
-          filter: 'blur(0.7px)',
-        }}
+        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] opacity-[0.28] pointer-events-none select-none"
       >
         <svg
           viewBox="0 0 1400 620"

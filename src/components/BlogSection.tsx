@@ -220,7 +220,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         {featuredArticle && !searchQuery && activeCategory === 'all' && (
           <div
             onClick={() => onSelectPost(featuredArticle)}
-            className="group relative bg-[#0c0d14]/35 hover:bg-[#12131c]/50 backdrop-blur-md border border-white/[0.15] hover:border-white/30 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.45)] hover:shadow-[0_28px_65px_rgba(0,0,0,0.65)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent text-left"
+            className="group relative bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden cursor-pointer transition-colors duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.35)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent text-left"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-7 aspect-[16/10] sm:aspect-[21/11] lg:h-full overflow-hidden bg-black relative">
@@ -276,7 +276,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             <div
               key={article.id}
               onClick={() => onSelectPost(article)}
-              className="group relative bg-[#0c0d14]/35 hover:bg-[#12131c]/50 backdrop-blur-md border border-white/[0.15] hover:border-white/30 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-400 hover:-translate-y-1 shadow-[0_12px_36px_rgba(0,0,0,0.45)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.65)] cursor-pointer before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
+              className="group relative bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.3)] cursor-pointer before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
             >
               <div>
                 <div className="aspect-[16/10] w-full overflow-hidden bg-black relative">
