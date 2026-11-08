@@ -6,11 +6,13 @@ export const BlueprintBackground: React.FC = () => {
   const [isTouch, setIsTouch] = useState(false);
   const [cycleTime, setCycleTime] = useState(0);
 
-  // 50-Second Total Architectural Drafting Cycle:
-  // 0s - 32s (0% - 64%): Slow, deliberate, artistic real-time drawing & typing
-  // 32s - 40s (64% - 80%): Complete Stage 05 blueprint showcase hold
-  // 40s - 50s (80% - 100%): Slow, gentle, cinematic 10-second dissolve/erase
-  const CYCLE_DURATION = 50000;
+  // 56-Second Master Architectural CAD & CRT Terminal Cycle:
+  // 0s - 32s (0% - 57%): Slow, deliberate real-time drawing & staggered character-by-character typing
+  // 32s - 42s (57% - 75%): Complete Stage 05 blueprint showcase hold (10s inspection)
+  // 42s - 48s (75% - 85%): Slow gentle 6-second dissolve/erase
+  // 48s - 52s (85% - 93%): COMPLETE BLANK (4 full seconds of total obsidian dark silence)
+  // 52s - 56s (93% - 100%): GRADUALLY LIGHTING UP (softbox & CAD grid smoothly ramp up from 0 to 1)
+  const CYCLE_DURATION = 56000;
 
   useEffect(() => {
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -61,7 +63,7 @@ export const BlueprintBackground: React.FC = () => {
       mouseAnimFrameId = requestAnimationFrame(updatePosition);
     }
 
-    // Real-Time Drafting & Typing Animation Clock (requestAnimationFrame loop)
+    // Real-Time Drafting & Typing Master Clock (requestAnimationFrame loop)
     let cycleAnimFrameId: number;
     let startTime = performance.now();
 
@@ -83,7 +85,8 @@ export const BlueprintBackground: React.FC = () => {
 
   // Helper to compute typed character count with measured architectural typing cadence
   const getTyped = (fullText: string, startMs: number, speedMsPerChar: number = 55) => {
-    if (cycleTime < startMs) {
+    // If in blank phase or before start, show nothing
+    if (cycleTime >= 48000 || cycleTime < startMs) {
       return { text: '', isTyping: false, isDone: false };
     }
     const count = Math.min(fullText.length, Math.floor((cycleTime - startMs) / speedMsPerChar));
@@ -96,46 +99,102 @@ export const BlueprintBackground: React.FC = () => {
     };
   };
 
-  // Slow, deliberate character-by-character typed part labels
-  const studioTitle = getTyped('BENTLEY ADVANCED STYLING STUDIO // CREWE', 1500, 55);
-  const stageRelease = getTyped('STAGE 05: PRE-SERIES SURFACE MASTER', 4200, 50);
-  const powertrain = getTyped('POWERTRAIN: 6.0L TWIN-TURBO W12 · 650 PS / 900 Nm', 7200, 48);
-  const suspension = getTyped('CHASSIS: 48V ACTIVE ROLL CONTROL // EWLS AIR', 10500, 50);
-  
-  const prowSpec = getTyped('MATRIX PROW RAKE 88.5° // DRAG COEFFICIENT Cd: 0.29', 14000, 48);
-  const haunchSpec = getTyped('CLASS-A FASTBACK HAUNCH R: 1,220mm // ZERO-LIFT SPEC', 17000, 48);
-  const cgSpec = getTyped('⌖ CG / DYNAMIC 48:52 REAR BIAS', 20000, 52);
-  const wheelbase = getTyped('|← MSB CHASSIS WHEELBASE: 3,194 mm →|', 23000, 48);
-  const totalLength = getTyped('TOTAL LENGTH: 5,316 mm · TRACK WIDTH: 1,671 mm', 26000, 48);
-  const roofHeight = getTyped('OVERALL ROOF HEIGHT: 1,484 mm', 28500, 52);
-  const activeAero = getTyped('ACTIVE SPOILER: 4-STAGE DEPLOYMENT [32° DRAG REDUCTION]', 29500, 46);
-  const brakeSpec = getTyped('BRAKES: 420mm CSiC 10-PISTON MONOBLOC CALIPERS', 31500, 46);
+  // ================= STAGGERED REAL-TIME TYPED TEXT STRINGS =================
+  // 1. Station Lines (STA 180 through STA 1260 - typed individually at distinct times)
+  const sta180 = getTyped('STA 180', 600, 60);
+  const sta280 = getTyped('STA 280', 1200, 60);
+  const sta380 = getTyped('STA 380', 1800, 60);
+  const sta480 = getTyped('STA 480', 2400, 60);
+  const sta580 = getTyped('STA 580', 3000, 60);
+  const sta680 = getTyped('STA 680', 3600, 60);
+  const sta780 = getTyped('STA 780', 4200, 60);
+  const sta880 = getTyped('STA 880', 4800, 60);
+  const sta980 = getTyped('STA 980', 5400, 60);
+  const sta1080 = getTyped('STA 1080', 6000, 60);
+  const sta1180 = getTyped('STA 1180', 6600, 60);
+  const sta1260 = getTyped('STA 1260', 7200, 60);
 
-  // Slow Erase Opacity for Labels: Fades out gently over 9 full seconds between 40s and 49s
-  const labelEraseOpacity = cycleTime >= 40000
-    ? Math.max(0, 1 - (cycleTime - 40000) / 9000)
-    : 1;
+  // 2. Waterline Grid Datum Lines (WL 400 through WL 100)
+  const wl400 = getTyped('WL 400', 900, 65);
+  const wl325 = getTyped('WL 325', 1900, 65);
+  const wl250 = getTyped('WL 250', 2900, 65);
+  const wl175 = getTyped('WL 175', 3900, 65);
+  const wl100 = getTyped('WL 100', 4900, 65);
+
+  // 3. Studio Header Block (Top Right)
+  const studioTitle = getTyped('BENTLEY ADVANCED STYLING STUDIO // CREWE', 2500, 52);
+  const stageRelease = getTyped('STAGE 05: PRE-SERIES SURFACE MASTER', 5200, 48);
+  const powertrain = getTyped('POWERTRAIN: 6.0L TWIN-TURBO W12 · 650 PS / 900 Nm', 8400, 46);
+  const suspension = getTyped('CHASSIS: 48V ACTIVE ROLL CONTROL // EWLS AIR', 11600, 48);
+  
+  // 4. Engineering & Aerodynamic Callouts
+  const prowSpec = getTyped('MATRIX PROW RAKE 88.5° // DRAG COEFFICIENT Cd: 0.29', 14800, 46);
+  const haunchSpec = getTyped('CLASS-A FASTBACK HAUNCH R: 1,220mm // ZERO-LIFT SPEC', 17800, 46);
+  const cgSpec = getTyped('⌖ CG / DYNAMIC 48:52 REAR BIAS', 20800, 50);
+  const wheelbase = getTyped('|← MSB CHASSIS WHEELBASE: 3,194 mm →|', 23800, 46);
+  const totalLength = getTyped('TOTAL LENGTH: 5,316 mm · TRACK WIDTH: 1,671 mm', 26800, 46);
+  const roofHeight = getTyped('OVERALL ROOF HEIGHT: 1,484 mm', 29000, 50);
+  const activeAero = getTyped('ACTIVE SPOILER: 4-STAGE DEPLOYMENT [32° DRAG REDUCTION]', 30500, 44);
+  const brakeSpec = getTyped('BRAKES: 420mm CSiC 10-PISTON MONOBLOC CALIPERS', 32000, 44);
+
+  // 5. Wheel Badge Stamp
+  const frontWheelBadge = getTyped('B', 22500, 100);
+  const rearWheelBadge = getTyped('B', 25000, 100);
+
+  // ================= MASTER LIGHTING & BLANK PHASE COMPUTATIONS =================
+  // Phase 1 (0ms - 42000ms): Normal full lighting
+  // Phase 2 (42000ms - 48000ms): Erasing (lines & text fade out over 6s)
+  // Phase 3 (48000ms - 52000ms): TOTAL BLANK (4 full seconds of complete blackness)
+  // Phase 4 (52000ms - 56000ms): GRADUALLY LIGHTING UP (studio lights & grid smoothly fade up from 0 to 1)
+  let masterLightFade = 1;
+  let carFade = 1;
+
+  if (cycleTime >= 42000 && cycleTime < 48000) {
+    // Erasing phase (42s - 48s)
+    carFade = Math.max(0, 1 - (cycleTime - 42000) / 6000);
+    masterLightFade = Math.max(0, 1 - (cycleTime - 44000) / 4000);
+  } else if (cycleTime >= 48000 && cycleTime < 52000) {
+    // TOTAL BLANK (48s - 52s = 4 full seconds)
+    carFade = 0;
+    masterLightFade = 0;
+  } else if (cycleTime >= 52000) {
+    // GRADUALLY LIGHTING UP (52s - 56s = 4 seconds smooth ramp)
+    carFade = 0;
+    masterLightFade = Math.min(1, (cycleTime - 52000) / 4000);
+  }
 
   // Dynamic Opacity Computations (Dim above the fold; brightening on scroll)
-  const gridOpacity = 0.06 + scrollFactor * 0.44; // 0.06 (dim) -> 0.50 (crisp CAD)
-  const carOpacity = (0.02 + scrollFactor * 0.32) * labelEraseOpacity; // Modulates with slow dissolve
-  const softboxOpacity = 0.3 + scrollFactor * 0.45;
-  const midGlowOpacity = 0.08 + scrollFactor * 0.24;
+  const baseGridOpacity = 0.06 + scrollFactor * 0.44;
+  const gridOpacity = baseGridOpacity * masterLightFade;
+  const carOpacity = (0.02 + scrollFactor * 0.32) * carFade;
+  const softboxOpacity = (0.3 + scrollFactor * 0.45) * masterLightFade;
+  const midGlowOpacity = (0.08 + scrollFactor * 0.24) * masterLightFade;
+
+  // Station text mapping array for clean rendering
+  const stationLookup: Record<number, { text: string; isTyping: boolean }> = {
+    180: sta180, 280: sta280, 380: sta380, 480: sta480,
+    580: sta580, 680: sta680, 780: sta780, 880: sta880,
+    980: sta980, 1080: sta1080, 1180: sta1180, 1260: sta1260,
+  };
+
+  const waterlineLookup: Record<number, { text: string; isTyping: boolean }> = {
+    190: wl400, 250: wl325, 310: wl250, 370: wl175, 430: wl100,
+  };
 
   return (
     <div
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#09090c]"
     >
-      {/* 50-Second Master Architectural CAD Keyframes: Slow Drawing & Slow Erasing */}
+      {/* 56-Second Master Architectural CAD Keyframes: Slow Drawing, Erasing, and Total Blanking */}
       <style>{`
         /* Ground Plane & Station Planes */
         @keyframes cadDrawGround {
           0% { stroke-dashoffset: 1400; opacity: 0; }
           2% { opacity: 0.85; }
           12% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 1400; opacity: 0; }
         }
 
@@ -144,8 +203,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 6% { stroke-dashoffset: 3400; opacity: 0; }
           8% { opacity: 0.95; }
           36% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 3400; opacity: 0; }
         }
 
@@ -154,8 +213,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 20% { stroke-dashoffset: 1000; opacity: 0; }
           22% { opacity: 0.95; }
           42% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 1000; opacity: 0; }
         }
 
@@ -164,8 +223,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 26% { stroke-dashoffset: 900; opacity: 0; }
           28% { opacity: 0.95; }
           46% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 900; opacity: 0; }
         }
 
@@ -174,8 +233,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 30% { stroke-dashoffset: 1800; opacity: 0; }
           32% { opacity: 0.85; }
           50% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 1800; opacity: 0; }
         }
 
@@ -184,8 +243,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 34% { stroke-dashoffset: 600; opacity: 0; }
           36% { opacity: 0.9; }
           54% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 600; opacity: 0; }
         }
 
@@ -194,8 +253,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 38% { stroke-dashoffset: 800; opacity: 0; }
           40% { opacity: 1; }
           58% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 800; opacity: 0; }
         }
 
@@ -204,8 +263,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 46% { stroke-dashoffset: 500; opacity: 0; }
           48% { opacity: 0.85; }
           62% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 500; opacity: 0; }
         }
 
@@ -214,8 +273,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 50% { stroke-dashoffset: 900; opacity: 0; }
           52% { opacity: 0.85; }
           65% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 900; opacity: 0; }
         }
 
@@ -224,8 +283,8 @@ export const BlueprintBackground: React.FC = () => {
           0%, 54% { stroke-dashoffset: 1200; opacity: 0; }
           56% { opacity: 0.85; }
           68% { stroke-dashoffset: 0; opacity: 1; }
-          80% { stroke-dashoffset: 0; opacity: 1; }
-          98% { opacity: 0; stroke-dashoffset: 0; }
+          75% { stroke-dashoffset: 0; opacity: 1; }
+          85% { opacity: 0; stroke-dashoffset: 0; }
           100% { stroke-dashoffset: 1200; opacity: 0; }
         }
 
@@ -243,11 +302,33 @@ export const BlueprintBackground: React.FC = () => {
           37% { opacity: 0; }
           100% { transform: translate(1255px, 405px); opacity: 0; }
         }
+
+        /* CRT Phosphor Noise Micro-Jitter */
+        @keyframes crtJitter {
+          0% { transform: translate(0, 0); }
+          10% { transform: translate(-0.5px, 0.5px); }
+          20% { transform: translate(0.5px, -0.5px); }
+          30% { transform: translate(-0.5px, -0.5px); }
+          40% { transform: translate(0.5px, 0.5px); }
+          50% { transform: translate(0, 0.5px); }
+          60% { transform: translate(-0.5px, 0); }
+          70% { transform: translate(0.5px, 0); }
+          80% { transform: translate(0, -0.5px); }
+          90% { transform: translate(-0.5px, 0.5px); }
+          100% { transform: translate(0, 0); }
+        }
+
+        /* CRT Slow Cathode Beam Sweep */
+        @keyframes crtBeamPass {
+          0% { transform: translateY(-100%); opacity: 0; }
+          50% { opacity: 0.12; }
+          100% { transform: translateY(100vh); opacity: 0; }
+        }
       `}</style>
 
-      {/* 1. Studio Overhead Softbox Lights (Luminous Photographic Depth) */}
+      {/* 1. Studio Overhead Softbox Lights (Gradually lights up after blanking) */}
       <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1920px] h-[900px] transition-opacity duration-300 ease-out"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[140vw] max-w-[1920px] h-[900px] transition-opacity duration-700 ease-out"
         style={{
           opacity: softboxOpacity,
           background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.12) 0%, rgba(148, 163, 184, 0.035) 50%, transparent 80%)',
@@ -256,7 +337,7 @@ export const BlueprintBackground: React.FC = () => {
       
       {/* Mid-page Warm Titanium Studio Ambient Glow */}
       <div 
-        className="absolute top-[40vh] right-[6%] w-[700px] h-[700px] rounded-full blur-[160px] transition-opacity duration-300 ease-out"
+        className="absolute top-[40vh] right-[6%] w-[700px] h-[700px] rounded-full blur-[160px] transition-opacity duration-700 ease-out"
         style={{
           opacity: midGlowOpacity,
           background: 'radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(140, 120, 80, 0.015) 60%, transparent 75%)',
@@ -264,20 +345,21 @@ export const BlueprintBackground: React.FC = () => {
       />
 
       {/* 2. Interactive Specular Inspection Spotlight (Desktop Only) */}
-      {!isTouch && mousePos.x >= 0 && (
+      {!isTouch && mousePos.x >= 0 && masterLightFade > 0 && (
         <div
           className="absolute w-[850px] h-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-transform duration-75 hidden md:block"
           style={{
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
+            opacity: masterLightFade,
             background: 'radial-gradient(circle 420px at center, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, transparent 75%)',
           }}
         />
       )}
 
-      {/* 3. STATIC ARCHITECTURAL CAD GRID (Dim above the fold; brightening dynamically as you scroll) */}
+      {/* 3. STATIC ARCHITECTURAL CAD GRID (Gradually lights up after blanking) */}
       <div 
-        className="absolute inset-0 transition-opacity duration-300 ease-out"
+        className="absolute inset-0 transition-opacity duration-700 ease-out"
         style={{
           opacity: gridOpacity,
           filter: 'blur(0.65px)',
@@ -290,7 +372,7 @@ export const BlueprintBackground: React.FC = () => {
           <defs>
             {/* Subdivided 30px Minor Grid */}
             <pattern
-              id="blueprint-grid-minor-v6"
+              id="blueprint-grid-minor-v7"
               width="30"
               height="30"
               patternUnits="userSpaceOnUse"
@@ -305,12 +387,12 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* 120px Major Drafting Grid with Crosshairs & Targets */}
             <pattern
-              id="blueprint-grid-major-v6"
+              id="blueprint-grid-major-v7"
               width="120"
               height="120"
               patternUnits="userSpaceOnUse"
             >
-              <rect width="120" height="120" fill="url(#blueprint-grid-minor-v6)" />
+              <rect width="120" height="120" fill="url(#blueprint-grid-minor-v7)" />
               
               {/* Major Datum Lines */}
               <path
@@ -345,31 +427,30 @@ export const BlueprintBackground: React.FC = () => {
             </pattern>
 
             {/* Radial Vignette */}
-            <radialGradient id="grid-fade-mask-v6" cx="50%" cy="30%" r="85%">
+            <radialGradient id="grid-fade-mask-v7" cx="50%" cy="30%" r="85%">
               <stop offset="0%" stopColor="#fff" stopOpacity="1.0" />
               <stop offset="55%" stopColor="#fff" stopOpacity="0.85" />
               <stop offset="85%" stopColor="#fff" stopOpacity="0.55" />
               <stop offset="100%" stopColor="#fff" stopOpacity="0.3" />
             </radialGradient>
 
-            <mask id="grid-mask-v6">
-              <rect width="100%" height="100%" fill="url(#grid-fade-mask-v6)" />
+            <mask id="grid-mask-v7">
+              <rect width="100%" height="100%" fill="url(#grid-fade-mask-v7)" />
             </mask>
           </defs>
 
           <rect
             width="100%"
             height="100%"
-            fill="url(#blueprint-grid-major-v6)"
-            mask="url(#grid-mask-v6)"
+            fill="url(#blueprint-grid-major-v7)"
+            mask="url(#grid-mask-v7)"
           />
         </svg>
       </div>
 
       {/* 4. ADVANCED LATE-STAGE BENTLEY ARCHITECTURAL CAD SCHEMATIC (STAGE 05: PRE-SERIES SURFACE MASTER) */}
-      {/* Slower Real-time Drawing & Slower Gentle 10-Second Dissolve/Erase */}
       <div 
-        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] pointer-events-none select-none transition-opacity duration-500 ease-out"
+        className="absolute top-12 sm:top-20 left-1/2 -translate-x-1/2 w-[1480px] max-w-[96vw] h-[640px] pointer-events-none select-none transition-opacity duration-700 ease-out"
         style={{
           opacity: carOpacity,
         }}
@@ -382,63 +463,75 @@ export const BlueprintBackground: React.FC = () => {
         >
           <defs>
             {/* Diamond Matrix Grille Hatch Pattern */}
-            <pattern id="bentley-matrix-hatch-v6" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <pattern id="bentley-matrix-hatch-v7" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
               <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
               <line x1="0" y1="0" x2="7" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
             </pattern>
 
             {/* Radial Fade Scrim */}
-            <radialGradient id="bentley-fade-v6" cx="50%" cy="50%" r="65%">
+            <radialGradient id="bentley-fade-v7" cx="50%" cy="50%" r="65%">
               <stop offset="0%" stopColor="#fff" stopOpacity="1" />
               <stop offset="65%" stopColor="#fff" stopOpacity="0.82" />
               <stop offset="100%" stopColor="#fff" stopOpacity="0" />
             </radialGradient>
-            <mask id="bentley-mask-v6">
-              <rect width="1400" height="620" fill="url(#bentley-fade-v6)" />
+            <mask id="bentley-mask-v7">
+              <rect width="1400" height="620" fill="url(#bentley-fade-v7)" />
             </mask>
           </defs>
 
-          <g mask="url(#bentley-mask-v6)">
+          <g mask="url(#bentley-mask-v7)">
             {/* ================= STAGE 01: GROUND PLANE & AUTOMOTIVE STATION LINES ================= */}
             <line
               x1="100" y1="440" x2="1300" y2="440"
               stroke="rgba(255, 255, 255, 0.45)"
               strokeWidth="1.2"
               strokeDasharray="1400"
-              style={{ animation: 'cadDrawGround 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawGround 56s ease-in-out infinite' }}
             />
 
-            {/* Automotive Station Planes (STA Lines) */}
-            {[180, 280, 380, 480, 580, 680, 780, 880, 980, 1080, 1180, 1260].map((x) => (
-              <g key={x}>
-                <line
-                  x1={x} y1="110" x2={x} y2="470"
-                  stroke="rgba(255, 255, 255, 0.16)"
-                  strokeWidth="0.8"
-                  strokeDasharray="600"
-                  style={{ animation: 'cadDrawGround 50s ease-in-out infinite' }}
-                />
-                <text x={x + 3} y="482" fill="rgba(255, 255, 255, 0.45)" fontSize="7" fontFamily="JetBrains Mono, monospace">
-                  STA {x}
-                </text>
-              </g>
-            ))}
+            {/* Automotive Station Planes (STA Lines - Each with dynamically typed text at distinct times) */}
+            {[180, 280, 380, 480, 580, 680, 780, 880, 980, 1080, 1180, 1260].map((x) => {
+              const currentSta = stationLookup[x];
+              return (
+                <g key={x}>
+                  <line
+                    x1={x} y1="110" x2={x} y2="470"
+                    stroke="rgba(255, 255, 255, 0.16)"
+                    strokeWidth="0.8"
+                    strokeDasharray="600"
+                    style={{ animation: 'cadDrawGround 56s ease-in-out infinite' }}
+                  />
+                  {currentSta?.text && (
+                    <text x={x + 3} y="482" fill="rgba(255, 255, 255, 0.5)" fontSize="7" fontFamily="JetBrains Mono, monospace">
+                      {currentSta.text}
+                      {currentSta.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
 
-            {/* Waterline Slices (WL 100 - WL 400) */}
-            {[190, 250, 310, 370, 430].map((y, idx) => (
-              <g key={y}>
-                <line
-                  x1="120" y1={y} x2="1280" y2={y}
-                  stroke="rgba(255, 255, 255, 0.14)"
-                  strokeWidth="0.8"
-                  strokeDasharray="1200"
-                  style={{ animation: 'cadDrawGround 50s ease-in-out infinite' }}
-                />
-                <text x="125" y={y - 4} fill="rgba(255, 255, 255, 0.4)" fontSize="7" fontFamily="JetBrains Mono, monospace">
-                  WL {400 - idx * 75}
-                </text>
-              </g>
-            ))}
+            {/* Waterline Slices (WL 100 - WL 400 - Each with dynamically typed text at distinct times) */}
+            {[190, 250, 310, 370, 430].map((y) => {
+              const currentWl = waterlineLookup[y];
+              return (
+                <g key={y}>
+                  <line
+                    x1="120" y1={y} x2="1280" y2={y}
+                    stroke="rgba(255, 255, 255, 0.14)"
+                    strokeWidth="0.8"
+                    strokeDasharray="1200"
+                    style={{ animation: 'cadDrawGround 56s ease-in-out infinite' }}
+                  />
+                  {currentWl?.text && (
+                    <text x="125" y={y - 4} fill="rgba(255, 255, 255, 0.45)" fontSize="7" fontFamily="JetBrains Mono, monospace">
+                      {currentWl.text}
+                      {currentWl.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
 
             {/* ================= STAGE 02: MAIN COACHWORK SILHOUETTE (SLOW REAL-TIME DRAWING) ================= */}
             <path
@@ -462,11 +555,11 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.85)"
               strokeWidth="2.0"
               strokeDasharray="3400"
-              style={{ animation: 'cadDrawBody 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawBody 56s ease-in-out infinite' }}
             />
 
             {/* Digital Laser Stylus Plotter Head (Slowly and gracefully traces the car contour) */}
-            <g style={{ animation: 'cadLaserSweep 50s cubic-bezier(0.25, 1, 0.5, 1) infinite' }}>
+            <g style={{ animation: 'cadLaserSweep 56s cubic-bezier(0.25, 1, 0.5, 1) infinite' }}>
               <circle cx="0" cy="0" r="3.5" fill="#38bdf8" />
               <circle cx="0" cy="0" r="8" stroke="#38bdf8" strokeWidth="0.9" strokeDasharray="3 2" className="animate-spin" />
               <line x1="-12" y1="0" x2="12" y2="0" stroke="rgba(56, 189, 248, 0.9)" strokeWidth="0.8" />
@@ -479,7 +572,7 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.75)"
               strokeWidth="1.2"
               strokeDasharray="300"
-              style={{ animation: 'cadDrawBody 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawBody 56s ease-in-out infinite' }}
             />
             {/* Hood Emblem Mascot Retractable Crosshair */}
             <g transform="translate(198, 275)">
@@ -496,7 +589,7 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.9)"
               strokeWidth="1.8"
               strokeDasharray="1000"
-              style={{ animation: 'cadDrawPowerLine 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawPowerLine 56s ease-in-out infinite' }}
             />
 
             <path
@@ -507,7 +600,7 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.95)"
               strokeWidth="2.0"
               strokeDasharray="900"
-              style={{ animation: 'cadDrawHaunch 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawHaunch 56s ease-in-out infinite' }}
             />
 
             {/* Razor-sharp Waistline / Shoulder Tornado Line */}
@@ -516,25 +609,25 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.55)"
               strokeWidth="0.9"
               strokeDasharray="1000"
-              style={{ animation: 'cadDrawPowerLine 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawPowerLine 56s ease-in-out infinite' }}
             />
 
             {/* ================= STAGE 04: FRONT FASCIA, JEWEL OPTICS & MATRIX PROW ================= */}
             <rect
               x="172" y="275" width="22" height="110"
-              fill="url(#bentley-matrix-hatch-v6)"
+              fill="url(#bentley-matrix-hatch-v7)"
               stroke="rgba(255, 255, 255, 0.85)"
               strokeWidth="1.4"
               rx="3"
               strokeDasharray="400"
-              style={{ animation: 'cadDrawJewels 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}
             />
             <line
               x1="183" y1="275" x2="183" y2="385"
               stroke="rgba(255, 255, 255, 0.95)"
               strokeWidth="1.6"
               strokeDasharray="200"
-              style={{ animation: 'cadDrawJewels 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}
             />
 
             {/* Lower Bumper Matrix Splitter & Aero Air Curtain Inlets */}
@@ -544,13 +637,13 @@ export const BlueprintBackground: React.FC = () => {
               strokeWidth="1.1"
               rx="2"
               strokeDasharray="200"
-              style={{ animation: 'cadDrawJewels 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}
             />
             <line x1="168" y1="412" x2="250" y2="412" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.4" />
             <line x1="256" y1="365" x2="256" y2="400" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1" strokeDasharray="2 2" />
 
             {/* Bentley Twin Crystal Jewel Headlamps (Diamond-Cut Matrix Rings) */}
-            <g style={{ animation: 'cadDrawJewels 50s ease-in-out infinite' }}>
+            <g style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}>
               <circle cx="218" cy="295" r="15" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.5" strokeDasharray="200" />
               <circle cx="218" cy="295" r="10" stroke="rgba(255, 255, 255, 0.65)" strokeWidth="1.0" strokeDasharray="3 3" />
               <circle cx="218" cy="295" r="4.5" fill="rgba(255, 255, 255, 0.85)" />
@@ -569,7 +662,7 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.65)"
               strokeWidth="1.4"
               strokeDasharray="1800"
-              style={{ animation: 'cadDrawGreenhouse 50s ease-in-out infinite' }}
+              style={{ animation: 'cadDrawGreenhouse 56s ease-in-out infinite' }}
             />
             <line x1="770" y1="145" x2="760" y2="280" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.4" />
             <line x1="930" y1="165" x2="920" y2="275" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" strokeDasharray="4 3" />
@@ -587,7 +680,7 @@ export const BlueprintBackground: React.FC = () => {
             <line x1="775" y1="290" x2="760" y2="415" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.8" strokeDasharray="4 3" />
 
             {/* ================= STAGE 06: ACTIVE AERODYNAMICS, DIFFUSER & EXHAUST ================= */}
-            <g style={{ animation: 'cadDrawAero 50s ease-in-out infinite' }}>
+            <g style={{ animation: 'cadDrawAero 56s ease-in-out infinite' }}>
               <path
                 d="M 1190 270 C 1225 240, 1260 235, 1290 245"
                 stroke="rgba(56, 189, 248, 0.85)"
@@ -609,17 +702,17 @@ export const BlueprintBackground: React.FC = () => {
             <line x1="1235" y1="412" x2="1235" y2="423" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1" />
 
             {/* Twin Elliptical Oval Tailpipes */}
-            <ellipse cx="1248" cy="385" rx="11" ry="6.5" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" strokeDasharray="100" style={{ animation: 'cadDrawAero 50s ease-in-out infinite' }} />
+            <ellipse cx="1248" cy="385" rx="11" ry="6.5" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" strokeDasharray="100" style={{ animation: 'cadDrawAero 56s ease-in-out infinite' }} />
             <ellipse cx="1248" cy="385" rx="7" ry="4" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
 
             {/* ================= STAGE 07: 22" MULLINER TURBINE WHEELS & 10-PISTON BRAKES ================= */}
             {/* FRONT WHEEL ASSEMBLY (STA 330) */}
             <g transform="translate(330, 415)">
-              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.8" strokeDasharray="600" style={{ animation: 'cadDrawWheels 50s ease-in-out infinite' }} />
+              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.8" strokeDasharray="600" style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }} />
               <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.9" strokeDasharray="4 3" />
               
               {/* 420mm Cross-Drilled Carbon-Silicon Carbide (CSiC) Rotor */}
-              <circle cx="0" cy="0" r="46" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="0.9" strokeDasharray="200" style={{ animation: 'cadDrawBrakes 50s ease-in-out infinite' }} />
+              <circle cx="0" cy="0" r="46" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="0.9" strokeDasharray="200" style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }} />
               {[15, 60, 105, 150, 195, 240, 285, 330].map((deg) => (
                 <circle
                   key={deg}
@@ -636,7 +729,7 @@ export const BlueprintBackground: React.FC = () => {
                 fill="rgba(0, 0, 0, 0.5)"
                 stroke="rgba(255, 255, 255, 0.85)"
                 strokeWidth="1.2"
-                style={{ animation: 'cadDrawBrakes 50s ease-in-out infinite' }}
+                style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }}
               />
 
               {/* Directional Turbine Alloy Spokes */}
@@ -653,29 +746,31 @@ export const BlueprintBackground: React.FC = () => {
                     stroke="rgba(255, 255, 255, 0.55)"
                     strokeWidth="1.1"
                     strokeDasharray="100"
-                    style={{ animation: 'cadDrawWheels 50s ease-in-out infinite' }}
+                    style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }}
                   />
                 );
               })}
               
               <circle cx="0" cy="0" r="16" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" fill="rgba(0,0,0,0.7)" />
-              <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.95)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
-                B
-              </text>
+              {frontWheelBadge?.text && (
+                <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.95)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
+                  {frontWheelBadge.text}
+                </text>
+              )}
             </g>
 
             {/* REAR WHEEL ASSEMBLY (STA 980) */}
             <g transform="translate(980, 415)">
-              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.8" strokeDasharray="600" style={{ animation: 'cadDrawWheels 50s ease-in-out infinite' }} />
+              <circle cx="0" cy="0" r="70" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.8" strokeDasharray="600" style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }} />
               <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.9" strokeDasharray="4 3" />
               
-              <circle cx="0" cy="0" r="44" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="0.9" strokeDasharray="200" style={{ animation: 'cadDrawBrakes 50s ease-in-out infinite' }} />
+              <circle cx="0" cy="0" r="44" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="0.9" strokeDasharray="200" style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }} />
               <path
                 d="M -32 -22 C -38 -10, -38 10, -32 22 L -22 17 C -26 8, -26 -8, -22 -17 Z"
                 fill="rgba(0, 0, 0, 0.5)"
                 stroke="rgba(255, 255, 255, 0.85)"
                 strokeWidth="1.1"
-                style={{ animation: 'cadDrawBrakes 50s ease-in-out infinite' }}
+                style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }}
               />
 
               {[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map((deg) => {
@@ -691,14 +786,16 @@ export const BlueprintBackground: React.FC = () => {
                     stroke="rgba(255, 255, 255, 0.55)"
                     strokeWidth="1.1"
                     strokeDasharray="100"
-                    style={{ animation: 'cadDrawWheels 50s ease-in-out infinite' }}
+                    style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }}
                   />
                 );
               })}
               <circle cx="0" cy="0" r="16" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" fill="rgba(0,0,0,0.7)" />
-              <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.95)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
-                B
-              </text>
+              {rearWheelBadge?.text && (
+                <text x="0" y="3.5" textAnchor="middle" fill="rgba(255, 255, 255, 0.95)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
+                  {rearWheelBadge.text}
+                </text>
+              )}
             </g>
 
             {/* Center of Gravity (CG) Technical Balance Datum */}
@@ -706,42 +803,50 @@ export const BlueprintBackground: React.FC = () => {
               <circle cx="0" cy="0" r="11" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.1" />
               <path d="M 0 -16 L 0 16 M -16 0 L 16 0" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1" />
               <circle cx="0" cy="0" r="3" fill="#38bdf8" />
-              <text x="18" y="4" fill="rgba(255, 255, 255, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
-                {cgSpec.text}
-                {cgSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {cgSpec?.text && (
+                <text x="18" y="4" fill="rgba(255, 255, 255, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+                  {cgSpec.text}
+                  {cgSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* ================= STAGE 08: REAL-TIME TYPED CAD CALLOUTS & TELEMETRY ================= */}
             {/* Wheelbase Dimension Line */}
             <g transform="translate(0, 500)">
-              <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" strokeDasharray="1000" style={{ animation: 'cadDrawDimensions 50s ease-in-out infinite' }} />
+              <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" strokeDasharray="1000" style={{ animation: 'cadDrawDimensions 56s ease-in-out infinite' }} />
               <path d="M 330 -5 L 330 5 M 980 -5 L 980 5" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.2" />
               <path d="M 336 -3 L 330 0 L 336 3 M 974 -3 L 980 0 L 974 3" fill="rgba(255, 255, 255, 0.7)" />
-              <text x="655" y="-9" textAnchor="middle" fill="rgba(255, 255, 255, 0.9)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.16em">
-                {wheelbase.text}
-                {wheelbase.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {wheelbase?.text && (
+                <text x="655" y="-9" textAnchor="middle" fill="rgba(255, 255, 255, 0.9)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.16em">
+                  {wheelbase.text}
+                  {wheelbase.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Total Length & Track */}
             <g transform="translate(0, 535)">
               <line x1="172" y1="0" x2="1255" y2="0" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" strokeDasharray="5 3" />
               <path d="M 172 -4 L 172 4 M 1255 -4 L 1255 4" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" />
-              <text x="715" y="-7" textAnchor="middle" fill="rgba(255, 255, 255, 0.75)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
-                {totalLength.text}
-                {totalLength.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {totalLength?.text && (
+                <text x="715" y="-7" textAnchor="middle" fill="rgba(255, 255, 255, 0.75)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
+                  {totalLength.text}
+                  {totalLength.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Overall Height Callout */}
             <g transform="translate(110, 0)">
               <line x1="0" y1="130" x2="0" y2="440" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.8" />
               <path d="M -4 130 L 4 130 M -4 440 L 4 440" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="1" />
-              <text x="-8" y="295" textAnchor="end" fill="rgba(255, 255, 255, 0.75)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em" transform="rotate(-90 -8 295)">
-                {roofHeight.text}
-                {roofHeight.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {roofHeight?.text && (
+                <text x="-8" y="295" textAnchor="end" fill="rgba(255, 255, 255, 0.75)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em" transform="rotate(-90 -8 295)">
+                  {roofHeight.text}
+                  {roofHeight.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Fastback Haunch Aerodynamic Spec (Top Right Callout) */}
@@ -749,10 +854,12 @@ export const BlueprintBackground: React.FC = () => {
               <line x1="0" y1="0" x2="50" y2="-30" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
               <line x1="50" y1="-30" x2="220" y2="-30" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
               <circle cx="0" cy="0" r="2.8" fill="#38bdf8" />
-              <text x="55" y="-35" fill="rgba(255, 255, 255, 0.9)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
-                {haunchSpec.text}
-                {haunchSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {haunchSpec?.text && (
+                <text x="55" y="-35" fill="rgba(255, 255, 255, 0.9)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
+                  {haunchSpec.text}
+                  {haunchSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Matrix Prow Rake Spec (Front Left Callout) */}
@@ -760,10 +867,12 @@ export const BlueprintBackground: React.FC = () => {
               <line x1="0" y1="0" x2="-40" y2="-35" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
               <line x1="-40" y1="-35" x2="-180" y2="-35" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
               <circle cx="0" cy="0" r="2.8" fill="#38bdf8" />
-              <text x="-180" y="-40" fill="rgba(255, 255, 255, 0.9)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
-                {prowSpec.text}
-                {prowSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {prowSpec?.text && (
+                <text x="-180" y="-40" fill="rgba(255, 255, 255, 0.9)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
+                  {prowSpec.text}
+                  {prowSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Active Aero Callout (Rear Decklid) */}
@@ -771,10 +880,12 @@ export const BlueprintBackground: React.FC = () => {
               <line x1="0" y1="0" x2="40" y2="-40" stroke="rgba(56, 189, 248, 0.6)" strokeWidth="0.9" />
               <line x1="40" y1="-40" x2="160" y2="-40" stroke="rgba(56, 189, 248, 0.6)" strokeWidth="0.9" />
               <circle cx="0" cy="0" r="2.5" fill="#38bdf8" />
-              <text x="45" y="-46" fill="#38bdf8" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
-                {activeAero.text}
-                {activeAero.isTyping && <tspan fill="#ffffff">_</tspan>}
-              </text>
+              {activeAero?.text && (
+                <text x="45" y="-46" fill="#38bdf8" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+                  {activeAero.text}
+                  {activeAero.isTyping && <tspan fill="#ffffff">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Brake Rotor Callout */}
@@ -782,10 +893,12 @@ export const BlueprintBackground: React.FC = () => {
               <line x1="0" y1="0" x2="30" y2="35" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
               <line x1="30" y1="35" x2="160" y2="35" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
               <circle cx="0" cy="0" r="2.5" fill="#38bdf8" />
-              <text x="35" y="31" fill="rgba(255, 255, 255, 0.8)" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
-                {brakeSpec.text}
-                {brakeSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {brakeSpec?.text && (
+                <text x="35" y="31" fill="rgba(255, 255, 255, 0.8)" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+                  {brakeSpec.text}
+                  {brakeSpec.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
 
             {/* Studio Release Terminal Block (Top Right) */}
@@ -793,35 +906,77 @@ export const BlueprintBackground: React.FC = () => {
               <rect x="0" y="0" width="310" height="74" fill="rgba(0, 0, 0, 0.75)" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1.1" rx="4" />
               <circle cx="12" cy="16" r="3" fill="#22c55e" className="animate-pulse" />
               
-              <text x="24" y="19" fill="rgba(255, 255, 255, 0.95)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" fontWeight="600" letterSpacing="0.14em">
-                {studioTitle.text}
-                {studioTitle.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {studioTitle?.text && (
+                <text x="24" y="19" fill="rgba(255, 255, 255, 0.95)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" fontWeight="600" letterSpacing="0.14em">
+                  {studioTitle.text}
+                  {studioTitle.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
 
-              <text x="24" y="34" fill="#38bdf8" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="500">
-                {stageRelease.text}
-                {stageRelease.isTyping && <tspan fill="#ffffff">_</tspan>}
-              </text>
+              {stageRelease?.text && (
+                <text x="24" y="34" fill="#38bdf8" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="500">
+                  {stageRelease.text}
+                  {stageRelease.isTyping && <tspan fill="#ffffff">_</tspan>}
+                </text>
+              )}
 
-              <text x="24" y="47" fill="rgba(148, 163, 184, 0.9)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
-                {powertrain.text}
-                {powertrain.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {powertrain?.text && (
+                <text x="24" y="47" fill="rgba(148, 163, 184, 0.9)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
+                  {powertrain.text}
+                  {powertrain.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
 
-              <text x="24" y="60" fill="rgba(148, 163, 184, 0.75)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
-                {suspension.text}
-                {suspension.isTyping && <tspan fill="#38bdf8">_</tspan>}
-              </text>
+              {suspension?.text && (
+                <text x="24" y="60" fill="rgba(148, 163, 184, 0.75)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
+                  {suspension.text}
+                  {suspension.isTyping && <tspan fill="#38bdf8">_</tspan>}
+                </text>
+              )}
             </g>
           </g>
         </svg>
       </div>
 
-      {/* 5. 35mm Analog Micro-Grain Texture Overlay */}
+      {/* ================= 5. AUTHENTIC CRT-TYPE GRAIN, SCANLINES & PHOSPHOR VIGNETTE ================= */}
+      {/* A. CRT Fine Phosphor Scanlines */}
       <div
-        className="absolute inset-0 opacity-[0.02] mix-blend-overlay pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-[0.22] z-10"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundImage: `repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 1px,
+            rgba(0, 0, 0, 0.55) 2px,
+            rgba(0, 0, 0, 0.55) 3px
+          )`,
+          backgroundSize: '100% 3px',
+        }}
+      />
+
+      {/* B. CRT Slow Vertical Cathode Beam Sweep */}
+      <div
+        className="absolute inset-x-0 h-[120px] pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.04), transparent)',
+          animation: 'crtBeamPass 9s linear infinite',
+        }}
+      />
+
+      {/* C. CRT Jittering Analog Phosphor Noise Texture */}
+      <div
+        className="absolute inset-0 opacity-[0.06] mix-blend-screen pointer-events-none z-10"
+        style={{
+          animation: 'crtJitter 0.25s steps(3) infinite',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='crtNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23crtNoise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* D. CRT Screen Curve Edge Vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40 z-10"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, transparent 65%, rgba(0, 0, 0, 0.75) 100%)',
         }}
       />
     </div>
