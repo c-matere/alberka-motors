@@ -61,27 +61,39 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b]/90 backdrop-blur-xl border-b border-white/[0.06] h-14 sm:h-[68px] flex items-center justify-center px-3.5 sm:px-8 sticky top-0 z-50 transition-all">
-        <div className="max-w-[1440px] w-full flex items-center justify-between gap-3 sm:gap-4">
+      <nav className="w-full bg-[#09090b]/90 backdrop-blur-xl border-b border-white/[0.06] h-14 sm:h-[68px] flex items-center justify-center px-3 sm:px-8 sticky top-0 z-50 transition-all">
+        <div className="max-w-[1440px] w-full flex items-center justify-between gap-2.5 sm:gap-4">
           
-          {/* Logo & Brand Emblem */}
+          {/* Logo & Brand Emblem (Mobile: Icon only; Desktop: Full typographic emblem) */}
           <button
             onClick={() => handleLinkClick('overview')}
             className="flex items-center gap-2.5 sm:gap-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+            aria-label="Alberka Motors Home"
           >
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Motors"
-              className="h-7 sm:h-9 w-auto object-contain"
+              className="h-8 sm:h-9 w-auto object-contain"
             />
-            <div className="flex flex-col text-left sm:pl-3 sm:border-l sm:border-white/15">
-              <span className="font-bold text-[13.5px] sm:text-[14.5px] tracking-tight text-white leading-tight">
+            <div className="hidden sm:flex flex-col text-left pl-3 border-l border-white/15">
+              <span className="font-bold text-[14.5px] tracking-tight text-white leading-tight">
                 ALBERKA MOTORS
               </span>
-              <span className="hidden sm:block font-mono text-[9px] tracking-[0.16em] text-zinc-400 leading-none mt-0.5">
+              <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-400 leading-none mt-0.5">
                 MOMBASA & NAIROBI
               </span>
             </div>
+          </button>
+
+          {/* Mobile Search Bar: Occupies the entire remaining space in the header */}
+          <button
+            onClick={onOpenSearch}
+            className="sm:hidden flex-1 flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.1] border border-white/10 rounded-full px-3 py-2 text-left cursor-pointer transition-all ml-1 min-w-0"
+            title="Search inventory"
+            aria-label="Search fleet"
+          >
+            <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+            <span className="text-zinc-400 text-[12px] truncate">Search fleet (e.g. RAV4, Prado, Hybrid...)</span>
           </button>
 
           {/* Desktop Floating Segmented Controller (Apple / Leica Aesthetic) */}
@@ -104,27 +116,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </div>
 
-          {/* Right Action Suite */}
-          <div className="flex items-center gap-1 sm:gap-3 text-white">
+          {/* Right Action Suite (Desktop & Tablet only: Hidden on mobile where bottom dock & floating buttons serve user) */}
+          <div className="hidden sm:flex items-center gap-2.5 sm:gap-3 text-white">
             
-            {/* Quick Search Button (Ghost icon on mobile, Capsule pill on desktop) */}
+            {/* Quick Search Capsule */}
             <button
               onClick={onOpenSearch}
-              className="w-9 h-9 sm:h-9 sm:px-3 rounded-full sm:bg-white/[0.04] sm:hover:bg-white/[0.08] sm:border sm:border-white/[0.08] sm:hover:border-white/20 text-zinc-400 hover:text-white flex items-center justify-center sm:gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
+              className="h-9 px-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
               title="Search inventory (⌘K / Ctrl+K)"
-              aria-label="Search inventory"
+              aria-label="Search fleet"
             >
-              <Search className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+              <Search className="w-3.5 h-3.5 text-zinc-400" />
               <span className="hidden xl:inline text-xs text-zinc-400 font-medium">Search fleet</span>
               <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white/[0.06] text-zinc-400 border border-white/10 rounded">
                 ⌘K
               </kbd>
             </button>
 
-            {/* Saved Cars Capsule with Badge (Hidden on mobile where it lives in the persistent bottom dock) */}
+            {/* Saved Cars Capsule with Badge */}
             <button
               onClick={onOpenFavorites}
-              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white hidden sm:flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
+              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
               title="Saved vehicles"
             >
               <Bookmark className="w-4 h-4" />
@@ -138,16 +150,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* WhatsApp VIP Concierge Pill */}
             <button
               onClick={handleContactClick}
-              className="btn-white btn-glint !py-2 !px-4 !text-xs !rounded-full hidden sm:inline-flex cursor-pointer font-semibold shadow-sm items-center gap-1.5"
+              className="btn-white btn-glint !py-2 !px-4 !text-xs !rounded-full inline-flex cursor-pointer font-semibold shadow-sm items-center gap-1.5"
             >
               <MessageCircle className="w-3.5 h-3.5 text-zinc-950" />
               <span>WhatsApp Us</span>
             </button>
 
-            {/* Mobile Menu Toggle Button - Refined Ghost Button */}
+            {/* Tablet Menu Toggle Button (Visible only on tablets where segmented controller is hidden) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-9 h-9 rounded-full text-zinc-300 hover:text-white hover:bg-white/[0.06] flex items-center justify-center cursor-pointer transition-colors active:scale-95"
+              className="lg:hidden w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors active:scale-95"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}

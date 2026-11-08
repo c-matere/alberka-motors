@@ -18,6 +18,7 @@ import { FavoritesModal } from './components/FavoritesModal';
 import { WhispersDrawer } from './components/WhispersDrawer';
 import { MobileBottomDock } from './components/MobileBottomDock';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
+import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { Footer } from './components/Footer';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
@@ -495,6 +496,9 @@ export function App() {
 
       {/* Floating Scroll to Top Action Button */}
       <ScrollToTopButton />
+
+      {/* Floating WhatsApp Action Button */}
+      <FloatingWhatsAppButton onOpenWhispers={() => setWhispersDrawerOpen(true)} />
 
       {/* Mobile Bottom Dock */}
       <MobileBottomDock
