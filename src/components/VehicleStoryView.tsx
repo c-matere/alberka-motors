@@ -146,17 +146,17 @@ const EditorialFeatureSection: React.FC<{
 
             {/* Top Bar: Slide Counter & Metric Badge */}
             <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20 pointer-events-none">
-              <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-950 rounded-lg border border-zinc-200 flex items-center gap-2 shadow-lg">
-                <span className="font-bold">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
-                <span className="text-zinc-600">/</span>
-                <span className="text-zinc-600">{String(feature.slides.length).padStart(2, '0')}</span>
-                <span className="text-zinc-600 hidden sm:inline">·</span>
-                <span className="text-zinc-700 hidden sm:inline truncate max-w-xs">{activeSlide.title}</span>
+              <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-900 rounded-lg border border-zinc-200/90 flex items-center gap-2 shadow-md">
+                <span className="font-bold text-zinc-950">{String(activeSlideIndex + 1).padStart(2, '0')}</span>
+                <span className="text-zinc-400">/</span>
+                <span className="text-zinc-600 font-medium">{String(feature.slides.length).padStart(2, '0')}</span>
+                <span className="text-zinc-300 hidden sm:inline">·</span>
+                <span className="text-zinc-800 font-medium hidden sm:inline truncate max-w-xs">{activeSlide.title}</span>
               </div>
 
               <div className="flex items-center gap-2 pointer-events-auto">
                 {activeSlide.metric && (
-                  <div className="bg-black/80 backdrop-blur-md border border-zinc-200 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-lg">
+                  <div className="bg-white/95 backdrop-blur-md border border-zinc-200/90 px-3 py-1.5 flex items-center gap-2 rounded-lg shadow-md">
                     <span className="text-[10px] font-mono text-zinc-600 uppercase hidden xs:inline">{activeSlide.metricLabel}:</span>
                     <span className="text-xs font-mono font-bold text-zinc-950">{activeSlide.metric}</span>
                   </div>
@@ -172,7 +172,7 @@ const EditorialFeatureSection: React.FC<{
                         desc: activeSlide.description
                       });
                     }}
-                    className="bg-black/80 hover:bg-black text-zinc-700 hover:text-zinc-950 p-2 rounded-lg border border-zinc-200 transition-colors cursor-pointer backdrop-blur-md shadow-lg"
+                    className="bg-white/95 hover:bg-white text-zinc-950 p-2 rounded-lg border border-zinc-200/90 transition-colors cursor-pointer backdrop-blur-md shadow-md"
                     title="Expand full-screen"
                   >
                     <Maximize2 className="w-3.5 h-3.5" />
@@ -181,16 +181,16 @@ const EditorialFeatureSection: React.FC<{
               </div>
             </div>
 
-            {/* Bottom Scrim with Slide Details */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
-              <div className="space-y-1 max-w-2xl text-left">
-                <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-600 block font-medium">
+            {/* Bottom Scrim with Slide Details — High-Contrast Typography */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex items-end p-5 sm:p-7 pointer-events-none z-10">
+              <div className="space-y-1 max-w-2xl text-left text-white">
+                <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-300 block font-medium">
                   {activeSlide.subtitle}
                 </span>
-                <h3 className="text-lg sm:text-xl font-bold text-zinc-950 leading-snug">
+                <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
                   {activeSlide.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-700 line-clamp-2 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-zinc-200 line-clamp-2 leading-relaxed font-normal">
                   {activeSlide.description}
                 </p>
               </div>
@@ -202,7 +202,7 @@ const EditorialFeatureSection: React.FC<{
                 e.stopPropagation();
                 handleSelectSlide(activeSlideIndex === 0 ? feature.slides.length - 1 : activeSlideIndex - 1);
               }}
-              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 hover:bg-black text-zinc-950 border border-zinc-200 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 shadow-md"
               title="Previous photo"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -212,7 +212,7 @@ const EditorialFeatureSection: React.FC<{
                 e.stopPropagation();
                 handleSelectSlide((activeSlideIndex + 1) % feature.slides.length);
               }}
-              className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 hover:bg-black text-zinc-950 border border-zinc-200 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+              className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 shadow-md"
               title="Next photo"
             >
               <ChevronRight className="w-4 h-4" />
@@ -837,11 +837,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
-                <div className="text-left text-zinc-950 space-y-0.5">
-                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest block">
+                <div className="text-left text-white space-y-0.5">
+                  <span className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest block font-medium">
                     PAINT FINISH
                   </span>
-                  <p className="text-lg sm:text-xl font-bold text-zinc-950 tracking-tight">
+                  <p className="text-lg sm:text-xl font-bold text-white tracking-tight">
                     {activeColor.name}
                   </p>
                 </div>
@@ -1389,7 +1389,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 <div
                   key={point.id || pIdx}
                   onClick={() => openPhotoByUrl(point.imageUrl)}
-                  className="bg-white hover:bg-white/[0.055] backdrop-blur-[2px] border border-zinc-200 hover:border-white/[0.18] rounded-2xl overflow-hidden group transition-colors duration-300 flex flex-col justify-between cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+                  className="bg-white hover:bg-zinc-50/80 border border-zinc-200 hover:border-zinc-300 rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
                 >
                   <div className="w-full h-48 sm:h-52 overflow-hidden bg-black/50 relative border-b border-zinc-200">
                     <img
@@ -1397,7 +1397,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       alt={point.title}
                       className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-200 text-[11px] font-mono text-zinc-950 font-bold flex items-center gap-1.5 shadow-md">
+                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-200 text-[11px] font-mono text-zinc-950 font-bold flex items-center gap-1.5 shadow-md">
                       <span>{point.metric}</span>
                     </div>
                   </div>
@@ -1499,12 +1499,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               {/* Top Bar Badges & Controls */}
               <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20">
                 <div className="flex items-center gap-2">
-                  <div className="bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-700 rounded-lg border border-zinc-200 flex items-center gap-2 shadow-lg">
+                  <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-900 rounded-lg border border-zinc-200/90 flex items-center gap-2 shadow-md">
                     <span className="text-zinc-950 font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
-                    <span className="text-zinc-600">/</span>
-                    <span className="text-zinc-600">{String(filteredPhotos.length).padStart(2, '0')}</span>
+                    <span className="text-zinc-400">/</span>
+                    <span className="text-zinc-600 font-medium">{String(filteredPhotos.length).padStart(2, '0')}</span>
                   </div>
-                  <span className="bg-black/80 backdrop-blur-md px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-zinc-700 border border-zinc-200 hidden xs:inline shadow-lg">
+                  <span className="bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-zinc-800 font-medium border border-zinc-200/90 hidden xs:inline shadow-md">
                     {currentPhoto.tag}
                   </span>
                 </div>
@@ -1515,13 +1515,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       e.stopPropagation();
                       setIsGalleryPlaying(!isGalleryPlaying);
                     }}
-                    className="bg-black/80 hover:bg-black text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono shadow-lg"
+                    className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono shadow-md"
                     title={isGalleryPlaying ? 'Pause gallery slideshow' : 'Play gallery slideshow'}
                   >
                     {isGalleryPlaying ? (
                       <Pause className="w-3.5 h-3.5" />
                     ) : (
-                      <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-950" />
+                      <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-950 fill-zinc-950" />
                     )}
                     <span className="hidden sm:inline">{isGalleryPlaying ? 'Pause' : 'Auto Play'}</span>
                   </button>
@@ -1531,7 +1531,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       e.stopPropagation();
                       openLightboxWithIndex(activePhotoIndex);
                     }}
-                    className="bg-black/80 hover:bg-black text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono shadow-lg"
+                    className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono shadow-md"
                     title="Expand Fullscreen Lightbox"
                   >
                     <Maximize2 className="w-3.5 h-3.5" />
@@ -1540,10 +1540,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </div>
               </div>
 
-              {/* Lower-Third Caption Card */}
+              {/* Lower-Third Caption Card — Crisp High-Contrast Light Glass Container */}
               <div className="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-8 sm:right-8 z-20 pointer-events-none">
-                <div className="bg-black/80 backdrop-blur-xl border border-zinc-200 p-4 sm:p-5 rounded-xl max-w-2xl text-left space-y-1 shadow-2xl">
-                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider block font-semibold">
+                <div className="bg-white/95 backdrop-blur-xl border border-zinc-200/90 p-4 sm:p-5 rounded-xl max-w-2xl text-left space-y-1 shadow-2xl">
+                  <span className="font-mono text-[10.5px] text-zinc-600 uppercase tracking-wider block font-semibold">
                     {vehicle.name} · {currentPhoto.tag}
                   </span>
                   <h3 className="text-base sm:text-lg font-bold text-zinc-950 tracking-tight">
@@ -1561,7 +1561,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   e.stopPropagation();
                   handlePrevPhoto();
                 }}
-                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-zinc-950 border border-zinc-200 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
+                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95"
                 title="Previous photo"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -1571,7 +1571,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   e.stopPropagation();
                   handleNextPhoto();
                 }}
-                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-zinc-950 border border-zinc-200 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md"
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95"
                 title="Next photo"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -1605,7 +1605,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     }`}
                   >
                     <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
-                    <span className="absolute bottom-1 left-1 bg-black/85 font-mono text-[9px] text-zinc-700 px-1 rounded">
+                    <span className="absolute bottom-1 left-1 bg-zinc-950/90 font-mono text-[9px] text-white px-1.5 py-0.5 rounded font-bold">
                       0{idx + 1}
                     </span>
                   </button>
@@ -1885,24 +1885,24 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span className="font-mono text-xs sm:text-sm text-zinc-950 font-bold uppercase tracking-wider truncate">
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {vehicle.stockNo} · {vehicle.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-600 font-mono hidden md:inline truncate">
+              <span className="text-xs text-zinc-300 font-mono hidden md:inline truncate">
                 {activeLightboxPhoto.title}
               </span>
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
-              <div className="bg-zinc-100 border border-zinc-200 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-700">
-                <span className="text-zinc-950 font-bold">{String(lightboxIndex + 1).padStart(2, '0')}</span>
+              <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-400">
+                <span className="text-white font-bold">{String(lightboxIndex + 1).padStart(2, '0')}</span>
                 <span className="text-zinc-600"> / </span>
-                <span className="text-zinc-600">{String(allPhotos.length).padStart(2, '0')}</span>
+                <span className="text-zinc-400">{String(allPhotos.length).padStart(2, '0')}</span>
               </div>
               <button
                 onClick={() => setIsGalleryLightboxOpen(false)}
-                className="p-2 bg-zinc-100 border border-zinc-200 hover:border-zinc-700 text-zinc-700 hover:text-zinc-950 rounded-md cursor-pointer transition-colors"
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
                 title="Close fullscreen view (Esc)"
               >
                 <X className="w-4 h-4" />
@@ -1925,14 +1925,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             {/* Hairline Nav Controls */}
             <button
               onClick={handlePrevLightbox}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-zinc-950 border border-zinc-200 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-700 hover:border-zinc-500 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous photo (Left Arrow)"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNextLightbox}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-zinc-950 border border-zinc-200 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-700 hover:border-zinc-500 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next photo (Right Arrow)"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -1941,7 +1941,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
           {/* Bottom Bar: Responsive & Zero-Scroll */}
           <div 
-            className="shrink-0 border-t border-zinc-200 bg-zinc-100/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5"
+            className="shrink-0 border-t border-zinc-800/80 bg-[#09090b]/95 px-4 sm:px-8 py-2.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto py-1">
@@ -1952,8 +1952,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={() => setLightboxIndex(idx)}
                   className={`h-11 sm:h-12 w-16 sm:w-20 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
                     lightboxIndex === idx
-                      ? 'border-white ring-2 ring-zinc-900/60 scale-105'
-                      : 'border-zinc-200 opacity-50 hover:opacity-100'
+                      ? 'border-white ring-2 ring-white/50 scale-105'
+                      : 'border-zinc-800 opacity-50 hover:opacity-100'
                   }`}
                 >
                   <img src={p.url} alt={p.title} className="w-full h-full object-cover" />
@@ -1963,8 +1963,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
             <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto shrink-0">
               <div className="text-left sm:text-right font-mono">
-                <span className="text-[9px] sm:text-[10px] text-zinc-600 uppercase tracking-wider block">DELIVERED PRICE</span>
-                <span className="text-sm sm:text-base font-bold text-zinc-950">
+                <span className="text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-sm sm:text-base font-bold text-white">
                   KES {vehicle.priceKes.toLocaleString()}
                 </span>
               </div>

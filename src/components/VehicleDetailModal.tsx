@@ -147,11 +147,11 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 </button>
 
                 {/* Media Title Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-zinc-100/90 backdrop-blur-md p-3.5 border border-zinc-200 rounded-lg text-left z-10">
-                  <span className="text-xs font-semibold text-zinc-950 block">
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3.5 border border-zinc-200/90 rounded-lg text-left z-10 shadow-md">
+                  <span className="text-xs font-bold text-zinc-950 block">
                     {activeMediaIndex === 0 ? 'Road Test Video' : vehicle.gallery[activeMediaIndex - 1]?.title}
                   </span>
-                  <p className="text-xs text-zinc-600 mt-0.5">
+                  <p className="text-xs text-zinc-700 mt-0.5 leading-relaxed font-normal">
                     {activeMediaIndex === 0
                       ? 'Pre-delivery testing on Kenyan roads.'
                       : vehicle.gallery[activeMediaIndex - 1]?.description}

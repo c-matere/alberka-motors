@@ -491,7 +491,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
       {isLightboxOpen && (
         <div 
-          className="fixed inset-0 z-[100] w-full h-full bg-zinc-100/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
+          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
           onClick={() => setIsLightboxOpen(false)}
         >
           {/* Top Bar: Fixed slim height */}
@@ -500,24 +500,24 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span className="font-mono text-xs sm:text-sm text-zinc-950 font-bold uppercase tracking-wider truncate">
+              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
                 {activeVehicle.stockNo} · {activeVehicle.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-600 font-mono hidden md:inline truncate">
+              <span className="text-xs text-zinc-300 font-mono hidden md:inline truncate">
                 Grade {activeVehicle.auctionGrade} · {activeVehicle.auctionHall}
               </span>
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
-              <div className="bg-zinc-100 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-700">
-                <span className="text-zinc-950 font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
+              <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-400">
+                <span className="text-white font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
                 <span className="text-zinc-600"> / </span>
-                <span className="text-zinc-600">{String(vehicles.length).padStart(2, '0')}</span>
+                <span className="text-zinc-400">{String(vehicles.length).padStart(2, '0')}</span>
               </div>
               <button
                 onClick={() => setIsLightboxOpen(false)}
-                className="p-2 bg-zinc-100 border border-zinc-800 hover:border-zinc-700 text-zinc-700 hover:text-zinc-950 rounded-md cursor-pointer transition-colors"
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
                 title="Close fullscreen view (Esc)"
               >
                 <X className="w-4 h-4" />
@@ -540,14 +540,14 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             {/* Hairline Side Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-700 hover:border-zinc-500 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous car (Left Arrow)"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-700 hover:border-zinc-500 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next car (Right Arrow)"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -567,7 +567,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   className={`px-3 py-1.5 text-xs rounded-md font-mono border transition-all cursor-pointer whitespace-nowrap ${
                     activeAngleIdx === idx
                       ? 'bg-white text-zinc-950 font-bold border-white'
-                      : 'bg-zinc-100 text-zinc-600 border-zinc-800 hover:text-zinc-950 hover:border-zinc-700'
+                      : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:text-white hover:border-zinc-700'
                   }`}
                 >
                   <span>{ang.label}</span>
@@ -577,8 +577,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
             <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto shrink-0">
               <div className="text-left sm:text-right font-mono">
-                <span className="text-[10px] text-zinc-600 uppercase tracking-wider block">DELIVERED PRICE</span>
-                <span className="text-base sm:text-lg font-bold text-zinc-950">
+                <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-base sm:text-lg font-bold text-white">
                   KES {activeVehicle.priceKes.toLocaleString()}
                 </span>
               </div>
