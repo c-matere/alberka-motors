@@ -148,8 +148,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         
         {/* Minimalist Provenance Eyebrow (Hidden on mobile to preserve vertical air) */}
         <div className="hidden sm:inline-flex items-center gap-2 animate-hero-1">
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-400">
-            MOMBASA & NAIROBI
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-600 font-semibold">
+            QUALITY JAPANESE IMPORTS
           </span>
         </div>
 
@@ -160,7 +160,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           </h1>
 
           <p className="max-w-[460px] mx-auto text-zinc-600 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
-            Grade 4.5+ auction imports, fully prepared in Mombasa.
+            Grade 4.5+ auction imports, fully prepared in our workshop.
           </p>
         </div>
 
@@ -237,10 +237,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="w-8 h-8 bg-white/85 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-md border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
+                  className="w-8 h-8 bg-white/90 hover:bg-white text-zinc-950 border border-zinc-300 shadow-md backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg hover:scale-105 active:scale-95"
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5 text-zinc-300" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5 text-zinc-900" /> : <Volume2 className="w-3.5 h-3.5 text-zinc-900" />}
                 </button>
               )}
               <button
@@ -248,10 +248,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   e.stopPropagation();
                   setIsHeroLightboxOpen(true);
                 }}
-                className="w-8 h-8 bg-white/85 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-md border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
+                className="w-8 h-8 bg-white/90 hover:bg-white text-zinc-950 border border-zinc-300 shadow-md backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg hover:scale-105 active:scale-95"
                 title="Fullscreen Theater Mode"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-zinc-300" />
+                <Maximize2 className="w-3.5 h-3.5 text-zinc-900" />
               </button>
             </div>
 
@@ -334,7 +334,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </div>
               <button
                 onClick={() => setIsHeroLightboxOpen(false)}
-                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-700 hover:text-zinc-950 rounded-md cursor-pointer transition-colors"
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
                 title="Close fullscreen (Esc)"
               >
                 <X className="w-4 h-4" />

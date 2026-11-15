@@ -63,16 +63,16 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   }, [vehicles, activeCategory, searchQuery, sortBy]);
 
   return (
-    <section className="w-full bg-transparent text-[#f4f4f5] relative">
+    <section className="w-full bg-transparent text-zinc-900 relative">
       {/* 1. Section Editorial Title Bar (Scrolls naturally with generous breathing space) */}
       <div className="pt-16 sm:pt-24 pb-10 sm:pb-14 px-4 sm:px-8 max-w-[1240px] mx-auto text-center space-y-4">
-        <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400 block">
-          VERIFIED INVENTORY · MOMBASA & NAIROBI
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-600 font-semibold block">
+          VERIFIED INVENTORY · QUALITY JAPANESE IMPORTS
         </span>
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-[-0.035em] leading-[1.05]">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
           Vehicles in Stock
         </h1>
-        <p className="text-sm sm:text-base text-zinc-400 max-w-lg mx-auto leading-relaxed font-normal">
+        <p className="text-sm sm:text-base text-zinc-700 max-w-lg mx-auto leading-relaxed font-normal">
           Japan auction Grade 4.5+ units, 100-point workshop serviced, covered by our 5,000 km written warranty.
         </p>
       </div>
@@ -176,7 +176,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
             <span>Showing {filteredVehicles.length} of {vehicles.length} verified vehicles in stock</span>
           </div>
-          <span className="hidden sm:inline text-zinc-500 text-[11px]">Tangana Rd, Mombasa & Westlands, Nairobi</span>
+          <span className="hidden sm:inline text-zinc-700 font-mono text-[11px] font-medium">Tangana Road Showroom Hub</span>
         </div>
 
         {/* 2-Column Responsive Runway Grid */}
@@ -223,23 +223,23 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         )}
 
         {/* Custom Order Callout */}
-        <div className="relative bg-[#0c0c0f] border border-white/[0.08] rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent mt-12">
+        <div className="relative bg-white border border-zinc-200/90 rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-left mt-12">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[10.5px] text-zinc-400 uppercase tracking-[0.2em] font-semibold">
+              <span className="font-mono text-[10.5px] text-zinc-600 uppercase tracking-[0.2em] font-semibold">
                 CUSTOM AUCTION ORDER
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
               Import Any Vehicle Directly from Japan
             </h3>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-              Our Japanese agents bid on your behalf at USS Tokyo and CAA Chubu. We handle container shipping, KRA customs clearance, and port handover in Mombasa or Nairobi.
+            <p className="text-xs sm:text-sm text-zinc-700 max-w-xl leading-relaxed">
+              Our Japanese agents bid on your behalf at USS Tokyo and CAA Chubu. We handle container shipping, KRA customs clearance, and port handover and nationwide delivery across Kenya.
             </p>
           </div>
 
           <a
-            href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20looking%20to%20import%20a%20specific%20vehicle%20on%20order%20from%20Japan.%20Please%20guide%20me%20on%20the%20process."
+            href="https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20looking%20to%20import%20a%20specific%20vehicle%20on%20order%20from%20Japan.%20Please%20guide%20me%20on%20the%20process."
             target="_blank"
             rel="noopener noreferrer"
             className="btn-white py-3 px-6 text-xs sm:text-sm font-semibold shrink-0 inline-flex items-center gap-2 w-full md:w-auto justify-center shadow-md"

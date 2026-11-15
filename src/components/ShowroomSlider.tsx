@@ -148,7 +148,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-zinc-600 font-medium">
-              FEATURED SHOWROOM FLEET // MOMBASA & NAIROBI
+              FEATURED SHOWROOM FLEET // QUALITY JAPANESE IMPORTS
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-[-0.03em]">
@@ -320,12 +320,12 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
           {/* Bottom Floating Theatrical HUD (Specs + Model Information) */}
           <div className="absolute bottom-4 sm:bottom-8 inset-x-4 sm:inset-x-8 z-20">
-            <div className="bg-[#121215]/95 backdrop-blur-xl border border-zinc-800 rounded-xl p-5 sm:p-7 shadow-2xl max-w-4xl space-y-4">
+            <div className="bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-xl p-5 sm:p-7 shadow-2xl max-w-4xl space-y-4 text-zinc-900">
               
               {/* Category & Status */}
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200 pb-3">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-700 font-semibold uppercase tracking-wider">
+                  <span className="text-zinc-950 font-bold uppercase tracking-wider">
                     {activeVehicle.category.toUpperCase()}
                   </span>
                   <span className="text-zinc-600">•</span>
@@ -335,7 +335,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 </div>
 
                 <div className="text-xs text-zinc-600 font-mono">
-                  Auction: <span className="text-zinc-200 font-semibold">{activeVehicle.auctionHall}</span>
+                  Auction: <span className="text-zinc-950 font-bold">{activeVehicle.auctionHall}</span>
                 </div>
               </div>
 
@@ -352,7 +352,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
                 {/* Delivered Price — Pure White High-Contrast Typography */}
                 <div className="text-left md:text-right shrink-0">
-                  <span className="text-[11px] text-zinc-600 uppercase tracking-wider block">
+                  <span className="text-[11px] text-zinc-600 font-semibold uppercase tracking-wider block">
                     Delivered Price
                   </span>
                   <span className="font-mono text-2xl sm:text-3xl font-bold text-zinc-950">
@@ -363,27 +363,27 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
               {/* Key Specs Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
-                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 block mb-0.5">Year & Mileage</span>
+                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Year & Mileage</span>
                   <span className="font-semibold text-zinc-950">
                     {activeVehicle.year} • {activeVehicle.mileageKm.toLocaleString()} KM
                   </span>
                 </div>
-                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 block mb-0.5">Engine & Power</span>
+                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Engine & Power</span>
                   <span className="font-semibold text-zinc-950">
                     {activeVehicle.engine.split(' ')[0]} • {activeVehicle.power.split('@')[0]}
                   </span>
                 </div>
-                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 block mb-0.5">Drivetrain</span>
+                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Drivetrain</span>
                   <span className="font-semibold text-zinc-950 truncate block">
                     {activeVehicle.drivetrain.split('(')[0]}
                   </span>
                 </div>
-                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 block mb-0.5">Warranty Included</span>
-                  <span className="font-semibold text-zinc-200 flex items-center gap-1">
+                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Warranty Included</span>
+                  <span className="font-semibold text-zinc-950 flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
                     <span>5,000 KM</span>
                   </span>
@@ -391,7 +391,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               </div>
 
               {/* Actions Row — High-Contrast Pure White Primary Button */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-zinc-800/80">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-zinc-200">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => onSelectVehicle(activeVehicle)}
@@ -402,7 +402,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   </button>
 
                   <a
-                    href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
+                    href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-ghost !py-2.5 !px-5 !text-xs !rounded-md w-full sm:w-auto inline-flex items-center justify-center font-medium"
@@ -460,8 +460,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               onClick={() => handleSelectIndex(idx)}
               className={`group text-left p-2.5 rounded-lg border transition-all cursor-pointer flex flex-col justify-between ${
                 isActive
-                  ? 'bg-zinc-100 border-white'
-                  : 'bg-[#121215] border-zinc-800 hover:border-zinc-700 hover:bg-zinc-100/60'
+                  ? 'bg-white border-zinc-950 shadow-md ring-1 ring-zinc-950'
+                  : 'bg-white border-zinc-200 hover:border-zinc-400 hover:bg-zinc-50 shadow-sm'
               }`}
             >
               <div className="aspect-[16/10] w-full rounded overflow-hidden bg-zinc-100 mb-2 relative">
@@ -585,7 +585,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
               <div className="flex items-center gap-2">
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
+                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-ghost !py-2 !px-3.5 text-xs font-medium"

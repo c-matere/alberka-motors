@@ -20,7 +20,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    location: 'Mombasa — Tangana Road Showroom',
+    location: 'Tangana Road Flagship',
     vehicleId: vehicles[0]?.id || '',
     date: '',
     notes: '',
@@ -36,11 +36,11 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
 
     let message = '';
     if (activeTab === 'viewing') {
-      message = `Hello Alberka Motors, my name is ${formData.name} (${formData.phone}). I would like to book a test drive for the ${carName} (${selectedCar?.stockNo || ''}) at your ${formData.location} showroom on ${formData.date || 'the earliest available date'}. Notes: ${formData.notes || 'None'}.`;
+      message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). I would like to book a test drive for the ${carName} (${selectedCar?.stockNo || ''}) at your ${formData.location} showroom on ${formData.date || 'the earliest available date'}. Notes: ${formData.notes || 'None'}.`;
     } else if (activeTab === 'dossier') {
-      message = `Hello Alberka Motors, my name is ${formData.name} (${formData.phone}). Please send me the authentic Japanese Auction Sheet and export inspection certificate for the ${carName} (${selectedCar?.stockNo || ''}).`;
+      message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). Please send me the authentic Japanese Auction Sheet and export inspection certificate for the ${carName} (${selectedCar?.stockNo || ''}).`;
     } else {
-      message = `Hello Alberka Motors, my name is ${formData.name} (${formData.phone}). I would like to import a specific vehicle on order from Japan: ${formData.notes || carName}.`;
+      message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). I would like to import a specific vehicle on order from Japan: ${formData.notes || carName}.`;
     }
 
     window.open(`https://wa.me/254714333888?text=${encodeURIComponent(message)}`, '_blank');
@@ -72,12 +72,12 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                 </span>
               </div>
               <h2 className="text-[20px] font-bold text-zinc-950 tracking-tight">
-                Chat with Alberka Motors
+                Chat with Alberka Enterprises
               </h2>
             </div>
             <button
               onClick={onClose}
-              className="p-2 text-[#a1a1aa] hover:text-zinc-950 cursor-pointer transition-colors"
+              className="p-2 text-zinc-700 hover:text-zinc-950 cursor-pointer transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -105,8 +105,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
               }}
               className={`py-3 px-2 text-center text-[12px] font-semibold transition-all cursor-pointer ${
                 activeTab === 'dossier'
-                  ? 'text-zinc-950 border-b-2 border-white bg-[#121215]'
-                  : 'text-[#a1a1aa] hover:text-zinc-950'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 bg-white font-bold'
+                  : 'text-zinc-700 hover:text-zinc-950'
               }`}
             >
               Auction Sheet
@@ -118,8 +118,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
               }}
               className={`py-3 px-2 text-center text-[12px] font-semibold transition-all cursor-pointer ${
                 activeTab === 'bidding'
-                  ? 'text-zinc-950 border-b-2 border-white bg-[#121215]'
-                  : 'text-[#a1a1aa] hover:text-zinc-950'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 bg-white font-bold'
+                  : 'text-zinc-700 hover:text-zinc-950'
               }`}
             >
               Import on Order
@@ -129,11 +129,11 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
           {/* Form Content */}
           <div className="p-6">
             {isSubmitted ? (
-              <div className="p-8 text-center bg-[#18181c] border border-emerald-500/30 rounded-xl space-y-3">
+              <div className="p-8 text-center bg-white border border-emerald-500/30 rounded-xl space-y-3">
                 <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
                 <h3 className="text-lg font-bold text-zinc-950">Message Dispatched!</h3>
                 <p className="text-xs sm:text-sm text-zinc-600">
-                  We are opening WhatsApp with your details. Our sales team in Mombasa will assist you right away.
+                  We are opening WhatsApp with your details. Our sales team will assist you right away.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
@@ -194,9 +194,9 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
                       >
-                        <option value="Mombasa — Tangana Road Showroom">Mombasa (Tangana Road Flagship)</option>
-                        <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
-                        <option value="Nairobi — Westlands (Mwanzi Rd)">Nairobi (Westlands Mwanzi Rd)</option>
+                        <option value="Tangana Road Showroom">Tangana Road Flagship</option>
+                        <option value="Nyali Branch">Nyali Branch</option>
+                        <option value="Westlands Mwanzi Rd">Westlands Mwanzi Rd Hub</option>
                       </select>
                     </div>
 
@@ -241,17 +241,17 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
         </div>
 
         {/* Footer Contact Info */}
-        <div className="p-6 border-t border-zinc-200 bg-zinc-100 space-y-2 text-[13px] text-[#a1a1aa]">
+        <div className="p-6 border-t border-zinc-200 bg-zinc-100 space-y-2 text-[13px] text-zinc-700">
           <div className="flex items-center justify-between">
             <span>Direct WhatsApp Helpline:</span>
             <a href="tel:+254714333888" className="text-zinc-950 font-mono hover:text-zinc-700">0714 333 888</a>
           </div>
           <div className="flex items-center justify-between">
-            <span>Nairobi Branch Line:</span>
+            <span>Executive Branch Line:</span>
             <a href="tel:+254748999333" className="text-zinc-950 font-mono hover:text-zinc-700">0748 999 333</a>
           </div>
-          <div className="text-[11px] text-[#71717a] pt-1">
-            Mombasa: Tangana Rd · Nairobi: Mwanzi Rd, Westlands
+          <div className="text-[11px] text-zinc-600 pt-1">
+            Tangana Rd Flagship · Mwanzi Rd, Westlands
           </div>
         </div>
 

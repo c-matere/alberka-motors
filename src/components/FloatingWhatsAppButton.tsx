@@ -20,7 +20,7 @@ export const FloatingWhatsAppButton: React.FC<FloatingWhatsAppButtonProps> = ({ 
       rel="noopener noreferrer"
       onClick={handleClick}
       aria-label="Chat on WhatsApp"
-      title="Chat with Alberka Motors on WhatsApp (0714 333 888)"
+      title="Chat with Alberka Enterprises on WhatsApp (0714 333 888)"
       className="fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] md:bottom-8 right-3.5 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20ba59] text-zinc-950 font-semibold px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.35)] flex items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer text-xs group"
     >
       <div className="relative flex items-center justify-center">

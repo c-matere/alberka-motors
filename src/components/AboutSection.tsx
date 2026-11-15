@@ -23,7 +23,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             26 Years in Kenya.<br />4,000+ Verified Imports.
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            Founded in Mombasa in 2000, Alberka Motors was built on one strict standard: zero accident histories, zero mileage tampering, and transparent direct pricing.
+            Founded in 2000, Alberka Enterprises was built on one strict standard: zero accident histories, zero mileage tampering, and transparent direct pricing.
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
           <div className="w-full aspect-[16/9] sm:aspect-[21/9.5] max-h-[520px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4" type="video/mp4" />
-              <img src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Alberka Motors Heritage" className="w-full h-full object-cover" />
+              <img src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Alberka Enterprises Heritage" className="w-full h-full object-cover" />
             </video>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 sm:p-10 pointer-events-none">
@@ -57,7 +57,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
             <div>
               <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">CARS DELIVERED</span>
               <span className="text-base sm:text-lg font-bold text-zinc-950 block">4,000+ Vehicles</span>
-              <span className="text-xs text-zinc-600">Mombasa & Nairobi clients</span>
+              <span className="text-xs text-zinc-600">Kenya clients</span>
             </div>
             <div>
               <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">AUCTION QUALITY</span>
@@ -140,13 +140,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
               LOGISTICAL CONTINUITY
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold text-zinc-950 tracking-[-0.03em] leading-tight">
-              Mombasa Port Entry.<br />Nairobi Showroom Handover.
+              Direct Port Entry.<br />Nationwide Showroom Handover.
             </h2>
             <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal">
-              With our flagship technical workshop located directly in Mombasa on Tangana Road, vehicles roll off carrier vessels directly into our secured facility. They are never parked in unmonitored holding yards.
+              With our flagship technical workshop located directly on Tangana Road, vehicles roll off carrier vessels directly into our secured facility. They are never parked in unmonitored holding yards.
             </p>
             <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-              For Nairobi clients, each vehicle is transported via dedicated carrier to our Westlands hub, fully serviced, detailed, and ready for immediate city collection.
+              Each vehicle is transported via dedicated carrier, fully serviced, detailed, and ready for immediate collection or door-to-door delivery across Kenya.
             </p>
             <div className="pt-2">
               <button

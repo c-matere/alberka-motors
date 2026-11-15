@@ -57,7 +57,7 @@ export interface Vehicle {
   auctionGrade: string;
   auctionHall: string;
   interiorGrade: string;
-  status: 'In Stock — Mombasa' | 'In Stock — Nairobi' | 'Cleared Port';
+  status: 'In Stock' | 'Cleared Port';
   heroVideo: string;
   heroImage: string;
   colors: VehicleColor[];
@@ -109,7 +109,7 @@ export const VEHICLES: Vehicle[] = [
     auctionGrade: 'Grade 4.5',
     auctionHall: 'USS Tokyo',
     interiorGrade: 'Grade B (Clean Original)',
-    status: 'In Stock — Mombasa',
+    status: 'In Stock',
     heroVideo: 'https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4',
     heroImage: '/vehicles/rav4-adventure.jpg',
     colors: [
@@ -164,7 +164,7 @@ export const VEHICLES: Vehicle[] = [
         lead: 'Water-resistant SofTex seats with power adjustments and a wide flat-folding rear boot for all your safari and family gear.',
         narrative: [
           'The interior of the RAV4 Adventure AWD combines rugged durability with everyday comfort. The SofTex seats are water-resistant and wipe clean effortlessly after dusty weekend road trips.',
-          'Multi-density seat cushioning supports your back and hips, reducing fatigue on long drives between Nairobi and Mombasa. The driver seat features 8-way electric power controls.',
+          'Multi-density seat cushioning supports your back and hips, reducing fatigue on long-distance highway journeys. The driver seat features 8-way electric power controls.',
           'The rear seats fold completely flat with a single pull, creating 1,064 liters of flat luggage space with a reversible, easy-wipe floor.'
         ],
         specs: [
@@ -442,7 +442,7 @@ export const VEHICLES: Vehicle[] = [
       'Rear differential electromagnetic coupling fluid analysis & replenishment',
       'Brake caliper slide pins ultrasonic lubrication & pad depth verification',
       'Diagnostic scan of Dynamic Torque Vectoring ECU with Toyota GTS+',
-      'Full chassis underbody rust-proofing seal for coastal Mombasa durability'
+      'Full chassis underbody rust-proofing seal for coastal durability'
     ]
   },
   {
@@ -468,7 +468,7 @@ export const VEHICLES: Vehicle[] = [
     auctionGrade: 'Grade 4.5',
     auctionHall: 'TAA Chubu',
     interiorGrade: 'Grade A (Flawless Leather)',
-    status: 'In Stock — Nairobi',
+    status: 'In Stock',
     heroVideo: 'https://videos.pexels.com/video-files/856356/856356-hd_1920_1080_30fps.mp4',
     heroImage: '/vehicles/harrier-hybrid.jpg',
     colors: [
@@ -687,7 +687,7 @@ export const VEHICLES: Vehicle[] = [
         videoUrl: 'https://videos.pexels.com/video-files/856356/856356-hd_1920_1080_30fps.mp4',
         highlights: [
           { label: 'Aerodynamic Cd', value: '0.31 Drag Factor' },
-          { label: 'EV Driving Ratio', value: 'Up to 65% in Urban Nairobi' },
+          { label: 'EV Driving Ratio', value: 'Up to 65% in Urban Traffic' },
           { label: 'Platform', value: 'TNGA-K Architecture' }
         ]
       },
@@ -817,7 +817,7 @@ export const VEHICLES: Vehicle[] = [
     auctionGrade: 'Grade 4.5',
     auctionHall: 'USS Nagoya',
     interiorGrade: 'Grade A (Medalist Wood & Leather)',
-    status: 'In Stock — Mombasa',
+    status: 'In Stock',
     heroVideo: 'https://videos.pexels.com/video-files/2103099/2103099-hd_1920_1080_30fps.mp4',
     heroImage: '/vehicles/note-epower.jpg',
     colors: [
@@ -984,7 +984,7 @@ export const VEHICLES: Vehicle[] = [
         narrative: [
           'Driving in city traffic is relaxed thanks to Nissan’s active safety features. The windshield camera watches traffic ahead and applies Intelligent Emergency Braking if a car or pedestrian steps into your path.',
           'Pedal misoperation protection prevents accidental acceleration if you mistakenly press the gas pedal instead of the brake near walls or parked cars.',
-          'With an ultra-tight 5.2-meter turning circle, U-turns and tight parking maneuvers in crowded Nairobi and Mombasa streets are completely effortless.'
+          'With an ultra-tight 5.2-meter turning circle, U-turns and tight parking maneuvers in crowded urban streets are completely effortless.'
         ],
         specs: [
           { label: 'Emergency Braking', value: 'Automatic Emergency Braking with Pedestrian Detection' },
@@ -1120,7 +1120,7 @@ export const VEHICLES: Vehicle[] = [
     auctionGrade: 'Grade 4.5',
     auctionHall: 'USS Yokohama',
     interiorGrade: 'Grade A (Clean Interior)',
-    status: 'In Stock — Mombasa',
+    status: 'In Stock',
     heroVideo: 'https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4',
     heroImage: '/vehicles/serena-highway-star.jpg',
     colors: [
@@ -1133,7 +1133,7 @@ export const VEHICLES: Vehicle[] = [
         id: 'captain-chairs',
         title: 'Zero-Gravity Captain Seats',
         subtitle: 'Designed to Reduce Back Fatigue',
-        description: 'Comfortable seats shaped to support your spine naturally, so you and your passengers stay fresh even on long drives between Nairobi and Mombasa.',
+        description: 'Comfortable seats shaped to support your spine naturally, so you and your passengers stay fresh even on long-distance highway journeys.',
         imageUrl: '/vehicles/serena-interior-seats.jpg',
         metric: '2-2-3',
         metricLabel: 'Lounge Seating'
@@ -1288,7 +1288,7 @@ export const VEHICLES: Vehicle[] = [
         narrative: [
           'The driver instrument screen is positioned high on the dashboard so you can see your speed, hybrid battery level, and safety warnings without looking away from the road.',
           'The 10.1-inch central touchscreen links directly to your smartphone with Apple CarPlay and Android Auto for GPS maps, music, and hands-free calls.',
-          'Parking in tight Nairobi or Mombasa spaces is effortless with the 360-degree Around View Monitor. Four cameras show an overhead bird’s-eye view, alerting you if pedestrians or objects get close.',
+          'Parking in tight urban parking spaces is effortless with the 360-degree Around View Monitor. Four cameras show an overhead bird’s-eye view, alerting you if pedestrians or objects get close.',
           'Tri-zone automatic air conditioning cools all three rows evenly and uses air purification filters to keep road dust, smoke, and pollen out of the cabin.'
         ],
         specs: [

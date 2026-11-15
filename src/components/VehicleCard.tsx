@@ -50,7 +50,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-white hover:bg-zinc-50/70 border border-zinc-200 hover:border-zinc-300 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] cursor-pointer select-none overflow-hidden ${
+      className={`group relative bg-white hover:bg-zinc-50/90 border border-zinc-200/90 hover:border-zinc-400 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] cursor-pointer select-none overflow-hidden ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
@@ -79,10 +79,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
           {/* Top Left: Authentic Japanese Provenance Seal */}
           <div className="absolute top-3 left-3 z-20 pointer-events-none">
-            <div className="font-mono text-[10.5px] font-semibold bg-white/95 backdrop-blur-md text-zinc-900 border border-zinc-200/90 px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
+            <div className="font-mono text-[10.5px] font-bold bg-white text-zinc-950 border border-zinc-300 px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
               <span className="text-zinc-950 font-bold">Grade {vehicle.auctionGrade}</span>
-              <span className="text-zinc-400">·</span>
-              <span className="text-zinc-600 font-normal">{vehicle.auctionHall}</span>
+              <span className="text-zinc-400 font-bold">·</span>
+              <span className="text-zinc-800 font-medium">{vehicle.auctionHall}</span>
             </div>
           </div>
 
@@ -119,32 +119,32 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Clean Line 1: Year, Mileage & Drivetrain */}
-        <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-1.5">
-          <span className="font-bold text-white text-[13px]">{vehicle.year}</span>
-          <span className="text-zinc-400">·</span>
-          <span>{vehicle.mileageKm.toLocaleString()} KM</span>
-          <span className="text-zinc-400">·</span>
-          <span>{getPowertrainBadge(vehicle)}</span>
+        <div className="flex items-center gap-2 text-xs font-mono text-zinc-700 font-medium mb-1.5">
+          <span className="font-bold text-zinc-950 text-[13px]">{vehicle.year}</span>
+          <span className="text-zinc-400 font-bold">·</span>
+          <span className="text-zinc-800 font-semibold">{vehicle.mileageKm.toLocaleString()} KM</span>
+          <span className="text-zinc-400 font-bold">·</span>
+          <span className="text-zinc-800 font-semibold">{getPowertrainBadge(vehicle)}</span>
         </div>
 
         {/* Clean Line 2: Vehicle Model Title (Full Model Title, 2 Lines Max) */}
-        <h3 className="text-lg sm:text-[20px] font-bold text-white tracking-[-0.025em] leading-snug group-hover:text-zinc-200 transition-colors line-clamp-2 min-h-[1.75rem] sm:min-h-[2.75rem] mb-2">
+        <h3 className="text-lg sm:text-[20px] font-bold text-zinc-950 tracking-[-0.025em] leading-snug group-hover:text-red-700 transition-colors line-clamp-2 min-h-[1.75rem] sm:min-h-[2.75rem] mb-2">
           {vehicle.name}
         </h3>
       </div>
 
       {/* Clean Line 3: Delivered Price & Subtle Exploration Link */}
-      <div className="pt-3.5 mt-2 border-t border-white/[0.07] flex items-center justify-between">
-        <div className="flex items-baseline gap-1 font-mono">
-          <span className="text-xs text-zinc-400 font-normal">KES</span>
-          <span className="text-base sm:text-lg font-bold text-white tracking-tight">
+      <div className="pt-3.5 mt-2 border-t border-zinc-200 flex items-center justify-between">
+        <div className="flex items-baseline gap-1.5 font-mono">
+          <span className="text-xs text-zinc-600 font-semibold">KES</span>
+          <span className="text-base sm:text-lg font-bold text-zinc-950 tracking-tight">
             {vehicle.priceKes.toLocaleString()}
           </span>
         </div>
 
-        <div className="text-xs font-semibold text-zinc-300 group-hover:text-white group-hover:translate-x-0.5 inline-flex items-center gap-1.5 transition-all">
+        <div className="text-xs font-bold text-zinc-900 group-hover:text-red-600 group-hover:translate-x-0.5 inline-flex items-center gap-1.5 transition-all">
           <span>Explore</span>
-          <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-white" />
+          <ArrowRight className="w-3.5 h-3.5 text-zinc-900 group-hover:text-red-600" />
         </div>
       </div>
     </div>

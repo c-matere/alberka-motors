@@ -201,7 +201,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 bg-black border border-zinc-200 rounded-full text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
+                className="w-full pl-9 pr-3 py-1.5 bg-white border border-zinc-300 rounded-full text-xs text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-zinc-950 transition-colors"
               />
               {searchQuery && (
                 <button
@@ -220,7 +220,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         {featuredArticle && !searchQuery && activeCategory === 'all' && (
           <div
             onClick={() => onSelectPost(featuredArticle)}
-            className="group relative bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden cursor-pointer transition-colors duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.35)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent text-left"
+            className="group relative bg-white hover:bg-zinc-50/70 border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-left"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-7 aspect-[16/10] sm:aspect-[21/11] lg:h-full overflow-hidden bg-black relative">
@@ -240,7 +240,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between space-y-6">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2.5 text-xs text-zinc-600 font-mono">
-                    <span className="text-white font-semibold">{featuredArticle.category}</span>
+                    <span className="text-zinc-950 font-bold">{featuredArticle.category}</span>
                     <span>·</span>
                     <span>{featuredArticle.readTime}</span>
                   </div>
@@ -256,7 +256,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
                 <div className="pt-6 border-t border-zinc-200 flex items-center justify-between">
                   <div className="text-left">
-                    <span className="text-xs font-semibold text-white block">{featuredArticle.author.name}</span>
+                    <span className="text-xs font-semibold text-zinc-950 block">{featuredArticle.author.name}</span>
                     <span className="text-[10px] text-zinc-500 font-mono block">{featuredArticle.publishedDate}</span>
                   </div>
 
@@ -276,7 +276,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             <div
               key={article.id}
               onClick={() => onSelectPost(article)}
-              className="group relative bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.3)] cursor-pointer before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
+              className="group relative bg-white hover:bg-zinc-50/70 border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] cursor-pointer"
             >
               <div>
                 <div className="aspect-[16/10] w-full overflow-hidden bg-black relative">
@@ -300,7 +300,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     <span>{article.publishedDate}</span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white tracking-tight leading-snug group-hover:text-zinc-200 transition-colors">
+                  <h3 className="text-lg font-bold text-zinc-950 tracking-tight leading-snug group-hover:text-red-700 transition-colors">
                     {article.title}
                   </h3>
 
@@ -312,7 +312,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
               <div className="p-6 pt-0 border-t border-white/[0.06] mt-4 flex items-center justify-between">
                 <span className="text-xs text-zinc-600 font-mono">{article.author.name}</span>
-                <span className="text-xs text-white font-semibold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                <span className="text-xs text-zinc-950 font-bold inline-flex items-center gap-1 group-hover:text-red-600 transition-colors">
                   <span>Read Story</span>
                   <ArrowRight className="w-3 h-3" />
                 </span>
@@ -325,7 +325,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         {filteredBlogs.length === 0 && (
           <div className="text-center py-20 bg-zinc-50 border border-zinc-200 rounded-2xl p-8 space-y-4 max-w-md mx-auto">
             <BookOpen className="w-8 h-8 mx-auto text-zinc-500" />
-            <h3 className="text-lg font-bold text-white">No articles match your search</h3>
+            <h3 className="text-lg font-bold text-zinc-950">No articles match your search</h3>
             <p className="text-xs text-zinc-600">
               Try searching for "Auction", "Hybrid", "Warranty", or "AWD".
             </p>
@@ -350,7 +350,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
           onClick={() => setIsWriteModalOpen(false)}
         >
           <div 
-            className="w-full max-w-2xl bg-[#121216] border border-white/[0.15] rounded-2xl p-6 sm:p-10 my-auto shadow-2xl space-y-6 text-left animate-scaleIn relative"
+            className="w-full max-w-2xl bg-white border border-zinc-200 rounded-2xl p-6 sm:p-10 my-auto shadow-2xl space-y-6 text-left animate-scaleIn relative text-zinc-900"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
@@ -360,7 +360,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     EDITORIAL DESK
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-white">Write & Publish New Article</h3>
+                <h3 className="text-xl font-bold text-zinc-950">Write & Publish New Article</h3>
               </div>
 
               <button
@@ -380,7 +380,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="e.g. 2026 KRA Valuation Changes on Japanese Imports"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                 />
               </div>
 
@@ -390,7 +390,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                    className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white cursor-pointer"
                   >
                     <option value="Provenance">Provenance (Auction & Sourcing)</option>
                     <option value="Engineering">Engineering (Workshop & Mechanics)</option>
@@ -406,7 +406,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     value={formData.readTime}
                     onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
                     placeholder="e.g. 5 min read"
-                    className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
@@ -418,7 +418,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="A one-sentence non-obvious thesis for the reader..."
                   value={formData.subtitle}
                   onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
+                  className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white"
                 />
               </div>
 
@@ -443,7 +443,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="Write the full technical article here. Use two line breaks between paragraphs..."
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full p-4 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white leading-relaxed resize-y"
+                  className="w-full p-4 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white leading-relaxed resize-y"
                 />
               </div>
 
@@ -453,8 +453,8 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   type="text"
                   value={formData.tags}
                   onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-                  placeholder="e.g. Auction Sheets, Hybrid, Mombasa"
-                  className="w-full px-4 py-2 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white font-mono"
+                  placeholder="e.g. Auction Sheets, Hybrid, Inspection"
+                  className="w-full px-4 py-2 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white font-mono"
                 />
               </div>
 

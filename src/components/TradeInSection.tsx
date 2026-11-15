@@ -121,7 +121,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
     },
     {
       q: 'How long is the trade-in valuation valid?',
-      a: 'Our online calculator provides a realistic estimate. Following a 20-minute mechanical hoist check at our Mombasa or Nairobi showroom, you receive a written appraisal valid for 7 days.'
+      a: 'Our online calculator provides a realistic estimate. Following a 20-minute mechanical hoist check at our showroom hub, you receive a written appraisal valid for 7 days.'
     },
     {
       q: 'Can I trade in against an incoming Japanese shipment?',
@@ -141,7 +141,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              EQUITY CONVERSION · MOMBASA & NAIROBI
+              EQUITY CONVERSION · QUALITY JAPANESE IMPORTS
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
@@ -167,7 +167,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4" type="video/mp4" />
               <img
                 src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Alberka Motors Trade In"
+                alt="Alberka Enterprises Trade In"
                 className="w-full h-full object-cover"
               />
             </video>
@@ -460,7 +460,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               {/* Action Buttons */}
               <div className="space-y-2 pt-2">
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
+                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-white py-3 text-xs sm:text-sm font-semibold w-full justify-center inline-flex items-center gap-2"
@@ -501,7 +501,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="relative bg-white hover:bg-white/[0.05] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.35)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="relative bg-white hover:bg-white/[0.05] backdrop-blur-[2px] border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               <div className="aspect-[16/10] w-full overflow-hidden bg-black/60">
                 <img
                   src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -515,12 +515,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 </div>
                 <h3 className="text-lg font-bold text-zinc-950">20-Minute Hoist Check</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                  Drive into Mombasa or Nairobi. Our technician conducts a hoist inspection and electronic diagnostic scan.
+                  Drive into our showroom hub. Our technician conducts a hoist inspection and electronic diagnostic scan.
                 </p>
               </div>
             </div>
 
-            <div className="relative bg-white hover:bg-white/[0.05] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.35)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="relative bg-white hover:bg-white/[0.05] backdrop-blur-[2px] border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               <div className="aspect-[16/10] w-full overflow-hidden bg-black/60">
                 <img
                   src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -539,7 +539,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
             </div>
 
-            <div className="relative bg-white hover:bg-white/[0.05] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.35)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+            <div className="relative bg-white hover:bg-white/[0.05] backdrop-blur-[2px] border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden flex flex-col justify-between transition-colors duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
               <div className="aspect-[16/10] w-full overflow-hidden bg-black">
                 <img
                   src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"

@@ -14,7 +14,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
   const [testDriveData, setTestDriveData] = useState({
     name: '',
     phone: '',
-    location: 'Mombasa — Tangana Road',
+    location: 'Tangana Road Flagship',
     carName: preselectedVehicle?.name || vehicles[0]?.name || '',
     preferredDate: '',
     timeSlot: 'Morning (9:00 AM – 12:00 PM)',
@@ -24,7 +24,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Hello Alberka Motors, my name is ${testDriveData.name} (${testDriveData.phone}). I would like to book a test drive for the ${testDriveData.carName} at your ${testDriveData.location} showroom on ${testDriveData.preferredDate || 'the earliest available date'} (${testDriveData.timeSlot}).`
+      `Hello Alberka Enterprises, my name is ${testDriveData.name} (${testDriveData.phone}). I would like to book a test drive for the ${testDriveData.carName} at your ${testDriveData.location} showroom on ${testDriveData.preferredDate || 'the earliest available date'} (${testDriveData.timeSlot}).`
     );
     window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
     setBookingSuccess(true);
@@ -38,7 +38,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              PHYSICAL HUBS · MOMBASA & NAIROBI
+              PHYSICAL HUBS · QUALITY JAPANESE IMPORTS
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
@@ -52,21 +52,21 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         {/* Showrooms Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {/* Mombasa Flagship */}
+          {/* Main Showroom */}
           <div className="relative bg-white hover:bg-zinc-50/80 border border-zinc-200 hover:border-zinc-300 rounded-2xl p-8 sm:p-10 flex flex-col justify-between space-y-6 transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-zinc-300 before:to-transparent text-left">
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-1">
                 <div className="inline-flex items-center gap-2">
-                  <span className="font-mono text-[10.5px] text-zinc-600 uppercase tracking-widest font-semibold">MOMBASA FLAGSHIP</span>
+                  <span className="font-mono text-[10.5px] text-zinc-600 uppercase tracking-widest font-semibold">SHOWROOM FLAGSHIP</span>
                 </div>
                 <span className="text-[10px] font-mono bg-zinc-100 border border-zinc-200 text-zinc-600 px-2 py-0.5 rounded">
                   EST. 2000
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">Mombasa Flagship</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">Main Showroom</h2>
               <p className="text-sm text-zinc-600 leading-relaxed">
-                Tangana Road (Opposite AutoXpress / Near Railway Station), Majengo, Mombasa Island.<br />
-                <span className="text-xs text-zinc-700 mt-1 block font-medium">Nyali Branch: Links Road, Nyali, Mombasa.</span>
+                Tangana Road (Opposite AutoXpress / Near Railway Station), Majengo.<br />
+                <span className="text-xs text-zinc-700 mt-1 block font-medium">Nyali Branch: Links Road, Nyali.</span>
               </p>
 
               <div className="space-y-3 py-5 border-y border-zinc-200 text-xs sm:text-sm">
@@ -78,7 +78,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-zinc-600 shrink-0" />
-                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-zinc-700 hover:text-zinc-950 transition-colors">sales@alberkamotors.co.ke</a>
+                  <a href="mailto:sales@alberkaenterprises.co.ke" className="font-mono text-zinc-700 hover:text-zinc-950 transition-colors">sales@alberkaenterprises.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-zinc-600 shrink-0" />
@@ -90,12 +90,12 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs text-zinc-500 font-mono">100-Point workshop on site</span>
               <a
-                href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors%20Mombasa,%20I%20would%20like%20to%20visit%20your%20Tangana%20Road%20showroom."
+                href="https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20visit%20your%20Tangana%20Road%20showroom."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white py-2.5 px-5 text-xs font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-1.5"
               >
-                <span>WhatsApp Mombasa</span>
+                <span>WhatsApp Showroom</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -106,15 +106,15 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-1">
                 <div className="inline-flex items-center gap-2">
-                  <span className="font-mono text-[10.5px] text-zinc-600 uppercase tracking-widest font-semibold">NAIROBI BRANCH</span>
+                  <span className="font-mono text-[10.5px] text-zinc-600 uppercase tracking-widest font-semibold">EXECUTIVE SHOWROOM</span>
                 </div>
                 <span className="text-[10px] font-mono bg-zinc-100 border border-zinc-200 text-zinc-600 px-2 py-0.5 rounded">
                   WESTLANDS
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">Nairobi Westlands Hub</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">Westlands Executive Hub</h2>
               <p className="text-sm text-zinc-600 leading-relaxed">
-                Mwanzi Road, Westlands (Opposite Westgate Mall Entrance), Nairobi.<br />
+                Mwanzi Road, Westlands (Opposite Westgate Mall Entrance).<br />
                 <span className="text-xs text-zinc-700 mt-1 block font-medium">Customer Parking & Executive Handover Bay.</span>
               </p>
 
@@ -125,7 +125,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-zinc-600 shrink-0" />
-                  <a href="mailto:nairobi@alberkamotors.co.ke" className="font-mono text-zinc-700 hover:text-zinc-950 transition-colors">nairobi@alberkamotors.co.ke</a>
+                  <a href="mailto:westlands@alberkaenterprises.co.ke" className="font-mono text-zinc-700 hover:text-zinc-950 transition-colors">nairobi@alberkamotors.co.ke</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-zinc-600 shrink-0" />
@@ -137,12 +137,12 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs text-zinc-500 font-mono">Central Westlands Location</span>
               <a
-                href="https://wa.me/254748999333?text=Hello%20Alberka%20Motors%20Nairobi,%20I%20would%20like%20to%20visit%20your%20Westlands%20showroom."
+                href="https://wa.me/254748999333?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20visit%20your%20Westlands%20showroom."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white py-2.5 px-5 text-xs font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-1.5"
               >
-                <span>WhatsApp Nairobi</span>
+                <span>WhatsApp Westlands</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -202,9 +202,9 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                     onChange={(e) => setTestDriveData({ ...testDriveData, location: e.target.value })}
                     className="w-full px-4 py-2.5 bg-zinc-100 border border-zinc-200 rounded-lg text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
                   >
-                    <option value="Mombasa — Tangana Road">Mombasa (Tangana Road Flagship)</option>
-                    <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
-                    <option value="Nairobi — Westlands Mwanzi Rd">Nairobi (Westlands Mwanzi Rd)</option>
+                    <option value="Tangana Road Showroom">Tangana Road Flagship</option>
+                    <option value="Nyali Branch">Nyali Branch</option>
+                    <option value="Westlands Mwanzi Rd">Westlands Mwanzi Rd Hub</option>
                   </select>
                 </div>
               </div>

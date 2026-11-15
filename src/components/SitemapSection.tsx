@@ -65,7 +65,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
                 >
                   Workshop & 5,000 KM Warranty
                 </button>
-                <p className="text-xs text-zinc-600">100-point Mombasa mechanical overhaul.</p>
+                <p className="text-xs text-zinc-600">100-point mechanical overhaul.</p>
               </li>
               <li>
                 <button
@@ -101,7 +101,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
                 >
                   Showroom Locations
                 </button>
-                <p className="text-xs text-zinc-600">Mombasa Tangana Road & Nairobi Westlands.</p>
+                <p className="text-xs text-zinc-600">Tangana Road Flagship & Westlands Executive Hub.</p>
               </li>
             </ul>
           </div>

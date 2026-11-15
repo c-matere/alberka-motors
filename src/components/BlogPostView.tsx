@@ -74,7 +74,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
 
   const handleInquireWhatsApp = () => {
     const msg = encodeURIComponent(
-      `Hello Alberka Motors, I just read your article "${post.title}" on your website and would like to consult your technical team regarding this topic.`
+      `Hello Alberka Enterprises, I just read your article "${post.title}" on your website and would like to consult your technical team regarding this topic.`
     );
     window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
   };
@@ -265,7 +265,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
             <h4 className="text-lg font-bold text-zinc-950">Have Questions About Japanese Provenance?</h4>
           </div>
           <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-            Our technical team at Tangana Road, Mombasa can verify Japanese auction sheets, inspect chassis condition, and guide you through custom port clearance.
+            Our technical team at Tangana Road can verify Japanese auction sheets, inspect chassis condition, and guide you through custom port clearance.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
             <button

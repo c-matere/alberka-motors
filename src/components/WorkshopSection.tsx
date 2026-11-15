@@ -109,7 +109,7 @@ export const WorkshopSection: React.FC = () => {
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Hello Alberka Motors Workshop, my name is ${bookingData.name} (${bookingData.phone}). I would like to book a ${bookingData.serviceType} for my vehicle (${bookingData.vehicleModel}) on ${bookingData.preferredDate || 'the earliest available date'}.`
+      `Hello Alberka Enterprises Workshop, my name is ${bookingData.name} (${bookingData.phone}). I would like to book a ${bookingData.serviceType} for my vehicle (${bookingData.vehicleModel}) on ${bookingData.preferredDate || 'the earliest available date'}.`
     );
     window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
     setBookingSubmitted(true);
@@ -123,14 +123,14 @@ export const WorkshopSection: React.FC = () => {
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              MOMBASA TECHNICAL WORKSHOP · TANGANA ROAD
+              TECHNICAL WORKSHOP · TANGANA ROAD
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
             Workshop Preparation & 5,000 KM Warranty
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            We never outsource technical preparation. Every vehicle arriving from the Port of Mombasa undergoes an in-house 100-point mechanical overhaul before delivery.
+            We never outsource technical preparation. Every vehicle arriving from the port of arrival undergoes an in-house 100-point mechanical overhaul before delivery.
           </p>
         </div>
 
@@ -268,7 +268,7 @@ export const WorkshopSection: React.FC = () => {
               5,000 KM Dealer Written Warranty
             </h2>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              Every passenger car sold by Alberka Motors comes with a formal written warranty valid for 5,000 km or 90 days from handover.
+              Every passenger car sold by Alberka Enterprises comes with a formal written warranty valid for 5,000 km or 90 days from handover.
             </p>
           </div>
 
@@ -292,7 +292,7 @@ export const WorkshopSection: React.FC = () => {
                 Client Privileges
               </h4>
               <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
-                <li>• Free 2,500 km intermediate fluid check at our Mombasa or Nairobi showroom</li>
+                <li>• Free 2,500 km intermediate fluid check at our showroom</li>
                 <li>• Direct WhatsApp support with our senior workshop technician</li>
                 <li>• Priority access to genuine Japanese spare parts at dealer wholesale rates</li>
                 <li>• Official inspection handover certificate signed by our head technician</li>
@@ -309,7 +309,7 @@ export const WorkshopSection: React.FC = () => {
             </span>
             <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">Book a Workshop Inspection</h3>
             <p className="text-xs sm:text-sm text-zinc-600">
-              Open to Alberka owners and pre-purchase vehicle inspections in Mombasa.
+              Open to Alberka owners and pre-purchase vehicle inspections with our team.
             </p>
           </div>
 
@@ -317,7 +317,7 @@ export const WorkshopSection: React.FC = () => {
             <div className="bg-zinc-100 border border-emerald-500/40 p-8 text-center text-zinc-950 space-y-2 rounded-xl">
               <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-emerald-400" />
               <h4 className="text-lg font-bold">Booking Request Dispatched</h4>
-              <p className="text-xs sm:text-sm text-zinc-600">Our Mombasa technical desk is opening your WhatsApp message now.</p>
+              <p className="text-xs sm:text-sm text-zinc-600">Our technical desk is opening your WhatsApp message now.</p>
             </div>
           ) : (
             <form onSubmit={handleBookingSubmit} className="space-y-5">
@@ -330,7 +330,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.name}
                     onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
@@ -351,7 +351,7 @@ export const WorkshopSection: React.FC = () => {
                   <select
                     value={bookingData.serviceType}
                     onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
                   >
                     <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
                     <option value="5,000 km Periodic Service">5,000 KM Routine Service</option>
@@ -371,7 +371,7 @@ export const WorkshopSection: React.FC = () => {
                     value={bookingData.vehicleModel}
                     onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
                     placeholder="e.g. Toyota RAV4 (KDD 123X)"
-                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
@@ -391,7 +391,7 @@ export const WorkshopSection: React.FC = () => {
                   <Calendar className="w-4 h-4" />
                   <span>Send Booking via WhatsApp</span>
                 </button>
-                <span className="font-mono text-xs text-zinc-500">Mombasa Workshop: Mon – Sat: 8:00 AM – 6:00 PM</span>
+                <span className="font-mono text-xs text-zinc-500">Workshop Hours: Mon – Sat: 8:00 AM – 6:00 PM</span>
               </div>
             </form>
           )}

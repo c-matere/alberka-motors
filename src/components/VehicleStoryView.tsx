@@ -295,7 +295,7 @@ const EditorialFeatureSection: React.FC<{
 
             <div className="pt-2">
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20questions%20regarding%20the%20${encodeURIComponent(feature.title)}%20on%20the%20${encodeURIComponent(vehicleName)}%20(${stockNo}).`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20have%20questions%20regarding%20the%20${encodeURIComponent(feature.title)}%20on%20the%20${encodeURIComponent(vehicleName)}%20(${stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-700 hover:text-zinc-950 transition-colors cursor-pointer pt-2 group"
@@ -349,7 +349,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [selectedLeatherIndex, setSelectedLeatherIndex] = useState(0);
   const [selectedVeneerIndex, setSelectedVeneerIndex] = useState(0);
   const [bespokeTab, setBespokeTab] = useState<'exterior' | 'interior' | 'veneer' | 'acoustics' | 'kenya-road'>('exterior');
-  const [routeMode, setRouteMode] = useState<'expressway' | 'mombasa' | 'rift-valley'>('expressway');
+  const [routeMode, setRouteMode] = useState<'expressway' | 'coastal' | 'rift-valley'>('expressway');
   const [selectedInspectorPoint, setSelectedInspectorPoint] = useState<string>('front');
   const [showAuctionModal, setShowAuctionModal] = useState(false);
   const [acousticMode, setAcousticMode] = useState<'off' | 'ambient' | 'sanctuary'>('off');
@@ -668,7 +668,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   }, []);
 
   const handleCopySpec = () => {
-    const specText = `ALBERKA MOTORS SPECIFICATION:\nVehicle: ${vehicle.name} (${vehicle.stockNo})\nColor: ${activeColor.name}\nInterior: ${activeLeather.name}\nTrim: ${activeVeneer.name}\nHandover Price: KES ${vehicle.priceKes.toLocaleString()}\nInquiry via Alberka Motors Tangana Road Mombasa.`;
+    const specText = `ALBERKA ENTERPRISES SPECIFICATION:\nVehicle: ${vehicle.name} (${vehicle.stockNo})\nColor: ${activeColor.name}\nInterior: ${activeLeather.name}\nTrim: ${activeVeneer.name}\nHandover Price: KES ${vehicle.priceKes.toLocaleString()}\nInquiry via Alberka Enterprises Tangana Road Mombasa.`;
     navigator.clipboard?.writeText(specText);
     setCopiedToast(true);
     setTimeout(() => setCopiedToast(false), 3000);
@@ -1200,13 +1200,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   {[
                     {
                       id: 'expressway',
-                      title: 'Nairobi Expressway & City',
+                      title: 'Urban Highway & Expressway',
                       corridor: 'Westlands · JKIA · Kilimani',
                       highlight: 'Stop-and-Go & 80 km/h Cruise',
                     },
                     {
-                      id: 'mombasa',
-                      title: 'Mombasa Coastal Highway',
+                      id: 'coastal',
+                      title: 'High-Speed Coastal Corridor',
                       corridor: 'Nyali · Port · SGR Corridor',
                       highlight: 'Tropical 34°C & Saline Air',
                     },
@@ -1263,12 +1263,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       <span className="font-mono text-lg font-bold text-zinc-950 block">
                         {routeMode === 'expressway'
                           ? (vehicle.fuelType.toLowerCase().includes('hybrid') || vehicle.fuelType.toLowerCase().includes('power') ? '21.4 Km/L' : '13.8 Km/L')
-                          : routeMode === 'mombasa'
+                          : routeMode === 'coastal'
                           ? (vehicle.fuelType.toLowerCase().includes('hybrid') || vehicle.fuelType.toLowerCase().includes('power') ? '19.8 Km/L' : '15.2 Km/L')
                           : (vehicle.fuelType.toLowerCase().includes('hybrid') || vehicle.fuelType.toLowerCase().includes('power') ? '17.6 Km/L' : '12.4 Km/L')}
                       </span>
                       <span className="text-[10.5px] text-zinc-600 mt-0.5 block">
-                        {routeMode === 'expressway' ? 'Regenerative braking active' : routeMode === 'mombasa' ? 'Aerodynamic continuous cruise' : 'Climbing gear torque hold'}
+                        {routeMode === 'expressway' ? 'Regenerative braking active' : routeMode === 'coastal' ? 'Aerodynamic continuous cruise' : 'Climbing gear torque hold'}
                       </span>
                     </div>
 
@@ -1289,7 +1289,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         CABIN NOISE LEVEL
                       </span>
                       <span className="font-mono text-lg font-bold text-zinc-950 block">
-                        {routeMode === 'expressway' ? '40 dB' : routeMode === 'mombasa' ? '43 dB' : '44 dB'}
+                        {routeMode === 'expressway' ? '40 dB' : routeMode === 'coastal' ? '43 dB' : '44 dB'}
                       </span>
                       <span className="text-[10.5px] text-zinc-600 mt-0.5 block">
                         Acoustic insulation sealed
@@ -1316,8 +1316,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     </span>
                     <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
                       {routeMode === 'expressway' &&
-                        `In dense Nairobi traffic and highway merges, ${vehicle.name}'s powertrain excels with instantaneous throttle response. Regenerative braking captures energy during jams on Uhuru Highway, extending brake pad longevity by up to 40%.`}
-                      {routeMode === 'mombasa' &&
+                        `In dense urban traffic and highway merges, ${vehicle.name}'s powertrain excels with instantaneous throttle response. Regenerative braking captures energy during jams on Uhuru Highway, extending brake pad longevity by up to 40%.`}
+                      {routeMode === 'coastal' &&
                         `On the high-speed coastal corridor, ${vehicle.name}'s dual-fan tropicalized cooling matrix easily manages 34°C ambient humidity. Factory underbody sealant applied at our Mombasa facility prevents salt-mist oxidation along Nyali and Diani routes.`}
                       {routeMode === 'rift-valley' &&
                         `Climbing Mai Mahiu or handling unpaved access roads into Naivasha and Nanyuki, the suspension dampening absorbs washboard ripples smoothly. Generous ground clearance ensures the oil sump and catalytic converter remain safely shielded.`}
@@ -1348,7 +1348,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </button>
 
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20with%20exterior%20${encodeURIComponent(activeColor.name)}%20and%20interior%20${encodeURIComponent(activeLeather.name)}.%20Please%20confirm%20availability%20for%20a%20test%20drive.`}
+                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20with%20exterior%20${encodeURIComponent(activeColor.name)}%20and%20interior%20${encodeURIComponent(activeLeather.name)}.%20Please%20confirm%20availability%20for%20a%20test%20drive.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-white !py-2.5 !px-5 text-[13px] w-full sm:w-auto text-center font-semibold"
@@ -1858,7 +1858,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </span>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white w-full sm:w-auto text-center font-semibold"
@@ -1970,7 +1970,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white !py-2 !px-4 text-xs font-semibold"

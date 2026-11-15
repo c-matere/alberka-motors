@@ -35,7 +35,7 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
     content: [
       'In the Kenyan automotive market, terms like "mint condition" and "fresh import" are frequently used without technical verification. At Japanese wholesale auctions such as USS Tokyo, CAA Chubu, and TAA Yokohama, condition is not an opinion—it is an exact science recorded on an official Japanese auction inspection sheet.',
       'An Auction Grade 4.5 vehicle represents the top tier of pre-owned Japanese automobiles. To qualify for Grade 4.5, a vehicle must have genuine mileage under 100,000 kilometers, factory original paint depth across key structural pillars, and zero evidence of chassis or frame repair (marked as XX on the inspection blueprint).',
-      'The auction diagram breaks down each body panel using standard codes: A1 indicates hairline scratches easily cleared with machine buffing; U1 indicates minor paintless-dent-removal impressions; and W1 designates factory-level paint blending. Any score of W2 or W3 indicates noticeable resprays, which Alberka Motors strictly disqualifies during pre-bid inspection.',
+      'The auction diagram breaks down each body panel using standard codes: A1 indicates hairline scratches easily cleared with machine buffing; U1 indicates minor paintless-dent-removal impressions; and W1 designates factory-level paint blending. Any score of W2 or W3 indicates noticeable resprays, which Alberka Enterprises strictly disqualifies during pre-bid inspection.',
       'Equally important is the Interior Grade. A vehicle awarded an interior grade of A or B guarantees an odorless, non-smoker cabin with unblemished seat bolsters and pristine dashboard trim. Every vehicle arriving at our Mombasa showroom is accompanied by this verified document, translated and notarized alongside the original QISJ export certificate.'
     ],
     tags: ['Auction Sheets', 'USS Tokyo', 'Provenance', 'Grade 4.5'],
@@ -45,7 +45,7 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
     id: 'hybrid-battery-coastal-heat-kenya',
     slug: 'hybrid-battery-coastal-heat-kenya',
     title: 'High-Voltage in Coastal Heat: Protecting Hybrid Battery Packs in Kenya',
-    subtitle: 'How cleaning the traction battery cooling duct prevents premature cell failure in Nairobi and Mombasa traffic.',
+    subtitle: 'How cleaning the traction battery cooling duct prevents premature cell failure in tropical coastal heat and traffic traffic.',
     category: 'Engineering',
     coverImage: 'https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600',
     author: {
@@ -57,9 +57,9 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Toyota Hybrid Synergy Drive and Nissan e-POWER battery packs thrive in Kenya—provided one critical component is serviced regularly: the cabin intake cooling blower.',
     content: [
       'Hybrid vehicles like the Toyota Harrier E-Four and Nissan Serena e-POWER have become the gold standard for Kenyan drivers balancing rising fuel prices with executive comfort. However, the high-voltage nickel-metal hydride (NiMH) and lithium-ion traction packs operate within a narrow optimal thermal window of 25°C to 38°C.',
-      'In hot coastal conditions like Mombasa, or stop-and-go jams along Mombasa Road in Nairobi, the hybrid battery relies entirely on forced air drawn from the rear passenger cabin via an intake vent (typically located beside the rear seat bench). Over thousands of kilometers, this intake vent accumulates fine lint, pet hair, and road dust.',
+      'In hot coastal conditions like coastal highways, or stop-and-go jams in city traffic, the hybrid battery relies entirely on forced air drawn from the rear passenger cabin via an intake vent (typically located beside the rear seat bench). Over thousands of kilometers, this intake vent accumulates fine lint, pet hair, and road dust.',
       'When the intake duct is restricted by as little as 30%, the hybrid control ECU cannot exhaust thermal buildup. To prevent thermal runaway, the ECU restricts regenerative braking charge cycles and forces the petrol engine to run continuously, dramatically increasing fuel consumption and placing uneven voltage stress on individual battery module blocks.',
-      'During our Mombasa workshop 100-point pre-delivery service, technicians remove the rear blower assembly, ultrasonically clean the squirrel-cage fan, and install a fresh electrostatic pre-filter. This single preventive protocol extends high-voltage battery life beyond 250,000 kilometers.'
+      'During our workshop 100-point pre-delivery service, technicians remove the rear blower assembly, ultrasonically clean the squirrel-cage fan, and install a fresh electrostatic pre-filter. This single preventive protocol extends high-voltage battery life beyond 250,000 kilometers.'
     ],
     tags: ['Hybrid Care', 'Battery Health', 'Toyota Harrier', 'Engineering'],
     featured: true,
@@ -67,24 +67,24 @@ export const INITIAL_BLOG_POSTS: BlogPost[] = [
   {
     id: 'mombasa-highway-handover-protocol',
     slug: 'mombasa-highway-handover-protocol',
-    title: 'The Mombasa Highway Protocol: Why Port-Cleared Cars Need a Fluid Flush',
+    title: 'The Long-Distance Highway Protocol: Why Port-Cleared Cars Need a Fluid Flush',
     subtitle: 'Japanese domestic motor oil is formulated for cold climates. Here is what happens when driven straight onto Kenyan tarmac.',
     category: 'Ownership',
     coverImage: 'https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600',
     author: {
-      name: 'Mombasa Technical Desk',
+      name: 'Technical Inspection Desk',
       role: 'Pre-Delivery Engineering',
     },
     publishedDate: 'October 16, 2026',
     readTime: '4 min read',
-    excerpt: 'Never drive a fresh Japanese import from the port to Nairobi on its arrival engine oil. Discover the thermal breakdown risk of low-viscosity Japanese winter oils.',
+    excerpt: 'Never drive a fresh Japanese import from the port on its arrival engine oil. Discover the thermal breakdown risk of low-viscosity Japanese winter oils.',
     content: [
       'Vehicles imported from Hokkaido, Tohoku, or Tokyo often carry ultra-low viscosity 0W-16 or 0W-20 factory fluids designed for sub-zero Japanese winters and short urban commutes. When a car is driven immediately off the port into 32°C Mombasa heat and pushed up the steep climb through Tsavo toward Nairobi, that thin oil suffers rapid shear breakdown.',
       'Additionally, during 30 to 45 days of ocean transit aboard vehicle carriers, condensation naturally settles in the engine crankcase and brake fluid reservoirs due to high maritime humidity and daily thermal cycling.',
-      'This is why Alberka Motors never releases a vehicle directly from the port gate. Every car is flatbedded directly to our Tangana Road workshop, where the crankcase is fully drained and refilled with fresh Castrol EDGE fully synthetic titanium oil matching tropical ambient temperatures, paired with a brand-new OEM oil filter and copper sump washer.',
+      'This is why Alberka Enterprises never releases a vehicle directly from the port gate. Every car is flatbedded directly to our Tangana Road workshop, where the crankcase is fully drained and refilled with fresh Castrol EDGE fully synthetic titanium oil matching tropical ambient temperatures, paired with a brand-new OEM oil filter and copper sump washer.',
       'Brake fluid boiling point is tested with digital refractometers, and the radiator cooling system is pressurized to 1.1 bar to verify zero hose micro-cracks before the car ever embarks on its journey to Nairobi.'
     ],
-    tags: ['Workshop Standard', 'Castrol EDGE', 'Mombasa Road', 'Maintenance'],
+    tags: ['Workshop Standard', 'Castrol EDGE', 'Highway Driving', 'Maintenance'],
     featured: false,
   },
   {

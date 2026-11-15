@@ -229,7 +229,7 @@ export function App() {
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">
-                          AVAILABLE FLEET · MOMBASA & NAIROBI
+                          AVAILABLE FLEET · QUALITY JAPANESE IMPORTS
                         </span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
                           Vehicles in Stock
@@ -312,7 +312,7 @@ export function App() {
                             02 · PREPARATION
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-                            Mombasa Technical Overhaul
+                            100-Point Technical Overhaul
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
                             100-point pre-delivery inspection at Tangana Road. Castrol Edge synthetic lubricants, OEM filtration, full computerized diagnostics, and suspension recalibration.
@@ -339,7 +339,7 @@ export function App() {
                             5,000 KM Written Warranty
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
-                            Written dealer warranty covering engine and drivetrain, backed directly by our in-house Mombasa mechanical team and Nairobi partner stations.
+                            Written dealer warranty covering engine and drivetrain, backed directly by our in-house mechanical team and certified partner stations.
                           </p>
                           <div className="pt-2">
                             <button
@@ -359,7 +359,7 @@ export function App() {
                 {/* Section Gradient Fade Transition */}
                 <SectionGradientFade />
 
-                {/* Serene Showrooms Dispatch (Mombasa & Nairobi) */}
+                {/* Serene Showrooms Dispatch (Kenya) */}
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
@@ -386,7 +386,7 @@ export function App() {
                       <ScrollRevealBox delay={0}>
                         <div className="space-y-4">
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
-                            MOMBASA FLAGSHIP & WORKSHOP
+                            SHOWROOM & WORKSHOP HUB
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
                             Tangana Road, Majengo
@@ -405,13 +405,13 @@ export function App() {
                       <ScrollRevealBox delay={75}>
                         <div className="space-y-4">
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
-                            NAIROBI CONSULTATION SALON
+                            CONSULTATION SALON
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
                             Mwanzi Road, Westlands
                           </h3>
                           <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                            Centrally situated in Westlands for convenient private viewings, trade-in valuations, and concierge vehicle deliveries across Nairobi.
+                            Centrally situated in Westlands for convenient private viewings, trade-in valuations, and concierge vehicle deliveries across Kenya.
                           </p>
                           <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
                             <p>Direct: <span className="text-zinc-950">0748 999 333</span></p>

@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Disclaimers & Consumer Assurance */}
         <div className="pb-8 mb-10 space-y-2.5 leading-relaxed text-xs text-zinc-600 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
           <p>
-            1. <strong className="text-zinc-950">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop in Mombasa.
+            1. <strong className="text-zinc-950">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop at our certified technical workshop.
           </p>
           <p>
             2. <strong className="text-zinc-950">All-Inclusive Delivered Pricing:</strong> All listed prices in Kenya Shillings (KES) include 16% VAT, KRA Import Duty, Excise Duty, and Railway Development Levy. NTSA TIMS logbook transfer executed directly by our conveyancing desk.
@@ -33,12 +33,12 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center gap-4">
             <img
               src="/alberka-logo-cropped.png"
-              alt="Alberka Motors Kenya"
+              alt="Alberka Enterprises Kenya"
               className="h-9 w-auto object-contain"
             />
             <div className="border-l border-zinc-200 pl-4 text-left">
               <span className="font-bold text-sm tracking-tight text-zinc-950 block leading-tight">
-                ALBERKA MOTORS (KENYA) LTD
+                ALBERKA ENTERPRISES (KENYA) LTD
               </span>
               <span className="font-mono text-[10px] tracking-wider text-zinc-600 mt-0.5 block">
                 DIRECT JAPANESE IMPORTS · EST. 2000
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex items-center gap-3">
             <a
-              href="https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles."
+              href="https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-white py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"
@@ -98,7 +98,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Mombasa Workshop Service
+                  Certified Workshop Service
                 </button>
               </li>
               <li>
@@ -129,17 +129,17 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Mombasa — Tangana Road
+                  Tangana Road Flagship
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Mombasa — Nyali Links Rd
+                  Nyali Links Rd Branch
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Nairobi — Westlands (Mwanzi Rd)
+                  Westlands (Mwanzi Rd) Hub
                 </button>
               </li>
               <li>
@@ -185,9 +185,9 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Copyright Strip with Gradient Feather Divider */}
         <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/[0.08] after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
-          <p>© {new Date().getFullYear()} Alberka Motors (Kenya) Ltd. Direct Japanese Imports Since 2000.</p>
+          <p>© {new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports Since 2000.</p>
           <div className="flex items-center gap-3">
-            <span>Mombasa · Nairobi</span>
+            <span>Kenya Nationwide</span>
             <span>·</span>
             <span>KRA & QISJ Compliant</span>
           </div>

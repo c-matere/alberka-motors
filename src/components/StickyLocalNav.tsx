@@ -62,14 +62,14 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   const titleMap: Record<string, { kicker: string; title: string }> = {
     overview: { kicker: 'Overview', title: 'Quality Japanese Cars' },
     inventory: { kicker: 'Showroom', title: 'Cars Available Now' },
-    workshop: { kicker: 'Mombasa Workshop', title: '100-Point Inspection & 5,000 KM Warranty' },
+    workshop: { kicker: 'Technical Workshop', title: '100-Point Inspection & 5,000 KM Warranty' },
     'trade-in': { kicker: 'Trade-In', title: 'Fair Appraisals & Instant Upgrades' },
     about: { kicker: 'About Us', title: '26 Years of Trust in Kenya' },
-    locations: { kicker: 'Showrooms', title: 'Mombasa & Nairobi Locations' },
+    locations: { kicker: 'Showrooms', title: 'Kenya Locations' },
     sitemap: { kicker: 'Directory', title: 'Quick Links' },
   };
 
-  const info = titleMap[currentView] || { kicker: 'Alberka Motors', title: 'Quality Japanese Cars' };
+  const info = titleMap[currentView] || { kicker: 'Alberka Enterprises', title: 'Quality Japanese Cars' };
 
   return (
     <div className="hidden sm:block sticky sm:top-[68px] z-30 bg-white/90 backdrop-blur-md border-b border-zinc-200">

@@ -63,39 +63,19 @@ export const BlueprintBackground: React.FC = () => {
       mouseAnimFrameId = requestAnimationFrame(updatePosition);
     }
 
-    // Real-Time Drafting & Typing Master Clock (requestAnimationFrame loop)
-    let cycleAnimFrameId: number;
-    let startTime = performance.now();
-
-    const tickCycle = (now: number) => {
-      const elapsed = (now - startTime) % CYCLE_DURATION;
-      setCycleTime(elapsed);
-      cycleAnimFrameId = requestAnimationFrame(tickCycle);
-    };
-
-    cycleAnimFrameId = requestAnimationFrame(tickCycle);
-
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       if (mouseAnimFrameId) cancelAnimationFrame(mouseAnimFrameId);
-      if (cycleAnimFrameId) cancelAnimationFrame(cycleAnimFrameId);
     };
   }, []);
 
   // Helper to compute typed character count with measured architectural typing cadence
-  const getTyped = (fullText: string, startMs: number, speedMsPerChar: number = 55) => {
-    // If in blank phase or before start, show nothing
-    if (cycleTime >= 48000 || cycleTime < startMs) {
-      return { text: '', isTyping: false, isDone: false };
-    }
-    const count = Math.min(fullText.length, Math.floor((cycleTime - startMs) / speedMsPerChar));
-    const isTyping = count < fullText.length;
-    const isDone = count >= fullText.length;
+  const getTyped = (fullText: string, _startMs?: number, _speed?: number) => {
     return {
-      text: fullText.slice(0, count),
-      isTyping,
-      isDone,
+      text: fullText,
+      isTyping: false,
+      isDone: true,
     };
   };
 
@@ -146,27 +126,13 @@ export const BlueprintBackground: React.FC = () => {
   // Phase 2 (42000ms - 48000ms): Erasing (lines & text fade out over 6s)
   // Phase 3 (48000ms - 52000ms): TOTAL BLANK (4 full seconds of complete blackness)
   // Phase 4 (52000ms - 56000ms): GRADUALLY LIGHTING UP (studio lights & grid smoothly fade up from 0 to 1)
-  let masterLightFade = 1;
-  let carFade = 1;
-
-  if (cycleTime >= 42000 && cycleTime < 48000) {
-    // Erasing phase (42s - 48s)
-    carFade = Math.max(0, 1 - (cycleTime - 42000) / 6000);
-    masterLightFade = Math.max(0, 1 - (cycleTime - 44000) / 4000);
-  } else if (cycleTime >= 48000 && cycleTime < 52000) {
-    // TOTAL BLANK (48s - 52s = 4 full seconds)
-    carFade = 0;
-    masterLightFade = 0;
-  } else if (cycleTime >= 52000) {
-    // GRADUALLY LIGHTING UP (52s - 56s = 4 seconds smooth ramp)
-    carFade = 0;
-    masterLightFade = Math.min(1, (cycleTime - 52000) / 4000);
-  }
+  const masterLightFade = 1;
+  const carFade = 1;
 
   // Dynamic Opacity Computations (Dim above the fold; brightening on scroll)
   const baseGridOpacity = 0.06 + scrollFactor * 0.44;
-  const gridOpacity = baseGridOpacity * masterLightFade;
-  const carOpacity = (0.02 + scrollFactor * 0.32) * carFade;
+  const gridOpacity = Math.min(0.65, 0.25 + scrollFactor * 0.35);
+  const carOpacity = Math.min(0.92, 0.65 + scrollFactor * 0.30);
   const softboxOpacity = (0.3 + scrollFactor * 0.45) * masterLightFade;
   const midGlowOpacity = (0.08 + scrollFactor * 0.24) * masterLightFade;
 
@@ -188,141 +154,23 @@ export const BlueprintBackground: React.FC = () => {
     >
       {/* 56-Second Master Architectural CAD Keyframes: Slow Drawing, Erasing, and Total Blanking */}
       <style>{`
-        /* Ground Plane & Station Planes */
-        @keyframes cadDrawGround {
-          0% { stroke-dashoffset: 1400; opacity: 0; }
-          2% { opacity: 0.85; }
-          12% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 1400; opacity: 0; }
+        /* Fast Snappy Architectural CAD Entrance (settles in 1.2s) */
+        @keyframes cadQuickDraw {
+          0% { stroke-dashoffset: 1800; opacity: 0.3; }
+          100% { stroke-dashoffset: 0; opacity: 1; }
         }
 
-        /* Main Coachwork Bodyline & Fastback Arc (Slow, deliberate 14-second stroke) */
-        @keyframes cadDrawBody {
-          0%, 6% { stroke-dashoffset: 3400; opacity: 0; }
-          8% { opacity: 0.95; }
-          36% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 3400; opacity: 0; }
+        @keyframes cadFastReveal {
+          0% { opacity: 0; transform: translateY(6px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Bentley Signature Power Line (Slow 10-second arc) */
-        @keyframes cadDrawPowerLine {
-          0%, 20% { stroke-dashoffset: 1000; opacity: 0; }
-          22% { opacity: 0.95; }
-          42% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 1000; opacity: 0; }
+        .cad-draw-instant {
+          animation: cadQuickDraw 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Muscular Rear Haunch Line */
-        @keyframes cadDrawHaunch {
-          0%, 26% { stroke-dashoffset: 900; opacity: 0; }
-          28% { opacity: 0.95; }
-          46% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 900; opacity: 0; }
-        }
-
-        /* Greenhouse Window Aperture & Headrests */
-        @keyframes cadDrawGreenhouse {
-          0%, 30% { stroke-dashoffset: 1800; opacity: 0; }
-          32% { opacity: 0.85; }
-          50% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 1800; opacity: 0; }
-        }
-
-        /* Crystal Jewel Headlamps & Matrix Radiator Grille */
-        @keyframes cadDrawJewels {
-          0%, 34% { stroke-dashoffset: 600; opacity: 0; }
-          36% { opacity: 0.9; }
-          54% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 600; opacity: 0; }
-        }
-
-        /* 22" Mulliner Directional Turbine Wheels */
-        @keyframes cadDrawWheels {
-          0%, 38% { stroke-dashoffset: 800; opacity: 0; }
-          40% { opacity: 1; }
-          58% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 800; opacity: 0; }
-        }
-
-        /* Carbon-Ceramic Brakes & 10-Piston Monobloc Calipers */
-        @keyframes cadDrawBrakes {
-          0%, 46% { stroke-dashoffset: 500; opacity: 0; }
-          48% { opacity: 0.85; }
-          62% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 500; opacity: 0; }
-        }
-
-        /* Active Aerodynamic Spoiler & Diffuser */
-        @keyframes cadDrawAero {
-          0%, 50% { stroke-dashoffset: 900; opacity: 0; }
-          52% { opacity: 0.85; }
-          65% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 900; opacity: 0; }
-        }
-
-        /* Dimension Datum Arrows & Tolerances */
-        @keyframes cadDrawDimensions {
-          0%, 54% { stroke-dashoffset: 1200; opacity: 0; }
-          56% { opacity: 0.85; }
-          68% { stroke-dashoffset: 0; opacity: 1; }
-          75% { stroke-dashoffset: 0; opacity: 1; }
-          85% { opacity: 0; stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 1200; opacity: 0; }
-        }
-
-        /* Slow, Graceful Digital Drafting Laser Stylus Crosshair Sweep */
-        @keyframes cadLaserSweep {
-          0%, 6% { transform: translate(172px, 385px); opacity: 0; }
-          8% { opacity: 1; }
-          11% { transform: translate(172px, 340px); }
-          15% { transform: translate(240px, 268px); }
-          21% { transform: translate(490px, 260px); }
-          27% { transform: translate(690px, 152px); }
-          31% { transform: translate(1060px, 185px); }
-          34% { transform: translate(1255px, 290px); }
-          36% { transform: translate(1255px, 405px); opacity: 1; }
-          37% { opacity: 0; }
-          100% { transform: translate(1255px, 405px); opacity: 0; }
-        }
-
-        /* CRT Phosphor Noise Micro-Jitter */
-        @keyframes crtJitter {
-          0% { transform: translate(0, 0); }
-          10% { transform: translate(-0.5px, 0.5px); }
-          20% { transform: translate(0.5px, -0.5px); }
-          30% { transform: translate(-0.5px, -0.5px); }
-          40% { transform: translate(0.5px, 0.5px); }
-          50% { transform: translate(0, 0.5px); }
-          60% { transform: translate(-0.5px, 0); }
-          70% { transform: translate(0.5px, 0); }
-          80% { transform: translate(0, -0.5px); }
-          90% { transform: translate(-0.5px, 0.5px); }
-          100% { transform: translate(0, 0); }
-        }
-
-        /* CRT Slow Cathode Beam Sweep */
-        @keyframes crtBeamPass {
-          0% { transform: translateY(-100%); opacity: 0; }
-          50% { opacity: 0.12; }
-          100% { transform: translateY(100vh); opacity: 0; }
+        .cad-reveal-instant {
+          animation: cadFastReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `}</style>
 
@@ -464,8 +312,8 @@ export const BlueprintBackground: React.FC = () => {
           <defs>
             {/* Diamond Matrix Grille Hatch Pattern */}
             <pattern id="bentley-matrix-hatch-v7" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
-              <line x1="0" y1="0" x2="7" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.8" />
+              <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(15, 23, 42, 0.3)" strokeWidth="0.8" />
+              <line x1="0" y1="0" x2="7" y2="0" stroke="rgba(15, 23, 42, 0.3)" strokeWidth="0.8" />
             </pattern>
 
             {/* Radial Fade Scrim */}
@@ -486,7 +334,7 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(15, 23, 42, 0.25)"
               strokeWidth="1.2"
               strokeDasharray="1400"
-              style={{ animation: 'cadDrawGround 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
 
             {/* Automotive Station Planes (STA Lines - Each with dynamically typed text at distinct times) */}
@@ -496,13 +344,13 @@ export const BlueprintBackground: React.FC = () => {
                 <g key={x}>
                   <line
                     x1={x} y1="110" x2={x} y2="470"
-                    stroke="rgba(255, 255, 255, 0.16)"
+                    stroke="rgba(15, 23, 42, 0.12)"
                     strokeWidth="0.8"
                     strokeDasharray="600"
-                    style={{ animation: 'cadDrawGround 56s ease-in-out infinite' }}
+                    className="cad-draw-instant"
                   />
                   {currentSta?.text && (
-                    <text x={x + 3} y="482" fill="rgba(255, 255, 255, 0.5)" fontSize="7" fontFamily="JetBrains Mono, monospace">
+                    <text x={x + 3} y="482" fill="rgba(15, 23, 42, 0.55)" fontSize="7" fontFamily="JetBrains Mono, monospace">
                       {currentSta.text}
                       {currentSta.isTyping && <tspan fill="#0284c7">_</tspan>}
                     </text>
@@ -521,7 +369,7 @@ export const BlueprintBackground: React.FC = () => {
                     stroke="rgba(15, 23, 42, 0.05)"
                     strokeWidth="0.8"
                     strokeDasharray="1200"
-                    style={{ animation: 'cadDrawGround 56s ease-in-out infinite' }}
+                    className="cad-draw-instant"
                   />
                   {currentWl?.text && (
                     <text x="125" y={y - 4} fill="rgba(15, 23, 42, 0.15)" fontSize="7" fontFamily="JetBrains Mono, monospace">
@@ -555,11 +403,11 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(15, 23, 42, 0.4)"
               strokeWidth="2.0"
               strokeDasharray="3400"
-              style={{ animation: 'cadDrawBody 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
 
             {/* Digital Laser Stylus Plotter Head (Slowly and gracefully traces the car contour) */}
-            <g style={{ animation: 'cadLaserSweep 56s cubic-bezier(0.25, 1, 0.5, 1) infinite' }}>
+            <g style={{ display: 'none' }}>
               <circle cx="0" cy="0" r="3.5" fill="#0284c7" />
               <circle cx="0" cy="0" r="8" stroke="#0284c7" strokeWidth="0.9" strokeDasharray="3 2" className="animate-spin" />
               <line x1="-12" y1="0" x2="12" y2="0" stroke="rgba(56, 189, 248, 0.9)" strokeWidth="0.8" />
@@ -569,15 +417,15 @@ export const BlueprintBackground: React.FC = () => {
             {/* Flying "B" Mascot & Bonnet Spine Datum */}
             <line
               x1="240" y1="268" x2="490" y2="260"
-              stroke="rgba(255, 255, 255, 0.75)"
+              stroke="rgba(15, 23, 42, 0.45)"
               strokeWidth="1.2"
               strokeDasharray="300"
-              style={{ animation: 'cadDrawBody 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
             {/* Hood Emblem Mascot Retractable Crosshair */}
             <g transform="translate(198, 275)">
               <circle cx="0" cy="0" r="4.5" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1" />
-              <path d="M -7 0 L 7 0 M 0 -7 L 0 7" stroke="rgba(255, 255, 255, 0.75)" strokeWidth="0.8" />
+              <path d="M -7 0 L 7 0 M 0 -7 L 0 7" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="0.8" />
             </g>
 
             {/* ================= STAGE 03: SIGNATURE BENTLEY POWER LINE & REAR HAUNCH ================= */}
@@ -589,7 +437,7 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(15, 23, 42, 0.45)"
               strokeWidth="1.8"
               strokeDasharray="1000"
-              style={{ animation: 'cadDrawPowerLine 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
 
             <path
@@ -600,16 +448,16 @@ export const BlueprintBackground: React.FC = () => {
               stroke="rgba(15, 23, 42, 0.5)"
               strokeWidth="2.0"
               strokeDasharray="900"
-              style={{ animation: 'cadDrawHaunch 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
 
             {/* Razor-sharp Waistline / Shoulder Tornado Line */}
             <line
               x1="245" y1="285" x2="1220" y2="288"
-              stroke="rgba(255, 255, 255, 0.55)"
+              stroke="rgba(15, 23, 42, 0.35)"
               strokeWidth="0.9"
               strokeDasharray="1000"
-              style={{ animation: 'cadDrawPowerLine 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
 
             {/* ================= STAGE 04: FRONT FASCIA, JEWEL OPTICS & MATRIX PROW ================= */}
@@ -620,14 +468,14 @@ export const BlueprintBackground: React.FC = () => {
               strokeWidth="1.4"
               rx="3"
               strokeDasharray="400"
-              style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
             <line
               x1="183" y1="275" x2="183" y2="385"
               stroke="rgba(15, 23, 42, 0.5)"
               strokeWidth="1.6"
               strokeDasharray="200"
-              style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
 
             {/* Lower Bumper Matrix Splitter & Aero Air Curtain Inlets */}
@@ -637,19 +485,19 @@ export const BlueprintBackground: React.FC = () => {
               strokeWidth="1.1"
               rx="2"
               strokeDasharray="200"
-              style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
-            <line x1="168" y1="412" x2="250" y2="412" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.4" />
+            <line x1="168" y1="412" x2="250" y2="412" stroke="rgba(15, 23, 42, 0.5)" strokeWidth="1.4" />
             <line x1="256" y1="365" x2="256" y2="400" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="1" strokeDasharray="2 2" />
 
             {/* Bentley Twin Crystal Jewel Headlamps (Diamond-Cut Matrix Rings) */}
-            <g style={{ animation: 'cadDrawJewels 56s ease-in-out infinite' }}>
+            <g className="cad-draw-instant">
               <circle cx="218" cy="295" r="15" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1.5" strokeDasharray="200" />
-              <circle cx="218" cy="295" r="10" stroke="rgba(255, 255, 255, 0.65)" strokeWidth="1.0" strokeDasharray="3 3" />
-              <circle cx="218" cy="295" r="4.5" fill="rgba(255, 255, 255, 0.85)" />
+              <circle cx="218" cy="295" r="10" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.0" strokeDasharray="3 3" />
+              <circle cx="218" cy="295" r="4.5" fill="rgba(15, 23, 42, 0.65)" />
               
               <circle cx="248" cy="292" r="10" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.3" strokeDasharray="150" />
-              <circle cx="248" cy="292" r="3.5" fill="rgba(255, 255, 255, 0.75)" />
+              <circle cx="248" cy="292" r="3.5" fill="rgba(15, 23, 42, 0.6)" />
             </g>
 
             {/* ================= STAGE 05: GREENHOUSE, WINDOWS & INTERIOR ERGONOMIC CONTOUR ================= */}
@@ -659,20 +507,20 @@ export const BlueprintBackground: React.FC = () => {
                  C 870 135, 970 158, 1035 204 
                  C 1070 228, 1095 255, 1105 268 
                  L 525 248 Z"
-              stroke="rgba(255, 255, 255, 0.65)"
+              stroke="rgba(15, 23, 42, 0.4)"
               strokeWidth="1.4"
               strokeDasharray="1800"
-              style={{ animation: 'cadDrawGreenhouse 56s ease-in-out infinite' }}
+              className="cad-draw-instant"
             />
             <line x1="770" y1="145" x2="760" y2="280" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="1.4" />
-            <line x1="930" y1="165" x2="920" y2="275" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" strokeDasharray="4 3" />
+            <line x1="930" y1="165" x2="920" y2="275" stroke="rgba(15, 23, 42, 0.3)" strokeWidth="1" strokeDasharray="4 3" />
             
             {/* Interior Mulliner Fluted Headrest Silhouettes */}
             <path d="M 670 200 C 665 185, 685 185, 680 200 Z" stroke="rgba(15, 23, 42, 0.25)" strokeWidth="0.9" />
             <path d="M 850 205 C 845 192, 863 192, 858 205 Z" stroke="rgba(15, 23, 42, 0.2)" strokeWidth="0.8" />
 
             {/* Flush Door Handle with Sensor Touch Mark */}
-            <rect x="580" y="292" width="28" height="6" rx="3" stroke="rgba(255, 255, 255, 0.75)" strokeWidth="1" />
+            <rect x="580" y="292" width="28" height="6" rx="3" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1" />
             <circle cx="586" cy="295" r="1.2" fill="rgba(15, 23, 42, 0.3)" />
 
             {/* Door Cutlines */}
@@ -680,7 +528,7 @@ export const BlueprintBackground: React.FC = () => {
             <line x1="775" y1="290" x2="760" y2="415" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.8" strokeDasharray="4 3" />
 
             {/* ================= STAGE 06: ACTIVE AERODYNAMICS, DIFFUSER & EXHAUST ================= */}
-            <g style={{ animation: 'cadDrawAero 56s ease-in-out infinite' }}>
+            <g className="cad-draw-instant">
               <path
                 d="M 1190 270 C 1225 240, 1260 235, 1290 245"
                 stroke="rgba(56, 189, 248, 0.85)"
@@ -697,39 +545,39 @@ export const BlueprintBackground: React.FC = () => {
             </g>
 
             {/* Rear Diffuser Underbody Strakes */}
-            <line x1="1200" y1="415" x2="1245" y2="410" stroke="rgba(255, 255, 255, 0.75)" strokeWidth="1.2" />
+            <line x1="1200" y1="415" x2="1245" y2="410" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1.2" />
             <line x1="1215" y1="415" x2="1215" y2="425" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="1" />
             <line x1="1235" y1="412" x2="1235" y2="423" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="1" />
 
             {/* Twin Elliptical Oval Tailpipes */}
-            <ellipse cx="1248" cy="385" rx="11" ry="6.5" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.4" strokeDasharray="100" style={{ animation: 'cadDrawAero 56s ease-in-out infinite' }} />
-            <ellipse cx="1248" cy="385" rx="7" ry="4" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
+            <ellipse cx="1248" cy="385" rx="11" ry="6.5" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.4" strokeDasharray="100" className="cad-draw-instant" />
+            <ellipse cx="1248" cy="385" rx="7" ry="4" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
 
             {/* ================= STAGE 07: 22" MULLINER TURBINE WHEELS & 10-PISTON BRAKES ================= */}
             {/* FRONT WHEEL ASSEMBLY (STA 330) */}
             <g transform="translate(330, 415)">
-              <circle cx="0" cy="0" r="70" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1.8" strokeDasharray="600" style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }} />
-              <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.9" strokeDasharray="4 3" />
+              <circle cx="0" cy="0" r="70" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1.8" strokeDasharray="600" className="cad-draw-instant" />
+              <circle cx="0" cy="0" r="54" stroke="rgba(15, 23, 42, 0.3)" strokeWidth="0.9" strokeDasharray="4 3" />
               
               {/* 420mm Cross-Drilled Carbon-Silicon Carbide (CSiC) Rotor */}
-              <circle cx="0" cy="0" r="46" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" strokeDasharray="200" style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }} />
+              <circle cx="0" cy="0" r="46" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" strokeDasharray="200" className="cad-draw-instant" />
               {[15, 60, 105, 150, 195, 240, 285, 330].map((deg) => (
                 <circle
                   key={deg}
                   cx={Math.cos((deg * Math.PI) / 180) * 38}
                   cy={Math.sin((deg * Math.PI) / 180) * 38}
                   r="1.2"
-                  fill="rgba(255, 255, 255, 0.6)"
+                  fill="rgba(15, 23, 42, 0.45)"
                 />
               ))}
 
               {/* Front 10-Piston Caliper Wireframe */}
               <path
                 d="M -35 -30 C -42 -15, -42 15, -35 30 L -22 24 C -28 12, -28 -12, -22 -24 Z"
-                fill="rgba(0, 0, 0, 0.5)"
+                fill="rgba(240, 240, 245, 0.6)"
                 stroke="rgba(15, 23, 42, 0.4)"
                 strokeWidth="1.2"
-                style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }}
+                className="cad-draw-instant"
               />
 
               {/* Directional Turbine Alloy Spokes */}
@@ -743,15 +591,15 @@ export const BlueprintBackground: React.FC = () => {
                   <line
                     key={deg}
                     x1={x1} y1={y1} x2={x2} y2={y2}
-                    stroke="rgba(255, 255, 255, 0.55)"
+                    stroke="rgba(15, 23, 42, 0.35)"
                     strokeWidth="1.1"
                     strokeDasharray="100"
-                    style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }}
+                    className="cad-draw-instant"
                   />
                 );
               })}
               
-              <circle cx="0" cy="0" r="16" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.4" fill="rgba(0,0,0,0.7)" />
+              <circle cx="0" cy="0" r="16" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.4" fill="rgba(245, 245, 250, 0.9)" />
               {frontWheelBadge?.text && (
                 <text x="0" y="3.5" textAnchor="middle" fill="rgba(15, 23, 42, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
                   {frontWheelBadge.text}
@@ -761,16 +609,16 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* REAR WHEEL ASSEMBLY (STA 980) */}
             <g transform="translate(980, 415)">
-              <circle cx="0" cy="0" r="70" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1.8" strokeDasharray="600" style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }} />
-              <circle cx="0" cy="0" r="54" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="0.9" strokeDasharray="4 3" />
+              <circle cx="0" cy="0" r="70" stroke="rgba(15, 23, 42, 0.45)" strokeWidth="1.8" strokeDasharray="600" className="cad-draw-instant" />
+              <circle cx="0" cy="0" r="54" stroke="rgba(15, 23, 42, 0.3)" strokeWidth="0.9" strokeDasharray="4 3" />
               
-              <circle cx="0" cy="0" r="44" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" strokeDasharray="200" style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }} />
+              <circle cx="0" cy="0" r="44" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" strokeDasharray="200" className="cad-draw-instant" />
               <path
                 d="M -32 -22 C -38 -10, -38 10, -32 22 L -22 17 C -26 8, -26 -8, -22 -17 Z"
-                fill="rgba(0, 0, 0, 0.5)"
+                fill="rgba(240, 240, 245, 0.6)"
                 stroke="rgba(15, 23, 42, 0.4)"
                 strokeWidth="1.1"
-                style={{ animation: 'cadDrawBrakes 56s ease-in-out infinite' }}
+                className="cad-draw-instant"
               />
 
               {[0, 36, 72, 108, 144, 180, 216, 252, 288, 324].map((deg) => {
@@ -783,14 +631,14 @@ export const BlueprintBackground: React.FC = () => {
                   <line
                     key={deg}
                     x1={x1} y1={y1} x2={x2} y2={y2}
-                    stroke="rgba(255, 255, 255, 0.55)"
+                    stroke="rgba(15, 23, 42, 0.35)"
                     strokeWidth="1.1"
                     strokeDasharray="100"
-                    style={{ animation: 'cadDrawWheels 56s ease-in-out infinite' }}
+                    className="cad-draw-instant"
                   />
                 );
               })}
-              <circle cx="0" cy="0" r="16" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.4" fill="rgba(0,0,0,0.7)" />
+              <circle cx="0" cy="0" r="16" stroke="rgba(15, 23, 42, 0.4)" strokeWidth="1.4" fill="rgba(245, 245, 250, 0.9)" />
               {rearWheelBadge?.text && (
                 <text x="0" y="3.5" textAnchor="middle" fill="rgba(15, 23, 42, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
                   {rearWheelBadge.text}
@@ -800,11 +648,11 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* Center of Gravity (CG) Technical Balance Datum */}
             <g transform="translate(650, 345)">
-              <circle cx="0" cy="0" r="11" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.1" />
-              <path d="M 0 -16 L 0 16 M -16 0 L 16 0" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1" />
+              <circle cx="0" cy="0" r="11" stroke="rgba(15, 23, 42, 0.5)" strokeWidth="1.1" />
+              <path d="M 0 -16 L 0 16 M -16 0 L 16 0" stroke="rgba(15, 23, 42, 0.5)" strokeWidth="1" />
               <circle cx="0" cy="0" r="3" fill="#0284c7" />
               {cgSpec?.text && (
-                <text x="18" y="4" fill="rgba(255, 255, 255, 0.85)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+                <text x="18" y="4" fill="rgba(15, 23, 42, 0.65)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
                   {cgSpec.text}
                   {cgSpec.isTyping && <tspan fill="#0284c7">_</tspan>}
                 </text>
@@ -814,7 +662,7 @@ export const BlueprintBackground: React.FC = () => {
             {/* ================= STAGE 08: REAL-TIME TYPED CAD CALLOUTS & TELEMETRY ================= */}
             {/* Wheelbase Dimension Line */}
             <g transform="translate(0, 500)">
-              <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" strokeDasharray="1000" style={{ animation: 'cadDrawDimensions 56s ease-in-out infinite' }} />
+              <line x1="330" y1="0" x2="980" y2="0" stroke="rgba(15, 23, 42, 0.3)" strokeWidth="1" strokeDasharray="1000" className="cad-draw-instant" />
               <path d="M 330 -5 L 330 5 M 980 -5 L 980 5" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="1.2" />
               <path d="M 336 -3 L 330 0 L 336 3 M 974 -3 L 980 0 L 974 3" fill="rgba(255, 255, 255, 0.7)" />
               {wheelbase?.text && (
@@ -830,7 +678,7 @@ export const BlueprintBackground: React.FC = () => {
               <line x1="172" y1="0" x2="1255" y2="0" stroke="rgba(15, 23, 42, 0.2)" strokeWidth="0.8" strokeDasharray="5 3" />
               <path d="M 172 -4 L 172 4 M 1255 -4 L 1255 4" stroke="rgba(15, 23, 42, 0.25)" strokeWidth="1" />
               {totalLength?.text && (
-                <text x="715" y="-7" textAnchor="middle" fill="rgba(255, 255, 255, 0.75)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
+                <text x="715" y="-7" textAnchor="middle" fill="rgba(15, 23, 42, 0.6)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
                   {totalLength.text}
                   {totalLength.isTyping && <tspan fill="#0284c7">_</tspan>}
                 </text>
@@ -842,7 +690,7 @@ export const BlueprintBackground: React.FC = () => {
               <line x1="0" y1="130" x2="0" y2="440" stroke="rgba(15, 23, 42, 0.2)" strokeWidth="0.8" />
               <path d="M -4 130 L 4 130 M -4 440 L 4 440" stroke="rgba(15, 23, 42, 0.25)" strokeWidth="1" />
               {roofHeight?.text && (
-                <text x="-8" y="295" textAnchor="end" fill="rgba(255, 255, 255, 0.75)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em" transform="rotate(-90 -8 295)">
+                <text x="-8" y="295" textAnchor="end" fill="rgba(15, 23, 42, 0.6)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em" transform="rotate(-90 -8 295)">
                   {roofHeight.text}
                   {roofHeight.isTyping && <tspan fill="#0284c7">_</tspan>}
                 </text>
@@ -851,8 +699,8 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* Fastback Haunch Aerodynamic Spec (Top Right Callout) */}
             <g transform="translate(860, 95)">
-              <line x1="0" y1="0" x2="50" y2="-30" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
-              <line x1="50" y1="-30" x2="220" y2="-30" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
+              <line x1="0" y1="0" x2="50" y2="-30" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
+              <line x1="50" y1="-30" x2="220" y2="-30" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
               <circle cx="0" cy="0" r="2.8" fill="#0284c7" />
               {haunchSpec?.text && (
                 <text x="55" y="-35" fill="rgba(15, 23, 42, 0.3)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
@@ -864,8 +712,8 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* Matrix Prow Rake Spec (Front Left Callout) */}
             <g transform="translate(240, 220)">
-              <line x1="0" y1="0" x2="-40" y2="-35" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
-              <line x1="-40" y1="-35" x2="-180" y2="-35" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9" />
+              <line x1="0" y1="0" x2="-40" y2="-35" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
+              <line x1="-40" y1="-35" x2="-180" y2="-35" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
               <circle cx="0" cy="0" r="2.8" fill="#0284c7" />
               {prowSpec?.text && (
                 <text x="-180" y="-40" fill="rgba(15, 23, 42, 0.3)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">

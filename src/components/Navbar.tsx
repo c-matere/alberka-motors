@@ -27,7 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'workshop', index: '03', label: 'Workshop', desc: '100-point overhaul & 5,000 km warranty' },
     { id: 'blog', index: '04', label: 'Journal', desc: 'Technical guides, auction decoding & Kenyan market research' },
     { id: 'about', index: '05', label: 'Why Alberka', desc: '26-year heritage & direct Japanese auction sourcing' },
-    { id: 'locations', index: '06', label: 'Locations', desc: 'Tangana Rd, Mombasa & Westlands, Nairobi' },
+    { id: 'locations', index: '06', label: 'Locations', desc: 'Tangana Road Showroom Hub' },
   ];
 
   // Prevent background body scroll when mobile menu is open
@@ -68,19 +68,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => handleLinkClick('overview')}
             className="flex items-center gap-2.5 sm:gap-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
-            aria-label="Alberka Motors Home"
+            aria-label="Alberka Enterprises Home"
           >
             <img
               src="/alberka-logo-cropped.png"
-              alt="Alberka Motors"
+              alt="Alberka Enterprises"
               className="h-8 sm:h-9 w-auto object-contain"
             />
             <div className="hidden sm:flex flex-col text-left pl-3 border-l border-zinc-200">
               <span className="font-bold text-[14.5px] tracking-tight text-zinc-950 leading-tight">
-                ALBERKA MOTORS
+                ALBERKA ENTERPRISES
               </span>
               <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-500 leading-none mt-0.5">
-                MOMBASA & NAIROBI
+                QUALITY JAPANESE IMPORTS
               </span>
             </div>
           </button>
@@ -254,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             
             <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-500 font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>Mombasa Tangana Rd · Nairobi Westlands Hub</span>
+              <span>Tangana Road Showroom & Hub</span>
             </div>
           </div>
 
