@@ -17,7 +17,7 @@ export const SectionGradientFade: React.FC<SectionGradientFadeProps> = ({ classN
     >
       {/* Center-feathering hairline light bar fading smoothly into transparency */}
       <div className="w-full max-w-[1240px] px-6 sm:px-10 relative z-10">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-200 to-transparent" />
       </div>
     </div>
   );

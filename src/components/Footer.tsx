@@ -12,35 +12,35 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigate,
 }) => {
   return (
-    <footer className="w-full bg-transparent relative text-zinc-400 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
+    <footer className="w-full bg-transparent relative text-zinc-600 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
       <div className="max-w-[1240px] mx-auto relative z-10">
         
         {/* Disclaimers & Consumer Assurance */}
-        <div className="pb-8 mb-10 space-y-2.5 leading-relaxed text-xs text-zinc-400 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/10 after:via-white/5 after:to-transparent">
+        <div className="pb-8 mb-10 space-y-2.5 leading-relaxed text-xs text-zinc-600 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
           <p>
-            1. <strong className="text-white">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop in Mombasa.
+            1. <strong className="text-zinc-950">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop in Mombasa.
           </p>
           <p>
-            2. <strong className="text-white">All-Inclusive Delivered Pricing:</strong> All listed prices in Kenya Shillings (KES) include 16% VAT, KRA Import Duty, Excise Duty, and Railway Development Levy. NTSA TIMS logbook transfer executed directly by our conveyancing desk.
+            2. <strong className="text-zinc-950">All-Inclusive Delivered Pricing:</strong> All listed prices in Kenya Shillings (KES) include 16% VAT, KRA Import Duty, Excise Duty, and Railway Development Levy. NTSA TIMS logbook transfer executed directly by our conveyancing desk.
           </p>
           <p>
-            3. <strong className="text-white">Japanese Auction Verification:</strong> Every unit is accompanied by the original Japanese export certificate and verified QISJ or JEVIC odometer verification sheet.
+            3. <strong className="text-zinc-950">Japanese Auction Verification:</strong> Every unit is accompanied by the original Japanese export certificate and verified QISJ or JEVIC odometer verification sheet.
           </p>
         </div>
 
         {/* Brand Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/10 after:via-white/5 after:to-transparent">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
           <div className="flex items-center gap-4">
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Motors Kenya"
               className="h-9 w-auto object-contain"
             />
-            <div className="border-l border-white/10 pl-4 text-left">
-              <span className="font-bold text-sm tracking-tight text-white block leading-tight">
+            <div className="border-l border-zinc-200 pl-4 text-left">
+              <span className="font-bold text-sm tracking-tight text-zinc-950 block leading-tight">
                 ALBERKA MOTORS (KENYA) LTD
               </span>
-              <span className="font-mono text-[10px] tracking-wider text-zinc-400 mt-0.5 block">
+              <span className="font-mono text-[10px] tracking-wider text-zinc-600 mt-0.5 block">
                 DIRECT JAPANESE IMPORTS · EST. 2000
               </span>
             </div>
@@ -63,30 +63,30 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-14 text-xs text-left">
           
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-white uppercase tracking-wider mb-3">Showroom Fleet</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Showroom Fleet</h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   All Vehicles in Stock
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   SUVs & All-Wheel Drive
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Hybrids & e-POWER
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   7-Seater Vans & MPVs
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Compact Hatchbacks
                 </button>
               </li>
@@ -94,30 +94,30 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-white uppercase tracking-wider mb-3">Technical Services</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Technical Services</h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Mombasa Workshop Service
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   100-Point Inspection Check
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   5,000 KM Written Warranty
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('trade-in')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('trade-in')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Trade In Your Vehicle
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('trade-in')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('trade-in')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Bank Finance Estimation
                 </button>
               </li>
@@ -125,25 +125,25 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-white uppercase tracking-wider mb-3">Locations</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Locations</h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Mombasa — Tangana Road
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Mombasa — Nyali Links Rd
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Nairobi — Westlands (Mwanzi Rd)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   VIP Test Drive Booking
                 </button>
               </li>
@@ -151,30 +151,30 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-white uppercase tracking-wider mb-3">About Alberka</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">About Alberka</h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => onNavigate('blog')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('blog')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   The Alberka Journal (Blog)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   26-Year Provenance
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Japanese Auction Bidding
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   QISJ & JEVIC Odometer Guarantee
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('sitemap')} className="text-zinc-400 hover:text-white text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('sitemap')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Site Directory
                 </button>
               </li>

@@ -139,21 +139,21 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   };
 
   return (
-    <section className="w-full bg-transparent py-14 sm:py-20 px-4 sm:px-8 text-[#f4f4f5] relative">
+    <section className="w-full bg-transparent py-14 sm:py-20 px-4 sm:px-8 text-zinc-900 relative">
       <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
         
         {/* Section Header with "Write Article" Action */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/[0.08]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-zinc-200">
           <div className="space-y-3 text-left">
             <div className="inline-flex items-center gap-2">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
                 EDITORIAL JOURNAL · AUTOMOTIVE RESEARCH
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-bold text-white tracking-[-0.035em] leading-[1.05]">
+            <h1 className="text-3xl sm:text-5xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
               The Alberka Journal
             </h1>
-            <p className="text-sm sm:text-base text-zinc-400 max-w-xl font-normal">
+            <p className="text-sm sm:text-base text-zinc-600 max-w-xl font-normal">
               Technical guides on Japanese auction provenance, hybrid battery preservation in Kenyan climates, and vehicle clearance insights.
             </p>
           </div>
@@ -184,7 +184,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 shrink-0 cursor-pointer ${
                       isActive
                         ? 'bg-white text-zinc-950 font-bold shadow-sm'
-                        : 'bg-[#0c0c0f] text-zinc-400 hover:text-white hover:bg-zinc-900 border border-white/[0.08]'
+                        : 'bg-zinc-50 text-zinc-600 hover:text-white hover:bg-zinc-100 border border-zinc-200'
                     }`}
                   >
                     {cat.label}
@@ -201,7 +201,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 bg-black border border-white/10 rounded-full text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
+                className="w-full pl-9 pr-3 py-1.5 bg-black border border-zinc-200 rounded-full text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-white transition-colors"
               />
               {searchQuery && (
                 <button
@@ -231,7 +231,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                  <span className="bg-black/80 backdrop-blur-md border border-white/15 text-white px-2.5 py-1 text-[10.5px] font-mono uppercase font-bold rounded-md">
+                  <span className="bg-black/80 backdrop-blur-md border border-zinc-200 text-white px-2.5 py-1 text-[10.5px] font-mono uppercase font-bold rounded-md">
                     FEATURED STORY
                   </span>
                 </div>
@@ -239,22 +239,22 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
               <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between space-y-6">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2.5 text-xs text-zinc-400 font-mono">
+                  <div className="flex items-center gap-2.5 text-xs text-zinc-600 font-mono">
                     <span className="text-white font-semibold">{featuredArticle.category}</span>
                     <span>·</span>
                     <span>{featuredArticle.readTime}</span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug group-hover:text-zinc-200 transition-colors">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight leading-snug group-hover:text-zinc-200 transition-colors">
                     {featuredArticle.title}
                   </h2>
 
-                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal">
                     {featuredArticle.subtitle}
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
+                <div className="pt-6 border-t border-zinc-200 flex items-center justify-between">
                   <div className="text-left">
                     <span className="text-xs font-semibold text-white block">{featuredArticle.author.name}</span>
                     <span className="text-[10px] text-zinc-500 font-mono block">{featuredArticle.publishedDate}</span>
@@ -287,7 +287,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     containerClassName="w-full h-full"
                   />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="bg-black/80 backdrop-blur-md border border-white/15 text-white px-2 py-0.5 text-[10px] font-mono uppercase font-semibold rounded">
+                    <span className="bg-black/80 backdrop-blur-md border border-zinc-200 text-white px-2 py-0.5 text-[10px] font-mono uppercase font-semibold rounded">
                       {article.category}
                     </span>
                   </div>
@@ -304,14 +304,14 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     {article.title}
                   </h3>
 
-                  <p className="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                  <p className="text-xs text-zinc-600 leading-relaxed line-clamp-3">
                     {article.excerpt}
                   </p>
                 </div>
               </div>
 
               <div className="p-6 pt-0 border-t border-white/[0.06] mt-4 flex items-center justify-between">
-                <span className="text-xs text-zinc-400 font-mono">{article.author.name}</span>
+                <span className="text-xs text-zinc-600 font-mono">{article.author.name}</span>
                 <span className="text-xs text-white font-semibold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                   <span>Read Story</span>
                   <ArrowRight className="w-3 h-3" />
@@ -323,10 +323,10 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
         {/* Empty Search State */}
         {filteredBlogs.length === 0 && (
-          <div className="text-center py-20 bg-[#0c0c0f] border border-white/[0.08] rounded-2xl p-8 space-y-4 max-w-md mx-auto">
+          <div className="text-center py-20 bg-zinc-50 border border-zinc-200 rounded-2xl p-8 space-y-4 max-w-md mx-auto">
             <BookOpen className="w-8 h-8 mx-auto text-zinc-500" />
             <h3 className="text-lg font-bold text-white">No articles match your search</h3>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-zinc-600">
               Try searching for "Auction", "Hybrid", "Warranty", or "AWD".
             </p>
             <button
@@ -353,10 +353,10 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             className="w-full max-w-2xl bg-[#121216] border border-white/[0.15] rounded-2xl p-6 sm:p-10 my-auto shadow-2xl space-y-6 text-left animate-scaleIn relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
               <div className="space-y-0.5">
                 <div className="inline-flex items-center gap-2">
-                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-400 font-semibold">
+                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-600 font-semibold">
                     EDITORIAL DESK
                   </span>
                 </div>
@@ -365,7 +365,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
               <button
                 onClick={() => setIsWriteModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-white transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -373,24 +373,24 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
             <form onSubmit={handleCreateBlog} className="space-y-5">
               <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Article Headline</label>
+                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Article Headline</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. 2026 KRA Valuation Changes on Japanese Imports"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Category</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Category</label>
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white cursor-pointer"
                   >
                     <option value="Provenance">Provenance (Auction & Sourcing)</option>
                     <option value="Engineering">Engineering (Workshop & Mechanics)</option>
@@ -400,41 +400,41 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Estimated Read Time</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Estimated Read Time</label>
                   <input
                     type="text"
                     value={formData.readTime}
                     onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
                     placeholder="e.g. 5 min read"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
+                    className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Subtitle / Key Thesis</label>
+                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Subtitle / Key Thesis</label>
                 <input
                   type="text"
                   placeholder="A one-sentence non-obvious thesis for the reader..."
                   value={formData.subtitle}
                   onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
+                  className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Cover Image URL</label>
+                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Cover Image URL</label>
                 <input
                   type="url"
                   required
                   value={formData.coverImage}
                   onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-300 focus:outline-none focus:border-white"
+                  className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-700 focus:outline-none focus:border-white"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">
+                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">
                   Article Body (Separate paragraphs with blank lines)
                 </label>
                 <textarea
@@ -443,18 +443,18 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   placeholder="Write the full technical article here. Use two line breaks between paragraphs..."
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full p-4 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white leading-relaxed resize-y"
+                  className="w-full p-4 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white leading-relaxed resize-y"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Tags (Comma-separated)</label>
+                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Tags (Comma-separated)</label>
                 <input
                   type="text"
                   value={formData.tags}
                   onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
                   placeholder="e.g. Auction Sheets, Hybrid, Mombasa"
-                  className="w-full px-4 py-2 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white font-mono"
+                  className="w-full px-4 py-2 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white font-mono"
                 />
               </div>
 

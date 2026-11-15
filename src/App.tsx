@@ -176,7 +176,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#09090b] text-[#f4f4f5] relative">
+    <div className="min-h-screen flex flex-col bg-[#f8f9fa] text-[#09090b] relative">
       {/* Studio Blueprint & Atmospheric Canvas */}
       <BlueprintBackground />
       
@@ -226,12 +226,12 @@ export function App() {
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/15 after:via-white/5 after:to-transparent">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 block mb-2">
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">
                           AVAILABLE FLEET · MOMBASA & NAIROBI
                         </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-[-0.035em]">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
                           Vehicles in Stock
                         </h2>
                       </div>
@@ -268,38 +268,38 @@ export function App() {
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-24 relative z-10">
                     <div className="max-w-2xl text-left">
-                      <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-400 block mb-3">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-500 block mb-3">
                         THE ALBERKA COVENANT
                       </span>
-                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-[-0.035em] leading-[1.05]">
+                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
                         Three Principles of Provenance.
                       </h2>
-                      <p className="text-base sm:text-lg text-zinc-400 mt-4 leading-relaxed font-normal">
+                      <p className="text-base sm:text-lg text-zinc-600 mt-4 leading-relaxed font-normal">
                         Every vehicle we import into Kenya undergoes a disciplined, verified journey before keys are handed over.
                       </p>
                     </div>
 
                     {/* Clean Typographic Triptych with Hairline Dividers */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 lg:divide-x lg:divide-white/[0.08] pt-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 lg:divide-x lg:divide-zinc-200 pt-4">
                       {/* Pillar 01 */}
                       <ScrollRevealBox delay={0}>
                         <div className="space-y-4 lg:pr-12 text-left">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             01 · DIRECT SOURCING
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
                             Tokyo Auction Selection
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-zinc-400 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
                             Handpicked directly at USS Tokyo and CAA lanes. Zero intermediaries, verified Japanese auction sheets, and guaranteed JEVIC mileage certificates.
                           </p>
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('about')}
-                              className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Our sourcing process</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
                         </div>
@@ -307,23 +307,23 @@ export function App() {
 
                       {/* Pillar 02 */}
                       <ScrollRevealBox delay={75}>
-                        <div className="space-y-4 lg:px-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-white/[0.08]">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                        <div className="space-y-4 lg:px-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
+                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             02 · PREPARATION
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
                             Mombasa Technical Overhaul
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-zinc-400 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
                             100-point pre-delivery inspection at Tangana Road. Castrol Edge synthetic lubricants, OEM filtration, full computerized diagnostics, and suspension recalibration.
                           </p>
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('workshop')}
-                              className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Workshop standards</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
                         </div>
@@ -331,23 +331,23 @@ export function App() {
 
                       {/* Pillar 03 */}
                       <ScrollRevealBox delay={150}>
-                        <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-white/[0.08]">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                        <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
+                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             03 · INTEGRITY
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
                             5,000 KM Written Warranty
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-zinc-400 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
                             Written dealer warranty covering engine and drivetrain, backed directly by our in-house Mombasa mechanical team and Nairobi partner stations.
                           </p>
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('workshop')}
-                              className="text-xs font-semibold text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Warranty terms</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
                         </div>
@@ -362,12 +362,12 @@ export function App() {
                 {/* Serene Showrooms Dispatch (Mombasa & Nairobi) */}
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-white/15 after:via-white/5 after:to-transparent">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 block mb-2">
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">
                           PRIVATE APPOINTMENTS & INSPECTIONS
                         </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-[-0.035em]">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
                           Our Showrooms
                         </h2>
                       </div>
@@ -385,18 +385,18 @@ export function App() {
                       {/* Mombasa */}
                       <ScrollRevealBox delay={0}>
                         <div className="space-y-4">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             MOMBASA FLAGSHIP & WORKSHOP
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
                             Tangana Road, Majengo
                           </h3>
-                          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
                             Opposite AutoXpress / Near Railway Station. Featuring our primary showroom floor, hoist inspection bays, and dedicated Japanese import workshop.
                           </p>
-                          <div className="pt-2 font-mono text-xs text-zinc-400 space-y-1">
-                            <p>Direct: <span className="text-white">0714 333 888 / 0737 333 888</span></p>
-                            <p>Hours: <span className="text-zinc-300">Mon - Sat · 8:00 AM - 6:00 PM</span></p>
+                          <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
+                            <p>Direct: <span className="text-zinc-950">0714 333 888 / 0737 333 888</span></p>
+                            <p>Hours: <span className="text-zinc-700">Mon - Sat · 8:00 AM - 6:00 PM</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>
@@ -404,18 +404,18 @@ export function App() {
                       {/* Nairobi */}
                       <ScrollRevealBox delay={75}>
                         <div className="space-y-4">
-                          <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest block font-semibold">
+                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             NAIROBI CONSULTATION SALON
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
                             Mwanzi Road, Westlands
                           </h3>
-                          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
                             Centrally situated in Westlands for convenient private viewings, trade-in valuations, and concierge vehicle deliveries across Nairobi.
                           </p>
-                          <div className="pt-2 font-mono text-xs text-zinc-400 space-y-1">
-                            <p>Direct: <span className="text-white">0748 999 333</span></p>
-                            <p>Hours: <span className="text-zinc-300">Mon - Sat · 8:30 AM - 5:30 PM</span></p>
+                          <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
+                            <p>Direct: <span className="text-zinc-950">0748 999 333</span></p>
+                            <p>Hours: <span className="text-zinc-700">Mon - Sat · 8:30 AM - 5:30 PM</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>

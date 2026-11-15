@@ -49,7 +49,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
 
   return createPortal(
     <div 
-      className="fixed inset-0 z-[9999] bg-[#09090b]/90 backdrop-blur-md flex justify-end animate-fadeIn"
+      className="fixed inset-0 z-[9999] bg-zinc-50/40 backdrop-blur-md flex justify-end animate-fadeIn"
       onClick={onClose}
     >
       
@@ -58,33 +58,33 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
 
       {/* Drawer Panel */}
       <div 
-        className="w-full max-w-[540px] h-full bg-[#121215] border-l border-[#27272a] flex flex-col justify-between overflow-y-auto text-[#f4f4f5] animate-slideInRight"
+        className="w-full max-w-[540px] h-full bg-white border-l border-zinc-200 flex flex-col justify-between overflow-y-auto text-zinc-900 shadow-[0_0_50px_rgba(0,0,0,0.15)] animate-slideInRight"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Header Bar */}
         <div>
-          <div className="p-6 border-b border-[#27272a] flex items-center justify-between">
+          <div className="p-6 border-b border-zinc-200 flex items-center justify-between">
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2">
-                <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-semibold block">
+                <span className="font-mono text-[11px] text-zinc-600 uppercase tracking-wider font-semibold block">
                   DIRECT CONCIERGE
                 </span>
               </div>
-              <h2 className="text-[20px] font-bold text-white tracking-tight">
+              <h2 className="text-[20px] font-bold text-zinc-950 tracking-tight">
                 Chat with Alberka Motors
               </h2>
             </div>
             <button
               onClick={onClose}
-              className="p-2 text-[#a1a1aa] hover:text-white cursor-pointer transition-colors"
+              className="p-2 text-[#a1a1aa] hover:text-zinc-950 cursor-pointer transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* 3 Simple Tabs */}
-          <div className="grid grid-cols-3 border-b border-[#27272a] bg-[#09090b]">
+          <div className="grid grid-cols-3 border-b border-zinc-200 bg-zinc-100">
             <button
               onClick={() => {
                 setActiveTab('viewing');
@@ -92,8 +92,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
               }}
               className={`py-3 px-2 text-center text-[12px] font-semibold transition-all cursor-pointer ${
                 activeTab === 'viewing'
-                  ? 'text-white border-b-2 border-white bg-[#121215]'
-                  : 'text-[#a1a1aa] hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 bg-white font-bold'
+                  : 'text-zinc-500 hover:text-zinc-950'
               }`}
             >
               Test Drive
@@ -105,8 +105,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
               }}
               className={`py-3 px-2 text-center text-[12px] font-semibold transition-all cursor-pointer ${
                 activeTab === 'dossier'
-                  ? 'text-white border-b-2 border-white bg-[#121215]'
-                  : 'text-[#a1a1aa] hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-white bg-[#121215]'
+                  : 'text-[#a1a1aa] hover:text-zinc-950'
               }`}
             >
               Auction Sheet
@@ -118,8 +118,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
               }}
               className={`py-3 px-2 text-center text-[12px] font-semibold transition-all cursor-pointer ${
                 activeTab === 'bidding'
-                  ? 'text-white border-b-2 border-white bg-[#121215]'
-                  : 'text-[#a1a1aa] hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-white bg-[#121215]'
+                  : 'text-[#a1a1aa] hover:text-zinc-950'
               }`}
             >
               Import on Order
@@ -131,8 +131,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
             {isSubmitted ? (
               <div className="p-8 text-center bg-[#18181c] border border-emerald-500/30 rounded-xl space-y-3">
                 <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                <h3 className="text-lg font-bold text-white">Message Dispatched!</h3>
-                <p className="text-xs sm:text-sm text-zinc-400">
+                <h3 className="text-lg font-bold text-zinc-950">Message Dispatched!</h3>
+                <p className="text-xs sm:text-sm text-zinc-600">
                   We are opening WhatsApp with your details. Our sales team in Mombasa will assist you right away.
                 </p>
                 <button
@@ -145,36 +145,36 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Your Full Name</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Your Full Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">WhatsApp Phone Number</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">WhatsApp Phone Number</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 {activeTab !== 'bidding' && (
                   <div>
-                    <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Car Model</label>
+                    <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Car Model</label>
                     <select
                       value={formData.vehicleId}
                       onChange={(e) => setFormData({ ...formData, vehicleId: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
+                      className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
                     >
                       {vehicles.map((v) => (
                         <option key={v.id} value={v.id}>
@@ -188,11 +188,11 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                 {activeTab === 'viewing' && (
                   <>
                     <div>
-                      <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Preferred Showroom</label>
+                      <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Preferred Showroom</label>
                       <select
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
+                        className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
                       >
                         <option value="Mombasa — Tangana Road Showroom">Mombasa (Tangana Road Flagship)</option>
                         <option value="Mombasa — Nyali Branch">Mombasa (Nyali Branch)</option>
@@ -201,19 +201,19 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">Preferred Date</label>
+                      <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Preferred Date</label>
                       <input
                         type="date"
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
+                        className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
                       />
                     </div>
                   </>
                 )}
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1">
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">
                     {activeTab === 'bidding' ? 'Car Model & Specifications Desired' : 'Special Notes or Questions'}
                   </label>
                   <textarea
@@ -225,7 +225,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                         ? 'e.g. Looking for a 2019 Toyota Prado TX-L White with sunroof, budget KES 5.5M'
                         : 'Any specific requests, financing questions, or trade-in info...'
                     }
-                    className="w-full px-4 py-2.5 bg-[#09090b] border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
@@ -241,14 +241,14 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
         </div>
 
         {/* Footer Contact Info */}
-        <div className="p-6 border-t border-[#27272a] bg-[#09090b] space-y-2 text-[13px] text-[#a1a1aa]">
+        <div className="p-6 border-t border-zinc-200 bg-zinc-100 space-y-2 text-[13px] text-[#a1a1aa]">
           <div className="flex items-center justify-between">
             <span>Direct WhatsApp Helpline:</span>
-            <a href="tel:+254714333888" className="text-white font-mono hover:text-zinc-300">0714 333 888</a>
+            <a href="tel:+254714333888" className="text-zinc-950 font-mono hover:text-zinc-700">0714 333 888</a>
           </div>
           <div className="flex items-center justify-between">
             <span>Nairobi Branch Line:</span>
-            <a href="tel:+254748999333" className="text-white font-mono hover:text-zinc-300">0748 999 333</a>
+            <a href="tel:+254748999333" className="text-zinc-950 font-mono hover:text-zinc-700">0748 999 333</a>
           </div>
           <div className="text-[11px] text-[#71717a] pt-1">
             Mombasa: Tangana Rd · Nairobi: Mwanzi Rd, Westlands

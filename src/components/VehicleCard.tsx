@@ -50,7 +50,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-white/[0.035] hover:bg-white/[0.055] backdrop-blur-[2px] border border-white/[0.12] hover:border-white/[0.18] rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-colors duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)] cursor-pointer select-none overflow-hidden ${
+      className={`group relative bg-white hover:bg-zinc-50/70 border border-zinc-200 hover:border-zinc-300 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] cursor-pointer select-none overflow-hidden ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
@@ -59,7 +59,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         <div 
           onMouseEnter={() => cardImages[1] && setActiveImageIdx(1)}
           onMouseLeave={() => setActiveImageIdx(0)}
-          className="w-full aspect-[16/10.4] overflow-hidden bg-black/40 border border-white/[0.08] mb-4 relative rounded-xl transition-colors"
+          className="w-full aspect-[16/10.4] overflow-hidden bg-zinc-100 border border-zinc-200/80 mb-4 relative rounded-xl transition-colors"
         >
           {/* Smooth Crossfade Media */}
           {cardImages.map((img, idx) => (
@@ -79,10 +79,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
           {/* Top Left: Authentic Japanese Provenance Seal */}
           <div className="absolute top-3 left-3 z-20 pointer-events-none">
-            <div className="font-mono text-[10.5px] font-semibold bg-black/80 backdrop-blur-md text-white border border-white/15 px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-lg">
-              <span className="text-white font-bold">Grade {vehicle.auctionGrade}</span>
-              <span className="text-zinc-600">·</span>
-              <span className="text-zinc-300 font-normal">{vehicle.auctionHall}</span>
+            <div className="font-mono text-[10.5px] font-semibold bg-white/95 backdrop-blur-md text-zinc-900 border border-zinc-200/90 px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
+              <span className="text-zinc-950 font-bold">Grade {vehicle.auctionGrade}</span>
+              <span className="text-zinc-400">·</span>
+              <span className="text-zinc-600 font-normal">{vehicle.auctionHall}</span>
             </div>
           </div>
 
@@ -94,8 +94,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             }}
             className={`absolute top-3 right-3 w-9 h-9 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 ${
               isFavorite 
-                ? 'bg-white text-zinc-950 font-bold border-white opacity-100' 
-                : 'bg-black/60 hover:bg-black/90 text-zinc-400 hover:text-white border border-white/10 opacity-80 sm:opacity-70 group-hover:opacity-100'
+                ? 'bg-zinc-950 text-white font-bold border-zinc-950 opacity-100' 
+                : 'bg-white/90 hover:bg-white text-zinc-600 hover:text-zinc-950 border border-zinc-200 shadow-sm opacity-90 group-hover:opacity-100'
             }`}
             aria-label={isFavorite ? 'Remove from saved cars' : 'Save car'}
             title={isFavorite ? 'Remove from saved cars' : 'Save car'}
@@ -121,9 +121,9 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         {/* Clean Line 1: Year, Mileage & Drivetrain */}
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-1.5">
           <span className="font-bold text-white text-[13px]">{vehicle.year}</span>
-          <span className="text-zinc-600">·</span>
+          <span className="text-zinc-400">·</span>
           <span>{vehicle.mileageKm.toLocaleString()} KM</span>
-          <span className="text-zinc-600">·</span>
+          <span className="text-zinc-400">·</span>
           <span>{getPowertrainBadge(vehicle)}</span>
         </div>
 

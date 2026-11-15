@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-[#09090b]/90 backdrop-blur-xl border-b border-white/[0.06] h-14 sm:h-[68px] flex items-center justify-center px-3 sm:px-8 sticky top-0 z-50 transition-all">
+      <nav className="w-full bg-white/85 backdrop-blur-xl border-b border-zinc-200/80 h-14 sm:h-[68px] flex items-center justify-center px-3 sm:px-8 sticky top-0 z-50 transition-all">
         <div className="max-w-[1440px] w-full flex items-center justify-between gap-2.5 sm:gap-4">
           
           {/* Logo & Brand Emblem (Mobile: Icon only; Desktop: Full typographic emblem) */}
@@ -75,11 +75,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               alt="Alberka Motors"
               className="h-8 sm:h-9 w-auto object-contain"
             />
-            <div className="hidden sm:flex flex-col text-left pl-3 border-l border-white/15">
-              <span className="font-bold text-[14.5px] tracking-tight text-white leading-tight">
+            <div className="hidden sm:flex flex-col text-left pl-3 border-l border-zinc-200">
+              <span className="font-bold text-[14.5px] tracking-tight text-zinc-950 leading-tight">
                 ALBERKA MOTORS
               </span>
-              <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-400 leading-none mt-0.5">
+              <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-500 leading-none mt-0.5">
                 MOMBASA & NAIROBI
               </span>
             </div>
@@ -88,16 +88,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Search Bar: Occupies the entire remaining space in the header */}
           <button
             onClick={onOpenSearch}
-            className="sm:hidden flex-1 flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.1] border border-white/10 rounded-full px-3 py-2 text-left cursor-pointer transition-all ml-1 min-w-0"
+            className="sm:hidden flex-1 flex items-center gap-2 bg-zinc-100/90 hover:bg-zinc-200/80 active:bg-zinc-200 border border-zinc-200 rounded-full px-3 py-2 text-left cursor-pointer transition-all ml-1 min-w-0"
             title="Search inventory"
             aria-label="Search fleet"
           >
             <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-            <span className="text-zinc-400 text-[12px] truncate">Search fleet (e.g. RAV4, Prado, Hybrid...)</span>
+            <span className="text-zinc-500 text-[12px] truncate">Search fleet (e.g. RAV4, Prado, Hybrid...)</span>
           </button>
 
           {/* Desktop Floating Segmented Controller (Apple / Leica Aesthetic) */}
-          <div className="hidden lg:inline-flex items-center gap-1 bg-black/60 backdrop-blur-xl border border-white/[0.08] p-1.5 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+          <div className="hidden lg:inline-flex items-center gap-1 bg-zinc-100/90 backdrop-blur-xl border border-zinc-200/80 p-1.5 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
             {navLinks.map((link) => {
               const isActive = currentView === link.id;
               return (
@@ -106,8 +106,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handleLinkClick(link.id)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium pill-interactive cursor-pointer whitespace-nowrap ${
                     isActive
-                      ? 'bg-white text-zinc-950 font-bold shadow-sm scale-[1.02]'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
+                      ? 'bg-white text-zinc-950 font-bold shadow-sm border border-zinc-200/60 scale-[1.02]'
+                      : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
                   }`}
                 >
                   {link.label}
@@ -117,18 +117,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right Action Suite (Desktop & Tablet only: Hidden on mobile where bottom dock & floating buttons serve user) */}
-          <div className="hidden sm:flex items-center gap-2.5 sm:gap-3 text-white">
+          <div className="hidden sm:flex items-center gap-2.5 sm:gap-3 text-zinc-900">
             
             {/* Quick Search Capsule */}
             <button
               onClick={onOpenSearch}
-              className="h-9 px-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
+              className="h-9 px-3 rounded-full bg-zinc-100 hover:bg-zinc-200/80 border border-zinc-200 hover:border-zinc-300 text-zinc-700 hover:text-zinc-950 flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
               title="Search inventory (⌘K / Ctrl+K)"
               aria-label="Search fleet"
             >
               <Search className="w-3.5 h-3.5 text-zinc-400" />
               <span className="hidden xl:inline text-xs text-zinc-400 font-medium">Search fleet</span>
-              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white/[0.06] text-zinc-400 border border-white/10 rounded">
+              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white text-zinc-500 border border-zinc-200 rounded">
                 ⌘K
               </kbd>
             </button>
@@ -136,12 +136,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Saved Cars Capsule with Badge */}
             <button
               onClick={onOpenFavorites}
-              className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
+              className="w-9 h-9 rounded-full bg-zinc-100 hover:bg-zinc-200/80 border border-zinc-200 hover:border-zinc-300 text-zinc-700 hover:text-zinc-950 flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
               title="Saved vehicles"
             >
               <Bookmark className="w-4 h-4" />
               {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-white text-zinc-950 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-heartbeat">
+                <span className="absolute -top-1 -right-1 bg-zinc-950 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-heartbeat">
                   {favoritesCount}
                 </span>
               )}
@@ -159,10 +159,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Tablet Menu Toggle Button (Visible only on tablets where segmented controller is hidden) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors active:scale-95"
+              className="lg:hidden w-9 h-9 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 flex items-center justify-center cursor-pointer transition-colors active:scale-95"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-zinc-900" /> : <Menu className="w-5 h-5 text-zinc-900" />}
             </button>
           </div>
 
@@ -171,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Editorial Luxury Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-14 sm:top-[68px] bg-[#09090b]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-white/[0.08] overflow-y-auto animate-slideDown">
+        <div className="fixed inset-0 top-14 sm:top-[68px] bg-white/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-zinc-200 text-zinc-900 overflow-y-auto animate-slideDown">
           
           {/* Main Editorial Menu Links */}
           <div className="space-y-3 pt-2">
@@ -188,23 +188,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => handleLinkClick(link.id)}
                     className={`w-full text-left p-3.5 rounded-xl transition-all flex items-center justify-between group ${
                       isActive
-                        ? 'bg-zinc-900 border border-white/20'
-                        : 'hover:bg-zinc-900/60 border border-transparent'
+                        ? 'bg-zinc-100 border border-zinc-200 shadow-sm'
+                        : 'hover:bg-zinc-50 border border-transparent'
                     }`}
                   >
                     <div className="space-y-0.5">
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-[10px] text-zinc-500 font-semibold">{link.index}</span>
-                        <span className={`text-base font-bold tracking-tight ${isActive ? 'text-white' : 'text-zinc-200 group-hover:text-white'}`}>
+                        <span className={`text-base font-bold tracking-tight ${isActive ? 'text-zinc-950' : 'text-zinc-800 group-hover:text-zinc-950'}`}>
                           {link.label}
                         </span>
                       </div>
-                      <p className="text-xs text-zinc-400 pl-6 leading-relaxed">
+                      <p className="text-xs text-zinc-500 pl-6 leading-relaxed">
                         {link.desc}
                       </p>
                     </div>
 
-                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-zinc-600'}`} />
+                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-zinc-950' : 'text-zinc-400'}`} />
                   </button>
                 );
               })}
@@ -217,11 +217,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenSearch();
                 }}
-                className="p-3 bg-[#0c0c0f] border border-white/[0.08] rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-white/20 transition-colors"
+                className="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-zinc-300 transition-colors"
               >
                 <Search className="w-4 h-4 text-zinc-400 shrink-0" />
                 <div>
-                  <span className="text-xs font-bold text-white block">Search Cars</span>
+                  <span className="text-xs font-bold text-zinc-950 block">Search Cars</span>
                   <span className="text-[10px] font-mono text-zinc-500">Quick catalog scan</span>
                 </div>
               </button>
@@ -231,11 +231,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenFavorites();
                 }}
-                className="p-3 bg-[#0c0c0f] border border-white/[0.08] rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-white/20 transition-colors"
+                className="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-zinc-300 transition-colors"
               >
                 <Bookmark className="w-4 h-4 text-zinc-400 shrink-0" />
                 <div>
-                  <span className="text-xs font-bold text-white block">Saved Cars ({favoritesCount})</span>
+                  <span className="text-xs font-bold text-zinc-950 block">Saved Cars ({favoritesCount})</span>
                   <span className="text-[10px] font-mono text-zinc-500">Compare selection</span>
                 </div>
               </button>
@@ -243,7 +243,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Footer & Direct Hotline */}
-          <div className="pt-6 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] sm:pb-6 border-t border-white/[0.08] space-y-3 mt-6">
+          <div className="pt-6 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] sm:pb-6 border-t border-zinc-200 space-y-3 mt-6">
             <button
               onClick={handleContactClick}
               className="btn-white w-full py-3 text-xs sm:text-sm font-semibold justify-center inline-flex items-center gap-2 shadow-lg"

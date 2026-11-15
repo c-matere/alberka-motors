@@ -116,38 +116,38 @@ export const WorkshopSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-[#f4f4f5] relative">
+    <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-zinc-900 relative">
       <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
               MOMBASA TECHNICAL WORKSHOP · TANGANA ROAD
             </span>
           </div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-[-0.035em] leading-[1.05]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
             Workshop Preparation & 5,000 KM Warranty
           </h1>
-          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed font-normal max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
             We never outsource technical preparation. Every vehicle arriving from the Port of Mombasa undergoes an in-house 100-point mechanical overhaul before delivery.
           </p>
         </div>
 
         {/* Widescreen Workshop Stage */}
         <div className="space-y-8">
-          <div className="w-full aspect-[16/9] sm:aspect-[21/9.5] max-h-[540px] overflow-hidden relative bg-black border border-white/[0.08] rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
+          <div className="w-full aspect-[16/9] sm:aspect-[21/9.5] max-h-[540px] overflow-hidden relative bg-zinc-900 border border-zinc-200 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src="https://videos.pexels.com/video-files/5309381/5309381-hd_1920_1080_25fps.mp4" type="video/mp4" />
               <img src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Workshop bay" className="w-full h-full object-cover" />
             </video>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 sm:p-10 pointer-events-none">
-              <div className="text-left text-white max-w-[620px] space-y-1">
-                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block">
+              <div className="text-left text-zinc-950 max-w-[620px] space-y-1">
+                <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest block">
                   INSPECTION BAY 01
                 </span>
-                <p className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                <p className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
                   100-Point Pre-Delivery Overhaul & Signed Verification Certificate
                 </p>
               </div>
@@ -155,26 +155,26 @@ export const WorkshopSection: React.FC = () => {
           </div>
 
           {/* Architectural Metric Matrix (Clean Hairline Dividers) */}
-          <div className="border-y border-white/[0.08] py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
+          <div className="border-y border-zinc-200 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
             <div>
               <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">SERVICE DURATION</span>
-              <span className="text-base sm:text-lg font-bold text-white block">48-Hour Protocol</span>
-              <span className="text-xs text-zinc-400">Zero rushed handovers</span>
+              <span className="text-base sm:text-lg font-bold text-zinc-950 block">48-Hour Protocol</span>
+              <span className="text-xs text-zinc-600">Zero rushed handovers</span>
             </div>
             <div>
               <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">ENGINE OIL</span>
-              <span className="text-base sm:text-lg font-bold text-white block">Castrol Full Synthetic</span>
-              <span className="text-xs text-zinc-400">OEM genuine filter</span>
+              <span className="text-base sm:text-lg font-bold text-zinc-950 block">Castrol Full Synthetic</span>
+              <span className="text-xs text-zinc-600">OEM genuine filter</span>
             </div>
             <div>
               <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">WRITTEN WARRANTY</span>
-              <span className="text-base sm:text-lg font-bold text-white block">5,000 KM Written</span>
-              <span className="text-xs text-zinc-400">Engine & transmission</span>
+              <span className="text-base sm:text-lg font-bold text-zinc-950 block">5,000 KM Written</span>
+              <span className="text-xs text-zinc-600">Engine & transmission</span>
             </div>
             <div>
               <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">INSPECTION MARKS</span>
-              <span className="text-base sm:text-lg font-bold text-white block">100 Certified Points</span>
-              <span className="text-xs text-zinc-400">Signed technician report</span>
+              <span className="text-base sm:text-lg font-bold text-zinc-950 block">100 Certified Points</span>
+              <span className="text-xs text-zinc-600">Signed technician report</span>
             </div>
           </div>
         </div>
@@ -182,13 +182,13 @@ export const WorkshopSection: React.FC = () => {
         {/* Interactive 6-Stage Protocol Explorer */}
         <div className="space-y-6">
           <div className="max-w-xl space-y-1.5 text-left">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
               100-POINT CHECKLIST
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
               Pre-Handover Inspection Stages
             </h2>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-zinc-600">
               Select any stage below to inspect the checklist procedures executed before collection.
             </p>
           </div>
@@ -204,11 +204,11 @@ export const WorkshopSection: React.FC = () => {
                   onClick={() => setActiveStage(i)}
                   className={`p-4 text-left rounded-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-24 border ${
                     isActive
-                      ? 'bg-zinc-900 border-white text-white shadow-lg'
-                      : 'bg-[#0c0c0f] border-white/[0.08] text-zinc-400 hover:text-white hover:border-white/25'
+                      ? 'bg-zinc-100 border-white text-zinc-950 shadow-lg'
+                      : 'bg-zinc-50 border-zinc-200 text-zinc-600 hover:text-zinc-950 hover:border-white/25'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-zinc-500'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-zinc-950' : 'text-zinc-500'}`} />
                   <div>
                     <span className="font-mono text-[10px] text-zinc-500 block">0{i + 1}</span>
                     <span className="text-xs font-semibold leading-tight line-clamp-1">
@@ -221,16 +221,16 @@ export const WorkshopSection: React.FC = () => {
           </div>
 
           {/* Active Stage Detailed Breakdown */}
-          <div className="relative bg-white/[0.03] backdrop-blur-[2px] p-6 sm:p-8 border border-white/[0.12] rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.35)]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/[0.08]">
+          <div className="relative bg-white backdrop-blur-[2px] p-6 sm:p-8 border border-zinc-200 rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.35)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-zinc-200">
               <div>
                 <div className="inline-flex items-center gap-2 mb-1">
-                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">
+                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest font-semibold">
                     STAGE 0{activeStage + 1} OF 06
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{stages[activeStage].title}</h3>
-                <p className="text-xs sm:text-sm text-zinc-400 mt-0.5">{stages[activeStage].tagline}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">{stages[activeStage].title}</h3>
+                <p className="text-xs sm:text-sm text-zinc-600 mt-0.5">{stages[activeStage].tagline}</p>
               </div>
               <div className="font-mono text-[10.5px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-md w-fit flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -238,18 +238,18 @@ export const WorkshopSection: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-sm text-zinc-300 leading-relaxed max-w-3xl">
+            <p className="text-sm text-zinc-700 leading-relaxed max-w-3xl">
               {stages[activeStage].description}
             </p>
 
             <div className="pt-2">
-              <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-400 block mb-3 font-semibold">
+              <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-600 block mb-3 font-semibold">
                 EXECUTION PROCEDURES:
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {stages[activeStage].checklist.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                    <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
+                    <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -259,26 +259,26 @@ export const WorkshopSection: React.FC = () => {
         </div>
 
         {/* 5,000 KM Warranty Section */}
-        <div className="relative bg-[#0c0c0f] p-8 sm:p-10 border border-white/[0.08] rounded-2xl space-y-8 text-left">
+        <div className="relative bg-zinc-50 p-8 sm:p-10 border border-zinc-200 rounded-2xl space-y-8 text-left">
           <div className="max-w-2xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
               WRITTEN WARRANTY
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
               5,000 KM Dealer Written Warranty
             </h2>
-            <p className="text-sm text-zinc-400 leading-relaxed">
+            <p className="text-sm text-zinc-600 leading-relaxed">
               Every passenger car sold by Alberka Motors comes with a formal written warranty valid for 5,000 km or 90 days from handover.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-white/[0.08]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-zinc-200">
             <div className="space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-white font-bold flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-white" />
+              <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-950 font-bold flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-zinc-950" />
                 Covered Mechanical Components
               </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-zinc-400">
+              <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
                 <li>• Engine cylinder block, head, valves, pistons, and camshaft</li>
                 <li>• Automatic transmission, torque converter, and CVT assembly</li>
                 <li>• Hybrid electric drive motor, reduction gear, and inverter circuit</li>
@@ -287,11 +287,11 @@ export const WorkshopSection: React.FC = () => {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-white font-bold flex items-center gap-2">
-                <FileCheck className="w-4 h-4 text-white" />
+              <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-950 font-bold flex items-center gap-2">
+                <FileCheck className="w-4 h-4 text-zinc-950" />
                 Client Privileges
               </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-zinc-400">
+              <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
                 <li>• Free 2,500 km intermediate fluid check at our Mombasa or Nairobi showroom</li>
                 <li>• Direct WhatsApp support with our senior workshop technician</li>
                 <li>• Priority access to genuine Japanese spare parts at dealer wholesale rates</li>
@@ -302,56 +302,56 @@ export const WorkshopSection: React.FC = () => {
         </div>
 
         {/* Service Booking Form */}
-        <div className="relative bg-white/[0.03] backdrop-blur-[2px] p-8 sm:p-10 border border-white/[0.12] rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.35)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
+        <div className="relative bg-white backdrop-blur-[2px] p-8 sm:p-10 border border-zinc-200 rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.35)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
           <div className="max-w-xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-400 font-semibold block">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
               SCHEDULE APPOINTMENT
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Book a Workshop Inspection</h3>
-            <p className="text-xs sm:text-sm text-zinc-400">
+            <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">Book a Workshop Inspection</h3>
+            <p className="text-xs sm:text-sm text-zinc-600">
               Open to Alberka owners and pre-purchase vehicle inspections in Mombasa.
             </p>
           </div>
 
           {bookingSubmitted ? (
-            <div className="bg-zinc-900 border border-emerald-500/40 p-8 text-center text-white space-y-2 rounded-xl">
+            <div className="bg-zinc-100 border border-emerald-500/40 p-8 text-center text-zinc-950 space-y-2 rounded-xl">
               <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-emerald-400" />
               <h4 className="text-lg font-bold">Booking Request Dispatched</h4>
-              <p className="text-xs sm:text-sm text-zinc-400">Our Mombasa technical desk is opening your WhatsApp message now.</p>
+              <p className="text-xs sm:text-sm text-zinc-600">Our Mombasa technical desk is opening your WhatsApp message now.</p>
             </div>
           ) : (
             <form onSubmit={handleBookingSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Your Name</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Your Name</label>
                   <input
                     type="text"
                     required
                     value={bookingData.name}
                     onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Phone Number (WhatsApp)</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Phone Number (WhatsApp)</label>
                   <input
                     type="tel"
                     required
                     value={bookingData.phone}
                     onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Service Type</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Service Type</label>
                   <select
                     value={bookingData.serviceType}
                     onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
                   >
                     <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
                     <option value="5,000 km Periodic Service">5,000 KM Routine Service</option>
@@ -364,24 +364,24 @@ export const WorkshopSection: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Car Model & Reg</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Car Model & Reg</label>
                   <input
                     type="text"
                     required
                     value={bookingData.vehicleModel}
                     onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
                     placeholder="e.g. Toyota RAV4 (KDD 123X)"
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-400 block mb-1.5">Preferred Date</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Preferred Date</label>
                   <input
                     type="date"
                     value={bookingData.preferredDate}
                     onChange={(e) => setBookingData({ ...bookingData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-black border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-white focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
               </div>

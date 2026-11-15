@@ -78,24 +78,24 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       </div>
 
       {/* 2. STREAMLINED LOW-PROFILE COMMAND STRIP (Single unified aperture — Zero visual noise) */}
-      <div className="sticky top-14 sm:top-[68px] z-30 bg-[#09090b]/95 backdrop-blur-2xl border-y border-white/[0.08] py-2 sm:py-2.5 px-3 sm:px-8 shadow-[0_16px_36px_rgba(0,0,0,0.6)] transition-all">
+      <div className="sticky top-14 sm:top-[68px] z-30 bg-white/90 backdrop-blur-2xl border-y border-zinc-200 py-2 sm:py-2.5 px-3 sm:px-8 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all">
         <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2 sm:gap-4">
           
           {/* Top Row on Mobile / Left Section on Desktop: Search Bar + Mobile Sort side-by-side */}
           <div className="flex items-center gap-2 w-full md:w-auto">
-            <div className="relative bg-[#0c0c0f] border border-white/[0.1] hover:border-white/20 focus-within:border-white/40 rounded-xl px-3 py-1.5 flex items-center gap-2.5 transition-all duration-300 flex-1 md:w-80 lg:w-96 shrink-0">
+            <div className="relative bg-zinc-100 border border-zinc-200 hover:border-zinc-300 focus-within:border-zinc-400 focus-within:bg-white rounded-xl px-3 py-1.5 flex items-center gap-2.5 transition-all duration-300 flex-1 md:w-80 lg:w-96 shrink-0">
               <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
               <input
                 type="text"
                 placeholder="Search fleet, grade, powertrain..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-[16px] sm:text-xs font-medium text-white placeholder:text-zinc-500 focus:outline-none"
+                className="w-full bg-transparent text-[16px] sm:text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="p-0.5 text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
+                  className="p-0.5 text-zinc-600 hover:text-zinc-950 transition-colors cursor-pointer shrink-0"
                   title="Clear search"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -104,18 +104,18 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             </div>
 
             {/* Mobile Sort Dropdown (Sits comfortably beside search bar on mobile) */}
-            <div className="flex md:hidden items-center gap-1 shrink-0 bg-[#0c0c0f] border border-white/[0.08] rounded-xl px-2.5 py-2">
+            <div className="flex md:hidden items-center gap-1 shrink-0 bg-zinc-100 border border-zinc-200 rounded-xl px-2.5 py-2">
               <ArrowUpDown className="w-3 h-3 text-zinc-400" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 aria-label="Sort vehicles"
-                className="bg-transparent text-xs font-mono text-zinc-300 focus:outline-none cursor-pointer pr-1"
+                className="bg-transparent text-xs font-mono text-zinc-700 focus:outline-none cursor-pointer pr-1"
               >
-                <option value="featured" className="bg-[#121215] text-white">Featured</option>
-                <option value="price-asc" className="bg-[#121215] text-white">Price: Low</option>
-                <option value="price-desc" className="bg-[#121215] text-white">Price: High</option>
-                <option value="year" className="bg-[#121215] text-white">Year</option>
+                <option value="featured" className="bg-white text-zinc-900">Featured</option>
+                <option value="price-asc" className="bg-white text-zinc-900">Price: Low</option>
+                <option value="price-desc" className="bg-white text-zinc-900">Price: High</option>
+                <option value="year" className="bg-white text-zinc-900">Year</option>
               </select>
             </div>
           </div>
@@ -134,8 +134,8 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                     }}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium pill-interactive shrink-0 cursor-pointer flex items-center gap-1.5 transition-all ${
                       isActive
-                        ? 'bg-white text-zinc-950 font-bold shadow-md'
-                        : 'bg-[#0c0c0f] text-zinc-400 hover:text-white hover:bg-zinc-900 border border-white/[0.08]'
+                        ? 'bg-zinc-950 text-white font-bold shadow-md'
+                        : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200 border border-zinc-200'
                     }`}
                   >
                     <span>{cat.label}</span>
@@ -149,18 +149,18 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           </div>
 
           {/* Desktop Sort Dropdown */}
-          <div className="hidden md:flex items-center gap-1.5 shrink-0 bg-[#0c0c0f] border border-white/[0.08] rounded-lg px-2.5 py-1">
+          <div className="hidden md:flex items-center gap-1.5 shrink-0 bg-zinc-100 border border-zinc-200 rounded-lg px-2.5 py-1">
             <ArrowUpDown className="w-3 h-3 text-zinc-400" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
               aria-label="Sort vehicles"
-              className="bg-transparent text-xs font-mono text-zinc-300 focus:outline-none cursor-pointer pr-1 py-0.5"
+              className="bg-transparent text-xs font-mono text-zinc-700 focus:outline-none cursor-pointer pr-1 py-0.5"
             >
-              <option value="featured" className="bg-[#121215] text-white">Featured</option>
-              <option value="price-asc" className="bg-[#121215] text-white">Price: Low to High</option>
-              <option value="price-desc" className="bg-[#121215] text-white">Price: High to Low</option>
-              <option value="year" className="bg-[#121215] text-white">Newest Year</option>
+              <option value="featured" className="bg-white text-zinc-900">Featured</option>
+              <option value="price-asc" className="bg-white text-zinc-900">Price: Low to High</option>
+              <option value="price-desc" className="bg-white text-zinc-900">Price: High to Low</option>
+              <option value="year" className="bg-white text-zinc-900">Newest Year</option>
             </select>
           </div>
 
@@ -171,7 +171,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-10 sm:py-16 space-y-10 sm:space-y-12">
         
         {/* Results Counter Bar */}
-        <div className="flex items-center justify-between text-xs text-zinc-400 font-mono px-1 pb-2 border-b border-white/[0.06]">
+        <div className="flex items-center justify-between text-xs text-zinc-500 font-mono px-1 pb-2 border-b border-zinc-200">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
             <span>Showing {filteredVehicles.length} of {vehicles.length} verified vehicles in stock</span>

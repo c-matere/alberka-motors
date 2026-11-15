@@ -18,23 +18,23 @@ export const SkeletonImage: React.FC<SkeletonImageProps> = ({
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className={`relative overflow-hidden bg-[#121215] ${containerClassName}`}>
+    <div className={`relative overflow-hidden bg-zinc-100 ${containerClassName}`}>
       {/* Luxury Shimmer Skeleton Layer (visible while image loads) */}
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#16161a]">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-zinc-200">
           {/* Shimmer light sweep */}
           <div className="skeleton-shimmer" />
           
           {/* Subtle placeholder icon / brand emblem */}
-          <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center opacity-30">
-            <div className="w-2.5 h-2.5 rounded-full bg-white/20 animate-pulse" />
+          <div className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center opacity-30">
+            <div className="w-2.5 h-2.5 rounded-full bg-zinc-300 animate-pulse" />
           </div>
         </div>
       )}
 
       {/* Fallback state if image fails */}
       {hasError && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#18181c] text-zinc-500 text-[12px] p-4 text-center">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-zinc-100 text-zinc-500 text-[12px] p-4 text-center">
           <span>Image preview unavailable</span>
         </div>
       )}

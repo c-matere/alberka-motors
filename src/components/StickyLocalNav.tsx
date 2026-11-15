@@ -18,29 +18,29 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   // If viewing an individual car
   if (currentView === 'vehicle-detail' && selectedVehicle) {
     return (
-      <div className="sticky top-[72px] z-30 bg-[#09090b]/90 backdrop-blur-md border-b border-zinc-800 transition-all">
+      <div className="sticky top-[72px] z-30 bg-white/90 backdrop-blur-md border-b border-zinc-200 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 min-w-0">
             <button
               onClick={onBackToInventory}
-              className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0 transition-colors"
+              className="text-xs text-zinc-600 hover:text-zinc-950 flex items-center gap-1.5 cursor-pointer shrink-0 transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back to Cars</span>
             </button>
             <span className="text-zinc-600 shrink-0">/</span>
-            <span className="text-xs font-semibold text-white truncate">
+            <span className="text-xs font-semibold text-zinc-950 truncate">
               {selectedVehicle.name}
             </span>
-            <span className="hidden md:inline font-mono text-[11px] text-zinc-400 border border-zinc-800 rounded px-1.5 py-0.5 shrink-0">
+            <span className="hidden md:inline font-mono text-[11px] text-zinc-600 border border-zinc-200 rounded px-1.5 py-0.5 shrink-0">
               {selectedVehicle.stockNo}
             </span>
           </div>
 
           <div className="flex items-center gap-4 shrink-0">
             <div className="hidden sm:flex flex-col text-right">
-              <span className="text-[10px] text-zinc-400">Delivered Price</span>
-              <span className="font-mono text-xs font-bold text-white">
+              <span className="text-[10px] text-zinc-600">Delivered Price</span>
+              <span className="font-mono text-xs font-bold text-zinc-950">
                 KES {selectedVehicle.priceKes.toLocaleString()}
               </span>
             </div>
@@ -72,21 +72,21 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   const info = titleMap[currentView] || { kicker: 'Alberka Motors', title: 'Quality Japanese Cars' };
 
   return (
-    <div className="hidden sm:block sticky sm:top-[68px] z-30 bg-[#09090b]/90 backdrop-blur-md border-b border-zinc-800">
+    <div className="hidden sm:block sticky sm:top-[68px] z-30 bg-white/90 backdrop-blur-md border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-11 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-white font-semibold">{info.kicker}</span>
+          <span className="text-zinc-950 font-semibold">{info.kicker}</span>
           <span className="text-zinc-600">•</span>
-          <span className="text-zinc-300 font-medium truncate">{info.title}</span>
+          <span className="text-zinc-700 font-medium truncate">{info.title}</span>
         </div>
 
         <div className="flex items-center gap-3">
           {currentView !== 'workshop' && (
             <button
               onClick={() => onNavigate('workshop')}
-              className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5 cursor-pointer"
+              className="text-xs text-zinc-600 hover:text-zinc-950 flex items-center gap-1.5 cursor-pointer"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
               <span>5,000 KM Warranty</span>
             </button>
           )}
@@ -94,7 +94,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
           {currentView !== 'inventory' && (
             <button
               onClick={() => onNavigate('inventory')}
-              className="text-xs text-white hover:text-zinc-300 font-semibold cursor-pointer"
+              className="text-xs text-zinc-950 hover:text-zinc-700 font-semibold cursor-pointer"
             >
               View All Cars →
             </button>

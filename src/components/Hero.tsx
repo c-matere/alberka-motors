@@ -139,10 +139,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
   };
 
   return (
-    <section className="relative w-full bg-transparent pt-2 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center text-[#f4f4f5] overflow-hidden">
+    <section className="relative w-full bg-transparent pt-2 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center text-zinc-900 overflow-hidden">
       
       {/* Subtle Monochrome Ambient Spotlight */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-b from-white/[0.04] to-transparent blur-3xl pointer-events-none animate-ambient-spotlight" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-b from-slate-200/50 to-transparent blur-3xl pointer-events-none animate-ambient-spotlight" />
 
       <div className="max-w-[1240px] mx-auto relative z-10 space-y-2.5 sm:space-y-4">
         
@@ -155,11 +155,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
 
         {/* Display Hero Title with Editorial Air and Restraint - Compact for Above-the-Fold Video */}
         <div className="space-y-1 sm:space-y-1.5 max-w-[980px] mx-auto">
-          <h1 className="text-[26px] xs:text-[34px] sm:text-[50px] md:text-[58px] font-bold text-white tracking-[-0.035em] leading-[1.1] animate-hero-2">
+          <h1 className="text-[26px] xs:text-[34px] sm:text-[50px] md:text-[58px] font-bold text-zinc-950 tracking-[-0.035em] leading-[1.1] animate-hero-2">
             Japanese Provenance.
           </h1>
 
-          <p className="max-w-[460px] mx-auto text-zinc-400 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
+          <p className="max-w-[460px] mx-auto text-zinc-600 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
             Grade 4.5+ auction imports, fully prepared in Mombasa.
           </p>
         </div>
@@ -176,9 +176,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost group py-2 px-3 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-medium tracking-tight inline-flex items-center justify-center gap-1.5 text-zinc-300 hover:text-white transition-colors cursor-pointer"
+            className="btn-ghost group py-2 px-3 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-medium tracking-tight inline-flex items-center justify-center gap-1.5 text-zinc-700 hover:text-zinc-950 transition-colors cursor-pointer"
           >
-            <ShieldCheck className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
+            <ShieldCheck className="w-4 h-4 text-zinc-500 group-hover:text-zinc-950 transition-colors" />
             <span className="hidden xs:inline">Our Workshop Standard</span>
             <span className="xs:hidden">Workshop</span>
           </button>
@@ -190,7 +190,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => setIsHeroLightboxOpen(true)}
-            className="w-full min-h-[260px] xs:min-h-[300px] sm:min-h-0 aspect-[16/10] sm:aspect-[21/9.2] max-h-[540px] overflow-hidden relative bg-black border border-white/[0.08] hover:border-white/20 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer group transition-all duration-500"
+            className="w-full min-h-[260px] xs:min-h-[300px] sm:min-h-0 aspect-[16/10] sm:aspect-[21/9.2] max-h-[540px] overflow-hidden relative bg-zinc-900 border border-zinc-200/80 hover:border-zinc-300 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] select-none cursor-pointer group transition-all duration-500"
           >
             
             {/* Cinematic Media (Video or Image) */}
@@ -237,7 +237,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                     e.stopPropagation();
                     toggleMute();
                   }}
-                  className="w-8 h-8 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
+                  className="w-8 h-8 bg-white/85 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-md border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
                   {isMuted ? <VolumeX className="w-3.5 h-3.5 text-zinc-300" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
@@ -248,7 +248,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                   e.stopPropagation();
                   setIsHeroLightboxOpen(true);
                 }}
-                className="w-8 h-8 bg-black/75 hover:bg-black text-white border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
+                className="w-8 h-8 bg-white/85 hover:bg-white text-zinc-900 border border-zinc-200/80 shadow-md border border-white/15 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg shadow-md hover:scale-105 active:scale-95"
                 title="Fullscreen Theater Mode"
               >
                 <Maximize2 className="w-3.5 h-3.5 text-zinc-300" />
@@ -321,7 +321,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
                 {currentSlide.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-400 font-mono hidden sm:inline truncate">
+              <span className="text-xs text-zinc-500 font-mono hidden sm:inline truncate">
                 {currentSlide.category} · {currentSlide.grade}
               </span>
             </div>
@@ -334,7 +334,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
               </div>
               <button
                 onClick={() => setIsHeroLightboxOpen(false)}
-                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
+                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-700 hover:text-zinc-950 rounded-md cursor-pointer transition-colors"
                 title="Close fullscreen (Esc)"
               >
                 <X className="w-4 h-4" />

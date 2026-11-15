@@ -147,11 +147,11 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-1">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-zinc-400 font-medium">
+            <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-zinc-600 font-medium">
               FEATURED SHOWROOM FLEET // MOMBASA & NAIROBI
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-[-0.03em]">
             Cars Ready for Immediate Delivery
           </h2>
         </div>
@@ -159,12 +159,12 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         {/* Header Right: Numerical Sequencer + Hairline Controls */}
         <div className="flex items-center gap-3 shrink-0">
           {/* Slide Counter (01 / 06) — Crisp Pure White */}
-          <div className="text-xs font-mono tracking-wider flex items-center gap-1.5 text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md">
-            <span className="text-white font-bold">
+          <div className="text-xs font-mono tracking-wider flex items-center gap-1.5 text-zinc-600 bg-zinc-100 border border-zinc-800 px-3 py-1.5 rounded-md">
+            <span className="text-zinc-950 font-bold">
               {String(activeIndex + 1).padStart(2, '0')}
             </span>
             <span className="text-zinc-600">/</span>
-            <span className="text-zinc-400">
+            <span className="text-zinc-600">
               {String(vehicles.length).padStart(2, '0')}
             </span>
           </div>
@@ -172,24 +172,24 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           {/* Autoplay Play/Pause */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="w-9 h-9 rounded-md bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="w-9 h-9 rounded-md bg-zinc-100 border border-zinc-800 hover:border-zinc-700 text-zinc-600 hover:text-zinc-950 flex items-center justify-center transition-colors cursor-pointer"
             title={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
           >
-            {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-white" />}
+            {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-950" />}
           </button>
 
           {/* Hairline Navigation Arrows */}
           <div className="flex items-center gap-1.5">
             <button
               onClick={handlePrev}
-              className="w-9 h-9 rounded-md bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
+              className="w-9 h-9 rounded-md bg-zinc-100 border border-zinc-800 hover:border-zinc-600 text-zinc-700 hover:text-zinc-950 flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
               title="Previous Car (Left Arrow)"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-9 h-9 rounded-md bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
+              className="w-9 h-9 rounded-md bg-zinc-100 border border-zinc-800 hover:border-zinc-600 text-zinc-700 hover:text-zinc-950 flex items-center justify-center transition-all cursor-pointer hover:bg-zinc-800"
               title="Next Car (Right Arrow)"
             >
               <ChevronRight className="w-4 h-4" />
@@ -217,7 +217,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               className={`flex items-center gap-2 px-3.5 py-1.5 text-xs rounded-md whitespace-nowrap transition-all cursor-pointer shrink-0 border ${
                 isActive
                   ? 'bg-white text-zinc-950 font-semibold border-white shadow-sm'
-                  : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
+                  : 'bg-zinc-100/60 text-zinc-600 border-zinc-800 hover:text-zinc-950 hover:border-zinc-700'
               }`}
             >
               <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-950 font-bold' : 'text-zinc-500'}`}>
@@ -230,7 +230,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       </div>
 
       {/* The Grand Theatrical Showcase Stage */}
-      <div className="relative w-full rounded-xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
+      <div className="relative w-full rounded-xl overflow-hidden bg-zinc-100 border border-zinc-800 shadow-2xl">
         <div 
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -256,13 +256,13 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           <div className="absolute top-4 sm:top-6 inset-x-4 sm:inset-x-8 flex items-center justify-between z-20 gap-3">
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
               {/* Clean Monochrome Grade Badge with single tiny red dot */}
-              <div className="bg-black/85 backdrop-blur-md border border-zinc-700 text-white text-[11px] font-mono px-3 py-1 rounded-md flex items-center gap-1.5 shadow-md">
+              <div className="bg-zinc-100/85 backdrop-blur-md border border-zinc-700 text-zinc-950 text-[11px] font-mono px-3 py-1 rounded-md flex items-center gap-1.5 shadow-md">
                 <span className="font-bold">{activeVehicle.auctionGrade}</span>
               </div>
-              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-mono px-3 py-1 rounded-md">
+              <span className="bg-zinc-100/75 backdrop-blur-md border border-zinc-800 text-zinc-700 text-[11px] font-mono px-3 py-1 rounded-md">
                 {activeVehicle.stockNo}
               </span>
-              <span className="bg-black/75 backdrop-blur-md border border-zinc-800 text-zinc-300 text-[11px] font-medium px-3 py-1 rounded-md hidden md:inline-flex items-center gap-1.5">
+              <span className="bg-zinc-100/75 backdrop-blur-md border border-zinc-800 text-zinc-700 text-[11px] font-medium px-3 py-1 rounded-md hidden md:inline-flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Duty Paid & Cleared</span>
               </span>
@@ -270,7 +270,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
             <div className="flex items-center gap-2">
               {/* Multi-Angle Mini Pills */}
-              <div className="hidden xs:flex items-center gap-1 bg-black/75 backdrop-blur-md p-1 border border-zinc-800 rounded-lg">
+              <div className="hidden xs:flex items-center gap-1 bg-zinc-100/75 backdrop-blur-md p-1 border border-zinc-800 rounded-lg">
                 {angles.map((ang, idx) => (
                   <button
                     key={idx}
@@ -281,7 +281,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                     className={`px-2.5 py-1 text-[11px] rounded font-mono transition-all cursor-pointer ${
                       activeAngleIdx === idx
                         ? 'bg-white text-zinc-950 font-bold'
-                        : 'text-zinc-400 hover:text-white'
+                        : 'text-zinc-600 hover:text-zinc-950'
                     }`}
                   >
                     {ang.label}
@@ -295,7 +295,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   e.stopPropagation();
                   setIsLightboxOpen(true);
                 }}
-                className="p-2.5 rounded-md backdrop-blur-md border border-zinc-800 bg-black/70 hover:bg-black text-zinc-300 hover:text-white transition-all cursor-pointer"
+                className="p-2.5 rounded-md backdrop-blur-md border border-zinc-800 bg-zinc-100/70 hover:bg-zinc-100 text-zinc-700 hover:text-zinc-950 transition-all cursor-pointer"
                 title="Expand full-screen theatrical gallery (Space / Click)"
               >
                 <Maximize2 className="w-4 h-4" />
@@ -309,7 +309,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 className={`p-2.5 rounded-md backdrop-blur-md border transition-all cursor-pointer ${
                   isFavorite
                     ? 'bg-white text-zinc-950 border-white font-bold'
-                    : 'bg-black/70 text-zinc-300 border-zinc-800 hover:text-white hover:border-zinc-700'
+                    : 'bg-zinc-100/70 text-zinc-700 border-zinc-800 hover:text-zinc-950 hover:border-zinc-700'
                 }`}
                 title={isFavorite ? 'Remove from saved' : 'Save car'}
               >
@@ -325,16 +325,16 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               {/* Category & Status */}
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-300 font-semibold uppercase tracking-wider">
+                  <span className="text-zinc-700 font-semibold uppercase tracking-wider">
                     {activeVehicle.category.toUpperCase()}
                   </span>
                   <span className="text-zinc-600">•</span>
-                  <span className="text-zinc-400 font-medium">
+                  <span className="text-zinc-600 font-medium">
                     {activeVehicle.status}
                   </span>
                 </div>
 
-                <div className="text-xs text-zinc-400 font-mono">
+                <div className="text-xs text-zinc-600 font-mono">
                   Auction: <span className="text-zinc-200 font-semibold">{activeVehicle.auctionHall}</span>
                 </div>
               </div>
@@ -342,20 +342,20 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               {/* Model Name & Tagline */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em]">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-950 tracking-[-0.03em]">
                     {activeVehicle.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
+                  <p className="text-xs sm:text-sm text-zinc-600 mt-1 max-w-xl">
                     {activeVehicle.tagline}
                   </p>
                 </div>
 
                 {/* Delivered Price — Pure White High-Contrast Typography */}
                 <div className="text-left md:text-right shrink-0">
-                  <span className="text-[11px] text-zinc-400 uppercase tracking-wider block">
+                  <span className="text-[11px] text-zinc-600 uppercase tracking-wider block">
                     Delivered Price
                   </span>
-                  <span className="font-mono text-2xl sm:text-3xl font-bold text-white">
+                  <span className="font-mono text-2xl sm:text-3xl font-bold text-zinc-950">
                     KES {activeVehicle.priceKes.toLocaleString()}
                   </span>
                 </div>
@@ -363,28 +363,28 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
               {/* Key Specs Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
-                <div className="bg-zinc-900/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-400 block mb-0.5">Year & Mileage</span>
-                  <span className="font-semibold text-white">
+                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 block mb-0.5">Year & Mileage</span>
+                  <span className="font-semibold text-zinc-950">
                     {activeVehicle.year} • {activeVehicle.mileageKm.toLocaleString()} KM
                   </span>
                 </div>
-                <div className="bg-zinc-900/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-400 block mb-0.5">Engine & Power</span>
-                  <span className="font-semibold text-white">
+                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 block mb-0.5">Engine & Power</span>
+                  <span className="font-semibold text-zinc-950">
                     {activeVehicle.engine.split(' ')[0]} • {activeVehicle.power.split('@')[0]}
                   </span>
                 </div>
-                <div className="bg-zinc-900/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-400 block mb-0.5">Drivetrain</span>
-                  <span className="font-semibold text-white truncate block">
+                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 block mb-0.5">Drivetrain</span>
+                  <span className="font-semibold text-zinc-950 truncate block">
                     {activeVehicle.drivetrain.split('(')[0]}
                   </span>
                 </div>
-                <div className="bg-zinc-900/70 border border-zinc-800/80 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-400 block mb-0.5">Warranty Included</span>
+                <div className="bg-zinc-100/70 border border-zinc-800/80 p-2.5 rounded-lg">
+                  <span className="text-[10px] text-zinc-600 block mb-0.5">Warranty Included</span>
                   <span className="font-semibold text-zinc-200 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
                     <span>5,000 KM</span>
                   </span>
                 </div>
@@ -412,7 +412,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   </a>
                 </div>
 
-                <span className="text-[11px] text-zinc-400 font-mono hidden md:inline">
+                <span className="text-[11px] text-zinc-600 font-mono hidden md:inline">
                   Original Auction Sheet Verified
                 </span>
               </div>
@@ -423,14 +423,14 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           {/* Stage Side Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-black/70 hover:bg-black text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
             title="Previous car"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-black/70 hover:bg-black text-white border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
             title="Next car"
           >
             <ChevronRight className="w-4 h-4" />
@@ -439,7 +439,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
         </div>
 
         {/* Rolls-Royce Animated Timing Progress Bar — Pure Crisp White */}
-        <div className="w-full h-[2px] bg-zinc-900 relative overflow-hidden">
+        <div className="w-full h-[2px] bg-zinc-100 relative overflow-hidden">
           <div
             className="h-full bg-white transition-all ease-linear"
             style={{
@@ -460,26 +460,26 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
               onClick={() => handleSelectIndex(idx)}
               className={`group text-left p-2.5 rounded-lg border transition-all cursor-pointer flex flex-col justify-between ${
                 isActive
-                  ? 'bg-zinc-900 border-white'
-                  : 'bg-[#121215] border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60'
+                  ? 'bg-zinc-100 border-white'
+                  : 'bg-[#121215] border-zinc-800 hover:border-zinc-700 hover:bg-zinc-100/60'
               }`}
             >
-              <div className="aspect-[16/10] w-full rounded overflow-hidden bg-black mb-2 relative">
+              <div className="aspect-[16/10] w-full rounded overflow-hidden bg-zinc-100 mb-2 relative">
                 <img
                   src={v.heroImage}
                   alt={v.name}
                   className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
                 />
-                <span className="absolute top-1 left-1 bg-black/80 font-mono text-[9px] text-zinc-300 px-1.5 py-0.5 rounded">
+                <span className="absolute top-1 left-1 bg-zinc-100/80 font-mono text-[9px] text-zinc-700 px-1.5 py-0.5 rounded">
                   {v.year}
                 </span>
               </div>
 
               <div>
-                <span className="font-semibold text-xs text-white block truncate">
+                <span className="font-semibold text-xs text-zinc-950 block truncate">
                   {v.name}
                 </span>
-                <span className="font-mono text-[11px] font-medium text-zinc-300 block mt-0.5">
+                <span className="font-mono text-[11px] font-medium text-zinc-700 block mt-0.5">
                   KES {(v.priceKes / 1000000).toFixed(2)}M
                 </span>
               </div>
@@ -491,7 +491,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
       {/* Rolls-Royce Fullscreen Theatrical Lightbox Modal (Guaranteed Zero-Scroll Viewport) */}
       {isLightboxOpen && (
         <div 
-          className="fixed inset-0 z-[100] w-full h-full bg-black/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
+          className="fixed inset-0 z-[100] w-full h-full bg-zinc-100/98 backdrop-blur-2xl flex flex-col overflow-hidden select-none touch-none overscroll-none animate-fadeIn"
           onClick={() => setIsLightboxOpen(false)}
         >
           {/* Top Bar: Fixed slim height */}
@@ -500,24 +500,24 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span className="font-mono text-xs sm:text-sm text-white font-bold uppercase tracking-wider truncate">
+              <span className="font-mono text-xs sm:text-sm text-zinc-950 font-bold uppercase tracking-wider truncate">
                 {activeVehicle.stockNo} · {activeVehicle.name}
               </span>
               <span className="text-zinc-600 hidden sm:inline">|</span>
-              <span className="text-xs text-zinc-400 font-mono hidden md:inline truncate">
+              <span className="text-xs text-zinc-600 font-mono hidden md:inline truncate">
                 Grade {activeVehicle.auctionGrade} · {activeVehicle.auctionHall}
               </span>
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
-              <div className="bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-300">
-                <span className="text-white font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
+              <div className="bg-zinc-100 border border-zinc-800 px-3 py-1.5 rounded-md text-xs font-mono text-zinc-700">
+                <span className="text-zinc-950 font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
                 <span className="text-zinc-600"> / </span>
-                <span className="text-zinc-400">{String(vehicles.length).padStart(2, '0')}</span>
+                <span className="text-zinc-600">{String(vehicles.length).padStart(2, '0')}</span>
               </div>
               <button
                 onClick={() => setIsLightboxOpen(false)}
-                className="p-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white rounded-md cursor-pointer transition-colors"
+                className="p-2 bg-zinc-100 border border-zinc-800 hover:border-zinc-700 text-zinc-700 hover:text-zinc-950 rounded-md cursor-pointer transition-colors"
                 title="Close fullscreen view (Esc)"
               >
                 <X className="w-4 h-4" />
@@ -540,14 +540,14 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
             {/* Hairline Side Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Previous car (Left Arrow)"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black text-white border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-center transition-all cursor-pointer z-10 backdrop-blur-md"
               title="Next car (Right Arrow)"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -567,7 +567,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   className={`px-3 py-1.5 text-xs rounded-md font-mono border transition-all cursor-pointer whitespace-nowrap ${
                     activeAngleIdx === idx
                       ? 'bg-white text-zinc-950 font-bold border-white'
-                      : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
+                      : 'bg-zinc-100 text-zinc-600 border-zinc-800 hover:text-zinc-950 hover:border-zinc-700'
                   }`}
                 >
                   <span>{ang.label}</span>
@@ -577,8 +577,8 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
             <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto shrink-0">
               <div className="text-left sm:text-right font-mono">
-                <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">DELIVERED PRICE</span>
-                <span className="text-base sm:text-lg font-bold text-white">
+                <span className="text-[10px] text-zinc-600 uppercase tracking-wider block">DELIVERED PRICE</span>
+                <span className="text-base sm:text-lg font-bold text-zinc-950">
                   KES {activeVehicle.priceKes.toLocaleString()}
                 </span>
               </div>

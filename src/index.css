@@ -42,8 +42,8 @@
 
 /* Base Canvas & Global Typography */
 body {
-  background-color: #09090b;
-  color: #f4f4f5;
+  background-color: #f8f9fa;
+  color: #18181b;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,16 +64,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #f8f9fa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #d4d4d8;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #a1a1aa;
 }
 
 /* Precision Headings */
@@ -82,7 +82,7 @@ body {
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.08;
-  color: #ffffff;
+  color: #09090b;
 }
 
 .brand-title-h1, .rr-title-h1 {
@@ -90,7 +90,7 @@ body {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  color: #ffffff;
+  color: #09090b;
 }
 
 .brand-title-h2, .rr-title-h2 {
@@ -98,7 +98,7 @@ body {
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.25;
-  color: #ffffff;
+  color: #09090b;
 }
 
 .brand-title-h3, .rr-title-h3 {
@@ -106,7 +106,7 @@ body {
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.35;
-  color: #f4f4f5;
+  color: #18181b;
 }
 
 .brand-eyebrow, .rr-eyebrow {
@@ -115,10 +115,10 @@ body {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #a1a1aa;
+  color: #71717a;
 }
 
-/* High-Contrast Pure White Primary Button */
+/* High-Contrast Obsidian Primary Button */
 .btn-white, .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -126,9 +126,9 @@ body {
   gap: 8px;
   padding: 10px 20px;
   border-radius: 6px;
-  border: 1px solid #ffffff;
-  background-color: #ffffff;
-  color: #09090b;
+  border: 1px solid #09090b;
+  background-color: #09090b;
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
   font-size: 13.5px;
   font-weight: 600;
@@ -140,10 +140,11 @@ body {
 }
 
 .btn-white:hover, .btn-primary:hover {
-  background-color: #e4e4e7;
-  border-color: #e4e4e7;
-  color: #000000;
+  background-color: #27272a;
+  border-color: #27272a;
+  color: #ffffff;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Hairline Ghost Outline Button */
@@ -154,9 +155,9 @@ body {
   gap: 8px;
   padding: 10px 20px;
   border-radius: 6px;
-  border: 1px solid #27272a;
-  background-color: rgba(255, 255, 255, 0.02);
-  color: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  background-color: #ffffff;
+  color: #18181b;
   font-family: 'Inter', sans-serif;
   font-size: 13.5px;
   font-weight: 500;
@@ -167,9 +168,10 @@ body {
 }
 
 .btn-ghost:hover, .btn-rr-ghost:hover {
-  border-color: #71717a;
-  background-color: rgba(255, 255, 255, 0.06);
-  color: #ffffff;
+  border-color: #a1a1aa;
+  background-color: #f4f4f5;
+  color: #09090b;
+  transform: translateY(-1px);
 }
 
 /* The Disciplined Crimson Accent Button (Used sparingly as a high-intent CTA) */
@@ -180,8 +182,8 @@ body {
   gap: 8px;
   padding: 10px 20px;
   border-radius: 6px;
-  border: 1px solid #27272a;
-  background-color: #18181c;
+  border: 1px solid #dc2626;
+  background-color: #dc2626;
   color: #ffffff;
   font-family: 'Inter', sans-serif;
   font-size: 13.5px;
@@ -193,28 +195,30 @@ body {
 }
 
 .btn-crimson:hover, .btn-rr-solid:hover {
-  border-color: #52525b;
-  background-color: #202025;
+  border-color: #b91c1c;
+  background-color: #b91c1c;
   color: #ffffff;
 }
 
 /* Precision Obsidian Card */
 .brand-card, .rr-card {
-  background-color: #121215;
-  border: 1px solid #27272a;
-  border-radius: 8px;
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .brand-card:hover, .rr-card:hover {
-  border-color: #3f3f46;
-  background-color: #151518;
+  border-color: #d4d4d8;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 /* Hairline Divider */
 .brand-divider, .rr-hairline {
   height: 1px;
-  background: #27272a;
+  background: #e4e4e7;
   width: 100%;
   margin: 0;
   border: none;
@@ -405,13 +409,13 @@ body {
 
 .btn-white:hover {
   transform: translateY(-1.5px);
-  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.15), 0 4px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 6px 20px -3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-ghost:hover {
   transform: translateY(-1px);
   border-color: rgba(255, 255, 255, 0.3);
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .btn-white:active, .btn-ghost:active, .btn-crimson:active {
@@ -426,7 +430,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.05) 50%,
+    rgba(0, 0, 0, 0.04) 50%,
     transparent 100%
   );
   animation: shimmerSweep 1.6s infinite ease-in-out;
@@ -506,7 +510,7 @@ body {
 
 .luxury-card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.9), 0 0 24px rgba(255, 255, 255, 0.04);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 /* 7. Image Smooth Zoom */
