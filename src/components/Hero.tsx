@@ -39,7 +39,7 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     mileageKm: 74000,
     grade: 'Grade 4.5',
     auctionHall: 'USS Tokyo / SBT Japan Export Center',
-    priceKes: 4950000,
+    priceKes: 4500000,
     imageUrl: '/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg',
   },
   {
@@ -51,7 +51,7 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     mileageKm: 40000,
     grade: 'Grade 4.5',
     auctionHall: 'USS Tokyo / Direct Japanese Import',
-    priceKes: 4650000,
+    priceKes: 4200000,
     imageUrl: '/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg',
   },
   {
@@ -63,7 +63,7 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     mileageKm: 102000,
     grade: 'Grade 4.0',
     auctionHall: 'USS Tokyo / SBT Japan Export Center',
-    priceKes: 3150000,
+    priceKes: 2700000,
     imageUrl: '/vehicles/subaru-xv-2019-black/hero-front-34.jpg',
   },
   {
@@ -75,7 +75,7 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     mileageKm: 38000,
     grade: 'Grade 4.5',
     auctionHall: 'USS Tokyo / SBT Japan Export Center',
-    priceKes: 4850000,
+    priceKes: 4200000,
     imageUrl: '/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg',
   },
   {
