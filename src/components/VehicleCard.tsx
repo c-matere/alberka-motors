@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, MessageCircle, Heart, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, MessageCircle, Heart } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useScrollReveal } from '../hooks/useAnimations';
 import { getVehiclePricing } from '../data/modelHubs';
@@ -106,8 +106,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               Grade {vehicle.auctionGrade || '4.5'}
             </span>
             {pricing.hasDiscount && (
-              <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-black bg-red-600 text-white shadow-md uppercase tracking-wider">
-                {pricing.discountPercent}% OFF
+              <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold bg-red-600 text-white shadow-md font-mono">
+                Save KES {pricing.savingsKes.toLocaleString()}
               </span>
             )}
             <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-emerald-600 text-white border-emerald-500 shadow-sm backdrop-blur-md">
@@ -143,33 +143,16 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </div>
           </div>
 
-          {/* Pricing List with Checkmarks (1:1 Smart Team Layout) */}
-          <div className="pricing_list">
-            <div className="pricing_list-item">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <div className="text-[13.5px] font-normal text-white" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
-                {getDisplacement(vehicle.engine)} Engine · {getTransmission(vehicle.transmission)}
-              </div>
-            </div>
-
-            <div className="pricing_list-item">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <div className="text-[13.5px] font-normal text-white" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
-                {getDrivetrain(vehicle.drivetrain)} · {vehicle.fuelType} · {vehicle.seats || 5} Seats
-              </div>
-            </div>
-
-            <div className="pricing_list-item">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <div className="text-[14px] font-semibold text-white flex items-center gap-2 flex-wrap" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
-                <span>KES {pricing.currentPrice.toLocaleString()} Asking</span>
-                {pricing.hasDiscount && (
-                  <span className="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/50 px-2 py-0.5 rounded-full">
-                    Save KES {pricing.savingsKes.toLocaleString()}
-                  </span>
-                )}
-              </div>
-            </div>
+          {/* Pricing Row */}
+          <div className="flex items-baseline flex-wrap gap-2 pt-0.5">
+            <span className="text-xl sm:text-2xl font-black text-white font-mono tracking-tight drop-shadow-md">
+              KES {pricing.currentPrice.toLocaleString()}
+            </span>
+            {pricing.hasDiscount && (
+              <span className="text-xs font-mono line-through text-zinc-400 drop-shadow-sm">
+                KES {pricing.originalPrice.toLocaleString()}
+              </span>
+            )}
           </div>
 
           {/* Category Tags (1:1 Smart Team: Brand/Year in Alberka Red, Fuel in Glass, Price in Badge) */}
@@ -235,14 +218,11 @@ export const VehicleCardSkeleton: React.FC = () => {
         </div>
         <div className="space-y-3">
           <div className="h-6 w-3/4 bg-white/20 rounded" />
-          <div className="space-y-2">
-            <div className="h-4 w-5/6 bg-white/15 rounded" />
-            <div className="h-4 w-4/6 bg-white/15 rounded" />
-            <div className="h-4 w-3/6 bg-white/15 rounded" />
-          </div>
+          <div className="h-5 w-1/2 bg-white/25 rounded" />
           <div className="flex gap-2">
             <div className="h-6 w-14 bg-white/15 rounded-full" />
             <div className="h-6 w-14 bg-white/15 rounded-full" />
+            <div className="h-6 w-16 bg-white/15 rounded-full" />
           </div>
           <div className="flex gap-2 pt-2">
             <div className="h-10 flex-1 bg-white/20 rounded-[14px]" />
