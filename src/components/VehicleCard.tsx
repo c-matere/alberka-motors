@@ -39,7 +39,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   // Extract Engine Displacement (e.g. 2.7L, 3.0L, 2.5L)
   const getDisplacement = (engineStr: string) => {
     if (!engineStr) return '2.0L';
-    const match = engineStr.match(/(\d+\.?\d*)\s*(L|cc)/i);
+    const clean = engineStr.replace(/,/g, '');
+    const match = clean.match(/(\d+\.?\d*)\s*(L|cc)/i);
     if (match) {
       if (match[2].toLowerCase() === 'cc') {
         const cc = parseFloat(match[1]);
@@ -103,14 +104,29 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </span>
           </div>
 
-          {/* Top Right: Promotional Discount Sticker (Only if vehicle has discount, NO fire emoji) */}
-          {pricing.hasDiscount && (
-            <div className="absolute top-2.5 right-2.5 z-20 pointer-events-none">
+          {/* Top Right: Promotional Discount Sticker & Bookmark */}
+          <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5">
+            {pricing.hasDiscount && (
               <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10.5px] font-black bg-red-600 text-white shadow-sm uppercase tracking-wider">
                 {pricing.discountPercent}% OFF
               </span>
-            </div>
-          )}
+            )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleFavorite(vehicle.id);
+              }}
+              className={`w-7 h-7 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer backdrop-blur-md shadow-xs active:scale-95 ${
+                isFavorite
+                  ? 'bg-red-600 text-white border-red-600'
+                  : 'bg-white/85 text-zinc-600 border-zinc-200 hover:bg-white hover:text-zinc-950'
+              }`}
+              title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+              aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+            >
+              <Bookmark width={13} height={13} className={isFavorite ? 'fill-white text-white' : ''} />
+            </button>
+          </div>
 
           {/* Bottom Right "In Stock" Status Badge */}
           <div className="absolute right-2.5 bottom-2.5 z-20 pointer-events-none">
@@ -132,30 +148,30 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="p-3.5 sm:p-4">
-          {/* Make, Model & Price Row */}
-          <div className="flex items-start justify-between gap-2.5 mb-3 min-h-[3.25rem]">
-            <div className="min-w-0 flex-1">
-              <p className="text-[11px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wide truncate mb-0.5">
-                {make}
+        <div className="p-4 flex flex-col justify-between flex-1">
+          {/* Make & Model */}
+          <div className="mb-2.5">
+            <p className="text-[11px] sm:text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-0.5">
+              {make}
+            </p>
+            <h3 className="font-bold text-zinc-950 text-base sm:text-lg leading-tight truncate group-hover:text-red-600 transition-colors">
+              {model}
+            </h3>
+          </div>
+
+          {/* Price Stack (1:1 Smart Team Layout) */}
+          <div className="mb-3">
+            {pricing.hasDiscount && (
+              <p className="text-xs font-mono line-through text-zinc-400 leading-none mb-1">
+                KES {pricing.originalPrice.toLocaleString()}
               </p>
-              <h3 className="font-bold text-gray-900 text-[14.5px] sm:text-base leading-tight truncate group-hover:text-red-600 transition-colors">
-                {model}
-              </h3>
-            </div>
-            <div className="text-right shrink-0 flex flex-col items-end justify-start">
+            )}
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="text-red-600 font-black text-lg sm:text-xl font-mono tracking-tight leading-none">
+                KES {pricing.currentPrice.toLocaleString()}
+              </span>
               {pricing.hasDiscount && (
-                <span className="text-[11px] font-mono line-through text-gray-400 leading-none">
-                  KES {pricing.originalPrice.toLocaleString()}
-                </span>
-              )}
-              <div className="flex items-baseline justify-end gap-1 mt-0.5">
-                <span className="text-red-600 font-black text-base sm:text-lg font-mono tracking-tight leading-tight">
-                  KES {pricing.currentPrice.toLocaleString()}
-                </span>
-              </div>
-              {pricing.hasDiscount && (
-                <span className="text-[10px] font-mono text-emerald-700 font-bold leading-none mt-0.5">
+                <span className="text-[10.5px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full font-bold">
                   Save KES {pricing.savingsKes.toLocaleString()}
                 </span>
               )}
@@ -163,47 +179,46 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </div>
 
           {/* 6-Grid Feature Pills Matrix */}
-          <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
+          <div className="grid grid-cols-2 gap-1.5 mb-3.5 text-xs">
             {/* 1: Year */}
-            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
-              <Calendar className="text-gray-500 flex-shrink-0" width={14} height={14} />
+            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
+              <Calendar className="text-zinc-500 flex-shrink-0" width={13} height={13} />
               <span className="truncate font-medium">{vehicle.year}</span>
             </div>
 
             {/* 2: Transmission */}
-            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
-              <Cog className="text-gray-500 flex-shrink-0" width={14} height={14} />
+            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
+              <Cog className="text-zinc-500 flex-shrink-0" width={13} height={13} />
               <span className="truncate font-medium">{getTransmission(vehicle.transmission)}</span>
             </div>
 
             {/* 3: Drivetrain */}
-            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
-              <Compass className="text-gray-500 flex-shrink-0" width={14} height={14} />
+            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
+              <Compass className="text-zinc-500 flex-shrink-0" width={13} height={13} />
               <span className="truncate font-medium">{getDrivetrain(vehicle.drivetrain)}</span>
             </div>
 
             {/* 4: Fuel */}
-            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
-              <Fuel className="text-gray-500 flex-shrink-0" width={14} height={14} />
+            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
+              <Fuel className="text-zinc-500 flex-shrink-0" width={13} height={13} />
               <span className="truncate font-medium">{vehicle.fuelType}</span>
             </div>
 
             {/* 5: Seats */}
-            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
-              <Users className="text-gray-500 flex-shrink-0" width={14} height={14} />
+            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
+              <Users className="text-zinc-500 flex-shrink-0" width={13} height={13} />
               <span className="truncate font-medium">{vehicle.seats || 5} Seats</span>
             </div>
 
             {/* 6: Engine Displacement */}
-            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
-              <Gauge className="text-gray-500 flex-shrink-0" width={14} height={14} />
+            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
+              <Gauge className="text-zinc-500 flex-shrink-0" width={13} height={13} />
               <span className="truncate font-medium">{getDisplacement(vehicle.engine)}</span>
             </div>
           </div>
 
-          {/* Action Buttons Row */}
-          <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
-            {/* Send Inquiry via WhatsApp / Drawer */}
+          {/* Full-Width Send Inquiry CTA (1:1 Smart Team Layout) */}
+          <div className="pt-2 border-t border-zinc-100">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -213,30 +228,13 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
                   handleInquire(e);
                 }
               }}
-              className="flex-1 py-2.5 px-4 text-xs font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm hover:shadow cursor-pointer active:scale-98"
+              className="w-full py-2.5 px-4 text-xs sm:text-sm font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm hover:shadow cursor-pointer active:scale-98"
               title="Send inquiry"
             >
               <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
-                <MessageCircle width={14} height={14} className="text-white fill-white" />
+                <MessageCircle width={15} height={15} className="text-white fill-white" />
               </span>
               <span>Send Inquiry</span>
-            </button>
-
-            {/* Bookmark Vehicle (Round Button) */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggleFavorite(vehicle.id);
-              }}
-              className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer active:scale-95 shrink-0 ${
-                isFavorite
-                  ? 'bg-red-50 text-red-600 border-red-200 shadow-sm'
-                  : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-zinc-200 hover:text-zinc-950'
-              }`}
-              title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-              aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-            >
-              <Bookmark width={14} height={14} className={isFavorite ? 'fill-red-600 text-red-600' : ''} />
             </button>
           </div>
         </div>

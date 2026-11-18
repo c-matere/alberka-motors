@@ -449,7 +449,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isGalleryLightboxOpen, setIsGalleryLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [isGalleryPlaying, setIsGalleryPlaying] = useState(false);
+  const [isGalleryPlaying, setIsGalleryPlaying] = useState(true);
   const [galleryProgress, setGalleryProgress] = useState(0);
   const [touchGalleryStartX, setTouchGalleryStartX] = useState<number | null>(null);
 
@@ -661,40 +661,40 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   return (
     <div className="w-full bg-transparent text-zinc-900 pb-32">
       
-      {/* 1. SLIM, UNCONGESTED MODEL SUB-BAR (Static and non-intrusive on mobile, sticky on desktop) */}
-      <div className="w-full bg-zinc-100/85 backdrop-blur-xl border-b border-zinc-200 h-11 sm:h-12 px-3 sm:px-8 relative sm:sticky sm:top-[68px] z-30 transition-all flex items-center">
-        <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between gap-2.5 sm:gap-4">
+      {/* 1. FULL-WIDTH 3D COVER FLOW GALLERY (OCCUPIES ABOVE THE FOLD ALONE) */}
+      <section className="figma-carousel-section w-full max-w-none min-h-[calc(100vh-68px)] flex flex-col justify-between pt-2 pb-6 overflow-hidden relative">
+        
+        {/* Floating Top Control Strip (Summarized to give full space to the gallery) */}
+        <div className="w-full max-w-[1520px] mx-auto px-3 sm:px-8 py-2 z-30 relative flex flex-wrap items-center justify-between gap-2 pointer-events-none">
           
-          {/* Left: Back Link & Elegant Model Selector Dropdown */}
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          {/* Left Floating Group: Back Button & Vehicle Selector Dropdown */}
+          <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
             <button
               onClick={onBackToFleet}
-              className="text-xs font-medium text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 cursor-pointer shrink-0 px-2 sm:px-2.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-white/[0.1] rounded-md transition-colors"
+              className="bg-white/95 hover:bg-white backdrop-blur-md border border-zinc-200/90 text-xs font-semibold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer"
               title="Back to cars"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Back to Cars</span>
+              <ArrowLeft className="w-3.5 h-3.5 text-zinc-600" />
+              <span className="hidden xs:inline">Back</span>
             </button>
-
-            <span className="text-zinc-700 hidden sm:inline">|</span>
 
             {/* Model Dropdown Trigger */}
             <div className="relative">
               <button
                 onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-white/[0.1] hover:border-white/20 rounded-md text-xs font-semibold text-zinc-950 transition-colors cursor-pointer"
+                className="bg-white/95 hover:bg-white backdrop-blur-md border border-zinc-200/90 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-zinc-950 shadow-sm hover:shadow transition-all cursor-pointer"
                 title="Switch vehicle"
               >
-                <span className="font-mono text-zinc-600 text-[11px] hidden sm:inline">{vehicle.stockNo}</span>
+                <span className="font-mono text-red-600 text-[11px] font-bold hidden sm:inline">{vehicle.stockNo}</span>
                 <span className="truncate max-w-[125px] xs:max-w-[160px] sm:max-w-[200px]">{vehicle.name}</span>
-                <ChevronDown className={`w-3.5 h-3.5 text-zinc-600 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Elegant Dropdown Menu */}
               {modelDropdownOpen && (
                 <>
-                  <div className="fixed inset-0 z-30" onClick={() => setModelDropdownOpen(false)} />
-                  <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 bg-zinc-50/98 backdrop-blur-xl border border-zinc-200 rounded-xl shadow-2xl p-2 z-40 space-y-1">
+                  <div className="fixed inset-0 z-40" onClick={() => setModelDropdownOpen(false)} />
+                  <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 bg-white/98 backdrop-blur-2xl border border-zinc-200 rounded-2xl shadow-2xl p-2 z-50 space-y-1">
                     <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider px-3 py-1 block">
                       SWITCH TO ANOTHER CAR
                     </span>
@@ -709,7 +709,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                               setModelDropdownOpen(false);
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
-                            className={`w-full flex items-center justify-between p-2 rounded-lg text-left transition-colors cursor-pointer ${
+                            className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-colors cursor-pointer ${
                               isSelected ? 'bg-red-600 text-white shadow-sm' : 'hover:bg-zinc-100 text-zinc-800'
                             }`}
                           >
@@ -735,154 +735,66 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
           </div>
 
-          {/* Right: Cash Price & Primary Action */}
-          <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
-            <div className="flex flex-col text-right font-mono">
-              <span className="text-[9.5px] text-zinc-600 uppercase tracking-wider hidden sm:block">CASH PRICE</span>
-              <span className="text-xs sm:text-[13px] font-bold text-zinc-950">
-                <span className="sm:hidden">KES {(vehicle.priceKes / 1000000).toFixed(2)}M</span>
-                <span className="hidden sm:inline">KES {vehicle.priceKes.toLocaleString()}</span>
-              </span>
-            </div>
-            <button
-              onClick={() => onScheduleTestDrive(vehicle)}
-              className="btn-white !py-1.5 !px-3.5 !text-xs whitespace-nowrap cursor-pointer font-semibold shadow-sm hidden sm:inline-flex"
-            >
-              Book Test Drive
-            </button>
+          {/* Center Category Filters (Floating Pill) */}
+          <div className="pointer-events-auto hidden md:flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-full border border-zinc-200/90 shadow-sm">
+            {[
+              { id: 'all', label: `All (${allPhotos.length})` },
+              { id: 'exterior', label: 'Exterior' },
+              { id: 'interior', label: 'Cabin' },
+              { id: 'details', label: 'Details' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setGalleryFilter(tab.id as any);
+                  setActivePhotoIndex(0);
+                }}
+                className={`px-3 py-1 text-[11px] font-mono rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                  galleryFilter === tab.id
+                    ? 'bg-red-600 text-white font-bold shadow-2xs'
+                    : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
 
-        </div>
-      </div>
-
-      {/* 0. JAPANESE SOURCING BREADCRUMB */}
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 pt-4 pb-2 text-left">
-        <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono text-zinc-500">
-          <button onClick={onBackToFleet} className="hover:text-red-600 transition-colors cursor-pointer">
-            Find Cars
-          </button>
-          <span>&gt;</span>
-          <button onClick={onBackToFleet} className="hover:text-red-600 transition-colors cursor-pointer">
-            {make.toUpperCase()} Model Lineup
-          </button>
-          <span>&gt;</span>
-          <button onClick={onBackToFleet} className="hover:text-red-600 transition-colors cursor-pointer">
-            {make.toUpperCase()} All Cars
-          </button>
-          <span>&gt;</span>
-          <button onClick={onBackToFleet} className="hover:text-red-600 transition-colors cursor-pointer">
-            {make.toUpperCase()} {bodyTypeUpper}
-          </button>
-          <span>&gt;</span>
-          <span className="text-zinc-950 font-bold">
-            {vehicle.name.toUpperCase()}
-          </span>
-        </div>
-      </div>
-
-      {/* 2. HERO: IDENTIFICATION, TITLE & PHOTO */}
-      <section className="relative w-full pt-4 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
-        <div className="relative z-10 space-y-6">
-          
-          {/* THE UNIFIED MASTER PHOTOGRAPHIC GALLERY */}
-          <div id="photo-list-section" className="relative w-full max-w-[1240px] mx-auto pt-2 space-y-3">
-            {/* Gallery Top Navigation: Category Filters & Paint Finish Swatches */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-zinc-200/80 rounded-2xl p-3 sm:px-5 sm:py-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] text-left">
-              {/* Category Filter Tabs */}
-              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-                {[
-                  { id: 'all', label: `All Photos (${allPhotos.length})` },
-                  { id: 'exterior', label: 'Exterior Stance' },
-                  { id: 'interior', label: 'Cabin & Seats' },
-                  { id: 'details', label: 'Details & Chassis' },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => {
-                      setGalleryFilter(tab.id as any);
-                      setActivePhotoIndex(0);
-                    }}
-                    className={`px-3 py-1.5 text-xs font-mono rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                      galleryFilter === tab.id
-                        ? 'bg-zinc-950 text-white font-bold shadow-xs'
-                        : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Integrated Paint Finish Swatches */}
-              <div className="flex items-center gap-2.5 sm:border-l sm:border-zinc-200 sm:pl-4">
-                <span className="font-mono text-[11px] text-zinc-500 uppercase font-semibold hidden md:inline">
-                  Paint:
-                </span>
-                <span className="font-mono text-[11px] text-zinc-900 font-bold">
-                  {activeColor.name}
-                </span>
-                <div className="flex items-center gap-2">
-                  {vehicle.colors.map((c, idx) => {
-                    const isSelected = selectedColorIndex === idx;
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => {
-                          setSelectedColorIndex(idx);
-                          const colorPhotoIdx = filteredPhotos.findIndex((p) => p.url === c.imageUrl);
-                          if (colorPhotoIdx !== -1) {
-                            setActivePhotoIndex(colorPhotoIdx);
-                          }
-                        }}
-                        className={`w-5 h-5 rounded-full transition-all duration-300 cursor-pointer relative border border-zinc-300 ${
-                          isSelected
-                            ? 'ring-2 ring-zinc-950 ring-offset-2 scale-125 shadow-xs'
-                            : 'opacity-50 hover:opacity-100 hover:scale-110'
-                        }`}
-                        style={{ backgroundColor: c.hex }}
-                        title={c.name}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
+          {/* Right Floating Group: Price & Test Drive & Fullscreen */}
+          <div className="flex items-center gap-2 pointer-events-auto">
+            <div className="bg-white/95 backdrop-blur-md border border-zinc-200/90 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm font-mono text-xs">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-wider hidden sm:inline">CASH:</span>
+              <span className="font-black text-red-600 text-xs sm:text-[13px]">
+                KES {vehicle.priceKes.toLocaleString()}
+              </span>
             </div>
 
-            {/* Figma 3D Cover Flow Carousel (Pats Motor World 1:1 Standard) */}
-            <section className="figma-carousel-section">
-              <div className="figma-carousel-top flex flex-col sm:flex-row items-center justify-between gap-3 px-4 max-w-[1240px] mx-auto">
-                <div className="text-center sm:text-left">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-red-600 font-bold bg-red-50 border border-red-200/80 px-3 py-0.5 rounded-full inline-block mb-1">
-                    {vehicle.year} {vehicle.name}
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-black text-zinc-950 tracking-tight">
-                    Showroom Gallery Showcase
-                  </h2>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs text-zinc-500 uppercase font-semibold hidden sm:inline">
-                    {vehicle.stockNo} · {filteredPhotos.length} Angles
-                  </span>
-                  <button
-                    onClick={() => openLightboxWithIndex(activePhotoIndex)}
-                    className="px-3.5 py-1.5 rounded-lg border border-red-200 text-xs font-mono text-red-700 bg-red-50/60 hover:bg-red-100 flex items-center gap-1.5 cursor-pointer shadow-2xs transition-colors"
-                    title="Fullscreen Lightbox"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5 text-red-600" />
-                    <span className="hidden sm:inline">Fullscreen Lightbox</span>
-                  </button>
-                </div>
-              </div>
+            <button
+              onClick={() => onScheduleTestDrive(vehicle)}
+              className="bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap hidden sm:inline-flex items-center gap-1.5"
+            >
+              <span>Book Test Drive</span>
+            </button>
 
-              <div 
-                ref={stageRef}
-                className="figma-carousel-viewport" 
-                role="region" 
-                aria-roledescription="carousel" 
-                aria-label="Vehicle showcase carousel"
-                onTouchStart={handleTouchGalleryStart}
-                onTouchEnd={handleTouchGalleryEnd}
-              >
+            <button
+              onClick={() => openLightboxWithIndex(activePhotoIndex)}
+              className="bg-white/95 hover:bg-white backdrop-blur-md p-2 rounded-full border border-zinc-200/90 text-zinc-700 hover:text-red-600 shadow-sm transition-colors cursor-pointer"
+              title="Fullscreen Lightbox"
+            >
+              <Maximize2 className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+        <div 
+          ref={stageRef}
+          className="figma-carousel-viewport" 
+          role="region" 
+          aria-roledescription="carousel" 
+          aria-label="Vehicle showcase carousel"
+          onTouchStart={handleTouchGalleryStart}
+          onTouchEnd={handleTouchGalleryEnd}
+        >
                 <div className="figma-carousel-track">
                   {filteredPhotos.map((photo, idx) => {
                     const offset = idx - activePhotoIndex;
@@ -950,14 +862,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         }}
                       >
                         <div className="figma-slide-inner">
-                          {/* Ambient blurred backdrop for uncropped vertical photos */}
-                          <img
-                            src={photo.url}
-                            alt=""
-                            aria-hidden="true"
-                            className="figma-slide-backdrop"
-                          />
-                          {/* Foreground uncropped vehicle view */}
+                          {/* Crisp single vehicle image without duplicate backdrop */}
                           <img
                             alt={photo.title}
                             className="figma-slide-img"
@@ -968,7 +873,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                           <div className="figma-slide-content">
                             <h3 className="figma-slide-title">{photo.title}</h3>
                             <p className="figma-slide-label">
-                              {vehicle.name} · {photo.tag || 'Showcase view'} {idx + 1} of {total}
+                              {vehicle.year} {vehicle.name} · View {idx + 1} of {total}
                             </p>
                           </div>
                         </div>
@@ -1044,32 +949,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   {vehicle.tagline || 'From luxury sedans to rugged SUVs and electric pioneers — find the vehicle that matches your lifestyle. Browse, compare, and drive away with confidence.'}
                 </p>
               </div>
-
-              {/* Optional Quick Filmstrip Thumbnails */}
-              <div className="mt-4 p-2 bg-zinc-50 border border-zinc-200/80 rounded-xl flex items-center gap-2 overflow-x-auto no-scrollbar max-w-[1240px] mx-auto">
-                {filteredPhotos.map((photo, idx) => {
-                  const isActive = idx === activePhotoIndex;
-                  return (
-                    <button
-                      key={photo.id || idx}
-                      onClick={() => handleSelectPhoto(idx)}
-                      className={`h-14 w-20 sm:w-24 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative shadow-2xs ${
-                        isActive
-                          ? 'border-zinc-950 ring-2 ring-zinc-950/60 scale-102 shadow-xs'
-                          : 'border-zinc-200 opacity-60 hover:opacity-100 hover:scale-102'
-                      }`}
-                    >
-                      <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
-                      <span className="absolute bottom-1 left-1 bg-zinc-950/90 font-mono text-[9px] text-white px-1.5 py-0.5 rounded font-bold">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
             </section>
-          </div>
 
+      {/* 3. DETAILED VEHICLE IDENTIFICATION & SPECS */}
+      <section className="relative w-full pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
+        <div className="relative z-10 space-y-6">
           {/* Detailed Vehicle Identification Header */}
           <div className="text-left max-w-[1240px] mx-auto space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-7 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)]">
             <div className="space-y-1.5">

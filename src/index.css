@@ -610,38 +610,44 @@ body {
 /* ========================================================
    Figma 3D Cover Flow Carousel (Pats Motor World 1:1 Standard)
    Red Accent (#DC2626) replacing Blue (#010142)
+   Full-Width & Fits Above-The-Fold
    ======================================================== */
 :root {
   --color-alberka-red: #dc2626;
-  --figma-slide-offset: min(41vw, 490px);
+  --figma-slide-offset: min(41vw, 480px);
   --figma-slide-overlap: 0px;
   --figma-slide-overlap-far: -80px;
 }
 
 .figma-carousel-section {
   width: 100%;
+  min-height: calc(100vh - 68px);
   position: relative;
   overflow: hidden;
-  padding: 40px 0 30px;
+  padding: 8px 0 20px;
   background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .figma-carousel-top {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .figma-carousel-heading {
   letter-spacing: -0.03em;
   color: #09090b;
   margin: 0;
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 800;
   line-height: 1.15;
 }
 
 .figma-carousel-viewport {
-  min-height: min(70vh, 650px);
+  min-height: 460px;
+  max-height: 500px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -651,7 +657,7 @@ body {
   user-select: none;
   touch-action: pan-y;
   cursor: grab;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .figma-carousel-viewport:active {
@@ -663,8 +669,8 @@ body {
   align-items: center;
   display: flex;
   position: relative;
-  width: min(40vw, 480px);
-  height: min(60vh, 600px);
+  width: min(48vw, 540px);
+  height: 430px;
 }
 
 .figma-slide {
@@ -674,8 +680,8 @@ body {
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
   position: absolute;
   overflow: hidden;
-  width: min(40vw, 480px);
-  height: min(60vh, 600px);
+  width: min(48vw, 540px);
+  height: 430px;
   box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
   background: #09090b;
 }
@@ -709,7 +715,7 @@ body {
 
 .figma-slide-content {
   z-index: 2;
-  padding: 24px;
+  padding: 20px 24px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -720,7 +726,7 @@ body {
 
 .figma-slide-title {
   color: #ffffff;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -740,9 +746,9 @@ body {
 .figma-carousel-controls {
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  margin-top: 28px;
-  margin-bottom: 12px;
+  gap: 14px;
+  margin-top: 20px;
+  margin-bottom: 8px;
   display: flex;
   width: 100%;
 }
@@ -858,7 +864,7 @@ body {
 
 .figma-carousel-bottom {
   text-align: center;
-  margin-top: 16px;
+  margin-top: 12px;
   padding: 0 1rem;
 }
 
@@ -867,22 +873,23 @@ body {
   color: #71717a;
   max-width: 620px;
   margin: 0 auto;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 1024px) {
   :root {
-    --figma-slide-offset: min(55vw, 450px);
+    --figma-slide-offset: min(55vw, 420px);
     --figma-slide-overlap: 0px;
     --figma-slide-overlap-far: -50px;
   }
   .figma-carousel-track, .figma-slide {
-    width: min(70vw, 500px);
-    height: min(65vh, 600px);
+    width: min(68vw, 460px);
+    height: 380px;
   }
   .figma-carousel-viewport {
-    min-height: min(70vh, 650px);
+    min-height: 400px;
+    max-height: 420px;
   }
   .figma-slide-title {
     font-size: 1rem;
@@ -893,17 +900,27 @@ body {
 }
 
 @media (max-width: 768px) {
+  .figma-carousel-section {
+    min-height: calc(100svh - 60px);
+    padding: 6px 0 16px;
+  }
   :root {
-    --figma-slide-offset: min(65vw, 280px);
+    --figma-slide-offset: min(68vw, 270px);
     --figma-slide-overlap: 0px;
     --figma-slide-overlap-far: -30px;
   }
   .figma-carousel-track, .figma-slide {
-    width: min(82vw, 330px);
-    height: min(55vh, 420px);
+    width: min(84vw, 320px);
+    height: 330px;
   }
   .figma-carousel-viewport {
-    min-height: min(58vh, 440px);
+    min-height: 350px;
+    max-height: 370px;
+  }
+  .figma-carousel-controls {
+    margin-top: 14px;
+    margin-bottom: 6px;
+    gap: 10px;
   }
   .figma-slide-title {
     font-size: 0.95rem;

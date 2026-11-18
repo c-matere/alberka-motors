@@ -167,12 +167,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
       
       {/* Top Header Presentation */}
       <div className="figma-carousel-top max-w-[1240px] mx-auto px-4 mb-4 sm:mb-6">
-        <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
-          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-red-600 font-bold bg-red-50 border border-red-200/80 px-3 py-1 rounded-full">
-            {pageData?.badge || 'AUTHENTIC JAPANESE IMPORTS · MOMBASA'}
-          </span>
-        </div>
-
         <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-zinc-950 tracking-tight leading-[1.15]">
           {pageData?.heroTitle || 'Japanese Provenance. Direct Showroom Fleet.'}
         </h1>
