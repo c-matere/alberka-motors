@@ -54,7 +54,7 @@ interface VehicleStoryViewProps {
   isFavorite: boolean;
   onToggleFavorite: (id: string) => void;
   onScheduleTestDrive: (v: Vehicle) => void;
-  onOpenWhispers?: () => void;
+  onOpenWhispers?: (vehicleId?: string) => void;
   onSelectHub?: (hubId: string) => void;
 }
 
@@ -784,95 +784,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       <section className="relative w-full pt-4 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
         <div className="relative z-10 space-y-6">
           
-          {/* Detailed Vehicle Identification Header */}
-          <div className="text-left max-w-[1240px] mx-auto space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-7 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)]">
-            <div className="space-y-1.5">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-                <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
-                  Direct Japanese Import
-                </span>
-                <span>{vehicle.manufactureYearMonth || `${vehicle.year}/12`}</span>
-                <span>•</span>
-                <span>{make.toUpperCase()}</span>
-                <span>•</span>
-                <span>{bodyTypeUpper}</span>
-              </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-                {vehicle.manufactureYearMonth || `${vehicle.year}/12`} {vehicleDisplayTitle.toUpperCase()}
-              </h1>
-            </div>
-
-            {/* Model Code, Year, Body Type, Stock ID & Location Badges */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-mono pt-1">
-              <span className="bg-zinc-950 text-white px-3 py-1 rounded-lg font-bold tracking-wider shadow-2xs">
-                {vehicle.modelCode || 'CBA-GRJ120W'}
-              </span>
-              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
-                {vehicle.year}
-              </span>
-              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
-                {vehicle.bodyType || 'SUV'}
-              </span>
-              <span className="bg-red-50 border border-red-200 text-red-700 px-2.5 py-1 rounded-lg font-bold">
-                Stock Id: {vehicle.sbtStockId || vehicle.stockNo}
-              </span>
-              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-3 py-1 rounded-lg flex items-center gap-1.5 font-medium">
-                <MapPin className="w-3.5 h-3.5 text-red-600 shrink-0" />
-                <span>Showroom Location: <strong className="text-zinc-950 font-bold">Next to Ganjoni Primary School, Mombasa</strong></span>
-              </span>
-            </div>
-
-            {/* Actions Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
-              <div className="text-xs text-zinc-500 font-mono hidden sm:flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Verified Japanese Import · Ganjoni Showroom Mombasa</span>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  onClick={handleShareVehicle}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
-                    copiedLink
-                      ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold'
-                      : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
-                  }`}
-                  title="Share vehicle link"
-                >
-                  {copiedLink ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
-                      <span>Link Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Share2 className="w-3.5 h-3.5 text-zinc-600" />
-                      <span>Share</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  onClick={handleViewPhotoList}
-                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  title="View full photographic gallery"
-                >
-                  <Eye className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>View photo list ({allPhotos.length})</span>
-                </button>
-
-                <button
-                  onClick={handleDownloadPhotoList}
-                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  title="Download photo list & specification dossier"
-                >
-                  <Download className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>Download photo list</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
           {/* THE UNIFIED MASTER PHOTOGRAPHIC GALLERY */}
           <div id="photo-list-section" className="relative w-full max-w-[1240px] mx-auto pt-2 space-y-3">
             {/* Gallery Top Navigation: Category Filters & Paint Finish Swatches */}
@@ -937,24 +848,33 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </div>
 
-            {/* Master Theatrical Stage — Calibrated with Apple Ambient Diffused Shadow */}
-            <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-200/80 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.04)] ring-1 ring-zinc-950/[0.04]">
+            {/* Master Theatrical Stage — Calibrated with Apple Ambient Diffused Shadow & Vertical Image First Support */}
+            <div className="relative w-full rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-200/80 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.04)] ring-1 ring-zinc-950/[0.04]">
               <div
                 ref={stageRef}
                 onTouchStart={handleTouchGalleryStart}
                 onTouchEnd={handleTouchGalleryEnd}
                 onClick={() => openLightboxWithIndex(activePhotoIndex)}
-                className="relative w-full aspect-[16/10] sm:aspect-[21/10] max-h-[620px] overflow-hidden select-none cursor-pointer group"
+                className="relative w-full h-[480px] xs:h-[540px] sm:h-[620px] md:h-[680px] max-h-[82vh] overflow-hidden select-none cursor-pointer group flex items-center justify-center bg-zinc-950"
               >
+                {/* Ambient Blurred Studio Depth for Vertical Framing */}
+                <img
+                  src={currentPhoto.url}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-110 pointer-events-none select-none"
+                />
+
+                {/* Foreground Vehicle Photo — Uncropped full vertical & horizontal fidelity */}
                 <img
                   key={currentPhoto.url}
                   src={currentPhoto.url}
                   alt={currentPhoto.title}
-                  className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out group-hover:scale-102"
+                  className="relative z-10 max-h-[88%] sm:max-h-[92%] max-w-[94%] w-auto h-auto object-contain mx-auto my-auto drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.015]"
                 />
 
                 {/* Scrim & Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/35 pointer-events-none" />
+                <div className="absolute inset-0 z-15 bg-gradient-to-t from-black/70 via-transparent to-black/25 pointer-events-none" />
 
                 {/* Top Bar Badges & Controls */}
                 <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between z-20">
@@ -1071,7 +991,96 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
           </div>
 
-            {/* Clean Apple-Style Specification Strip (Diffused soft shadows, no heavy badges) */}
+          {/* Detailed Vehicle Identification Header */}
+          <div className="text-left max-w-[1240px] mx-auto space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-7 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)]">
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
+                <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
+                  Direct Japanese Import
+                </span>
+                <span>{vehicle.manufactureYearMonth || `${vehicle.year}/12`}</span>
+                <span>•</span>
+                <span>{make.toUpperCase()}</span>
+                <span>•</span>
+                <span>{bodyTypeUpper}</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+                {vehicle.manufactureYearMonth || `${vehicle.year}/12`} {vehicleDisplayTitle.toUpperCase()}
+              </h1>
+            </div>
+
+            {/* Model Code, Year, Body Type, Stock ID & Location Badges */}
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono pt-1">
+              <span className="bg-zinc-950 text-white px-3 py-1 rounded-lg font-bold tracking-wider shadow-2xs">
+                {vehicle.modelCode || 'CBA-GRJ120W'}
+              </span>
+              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
+                {vehicle.year}
+              </span>
+              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
+                {vehicle.bodyType || 'SUV'}
+              </span>
+              <span className="bg-red-50 border border-red-200 text-red-700 px-2.5 py-1 rounded-lg font-bold">
+                Stock Id: {vehicle.sbtStockId || vehicle.stockNo}
+              </span>
+              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-3 py-1 rounded-lg flex items-center gap-1.5 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-red-600 shrink-0" />
+                <span>Showroom Location: <strong className="text-zinc-950 font-bold">Next to Ganjoni Primary School, Mombasa</strong></span>
+              </span>
+            </div>
+
+            {/* Actions Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
+              <div className="text-xs text-zinc-500 font-mono hidden sm:flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Verified Japanese Import · Ganjoni Showroom Mombasa</span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={handleShareVehicle}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
+                    copiedLink
+                      ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold'
+                      : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
+                  }`}
+                  title="Share vehicle link"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                      <span>Link Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-3.5 h-3.5 text-zinc-600" />
+                      <span>Share</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  onClick={handleViewPhotoList}
+                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  title="View full photographic gallery"
+                >
+                  <Eye className="w-3.5 h-3.5 text-zinc-600" />
+                  <span>View photo list ({allPhotos.length})</span>
+                </button>
+
+                <button
+                  onClick={handleDownloadPhotoList}
+                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  title="Download photo list & specification dossier"
+                >
+                  <Download className="w-3.5 h-3.5 text-zinc-600" />
+                  <span>Download photo list</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Clean Apple-Style Specification Strip (Diffused soft shadows, no heavy badges) */}
             <div className="max-w-[1240px] mx-auto mt-8 bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-8 apple-card-shadow text-left">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-zinc-200">
                 {/* 1: Year & Mileage */}
@@ -1314,7 +1323,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               <button
                 onClick={() => {
-                  if (onOpenWhispers) onOpenWhispers();
+                  if (onOpenWhispers) onOpenWhispers(vehicle.id);
                 }}
                 className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-3 !px-5 text-[13px] cursor-pointer w-full sm:w-auto font-bold rounded-lg inline-flex items-center justify-center gap-1.5 shadow-md hover:scale-[1.01] active:scale-98 transition-all"
               >
@@ -1495,208 +1504,193 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
           <div className="space-y-6">
             {/* Comfort & Convenience */}
-            <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-              <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                COMFORT & CONVENIENCE
-              </span>
-              <div className="flex flex-wrap gap-2 text-xs">
-                {[
-                  { name: 'ACC (Adaptive Cruise)', active: true },
+            {(() => {
+              const comfort = vehicle.equipmentChecklist?.find((c) => c.category === 'COMFORT & CONVENIENCE') || {
+                category: 'COMFORT & CONVENIENCE',
+                items: [
                   { name: 'Air Conditioner', active: true },
                   { name: 'Audio Player', active: true },
-                  { name: 'Both Power Slide Door', active: false },
-                  { name: 'Cooler', active: true },
-                  { name: 'Cruise Control', active: true },
-                  { name: 'Double Air Conditioner', active: true },
-                  { name: 'Left Side Power Slide Door', active: false },
-                  { name: 'Navigation System', active: true },
-                  { name: 'Paddle Shift', active: false },
-                  { name: 'Power Back Door', active: true },
-                  { name: 'Power Seat', active: true },
                   { name: 'Power Steering', active: true },
-                  { name: 'Power Window All', active: true },
-                  { name: 'Power Window Driver', active: true },
-                  { name: 'Power Window Front', active: true },
-                  { name: 'Push Start', active: true },
-                  { name: 'Steering Switch', active: true },
-                ].map((opt, i) => (
-                  <span
-                    key={i}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                      opt.active
-                        ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
-                        : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                    }`}
-                  >
-                    {opt.active ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
-                    ) : (
-                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                    )}
-                    <span>{opt.name}</span>
+                ],
+              };
+              return (
+                <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
+                  <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
+                    {comfort.category}
                   </span>
-                ))}
-              </div>
-            </div>
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    {comfort.items.map((opt, i) => (
+                      <span
+                        key={i}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
+                          opt.active
+                            ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                            : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
+                        }`}
+                      >
+                        {opt.active ? (
+                          <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                        ) : (
+                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                        )}
+                        <span>{opt.name}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Dress Up & Exterior */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Dress Up */}
-              <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                  DRESS UP
-                </span>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {[
-                    { name: 'Aero Front', active: true },
-                    { name: 'Aero Rear', active: true },
-                    { name: 'Aero Side', active: true },
-                    { name: 'Alloy Wheels', active: true },
-                    { name: 'Grill Guard', active: false },
-                    { name: 'Rear Spoiler', active: true },
-                    { name: 'Wood Combination Steering', active: true },
-                  ].map((opt, i) => (
-                    <span
-                      key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                        opt.active
-                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                      }`}
-                    >
-                      {opt.active ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
-                      ) : (
-                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                      )}
-                      <span>{opt.name}</span>
+              {(() => {
+                const dressUp = vehicle.equipmentChecklist?.find((c) => c.category === 'DRESS UP') || {
+                  category: 'DRESS UP',
+                  items: [],
+                };
+                return (
+                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
+                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
+                      {dressUp.category}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {dressUp.items.map((opt, i) => (
+                        <span
+                          key={i}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
+                            opt.active
+                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
+                          }`}
+                        >
+                          {opt.active ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                          ) : (
+                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                          )}
+                          <span>{opt.name}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Exterior */}
-              <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                  EXTERIOR
-                </span>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {[
-                    { name: 'Carrier Base', active: false },
-                    { name: 'Roof Box', active: false },
-                    { name: 'Roof Carrier', active: false },
-                    { name: 'Roof Rails', active: true },
-                    { name: 'Sun Roof', active: true },
-                    { name: 'Double Sun Roof', active: false },
-                    { name: 'Glass Roof', active: false },
-                    { name: 'Fog Light', active: true },
-                    { name: 'HID Light', active: false },
-                    { name: 'LED Light', active: true },
-                    { name: 'High Roof', active: false },
-                    { name: 'New Shape', active: true },
-                    { name: 'Slide Glass', active: false },
-                  ].map((opt, i) => (
-                    <span
-                      key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                        opt.active
-                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                      }`}
-                    >
-                      {opt.active ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
-                      ) : (
-                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                      )}
-                      <span>{opt.name}</span>
+              {(() => {
+                const exterior = vehicle.equipmentChecklist?.find((c) => c.category === 'EXTERIOR') || {
+                  category: 'EXTERIOR',
+                  items: [],
+                };
+                return (
+                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
+                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
+                      {exterior.category}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {exterior.items.map((opt, i) => (
+                        <span
+                          key={i}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
+                            opt.active
+                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
+                          }`}
+                        >
+                          {opt.active ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                          ) : (
+                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                          )}
+                          <span>{opt.name}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Safety & Other */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Safety */}
-              <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                  SAFETY
-                </span>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {[
-                    { name: 'ABS', active: true },
-                    { name: 'Air Bag', active: true },
-                    { name: 'Around View Monitor', active: true },
-                    { name: 'Back Camera', active: true },
-                    { name: 'Front Camera', active: true },
-                    { name: 'Side Camera', active: true },
-                    { name: 'Corner Sensor', active: true },
-                    { name: 'ESC', active: true },
-                  ].map((opt, i) => (
-                    <span
-                      key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                        opt.active
-                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                      }`}
-                    >
-                      {opt.active ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
-                      ) : (
-                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                      )}
-                      <span>{opt.name}</span>
+              {(() => {
+                const safety = vehicle.equipmentChecklist?.find((c) => c.category === 'SAFETY') || {
+                  category: 'SAFETY',
+                  items: [],
+                };
+                return (
+                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
+                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
+                      {safety.category}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {safety.items.map((opt, i) => (
+                        <span
+                          key={i}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
+                            opt.active
+                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
+                          }`}
+                        >
+                          {opt.active ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                          ) : (
+                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                          )}
+                          <span>{opt.name}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Other & Remarks */}
-              <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                  OTHER & REMARKS
-                </span>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {[
-                    { name: 'Auto Door', active: false },
-                    { name: 'Back Tire', active: true },
-                    { name: 'Just Low', active: false },
-                    { name: 'Half Leather Seat', active: false },
-                    { name: 'Leather Seat', active: true },
-                    { name: 'Same Tire', active: true },
-                    { name: 'Side Lift Up Seat', active: false },
-                    { name: 'Sloper', active: false },
-                  ].map((opt, i) => (
-                    <span
-                      key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                        opt.active
-                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                      }`}
-                    >
-                      {opt.active ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
-                      ) : (
-                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                      )}
-                      <span>{opt.name}</span>
+              {(() => {
+                const other = vehicle.equipmentChecklist?.find((c) => c.category === 'OTHER & REMARKS') || {
+                  category: 'OTHER & REMARKS',
+                  items: [],
+                };
+                return (
+                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
+                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
+                      {other.category}
                     </span>
-                  ))}
-                </div>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {other.items.map((opt, i) => (
+                        <span
+                          key={i}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
+                            opt.active
+                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
+                          }`}
+                        >
+                          {opt.active ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                          ) : (
+                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                          )}
+                          <span>{opt.name}</span>
+                        </span>
+                      ))}
+                    </div>
 
-                <div className="pt-3 border-t border-zinc-100 flex items-center gap-2">
-                  <span className="font-mono text-xs text-zinc-500 uppercase font-bold">REMARKS:</span>
-                  <span className="bg-red-50 border border-red-200 text-red-700 px-2 py-0.5 rounded font-mono text-xs font-bold">
-                    {vehicle.seats || 8}SEATS
-                  </span>
-                  <span className="bg-zinc-100 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded font-mono text-xs font-semibold">
-                    100% Verified Import
-                  </span>
-                </div>
-              </div>
+                    <div className="pt-3 border-t border-zinc-100 flex items-center gap-2">
+                      <span className="font-mono text-xs text-zinc-500 uppercase font-bold">REMARKS:</span>
+                      <span className="bg-red-50 border border-red-200 text-red-700 px-2 py-0.5 rounded font-mono text-xs font-bold">
+                        {vehicle.equipmentRemarks || `${vehicle.seats || 4}SEATS, 350KG PAYLOAD`}
+                      </span>
+                      <span className="bg-zinc-100 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded font-mono text-xs font-semibold">
+                        100% Verified Import
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </div>
@@ -1763,7 +1757,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   <span>Get Google Maps Directions</span>
                 </a>
                 <a
-                  href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20at%20your%20showroom%20next%20to%20Ganjoni%20Primary%20School.`}
+                  href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20at%20your%20showroom%20next%20to%20Ganjoni%20Primary%20School,%20Mombasa.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold py-2.5 px-5 rounded-xl text-xs inline-flex items-center justify-center gap-2 transition-all cursor-pointer"
@@ -1984,7 +1978,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </span>
 
               <a
-                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20ba59] text-white w-full sm:w-auto text-center font-bold px-5 py-3 rounded-lg inline-flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-98 transition-all"
@@ -2099,7 +2093,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
 
               <a
-                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-2 !px-4 text-xs font-bold rounded-lg inline-flex items-center gap-1.5 shadow-md hover:scale-[1.02] active:scale-98 transition-all"

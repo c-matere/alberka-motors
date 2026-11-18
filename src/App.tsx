@@ -47,9 +47,9 @@ export function App() {
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('alberka_favorites');
-      return saved ? JSON.parse(saved) : ['toyota-rav4-adventure', 'toyota-harrier-hybrid'];
+      return saved ? JSON.parse(saved) : ['toyota-land-cruiser-prado-ax2877', 'suzuki-every-2019'];
     } catch {
-      return ['toyota-rav4-adventure', 'toyota-harrier-hybrid'];
+      return ['toyota-land-cruiser-prado-ax2877', 'suzuki-every-2019'];
     }
   });
 
@@ -82,7 +82,7 @@ export function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
       
-      // Car detail page: #car-toyota-harrier-hybrid
+      // Car detail page: #car-suzuki-every-2019
       if (hash.startsWith('car-')) {
         const carId = hash.replace('car-', '');
         const found = vehicles.find((v) => v.id === carId);
@@ -237,15 +237,8 @@ export function App() {
   };
 
   const handleScheduleTestDrive = (vehicle: Vehicle) => {
-    setTestDriveTargetVehicle(vehicle);
-    setSelectedVehicle(null);
-    setSelectedBlogPost(null);
-    setCurrentView('about');
-    window.location.hash = 'about';
-    setTimeout(() => {
-      const el = document.getElementById('about-showroom-location');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+    setWhispersVehicleId(vehicle.id);
+    setWhispersDrawerOpen(true);
   };
 
   const handleInquireVehicle = (vehicle: Vehicle) => {
@@ -265,7 +258,10 @@ export function App() {
         favoritesCount={favorites.length}
         onOpenSearch={() => setSearchModalOpen(true)}
         onOpenFavorites={() => setFavoritesModalOpen(true)}
-        onOpenWhispers={() => setWhispersDrawerOpen(true)}
+        onOpenWhispers={() => {
+          setWhispersVehicleId(selectedVehicle?.id);
+          setWhispersDrawerOpen(true);
+        }}
       />
 
       {/* Main View Router */}
@@ -279,7 +275,10 @@ export function App() {
             isFavorite={favorites.includes(selectedVehicle.id)}
             onToggleFavorite={handleToggleFavorite}
             onScheduleTestDrive={handleScheduleTestDrive}
-            onOpenWhispers={() => setWhispersDrawerOpen(true)}
+            onOpenWhispers={(vid) => {
+              setWhispersVehicleId(vid || selectedVehicle.id);
+              setWhispersDrawerOpen(true);
+            }}
           />
         ) : selectedBlogPost ? (
           <BlogPostView
@@ -289,7 +288,9 @@ export function App() {
             onBackToJournal={() => handleNavigate('blog')}
             onSelectPost={handleSelectBlogPost}
             onSelectVehicle={handleSelectVehicle}
-            onOpenWhispers={() => setWhispersDrawerOpen(true)}
+            onOpenWhispers={() => {
+              setWhispersDrawerOpen(true);
+            }}
           />
         ) : (
           <>
@@ -550,7 +551,12 @@ export function App() {
       <ScrollToTopButton />
 
       {/* Floating WhatsApp Action Button */}
-      <FloatingWhatsAppButton onOpenWhispers={() => setWhispersDrawerOpen(true)} />
+      <FloatingWhatsAppButton
+        onOpenWhispers={() => {
+          setWhispersVehicleId(selectedVehicle?.id);
+          setWhispersDrawerOpen(true);
+        }}
+      />
 
       {/* Mobile Bottom Dock */}
       <MobileBottomDock
@@ -562,7 +568,10 @@ export function App() {
         onBackToJournal={() => handleNavigate('blog')}
         favoritesCount={favorites.length}
         onOpenFavorites={() => setFavoritesModalOpen(true)}
-        onOpenWhispers={() => setWhispersDrawerOpen(true)}
+        onOpenWhispers={() => {
+          setWhispersVehicleId(selectedVehicle?.id);
+          setWhispersDrawerOpen(true);
+        }}
       />
 
       {/* Footer */}
@@ -599,7 +608,7 @@ export function App() {
           setWhispersDrawerOpen(false);
           setWhispersVehicleId(undefined);
         }}
-        initialVehicleId={whispersVehicleId}
+        initialVehicleId={whispersVehicleId || selectedVehicle?.id}
         vehicles={vehicles}
         onSelectVehicle={handleSelectVehicle}
       />

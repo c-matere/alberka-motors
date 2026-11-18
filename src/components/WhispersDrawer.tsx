@@ -30,19 +30,23 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    if (initialVehicleId) {
-      setFormData((prev) => ({ ...prev, vehicleId: initialVehicleId }));
-      setActiveTab('viewing');
+    if (isOpen) {
+      const activeId = initialVehicleId || vehicles[0]?.id || '';
+      setFormData((prev) => ({
+        ...prev,
+        vehicleId: activeId,
+      }));
       setIsSubmitted(false);
     }
-  }, [initialVehicleId, isOpen]);
+  }, [initialVehicleId, isOpen, vehicles]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const selectedCar = vehicles.find((v) => v.id === formData.vehicleId);
+    const selectedCar = vehicles.find((v) => v.id === formData.vehicleId) || vehicles.find((v) => v.id === initialVehicleId) || vehicles[0];
     const carName = selectedCar ? `${selectedCar.year} ${selectedCar.name}` : 'Selected Vehicle';
+    const stockId = selectedCar?.sbtStockId || selectedCar?.stockNo || 'N/A';
 
     // 1. Persist lead directly into Payload CMS database
     try {
@@ -53,7 +57,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
           name: formData.name.trim(),
           phone: formData.phone.trim(),
           vehicleName: carName,
-          vehicleStockNo: selectedCar?.stockNo || selectedCar?.sbtStockId || 'N/A',
+          vehicleStockNo: stockId,
           type: activeTab === 'viewing' ? 'test-drive' : activeTab === 'bidding' ? 'custom-import' : 'inquiry',
           notes: `Showroom: Next to Ganjoni Primary School, Mombasa | Preferred Date: ${formData.date || 'Earliest available'} | Notes: ${formData.notes || 'None'}`,
         }),
@@ -62,12 +66,13 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
 
     // 2. Format detailed message for WhatsApp
     let message = '';
+    const priceText = selectedCar?.priceKes ? `KES ${selectedCar.priceKes.toLocaleString()}` : '';
     if (activeTab === 'viewing') {
-      message = `Hello Alberka Motors,\n\nI would like to book a Test Drive / Showroom Viewing:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (${selectedCar?.stockNo || ''}) — KES ${selectedCar?.priceKes.toLocaleString() || ''}\n• Location: Next to Ganjoni Primary School, Mombasa\n• Preferred Date: ${formData.date || 'Earliest available'}\n• Notes: ${formData.notes || 'None'}`;
+      message = `Hello Alberka Enterprises,\n\nI would like to book a Test Drive / Showroom Viewing:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (Stock ID: ${stockId}) — ${priceText}\n• Showroom Location: Next to Ganjoni Primary School, Mombasa\n• Preferred Date: ${formData.date || 'Earliest available'}\n• Notes: ${formData.notes || 'None'}`;
     } else if (activeTab === 'dossier') {
-      message = `Hello Alberka Motors,\n\nI would like the Japanese Auction Dossier:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (${selectedCar?.stockNo || ''})\n• Request: Authentic Japanese Auction Sheet & JEVIC Odometer Certificate`;
+      message = `Hello Alberka Enterprises,\n\nI would like the Japanese Auction Sheet Dossier:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (Stock ID: ${stockId}) — ${priceText}\n• Showroom Location: Next to Ganjoni Primary School, Mombasa\n• Request: Authentic Japanese Auction Sheet, JEVIC Odometer Certificate & 100-Point Inspection Dossier`;
     } else {
-      message = `Hello Alberka Motors,\n\nI would like to Import on Order from Japan:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Requirements: ${formData.notes || carName}`;
+      message = `Hello Alberka Enterprises,\n\nI would like to Import on Order from Japan:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Target Vehicle: ${carName} (Stock ID: ${stockId}) — ${priceText}\n• Showroom Location: Next to Ganjoni Primary School, Mombasa\n• Requirements: ${formData.notes || 'Please advise on available units and CIF Mombasa pricing'}`;
     }
 
     // 3. Open WhatsApp and transition drawer state
@@ -206,7 +211,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                     >
                       {vehicles.map((v) => (
                         <option key={v.id} value={v.id}>
-                          {v.name} ({v.stockNo}) — KES {v.priceKes.toLocaleString()}
+                          {v.year} {v.name} ({v.sbtStockId || v.stockNo}) — KES {v.priceKes.toLocaleString()}
                         </option>
                       ))}
                     </select>
