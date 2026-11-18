@@ -144,7 +144,7 @@ const EditorialFeatureSection: React.FC<{
               title: `${feature.title} — ${activeSlide.title}`,
               desc: activeSlide.description
             })}
-            className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[580px] overflow-hidden bg-black border border-zinc-200 rounded-2xl relative group shadow-[0_24px_60px_rgba(0,0,0,0.85)] select-none cursor-pointer"
+            className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[580px] overflow-hidden bg-black border border-zinc-200/90 rounded-2xl relative group shadow-[0_20px_48px_-12px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.04)] ring-1 ring-zinc-950/[0.04] select-none cursor-pointer"
           >
             <SkeletonImage
               key={activeSlide.id || activeSlide.imageUrl}
@@ -354,12 +354,72 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const make = vehicle.name.split(' ')[0] || 'TOYOTA';
   const bodyTypeUpper = (vehicle.bodyType || 'SUV').toUpperCase();
 
-  const handleShareVehicle = () => {
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2500);
+  // Deduplicate grade in title if already included in vehicle.name
+  const vehicleDisplayTitle = useMemo(() => {
+    let base = vehicle.name.trim();
+    const grade = (vehicle.sbtGrade || '').trim();
+    if (grade && !base.toLowerCase().includes(grade.toLowerCase())) {
+      base = `${base} ${grade}`;
     }
+    return base;
+  }, [vehicle.name, vehicle.sbtGrade]);
+
+  const copyToClipboard = (text: string): boolean => {
+    // 1. Try modern clipboard API if supported and in secure context
+    if (typeof navigator !== 'undefined' && navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).catch(() => {});
+      return true;
+    }
+
+    // 2. Fallback using execCommand with a temporary off-screen textarea (works on HTTP)
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      textarea.style.top = '-9999px';
+      textarea.setAttribute('readonly', '');
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      if (successful) return true;
+    } catch (e) {
+      console.warn('execCommand copy failed', e);
+    }
+
+    // 3. Fallback prompt for any restricted environment
+    try {
+      window.prompt('Copy vehicle link to clipboard:', text);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const handleShareVehicle = async () => {
+    const shareUrl = window.location.href;
+    const shareTitle = `${vehicle.year} ${vehicle.name} · Alberka Motors Mombasa`;
+
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: `Explore this verified Japanese import at Alberka Motors Mombasa: ${vehicle.name}`,
+          url: shareUrl,
+        });
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2500);
+        return;
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return;
+      }
+    }
+
+    copyToClipboard(shareUrl);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2500);
   };
 
   const handleViewPhotoList = () => {
@@ -725,61 +785,86 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         <div className="relative z-10 space-y-6">
           
           {/* Detailed Vehicle Identification Header */}
-          <div className="text-left max-w-[1240px] mx-auto space-y-3 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-7 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)]">
+          <div className="text-left max-w-[1240px] mx-auto space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-7 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)]">
             <div className="space-y-1.5">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold block">
-                {vehicle.manufactureYearMonth || `${vehicle.year}/12`} {make.toUpperCase()} {bodyTypeUpper}
-              </span>
-              <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-[-0.03em] leading-tight">
-                {vehicle.manufactureYearMonth || `${vehicle.year}/12`} {vehicle.name.toUpperCase()} {vehicle.sbtGrade ? vehicle.sbtGrade.toUpperCase() : ''}
+              <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
+                <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
+                  Direct Japanese Import
+                </span>
+                <span>{vehicle.manufactureYearMonth || `${vehicle.year}/12`}</span>
+                <span>•</span>
+                <span>{make.toUpperCase()}</span>
+                <span>•</span>
+                <span>{bodyTypeUpper}</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+                {vehicle.manufactureYearMonth || `${vehicle.year}/12`} {vehicleDisplayTitle.toUpperCase()}
               </h1>
             </div>
 
             {/* Model Code, Year, Body Type, Stock ID & Location Badges */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono pt-1">
-              <span className="bg-zinc-900 text-white px-2.5 py-1 rounded-md font-bold">
+              <span className="bg-zinc-950 text-white px-3 py-1 rounded-lg font-bold tracking-wider shadow-2xs">
                 {vehicle.modelCode || 'CBA-GRJ120W'}
               </span>
-              <span className="bg-zinc-100 border border-zinc-200 text-zinc-800 px-2.5 py-1 rounded-md font-semibold">
+              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
                 {vehicle.year}
               </span>
-              <span className="bg-zinc-100 border border-zinc-200 text-zinc-800 px-2.5 py-1 rounded-md font-semibold">
+              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
                 {vehicle.bodyType || 'SUV'}
               </span>
-              <span className="bg-red-50 border border-red-200 text-red-700 px-2.5 py-1 rounded-md font-bold">
+              <span className="bg-red-50 border border-red-200 text-red-700 px-2.5 py-1 rounded-lg font-bold">
                 Stock Id: {vehicle.sbtStockId || vehicle.stockNo}
               </span>
-              <span className="bg-zinc-100 border border-zinc-200 text-zinc-700 px-2.5 py-1 rounded-md flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-red-600" />
-                <span>Showroom Location: <strong className="text-zinc-950">Next to Ganjoni Primary School, Mombasa</strong></span>
+              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-3 py-1 rounded-lg flex items-center gap-1.5 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-red-600 shrink-0" />
+                <span>Showroom Location: <strong className="text-zinc-950 font-bold">Next to Ganjoni Primary School, Mombasa</strong></span>
               </span>
             </div>
 
             {/* Actions Bar */}
-            <div className="flex flex-wrap items-center justify-end gap-3 pt-3 border-t border-zinc-100">
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
+              <div className="text-xs text-zinc-500 font-mono hidden sm:flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Verified Japanese Import · Ganjoni Showroom Mombasa</span>
+              </div>
+
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   onClick={handleShareVehicle}
-                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
+                    copiedLink
+                      ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold'
+                      : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
+                  }`}
                   title="Share vehicle link"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>{copiedLink ? 'Link Copied!' : 'Share'}</span>
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                      <span>Link Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-3.5 h-3.5 text-zinc-600" />
+                      <span>Share</span>
+                    </>
+                  )}
                 </button>
 
                 <button
                   onClick={handleViewPhotoList}
-                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                  title="View full photo list"
+                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  title="View full photographic gallery"
                 >
                   <Eye className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>View photo list</span>
+                  <span>View photo list ({allPhotos.length})</span>
                 </button>
 
                 <button
                   onClick={handleDownloadPhotoList}
-                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                  title="Download photo list & specification sheet"
+                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  title="Download photo list & specification dossier"
                 >
                   <Download className="w-3.5 h-3.5 text-zinc-600" />
                   <span>Download photo list</span>
@@ -788,71 +873,203 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
           </div>
 
-          {/* Master Visual Canvas */}
-          <div className="relative w-full max-w-[1140px] mx-auto pt-4">
-            <div 
-              onClick={() => openPhotoByUrl(activeColor.imageUrl)}
-              className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[600px] overflow-hidden bg-black border border-zinc-200 rounded-2xl relative shadow-[0_24px_60px_rgba(0,0,0,0.85)] cursor-pointer group select-none"
-            >
-              <SkeletonImage
-                key={activeColor.name}
-                src={activeColor.imageUrl}
-                alt={`${vehicle.name} in ${activeColor.name}`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
-                containerClassName="w-full h-full"
-              />
-
-              {/* Fullscreen Expand Action Pill */}
-              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    openPhotoByUrl(activeColor.imageUrl);
-                  }}
-                  className="bg-white/85 hover:bg-black text-zinc-950 px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono flex items-center gap-1.5 transition-colors cursor-pointer backdrop-blur-md shadow-md"
-                  title="Expand photo fullscreen"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Fullscreen</span>
-                </button>
+          {/* THE UNIFIED MASTER PHOTOGRAPHIC GALLERY */}
+          <div id="photo-list-section" className="relative w-full max-w-[1240px] mx-auto pt-2 space-y-3">
+            {/* Gallery Top Navigation: Category Filters & Paint Finish Swatches */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-zinc-200/80 rounded-2xl p-3 sm:px-5 sm:py-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] text-left">
+              {/* Category Filter Tabs */}
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                {[
+                  { id: 'all', label: `All Photos (${allPhotos.length})` },
+                  { id: 'exterior', label: 'Exterior Stance' },
+                  { id: 'interior', label: 'Cabin & Seats' },
+                  { id: 'details', label: 'Details & Chassis' },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setGalleryFilter(tab.id as any);
+                      setActivePhotoIndex(0);
+                    }}
+                    className={`px-3 py-1.5 text-xs font-mono rounded-lg transition-all cursor-pointer whitespace-nowrap ${
+                      galleryFilter === tab.id
+                        ? 'bg-zinc-950 text-white font-bold shadow-xs'
+                        : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
-                <div className="text-left text-white space-y-0.5">
-                  <span className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest block font-medium">
-                    PAINT FINISH
-                  </span>
-                  <p className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                    {activeColor.name}
-                  </p>
+              {/* Integrated Paint Finish Swatches */}
+              <div className="flex items-center gap-2.5 sm:border-l sm:border-zinc-200 sm:pl-4">
+                <span className="font-mono text-[11px] text-zinc-500 uppercase font-semibold hidden md:inline">
+                  Paint:
+                </span>
+                <span className="font-mono text-[11px] text-zinc-900 font-bold">
+                  {activeColor.name}
+                </span>
+                <div className="flex items-center gap-2">
+                  {vehicle.colors.map((c, idx) => {
+                    const isSelected = selectedColorIndex === idx;
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setSelectedColorIndex(idx);
+                          const colorPhotoIdx = filteredPhotos.findIndex((p) => p.url === c.imageUrl);
+                          if (colorPhotoIdx !== -1) {
+                            setActivePhotoIndex(colorPhotoIdx);
+                          }
+                        }}
+                        className={`w-5 h-5 rounded-full transition-all duration-300 cursor-pointer relative border border-zinc-300 ${
+                          isSelected
+                            ? 'ring-2 ring-zinc-950 ring-offset-2 scale-125 shadow-xs'
+                            : 'opacity-50 hover:opacity-100 hover:scale-110'
+                        }`}
+                        style={{ backgroundColor: c.hex }}
+                        title={c.name}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
-            {/* Color Swatch Selector */}
-            <div className="flex items-center justify-center gap-3 pt-5">
-              <span className="font-mono text-[11px] text-zinc-600 uppercase tracking-wider">
-                {activeColor.name}
-              </span>
-              <div className="flex items-center gap-3">
-                {vehicle.colors.map((c, idx) => {
-                  const isSelected = selectedColorIndex === idx;
+            {/* Master Theatrical Stage — Calibrated with Apple Ambient Diffused Shadow */}
+            <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-200/80 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.04)] ring-1 ring-zinc-950/[0.04]">
+              <div
+                ref={stageRef}
+                onTouchStart={handleTouchGalleryStart}
+                onTouchEnd={handleTouchGalleryEnd}
+                onClick={() => openLightboxWithIndex(activePhotoIndex)}
+                className="relative w-full aspect-[16/10] sm:aspect-[21/10] max-h-[620px] overflow-hidden select-none cursor-pointer group"
+              >
+                <img
+                  key={currentPhoto.url}
+                  src={currentPhoto.url}
+                  alt={currentPhoto.title}
+                  className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out group-hover:scale-102"
+                />
+
+                {/* Scrim & Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/35 pointer-events-none" />
+
+                {/* Top Bar Badges & Controls */}
+                <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between z-20">
+                  <div className="flex items-center gap-2">
+                    <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-900 rounded-lg border border-zinc-200/90 flex items-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                      <span className="text-zinc-950 font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
+                      <span className="text-zinc-400">/</span>
+                      <span className="text-zinc-600 font-medium">{String(filteredPhotos.length).padStart(2, '0')}</span>
+                    </div>
+                    <span className="bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-zinc-800 font-semibold border border-zinc-200/90 hidden xs:inline shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                      {currentPhoto.tag}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsGalleryPlaying(!isGalleryPlaying);
+                      }}
+                      className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+                      title={isGalleryPlaying ? 'Pause gallery slideshow' : 'Play gallery slideshow'}
+                    >
+                      {isGalleryPlaying ? (
+                        <Pause className="w-3.5 h-3.5" />
+                      ) : (
+                        <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-950 fill-zinc-950" />
+                      )}
+                      <span className="hidden sm:inline">{isGalleryPlaying ? 'Pause' : 'Auto Play'}</span>
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openLightboxWithIndex(activePhotoIndex);
+                      }}
+                      className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+                      title="Expand Fullscreen Lightbox"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Fullscreen</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Left/Right Prev/Next Stage Arrows */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevPhoto();
+                  }}
+                  className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-[0_4px_14px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
+                  title="Previous photo"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextPhoto();
+                  }}
+                  className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-[0_4px_14px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
+                  title="Next photo"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Bottom Caption Overlay */}
+                <div className="absolute bottom-3 left-4 right-4 sm:bottom-5 sm:left-6 sm:right-6 pointer-events-none z-20">
+                  <div className="text-left text-white max-w-2xl">
+                    <span className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest block font-medium">
+                      {currentPhoto.tag}
+                    </span>
+                    <p className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-sm">
+                      {currentPhoto.title}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Animated Timing Progress Bar */}
+                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-white/20 z-20">
+                  <div
+                    className="h-full bg-white transition-all ease-linear"
+                    style={{
+                      width: `${isGalleryPlaying ? galleryProgress : ((activePhotoIndex + 1) / filteredPhotos.length) * 100}%`,
+                      transitionDuration: isGalleryPlaying ? '50ms' : '200ms',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Filmstrip Runway Strip */}
+              <div className="p-3 bg-zinc-50 border-t border-zinc-200/80 flex items-center gap-2.5 overflow-x-auto no-scrollbar">
+                {filteredPhotos.map((photo, idx) => {
+                  const isActive = idx === activePhotoIndex;
                   return (
                     <button
-                      key={idx}
-                      onClick={() => setSelectedColorIndex(idx)}
-                      className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer relative ${
-                        isSelected 
-                          ? 'ring-2 ring-zinc-900 ring-offset-2 ring-offset-white scale-125 shadow-lg' 
-                          : 'opacity-40 hover:opacity-100 hover:scale-110'
+                      key={photo.id || idx}
+                      onClick={() => handleSelectPhoto(idx)}
+                      className={`h-16 w-24 sm:w-28 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative shadow-[0_2px_6px_rgba(0,0,0,0.03)] ${
+                        isActive
+                          ? 'border-zinc-950 ring-2 ring-zinc-950/60 scale-102 shadow-xs'
+                          : 'border-zinc-200 opacity-60 hover:opacity-100 hover:scale-102'
                       }`}
-                      style={{ backgroundColor: c.hex }}
-                      title={c.name}
-                    />
+                    >
+                      <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
+                      <span className="absolute bottom-1 left-1 bg-zinc-950/90 font-mono text-[9px] text-white px-1.5 py-0.5 rounded font-bold">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                    </button>
                   );
                 })}
               </div>
             </div>
+          </div>
 
             {/* Clean Apple-Style Specification Strip (Diffused soft shadows, no heavy badges) */}
             <div className="max-w-[1240px] mx-auto mt-8 bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-8 apple-card-shadow text-left">
@@ -957,8 +1174,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Section Gradient Fade Transition */}
       <SectionGradientFade />
@@ -1028,178 +1244,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
       {/* Section Gradient Fade Transition */}
       <SectionGradientFade />
-
-      {/* 4. THE MASTER PHOTOGRAPHIC GALLERY (ROLLS-ROYCE STYLE APERTURE) */}
-      <section id="photo-list-section" className="w-full bg-transparent relative py-20 px-4 sm:px-8">
-        <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-10 relative z-10">
-          
-          {/* Gallery Header & Filter Controls */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
-            <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-medium">
-                  PHOTOGRAPHIC ARCHIVE
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-[-0.03em] leading-tight">
-                Authentic High-Resolution Gallery
-              </h2>
-              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                Direct auction photos, interior leather close-ups, and mechanical inspection shots showing the actual condition of this vehicle.
-              </p>
-            </div>
-
-            {/* Filter Pills */}
-            <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md p-1 border border-zinc-200 rounded-xl overflow-x-auto no-scrollbar shrink-0">
-              {[
-                { id: 'all', label: `All Photos (${allPhotos.length})` },
-                { id: 'exterior', label: 'Exterior Stance' },
-                { id: 'interior', label: 'Cabin & Seats' },
-                { id: 'details', label: 'Details & Wheels' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setGalleryFilter(tab.id as any);
-                    setActivePhotoIndex(0);
-                  }}
-                  className={`px-3.5 py-1.5 text-xs font-mono rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                    galleryFilter === tab.id
-                      ? 'bg-white text-zinc-950 font-bold shadow-sm'
-                      : 'text-zinc-600 hover:text-zinc-950'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Master 16:9 Theatrical Gallery Stage (Rolls-Royce Bespoke Aperture) */}
-          <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-zinc-200 shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
-            <div 
-              ref={stageRef}
-              onTouchStart={handleTouchGalleryStart}
-              onTouchEnd={handleTouchGalleryEnd}
-              onClick={() => openLightboxWithIndex(activePhotoIndex)}
-              className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] overflow-hidden select-none cursor-pointer group"
-            >
-              <img
-                key={currentPhoto.url}
-                src={currentPhoto.url}
-                alt={currentPhoto.title}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[6000ms] ease-out group-hover:scale-102"
-              />
-
-              {/* Scrim & Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
-
-              {/* Top Bar Badges & Controls */}
-              <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20">
-                <div className="flex items-center gap-2">
-                  <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-900 rounded-lg border border-zinc-200/90 flex items-center gap-2 shadow-md">
-                    <span className="text-zinc-950 font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
-                    <span className="text-zinc-400">/</span>
-                    <span className="text-zinc-600 font-medium">{String(filteredPhotos.length).padStart(2, '0')}</span>
-                  </div>
-                  <span className="bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-zinc-800 font-medium border border-zinc-200/90 hidden xs:inline shadow-md">
-                    {currentPhoto.tag}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsGalleryPlaying(!isGalleryPlaying);
-                    }}
-                    className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono shadow-md"
-                    title={isGalleryPlaying ? 'Pause gallery slideshow' : 'Play gallery slideshow'}
-                  >
-                    {isGalleryPlaying ? (
-                      <Pause className="w-3.5 h-3.5" />
-                    ) : (
-                      <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-950 fill-zinc-950" />
-                    )}
-                    <span className="hidden sm:inline">{isGalleryPlaying ? 'Pause' : 'Auto Play'}</span>
-                  </button>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openLightboxWithIndex(activePhotoIndex);
-                    }}
-                    className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono shadow-md"
-                    title="Expand Fullscreen Lightbox"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Fullscreen</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Hairline Stage Controls */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevPhoto();
-                }}
-                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95"
-                title="Previous photo"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNextPhoto();
-                }}
-                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95"
-                title="Next photo"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-
-              {/* Animated Timing Progress Bar — Pure Crisp White */}
-              <div className="absolute bottom-0 inset-x-0 h-[2px] bg-white/10 z-20">
-                <div
-                  className="h-full bg-white transition-all ease-linear"
-                  style={{
-                    width: `${isGalleryPlaying ? galleryProgress : ((activePhotoIndex + 1) / filteredPhotos.length) * 100}%`,
-                    transitionDuration: isGalleryPlaying ? '50ms' : '200ms',
-                  }}
-                />
-              </div>
-
-            </div>
-
-            {/* Filmstrip Runway Strip with Instant Stage Focus */}
-            <div className="p-3 bg-zinc-50 border-t border-zinc-200/80 flex items-center gap-2.5 overflow-x-auto no-scrollbar">
-              {filteredPhotos.map((photo, idx) => {
-                const isActive = idx === activePhotoIndex;
-                return (
-                  <button
-                    key={photo.id || idx}
-                    onClick={() => handleSelectPhoto(idx)}
-                    className={`h-16 w-24 sm:w-28 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative ${
-                      isActive
-                        ? 'border-white ring-2 ring-zinc-900/50 scale-102'
-                        : 'border-zinc-200 opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
-                    <span className="absolute bottom-1 left-1 bg-zinc-950/90 font-mono text-[9px] text-white px-1.5 py-0.5 rounded font-bold">
-                      0{idx + 1}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-          </div>
-
-        </div>
-      </section>
 
       {/* 5. TECHNICAL ARCHIVES & AUCTION SHEET */}
       <section className="w-full bg-transparent relative py-20 px-6 sm:px-10">
@@ -1710,7 +1754,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               <div className="pt-2 space-y-2.5">
                 <a
-                  href="https://www.google.com/maps/place/Ganjoni+Primary+School,+Archbishop+Makarios+Rd,+Mombasa/@-4.0644615,39.6635876,19z/data=!4m6!3m5!1s0x18401326122be353:0x41dc0a79566a700f!8m2!3d-4.0637!4d39.6631859!16s%2Fg%2F11b8tcllz2"
+                  href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-5 rounded-xl text-xs sm:text-sm inline-flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-98 cursor-pointer"
@@ -1733,13 +1777,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             {/* Interactive Google Maps Frame */}
             <div className="lg:col-span-7 bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm min-h-[340px] sm:min-h-[400px] relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.824584742884!2d39.6609972!3d-4.0637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18401326122be353%3A0x41dc0a79566a700f!2sGanjoni%20Primary%20School%2C%20Archbishop%20Makarios%20Rd%2C%20Mombasa!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
+                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d994.9464693737012!2d39.66370568422173!3d-4.064016499896472!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ske!4v1795000396644!5m2!1sen!2ske"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '340px' }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
                 title="Alberka Motors Showroom Location"
                 className="w-full h-full"
               />

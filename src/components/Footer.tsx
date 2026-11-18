@@ -90,7 +90,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <a
-              href="https://www.google.com/maps/place/Ganjoni+Primary+School,+Archbishop+Makarios+Rd,+Mombasa/@-4.0637,39.6631859,17z"
+              href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2.5 bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
@@ -184,7 +184,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a
-                  href="https://www.google.com/maps/place/Ganjoni+Primary+School,+Archbishop+Makarios+Rd,+Mombasa/@-4.0637,39.6631859,17z"
+                  href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-red-600 hover:text-red-700 font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors"

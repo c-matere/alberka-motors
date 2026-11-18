@@ -145,6 +145,27 @@ export const MODEL_HUBS: ModelHub[] = [
       { label: 'Delivered Cash', value: 'KES 1,850,000', desc: 'Struck from KES 2,050,000. Save KES 200,000 immediately.' },
     ],
   },
+  {
+    id: 'suzuki-every',
+    name: 'Suzuki Every',
+    make: 'Suzuki',
+    title: 'Suzuki Every Van Fleet Hub',
+    subtitle: '660cc Highly Economical Engine · Dual Sliding Doors · Maximum Commercial & Urban Utility',
+    tagline: 'The ultimate fuel-saver van in Kenya. Compact, reliable, ultra-efficient, and engineered for maximum payload utility with rock-bottom running costs.',
+    startingPriceKes: 1150000,
+    heroImage: '/vehicles/suzuki-every-2019/hero-front-34.jpg',
+    badge: 'FUEL SAVER UTILITY · READY TO WORK',
+    avgFuelEconomy: '20.2 KM/L',
+    groundClearance: '150 mm',
+    seatingCapacity: '4 Seats (Fold-Flat Cargo)',
+    driveTypes: '2WD Automatic',
+    verdict: 'Super-low maintenance, massive payload cargo volume with dual sliding doors, and unrivaled 20+ KM/L economy for business or city deliveries.',
+    highlights: [
+      { label: 'Fuel Economy', value: '20.2 KM/L', desc: 'Highly economical 660cc engine saves thousands weekly on fuel.' },
+      { label: 'Loading Utility', value: 'Dual Sliding Doors', desc: 'Effortless loading/unloading in tight Mombasa alleys and loading bays.' },
+      { label: 'Delivered Cash', value: 'KES 1,150,000', desc: 'All duties paid, NTSA registration ready, turnkey delivery.' },
+    ],
+  },
 ];
 
 // Helper: Determine Hub ID for any vehicle
@@ -152,6 +173,7 @@ export function getVehicleHubId(vehicle: Vehicle): string {
   if (vehicle.hubId) return vehicle.hubId;
   const lower = vehicle.name.toLowerCase();
   if (lower.includes('cx-5') || lower.includes('cx5') || lower.includes('mazda')) return 'mazda-cx-5';
+  if (lower.includes('every') || lower.includes('suzuki')) return 'suzuki-every';
   if (lower.includes('prado')) return 'toyota-prado';
   if (lower.includes('rav4')) return 'toyota-rav4';
   if (lower.includes('harrier')) return 'toyota-harrier';

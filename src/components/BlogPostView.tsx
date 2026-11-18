@@ -169,7 +169,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
 
       {/* 3. Widescreen Hero Cover Media */}
       <div className="max-w-[1100px] mx-auto px-4 sm:px-8 mb-12 sm:mb-16">
-        <div className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[560px] overflow-hidden rounded-2xl border border-zinc-200 hover:border-white/20 bg-zinc-100 shadow-[0_24px_60px_rgba(0,0,0,0.85)] relative group transition-colors">
+        <div className="w-full aspect-[16/10] sm:aspect-[21/10] max-h-[560px] overflow-hidden rounded-2xl border border-zinc-200/90 hover:border-zinc-300 bg-zinc-100 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.04)] ring-1 ring-zinc-950/[0.04] relative group transition-colors">
           <img
             src={post.coverImage}
             alt={post.title}

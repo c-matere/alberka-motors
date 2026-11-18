@@ -2296,5 +2296,259 @@ export const VEHICLES: Vehicle[] = [
       'AWD rear differential and transfer case fluid analysis',
       'Brembo-grade brake pad thickness verification'
     ]
+  },
+  {
+    id: 'suzuki-every-2019',
+    stockNo: 'ALB-EV19',
+    sbtStockId: 'EV2019',
+    chassisNo: 'DA17V-157665',
+    modelCode: 'HBD-DA17V',
+    engineCode: 'R06A (660cc)',
+    name: 'Suzuki Every Van 660cc Automatic',
+    moniker: 'Compact Ultra-Efficient Fuel-Saver Van',
+    essenceQuote: '🚐✨ SUZUKI EVERY – 2019 MODEL ✨🚐\n🔥 COMPACT • ULTRA-EFFICIENT • MAXIMUM UTILITY! 🔥\n🔹 Model: 2019 | Mileage: 157,000 KM | 660cc Highly Economical Engine\n🔹 Pure White Color 🤍 | Automatic Transmission | Unmatched Fuel Efficiency\n🔹 Sliding Rear Doors for Easy Loading & Unloading | Super Low Maintenance & Running Costs\n💯 The Ultimate Fuel-Saver Van – Compact, Reliable & Ready to Work! 💯\n📍 Available at Alberka Enterprises Ltd, Mombasa',
+    kicker: '2019 Model · 660cc Petrol · Dual Sliding Doors · Mombasa Stock',
+    tagline: 'Suzuki Every 2019 · 660cc Highly Economical Engine · Automatic · Pure White · Dual Sliding Doors',
+    priceKes: 1150000,
+    originalPriceKes: 1250000,
+    discountPercent: 8,
+    hubId: 'suzuki-every',
+    priceUsd: 5400,
+    freightUsd: 1300,
+    vanningUsd: 0,
+    inspectionUsd: 250,
+    insuranceUsd: 150,
+    totalCifUsd: 7100,
+    inventoryLocation: 'Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)',
+    sbtGrade: 'PA UTILITY SPECIAL',
+    year: 2019,
+    registrationMonth: '06',
+    manufactureYearMonth: '2019 / 06',
+    mileageKm: 157000,
+    steering: 'RHD',
+    category: 'van',
+    bodyType: 'VAN',
+    fuelType: 'PETROL',
+    transmission: 'AT',
+    drivetrain: '2WD',
+    doors: 5,
+    seats: 4,
+    engine: '660cc R06A 3-Cylinder DOHC 12V',
+    power: '49 HP @ 5,700 RPM',
+    torque: '62 Nm @ 3,500 RPM',
+    fuelEconomy: '20.2 km/L (Ultra-Efficient)',
+    exteriorColor: 'Pure White',
+    colorCode: '26U',
+    interiorColor: 'Durable Grey / Brown Fabric',
+    locationYard: 'Alberka Motors Showroom (Ganjoni, Mombasa)',
+    dimensions: '3.39m × 1.47m × 1.89m',
+    m3: '9.45 m³',
+    wheelbase: '2,430 mm',
+    groundClearance: '150 mm',
+    curbWeight: '880 kg',
+    grossWeight: '1,230 kg',
+    maxLoadingCapacity: '350 kg',
+    fuelTankCapacity: '37 Liters',
+    auctionGrade: '4.0',
+    auctionHall: 'CAA Tokyo / Direct Japanese Import',
+    interiorGrade: 'B',
+    inspectionStatus: 'QISJ / JEVIC Export Inspected & Cleared',
+    heroImage: '/vehicles/suzuki-every-2019/hero-front-34.jpg',
+    heroVideo: 'https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4',
+    options: {
+      pushStart: false,
+      smartKey: true,
+      powerWindows: true,
+      airConditioner: true,
+      powerSeats: false,
+      leatherSeats: false,
+      sunroof: false,
+      alloyWheels: false,
+      abs: true,
+      airbags: true,
+      backCamera: false,
+      camera360: false,
+      radarCruise: false,
+      laneAssist: false,
+      ledLights: false,
+      navigation: false,
+      audioPlayer: true,
+      fogLights: false,
+    },
+    status: 'In Stock',
+    colors: [
+      { name: 'Pure White', hex: '#FFFFFF', imageUrl: '/vehicles/suzuki-every-2019/hero-front-34.jpg' }
+    ],
+    closerLookPoints: [
+      {
+        id: 'sliding-doors',
+        title: 'Sliding Rear Doors',
+        metric: 'Dual Side',
+        metricLabel: 'Loading Access',
+        subtitle: 'Easy Loading & Unloading',
+        description: 'Dual sliding side doors allow rapid, effortless curb-side loading even in congested Mombasa alleys and narrow loading bays.',
+        imageUrl: '/vehicles/suzuki-every-2019/sliding-doors-seats.jpg'
+      },
+      {
+        id: 'engine-economy',
+        title: '660cc Highly Economical Engine',
+        metric: '20.2 km/L',
+        metricLabel: 'Fuel Economy',
+        subtitle: 'Unmatched Fuel Efficiency',
+        description: 'Compact 660cc Japanese R06A engine engineered for unbeatable fuel economy, low emissions, and super low maintenance costs.',
+        imageUrl: '/vehicles/suzuki-every-2019/engine-bay-660cc.jpg'
+      },
+      {
+        id: 'cargo-space',
+        title: 'Maximum Utility Cargo Bay',
+        metric: '350 KG',
+        metricLabel: 'Max Loading Capacity',
+        subtitle: 'Fold-Flat Rear Seating',
+        description: 'Rear passenger seat folds completely flat into the floor, providing a flat 350kg capacity cargo bed ready for immediate commercial delivery or luggage.',
+        imageUrl: '/vehicles/suzuki-every-2019/cargo-boot-open.jpg'
+      },
+      {
+        id: 'automatic-trans',
+        title: 'Automatic Transmission',
+        metric: 'AT',
+        metricLabel: 'Gearbox Type',
+        subtitle: 'Effortless City Drive',
+        description: 'Smooth dash-mounted automatic transmission with verified 157,000 KM Japanese odometer, ice-cold air conditioning, and power steering.',
+        imageUrl: '/vehicles/suzuki-every-2019/cockpit-dashboard.jpg'
+      }
+    ],
+    editorialFeatures: [
+      {
+        id: 'utility',
+        title: 'Commercial & Urban Utility',
+        badge: 'UTILITY FIRST',
+        lead: 'Maximum internal cubic volume packed into a nimble, park-anywhere chassis.',
+        narrative: [
+          'The 2019 Suzuki Every delivers unmatched business practicality with a massive flat cargo floor and dual sliding doors.',
+          'With a 350kg payload rating and fold-flat passenger bench, it transitions instantly between cargo hauling and crew transport.'
+        ],
+        specs: [
+          { label: 'Payload Capacity', value: '350 kg' },
+          { label: 'Side Access', value: 'Dual Sliding Doors' },
+          { label: 'Rear Access', value: 'Full-Height Tailgate' }
+        ],
+        slides: [
+          {
+            id: 'cargo-bay-slide',
+            title: 'Cavernous Loading Bay',
+            subtitle: 'Flat Floor Architecture',
+            imageUrl: '/vehicles/suzuki-every-2019/cargo-boot-open.jpg',
+            description: 'Wide rear tailgate opening and flat floor make packing effortless.'
+          },
+          {
+            id: 'sliding-doors-slide',
+            title: 'Dual Sliding Side Doors',
+            subtitle: 'Tight Space Loading',
+            imageUrl: '/vehicles/suzuki-every-2019/sliding-doors-seats.jpg',
+            description: 'Park close to walls or other cars and still slide the doors open fully.'
+          }
+        ]
+      },
+      {
+        id: 'cockpit',
+        title: 'Ergonomic Driver Workspace',
+        badge: 'CABIN COMFORT',
+        lead: 'High commanding driving posture with easy controls and walk-through floor.',
+        narrative: [
+          'The driver cockpit features an elevated dash-mounted gear lever that frees up lower floor room.',
+          'Equipped with verified 157,000 KM Japanese odometer, ice-cold factory AC, and crystal-clear instrument dials.'
+        ],
+        specs: [
+          { label: 'Transmission', value: 'Automatic (AT)' },
+          { label: 'Odometer', value: '157,000 KM Verified' },
+          { label: 'Air Conditioning', value: 'Factory High-Output AC' }
+        ],
+        slides: [
+          {
+            id: 'dash-shifter-slide',
+            title: 'Dash-Mounted AT Shifter',
+            subtitle: 'Walk-Through Floor',
+            imageUrl: '/vehicles/suzuki-every-2019/cockpit-dashboard.jpg',
+            description: 'High visibility commanding seating position with responsive power steering.'
+          },
+          {
+            id: 'odometer-cluster-slide',
+            title: 'Verified 157,000 KM Cluster',
+            subtitle: 'Genuine Provenance',
+            imageUrl: '/vehicles/suzuki-every-2019/odometer-cluster.jpg',
+            description: 'Crystal-clear Japanese instrument cluster with gear indicator and trip computer.'
+          }
+        ]
+      }
+    ],
+    chapters: [
+      {
+        id: 'utility-overview',
+        tabLabel: 'Utility & Economics',
+        eyebrow: 'BUILT FOR BUSINESS',
+        title: 'The Ultimate Kenyan Business Van',
+        narrative: [
+          'The 2019 Suzuki Every is celebrated worldwide as the gold standard in micro-commercial transport.',
+          'Its compact exterior footprint weaves through city traffic with ease, while the square-box body design maximizes internal volume.',
+          'Equipped with a punchy 660cc engine and automatic gearbox, it delivers unbeatable 20+ km/L fuel savings with minimal servicing overhead.'
+        ],
+        imageUrl: '/vehicles/suzuki-every-2019/hero-front-34.jpg',
+        highlights: [
+          { label: 'Payload', value: '350 kg' },
+          { label: 'Engine Size', value: '660 cc' },
+          { label: 'Fuel Economy', value: '20.2 km/L' },
+          { label: 'Transmission', value: 'Automatic (AT)' }
+        ]
+      }
+    ],
+    gallery: [
+      { title: 'Suzuki Every 2019 — Front Three Quarter', description: 'Available in our Mombasa showroom next to Ganjoni Primary School.', url: '/vehicles/suzuki-every-2019/hero-front-34.jpg' },
+      { title: 'Suzuki Every 2019 — Front Stance', description: 'Pure White exterior with chrome Suzuki badging and crystal headlights.', url: '/vehicles/suzuki-every-2019/front-stance.jpg' },
+      { title: 'Suzuki Every 2019 — Front Angle', description: 'Compact stance designed for tight city streets and easy parking.', url: '/vehicles/suzuki-every-2019/front-angle.jpg' },
+      { title: 'Suzuki Every 2019 — Front Direct', description: 'Clean body panels, Japanese auction Grade 4.0 inspection.', url: '/vehicles/suzuki-every-2019/front-direct.jpg' },
+      { title: 'Suzuki Every 2019 — Rear Tailgate', description: 'Rear wiper, high-mount brake light, and wide tailgate opening.', url: '/vehicles/suzuki-every-2019/rear-tailgate.jpg' },
+      { title: 'Suzuki Every 2019 — Rear Three Quarter', description: 'Crisp factory paint with tinted privacy glass.', url: '/vehicles/suzuki-every-2019/rear-three-quarter.jpg' },
+      { title: 'Suzuki Every 2019 — Rear Profile', description: 'Sliding door tracks and high vertical roof for tall cargo.', url: '/vehicles/suzuki-every-2019/rear-profile.jpg' },
+      { title: 'Suzuki Every 2019 — Cockpit Dashboard', description: 'Automatic transmission, audio system, dual air vents, and 12V socket.', url: '/vehicles/suzuki-every-2019/cockpit-dashboard.jpg' },
+      { title: 'Suzuki Every 2019 — Odometer Cluster', description: 'Genuine 157,665 km verified Japanese odometer reading.', url: '/vehicles/suzuki-every-2019/odometer-cluster.jpg' },
+      { title: 'Suzuki Every 2019 — Driver Seat', description: 'Durable cloth bucket seat with high lumbar support and cup holders.', url: '/vehicles/suzuki-every-2019/driver-seat.jpg' },
+      { title: 'Suzuki Every 2019 — Passenger Seat', description: 'Clean non-smoker interior preserved in pristine factory condition.', url: '/vehicles/suzuki-every-2019/passenger-seat.jpg' },
+      { title: 'Suzuki Every 2019 — Cabin Walk-Through', description: 'Spacious headspace and clear visibility all around.', url: '/vehicles/suzuki-every-2019/cabin-through-view.jpg' },
+      { title: 'Suzuki Every 2019 — Sliding Door & Rear Bench', description: 'Wide-opening sliding door with folding 2nd-row passenger bench.', url: '/vehicles/suzuki-every-2019/sliding-doors-seats.jpg' },
+      { title: 'Suzuki Every 2019 — Open Cargo Boot', description: 'Huge cargo bay with low loading lip, perfect for 350kg payloads.', url: '/vehicles/suzuki-every-2019/cargo-boot-open.jpg' },
+      { title: 'Suzuki Every 2019 — 660cc Engine Bay', description: 'Clean front compartment with battery, coolant, and brake fluid reservoirs.', url: '/vehicles/suzuki-every-2019/engine-bay-660cc.jpg' }
+    ],
+    specifications: [
+      {
+        category: 'Powertrain & Performance',
+        items: [
+          { label: 'Engine Type', value: '660cc R06A 3-Cylinder DOHC 12V' },
+          { label: 'Horsepower', value: '49 HP @ 5,700 RPM' },
+          { label: 'Torque', value: '62 Nm @ 3,500 RPM' },
+          { label: 'Fuel Delivery', value: 'Multi-Point Fuel Injection (Ultra-Efficient)' },
+          { label: 'Transmission', value: 'Automatic (AT) with Overdrive' },
+          { label: 'Fuel Tank Capacity', value: '37 Liters' }
+        ]
+      },
+      {
+        category: 'Dimensions & Capacities',
+        items: [
+          { label: 'Dimensions (L × W × H)', value: '3,395 × 1,475 × 1,895 mm' },
+          { label: 'Wheelbase', value: '2,430 mm' },
+          { label: 'Ground Clearance', value: '150 mm' },
+          { label: 'Payload Capacity', value: '350 kg' },
+          { label: 'Curb Weight', value: '880 kg' },
+          { label: 'Doors / Seats', value: '5 Doors / 4 Seats' }
+        ]
+      }
+    ],
+    workshopProtocol: [
+      'Comprehensive 100-point pre-delivery mechanical overhaul at Mombasa workshop',
+      'Fresh synthetic engine oil and OEM filter replacement',
+      'Automatic transmission fluid inspection and diagnostic electronic scan',
+      'Front and rear brake pads and suspension bushing inspection',
+      'Dual sliding door tracks lubricated and aligned for effortless glide',
+      'NTSA TIMS logbook transfer and QISJ/JEVIC verification documented'
+    ]
   }
 ];

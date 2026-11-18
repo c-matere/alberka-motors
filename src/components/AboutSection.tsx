@@ -277,13 +277,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               <div className="pt-2">
                 <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm relative">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.824584742884!2d39.6609972!3d-4.0637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18401326122be353%3A0x41dc0a79566a700f!2sGanjoni%20Primary%20School%2C%20Archbishop%20Makarios%20Rd%2C%20Mombasa!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
+                    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d994.9464693737012!2d39.66370568422173!3d-4.064016499896472!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ske!4v1795000396644!5m2!1sen!2ske"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="strict-origin-when-cross-origin"
                     title="Alberka Motors Showroom Location"
                     className="w-full h-full"
                   />
@@ -292,7 +292,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100">
                 <a
-                  href="https://www.google.com/maps/place/Ganjoni+Primary+School,+Archbishop+Makarios+Rd,+Mombasa/@-4.0644615,39.6635876,19z/data=!4m6!3m5!1s0x18401326122be353:0x41dc0a79566a700f!8m2!3d-4.0637!4d39.6631859!16s%2Fg%2F11b8tcllz2"
+                  href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-ghost !text-xs !py-3 !px-5 inline-flex items-center gap-2 w-full sm:w-auto justify-center cursor-pointer"
