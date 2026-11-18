@@ -1,13 +1,15 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { SkeletonImage } from './SkeletonImage';
+import { CmsPage } from '../services/cmsContent';
 
 interface AboutSectionProps {
   onExploreFleet: () => void;
   onExploreLocations: () => void;
+  pageData?: CmsPage;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onExploreLocations }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onExploreLocations, pageData }) => {
   return (
     <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-zinc-900 relative">
       <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 relative z-10">
@@ -16,14 +18,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onExploreFleet, onEx
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              HERITAGE & PROVENANCE · ESTABLISHED 2000
+              {pageData?.badge || 'HERITAGE & PROVENANCE · ESTABLISHED 2000'}
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
-            26 Years in Kenya.<br />4,000+ Verified Imports.
+            {pageData?.heroTitle || (
+              <>26 Years in Kenya.<br />4,000+ Verified Imports.</>
+            )}
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            Founded in 2000, Alberka Enterprises was built on one strict standard: zero accident histories, zero mileage tampering, and transparent direct pricing.
+            {pageData?.heroSubtitle || 'Founded in 2000, Alberka Enterprises was built on one strict standard: zero accident histories, zero mileage tampering, and transparent direct pricing.'}
           </p>
         </div>
 

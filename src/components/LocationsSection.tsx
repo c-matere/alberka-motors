@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Clock, Calendar, CheckCircle2, MessageCircle, ArrowRight } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
+import { CmsPage, CmsSiteSettings } from '../services/cmsContent';
 
 interface LocationsSectionProps {
   vehicles: Vehicle[];
   preselectedVehicle?: Vehicle | null;
+  pageData?: CmsPage;
+  settings?: CmsSiteSettings;
 }
 
 export const LocationsSection: React.FC<LocationsSectionProps> = ({
   vehicles,
   preselectedVehicle,
+  pageData,
+  settings,
 }) => {
   const [testDriveData, setTestDriveData] = useState({
     name: '',
@@ -38,14 +43,14 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              PHYSICAL HUBS · QUALITY JAPANESE IMPORTS
+              {pageData?.badge || 'PHYSICAL HUBS · QUALITY JAPANESE IMPORTS'}
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
-            Showrooms & Inspection Hubs
+            {pageData?.heroTitle || 'Showrooms & Inspection Hubs'}
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            Experience our verified collection in person, tour our technical workshop facilities, or receive an on-the-spot valuation for your trade-in.
+            {pageData?.heroSubtitle || 'Experience our verified collection in person, tour our technical workshop facilities, or receive an on-the-spot valuation for your trade-in.'}
           </p>
         </div>
 

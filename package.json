@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cms:dev": "pnpm --dir cms dev",
+    "cms:build": "pnpm --dir cms build",
+    "cms:start": "pnpm --dir cms start",
+    "cms:seed": "pnpm --dir cms seed"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.4",

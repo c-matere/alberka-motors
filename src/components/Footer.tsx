@@ -1,15 +1,18 @@
 import React from 'react';
 import { Vehicle } from '../data/vehicles';
 import { MessageCircle } from 'lucide-react';
+import { CmsSiteSettings } from '../services/cmsContent';
 
 interface FooterProps {
   vehicles: Vehicle[];
   onNavigate: (view: string, param?: string) => void;
   onSelectVehicle: (vehicle: Vehicle) => void;
+  settings?: CmsSiteSettings;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigate,
+  settings,
 }) => {
   return (
     <footer className="w-full bg-transparent relative text-zinc-600 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
@@ -38,23 +41,23 @@ export const Footer: React.FC<FooterProps> = ({
             />
             <div className="border-l border-zinc-200 pl-4 text-left">
               <span className="font-bold text-sm tracking-tight text-zinc-950 block leading-tight">
-                ALBERKA ENTERPRISES (KENYA) LTD
+                {settings?.businessName?.toUpperCase() || 'ALBERKA ENTERPRISES (KENYA) LTD'}
               </span>
               <span className="font-mono text-[10px] tracking-wider text-zinc-600 mt-0.5 block">
-                DIRECT JAPANESE IMPORTS · EST. 2000
+                {settings?.tagline?.toUpperCase() || 'DIRECT JAPANESE IMPORTS · EST. 2000'}
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <a
-              href="https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles."
+              href={`https://wa.me/${settings?.whatsappNumber || '254714333888'}?text=Hello%20Alberka%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles.`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-white py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"
             >
               <MessageCircle className="w-3.5 h-3.5" />
-              <span>WhatsApp Us (0714 333 888)</span>
+              <span>WhatsApp Us ({settings?.phone || '0714 333 888'})</span>
             </a>
           </div>
         </div>
@@ -185,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Copyright Strip with Gradient Feather Divider */}
         <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/[0.08] after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
-          <p>© {new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports Since 2000.</p>
+          <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports Since 2000.`}</p>
           <div className="flex items-center gap-3">
             <span>Kenya Nationwide</span>
             <span>·</span>

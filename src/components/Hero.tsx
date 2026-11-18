@@ -11,9 +11,12 @@ import {
   X,
 } from 'lucide-react';
 
+import { CmsPage } from '../services/cmsContent';
+
 interface HeroProps {
   onExploreFleet: () => void;
   onExploreWorkshop: () => void;
+  pageData?: CmsPage;
 }
 
 interface FlagshipSlide {
@@ -70,7 +73,7 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
   },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop }) => {
+export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, pageData }) => {
   const [activeSlideIdx, setActiveSlideIdx] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isHeroLightboxOpen, setIsHeroLightboxOpen] = useState(false);
@@ -149,18 +152,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
         {/* Minimalist Provenance Eyebrow (Hidden on mobile to preserve vertical air) */}
         <div className="hidden sm:inline-flex items-center gap-2 animate-hero-1">
           <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-600 font-semibold">
-            QUALITY JAPANESE IMPORTS
+            {pageData?.badge || 'QUALITY JAPANESE IMPORTS'}
           </span>
         </div>
 
         {/* Display Hero Title with Editorial Air and Restraint - Compact for Above-the-Fold Video */}
         <div className="space-y-1 sm:space-y-1.5 max-w-[980px] mx-auto">
           <h1 className="text-[26px] xs:text-[34px] sm:text-[50px] md:text-[58px] font-bold text-zinc-950 tracking-[-0.035em] leading-[1.1] animate-hero-2">
-            Japanese Provenance.
+            {pageData?.heroTitle || 'Japanese Provenance.'}
           </h1>
 
           <p className="max-w-[460px] mx-auto text-zinc-600 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
-            Grade 4.5+ auction imports, fully prepared in our workshop.
+            {pageData?.heroSubtitle || 'Grade 4.5+ auction imports, fully prepared in our workshop.'}
           </p>
         </div>
 
@@ -170,7 +173,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop })
             onClick={onExploreFleet}
             className="btn-white group py-2 px-3.5 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-semibold tracking-tight inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
           >
-            <span>Explore Collection</span>
+            <span>{pageData?.ctaText || 'Explore Collection'}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
           

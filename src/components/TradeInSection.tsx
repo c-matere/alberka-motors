@@ -12,13 +12,15 @@ import {
 import { Vehicle } from '../data/vehicles';
 import { useAnimatedNumber } from '../hooks/useAnimations';
 import { SkeletonImage } from './SkeletonImage';
+import { CmsPage } from '../services/cmsContent';
 
 interface TradeInSectionProps {
   vehicles: Vehicle[];
   onSelectVehicle?: (vehicle: Vehicle) => void;
+  pageData?: CmsPage;
 }
 
-export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSelectVehicle }) => {
+export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSelectVehicle, pageData }) => {
   const [makeModel, setMakeModel] = useState('Toyota Fielder 1.5G');
   const [yearTier, setYearTier] = useState('2018');
   const [mileageTier, setMileageTier] = useState('mid');
@@ -141,14 +143,14 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              EQUITY CONVERSION · QUALITY JAPANESE IMPORTS
+              {pageData?.badge || 'EQUITY CONVERSION · QUALITY JAPANESE IMPORTS'}
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
-            Trade In Your Current Vehicle
+            {pageData?.heroTitle || 'Trade In Your Current Vehicle'}
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            Convert your existing car keys into immediate deposit equity. Avoid private classified friction and upgrade directly into an inspected Japanese import backed by our 5,000 km warranty.
+            {pageData?.heroSubtitle || 'Convert your existing car keys into immediate deposit equity. Avoid private classified friction and upgrade directly into an inspected Japanese import backed by our 5,000 km warranty.'}
           </p>
         </div>
 

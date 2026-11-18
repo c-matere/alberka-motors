@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CmsPage } from '../services/cmsContent';
 import {
   ShieldCheck,
   Droplet,
@@ -14,7 +15,11 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-export const WorkshopSection: React.FC = () => {
+interface WorkshopSectionProps {
+  pageData?: CmsPage;
+}
+
+export const WorkshopSection: React.FC<WorkshopSectionProps> = ({ pageData }) => {
   const [activeStage, setActiveStage] = useState(0);
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
   const [bookingData, setBookingData] = useState({
@@ -123,14 +128,14 @@ export const WorkshopSection: React.FC = () => {
         <div className="text-center max-w-[800px] mx-auto space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              TECHNICAL WORKSHOP · TANGANA ROAD
+              {pageData?.badge || 'TECHNICAL WORKSHOP · TANGANA ROAD'}
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
-            Workshop Preparation & 5,000 KM Warranty
+            {pageData?.heroTitle || 'Workshop Preparation & 5,000 KM Warranty'}
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            We never outsource technical preparation. Every vehicle arriving from the port of arrival undergoes an in-house 100-point mechanical overhaul before delivery.
+            {pageData?.heroSubtitle || 'We never outsource technical preparation. Every vehicle arriving from the port of arrival undergoes an in-house 100-point mechanical overhaul before delivery.'}
           </p>
         </div>
 

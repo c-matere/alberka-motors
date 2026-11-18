@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { VEHICLES, Vehicle } from './data/vehicles';
+import { useVehicles } from './hooks/useVehicles';
+import { useCmsPages } from './hooks/useCmsPages';
+import { useSiteSettings } from './hooks/useSiteSettings';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -26,6 +29,9 @@ import { SectionGradientFade } from './components/SectionGradientFade';
 import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
+  const { vehicles, isCmsConnected } = useVehicles();
+  const { pages } = useCmsPages();
+  const { settings } = useSiteSettings();
   const [currentView, setCurrentView] = useState<string>('overview');
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPost | null>(null);
@@ -76,7 +82,7 @@ export function App() {
       // Car detail page: #car-toyota-harrier-hybrid
       if (hash.startsWith('car-')) {
         const carId = hash.replace('car-', '');
-        const found = VEHICLES.find((v) => v.id === carId);
+        const found = vehicles.find((v) => v.id === carId);
         if (found) {
           setSelectedVehicle(found);
           setSelectedBlogPost(null);
@@ -195,7 +201,7 @@ export function App() {
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
-            allVehicles={VEHICLES}
+            allVehicles={vehicles}
             onSelectVehicle={handleSelectVehicle}
             onBackToFleet={() => handleNavigate('inventory')}
             isFavorite={favorites.includes(selectedVehicle.id)}
@@ -207,7 +213,7 @@ export function App() {
           <BlogPostView
             post={selectedBlogPost}
             allPosts={blogs}
-            allVehicles={VEHICLES}
+            allVehicles={vehicles}
             onBackToJournal={() => handleNavigate('blog')}
             onSelectPost={handleSelectBlogPost}
             onSelectVehicle={handleSelectVehicle}
@@ -221,6 +227,7 @@ export function App() {
                 <Hero
                   onExploreFleet={() => handleNavigate('inventory')}
                   onExploreWorkshop={() => handleNavigate('workshop')}
+                  pageData={pages['overview']}
                 />
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
@@ -240,14 +247,14 @@ export function App() {
                         onClick={() => handleNavigate('inventory')}
                         className="btn-ghost !text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer"
                       >
-                        <span>View Full Collection ({VEHICLES.length})</span>
+                        <span>View Full Collection ({vehicles.length})</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
                     {/* Expansive 2x2 Exhibition Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-                      {VEHICLES.map((vehicle, idx) => (
+                      {vehicles.map((vehicle, idx) => (
                         <VehicleCard
                           key={vehicle.id}
                           vehicle={vehicle}
@@ -389,14 +396,14 @@ export function App() {
                             SHOWROOM & WORKSHOP HUB
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
-                            Tangana Road, Majengo
+                            {settings.mombasaYardAddress.split(',')[0] || 'Tangana Road, Majengo'}
                           </h3>
                           <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                            Opposite AutoXpress / Near Railway Station. Featuring our primary showroom floor, hoist inspection bays, and dedicated Japanese import workshop.
+                            {settings.mombasaYardAddress} · Featuring our primary showroom floor, hoist inspection bays, and dedicated Japanese import workshop.
                           </p>
                           <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
-                            <p>Direct: <span className="text-zinc-950">0714 333 888 / 0737 333 888</span></p>
-                            <p>Hours: <span className="text-zinc-700">Mon - Sat · 8:00 AM - 6:00 PM</span></p>
+                            <p>Direct: <span className="text-zinc-950">{settings.phone}</span></p>
+                            <p>Hours: <span className="text-zinc-700">{settings.workingHours}</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>
@@ -408,14 +415,14 @@ export function App() {
                             CONSULTATION SALON
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
-                            Mwanzi Road, Westlands
+                            {settings.nairobiShowroomAddress.split(',')[0] || 'Mwanzi Road, Westlands'}
                           </h3>
                           <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                            Centrally situated in Westlands for convenient private viewings, trade-in valuations, and concierge vehicle deliveries across Kenya.
+                            {settings.nairobiShowroomAddress} · Centrally situated for convenient private viewings, trade-in valuations, and concierge vehicle deliveries across Kenya.
                           </p>
                           <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
-                            <p>Direct: <span className="text-zinc-950">0748 999 333</span></p>
-                            <p>Hours: <span className="text-zinc-700">Mon - Sat · 8:30 AM - 5:30 PM</span></p>
+                            <p>Direct: <span className="text-zinc-950">{settings.phone}</span></p>
+                            <p>Hours: <span className="text-zinc-700">{settings.workingHours}</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>
@@ -430,15 +437,16 @@ export function App() {
 
             {currentView === 'inventory' && (
               <InventorySection
-                vehicles={VEHICLES}
+                vehicles={vehicles}
                 favorites={favorites}
                 onToggleFavorite={handleToggleFavorite}
                 onSelectVehicle={handleSelectVehicle}
                 onCustomImportRequest={() => handleNavigate('about')}
+                pageData={pages['inventory']}
               />
             )}
 
-            {currentView === 'workshop' && <WorkshopSection />}
+            {currentView === 'workshop' && <WorkshopSection pageData={pages['workshop']} />}
 
             {currentView === 'blog' && (
               <BlogSection
@@ -452,8 +460,9 @@ export function App() {
 
             {currentView === 'trade-in' && (
               <TradeInSection
-                vehicles={VEHICLES}
+                vehicles={vehicles}
                 onSelectVehicle={handleSelectVehicle}
+                pageData={pages['trade-in']}
               />
             )}
 
@@ -461,19 +470,22 @@ export function App() {
               <AboutSection
                 onExploreFleet={() => handleNavigate('inventory')}
                 onExploreLocations={() => handleNavigate('locations')}
+                pageData={pages['about']}
               />
             )}
 
             {currentView === 'locations' && (
               <LocationsSection
-                vehicles={VEHICLES}
+                vehicles={vehicles}
                 preselectedVehicle={testDriveTargetVehicle}
+                pageData={pages['locations']}
+                settings={settings}
               />
             )}
 
             {currentView === 'sitemap' && (
               <SitemapSection
-                vehicles={VEHICLES}
+                vehicles={vehicles}
                 onNavigate={handleNavigate}
                 onSelectVehicle={handleSelectVehicle}
               />
@@ -503,16 +515,17 @@ export function App() {
 
       {/* Footer */}
       <Footer
-        vehicles={VEHICLES}
+        vehicles={vehicles}
         onNavigate={handleNavigate}
         onSelectVehicle={handleSelectVehicle}
+        settings={settings}
       />
 
       {/* Search Palette */}
       <SearchModal
         isOpen={searchModalOpen}
         onClose={() => setSearchModalOpen(false)}
-        vehicles={VEHICLES}
+        vehicles={vehicles}
         onSelectVehicle={handleSelectVehicle}
       />
 
@@ -521,7 +534,7 @@ export function App() {
         isOpen={favoritesModalOpen}
         onClose={() => setFavoritesModalOpen(false)}
         favorites={favorites}
-        vehicles={VEHICLES}
+        vehicles={vehicles}
         onToggleFavorite={handleToggleFavorite}
         onSelectVehicle={handleSelectVehicle}
         onBrowseFleet={() => handleNavigate('inventory')}
@@ -531,7 +544,7 @@ export function App() {
       <WhispersDrawer
         isOpen={whispersDrawerOpen}
         onClose={() => setWhispersDrawerOpen(false)}
-        vehicles={VEHICLES}
+        vehicles={vehicles}
         onSelectVehicle={handleSelectVehicle}
       />
 

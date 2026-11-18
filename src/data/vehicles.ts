@@ -34,17 +34,43 @@ export interface EditorialFeature {
   slides: FeatureSlide[];
 }
 
+export interface SBTOptions {
+  pushStart: boolean;
+  smartKey: boolean;
+  powerWindows: boolean;
+  airConditioner: boolean;
+  powerSeats: boolean;
+  leatherSeats: boolean;
+  sunroof: boolean;
+  alloyWheels: boolean;
+  abs: boolean;
+  airbags: boolean;
+  backCamera: boolean;
+  camera360: boolean;
+  radarCruise: boolean;
+  laneAssist: boolean;
+  ledLights: boolean;
+  navigation: boolean;
+}
+
 export interface Vehicle {
   id: string;
   stockNo: string;
+  sbtStockId: string; // SBT Japan Exporter Stock ID
+  chassisNo: string; // Frame / Chassis No
+  modelCode: string; // Japanese Model Code
+  engineCode: string; // Engine Series Code
   name: string;
-  moniker: string; // Rolls-Royce inspired persona/title
-  essenceQuote: string; // Contemplative grand statement
+  moniker: string;
+  essenceQuote: string;
   kicker: string;
   tagline: string;
   priceKes: number;
   year: number;
+  registrationMonth: string;
+  manufactureYearMonth: string;
   mileageKm: number;
+  steering: 'RHD' | 'LHD';
   category: 'suv' | 'hybrid' | 'van' | 'compact' | 'executive';
   bodyType: string;
   fuelType: string;
@@ -54,10 +80,27 @@ export interface Vehicle {
   power: string;
   torque: string;
   fuelEconomy: string;
+  exteriorColor: string;
+  colorCode: string;
+  interiorColor: string;
+  doors: number;
+  seats: number;
+  locationYard: string;
+  dimensions: string; // Length x Width x Height in meters & mm
+  m3: string; // SBT Cubic Meters Shipping Volume
+  wheelbase: string;
+  groundClearance: string;
+  curbWeight: string;
+  grossWeight: string;
+  maxLoadingCapacity?: string;
+  fuelTankCapacity: string;
   auctionGrade: string;
   auctionHall: string;
   interiorGrade: string;
-  status: 'In Stock' | 'Cleared Port';
+  exteriorGrade?: string;
+  inspectionStatus: string;
+  options: SBTOptions;
+  status: 'In Stock' | 'Cleared Port' | 'In Transit';
   heroVideo: string;
   heroImage: string;
   colors: VehicleColor[];
@@ -89,6 +132,46 @@ export const VEHICLES: Vehicle[] = [
   {
     id: 'toyota-rav4-adventure',
     stockNo: 'ALB-4062',
+    sbtStockId: 'SBT-TY-RAV4-4062',
+    chassisNo: '6AA-AXAH54-0018294',
+    modelCode: '6AA-AXAH54',
+    engineCode: 'A25A-FXS',
+    registrationMonth: '08',
+    manufactureYearMonth: '2020 / 06',
+    steering: 'RHD',
+    exteriorColor: 'Urban Khaki / Ash Gray 2-Tone',
+    colorCode: '2TX',
+    interiorColor: 'Black SofTex Leather with Orange Stitching',
+    doors: 5,
+    seats: 5,
+    locationYard: 'Mombasa Port (Ready for Delivery)',
+    dimensions: '4.61m × 1.86m × 1.69m (4,610 × 1,865 × 1,690 mm)',
+    m3: '14.53 m³',
+    wheelbase: '2,690 mm',
+    groundClearance: '200 mm',
+    curbWeight: '1,670 kg',
+    grossWeight: '1,995 kg',
+    maxLoadingCapacity: '450 kg',
+    fuelTankCapacity: '55 L',
+    inspectionStatus: 'QISJ Certified & JEVIC Inspected',
+    options: {
+      pushStart: true,
+      smartKey: true,
+      powerWindows: true,
+      airConditioner: true,
+      powerSeats: true,
+      leatherSeats: true,
+      sunroof: false,
+      alloyWheels: true,
+      abs: true,
+      airbags: true,
+      backCamera: true,
+      camera360: false,
+      radarCruise: true,
+      laneAssist: true,
+      ledLights: true,
+      navigation: true,
+    },
     name: 'Toyota RAV4 Adventure AWD',
     moniker: 'Rugged All-Weather SUV',
     essenceQuote: 'Built tough for rough Kenyan roads, comfortable for daily city driving. Smart all-wheel drive with high ground clearance and generous boot space.',
@@ -448,6 +531,46 @@ export const VEHICLES: Vehicle[] = [
   {
     id: 'toyota-harrier-hybrid',
     stockNo: 'ALB-4061',
+    sbtStockId: 'SBT-TY-HAR-4061',
+    chassisNo: '6AA-AXUH85-0012431',
+    modelCode: '6AA-AXUH85',
+    engineCode: 'A25A-FXS',
+    registrationMonth: '05',
+    manufactureYearMonth: '2021 / 03',
+    steering: 'RHD',
+    exteriorColor: 'Precious Black Pearl',
+    colorCode: '219',
+    interiorColor: 'Dim Gray / Saddle Brown Perforated Leather',
+    doors: 5,
+    seats: 5,
+    locationYard: 'Mombasa Port (Cleared Port)',
+    dimensions: '4.74m × 1.85m × 1.66m (4,740 × 1,855 × 1,660 mm)',
+    m3: '14.59 m³',
+    wheelbase: '2,690 mm',
+    groundClearance: '195 mm',
+    curbWeight: '1,750 kg',
+    grossWeight: '2,025 kg',
+    maxLoadingCapacity: '420 kg',
+    fuelTankCapacity: '55 L',
+    inspectionStatus: 'QISJ Certified & JEVIC Inspected',
+    options: {
+      pushStart: true,
+      smartKey: true,
+      powerWindows: true,
+      airConditioner: true,
+      powerSeats: true,
+      leatherSeats: true,
+      sunroof: true,
+      alloyWheels: true,
+      abs: true,
+      airbags: true,
+      backCamera: true,
+      camera360: true,
+      radarCruise: true,
+      laneAssist: true,
+      ledLights: true,
+      navigation: true,
+    },
     name: 'Toyota Harrier Hybrid Z Leather Package',
     moniker: 'Luxury Hybrid Crossover',
     essenceQuote: 'A quiet, comfortable luxury SUV with smooth hybrid power. Premium leather seats, dimming panoramic roof, and excellent fuel savings of over 21 km per liter.',
@@ -797,6 +920,46 @@ export const VEHICLES: Vehicle[] = [
   {
     id: 'nissan-note-epower',
     stockNo: 'ALB-4059',
+    sbtStockId: 'SBT-NS-NOT-4059',
+    chassisNo: 'DAA-HE12-385921',
+    modelCode: 'DAA-HE12',
+    engineCode: 'HR12DE-EM57',
+    registrationMonth: '10',
+    manufactureYearMonth: '2019 / 08',
+    steering: 'RHD',
+    exteriorColor: 'Imperial Amber Metallic',
+    colorCode: 'CAS',
+    interiorColor: 'Medalist Jacquard Leather & Suede',
+    doors: 5,
+    seats: 5,
+    locationYard: 'Nairobi Showroom (Ready for Viewing)',
+    dimensions: '4.10m × 1.69m × 1.52m (4,100 × 1,695 × 1,520 mm)',
+    m3: '10.56 m³',
+    wheelbase: '2,600 mm',
+    groundClearance: '150 mm',
+    curbWeight: '1,220 kg',
+    grossWeight: '1,495 kg',
+    maxLoadingCapacity: '350 kg',
+    fuelTankCapacity: '41 L',
+    inspectionStatus: 'QISJ Certified',
+    options: {
+      pushStart: true,
+      smartKey: true,
+      powerWindows: true,
+      airConditioner: true,
+      powerSeats: false,
+      leatherSeats: true,
+      sunroof: false,
+      alloyWheels: true,
+      abs: true,
+      airbags: true,
+      backCamera: true,
+      camera360: true,
+      radarCruise: false,
+      laneAssist: true,
+      ledLights: true,
+      navigation: true,
+    },
     name: 'Nissan Note e-POWER Medalist',
     moniker: 'Smart City Hatchback',
     essenceQuote: 'Instant electric acceleration with zero plug-in hassle. Quick in traffic, spacious inside, and outstanding fuel savings of up to 34 km per liter.',
@@ -1100,6 +1263,46 @@ export const VEHICLES: Vehicle[] = [
   {
     id: 'nissan-serena-highway-star',
     stockNo: 'ALB-4060',
+    sbtStockId: 'SBT-NS-SER-4060',
+    chassisNo: '6AA-HFC27-048211',
+    modelCode: '6AA-HFC27',
+    engineCode: 'HR12DE-EM57',
+    registrationMonth: '02',
+    manufactureYearMonth: '2019 / 12',
+    steering: 'RHD',
+    exteriorColor: 'Diamond Black Pearl',
+    colorCode: 'G41',
+    interiorColor: 'Highway Star Charcoal Leatherette & Fabric',
+    doors: 5,
+    seats: 7,
+    locationYard: 'Mombasa Port (Cleared Port)',
+    dimensions: '4.77m × 1.74m × 1.86m (4,770 × 1,740 × 1,865 mm)',
+    m3: '15.48 m³',
+    wheelbase: '2,860 mm',
+    groundClearance: '160 mm',
+    curbWeight: '1,760 kg',
+    grossWeight: '2,145 kg',
+    maxLoadingCapacity: '500 kg',
+    fuelTankCapacity: '55 L',
+    inspectionStatus: 'QISJ Certified & JEVIC Inspected',
+    options: {
+      pushStart: true,
+      smartKey: true,
+      powerWindows: true,
+      airConditioner: true,
+      powerSeats: false,
+      leatherSeats: true,
+      sunroof: false,
+      alloyWheels: true,
+      abs: true,
+      airbags: true,
+      backCamera: true,
+      camera360: true,
+      radarCruise: true,
+      laneAssist: true,
+      ledLights: true,
+      navigation: true,
+    },
     name: 'Nissan Serena Highway Star e-POWER',
     moniker: 'Spacious Family Cruiser',
     essenceQuote: 'Comfortable travel for the entire family. A quiet, smooth electric drive with automatic foot-kick sliding doors and seats designed to prevent fatigue on long road trips.',

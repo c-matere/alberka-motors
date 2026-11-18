@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Search, X, ArrowRight, ArrowUpDown, Sparkles } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { VehicleCard } from './VehicleCard';
+import { CmsPage } from '../services/cmsContent';
 
 interface InventorySectionProps {
   vehicles: Vehicle[];
@@ -9,6 +10,7 @@ interface InventorySectionProps {
   onToggleFavorite: (id: string) => void;
   onSelectVehicle: (vehicle: Vehicle) => void;
   onCustomImportRequest: () => void;
+  pageData?: CmsPage;
 }
 
 export const InventorySection: React.FC<InventorySectionProps> = ({
@@ -17,6 +19,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   onToggleFavorite,
   onSelectVehicle,
   onCustomImportRequest,
+  pageData,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -67,13 +70,13 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       {/* 1. Section Editorial Title Bar (Scrolls naturally with generous breathing space) */}
       <div className="pt-16 sm:pt-24 pb-10 sm:pb-14 px-4 sm:px-8 max-w-[1240px] mx-auto text-center space-y-4">
         <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-600 font-semibold block">
-          VERIFIED INVENTORY · QUALITY JAPANESE IMPORTS
+          {pageData?.badge || 'VERIFIED INVENTORY · QUALITY JAPANESE IMPORTS'}
         </span>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
-          Vehicles in Stock
+          {pageData?.heroTitle || 'Vehicles in Stock'}
         </h1>
         <p className="text-sm sm:text-base text-zinc-700 max-w-lg mx-auto leading-relaxed font-normal">
-          Japan auction Grade 4.5+ units, 100-point workshop serviced, covered by our 5,000 km written warranty.
+          {pageData?.heroSubtitle || 'Japan auction Grade 4.5+ units, 100-point workshop serviced, covered by our 5,000 km written warranty.'}
         </p>
       </div>
 

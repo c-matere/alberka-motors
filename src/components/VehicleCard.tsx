@@ -118,13 +118,17 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           )}
         </div>
 
-        {/* Clean Line 1: Year, Mileage & Drivetrain */}
-        <div className="flex items-center gap-2 text-xs font-mono text-zinc-700 font-medium mb-1.5">
+        {/* Clean Line 1: Year, Mileage, SBT Model Code & Drivetrain */}
+        <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-700 font-medium mb-1.5 flex-wrap">
           <span className="font-bold text-zinc-950 text-[13px]">{vehicle.year}</span>
           <span className="text-zinc-400 font-bold">·</span>
           <span className="text-zinc-800 font-semibold">{vehicle.mileageKm.toLocaleString()} KM</span>
           <span className="text-zinc-400 font-bold">·</span>
           <span className="text-zinc-800 font-semibold">{getPowertrainBadge(vehicle)}</span>
+          <span className="text-zinc-400 font-bold">·</span>
+          <span className="bg-zinc-100 text-zinc-800 font-mono text-[10px] font-bold px-1.5 py-0.5 rounded border border-zinc-300">
+            {vehicle.modelCode}
+          </span>
         </div>
 
         {/* Clean Line 2: Vehicle Model Title (Full Model Title, 2 Lines Max) */}
