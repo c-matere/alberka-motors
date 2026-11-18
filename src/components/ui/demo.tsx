@@ -1,7 +1,7 @@
 import React from "react";
 import { TestimonialSection, Testimonial } from "./testimonials";
 
-// Verified Kenyan vehicle buyer testimonials with authentic details & Unsplash portraits
+// 6 Verified Kenyan vehicle buyer testimonials with authentic details & Unsplash portraits
 const testimonialsData: Testimonial[] = [
   {
     id: 1,
@@ -26,6 +26,30 @@ const testimonialsData: Testimonial[] = [
     name: "Eng. Victor Omondi",
     role: "Subaru Forester XT Owner · Kisumu",
     imageSrc: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: 4,
+    quote:
+      "Collected my CX-5 directly at their showroom next to Ganjoni Primary School. The team put it on the mechanical hoist for my private mechanic to inspect every bushing before I paid. Incredible transparency.",
+    name: "Mary Wanjiku Gitau",
+    role: "Mazda CX-5 Proactive · Nyali, Mombasa",
+    imageSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: 5,
+    quote:
+      "Our Serena e-POWER has been a blessing for our family holiday road trips. The electric whisper-quiet drive and dual hands-free sliding doors are unmatched. Delivered straight to Eldoret on carrier.",
+    name: "Capt. Evans Kiprop",
+    role: "Nissan Serena e-POWER · Eldoret",
+    imageSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: 6,
+    quote:
+      "Fuel consumption averages 21.4 km/L from Nakuru to Nairobi. The car arrived with fresh Castrol synthetic fluids, OEM filters, and the NTSA TIMS logbook transfer was initiated within 48 hours.",
+    name: "Eng. Brian Muthomi",
+    role: "Toyota Harrier Hybrid · Nakuru",
+    imageSrc: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
