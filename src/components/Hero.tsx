@@ -1,17 +1,13 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { createPortal } from 'react-dom';
-import {
-  Volume2,
-  VolumeX,
-  ArrowRight,
-  ShieldCheck,
-  Globe,
-  ChevronLeft,
-  ChevronRight,
+import React, { useState, useEffect, useCallback } from 'react';
+import { 
+  ArrowRight, 
+  ShieldCheck, 
   Maximize2,
   X,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
-
+import { createPortal } from 'react-dom';
 import { CmsPage } from '../services/cmsContent';
 
 interface HeroProps {
@@ -30,7 +26,6 @@ interface FlagshipSlide {
   grade: string;
   auctionHall: string;
   priceKes: number;
-  videoUrl?: string;
   imageUrl: string;
 }
 
@@ -99,12 +94,11 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
 
 export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, pageData }) => {
   const [activeSlideIdx, setActiveSlideIdx] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isHeroLightboxOpen, setIsHeroLightboxOpen] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const SLIDE_INTERVAL = 8000;
+  const SLIDE_INTERVAL = 5000;
   const currentSlide = FLAGSHIP_SLIDES[activeSlideIdx];
 
   const handleNext = useCallback(() => {
@@ -114,6 +108,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
   const handlePrev = useCallback(() => {
     setActiveSlideIdx((prev) => (prev - 1 + FLAGSHIP_SLIDES.length) % FLAGSHIP_SLIDES.length);
   }, []);
+
+  const handleSelectSlide = (idx: number) => {
+    if (idx === activeSlideIdx) {
+      window.location.hash = `#car-${FLAGSHIP_SLIDES[idx].id}`;
+    } else {
+      setActiveSlideIdx(idx);
+    }
+  };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
@@ -140,7 +142,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev]);
 
-  // Body scroll lock during fullscreen theater lightbox
+  // Body scroll lock during fullscreen lightbox
   useEffect(() => {
     if (isHeroLightboxOpen) {
       const originalOverflow = document.body.style.overflow;
@@ -151,185 +153,210 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
     }
   }, [isHeroLightboxOpen]);
 
-  // Clean, automatic slide transition
+  // Automatic slide transition
   useEffect(() => {
+    if (!isPlaying) return;
     const timer = setInterval(() => {
       handleNext();
     }, SLIDE_INTERVAL);
     return () => clearInterval(timer);
-  }, [handleNext]);
-
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
+  }, [isPlaying, handleNext]);
 
   return (
-    <section className="relative w-full bg-transparent pt-2 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center text-zinc-900 overflow-hidden">
+    <section className="figma-carousel-section relative w-full pt-4 sm:pt-8 pb-12 sm:pb-16 text-center text-zinc-900 overflow-hidden">
       
-      {/* Subtle Monochrome Ambient Spotlight */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-b from-slate-200/50 to-transparent blur-3xl pointer-events-none animate-ambient-spotlight" />
-
-      <div className="max-w-[1240px] mx-auto relative z-10 space-y-2.5 sm:space-y-4">
-        
-        {/* Minimalist Provenance Eyebrow (Hidden on mobile to preserve vertical air) */}
-        <div className="hidden sm:inline-flex items-center gap-2 animate-hero-1">
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-zinc-600 font-semibold">
-            {pageData?.badge || 'QUALITY JAPANESE IMPORTS'}
+      {/* Top Header Presentation */}
+      <div className="figma-carousel-top max-w-[1240px] mx-auto px-4 mb-4 sm:mb-6">
+        <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-red-600 font-bold bg-red-50 border border-red-200/80 px-3 py-1 rounded-full">
+            {pageData?.badge || 'AUTHENTIC JAPANESE IMPORTS · MOMBASA'}
           </span>
         </div>
 
-        {/* Display Hero Title with Editorial Air and Restraint - Compact for Above-the-Fold Video */}
-        <div className="space-y-1 sm:space-y-1.5 max-w-[980px] mx-auto">
-          <h1 className="text-[26px] xs:text-[34px] sm:text-[50px] md:text-[58px] font-bold text-zinc-950 tracking-[-0.035em] leading-[1.1] animate-hero-2">
-            {pageData?.heroTitle || 'Japanese Provenance.'}
-          </h1>
+        <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-zinc-950 tracking-tight leading-[1.15]">
+          {pageData?.heroTitle || 'Japanese Provenance. Direct Showroom Fleet.'}
+        </h1>
 
-          <p className="max-w-[460px] mx-auto text-zinc-600 text-xs sm:text-[14.5px] leading-relaxed font-normal animate-hero-3">
-            {pageData?.heroSubtitle || 'Grade 4.5+ auction imports, fully prepared in our workshop.'}
-          </p>
+        <p className="max-w-[600px] mx-auto text-zinc-600 text-xs sm:text-sm mt-2 sm:mt-2.5 font-normal leading-relaxed">
+          {pageData?.heroSubtitle || 'Grade 4.0+ verified auction imports with authentic Japanese export sheets, fully prepared in our Mombasa workshop next to Ganjoni Primary School.'}
+        </p>
+      </div>
+
+      {/* 3D Cover Flow Viewport (1:1 Pats Motor World Standard with Red Accents) */}
+      <div 
+        className="figma-carousel-viewport" 
+        role="region" 
+        aria-roledescription="carousel" 
+        aria-label="Vehicle showcase carousel"
+        style={{ cursor: 'grab', touchAction: 'pan-y', userSelect: 'none' }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="figma-carousel-track">
+          {FLAGSHIP_SLIDES.map((slide, idx) => {
+            const offset = idx - activeSlideIdx;
+            const total = FLAGSHIP_SLIDES.length;
+            const isActive = offset === 0;
+
+            let transformStr = '';
+            let zIndexVal = 0;
+            let opacityVal = 0;
+            let pointerEventsVal: 'auto' | 'none' = 'none';
+
+            if (offset === 0) {
+              transformStr = 'translateX(0px) scale(1.15)';
+              zIndexVal = 10;
+              opacityVal = 1;
+              pointerEventsVal = 'auto';
+            } else if (offset === -1) {
+              transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+              zIndexVal = 5;
+              opacityVal = 1;
+              pointerEventsVal = 'auto';
+            } else if (offset === 1) {
+              transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+              zIndexVal = 5;
+              opacityVal = 1;
+              pointerEventsVal = 'auto';
+            } else if (offset === -2) {
+              transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
+              zIndexVal = 1;
+              opacityVal = 1;
+              pointerEventsVal = 'auto';
+            } else if (offset === 2) {
+              transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
+              zIndexVal = 1;
+              opacityVal = 1;
+              pointerEventsVal = 'auto';
+            } else {
+              transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px) + ${Math.sign(offset)} * var(--figma-slide-overlap-far, -80px))) scale(0.65)`;
+              zIndexVal = 0;
+              opacityVal = 0;
+              pointerEventsVal = 'none';
+            }
+
+            return (
+              <div
+                key={slide.id}
+                className={`figma-slide ${isActive ? 'active' : ''}`}
+                role="group"
+                aria-roledescription="slide"
+                aria-hidden={!isActive}
+                aria-label={`Slide ${idx + 1} of ${total}: ${slide.name}`}
+                style={{
+                  transform: transformStr,
+                  zIndex: zIndexVal,
+                  opacity: opacityVal,
+                  pointerEvents: pointerEventsVal,
+                }}
+                onClick={() => handleSelectSlide(idx)}
+              >
+                <div className="figma-slide-inner">
+                  <img
+                    alt={slide.name}
+                    className="figma-slide-img"
+                    loading="lazy"
+                    src={slide.imageUrl}
+                  />
+                  <div className="figma-slide-overlay" />
+                  <div className="figma-slide-content">
+                    <h3 className="figma-slide-title">{slide.year} {slide.name}</h3>
+                    <p className="figma-slide-label">
+                      {slide.category} · Available · KES {slide.priceKes.toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
+      </div>
 
-        {/* Clean, Decisive Action Pair */}
-        <div className="flex flex-row items-center justify-center gap-2 sm:gap-2.5 pt-0.5 animate-hero-4 max-w-md mx-auto xs:max-w-none">
+      {/* Centered Controls Stack: Counter on top + 3 Round Buttons */}
+      <div className="figma-carousel-controls">
+        <span className="figma-carousel-counter" aria-live="polite">
+          <span className="figma-counter-status">{`Slide ${activeSlideIdx + 1} of ${FLAGSHIP_SLIDES.length}`}</span>
+          <span aria-hidden="true">{`${activeSlideIdx + 1} of ${FLAGSHIP_SLIDES.length}`}</span>
+        </span>
+
+        <div className="figma-controls-group" role="group" aria-label="Slide controls">
+          <button 
+            type="button" 
+            className="figma-nav-btn" 
+            aria-label="Previous slide"
+            onClick={handlePrev}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path fill="currentColor" fillRule="evenodd" d="M11.478 4.25 4 12l7.478 7.75.733-.709L5.91 12.51H20v-1.02H5.91l6.301-6.531z" clipRule="evenodd" />
+            </svg>
+          </button>
+
+          <button 
+            type="button" 
+            className="figma-pause-btn" 
+            aria-label={isPlaying ? "Pause" : "Play"}
+            onClick={() => setIsPlaying(!isPlaying)}
+          >
+            <svg width="36" height="36" viewBox="0 0 36 36" className="figma-pause-ring">
+              <circle cx="18" cy="18" r="17.5" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.25" />
+              <circle 
+                cx="18" 
+                cy="18" 
+                r="17" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeDasharray="106.8" 
+                className="figma-pause-progress"
+                style={{ animationPlayState: isPlaying ? 'running' : 'paused' }} 
+              />
+            </svg>
+            {isPlaying ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 14" className="figma-pause-icon">
+                <path fill="currentColor" d="M9.91 0h6.1v13.71h-6.1zM0 0h6.1v13.71H0z" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="figma-pause-icon" style={{ marginLeft: '2px' }}>
+                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+              </svg>
+            )}
+          </button>
+
+          <button 
+            type="button" 
+            className="figma-nav-btn" 
+            aria-label="Next slide"
+            onClick={handleNext}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path fill="currentColor" fillRule="evenodd" d="M12.522 4.25 20 12l-7.478 7.75-.733-.709 6.302-6.531H4v-1.02h14.09L11.79 4.959z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Description & Decisive Action CTA */}
+      <div className="figma-carousel-bottom">
+        <p className="figma-carousel-description">
+          From luxury executive crossovers to rugged symmetrical AWDs and ultra-efficient vans — browse, compare verified auction sheets, and drive away with confidence from Mombasa.
+        </p>
+        <div className="flex flex-row items-center justify-center gap-3 pt-5">
           <button
             onClick={onExploreFleet}
-            className="group py-2.5 px-4 sm:py-2.5 sm:px-6 text-xs sm:text-[13.5px] rounded-full sm:rounded-xl font-bold tracking-tight inline-flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-lg bg-red-600 hover:bg-red-700 text-white transition-all hover:scale-105 active:scale-95"
+            className="py-3 px-7 text-xs sm:text-sm rounded-full font-bold bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
           >
             <span>{pageData?.ctaText || 'Explore Available Fleet'}</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4" />
           </button>
           
           <button
             onClick={onExploreWorkshop}
-            className="btn-ghost group py-2 px-3 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-medium tracking-tight inline-flex items-center justify-center gap-1.5 text-zinc-700 hover:text-zinc-950 transition-colors cursor-pointer"
+            className="py-3 px-6 text-xs sm:text-sm rounded-full font-semibold text-zinc-700 hover:text-zinc-950 border border-zinc-200 hover:border-zinc-300 bg-white transition-all inline-flex items-center gap-2 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
           >
-            <ShieldCheck className="w-4 h-4 text-zinc-500 group-hover:text-zinc-950 transition-colors" />
-            <span className="hidden xs:inline">Our Workshop Standard</span>
-            <span className="xs:hidden">Workshop</span>
+            <ShieldCheck className="w-4 h-4 text-red-600" />
+            <span>Our Workshop Standard</span>
           </button>
         </div>
-
-        {/* 21:9 Widescreen Theatrical Cinema Stage — Positioned Above-the-Fold on Initial Page Load */}
-        <div className="relative w-full mx-auto pt-2 sm:pt-3 animate-hero-5">
-          <div 
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onClick={() => setIsHeroLightboxOpen(true)}
-            className="w-full min-h-[260px] xs:min-h-[300px] sm:min-h-0 aspect-[16/10] sm:aspect-[21/9.2] max-h-[540px] overflow-hidden relative bg-zinc-900 border border-zinc-200/80 hover:border-zinc-300 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] select-none cursor-pointer group transition-all duration-500"
-          >
-            
-            {/* Cinematic Media (Video or Image) */}
-            {currentSlide.videoUrl ? (
-              <video
-                ref={videoRef}
-                autoPlay
-                muted={isMuted}
-                loop
-                playsInline
-                key={currentSlide.id}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
-                poster={currentSlide.imageUrl}
-              >
-                <source src={currentSlide.videoUrl} type="video/mp4" />
-                <img src={currentSlide.imageUrl} alt={currentSlide.name} className="w-full h-full object-cover" />
-              </video>
-            ) : (
-              <img
-                key={currentSlide.id}
-                src={currentSlide.imageUrl}
-                alt={currentSlide.name}
-                className="w-full h-full object-cover scale-100 transition-transform duration-[7000ms] group-hover:scale-102 ease-out"
-              />
-            )}
-
-            {/* Subtle Scrim Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
-
-            {/* Left Top: Discreet Provenance Seal */}
-            <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
-              <div className="bg-black/75 backdrop-blur-md border border-white/15 px-2.5 sm:px-3 py-1 rounded-md text-[10.5px] sm:text-[11px] font-mono text-white flex items-center gap-1.5 shadow-lg">
-                <span className="text-white font-bold">{currentSlide.grade}</span>
-                <span className="text-zinc-600">·</span>
-                <span className="text-zinc-300">{currentSlide.auctionHall}</span>
-              </div>
-            </div>
-
-            {/* Right Top: Minimal Audio & Fullscreen Toggle */}
-            <div className="absolute top-3 right-3 sm:top-6 sm:right-6 flex items-center gap-1.5 z-20">
-              {currentSlide.videoUrl && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleMute();
-                  }}
-                  className="w-8 h-8 bg-white/90 hover:bg-white text-zinc-950 border border-zinc-300 shadow-md backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg hover:scale-105 active:scale-95"
-                  title={isMuted ? 'Unmute' : 'Mute'}
-                >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5 text-zinc-900" /> : <Volume2 className="w-3.5 h-3.5 text-zinc-900" />}
-                </button>
-              )}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsHeroLightboxOpen(true);
-                }}
-                className="w-8 h-8 bg-white/90 hover:bg-white text-zinc-950 border border-zinc-300 shadow-md backdrop-blur-md flex items-center justify-center transition-all cursor-pointer rounded-lg hover:scale-105 active:scale-95"
-                title="Fullscreen Theater Mode"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-zinc-900" />
-              </button>
-            </div>
-
-            {/* Slide Information Overlay — Bottom Left with generous clearance for mobile indicators */}
-            <div
-              key={currentSlide.id}
-              className="absolute bottom-3 xs:bottom-4 sm:bottom-7 left-3 xs:left-4 sm:left-8 pr-20 xs:pr-24 sm:pr-0 text-left z-20 pointer-events-none max-w-xl animate-slide-text"
-            >
-              <span className="font-mono text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.16em] text-zinc-400 block mb-0.5 sm:mb-1">
-                {currentSlide.category} · {currentSlide.year}
-              </span>
-              <h2 className="text-base xs:text-lg sm:text-3xl md:text-4xl font-bold text-white tracking-[-0.03em] leading-snug sm:leading-tight mb-1 sm:mb-2 line-clamp-2">
-                {currentSlide.name}
-              </h2>
-              <div className="flex items-center gap-2 font-mono text-xs sm:text-[13px] text-zinc-300">
-                <span className="font-bold text-white text-xs xs:text-sm sm:text-lg">
-                  KES {currentSlide.priceKes.toLocaleString()}
-                </span>
-                <span className="text-zinc-600">·</span>
-                <span>{currentSlide.mileageKm.toLocaleString()} KM</span>
-              </div>
-            </div>
-
-            {/* Right Bottom: Subtle Slide Segment Rails with Progressive Timeline */}
-            <div 
-              className="absolute bottom-3 xs:bottom-4 sm:bottom-7 right-3 xs:right-4 sm:right-8 z-20 flex items-center gap-1.5 sm:gap-2 bg-black/80 backdrop-blur-md px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-white/10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {FLAGSHIP_SLIDES.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveSlideIdx(idx)}
-                  className="cursor-pointer group flex items-center p-0.5"
-                  title={`Slide ${idx + 1}`}
-                >
-                  {idx === activeSlideIdx ? (
-                    <div className="relative h-[2px] w-6 sm:w-11 bg-white/20 rounded-full overflow-hidden">
-                      <div
-                        key={`hero-progress-${activeSlideIdx}`}
-                        className="h-full bg-white rounded-full animate-hero-progress"
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-[2px] w-1.5 sm:w-2 rounded-full bg-white/30 group-hover:bg-white/60 transition-all duration-300" />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
       </div>
 
       {/* Fullscreen Theatrical Hero Lightbox Modal */}
@@ -374,25 +401,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
             className="flex-1 min-h-0 w-full relative flex items-center justify-center p-4 sm:p-8 overflow-hidden select-none"
             onClick={(e) => e.stopPropagation()}
           >
-            {currentSlide.videoUrl ? (
-              <video
-                autoPlay
-                muted={isMuted}
-                loop
-                playsInline
-                key={currentSlide.id}
-                className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl"
-              >
-                <source src={currentSlide.videoUrl} type="video/mp4" />
-                <img src={currentSlide.imageUrl} alt={currentSlide.name} className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl" />
-              </video>
-            ) : (
-              <img
-                src={currentSlide.imageUrl}
-                alt={currentSlide.name}
-                className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl pointer-events-none"
-              />
-            )}
+            <img
+              src={currentSlide.imageUrl}
+              alt={currentSlide.name}
+              className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl pointer-events-none"
+            />
 
             {/* Hairline Nav Controls */}
             <button
@@ -426,11 +439,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
             <button
               onClick={() => {
                 setIsHeroLightboxOpen(false);
-                onExploreFleet();
+                window.location.hash = `#car-${currentSlide.id}`;
               }}
               className="bg-red-600 hover:bg-red-700 text-white !py-2.5 !px-5 text-xs font-bold rounded-lg cursor-pointer inline-flex items-center gap-1.5 shadow-md transition-all hover:scale-105 active:scale-95"
             >
-              <span>Explore Available Fleet</span>
+              <span>View Full Vehicle Story</span>
               <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </button>
           </div>

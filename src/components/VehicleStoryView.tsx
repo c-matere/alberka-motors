@@ -848,23 +848,28 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </div>
 
-            {/* Figma 3D Cover Flow Carousel (Pats Motor World Standard) */}
+            {/* Figma 3D Cover Flow Carousel (Pats Motor World 1:1 Standard) */}
             <section className="figma-carousel-section">
-              <div className="figma-carousel-top">
-                <h2 className="figma-carousel-heading text-xl sm:text-2xl md:text-3xl font-extrabold text-zinc-950 tracking-tight">
-                  Make anything possible, all in your garage
-                </h2>
+              <div className="figma-carousel-top flex flex-col sm:flex-row items-center justify-between gap-3 px-4 max-w-[1240px] mx-auto">
+                <div className="text-center sm:text-left">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-red-600 font-bold bg-red-50 border border-red-200/80 px-3 py-0.5 rounded-full inline-block mb-1">
+                    {vehicle.year} {vehicle.name}
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-black text-zinc-950 tracking-tight">
+                    Showroom Gallery Showcase
+                  </h2>
+                </div>
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs text-zinc-500 uppercase font-semibold hidden sm:inline">
-                    {vehicle.name} · {vehicle.stockNo}
+                    {vehicle.stockNo} · {filteredPhotos.length} Angles
                   </span>
                   <button
                     onClick={() => openLightboxWithIndex(activePhotoIndex)}
-                    className="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-800 bg-white hover:bg-zinc-100 flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                    className="px-3.5 py-1.5 rounded-lg border border-red-200 text-xs font-mono text-red-700 bg-red-50/60 hover:bg-red-100 flex items-center gap-1.5 cursor-pointer shadow-2xs transition-colors"
                     title="Fullscreen Lightbox"
                   >
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Fullscreen</span>
+                    <Maximize2 className="w-3.5 h-3.5 text-red-600" />
+                    <span className="hidden sm:inline">Fullscreen Lightbox</span>
                   </button>
                 </div>
               </div>
@@ -1017,7 +1022,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         <path fill="currentColor" d="M9.91 0h6.1v13.71h-6.1zM0 0h6.1v13.71H0z" />
                       </svg>
                     ) : (
-                      <Play className="w-4 h-4 ml-0.5 text-zinc-950 fill-zinc-950 relative z-2" />
+                      <Play className="w-4 h-4 ml-0.5 text-red-600 fill-red-600 relative z-2" />
                     )}
                   </button>
 

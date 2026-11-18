@@ -352,7 +352,7 @@ export const BlueprintBackground: React.FC = () => {
                   {currentSta?.text && (
                     <text x={x + 3} y="482" fill="rgba(15, 23, 42, 0.55)" fontSize="7" fontFamily="JetBrains Mono, monospace">
                       {currentSta.text}
-                      {currentSta.isTyping && <tspan fill="#0284c7">_</tspan>}
+                      {currentSta.isTyping && <tspan fill="#dc2626">_</tspan>}
                     </text>
                   )}
                 </g>
@@ -374,7 +374,7 @@ export const BlueprintBackground: React.FC = () => {
                   {currentWl?.text && (
                     <text x="125" y={y - 4} fill="rgba(15, 23, 42, 0.15)" fontSize="7" fontFamily="JetBrains Mono, monospace">
                       {currentWl.text}
-                      {currentWl.isTyping && <tspan fill="#0284c7">_</tspan>}
+                      {currentWl.isTyping && <tspan fill="#dc2626">_</tspan>}
                     </text>
                   )}
                 </g>
@@ -408,8 +408,8 @@ export const BlueprintBackground: React.FC = () => {
 
             {/* Digital Laser Stylus Plotter Head (Slowly and gracefully traces the car contour) */}
             <g style={{ display: 'none' }}>
-              <circle cx="0" cy="0" r="3.5" fill="#0284c7" />
-              <circle cx="0" cy="0" r="8" stroke="#0284c7" strokeWidth="0.9" strokeDasharray="3 2" className="animate-spin" />
+              <circle cx="0" cy="0" r="3.5" fill="#dc2626" />
+              <circle cx="0" cy="0" r="8" stroke="#dc2626" strokeWidth="0.9" strokeDasharray="3 2" className="animate-spin" />
               <line x1="-12" y1="0" x2="12" y2="0" stroke="rgba(56, 189, 248, 0.9)" strokeWidth="0.8" />
               <line x1="0" y1="-12" x2="0" y2="12" stroke="rgba(56, 189, 248, 0.9)" strokeWidth="0.8" />
             </g>
@@ -650,11 +650,11 @@ export const BlueprintBackground: React.FC = () => {
             <g transform="translate(650, 345)">
               <circle cx="0" cy="0" r="11" stroke="rgba(15, 23, 42, 0.5)" strokeWidth="1.1" />
               <path d="M 0 -16 L 0 16 M -16 0 L 16 0" stroke="rgba(15, 23, 42, 0.5)" strokeWidth="1" />
-              <circle cx="0" cy="0" r="3" fill="#0284c7" />
+              <circle cx="0" cy="0" r="3" fill="#dc2626" />
               {cgSpec?.text && (
                 <text x="18" y="4" fill="rgba(15, 23, 42, 0.65)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
                   {cgSpec.text}
-                  {cgSpec.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {cgSpec.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -668,7 +668,7 @@ export const BlueprintBackground: React.FC = () => {
               {wheelbase?.text && (
                 <text x="655" y="-9" textAnchor="middle" fill="rgba(15, 23, 42, 0.3)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.16em">
                   {wheelbase.text}
-                  {wheelbase.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {wheelbase.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -680,7 +680,7 @@ export const BlueprintBackground: React.FC = () => {
               {totalLength?.text && (
                 <text x="715" y="-7" textAnchor="middle" fill="rgba(15, 23, 42, 0.6)" fontSize="9" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em">
                   {totalLength.text}
-                  {totalLength.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {totalLength.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -692,7 +692,7 @@ export const BlueprintBackground: React.FC = () => {
               {roofHeight?.text && (
                 <text x="-8" y="295" textAnchor="end" fill="rgba(15, 23, 42, 0.6)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.15em" transform="rotate(-90 -8 295)">
                   {roofHeight.text}
-                  {roofHeight.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {roofHeight.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -701,11 +701,11 @@ export const BlueprintBackground: React.FC = () => {
             <g transform="translate(860, 95)">
               <line x1="0" y1="0" x2="50" y2="-30" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
               <line x1="50" y1="-30" x2="220" y2="-30" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
-              <circle cx="0" cy="0" r="2.8" fill="#0284c7" />
+              <circle cx="0" cy="0" r="2.8" fill="#dc2626" />
               {haunchSpec?.text && (
                 <text x="55" y="-35" fill="rgba(15, 23, 42, 0.3)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
                   {haunchSpec.text}
-                  {haunchSpec.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {haunchSpec.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -714,11 +714,11 @@ export const BlueprintBackground: React.FC = () => {
             <g transform="translate(240, 220)">
               <line x1="0" y1="0" x2="-40" y2="-35" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
               <line x1="-40" y1="-35" x2="-180" y2="-35" stroke="rgba(15, 23, 42, 0.35)" strokeWidth="0.9" />
-              <circle cx="0" cy="0" r="2.8" fill="#0284c7" />
+              <circle cx="0" cy="0" r="2.8" fill="#dc2626" />
               {prowSpec?.text && (
                 <text x="-180" y="-40" fill="rgba(15, 23, 42, 0.3)" fontSize="8.5" fontFamily="JetBrains Mono, monospace" letterSpacing="0.12em">
                   {prowSpec.text}
-                  {prowSpec.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {prowSpec.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -727,9 +727,9 @@ export const BlueprintBackground: React.FC = () => {
             <g transform="translate(1190, 260)">
               <line x1="0" y1="0" x2="40" y2="-40" stroke="rgba(56, 189, 248, 0.6)" strokeWidth="0.9" />
               <line x1="40" y1="-40" x2="160" y2="-40" stroke="rgba(56, 189, 248, 0.6)" strokeWidth="0.9" />
-              <circle cx="0" cy="0" r="2.5" fill="#0284c7" />
+              <circle cx="0" cy="0" r="2.5" fill="#dc2626" />
               {activeAero?.text && (
-                <text x="45" y="-46" fill="#0284c7" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
+                <text x="45" y="-46" fill="#dc2626" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
                   {activeAero.text}
                   {activeAero.isTyping && <tspan fill="#ffffff">_</tspan>}
                 </text>
@@ -740,11 +740,11 @@ export const BlueprintBackground: React.FC = () => {
             <g transform="translate(380, 470)">
               <line x1="0" y1="0" x2="30" y2="35" stroke="rgba(15, 23, 42, 0.25)" strokeWidth="0.8" />
               <line x1="30" y1="35" x2="160" y2="35" stroke="rgba(15, 23, 42, 0.25)" strokeWidth="0.8" />
-              <circle cx="0" cy="0" r="2.5" fill="#0284c7" />
+              <circle cx="0" cy="0" r="2.5" fill="#dc2626" />
               {brakeSpec?.text && (
                 <text x="35" y="31" fill="rgba(15, 23, 42, 0.75)" fontSize="8" fontFamily="JetBrains Mono, monospace" letterSpacing="0.1em">
                   {brakeSpec.text}
-                  {brakeSpec.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {brakeSpec.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
@@ -757,12 +757,12 @@ export const BlueprintBackground: React.FC = () => {
               {studioTitle?.text && (
                 <text x="24" y="19" fill="rgba(15, 23, 42, 0.85)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" fontWeight="600" letterSpacing="0.14em">
                   {studioTitle.text}
-                  {studioTitle.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {studioTitle.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
 
               {stageRelease?.text && (
-                <text x="24" y="34" fill="#0284c7" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="500">
+                <text x="24" y="34" fill="#dc2626" fontSize="8" fontFamily="JetBrains Mono, monospace" fontWeight="500">
                   {stageRelease.text}
                   {stageRelease.isTyping && <tspan fill="#ffffff">_</tspan>}
                 </text>
@@ -771,14 +771,14 @@ export const BlueprintBackground: React.FC = () => {
               {powertrain?.text && (
                 <text x="24" y="47" fill="rgba(71, 85, 105, 0.9)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
                   {powertrain.text}
-                  {powertrain.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {powertrain.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
 
               {suspension?.text && (
                 <text x="24" y="60" fill="rgba(71, 85, 105, 0.75)" fontSize="7.5" fontFamily="JetBrains Mono, monospace">
                   {suspension.text}
-                  {suspension.isTyping && <tspan fill="#0284c7">_</tspan>}
+                  {suspension.isTyping && <tspan fill="#dc2626">_</tspan>}
                 </text>
               )}
             </g>
