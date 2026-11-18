@@ -170,10 +170,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
         <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-zinc-950 tracking-tight leading-[1.15]">
           {pageData?.heroTitle || 'Japanese Provenance. Direct Showroom Fleet.'}
         </h1>
-
-        <p className="max-w-[600px] mx-auto text-zinc-600 text-xs sm:text-sm mt-2 sm:mt-2.5 font-normal leading-relaxed">
-          {pageData?.heroSubtitle || 'Grade 4.0+ verified auction imports with authentic Japanese export sheets, fully prepared in our Mombasa workshop next to Ganjoni Primary School.'}
-        </p>
+        {pageData?.heroSubtitle && (
+          <p className="max-w-[600px] mx-auto text-zinc-600 text-xs sm:text-sm mt-2 sm:mt-2.5 font-normal leading-relaxed">
+            {pageData.heroSubtitle}
+          </p>
+        )}
       </div>
 
       {/* 3D Cover Flow Viewport (1:1 Pats Motor World Standard with Red Accents) */}
