@@ -848,136 +848,207 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </div>
 
-            {/* Master Theatrical Stage — Calibrated with Apple Ambient Diffused Shadow & Vertical Image First Support */}
-            <div className="relative w-full rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-200/80 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.07),0_1px_3px_rgba(0,0,0,0.04)] ring-1 ring-zinc-950/[0.04]">
-              <div
-                ref={stageRef}
-                onTouchStart={handleTouchGalleryStart}
-                onTouchEnd={handleTouchGalleryEnd}
-                onClick={() => openLightboxWithIndex(activePhotoIndex)}
-                className="relative w-full h-[480px] xs:h-[540px] sm:h-[620px] md:h-[680px] max-h-[82vh] overflow-hidden select-none cursor-pointer group flex items-center justify-center bg-zinc-950"
-              >
-                {/* Ambient Blurred Studio Depth for Vertical Framing */}
-                <img
-                  src={currentPhoto.url}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-110 pointer-events-none select-none z-0"
-                />
-
-                {/* Ambient Backdrop Dimmer */}
-                <div className="absolute inset-0 z-5 bg-black/40 pointer-events-none" />
-
-                {/* Foreground Vehicle Photo — Uncropped full vertical & horizontal fidelity */}
-                <img
-                  key={currentPhoto.url}
-                  src={currentPhoto.url}
-                  alt={currentPhoto.title}
-                  className="relative z-10 max-h-[88%] sm:max-h-[92%] max-w-[94%] w-auto h-auto object-contain mx-auto my-auto drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-                />
-
-                {/* Bottom Caption Scrim — Only behind lower text */}
-                <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-15" />
-
-                {/* Top Bar Badges & Controls */}
-                <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between z-20">
-                  <div className="flex items-center gap-2">
-                    <div className="bg-white/95 backdrop-blur-md px-3 py-1.5 text-xs font-mono text-zinc-900 rounded-lg border border-zinc-200/90 flex items-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-                      <span className="text-zinc-950 font-bold">{String(activePhotoIndex + 1).padStart(2, '0')}</span>
-                      <span className="text-zinc-400">/</span>
-                      <span className="text-zinc-600 font-medium">{String(filteredPhotos.length).padStart(2, '0')}</span>
-                    </div>
-                    <span className="bg-white/95 backdrop-blur-md px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-zinc-800 font-semibold border border-zinc-200/90 hidden xs:inline shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-                      {currentPhoto.tag}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsGalleryPlaying(!isGalleryPlaying);
-                      }}
-                      className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5 text-xs font-mono shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
-                      title={isGalleryPlaying ? 'Pause gallery slideshow' : 'Play gallery slideshow'}
-                    >
-                      {isGalleryPlaying ? (
-                        <Pause className="w-3.5 h-3.5" />
-                      ) : (
-                        <Play className="w-3.5 h-3.5 ml-0.5 text-zinc-950 fill-zinc-950" />
-                      )}
-                      <span className="hidden sm:inline">{isGalleryPlaying ? 'Pause' : 'Auto Play'}</span>
-                    </button>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openLightboxWithIndex(activePhotoIndex);
-                      }}
-                      className="bg-white/95 hover:bg-white text-zinc-950 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-zinc-200/90 transition-all cursor-pointer backdrop-blur-md flex items-center gap-2 text-xs font-mono shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
-                      title="Expand Fullscreen Lightbox"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">Fullscreen</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Left/Right Prev/Next Stage Arrows */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevPhoto();
-                  }}
-                  className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-[0_4px_14px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
-                  title="Previous photo"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextPhoto();
-                  }}
-                  className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 hover:bg-white text-zinc-950 border border-zinc-200/90 flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-md shadow-[0_4px_14px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95"
-                  title="Next photo"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-
-                {/* Bottom Caption Overlay */}
-                <div className="absolute bottom-3 left-4 right-4 sm:bottom-5 sm:left-6 sm:right-6 pointer-events-none z-20">
-                  <div className="text-left text-white max-w-2xl">
-                    <span className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest block font-medium">
-                      {currentPhoto.tag}
-                    </span>
-                    <p className="text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-sm">
-                      {currentPhoto.title}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Animated Timing Progress Bar */}
-                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-white/20 z-20">
-                  <div
-                    className="h-full bg-white transition-all ease-linear"
-                    style={{
-                      width: `${isGalleryPlaying ? galleryProgress : ((activePhotoIndex + 1) / filteredPhotos.length) * 100}%`,
-                      transitionDuration: isGalleryPlaying ? '50ms' : '200ms',
-                    }}
-                  />
+            {/* Figma 3D Cover Flow Carousel (Pats Motor World Standard) */}
+            <section className="figma-carousel-section">
+              <div className="figma-carousel-top">
+                <h2 className="figma-carousel-heading text-xl sm:text-2xl md:text-3xl font-extrabold text-zinc-950 tracking-tight">
+                  Make anything possible, all in your garage
+                </h2>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs text-zinc-500 uppercase font-semibold hidden sm:inline">
+                    {vehicle.name} · {vehicle.stockNo}
+                  </span>
+                  <button
+                    onClick={() => openLightboxWithIndex(activePhotoIndex)}
+                    className="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-800 bg-white hover:bg-zinc-100 flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                    title="Fullscreen Lightbox"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">Fullscreen</span>
+                  </button>
                 </div>
               </div>
 
-              {/* Filmstrip Runway Strip */}
-              <div className="p-3 bg-zinc-50 border-t border-zinc-200/80 flex items-center gap-2.5 overflow-x-auto no-scrollbar">
+              <div 
+                ref={stageRef}
+                className="figma-carousel-viewport" 
+                role="region" 
+                aria-roledescription="carousel" 
+                aria-label="Vehicle showcase carousel"
+                onTouchStart={handleTouchGalleryStart}
+                onTouchEnd={handleTouchGalleryEnd}
+              >
+                <div className="figma-carousel-track">
+                  {filteredPhotos.map((photo, idx) => {
+                    const offset = idx - activePhotoIndex;
+                    const total = filteredPhotos.length;
+                    const isActive = offset === 0;
+
+                    let transformStr = '';
+                    let zIndexVal = 0;
+                    let opacityVal = 0;
+                    let pointerEventsVal: 'auto' | 'none' = 'none';
+
+                    if (offset === 0) {
+                      transformStr = 'translateX(0px) scale(1.15)';
+                      zIndexVal = 10;
+                      opacityVal = 1;
+                      pointerEventsVal = 'auto';
+                    } else if (offset === -1) {
+                      transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+                      zIndexVal = 5;
+                      opacityVal = 1;
+                      pointerEventsVal = 'auto';
+                    } else if (offset === 1) {
+                      transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+                      zIndexVal = 5;
+                      opacityVal = 1;
+                      pointerEventsVal = 'auto';
+                    } else if (offset === -2) {
+                      transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
+                      zIndexVal = 2;
+                      opacityVal = 0.9;
+                      pointerEventsVal = 'auto';
+                    } else if (offset === 2) {
+                      transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
+                      zIndexVal = 2;
+                      opacityVal = 0.9;
+                      pointerEventsVal = 'auto';
+                    } else {
+                      transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px) + ${Math.sign(offset)} * var(--figma-slide-overlap-far, -80px))) scale(0.65)`;
+                      zIndexVal = 0;
+                      opacityVal = 0;
+                      pointerEventsVal = 'none';
+                    }
+
+                    return (
+                      <div
+                        key={photo.id || idx}
+                        className={`figma-slide ${isActive ? 'active' : ''}`}
+                        role="group"
+                        aria-roledescription="slide"
+                        aria-hidden={!isActive}
+                        aria-label={`Slide ${idx + 1} of ${total}: ${photo.title}`}
+                        onClick={() => {
+                          if (isActive) {
+                            openLightboxWithIndex(idx);
+                          } else {
+                            handleSelectPhoto(idx);
+                          }
+                        }}
+                        style={{
+                          transform: transformStr,
+                          zIndex: zIndexVal,
+                          opacity: opacityVal,
+                          pointerEvents: pointerEventsVal,
+                          cursor: isActive ? 'zoom-in' : 'pointer'
+                        }}
+                      >
+                        <div className="figma-slide-inner">
+                          {/* Ambient blurred backdrop for uncropped vertical photos */}
+                          <img
+                            src={photo.url}
+                            alt=""
+                            aria-hidden="true"
+                            className="figma-slide-backdrop"
+                          />
+                          {/* Foreground uncropped vehicle view */}
+                          <img
+                            alt={photo.title}
+                            className="figma-slide-img"
+                            loading="lazy"
+                            src={photo.url}
+                          />
+                          <div className="figma-slide-overlay" />
+                          <div className="figma-slide-content">
+                            <h3 className="figma-slide-title">{photo.title}</h3>
+                            <p className="figma-slide-label">
+                              {vehicle.name} · {photo.tag || 'Showcase view'} {idx + 1} of {total}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Carousel Controls */}
+              <div className="figma-carousel-controls">
+                <span className="figma-carousel-counter" aria-live="polite">
+                  <span className="figma-counter-status">{`Slide ${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
+                  <span aria-hidden="true">{`${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
+                </span>
+
+                <div className="figma-controls-group" role="group" aria-label="Slide controls">
+                  <button 
+                    type="button" 
+                    className="figma-nav-btn" 
+                    aria-label="Previous slide"
+                    onClick={handlePrevPhoto}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path fill="currentColor" fillRule="evenodd" d="M11.478 4.25 4 12l7.478 7.75.733-.709L5.91 12.51H20v-1.02H5.91l6.301-6.531z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+
+                  <button 
+                    type="button" 
+                    className="figma-pause-btn" 
+                    aria-label={isGalleryPlaying ? "Pause" : "Play"}
+                    onClick={() => setIsGalleryPlaying(!isGalleryPlaying)}
+                  >
+                    <svg width="36" height="36" viewBox="0 0 36 36" className="figma-pause-ring">
+                      <circle cx="18" cy="18" r="17.5" fill="none" stroke="currentColor" strokeWidth="1" className="text-zinc-200" />
+                      <circle 
+                        cx="18" 
+                        cy="18" 
+                        r="17" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeDasharray="106.8" 
+                        className="figma-pause-progress"
+                        style={{ animationPlayState: isGalleryPlaying ? 'running' : 'paused' }} 
+                      />
+                    </svg>
+                    {isGalleryPlaying ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 14" className="figma-pause-icon">
+                        <path fill="currentColor" d="M9.91 0h6.1v13.71h-6.1zM0 0h6.1v13.71H0z" />
+                      </svg>
+                    ) : (
+                      <Play className="w-4 h-4 ml-0.5 text-zinc-950 fill-zinc-950 relative z-2" />
+                    )}
+                  </button>
+
+                  <button 
+                    type="button" 
+                    className="figma-nav-btn" 
+                    aria-label="Next slide"
+                    onClick={handleNextPhoto}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path fill="currentColor" fillRule="evenodd" d="M12.522 4.25 20 12l-7.478 7.75-.733-.709 6.302-6.531H4v-1.02h14.09L11.79 4.959z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div className="figma-carousel-bottom">
+                <p className="figma-carousel-description">
+                  {vehicle.tagline || 'From luxury sedans to rugged SUVs and electric pioneers — find the vehicle that matches your lifestyle. Browse, compare, and drive away with confidence.'}
+                </p>
+              </div>
+
+              {/* Optional Quick Filmstrip Thumbnails */}
+              <div className="mt-4 p-2 bg-zinc-50 border border-zinc-200/80 rounded-xl flex items-center gap-2 overflow-x-auto no-scrollbar max-w-[1240px] mx-auto">
                 {filteredPhotos.map((photo, idx) => {
                   const isActive = idx === activePhotoIndex;
                   return (
                     <button
                       key={photo.id || idx}
                       onClick={() => handleSelectPhoto(idx)}
-                      className={`h-16 w-24 sm:w-28 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative shadow-[0_2px_6px_rgba(0,0,0,0.03)] ${
+                      className={`h-14 w-20 sm:w-24 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer relative shadow-2xs ${
                         isActive
                           ? 'border-zinc-950 ring-2 ring-zinc-950/60 scale-102 shadow-xs'
                           : 'border-zinc-200 opacity-60 hover:opacity-100 hover:scale-102'
@@ -991,7 +1062,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   );
                 })}
               </div>
-            </div>
+            </section>
           </div>
 
           {/* Detailed Vehicle Identification Header */}
@@ -1845,36 +1916,36 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       {/* Japanese Auction Sheet Dossier Modal */}
       {showAuctionModal && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[9999] bg-zinc-100/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-fadeIn"
+          className="fixed inset-0 z-[9999] bg-zinc-950/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-fadeIn"
           onClick={() => setShowAuctionModal(false)}
         >
           <div 
-            className="max-w-[760px] w-full bg-[#121215] border border-[#27272a] p-6 sm:p-8 space-y-6 text-left my-auto rounded-[4px] shadow-2xl relative text-zinc-900 animate-scaleIn"
+            className="max-w-[780px] w-full bg-white border border-zinc-200/90 p-6 sm:p-8 space-y-6 text-left my-auto rounded-2xl shadow-2xl relative text-zinc-900 animate-scaleIn"
             onClick={(e) => e.stopPropagation()}
           >
             
             {/* Header & Close */}
-            <div className="flex items-start justify-between border-b border-[#27272a] pb-4">
+            <div className="flex items-start justify-between border-b border-zinc-200/90 pb-4">
               <div>
-                <div className="inline-flex items-center gap-2 mb-1">
-                  <span className="font-mono text-[10px] text-zinc-700 uppercase font-semibold bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200">
+                <div className="inline-flex items-center gap-2 mb-1.5">
+                  <span className="font-mono text-[10px] text-red-700 uppercase font-bold bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
                     AUTHENTIC JAPANESE EXPORT SHEET
                   </span>
-                  <span className="font-mono text-[11px] text-zinc-600">
-                    LOT #{vehicle.stockNo.replace(/[^0-9]/g, '') || '7942'}
+                  <span className="font-mono text-xs font-bold text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200">
+                    LOT #{vehicle.stockNo.replace(/[^0-9]/g, '') || '19'}
                   </span>
                 </div>
-                <h3 className="text-[20px] sm:text-[24px] font-bold text-zinc-950 tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-zinc-950 tracking-tight">
                   {vehicle.name} · {vehicle.stockNo}
                 </h3>
-                <p className="text-[13px] text-zinc-600 mt-0.5">
-                  Direct inspection document from {vehicle.auctionHall} (Japan). Authenticated via QISJ Pre-Shipment Inspection.
+                <p className="text-xs sm:text-sm text-zinc-600 mt-1">
+                  Direct inspection document from {vehicle.auctionHall || 'CAA Tokyo / Direct Japanese Import'}. Authenticated via QISJ Pre-Shipment Inspection.
                 </p>
               </div>
 
               <button
                 onClick={() => setShowAuctionModal(false)}
-                className="btn-ghost !py-1 !px-3 !text-[12px] cursor-pointer shrink-0"
+                className="px-3.5 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-800 bg-zinc-50 hover:bg-zinc-100 cursor-pointer shrink-0 font-semibold transition-colors"
               >
                 Close
               </button>
@@ -1882,57 +1953,57 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
             {/* Score Grid & Authentic Japanese Hanko Stamp */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-4 bg-zinc-100/80 border border-zinc-200 rounded-lg flex flex-col justify-between">
+              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl flex flex-col justify-between shadow-2xs">
                 <div>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block mb-1">OVERALL GRADE</span>
-                  <span className="font-mono text-[32px] text-zinc-950 font-bold block leading-none">{vehicle.auctionGrade}</span>
-                  <span className="text-[11px] text-zinc-600 mt-1 block">Pristine Original Condition</span>
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">OVERALL GRADE</span>
+                  <span className="font-mono text-3xl sm:text-4xl text-zinc-950 font-extrabold block leading-none">{vehicle.auctionGrade || '4.0'}</span>
+                  <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Pristine Original Condition</span>
                 </div>
-                <div className="mt-3 pt-2 border-t border-zinc-200 flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full border border-white/25 flex items-center justify-center text-zinc-950 text-[10px] font-bold">
+                <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full border border-red-500 bg-red-50 text-red-600 flex items-center justify-center text-xs font-bold font-serif">
                     合
                   </div>
-                  <span className="text-[11px] text-zinc-700 font-mono font-semibold">USS VERIFIED</span>
+                  <span className="text-xs text-zinc-800 font-mono font-bold">USS VERIFIED</span>
                 </div>
               </div>
 
-              <div className="p-4 bg-zinc-100/80 border border-zinc-200 rounded-lg flex flex-col justify-between">
+              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl flex flex-col justify-between shadow-2xs">
                 <div>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block mb-1">INTERIOR GRADE</span>
-                  <span className="font-mono text-[32px] text-zinc-950 font-bold block leading-none">{vehicle.interiorGrade}</span>
-                  <span className="text-[11px] text-zinc-600 mt-1 block">Zero smoke, zero pet wear</span>
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">INTERIOR GRADE</span>
+                  <span className="font-mono text-3xl sm:text-4xl text-zinc-950 font-extrabold block leading-none">{vehicle.interiorGrade || 'B'}</span>
+                  <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Zero smoke, zero pet wear</span>
                 </div>
-                <div className="mt-3 pt-2 border-t border-zinc-200 flex items-center gap-2">
-                  <span className="text-[11px] text-emerald-400 font-mono font-bold">QISJ PASSED</span>
+                <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
+                  <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-mono font-bold">QISJ PASSED</span>
                 </div>
               </div>
 
-              <div className="p-4 bg-zinc-100/80 border border-zinc-200 rounded-lg flex flex-col justify-between">
+              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl flex flex-col justify-between shadow-2xs">
                 <div>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block mb-1">VERIFIED ODOMETER</span>
-                  <span className="font-mono text-[22px] text-zinc-950 font-bold block leading-none mt-1">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">VERIFIED ODOMETER</span>
+                  <span className="font-mono text-2xl sm:text-3xl text-zinc-950 font-extrabold block leading-none mt-1">
                     {vehicle.mileageKm.toLocaleString()} KM
                   </span>
-                  <span className="text-[11px] text-zinc-600 mt-1 block">Certified Japanese JEVIC</span>
+                  <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Certified Japanese JEVIC</span>
                 </div>
-                <div className="mt-3 pt-2 border-t border-zinc-200 flex items-center gap-2">
-                  <span className="text-[11px] text-zinc-700 font-mono font-semibold">100% GENUINE</span>
+                <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
+                  <span className="text-xs text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">100% GENUINE</span>
                 </div>
               </div>
             </div>
 
             {/* Vehicle Inspection Blueprint Matrix (Interactive Japanese Inspector Decoder) */}
-            <div className="p-5 bg-zinc-100/80 border border-zinc-200 rounded-lg space-y-4">
-              <div className="flex items-center justify-between border-b border-zinc-200 pb-2 text-[11px] font-mono">
-                <span className="text-zinc-700 uppercase font-semibold">
+            <div className="p-5 bg-zinc-50 border border-zinc-200/90 rounded-xl space-y-4">
+              <div className="flex items-center justify-between border-b border-zinc-200 pb-2 text-xs font-mono">
+                <span className="text-zinc-800 uppercase font-bold">
                   INTERACTIVE PANEL & CHASSIS INSPECTOR (JAPANESE STANDARD)
                 </span>
-                <span className="text-emerald-400 font-bold">
+                <span className="text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded font-bold">
                   FRAME DISTORTION: 0%
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[12px] font-mono">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
                 {[
                   { id: 'front', label: 'FRONT BUMPER', code: 'A1 · Clean hairline', detail: 'Code A1: Negligible scratch under 5cm. Factory plastic bumper clip pins intact, zero curb deformation.' },
                   { id: 'left', label: 'LEFT FLANK', code: 'O · Factory original', detail: 'Code O: Original factory paint verified. Digital micrometer paint thickness 112μm, zero re-sprays.' },
@@ -1944,24 +2015,24 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     <button
                       key={pt.id}
                       onClick={() => setSelectedInspectorPoint(pt.id)}
-                      className={`p-2.5 rounded-[4px] border text-left transition-all cursor-pointer ${
+                      className={`p-3 rounded-lg border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-zinc-800 border-white shadow-md'
-                          : 'bg-[#121215] border-[#27272a] hover:border-zinc-700'
+                          ? 'bg-zinc-950 border-zinc-950 text-white shadow-sm'
+                          : 'bg-white border-zinc-200 text-zinc-900 hover:bg-zinc-100'
                       }`}
                     >
-                      <span className="text-zinc-950 block font-bold text-[11px]">{pt.label}</span>
-                      <span className="text-zinc-600 text-[11px] block mt-0.5">{pt.code}</span>
+                      <span className={`block font-bold text-xs ${isSelected ? 'text-white' : 'text-zinc-950'}`}>{pt.label}</span>
+                      <span className={`text-[11px] block mt-1 ${isSelected ? 'text-zinc-300' : 'text-zinc-600'}`}>{pt.code}</span>
                     </button>
                   );
                 })}
               </div>
 
-              <div className="p-3 bg-white/90 border border-zinc-200/80 rounded text-left">
-                <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider block font-semibold mb-1">
+              <div className="p-4 bg-white border border-zinc-200/90 rounded-lg text-left shadow-2xs">
+                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block font-bold mb-1.5">
                   DECODED INSPECTION REPORT:
                 </span>
-                <p className="text-xs text-zinc-700 leading-relaxed font-mono">
+                <p className="text-xs sm:text-sm text-zinc-800 leading-relaxed font-mono">
                   {selectedInspectorPoint === 'front' && 'Front Bumper: Minor microscopic clearcoat hairline. Grille clips, radar sensor bracket, and fog housings original OEM.'}
                   {selectedInspectorPoint === 'left' && 'Left Flank: Factory clearcoat intact. Rocker panels and wheel arches free of corrosion or salt pit marks.'}
                   {selectedInspectorPoint === 'right' && 'Right Flank: Pristine reflection line. Zero parking indentation, glass etching matches chassis VIN.'}
@@ -1969,22 +2040,24 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </p>
               </div>
 
-              <p className="text-[13px] text-[#a1a1aa] leading-relaxed">
-                <strong className="text-zinc-950">Inspector Notes:</strong> Regular maintenance records verified in Tokyo. Zero frame damage, zero rust. Brakes and steering certified ready for road use.
-              </p>
+              <div className="p-3 bg-zinc-100 border border-zinc-200/80 rounded-lg text-left">
+                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-mono">
+                  <strong className="text-zinc-950 font-bold">Inspector Notes:</strong> Regular maintenance records verified in Tokyo. Zero frame damage, zero rust. Brakes and steering certified ready for road use.
+                </p>
+              </div>
             </div>
 
             {/* Action Bar */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-[12px] text-[#71717a] font-mono">
+              <span className="text-xs text-zinc-600 font-mono">
                 Official PDF dispatched via WhatsApp.
               </span>
 
               <a
-                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20from%20${encodeURIComponent(vehicle.auctionHall || 'Direct Japanese Import')}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white w-full sm:w-auto text-center font-bold px-5 py-3 rounded-lg inline-flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-98 transition-all"
+                className="bg-[#25D366] hover:bg-[#20ba59] text-white w-full sm:w-auto text-center font-bold px-6 py-3.5 rounded-xl inline-flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-98 transition-all text-sm"
               >
                 <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-white fill-white" />

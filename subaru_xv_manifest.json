@@ -1,0 +1,347 @@
+{
+  "id": "subaru-xv-2019-black",
+  "stockNo": "ALB-XV19",
+  "sbtStockId": "XV2019",
+  "chassisNo": "GT7-202338",
+  "modelCode": "DBA-GT7",
+  "engineCode": "FB20 (2.0L Boxer Petrol)",
+  "name": "Subaru XV 2019 AWD",
+  "moniker": "Symmetrical AWD Adventure Crossover",
+  "essenceQuote": "SUBARU XV – 2019 MODEL 🚘\n✨ Sporty • AWD Confidence • Adventure-Ready ✨\n🔹 Model: 2019 Subaru XV | Mileage: 102,000 km | Engine Capacity: 1990cc Petrol Engine\n🔹 Color: Sleek Black | Condition: Super Clean, Mechanically Sound – Ready for the Road\n📍 Available at Alberka Enterprises Ltd – Mombasa\n📞 Contact us today for viewing, pricing, and booking.",
+  "kicker": "2019 Model · 2.0L Boxer Engine · Symmetrical AWD · Mombasa Stock",
+  "tagline": "Subaru XV 2019 · 2.0L Boxer Engine · Symmetrical All-Wheel Drive · EyeSight Safety Suite · Sleek Black",
+  "priceKes": 3150000,
+  "originalPriceKes": 3450000,
+  "discountPercent": 9,
+  "hubId": "subaru-xv",
+  "priceUsd": 15000,
+  "freightUsd": 2000,
+  "vanningUsd": 0,
+  "inspectionUsd": 250,
+  "insuranceUsd": 180,
+  "totalCifUsd": 17430,
+  "inventoryLocation": "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+  "sbtGrade": "2.0i-L EYESIGHT AWD",
+  "year": 2019,
+  "registrationMonth": "07",
+  "manufactureYearMonth": "2019 / 07",
+  "mileageKm": 102000,
+  "steering": "RHD",
+  "category": "suv",
+  "bodyType": "SUV",
+  "fuelType": "PETROL",
+  "transmission": "Lineartronic CVT 7-Speed",
+  "drivetrain": "AWD",
+  "doors": 5,
+  "seats": 5,
+  "engine": "1,995 cc FB20 Horizontally Opposed 4-Cylinder Boxer",
+  "power": "154 HP @ 6,000 RPM",
+  "torque": "196 Nm @ 4,000 RPM",
+  "fuelEconomy": "16.0 km/L",
+  "exteriorColor": "Crystal Black Silica",
+  "colorCode": "D4S",
+  "interiorColor": "Charcoal Black with Signature Orange Contrast Stitching",
+  "locationYard": "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+  "dimensions": "4.46m × 1.80m × 1.61m",
+  "m3": "13.0 m³",
+  "wheelbase": "2,665 mm",
+  "groundClearance": "220 mm",
+  "curbWeight": "1,440 kg",
+  "grossWeight": "1,940 kg",
+  "maxLoadingCapacity": "500 kg",
+  "fuelTankCapacity": "63 Liters",
+  "auctionGrade": "4.5",
+  "auctionHall": "USS Tokyo / SBT Japan Export Center",
+  "interiorGrade": "A",
+  "inspectionStatus": "QISJ Certified & JEVIC Odometer Inspected",
+  "status": "In Stock",
+  "options": {
+    "pushStart": true,
+    "smartKey": true,
+    "powerWindows": true,
+    "airConditioner": true,
+    "powerSeats": false,
+    "leatherSeats": false,
+    "sunroof": false,
+    "alloyWheels": true,
+    "abs": true,
+    "airbags": true,
+    "backCamera": true,
+    "camera360": false,
+    "radarCruise": true,
+    "laneAssist": true,
+    "ledLights": true,
+    "navigation": true,
+    "audioPlayer": true,
+    "fogLights": true,
+    "rearSpoiler": true,
+    "doubleAc": false,
+    "powerBackDoor": false
+  },
+  "heroImage": "/vehicles/subaru-xv-2019-black/hero-front-34.jpg",
+  "heroVideo": "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+  "colors": [
+    {
+      "name": "Crystal Black Silica",
+      "hex": "#111215",
+      "imageUrl": "/vehicles/subaru-xv-2019-black/hero-front-34.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Subaru XV 2019 — Front Three Quarter",
+      "description": "Hawk-eye LED headlights, rugged lower cladding, and Crystal Black Silica finish under Mombasa sunshine.",
+      "url": "/vehicles/subaru-xv-2019-black/hero-front-34.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Front Direct Grille Stance",
+      "description": "Hexagonal front grille with chrome winglet and silver accented lower fog light bezels.",
+      "url": "/vehicles/subaru-xv-2019-black/front-direct-grille.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Dynamic Side Profile",
+      "description": "220mm ground clearance, two-tone machine-finished 17-inch alloy wheels, and side door garnishes.",
+      "url": "/vehicles/subaru-xv-2019-black/front-side-profile.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Rear Direct AWD View",
+      "description": "Symmetrical AWD badge, high roof spoiler, and silver underbody diffuser skid garnish.",
+      "url": "/vehicles/subaru-xv-2019-black/rear-direct-awd.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Rear Three Quarter",
+      "description": "C-shaped LED combination taillights and tinted UV-cut rear privacy glass.",
+      "url": "/vehicles/subaru-xv-2019-black/rear-three-quarter.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Driver Cockpit & Orange Stitching",
+      "description": "Perforated leather steering wheel with audio and EyeSight radar cruise controls with orange stitching.",
+      "url": "/vehicles/subaru-xv-2019-black/cockpit-steering-orange-stitch.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Digital Odometer Cluster",
+      "description": "Dual analogue gauges with center LCD screen displaying verified 102,225 km Japanese export mileage.",
+      "url": "/vehicles/subaru-xv-2019-black/digital-odometer-cluster.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Full Dashboard Panorama",
+      "description": "Dual display layout with top multi-function info screen, central touchscreen, and digital climate dials.",
+      "url": "/vehicles/subaru-xv-2019-black/cabin-dashboard-panorama.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Front Sport Bucket Seats",
+      "description": "High-bolster fabric and sport leatherette seats featuring distinctive orange stitching accents.",
+      "url": "/vehicles/subaru-xv-2019-black/front-sport-seats.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Rear Passenger Bench",
+      "description": "Three-passenger rear seat with center armrest, dual cup holders, and fold-flat 60:40 capability.",
+      "url": "/vehicles/subaru-xv-2019-black/rear-passenger-bench.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — FB20 2.0L Boxer Engine",
+      "description": "Horizontally opposed 2.0L direct-injection petrol engine with symmetrical layout and low center of gravity.",
+      "url": "/vehicles/subaru-xv-2019-black/boxer-engine-bay.jpg"
+    },
+    {
+      "title": "Subaru XV 2019 — Cavernous Cargo Boot",
+      "description": "Wide rectangular boot with retractable luggage cover, tie-down anchors, and flat loading surface.",
+      "url": "/vehicles/subaru-xv-2019-black/open-cargo-boot.jpg"
+    }
+  ],
+  "closerLookPoints": [
+    {
+      "id": "boxer-awd",
+      "title": "Symmetrical All-Wheel Drive",
+      "subtitle": "Unshakable All-Weather Traction",
+      "description": "Full-time AWD sends power to all four wheels simultaneously for superior stability on wet highways or loose safari trails.",
+      "imageUrl": "/vehicles/subaru-xv-2019-black/rear-direct-awd.jpg",
+      "metric": "AWD",
+      "metricLabel": "Symmetrical All-Wheel Drive"
+    },
+    {
+      "id": "fb20-boxer",
+      "title": "FB20 Horizontally Opposed Boxer Engine",
+      "subtitle": "Low Vibration & Center of Gravity",
+      "description": "Pistons move horizontally in opposition, canceling out vibrations naturally without requiring balance shafts.",
+      "imageUrl": "/vehicles/subaru-xv-2019-black/boxer-engine-bay.jpg",
+      "metric": "154 HP",
+      "metricLabel": "2.0L Boxer Petrol"
+    },
+    {
+      "id": "verified-cluster",
+      "title": "Verified 102,000 KM Odometer",
+      "subtitle": "Authentic Japanese JEVIC Certificate",
+      "description": "Multi-information cluster verified at 102,225 km with complete Japanese maintenance history.",
+      "imageUrl": "/vehicles/subaru-xv-2019-black/digital-odometer-cluster.jpg",
+      "metric": "102K KM",
+      "metricLabel": "Verified Odometer"
+    },
+    {
+      "id": "ground-clearance",
+      "title": "220mm High Ground Clearance",
+      "subtitle": "Ready for Kenyan Roads",
+      "description": "Class-leading 220mm clearance easily tackles rough terrain, potholes, and elevated speed bumps.",
+      "imageUrl": "/vehicles/subaru-xv-2019-black/front-side-profile.jpg",
+      "metric": "220 MM",
+      "metricLabel": "Ground Clearance"
+    }
+  ],
+  "editorialFeatures": [
+    {
+      "id": "awd-capability",
+      "badge": "SYMMETRICAL AWD",
+      "title": "Subaru All-Wheel Drive & X-Mode",
+      "lead": "Command steep inclines, loose gravel, and torrential coastal rain with confidence.",
+      "narrative": [
+        "Subaru's Symmetrical AWD lays the entire powertrain in a straight, balanced symmetrical line along the vehicle's center.",
+        "With one press of the X-Mode button, engine throttle, transmission shift timing, and AWD torque split optimize to pull through any road challenge."
+      ],
+      "specs": [
+        { "label": "Drive Layout", "value": "Symmetrical AWD with X-Mode" },
+        { "label": "Ground Clearance", "value": "220 mm" },
+        { "label": "Engine", "value": "2.0L FB20 Boxer Petrol" }
+      ],
+      "slides": [
+        {
+          "id": "awd-slide",
+          "title": "All-Terrain Stance",
+          "subtitle": "Symmetrical AWD Badge",
+          "description": "High ground clearance and skid plate garnishes engineered for road confidence.",
+          "imageUrl": "/vehicles/subaru-xv-2019-black/rear-direct-awd.jpg"
+        }
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "overview",
+      "tabLabel": "Overview",
+      "eyebrow": "2019 SUBARU XV 2.0i-L",
+      "title": "The Ultimate Multi-Terrain Companion",
+      "narrative": [
+        "The Subaru XV combines agile urban hatchback dimensions with genuine crossover SUV all-wheel-drive capability.",
+        "Available directly at Alberka Enterprises showroom next to Ganjoni Primary School, Mombasa."
+      ],
+      "imageUrl": "/vehicles/subaru-xv-2019-black/hero-front-34.jpg",
+      "highlights": [
+        { "label": "Year", "value": "2019 Model" },
+        { "label": "Engine", "value": "1990cc Boxer Petrol" },
+        { "label": "Color", "value": "Sleek Black" }
+      ]
+    }
+  ],
+  "specifications": [
+    {
+      "category": "Engine & Drivetrain",
+      "items": [
+        { "label": "Engine", "value": "1,995 cc FB20 Boxer 4-Cylinder Petrol DOHC 16V" },
+        { "label": "Power Output", "value": "154 HP @ 6,000 RPM" },
+        { "label": "Torque", "value": "196 Nm @ 4,000 RPM" },
+        { "label": "Transmission", "value": "Lineartronic CVT with 7-Speed Manual Mode" },
+        { "label": "Drive System", "value": "Symmetrical Full-Time All-Wheel Drive (AWD)" },
+        { "label": "Fuel Capacity", "value": "63 Liters" }
+      ]
+    },
+    {
+      "category": "Dimensions & Chassis",
+      "items": [
+        { "label": "Dimensions", "value": "4,465 mm × 1,800 mm × 1,615 mm" },
+        { "label": "Wheelbase", "value": "2,665 mm" },
+        { "label": "Ground Clearance", "value": "220 mm" },
+        { "label": "Seating", "value": "5 Passengers" },
+        { "label": "Boot Volume", "value": "385 Liters (Extendable to 1,310L)" }
+      ]
+    }
+  ],
+  "workshopProtocol": [
+    "QISJ pre-shipment inspection certified in Japan prior to vessel boarding.",
+    "Comprehensive 100-point mechanical check: boxer engine valve covers, Lineartronic CVT fluid, AWD differential seals.",
+    "Electronic diagnosis verifying 0 DTC fault codes on Subaru Select Monitor.",
+    "Engine oil and OEM filter renewal with synthetic 0W-20 boxer engine lubricant.",
+    "Four-wheel laser alignment and brake pad inspection.",
+    "Professional exterior polish and interior steam detailing."
+  ],
+  "equipmentChecklist": [
+    {
+      "category": "COMFORT & CONVENIENCE",
+      "items": [
+        { "name": "ACC (Adaptive Cruise)", "active": true },
+        { "name": "Air Conditioner", "active": true },
+        { "name": "Audio Player", "active": true },
+        { "name": "Both Power Slide Door", "active": false },
+        { "name": "Cooler", "active": true },
+        { "name": "Cruise Control", "active": true },
+        { "name": "Double Air Conditioner", "active": false },
+        { "name": "Left Side Power Slide Door", "active": false },
+        { "name": "Navigation System", "active": true },
+        { "name": "Paddle Shift", "active": true },
+        { "name": "Power Back Door", "active": false },
+        { "name": "Power Seat", "active": false },
+        { "name": "Power Steering", "active": true },
+        { "name": "Power Window All", "active": true },
+        { "name": "Power Window Driver", "active": true },
+        { "name": "Power Window Front", "active": true },
+        { "name": "Push Start", "active": true },
+        { "name": "Steering Switch", "active": true }
+      ]
+    },
+    {
+      "category": "DRESS UP",
+      "items": [
+        { "name": "Aero Front", "active": true },
+        { "name": "Aero Rear", "active": true },
+        { "name": "Aero Side", "active": true },
+        { "name": "Alloy Wheels", "active": true },
+        { "name": "Grill Guard", "active": false },
+        { "name": "Rear Spoiler", "active": true },
+        { "name": "Wood Combination Steering", "active": false }
+      ]
+    },
+    {
+      "category": "EXTERIOR",
+      "items": [
+        { "name": "Carrier Base", "active": false },
+        { "name": "Roof Box", "active": false },
+        { "name": "Roof Carrier", "active": false },
+        { "name": "Roof Rails", "active": false },
+        { "name": "Sun Roof", "active": false },
+        { "name": "Double Sun Roof", "active": false },
+        { "name": "Glass Roof", "active": false },
+        { "name": "Fog Light", "active": true },
+        { "name": "HID Light", "active": false },
+        { "name": "LED Light", "active": true },
+        { "name": "High Roof", "active": false },
+        { "name": "New Shape", "active": true },
+        { "name": "Slide Glass", "active": false }
+      ]
+    },
+    {
+      "category": "SAFETY",
+      "items": [
+        { "name": "ABS", "active": true },
+        { "name": "Air Bag", "active": true },
+        { "name": "Around View Monitor", "active": false },
+        { "name": "Back Camera", "active": true },
+        { "name": "Front Camera", "active": false },
+        { "name": "Side Camera", "active": false },
+        { "name": "Corner Sensor", "active": true },
+        { "name": "ESC", "active": true }
+      ]
+    },
+    {
+      "category": "OTHER & REMARKS",
+      "items": [
+        { "name": "Auto Door", "active": false },
+        { "name": "Back Tire", "active": false },
+        { "name": "Just Low", "active": false },
+        { "name": "Half Leather Seat", "active": true },
+        { "name": "Leather Seat", "active": false },
+        { "name": "Same Tire", "active": true },
+        { "name": "Side Lift Up Seat", "active": false },
+        { "name": "Sloper", "active": false }
+      ]
+    }
+  ],
+  "equipmentRemarks": "5SEATS, SYMMETRICAL AWD, FB20 BOXER, EYESIGHT ADAS, PUSH START, REVERSE CAMERA"
+}

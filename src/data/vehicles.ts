@@ -153,496 +153,6 @@ export interface Vehicle {
 
 export const VEHICLES: Vehicle[] = [
   {
-    id: 'toyota-land-cruiser-prado-ax2877',
-    stockNo: 'ALB-2877',
-    sbtStockId: 'AX2877',
-    chassisNo: 'GRJ120-002877',
-    modelCode: 'CBA-GRJ120W',
-    engineCode: '1GR-FE',
-    name: 'Toyota Land Cruiser Prado TX Limited 60th Special Edition',
-    moniker: '60th Anniversary Japanese Overland Legend',
-    essenceQuote: 'A pristine 120-Series Prado straight from Osaka, powered by the indestructible 4.0L V6 1GR-FE with verified 108,000 km, 8-seater capability, and full Japanese export documentation.',
-    kicker: 'SBT Japan Certified · 4.0L Petrol V6 · 8-Seater',
-    tagline: 'Toyota Land Cruiser Prado 120 · TX Limited 60th Anniversary · 4.0L V6 Petrol · 4WD · Osaka Export',
-    priceKes: 3200000,
-    priceUsd: 11690,
-    freightUsd: 1900,
-    vanningUsd: 0,
-    inspectionUsd: 250,
-    insuranceUsd: 206,
-    totalCifUsd: 14046,
-    inventoryLocation: 'Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)',
-    sbtGrade: 'TX LIMITED 60TH SPECIAL EDITION',
-    year: 2006,
-    registrationMonth: '12',
-    manufactureYearMonth: '2006 / 12',
-    mileageKm: 108000,
-    steering: 'RHD',
-    category: 'suv',
-    bodyType: 'SUV',
-    fuelType: 'PETROL',
-    transmission: 'AT',
-    drivetrain: '4WD',
-    engine: '4,000 cc',
-    power: '249 HP @ 5,200 RPM',
-    torque: '380 Nm @ 3,800 RPM',
-    fuelEconomy: '8.5 km/L (Japanese 10-15 mode)',
-    exteriorColor: 'WHITE',
-    colorCode: '056',
-    interiorColor: 'Charcoal / Ash Gray Fabric',
-    doors: 5,
-    seats: 8,
-    locationYard: 'Osaka Yard / Mombasa Port RoRo',
-    dimensions: '4.85m × 1.88m × 1.85m (4,850 × 1,875 × 1,850 mm)',
-    m3: '16.823 m³',
-    wheelbase: '2,790 mm',
-    groundClearance: '220 mm',
-    curbWeight: '2,050 kg',
-    grossWeight: '2,600 kg',
-    maxLoadingCapacity: '550 kg',
-    fuelTankCapacity: '87 L',
-    auctionGrade: '4.5',
-    auctionHall: 'USS Osaka / SBT Japan Export Center',
-    interiorGrade: 'B',
-    inspectionStatus: 'QISJ & JEVIC Export Approved',
-    status: 'In Stock',
-    heroImage: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
-    heroVideo: '',
-    options: {
-      pushStart: false,
-      smartKey: false,
-      powerWindows: true,
-      airConditioner: true,
-      powerSeats: false,
-      leatherSeats: false,
-      sunroof: false,
-      alloyWheels: true,
-      abs: true,
-      airbags: true,
-      backCamera: true,
-      camera360: false,
-      radarCruise: false,
-      laneAssist: false,
-      ledLights: false,
-      navigation: true,
-      roofRails: true,
-      audioPlayer: true,
-      fogLights: true,
-      rearSpoiler: false,
-      woodSteering: false,
-      doubleAc: false,
-      powerBackDoor: false,
-    },
-    colors: [
-      { name: 'Pure White (056)', hex: '#F8F9FA', imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg' },
-    ],
-    closerLookPoints: [
-      {
-        id: 'engine-1gr',
-        title: '4.0L 1GR-FE V6 Powertrain',
-        subtitle: 'Dual VVTi Naturally Aspirated Gasoline Engine',
-        description: 'Renowned globally for 500,000+ km longevity. Delivers 249 horsepower and 380 Nm of smooth, responsive torque.',
-        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/37.jpg',
-        metric: '249 HP',
-        metricLabel: 'Naturally Aspirated',
-      },
-      {
-        id: 'cabin-8seats',
-        title: 'Full 8-Passenger Seating',
-        subtitle: '3-Row Flexible Family & Safari Layout',
-        description: 'Tumble-forward 2nd row and split-folding 3rd row provide cavernous luggage capacity and comfortable long-distance touring.',
-        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/20.jpg',
-        metric: '8 Seats',
-        metricLabel: 'Full Configuration',
-      },
-      {
-        id: 'odometer-verified',
-        title: '108,000 Verified Kilometers',
-        subtitle: 'Japanese Ministry of Transport Certified',
-        description: 'Documented genuine low mileage verified by export certification and JEVIC Japanese inspection certificate.',
-        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/13.jpg',
-        metric: '108k KM',
-        metricLabel: 'Certified Odometer',
-      },
-    ],
-    editorialFeatures: [
-      {
-        id: 'safety',
-        badge: 'SAFETY & CHASSIS',
-        title: 'Heavy-Duty Ladder Frame 4WD',
-        lead: 'Engineered for the harshest terrain with full-time 4WD and Torsen limited-slip center differential.',
-        narrative: [
-          'The 120 Series Prado combines a rigid boxed ladder chassis with independent double-wishbone front suspension.',
-          'Features factory ABS, dual SRS front airbags, rear parking camera, and front fog lamps.',
-        ],
-        specs: [
-          { label: 'Chassis Type', value: 'Full Box-Section Ladder Frame' },
-          { label: 'Drive System', value: 'Full-Time 4WD with Dual-Range Transfer' },
-          { label: 'Differential', value: 'Torsen Center LSD with Electronic Lock' },
-          { label: 'Brakes', value: '4-Wheel Ventilated Discs with ABS' },
-        ],
-        slides: [
-          {
-            id: 'slide-4wd',
-            title: 'Full-Time 4WD System',
-            subtitle: 'High & Low Range Transfer Case',
-            description: 'Unstoppable off-road capability across Kenyan mud, sand, and rocky corridors.',
-            imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/19.jpg',
-          },
-        ],
-      },
-    ],
-    chapters: [
-      {
-        id: 'ch-overview',
-        tabLabel: 'Overland Heritage',
-        eyebrow: 'TOYOTA LAND CRUISER PRADO',
-        title: 'The 60th Anniversary 120 Edition',
-        narrative: [
-          'Commissioned to celebrate 60 years of Toyota overland dominance, this TX Limited edition features enhanced factory appointments.',
-          'Imported directly from Osaka, Japan under official SBT Japan export protocol AX2877.',
-        ],
-        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
-        highlights: [
-          { label: 'Stock ID', value: 'AX2877 (ALB-2877)' },
-          { label: 'Chassis', value: 'GRJ120-002877' },
-          { label: 'Port', value: 'Osaka -> Mombasa' },
-        ],
-      },
-    ],
-    gallery: [
-      {
-        title: 'Prado 120 Photo 1',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/1.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 2',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 3',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/3.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 4',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/4.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 5',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/5.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 6',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/6.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 7',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/7.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 8',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/8.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 9',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/9.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 10',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/10.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 11',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/11.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 12',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/12.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 13',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/13.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 14',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/14.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 15',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/15.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 16',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/16.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 17',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/17.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 18',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/18.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 19',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/19.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 20',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/20.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 21',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/21.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 22',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/22.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 23',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/23.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 24',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/24.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 25',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/25.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 26',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/26.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 27',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/27.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 28',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/28.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 29',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/29.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 30',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/30.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 31',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/31.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 32',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/32.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 33',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/33.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 34',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/34.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 35',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/35.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 36',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/36.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 37',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/37.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 38',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/38.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 39',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/39.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 40',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/40.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 41',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/41.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 42',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/42.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 43',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/43.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 44',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/44.jpg',
-      },
-      {
-        title: 'Prado 120 Photo 45',
-        description: 'SBT Japan Inspection Archive AX2877',
-        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/45.jpg',
-      }
-    ],
-    specifications: [
-      {
-        category: 'SBT Japan Exporter Specifications',
-        items: [
-          { label: 'SBT Stock ID', value: 'AX2877' },
-          { label: 'Inventory Location', value: 'Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)' },
-          { label: 'Model Code', value: 'CBA-GRJ120W' },
-          { label: 'Engine Code', value: '1GR-FE (4,000 cc)' },
-          { label: 'M3 Volume', value: '16.823 m³' },
-          { label: 'FOB Price', value: '$11,690 USD' },
-          { label: 'CIF Mombasa Port', value: '$14,046 USD' },
-          { label: 'Delivered Kenya', value: 'KES 3,200,000 (Duty Cleared)' },
-        ],
-      },
-    ],
-    workshopProtocol: [
-      '1GR-FE V6 compression and valve timing diagnostic',
-      'Differential and transfer case fluid replacement',
-      'Suspension bushing and ball joint mechanical clearance check',
-      'Brake pad wear and rotor thickness measurement',
-      'Underbody anti-corrosion chassis seal verification',
-    ],
-    equipmentChecklist: [
-      {
-        category: 'COMFORT & CONVENIENCE',
-        items: [
-          { name: 'ACC (Adaptive Cruise)', active: false },
-          { name: 'Air Conditioner', active: true },
-          { name: 'Audio Player', active: true },
-          { name: 'Both Power Slide Door', active: false },
-          { name: 'Cooler', active: true },
-          { name: 'Cruise Control', active: false },
-          { name: 'Double Air Conditioner', active: true },
-          { name: 'Left Side Power Slide Door', active: false },
-          { name: 'Navigation System', active: true },
-          { name: 'Paddle Shift', active: false },
-          { name: 'Power Back Door', active: false },
-          { name: 'Power Seat', active: false },
-          { name: 'Power Steering', active: true },
-          { name: 'Power Window All', active: true },
-          { name: 'Power Window Driver', active: true },
-          { name: 'Power Window Front', active: true },
-          { name: 'Push Start', active: false },
-          { name: 'Steering Switch', active: false },
-        ],
-      },
-      {
-        category: 'DRESS UP',
-        items: [
-          { name: 'Aero Front', active: false },
-          { name: 'Aero Rear', active: false },
-          { name: 'Aero Side', active: false },
-          { name: 'Alloy Wheels', active: true },
-          { name: 'Grill Guard', active: false },
-          { name: 'Rear Spoiler', active: false },
-          { name: 'Wood Combination Steering', active: true },
-        ],
-      },
-      {
-        category: 'EXTERIOR',
-        items: [
-          { name: 'Carrier Base', active: false },
-          { name: 'Roof Box', active: false },
-          { name: 'Roof Carrier', active: false },
-          { name: 'Roof Rails', active: true },
-          { name: 'Sun Roof', active: false },
-          { name: 'Double Sun Roof', active: false },
-          { name: 'Glass Roof', active: false },
-          { name: 'Fog Light', active: true },
-          { name: 'HID Light', active: false },
-          { name: 'LED Light', active: false },
-          { name: 'High Roof', active: false },
-          { name: 'New Shape', active: true },
-          { name: 'Slide Glass', active: false },
-        ],
-      },
-      {
-        category: 'SAFETY',
-        items: [
-          { name: 'ABS', active: true },
-          { name: 'Air Bag', active: true },
-          { name: 'Around View Monitor', active: false },
-          { name: 'Back Camera', active: true },
-          { name: 'Front Camera', active: false },
-          { name: 'Side Camera', active: false },
-          { name: 'Corner Sensor', active: false },
-          { name: 'ESC', active: true },
-        ],
-      },
-      {
-        category: 'OTHER & REMARKS',
-        items: [
-          { name: 'Auto Door', active: false },
-          { name: 'Back Tire', active: true },
-          { name: 'Just Low', active: false },
-          { name: 'Half Leather Seat', active: false },
-          { name: 'Leather Seat', active: false },
-          { name: 'Same Tire', active: true },
-          { name: 'Side Lift Up Seat', active: false },
-          { name: 'Sloper', active: false },
-        ],
-      },
-    ],
-    equipmentRemarks: '8SEATS, 4.0L V6 1GR-FE, 4WD DUAL RANGE',
-  },
-  {
     id: 'suzuki-every-2019',
     stockNo: 'ALB-EV19',
     sbtStockId: 'EV2019',
@@ -1615,5 +1125,1713 @@ export const VEHICLES: Vehicle[] = [
         }
     ],
     equipmentRemarks: "5SEATS, GR SPORT EDITION, 19\" ALLOYS, PUSH START, REVERSE CAMERA"
+},
+  {
+    id: "toyota-harrier-2020-grey",
+    stockNo: "ALB-HR20",
+    sbtStockId: "HR2020G",
+    chassisNo: "MXUA80-0020118",
+    modelCode: "6BA-MXUA80",
+    engineCode: "M20A-FKS (2.0L Dynamic Force Petrol)",
+    name: "Toyota Harrier 2020 Grey",
+    moniker: "80-Series Dynamic Force Luxury Crossover",
+    essenceQuote: "🚘 TOYOTA HARRIER 2020 – FOR SALE! 🔥\n✨ Premium Style • Comfort • Performance ✨\n📅 Year: 2020 Model | 🎨 Colour: Grey | 🛣️ Mileage: 74,000 KM\n⛽ Engine: 2.0L Dynamic Force Petrol (M20A-FKS)\n✅ Elegant & Stylish SUV | Spacious & Comfortable Interior\n✅ Premium Exterior Design | Ideal for Family & Business Use | Excellent Road Presence\n🏢 ALBERKA ENTERPRISES LTD — Your Trusted Car Partner Since 2011\n📍 Mombasa, Kenya 🇰🇪 | 📞 Call/WhatsApp: 0786000040",
+    kicker: "2020 Model · 80-Series New Shape · 74,000 KM · Mombasa Stock",
+    tagline: "Toyota Harrier 2020 · 2.0L Dynamic Force Petrol · Slate Grey Metallic · High Spec G Package",
+    priceKes: 4950000,
+    originalPriceKes: 5350000,
+    discountPercent: 7,
+    hubId: "toyota-harrier",
+    priceUsd: 23500,
+    freightUsd: 2200,
+    vanningUsd: 0,
+    inspectionUsd: 250,
+    insuranceUsd: 200,
+    totalCifUsd: 26150,
+    inventoryLocation: "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+    sbtGrade: "G PACKAGE DYNAMIC FORCE",
+    year: 2020,
+    registrationMonth: "08",
+    manufactureYearMonth: "2020 / 08",
+    mileageKm: 74000,
+    steering: "RHD",
+    category: "suv",
+    bodyType: "SUV",
+    fuelType: "PETROL",
+    transmission: "Direct Shift-CVT",
+    drivetrain: "2WD",
+    doors: 5,
+    seats: 5,
+    engine: "1,986 cc M20A-FKS Dynamic Force Petrol",
+    power: "171 HP @ 6,600 RPM",
+    torque: "207 Nm @ 4,800 RPM",
+    fuelEconomy: "15.4 km/L",
+    exteriorColor: "Slate Grey Metallic",
+    colorCode: "1L1",
+    interiorColor: "Ash Grey Leather & Patterned Fabric with Wood Trim",
+    locationYard: "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+    dimensions: "4.74m × 1.85m × 1.66m",
+    m3: "14.5 m³",
+    wheelbase: "2,690 mm",
+    groundClearance: "195 mm",
+    curbWeight: "1,550 kg",
+    grossWeight: "1,825 kg",
+    maxLoadingCapacity: "450 kg",
+    fuelTankCapacity: "55 Liters",
+    auctionGrade: "4.5",
+    auctionHall: "USS Tokyo / SBT Japan Export Center",
+    interiorGrade: "A",
+    inspectionStatus: "QISJ Certified & JEVIC Odometer Inspected",
+    status: "In Stock",
+    options: {
+    pushStart: true,
+    smartKey: true,
+    powerWindows: true,
+    airConditioner: true,
+    powerSeats: true,
+    leatherSeats: true,
+    sunroof: false,
+    alloyWheels: true,
+    abs: true,
+    airbags: true,
+    backCamera: true,
+    camera360: false,
+    radarCruise: true,
+    laneAssist: true,
+    ledLights: true,
+    navigation: true,
+    audioPlayer: true,
+    fogLights: true,
+    rearSpoiler: true,
+    doubleAc: true,
+    powerBackDoor: true
+    },
+    heroImage: "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg",
+    heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+    colors: [
+        {
+    name: "Slate Grey Metallic",
+    hex: "#4A525A",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg"
+        }
+    ],
+    gallery: [
+        {
+    title: "Toyota Harrier 2020 — Front Three Quarter",
+    description: "80-Series front profile with sleek signature LED light guides, radar cruise sensor, and Slate Grey finish.",
+    url: "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Front Grille & Fascia",
+    description: "High-gloss upper grille trim, integrated front emblem radar, and lower air intake with chrome lip.",
+    url: "/vehicles/toyota-harrier-2020-grey/front-grille-fascia.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Front Side Profile",
+    description: "Dynamic coupe-SUV silhouette, sculpted waistline, aerodynamic wing mirrors, and two-tone alloy wheels.",
+    url: "/vehicles/toyota-harrier-2020-grey/front-side-profile.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Continuous Rear LED Light Bar",
+    description: "Full-width razor-sharp LED taillight strip, dual chrome exhaust outlets, and clean tailgate styling.",
+    url: "/vehicles/toyota-harrier-2020-grey/rear-tailgate-led.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Executive Driver Cockpit",
+    description: "Floating widescreen infotainment display, saddle-style center console, woodgrain trim, and dual climate.",
+    url: "/vehicles/toyota-harrier-2020-grey/driver-cockpit-console.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Digital Instrument Cluster",
+    description: "Multi-information LCD display with verified 76,045 km Japanese odometer and safety system readouts.",
+    url: "/vehicles/toyota-harrier-2020-grey/digital-odometer-cluster.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Front Luxury Bucket Seats",
+    description: "Ergonomic two-tone ash grey leather and ribbed fabric upholstery with power adjustment.",
+    url: "/vehicles/toyota-harrier-2020-grey/front-leather-seats.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Rear Passenger Lounge",
+    description: "Spacious rear bench with center armrest, cup holders, ISOFIX child seat anchors, and tinted rear glass.",
+    url: "/vehicles/toyota-harrier-2020-grey/rear-leather-seats.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Driver Door Switch Console",
+    description: "Light ash wood trim bezel with one-touch power window switches and power folding mirror adjusters.",
+    url: "/vehicles/toyota-harrier-2020-grey/driver-door-controls.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Wide Cargo Boot",
+    description: "Cavernous boot with retractable luggage roller blind, low loading sill, and 60:40 folding rear seats.",
+    url: "/vehicles/toyota-harrier-2020-grey/open-cargo-trunk.jpg"
+        },
+        {
+    title: "Toyota Harrier 2020 — Dynamic Force 2.0L Engine Bay",
+    description: "M20A-FKS 2.0L Dual VVT-i petrol engine with Direct Shift-CVT. Unblemished chassis bolts and factory labels.",
+    url: "/vehicles/toyota-harrier-2020-grey/engine-bay-m20a.jpg"
+        }
+    ],
+    closerLookPoints: [
+        {
+    id: "new-shape-80",
+    title: "80-Series Aerodynamic Generation",
+    subtitle: "TNGA-K Architecture",
+    description: "Lower center of gravity, ultra-rigid chassis, and continuous razor-thin rear light signature make the 2020 Harrier an icon on Kenyan highways.",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/rear-tailgate-led.jpg",
+    metric: "80-SERIES",
+    metricLabel: "New Generation Platform"
+        },
+        {
+    id: "dynamic-force-engine",
+    title: "Dynamic Force 2.0L Petrol Powertrain",
+    subtitle: "M20A-FKS High Thermal Efficiency",
+    description: "High-compression 40% thermal efficiency 2.0L Dynamic Force petrol engine paired with Direct Shift-CVT with physical 1st launch gear.",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/engine-bay-m20a.jpg",
+    metric: "171 HP",
+    metricLabel: "Responsive Petrol Power"
+        },
+        {
+    id: "verified-cluster",
+    title: "JEVIC Verified 74,000 KM Odometer",
+    subtitle: "Complete Tokyo Maintenance History",
+    description: "Digital instrument panel verifying authentic 76,045 km Japanese export mileage with zero odometer tampering.",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/digital-odometer-cluster.jpg",
+    metric: "74K KM",
+    metricLabel: "Low Certified Mileage"
+        },
+        {
+    id: "luxury-cabin",
+    title: "Ash Grey Luxury Leather & Wood Cabin",
+    subtitle: "Saddle Console & Floating Display",
+    description: "Crafted with soft-touch leatherette, authentic light wood trim console, and ambient quiet cabin insulation.",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/driver-cockpit-console.jpg",
+    metric: "EXECUTIVE",
+    metricLabel: "G Package Luxury Finish"
+        }
+    ],
+    editorialFeatures: [
+        {
+    id: "powertrain",
+    badge: "M20A-FKS DYNAMIC FORCE",
+    title: "Toyota Dynamic Force 2.0L Engine",
+    lead: "Responsive acceleration, outstanding thermal efficiency, and physical launch gear CVT.",
+    narrative: [
+                "The 2020 Toyota Harrier features the next-generation M20A-FKS Dynamic Force 2.0-liter 4-cylinder petrol engine.",
+                "Equipped with high-speed combustion, D-4S direct and port injection, and electric VVT-iE, delivering 171 horsepower with exceptional 15.4 km/L fuel efficiency."
+            ],
+    specs: [
+                {
+    label: "Engine",
+    value: "1,986 cc M20A-FKS Petrol"
+                },
+                {
+    label: "Transmission",
+    value: "Direct Shift-CVT with Launch Gear"
+                },
+                {
+    label: "Fuel Economy",
+    value: "15.4 KM/L"
+                }
+            ],
+    slides: [
+                {
+    id: "engine-slide",
+    title: "Clean Factory Engine Bay",
+    subtitle: "Factory Inspection Marks Intact",
+    description: "Fully inspected engine bay with zero leaks, verified fluids, and pristine chassis legs.",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/engine-bay-m20a.jpg"
+                }
+            ]
+        },
+        {
+    id: "interior",
+    badge: "LUXURY SUITE",
+    title: "Saddle-Style Executive Interior",
+    lead: "Premium two-tone leather seats with floating touchscreen and acoustic glass.",
+    narrative: [
+                "Step into the 80-Series Harrier and you are greeted by an elevated saddle-inspired center console finished in tactile synthetic leather and wood.",
+                "Standard multi-zone climate control, power driver seat, and multi-information cluster display provide effortless command."
+            ],
+    specs: [
+                {
+    label: "Seating",
+    value: "5 Luxury Seats"
+                },
+                {
+    label: "Infotainment",
+    value: "Floating Touchscreen with Apple CarPlay / Android Auto"
+                },
+                {
+    label: "Trim",
+    value: "Ash Grey Leather & Synthetic Wood"
+                }
+            ],
+    slides: [
+                {
+    id: "cockpit-slide",
+    title: "Driver's Command Center",
+    subtitle: "Floating Display & Saddle Console",
+    description: "High-resolution display with digital climate controls and multi-function leather steering.",
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/driver-cockpit-console.jpg"
+                }
+            ]
+        }
+    ],
+    chapters: [
+        {
+    id: "overview",
+    tabLabel: "Overview",
+    eyebrow: "2020 Toyota Harrier G",
+    title: "The Executive Standard for Mombasa & Nairobi",
+    narrative: [
+                "The 2020 Toyota Harrier represents the pinnacle of Japanese crossover refinement.",
+                "Available directly at Alberka Enterprises showroom next to Ganjoni Primary School, Mombasa."
+            ],
+    imageUrl: "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg",
+    highlights: [
+                {
+    label: "Year",
+    value: "2020 Model"
+                },
+                {
+    label: "Color",
+    value: "Slate Grey"
+                },
+                {
+    label: "Mileage",
+    value: "74,000 KM"
+                }
+            ]
+        }
+    ],
+    specifications: [
+        {
+    category: "Powertrain & Performance",
+    items: [
+                {
+    label: "Engine",
+    value: "1,986 cc M20A-FKS Dynamic Force 4-Cylinder Petrol"
+                },
+                {
+    label: "Power Output",
+    value: "171 HP @ 6,600 RPM"
+                },
+                {
+    label: "Torque",
+    value: "207 Nm @ 4,800 RPM"
+                },
+                {
+    label: "Transmission",
+    value: "Direct Shift-CVT with Physical 1st Gear"
+                },
+                {
+    label: "Drive Type",
+    value: "Front-Wheel Drive (2WD)"
+                },
+                {
+    label: "Fuel Tank",
+    value: "55 Liters"
+                }
+            ]
+        },
+        {
+    category: "Dimensions & Utility",
+    items: [
+                {
+    label: "Overall Dimensions",
+    value: "4,740 mm × 1,855 mm × 1,660 mm"
+                },
+                {
+    label: "Wheelbase",
+    value: "2,690 mm"
+                },
+                {
+    label: "Ground Clearance",
+    value: "195 mm"
+                },
+                {
+    label: "Seating Capacity",
+    value: "5 Passengers"
+                },
+                {
+    label: "Boot Volume",
+    value: "409 Liters (Extendable to 1,000L+)"
+                }
+            ]
+        }
+    ],
+    workshopProtocol: [
+        "QISJ pre-shipment inspection verified in Yokohama port prior to dispatch.",
+        "Comprehensive 100-point mechanical check: brake rotors, steering tie-rods, suspension bushings.",
+        "Full computer diagnostic scan confirming 0 DTC fault codes across engine, transmission, and radar.",
+        "Engine oil and filter renewal with OEM synthetic Toyota 0W-16 specification.",
+        "Air conditioning system evacuation and antimicrobial sanitization.",
+        "Professional exterior two-stage paint polish and interior leather conditioning."
+    ],
+    equipmentChecklist: [
+        {
+    category: "COMFORT & CONVENIENCE",
+    items: [
+                {
+    name: "ACC (Adaptive Cruise)",
+    active: true
+                },
+                {
+    name: "Air Conditioner",
+    active: true
+                },
+                {
+    name: "Audio Player",
+    active: true
+                },
+                {
+    name: "Both Power Slide Door",
+    active: false
+                },
+                {
+    name: "Cooler",
+    active: true
+                },
+                {
+    name: "Cruise Control",
+    active: true
+                },
+                {
+    name: "Double Air Conditioner",
+    active: true
+                },
+                {
+    name: "Left Side Power Slide Door",
+    active: false
+                },
+                {
+    name: "Navigation System",
+    active: true
+                },
+                {
+    name: "Paddle Shift",
+    active: false
+                },
+                {
+    name: "Power Back Door",
+    active: true
+                },
+                {
+    name: "Power Seat",
+    active: true
+                },
+                {
+    name: "Power Steering",
+    active: true
+                },
+                {
+    name: "Power Window All",
+    active: true
+                },
+                {
+    name: "Power Window Driver",
+    active: true
+                },
+                {
+    name: "Power Window Front",
+    active: true
+                },
+                {
+    name: "Push Start",
+    active: true
+                },
+                {
+    name: "Steering Switch",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "DRESS UP",
+    items: [
+                {
+    name: "Aero Front",
+    active: true
+                },
+                {
+    name: "Aero Rear",
+    active: true
+                },
+                {
+    name: "Aero Side",
+    active: true
+                },
+                {
+    name: "Alloy Wheels",
+    active: true
+                },
+                {
+    name: "Grill Guard",
+    active: false
+                },
+                {
+    name: "Rear Spoiler",
+    active: true
+                },
+                {
+    name: "Wood Combination Steering",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "EXTERIOR",
+    items: [
+                {
+    name: "Carrier Base",
+    active: false
+                },
+                {
+    name: "Roof Box",
+    active: false
+                },
+                {
+    name: "Roof Carrier",
+    active: false
+                },
+                {
+    name: "Roof Rails",
+    active: false
+                },
+                {
+    name: "Sun Roof",
+    active: false
+                },
+                {
+    name: "Double Sun Roof",
+    active: false
+                },
+                {
+    name: "Glass Roof",
+    active: false
+                },
+                {
+    name: "Fog Light",
+    active: true
+                },
+                {
+    name: "HID Light",
+    active: false
+                },
+                {
+    name: "LED Light",
+    active: true
+                },
+                {
+    name: "High Roof",
+    active: false
+                },
+                {
+    name: "New Shape",
+    active: true
+                },
+                {
+    name: "Slide Glass",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "SAFETY",
+    items: [
+                {
+    name: "ABS",
+    active: true
+                },
+                {
+    name: "Air Bag",
+    active: true
+                },
+                {
+    name: "Around View Monitor",
+    active: false
+                },
+                {
+    name: "Back Camera",
+    active: true
+                },
+                {
+    name: "Front Camera",
+    active: false
+                },
+                {
+    name: "Side Camera",
+    active: false
+                },
+                {
+    name: "Corner Sensor",
+    active: true
+                },
+                {
+    name: "ESC",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "OTHER & REMARKS",
+    items: [
+                {
+    name: "Auto Door",
+    active: false
+                },
+                {
+    name: "Back Tire",
+    active: false
+                },
+                {
+    name: "Just Low",
+    active: false
+                },
+                {
+    name: "Half Leather Seat",
+    active: true
+                },
+                {
+    name: "Leather Seat",
+    active: true
+                },
+                {
+    name: "Same Tire",
+    active: true
+                },
+                {
+    name: "Side Lift Up Seat",
+    active: false
+                },
+                {
+    name: "Sloper",
+    active: false
+                }
+            ]
+        }
+    ],
+    equipmentRemarks: "5SEATS, DYNAMIC FORCE 2.0L, PUSH START, REVERSE CAMERA, POWER BACK DOOR, RADAR CRUISE"
+},
+  {
+    id: "subaru-xv-2019-black",
+    stockNo: "ALB-XV19",
+    sbtStockId: "XV2019",
+    chassisNo: "GT7-202338",
+    modelCode: "DBA-GT7",
+    engineCode: "FB20 (2.0L Boxer Petrol)",
+    name: "Subaru XV 2019 AWD",
+    moniker: "Symmetrical AWD Adventure Crossover",
+    essenceQuote: "SUBARU XV – 2019 MODEL 🚘\n✨ Sporty • AWD Confidence • Adventure-Ready ✨\n🔹 Model: 2019 Subaru XV | Mileage: 102,000 km | Engine Capacity: 1990cc Petrol Engine\n🔹 Color: Sleek Black | Condition: Super Clean, Mechanically Sound – Ready for the Road\n📍 Available at Alberka Enterprises Ltd – Mombasa\n📞 Contact us today for viewing, pricing, and booking.",
+    kicker: "2019 Model · 2.0L Boxer Engine · Symmetrical AWD · Mombasa Stock",
+    tagline: "Subaru XV 2019 · 2.0L Boxer Engine · Symmetrical All-Wheel Drive · EyeSight Safety Suite · Sleek Black",
+    priceKes: 3150000,
+    originalPriceKes: 3450000,
+    discountPercent: 9,
+    hubId: "subaru-xv",
+    priceUsd: 15000,
+    freightUsd: 2000,
+    vanningUsd: 0,
+    inspectionUsd: 250,
+    insuranceUsd: 180,
+    totalCifUsd: 17430,
+    inventoryLocation: "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+    sbtGrade: "2.0i-L EYESIGHT AWD",
+    year: 2019,
+    registrationMonth: "07",
+    manufactureYearMonth: "2019 / 07",
+    mileageKm: 102000,
+    steering: "RHD",
+    category: "suv",
+    bodyType: "SUV",
+    fuelType: "PETROL",
+    transmission: "Lineartronic CVT 7-Speed",
+    drivetrain: "AWD",
+    doors: 5,
+    seats: 5,
+    engine: "1,995 cc FB20 Horizontally Opposed 4-Cylinder Boxer",
+    power: "154 HP @ 6,000 RPM",
+    torque: "196 Nm @ 4,000 RPM",
+    fuelEconomy: "16.0 km/L",
+    exteriorColor: "Crystal Black Silica",
+    colorCode: "D4S",
+    interiorColor: "Charcoal Black with Signature Orange Contrast Stitching",
+    locationYard: "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+    dimensions: "4.46m × 1.80m × 1.61m",
+    m3: "13.0 m³",
+    wheelbase: "2,665 mm",
+    groundClearance: "220 mm",
+    curbWeight: "1,440 kg",
+    grossWeight: "1,940 kg",
+    maxLoadingCapacity: "500 kg",
+    fuelTankCapacity: "63 Liters",
+    auctionGrade: "4.5",
+    auctionHall: "USS Tokyo / SBT Japan Export Center",
+    interiorGrade: "A",
+    inspectionStatus: "QISJ Certified & JEVIC Odometer Inspected",
+    status: "In Stock",
+    options: {
+    pushStart: true,
+    smartKey: true,
+    powerWindows: true,
+    airConditioner: true,
+    powerSeats: false,
+    leatherSeats: false,
+    sunroof: false,
+    alloyWheels: true,
+    abs: true,
+    airbags: true,
+    backCamera: true,
+    camera360: false,
+    radarCruise: true,
+    laneAssist: true,
+    ledLights: true,
+    navigation: true,
+    audioPlayer: true,
+    fogLights: true,
+    rearSpoiler: true,
+    doubleAc: false,
+    powerBackDoor: false
+    },
+    heroImage: "/vehicles/subaru-xv-2019-black/hero-front-34.jpg",
+    heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+    colors: [
+        {
+    name: "Crystal Black Silica",
+    hex: "#111215",
+    imageUrl: "/vehicles/subaru-xv-2019-black/hero-front-34.jpg"
+        }
+    ],
+    gallery: [
+        {
+    title: "Subaru XV 2019 — Front Three Quarter",
+    description: "Hawk-eye LED headlights, rugged lower cladding, and Crystal Black Silica finish under Mombasa sunshine.",
+    url: "/vehicles/subaru-xv-2019-black/hero-front-34.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Front Direct Grille Stance",
+    description: "Hexagonal front grille with chrome winglet and silver accented lower fog light bezels.",
+    url: "/vehicles/subaru-xv-2019-black/front-direct-grille.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Dynamic Side Profile",
+    description: "220mm ground clearance, two-tone machine-finished 17-inch alloy wheels, and side door garnishes.",
+    url: "/vehicles/subaru-xv-2019-black/front-side-profile.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Rear Direct AWD View",
+    description: "Symmetrical AWD badge, high roof spoiler, and silver underbody diffuser skid garnish.",
+    url: "/vehicles/subaru-xv-2019-black/rear-direct-awd.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Rear Three Quarter",
+    description: "C-shaped LED combination taillights and tinted UV-cut rear privacy glass.",
+    url: "/vehicles/subaru-xv-2019-black/rear-three-quarter.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Driver Cockpit & Orange Stitching",
+    description: "Perforated leather steering wheel with audio and EyeSight radar cruise controls with orange stitching.",
+    url: "/vehicles/subaru-xv-2019-black/cockpit-steering-orange-stitch.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Digital Odometer Cluster",
+    description: "Dual analogue gauges with center LCD screen displaying verified 102,225 km Japanese export mileage.",
+    url: "/vehicles/subaru-xv-2019-black/digital-odometer-cluster.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Full Dashboard Panorama",
+    description: "Dual display layout with top multi-function info screen, central touchscreen, and digital climate dials.",
+    url: "/vehicles/subaru-xv-2019-black/cabin-dashboard-panorama.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Front Sport Bucket Seats",
+    description: "High-bolster fabric and sport leatherette seats featuring distinctive orange stitching accents.",
+    url: "/vehicles/subaru-xv-2019-black/front-sport-seats.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Rear Passenger Bench",
+    description: "Three-passenger rear seat with center armrest, dual cup holders, and fold-flat 60:40 capability.",
+    url: "/vehicles/subaru-xv-2019-black/rear-passenger-bench.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — FB20 2.0L Boxer Engine",
+    description: "Horizontally opposed 2.0L direct-injection petrol engine with symmetrical layout and low center of gravity.",
+    url: "/vehicles/subaru-xv-2019-black/boxer-engine-bay.jpg"
+        },
+        {
+    title: "Subaru XV 2019 — Cavernous Cargo Boot",
+    description: "Wide rectangular boot with retractable luggage cover, tie-down anchors, and flat loading surface.",
+    url: "/vehicles/subaru-xv-2019-black/open-cargo-boot.jpg"
+        }
+    ],
+    closerLookPoints: [
+        {
+    id: "boxer-awd",
+    title: "Symmetrical All-Wheel Drive",
+    subtitle: "Unshakable All-Weather Traction",
+    description: "Full-time AWD sends power to all four wheels simultaneously for superior stability on wet highways or loose safari trails.",
+    imageUrl: "/vehicles/subaru-xv-2019-black/rear-direct-awd.jpg",
+    metric: "AWD",
+    metricLabel: "Symmetrical All-Wheel Drive"
+        },
+        {
+    id: "fb20-boxer",
+    title: "FB20 Horizontally Opposed Boxer Engine",
+    subtitle: "Low Vibration & Center of Gravity",
+    description: "Pistons move horizontally in opposition, canceling out vibrations naturally without requiring balance shafts.",
+    imageUrl: "/vehicles/subaru-xv-2019-black/boxer-engine-bay.jpg",
+    metric: "154 HP",
+    metricLabel: "2.0L Boxer Petrol"
+        },
+        {
+    id: "verified-cluster",
+    title: "Verified 102,000 KM Odometer",
+    subtitle: "Authentic Japanese JEVIC Certificate",
+    description: "Multi-information cluster verified at 102,225 km with complete Japanese maintenance history.",
+    imageUrl: "/vehicles/subaru-xv-2019-black/digital-odometer-cluster.jpg",
+    metric: "102K KM",
+    metricLabel: "Verified Odometer"
+        },
+        {
+    id: "ground-clearance",
+    title: "220mm High Ground Clearance",
+    subtitle: "Ready for Kenyan Roads",
+    description: "Class-leading 220mm clearance easily tackles rough terrain, potholes, and elevated speed bumps.",
+    imageUrl: "/vehicles/subaru-xv-2019-black/front-side-profile.jpg",
+    metric: "220 MM",
+    metricLabel: "Ground Clearance"
+        }
+    ],
+    editorialFeatures: [
+        {
+    id: "awd-capability",
+    badge: "SYMMETRICAL AWD",
+    title: "Subaru All-Wheel Drive & X-Mode",
+    lead: "Command steep inclines, loose gravel, and torrential coastal rain with confidence.",
+    narrative: [
+                "Subaru's Symmetrical AWD lays the entire powertrain in a straight, balanced symmetrical line along the vehicle's center.",
+                "With one press of the X-Mode button, engine throttle, transmission shift timing, and AWD torque split optimize to pull through any road challenge."
+            ],
+    specs: [
+                {
+    label: "Drive Layout",
+    value: "Symmetrical AWD with X-Mode"
+                },
+                {
+    label: "Ground Clearance",
+    value: "220 mm"
+                },
+                {
+    label: "Engine",
+    value: "2.0L FB20 Boxer Petrol"
+                }
+            ],
+    slides: [
+                {
+    id: "awd-slide",
+    title: "All-Terrain Stance",
+    subtitle: "Symmetrical AWD Badge",
+    description: "High ground clearance and skid plate garnishes engineered for road confidence.",
+    imageUrl: "/vehicles/subaru-xv-2019-black/rear-direct-awd.jpg"
+                }
+            ]
+        }
+    ],
+    chapters: [
+        {
+    id: "overview",
+    tabLabel: "Overview",
+    eyebrow: "2019 SUBARU XV 2.0i-L",
+    title: "The Ultimate Multi-Terrain Companion",
+    narrative: [
+                "The Subaru XV combines agile urban hatchback dimensions with genuine crossover SUV all-wheel-drive capability.",
+                "Available directly at Alberka Enterprises showroom next to Ganjoni Primary School, Mombasa."
+            ],
+    imageUrl: "/vehicles/subaru-xv-2019-black/hero-front-34.jpg",
+    highlights: [
+                {
+    label: "Year",
+    value: "2019 Model"
+                },
+                {
+    label: "Engine",
+    value: "1990cc Boxer Petrol"
+                },
+                {
+    label: "Color",
+    value: "Sleek Black"
+                }
+            ]
+        }
+    ],
+    specifications: [
+        {
+    category: "Engine & Drivetrain",
+    items: [
+                {
+    label: "Engine",
+    value: "1,995 cc FB20 Boxer 4-Cylinder Petrol DOHC 16V"
+                },
+                {
+    label: "Power Output",
+    value: "154 HP @ 6,000 RPM"
+                },
+                {
+    label: "Torque",
+    value: "196 Nm @ 4,000 RPM"
+                },
+                {
+    label: "Transmission",
+    value: "Lineartronic CVT with 7-Speed Manual Mode"
+                },
+                {
+    label: "Drive System",
+    value: "Symmetrical Full-Time All-Wheel Drive (AWD)"
+                },
+                {
+    label: "Fuel Capacity",
+    value: "63 Liters"
+                }
+            ]
+        },
+        {
+    category: "Dimensions & Chassis",
+    items: [
+                {
+    label: "Dimensions",
+    value: "4,465 mm × 1,800 mm × 1,615 mm"
+                },
+                {
+    label: "Wheelbase",
+    value: "2,665 mm"
+                },
+                {
+    label: "Ground Clearance",
+    value: "220 mm"
+                },
+                {
+    label: "Seating",
+    value: "5 Passengers"
+                },
+                {
+    label: "Boot Volume",
+    value: "385 Liters (Extendable to 1,310L)"
+                }
+            ]
+        }
+    ],
+    workshopProtocol: [
+        "QISJ pre-shipment inspection certified in Japan prior to vessel boarding.",
+        "Comprehensive 100-point mechanical check: boxer engine valve covers, Lineartronic CVT fluid, AWD differential seals.",
+        "Electronic diagnosis verifying 0 DTC fault codes on Subaru Select Monitor.",
+        "Engine oil and OEM filter renewal with synthetic 0W-20 boxer engine lubricant.",
+        "Four-wheel laser alignment and brake pad inspection.",
+        "Professional exterior polish and interior steam detailing."
+    ],
+    equipmentChecklist: [
+        {
+    category: "COMFORT & CONVENIENCE",
+    items: [
+                {
+    name: "ACC (Adaptive Cruise)",
+    active: true
+                },
+                {
+    name: "Air Conditioner",
+    active: true
+                },
+                {
+    name: "Audio Player",
+    active: true
+                },
+                {
+    name: "Both Power Slide Door",
+    active: false
+                },
+                {
+    name: "Cooler",
+    active: true
+                },
+                {
+    name: "Cruise Control",
+    active: true
+                },
+                {
+    name: "Double Air Conditioner",
+    active: false
+                },
+                {
+    name: "Left Side Power Slide Door",
+    active: false
+                },
+                {
+    name: "Navigation System",
+    active: true
+                },
+                {
+    name: "Paddle Shift",
+    active: true
+                },
+                {
+    name: "Power Back Door",
+    active: false
+                },
+                {
+    name: "Power Seat",
+    active: false
+                },
+                {
+    name: "Power Steering",
+    active: true
+                },
+                {
+    name: "Power Window All",
+    active: true
+                },
+                {
+    name: "Power Window Driver",
+    active: true
+                },
+                {
+    name: "Power Window Front",
+    active: true
+                },
+                {
+    name: "Push Start",
+    active: true
+                },
+                {
+    name: "Steering Switch",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "DRESS UP",
+    items: [
+                {
+    name: "Aero Front",
+    active: true
+                },
+                {
+    name: "Aero Rear",
+    active: true
+                },
+                {
+    name: "Aero Side",
+    active: true
+                },
+                {
+    name: "Alloy Wheels",
+    active: true
+                },
+                {
+    name: "Grill Guard",
+    active: false
+                },
+                {
+    name: "Rear Spoiler",
+    active: true
+                },
+                {
+    name: "Wood Combination Steering",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "EXTERIOR",
+    items: [
+                {
+    name: "Carrier Base",
+    active: false
+                },
+                {
+    name: "Roof Box",
+    active: false
+                },
+                {
+    name: "Roof Carrier",
+    active: false
+                },
+                {
+    name: "Roof Rails",
+    active: false
+                },
+                {
+    name: "Sun Roof",
+    active: false
+                },
+                {
+    name: "Double Sun Roof",
+    active: false
+                },
+                {
+    name: "Glass Roof",
+    active: false
+                },
+                {
+    name: "Fog Light",
+    active: true
+                },
+                {
+    name: "HID Light",
+    active: false
+                },
+                {
+    name: "LED Light",
+    active: true
+                },
+                {
+    name: "High Roof",
+    active: false
+                },
+                {
+    name: "New Shape",
+    active: true
+                },
+                {
+    name: "Slide Glass",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "SAFETY",
+    items: [
+                {
+    name: "ABS",
+    active: true
+                },
+                {
+    name: "Air Bag",
+    active: true
+                },
+                {
+    name: "Around View Monitor",
+    active: false
+                },
+                {
+    name: "Back Camera",
+    active: true
+                },
+                {
+    name: "Front Camera",
+    active: false
+                },
+                {
+    name: "Side Camera",
+    active: false
+                },
+                {
+    name: "Corner Sensor",
+    active: true
+                },
+                {
+    name: "ESC",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "OTHER & REMARKS",
+    items: [
+                {
+    name: "Auto Door",
+    active: false
+                },
+                {
+    name: "Back Tire",
+    active: false
+                },
+                {
+    name: "Just Low",
+    active: false
+                },
+                {
+    name: "Half Leather Seat",
+    active: true
+                },
+                {
+    name: "Leather Seat",
+    active: false
+                },
+                {
+    name: "Same Tire",
+    active: true
+                },
+                {
+    name: "Side Lift Up Seat",
+    active: false
+                },
+                {
+    name: "Sloper",
+    active: false
+                }
+            ]
+        }
+    ],
+    equipmentRemarks: "5SEATS, SYMMETRICAL AWD, FB20 BOXER, EYESIGHT ADAS, PUSH START, REVERSE CAMERA"
+},
+  {
+    id: "volvo-xc40-r-design-2019",
+    stockNo: "ALB-XC40",
+    sbtStockId: "XC4019",
+    chassisNo: "YV1XZACMCK214613",
+    modelCode: "DBA-XB420XC",
+    engineCode: "B4204T47 (2.0L Turbo Petrol)",
+    name: "Volvo XC40 R-Design 2019",
+    moniker: "Scandinavian Luxury Compact Performance SUV",
+    essenceQuote: "🔥 VOLVO XC40 R-DESIGN – 2019 Petrol 🔥\n✨ Sporty • Luxury • Compact SUV ✨\n📍 Mileage: 40,000 KM Only\n✅ 2000cc Turbo Petrol Engine | R-DESIGN Sport Package\n✅ Premium Black Leather Interior | LED “Thor Hammer” Headlights\n✅ Digital Meter Display | Large Touchscreen Infotainment | Reverse Camera & Parking Sensors\n✅ Push Start / Smart Key Entry | Electric Seats with Memory | Auto Tailgate with Foot Sensor\n✅ Dual Zone Climate Control | Cruise Control | Multifunction Steering Wheel | Sport Alloy Wheels\n💎 Stunning Scandinavian Design | Perfect Executive & Family SUV | Imported Direct from Japan",
+    kicker: "2019 Model · R-Design T4 AWD · 40,000 KM · Mombasa Stock",
+    tagline: "Volvo XC40 R-Design 2019 · 2.0L Turbo Petrol · T4 AWD · Harman Kardon · Onyx Black",
+    priceKes: 4650000,
+    originalPriceKes: 4950000,
+    discountPercent: 6,
+    hubId: "volvo-xc40",
+    priceUsd: 22000,
+    freightUsd: 2200,
+    vanningUsd: 0,
+    inspectionUsd: 250,
+    insuranceUsd: 200,
+    totalCifUsd: 24650,
+    inventoryLocation: "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+    sbtGrade: "R-DESIGN SPORT PACKAGE",
+    year: 2019,
+    registrationMonth: "09",
+    manufactureYearMonth: "2019 / 09",
+    mileageKm: 40000,
+    steering: "RHD",
+    category: "suv",
+    bodyType: "SUV",
+    fuelType: "PETROL",
+    transmission: "8-Speed Geartronic Automatic",
+    drivetrain: "AWD",
+    doors: 5,
+    seats: 5,
+    engine: "1,968 cc 4-Cylinder Turbo Petrol B4204T",
+    power: "190 HP @ 4,700 RPM",
+    torque: "300 Nm @ 1,400 - 4,000 RPM",
+    fuelEconomy: "13.6 km/L",
+    exteriorColor: "Onyx Black Metallic",
+    colorCode: "717",
+    interiorColor: "Charcoal Black Leather & Nubuck Textile",
+    locationYard: "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+    dimensions: "4.43m × 1.86m × 1.65m",
+    m3: "13.6 m³",
+    wheelbase: "2,702 mm",
+    groundClearance: "211 mm",
+    curbWeight: "1,675 kg",
+    grossWeight: "2,220 kg",
+    maxLoadingCapacity: "545 kg",
+    fuelTankCapacity: "54 Liters",
+    auctionGrade: "4.5",
+    auctionHall: "USS Tokyo / SBT Japan Export Center",
+    interiorGrade: "A",
+    inspectionStatus: "QISJ Certified & JEVIC Odometer Inspected",
+    status: "In Stock",
+    options: {
+    pushStart: true,
+    smartKey: true,
+    powerWindows: true,
+    airConditioner: true,
+    powerSeats: true,
+    leatherSeats: true,
+    sunroof: false,
+    alloyWheels: true,
+    abs: true,
+    airbags: true,
+    backCamera: true,
+    camera360: true,
+    radarCruise: true,
+    laneAssist: true,
+    ledLights: true,
+    navigation: true,
+    audioPlayer: true,
+    fogLights: true,
+    rearSpoiler: true,
+    doubleAc: true,
+    powerBackDoor: true
+    },
+    heroImage: "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg",
+    heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+    colors: [
+        {
+    name: "Onyx Black Metallic",
+    hex: "#0D0E11",
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg"
+        }
+    ],
+    gallery: [
+        {
+    title: "Volvo XC40 R-Design — Front Three Quarter",
+    description: "Signature Thor's Hammer LED headlights, high-gloss black R-Design mesh grille, and diamond-cut alloys.",
+    url: "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Aggressive Front Stance",
+    description: "Sculpted clamshell hood, contrasting gloss black roof accents, and integrated radar sensor emblem.",
+    url: "/vehicles/volvo-xc40-r-design-2019/front-angle-stance.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Driver Cockpit & 360 Display",
+    description: "9-inch portrait Sensus touchscreen with 360-degree overhead parking camera and digital instrument display.",
+    url: "/vehicles/volvo-xc40-r-design-2019/driver-cockpit-360.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — High-Definition Portrait Touchscreen",
+    description: "Intuitive portrait center display with Bluetooth connectivity, climate sliders, and satellite navigation.",
+    url: "/vehicles/volvo-xc40-r-design-2019/portrait-touchscreen.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Center Console & Shifter",
+    description: "Minimalist Scandinavian console with electronic parking brake, drive mode selector, and cup holders.",
+    url: "/vehicles/volvo-xc40-r-design-2019/center-console-cockpit.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Harman / Kardon Sound System",
+    description: "Audiophile-grade Harman Kardon premium audio with bespoke metallic perforated door speaker grilles.",
+    url: "/vehicles/volvo-xc40-r-design-2019/harman-kardon-speaker.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Front Sport Bucket Seats",
+    description: "Contoured R-Design sport seats in black perforated leather and nubuck with electric memory controls.",
+    url: "/vehicles/volvo-xc40-r-design-2019/front-rdesign-seats.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Rear Passenger Cabin",
+    description: "Spacious Scandinavian rear bench with ISOFIX child seat tethers, rear air vents, and contrast stitching.",
+    url: "/vehicles/volvo-xc40-r-design-2019/rear-leather-seats.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — T4 AWD & Itami Kobe Emblems",
+    description: "Official factory Volvo T4 AWD and R-Design badges confirming Japanese dealer delivery history.",
+    url: "/vehicles/volvo-xc40-r-design-2019/t4-awd-rdesign-badge.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — IntelliSafe Radar & Papago Dashcam",
+    description: "Windshield-mounted IntelliSafe radar and dual optical dash camera for full safety recording.",
+    url: "/vehicles/volvo-xc40-r-design-2019/intellisafe-dashcam.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Cavernous Cargo Boot",
+    description: "Deep square luggage compartment with flat loading floor, load-securing hooks, and parcel shelf.",
+    url: "/vehicles/volvo-xc40-r-design-2019/open-cargo-boot.jpg"
+        },
+        {
+    title: "Volvo XC40 R-Design — Rear Tailgate & Vertical LED Lamps",
+    description: "Iconic vertical Scandinavian LED taillights, integrated roof spoiler, and chrome dual exhaust finishers.",
+    url: "/vehicles/volvo-xc40-r-design-2019/rear-tailgate-full.jpg"
+        }
+    ],
+    closerLookPoints: [
+        {
+    id: "thor-hammer-led",
+    title: "Thor's Hammer Active LED Optics",
+    subtitle: "Signature Scandinavian Lighting",
+    description: "High-intensity LED headlights with auto high-beam switching and distinct T-shaped daytime running light guides.",
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/front-angle-stance.jpg",
+    metric: "LED DRL",
+    metricLabel: "Thor's Hammer Optics"
+        },
+        {
+    id: "harman-kardon",
+    title: "Harman Kardon Premium Sound",
+    subtitle: "Concert Hall Acoustic Tuning",
+    description: "Multichannel high-fidelity audio system with Air Woofer Technology delivering crystal-clear soundscapes.",
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/harman-kardon-speaker.jpg",
+    metric: "PREMIUM",
+    metricLabel: "Harman Kardon Audio"
+        },
+        {
+    id: "verified-mileage",
+    title: "Ultra-Low 40,000 KM Mileage",
+    subtitle: "JEVIC Japanese Odometer Certified",
+    description: "Rare low-mileage European compact SUV verified directly from Japanese export documentation.",
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/cockpit-steering-view.jpg",
+    metric: "40K KM",
+    metricLabel: "Verified Japanese Odometer"
+        },
+        {
+    id: "t4-awd-powertrain",
+    title: "T4 AWD 2.0L Turbo Engine",
+    subtitle: "190 HP with 8-Speed Geartronic",
+    description: "Surefooted Haldex All-Wheel Drive paired with 300 Nm of low-end torque for cross-country exploration.",
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/t4-awd-rdesign-badge.jpg",
+    metric: "190 HP",
+    metricLabel: "Turbocharged AWD Power"
+        }
+    ],
+    editorialFeatures: [
+        {
+    id: "scandinavian-safety",
+    badge: "INTELLISAFE RADAR",
+    title: "World-Class Volvo Safety Architecture",
+    lead: "Autonomous emergency braking, blind spot information, and lane keeping assist.",
+    narrative: [
+                "The Volvo XC40 is constructed with high-strength boron steel forming a rigid safety cage around passengers.",
+                "Equipped with IntelliSafe radar suite, pedestrian detection, and 360-degree overhead parking camera."
+            ],
+    specs: [
+                {
+    label: "Safety Suite",
+    value: "Volvo IntelliSafe with Pilot Assist"
+                },
+                {
+    label: "Camera",
+    value: "360-Degree Overhead Parking Monitor"
+                },
+                {
+    label: "Chassis",
+    value: "Boron Steel Safety Cage"
+                }
+            ],
+    slides: [
+                {
+    id: "dashcam-slide",
+    title: "IntelliSafe Optical Radar Sensor",
+    subtitle: "Front Radar & Dashcam",
+    description: "Active collision mitigation sensors mounted in the windshield header.",
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/intellisafe-dashcam.jpg"
+                }
+            ]
+        }
+    ],
+    chapters: [
+        {
+    id: "overview",
+    tabLabel: "Overview",
+    eyebrow: "2019 VOLVO XC40 R-DESIGN",
+    title: "The Premium Scandinavian Benchmark",
+    narrative: [
+                "The Volvo XC40 R-Design combines sporty aesthetics with Scandinavian functionality.",
+                "Available directly at Alberka Enterprises showroom next to Ganjoni Primary School, Mombasa."
+            ],
+    imageUrl: "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg",
+    highlights: [
+                {
+    label: "Year",
+    value: "2019 Model"
+                },
+                {
+    label: "Mileage",
+    value: "40,000 KM Only"
+                },
+                {
+    label: "Drivetrain",
+    value: "T4 All-Wheel Drive"
+                }
+            ]
+        }
+    ],
+    specifications: [
+        {
+    category: "Engine & Powertrain",
+    items: [
+                {
+    label: "Engine",
+    value: "1,968 cc B4204T 4-Cylinder Turbocharged Petrol"
+                },
+                {
+    label: "Power Output",
+    value: "190 HP @ 4,700 RPM"
+                },
+                {
+    label: "Torque",
+    value: "300 Nm @ 1,400 - 4,000 RPM"
+                },
+                {
+    label: "Transmission",
+    value: "8-Speed Geartronic Automatic"
+                },
+                {
+    label: "Drive Type",
+    value: "All-Wheel Drive (AWD)"
+                },
+                {
+    label: "Fuel Tank",
+    value: "54 Liters"
+                }
+            ]
+        },
+        {
+    category: "Dimensions & Utility",
+    items: [
+                {
+    label: "Dimensions",
+    value: "4,425 mm × 1,863 mm × 1,652 mm"
+                },
+                {
+    label: "Wheelbase",
+    value: "2,702 mm"
+                },
+                {
+    label: "Ground Clearance",
+    value: "211 mm"
+                },
+                {
+    label: "Boot Capacity",
+    value: "460 Liters (Extendable to 1,336L)"
+                },
+                {
+    label: "Towing Capacity",
+    value: "2,100 kg"
+                }
+            ]
+        }
+    ],
+    workshopProtocol: [
+        "QISJ pre-shipment vehicle condition inspection verified at Yokohama port prior to dispatch.",
+        "Comprehensive 100-point mechanical evaluation covering turbocharger boost lines and AWD haldex clutch.",
+        "Electronic diagnostic scan with VIDA diagnostic software confirming zero fault codes.",
+        "Fresh synthetic engine oil and OEM filter replacement according to Volvo Castrol Edge Professional standard.",
+        "Four-wheel laser alignment and high-speed tire balancing.",
+        "Full interior leather deep cleanse and anti-bacterial cabin sanitization."
+    ],
+    equipmentChecklist: [
+        {
+    category: "COMFORT & CONVENIENCE",
+    items: [
+                {
+    name: "ACC (Adaptive Cruise)",
+    active: true
+                },
+                {
+    name: "Air Conditioner",
+    active: true
+                },
+                {
+    name: "Audio Player",
+    active: true
+                },
+                {
+    name: "Both Power Slide Door",
+    active: false
+                },
+                {
+    name: "Cooler",
+    active: true
+                },
+                {
+    name: "Cruise Control",
+    active: true
+                },
+                {
+    name: "Double Air Conditioner",
+    active: true
+                },
+                {
+    name: "Left Side Power Slide Door",
+    active: false
+                },
+                {
+    name: "Navigation System",
+    active: true
+                },
+                {
+    name: "Paddle Shift",
+    active: false
+                },
+                {
+    name: "Power Back Door",
+    active: true
+                },
+                {
+    name: "Power Seat",
+    active: true
+                },
+                {
+    name: "Power Steering",
+    active: true
+                },
+                {
+    name: "Power Window All",
+    active: true
+                },
+                {
+    name: "Power Window Driver",
+    active: true
+                },
+                {
+    name: "Power Window Front",
+    active: true
+                },
+                {
+    name: "Push Start",
+    active: true
+                },
+                {
+    name: "Steering Switch",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "DRESS UP",
+    items: [
+                {
+    name: "Aero Front",
+    active: true
+                },
+                {
+    name: "Aero Rear",
+    active: true
+                },
+                {
+    name: "Aero Side",
+    active: true
+                },
+                {
+    name: "Alloy Wheels",
+    active: true
+                },
+                {
+    name: "Grill Guard",
+    active: false
+                },
+                {
+    name: "Rear Spoiler",
+    active: true
+                },
+                {
+    name: "Wood Combination Steering",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "EXTERIOR",
+    items: [
+                {
+    name: "Carrier Base",
+    active: false
+                },
+                {
+    name: "Roof Box",
+    active: false
+                },
+                {
+    name: "Roof Carrier",
+    active: false
+                },
+                {
+    name: "Roof Rails",
+    active: true
+                },
+                {
+    name: "Sun Roof",
+    active: false
+                },
+                {
+    name: "Double Sun Roof",
+    active: false
+                },
+                {
+    name: "Glass Roof",
+    active: false
+                },
+                {
+    name: "Fog Light",
+    active: true
+                },
+                {
+    name: "HID Light",
+    active: false
+                },
+                {
+    name: "LED Light",
+    active: true
+                },
+                {
+    name: "High Roof",
+    active: false
+                },
+                {
+    name: "New Shape",
+    active: true
+                },
+                {
+    name: "Slide Glass",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "SAFETY",
+    items: [
+                {
+    name: "ABS",
+    active: true
+                },
+                {
+    name: "Air Bag",
+    active: true
+                },
+                {
+    name: "Around View Monitor",
+    active: true
+                },
+                {
+    name: "Back Camera",
+    active: true
+                },
+                {
+    name: "Front Camera",
+    active: true
+                },
+                {
+    name: "Side Camera",
+    active: true
+                },
+                {
+    name: "Corner Sensor",
+    active: true
+                },
+                {
+    name: "ESC",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "OTHER & REMARKS",
+    items: [
+                {
+    name: "Auto Door",
+    active: false
+                },
+                {
+    name: "Back Tire",
+    active: false
+                },
+                {
+    name: "Just Low",
+    active: false
+                },
+                {
+    name: "Half Leather Seat",
+    active: true
+                },
+                {
+    name: "Leather Seat",
+    active: true
+                },
+                {
+    name: "Same Tire",
+    active: true
+                },
+                {
+    name: "Side Lift Up Seat",
+    active: false
+                },
+                {
+    name: "Sloper",
+    active: false
+                }
+            ]
+        }
+    ],
+    equipmentRemarks: "5SEATS, R-DESIGN T4 AWD, HARMAN KARDON, 360 CAMERA, POWER TAILGATE, 40K KM ONLY"
 }
 ];

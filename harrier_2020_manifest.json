@@ -1,0 +1,366 @@
+{
+  "id": "toyota-harrier-2020-grey",
+  "stockNo": "ALB-HR20",
+  "sbtStockId": "HR2020G",
+  "chassisNo": "MXUA80-0020118",
+  "modelCode": "6BA-MXUA80",
+  "engineCode": "M20A-FKS (2.0L Dynamic Force Petrol)",
+  "name": "Toyota Harrier 2020 Grey",
+  "moniker": "80-Series Dynamic Force Luxury Crossover",
+  "essenceQuote": "🚘 TOYOTA HARRIER 2020 – FOR SALE! 🔥\n✨ Premium Style • Comfort • Performance ✨\n📅 Year: 2020 Model | 🎨 Colour: Grey | 🛣️ Mileage: 74,000 KM\n⛽ Engine: 2.0L Dynamic Force Petrol (M20A-FKS)\n✅ Elegant & Stylish SUV | Spacious & Comfortable Interior\n✅ Premium Exterior Design | Ideal for Family & Business Use | Excellent Road Presence\n🏢 ALBERKA ENTERPRISES LTD — Your Trusted Car Partner Since 2011\n📍 Mombasa, Kenya 🇰🇪 | 📞 Call/WhatsApp: 0786000040",
+  "kicker": "2020 Model · 80-Series New Shape · 74,000 KM · Mombasa Stock",
+  "tagline": "Toyota Harrier 2020 · 2.0L Dynamic Force Petrol · Slate Grey Metallic · High Spec G Package",
+  "priceKes": 4950000,
+  "originalPriceKes": 5350000,
+  "discountPercent": 7,
+  "hubId": "toyota-harrier",
+  "priceUsd": 23500,
+  "freightUsd": 2200,
+  "vanningUsd": 0,
+  "inspectionUsd": 250,
+  "insuranceUsd": 200,
+  "totalCifUsd": 26150,
+  "inventoryLocation": "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+  "sbtGrade": "G PACKAGE DYNAMIC FORCE",
+  "year": 2020,
+  "registrationMonth": "08",
+  "manufactureYearMonth": "2020 / 08",
+  "mileageKm": 74000,
+  "steering": "RHD",
+  "category": "suv",
+  "bodyType": "SUV",
+  "fuelType": "PETROL",
+  "transmission": "Direct Shift-CVT",
+  "drivetrain": "2WD",
+  "doors": 5,
+  "seats": 5,
+  "engine": "1,986 cc M20A-FKS Dynamic Force Petrol",
+  "power": "171 HP @ 6,600 RPM",
+  "torque": "207 Nm @ 4,800 RPM",
+  "fuelEconomy": "15.4 km/L",
+  "exteriorColor": "Slate Grey Metallic",
+  "colorCode": "1L1",
+  "interiorColor": "Ash Grey Leather & Patterned Fabric with Wood Trim",
+  "locationYard": "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+  "dimensions": "4.74m × 1.85m × 1.66m",
+  "m3": "14.5 m³",
+  "wheelbase": "2,690 mm",
+  "groundClearance": "195 mm",
+  "curbWeight": "1,550 kg",
+  "grossWeight": "1,825 kg",
+  "maxLoadingCapacity": "450 kg",
+  "fuelTankCapacity": "55 Liters",
+  "auctionGrade": "4.5",
+  "auctionHall": "USS Tokyo / SBT Japan Export Center",
+  "interiorGrade": "A",
+  "inspectionStatus": "QISJ Certified & JEVIC Odometer Inspected",
+  "status": "In Stock",
+  "options": {
+    "pushStart": true,
+    "smartKey": true,
+    "powerWindows": true,
+    "airConditioner": true,
+    "powerSeats": true,
+    "leatherSeats": true,
+    "sunroof": false,
+    "alloyWheels": true,
+    "abs": true,
+    "airbags": true,
+    "backCamera": true,
+    "camera360": false,
+    "radarCruise": true,
+    "laneAssist": true,
+    "ledLights": true,
+    "navigation": true,
+    "audioPlayer": true,
+    "fogLights": true,
+    "rearSpoiler": true,
+    "doubleAc": true,
+    "powerBackDoor": true
+  },
+  "heroImage": "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg",
+  "heroVideo": "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+  "colors": [
+    {
+      "name": "Slate Grey Metallic",
+      "hex": "#4A525A",
+      "imageUrl": "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Toyota Harrier 2020 — Front Three Quarter",
+      "description": "80-Series front profile with sleek signature LED light guides, radar cruise sensor, and Slate Grey finish.",
+      "url": "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Front Grille & Fascia",
+      "description": "High-gloss upper grille trim, integrated front emblem radar, and lower air intake with chrome lip.",
+      "url": "/vehicles/toyota-harrier-2020-grey/front-grille-fascia.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Front Side Profile",
+      "description": "Dynamic coupe-SUV silhouette, sculpted waistline, aerodynamic wing mirrors, and two-tone alloy wheels.",
+      "url": "/vehicles/toyota-harrier-2020-grey/front-side-profile.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Continuous Rear LED Light Bar",
+      "description": "Full-width razor-sharp LED taillight strip, dual chrome exhaust outlets, and clean tailgate styling.",
+      "url": "/vehicles/toyota-harrier-2020-grey/rear-tailgate-led.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Executive Driver Cockpit",
+      "description": "Floating widescreen infotainment display, saddle-style center console, woodgrain trim, and dual climate.",
+      "url": "/vehicles/toyota-harrier-2020-grey/driver-cockpit-console.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Digital Instrument Cluster",
+      "description": "Multi-information LCD display with verified 76,045 km Japanese odometer and safety system readouts.",
+      "url": "/vehicles/toyota-harrier-2020-grey/digital-odometer-cluster.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Front Luxury Bucket Seats",
+      "description": "Ergonomic two-tone ash grey leather and ribbed fabric upholstery with power adjustment.",
+      "url": "/vehicles/toyota-harrier-2020-grey/front-leather-seats.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Rear Passenger Lounge",
+      "description": "Spacious rear bench with center armrest, cup holders, ISOFIX child seat anchors, and tinted rear glass.",
+      "url": "/vehicles/toyota-harrier-2020-grey/rear-leather-seats.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Driver Door Switch Console",
+      "description": "Light ash wood trim bezel with one-touch power window switches and power folding mirror adjusters.",
+      "url": "/vehicles/toyota-harrier-2020-grey/driver-door-controls.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Wide Cargo Boot",
+      "description": "Cavernous boot with retractable luggage roller blind, low loading sill, and 60:40 folding rear seats.",
+      "url": "/vehicles/toyota-harrier-2020-grey/open-cargo-trunk.jpg"
+    },
+    {
+      "title": "Toyota Harrier 2020 — Dynamic Force 2.0L Engine Bay",
+      "description": "M20A-FKS 2.0L Dual VVT-i petrol engine with Direct Shift-CVT. Unblemished chassis bolts and factory labels.",
+      "url": "/vehicles/toyota-harrier-2020-grey/engine-bay-m20a.jpg"
+    }
+  ],
+  "closerLookPoints": [
+    {
+      "id": "new-shape-80",
+      "title": "80-Series Aerodynamic Generation",
+      "subtitle": "TNGA-K Architecture",
+      "description": "Lower center of gravity, ultra-rigid chassis, and continuous razor-thin rear light signature make the 2020 Harrier an icon on Kenyan highways.",
+      "imageUrl": "/vehicles/toyota-harrier-2020-grey/rear-tailgate-led.jpg",
+      "metric": "80-SERIES",
+      "metricLabel": "New Generation Platform"
+    },
+    {
+      "id": "dynamic-force-engine",
+      "title": "Dynamic Force 2.0L Petrol Powertrain",
+      "subtitle": "M20A-FKS High Thermal Efficiency",
+      "description": "High-compression 40% thermal efficiency 2.0L Dynamic Force petrol engine paired with Direct Shift-CVT with physical 1st launch gear.",
+      "imageUrl": "/vehicles/toyota-harrier-2020-grey/engine-bay-m20a.jpg",
+      "metric": "171 HP",
+      "metricLabel": "Responsive Petrol Power"
+    },
+    {
+      "id": "verified-cluster",
+      "title": "JEVIC Verified 74,000 KM Odometer",
+      "subtitle": "Complete Tokyo Maintenance History",
+      "description": "Digital instrument panel verifying authentic 76,045 km Japanese export mileage with zero odometer tampering.",
+      "imageUrl": "/vehicles/toyota-harrier-2020-grey/digital-odometer-cluster.jpg",
+      "metric": "74K KM",
+      "metricLabel": "Low Certified Mileage"
+    },
+    {
+      "id": "luxury-cabin",
+      "title": "Ash Grey Luxury Leather & Wood Cabin",
+      "subtitle": "Saddle Console & Floating Display",
+      "description": "Crafted with soft-touch leatherette, authentic light wood trim console, and ambient quiet cabin insulation.",
+      "imageUrl": "/vehicles/toyota-harrier-2020-grey/driver-cockpit-console.jpg",
+      "metric": "EXECUTIVE",
+      "metricLabel": "G Package Luxury Finish"
+    }
+  ],
+  "editorialFeatures": [
+    {
+      "id": "powertrain",
+      "badge": "M20A-FKS DYNAMIC FORCE",
+      "title": "Toyota Dynamic Force 2.0L Engine",
+      "lead": "Responsive acceleration, outstanding thermal efficiency, and physical launch gear CVT.",
+      "narrative": [
+        "The 2020 Toyota Harrier features the next-generation M20A-FKS Dynamic Force 2.0-liter 4-cylinder petrol engine.",
+        "Equipped with high-speed combustion, D-4S direct and port injection, and electric VVT-iE, delivering 171 horsepower with exceptional 15.4 km/L fuel efficiency."
+      ],
+      "specs": [
+        { "label": "Engine", "value": "1,986 cc M20A-FKS Petrol" },
+        { "label": "Transmission", "value": "Direct Shift-CVT with Launch Gear" },
+        { "label": "Fuel Economy", "value": "15.4 KM/L" }
+      ],
+      "slides": [
+        {
+          "id": "engine-slide",
+          "title": "Clean Factory Engine Bay",
+          "subtitle": "Factory Inspection Marks Intact",
+          "description": "Fully inspected engine bay with zero leaks, verified fluids, and pristine chassis legs.",
+          "imageUrl": "/vehicles/toyota-harrier-2020-grey/engine-bay-m20a.jpg"
+        }
+      ]
+    },
+    {
+      "id": "interior",
+      "badge": "LUXURY SUITE",
+      "title": "Saddle-Style Executive Interior",
+      "lead": "Premium two-tone leather seats with floating touchscreen and acoustic glass.",
+      "narrative": [
+        "Step into the 80-Series Harrier and you are greeted by an elevated saddle-inspired center console finished in tactile synthetic leather and wood.",
+        "Standard multi-zone climate control, power driver seat, and multi-information cluster display provide effortless command."
+      ],
+      "specs": [
+        { "label": "Seating", "value": "5 Luxury Seats" },
+        { "label": "Infotainment", "value": "Floating Touchscreen with Apple CarPlay / Android Auto" },
+        { "label": "Trim", "value": "Ash Grey Leather & Synthetic Wood" }
+      ],
+      "slides": [
+        {
+          "id": "cockpit-slide",
+          "title": "Driver's Command Center",
+          "subtitle": "Floating Display & Saddle Console",
+          "description": "High-resolution display with digital climate controls and multi-function leather steering.",
+          "imageUrl": "/vehicles/toyota-harrier-2020-grey/driver-cockpit-console.jpg"
+        }
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "overview",
+      "tabLabel": "Overview",
+      "eyebrow": "2020 Toyota Harrier G",
+      "title": "The Executive Standard for Mombasa & Nairobi",
+      "narrative": [
+        "The 2020 Toyota Harrier represents the pinnacle of Japanese crossover refinement.",
+        "Available directly at Alberka Enterprises showroom next to Ganjoni Primary School, Mombasa."
+      ],
+      "imageUrl": "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg",
+      "highlights": [
+        { "label": "Year", "value": "2020 Model" },
+        { "label": "Color", "value": "Slate Grey" },
+        { "label": "Mileage", "value": "74,000 KM" }
+      ]
+    }
+  ],
+  "specifications": [
+    {
+      "category": "Powertrain & Performance",
+      "items": [
+        { "label": "Engine", "value": "1,986 cc M20A-FKS Dynamic Force 4-Cylinder Petrol" },
+        { "label": "Power Output", "value": "171 HP @ 6,600 RPM" },
+        { "label": "Torque", "value": "207 Nm @ 4,800 RPM" },
+        { "label": "Transmission", "value": "Direct Shift-CVT with Physical 1st Gear" },
+        { "label": "Drive Type", "value": "Front-Wheel Drive (2WD)" },
+        { "label": "Fuel Tank", "value": "55 Liters" }
+      ]
+    },
+    {
+      "category": "Dimensions & Utility",
+      "items": [
+        { "label": "Overall Dimensions", "value": "4,740 mm × 1,855 mm × 1,660 mm" },
+        { "label": "Wheelbase", "value": "2,690 mm" },
+        { "label": "Ground Clearance", "value": "195 mm" },
+        { "label": "Seating Capacity", "value": "5 Passengers" },
+        { "label": "Boot Volume", "value": "409 Liters (Extendable to 1,000L+)" }
+      ]
+    }
+  ],
+  "workshopProtocol": [
+    "QISJ pre-shipment inspection verified in Yokohama port prior to dispatch.",
+    "Comprehensive 100-point mechanical check: brake rotors, steering tie-rods, suspension bushings.",
+    "Full computer diagnostic scan confirming 0 DTC fault codes across engine, transmission, and radar.",
+    "Engine oil and filter renewal with OEM synthetic Toyota 0W-16 specification.",
+    "Air conditioning system evacuation and antimicrobial sanitization.",
+    "Professional exterior two-stage paint polish and interior leather conditioning."
+  ],
+  "equipmentChecklist": [
+    {
+      "category": "COMFORT & CONVENIENCE",
+      "items": [
+        { "name": "ACC (Adaptive Cruise)", "active": true },
+        { "name": "Air Conditioner", "active": true },
+        { "name": "Audio Player", "active": true },
+        { "name": "Both Power Slide Door", "active": false },
+        { "name": "Cooler", "active": true },
+        { "name": "Cruise Control", "active": true },
+        { "name": "Double Air Conditioner", "active": true },
+        { "name": "Left Side Power Slide Door", "active": false },
+        { "name": "Navigation System", "active": true },
+        { "name": "Paddle Shift", "active": false },
+        { "name": "Power Back Door", "active": true },
+        { "name": "Power Seat", "active": true },
+        { "name": "Power Steering", "active": true },
+        { "name": "Power Window All", "active": true },
+        { "name": "Power Window Driver", "active": true },
+        { "name": "Power Window Front", "active": true },
+        { "name": "Push Start", "active": true },
+        { "name": "Steering Switch", "active": true }
+      ]
+    },
+    {
+      "category": "DRESS UP",
+      "items": [
+        { "name": "Aero Front", "active": true },
+        { "name": "Aero Rear", "active": true },
+        { "name": "Aero Side", "active": true },
+        { "name": "Alloy Wheels", "active": true },
+        { "name": "Grill Guard", "active": false },
+        { "name": "Rear Spoiler", "active": true },
+        { "name": "Wood Combination Steering", "active": false }
+      ]
+    },
+    {
+      "category": "EXTERIOR",
+      "items": [
+        { "name": "Carrier Base", "active": false },
+        { "name": "Roof Box", "active": false },
+        { "name": "Roof Carrier", "active": false },
+        { "name": "Roof Rails", "active": false },
+        { "name": "Sun Roof", "active": false },
+        { "name": "Double Sun Roof", "active": false },
+        { "name": "Glass Roof", "active": false },
+        { "name": "Fog Light", "active": true },
+        { "name": "HID Light", "active": false },
+        { "name": "LED Light", "active": true },
+        { "name": "High Roof", "active": false },
+        { "name": "New Shape", "active": true },
+        { "name": "Slide Glass", "active": false }
+      ]
+    },
+    {
+      "category": "SAFETY",
+      "items": [
+        { "name": "ABS", "active": true },
+        { "name": "Air Bag", "active": true },
+        { "name": "Around View Monitor", "active": false },
+        { "name": "Back Camera", "active": true },
+        { "name": "Front Camera", "active": false },
+        { "name": "Side Camera", "active": false },
+        { "name": "Corner Sensor", "active": true },
+        { "name": "ESC", "active": true }
+      ]
+    },
+    {
+      "category": "OTHER & REMARKS",
+      "items": [
+        { "name": "Auto Door", "active": false },
+        { "name": "Back Tire", "active": false },
+        { "name": "Just Low", "active": false },
+        { "name": "Half Leather Seat", "active": true },
+        { "name": "Leather Seat", "active": true },
+        { "name": "Same Tire", "active": true },
+        { "name": "Side Lift Up Seat", "active": false },
+        { "name": "Sloper", "active": false }
+      ]
+    }
+  ],
+  "equipmentRemarks": "5SEATS, DYNAMIC FORCE 2.0L, PUSH START, REVERSE CAMERA, POWER BACK DOOR, RADAR CRUISE"
+}

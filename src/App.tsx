@@ -47,9 +47,9 @@ export function App() {
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('alberka_favorites');
-      return saved ? JSON.parse(saved) : ['toyota-harrier-gr-sport-2019', 'suzuki-every-2019', 'toyota-land-cruiser-prado-ax2877'];
+      return saved ? JSON.parse(saved) : ['volvo-xc40-r-design-2019', 'toyota-harrier-2020-grey', 'subaru-xv-2019-black', 'toyota-harrier-gr-sport-2019', 'suzuki-every-2019'];
     } catch {
-      return ['toyota-harrier-gr-sport-2019', 'suzuki-every-2019', 'toyota-land-cruiser-prado-ax2877'];
+      return ['volvo-xc40-r-design-2019', 'toyota-harrier-2020-grey', 'subaru-xv-2019-black', 'toyota-harrier-gr-sport-2019', 'suzuki-every-2019'];
     }
   });
 

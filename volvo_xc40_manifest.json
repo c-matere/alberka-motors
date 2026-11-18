@@ -1,0 +1,347 @@
+{
+  "id": "volvo-xc40-r-design-2019",
+  "stockNo": "ALB-XC40",
+  "sbtStockId": "XC4019",
+  "chassisNo": "YV1XZACMCK214613",
+  "modelCode": "DBA-XB420XC",
+  "engineCode": "B4204T47 (2.0L Turbo Petrol)",
+  "name": "Volvo XC40 R-Design 2019",
+  "moniker": "Scandinavian Luxury Compact Performance SUV",
+  "essenceQuote": "🔥 VOLVO XC40 R-DESIGN – 2019 Petrol 🔥\n✨ Sporty • Luxury • Compact SUV ✨\n📍 Mileage: 40,000 KM Only\n✅ 2000cc Turbo Petrol Engine | R-DESIGN Sport Package\n✅ Premium Black Leather Interior | LED “Thor Hammer” Headlights\n✅ Digital Meter Display | Large Touchscreen Infotainment | Reverse Camera & Parking Sensors\n✅ Push Start / Smart Key Entry | Electric Seats with Memory | Auto Tailgate with Foot Sensor\n✅ Dual Zone Climate Control | Cruise Control | Multifunction Steering Wheel | Sport Alloy Wheels\n💎 Stunning Scandinavian Design | Perfect Executive & Family SUV | Imported Direct from Japan",
+  "kicker": "2019 Model · R-Design T4 AWD · 40,000 KM · Mombasa Stock",
+  "tagline": "Volvo XC40 R-Design 2019 · 2.0L Turbo Petrol · T4 AWD · Harman Kardon · Onyx Black",
+  "priceKes": 4650000,
+  "originalPriceKes": 4950000,
+  "discountPercent": 6,
+  "hubId": "volvo-xc40",
+  "priceUsd": 22000,
+  "freightUsd": 2200,
+  "vanningUsd": 0,
+  "inspectionUsd": 250,
+  "insuranceUsd": 200,
+  "totalCifUsd": 24650,
+  "inventoryLocation": "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+  "sbtGrade": "R-DESIGN SPORT PACKAGE",
+  "year": 2019,
+  "registrationMonth": "09",
+  "manufactureYearMonth": "2019 / 09",
+  "mileageKm": 40000,
+  "steering": "RHD",
+  "category": "suv",
+  "bodyType": "SUV",
+  "fuelType": "PETROL",
+  "transmission": "8-Speed Geartronic Automatic",
+  "drivetrain": "AWD",
+  "doors": 5,
+  "seats": 5,
+  "engine": "1,968 cc 4-Cylinder Turbo Petrol B4204T",
+  "power": "190 HP @ 4,700 RPM",
+  "torque": "300 Nm @ 1,400 - 4,000 RPM",
+  "fuelEconomy": "13.6 km/L",
+  "exteriorColor": "Onyx Black Metallic",
+  "colorCode": "717",
+  "interiorColor": "Charcoal Black Leather & Nubuck Textile",
+  "locationYard": "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+  "dimensions": "4.43m × 1.86m × 1.65m",
+  "m3": "13.6 m³",
+  "wheelbase": "2,702 mm",
+  "groundClearance": "211 mm",
+  "curbWeight": "1,675 kg",
+  "grossWeight": "2,220 kg",
+  "maxLoadingCapacity": "545 kg",
+  "fuelTankCapacity": "54 Liters",
+  "auctionGrade": "4.5",
+  "auctionHall": "USS Tokyo / SBT Japan Export Center",
+  "interiorGrade": "A",
+  "inspectionStatus": "QISJ Certified & JEVIC Odometer Inspected",
+  "status": "In Stock",
+  "options": {
+    "pushStart": true,
+    "smartKey": true,
+    "powerWindows": true,
+    "airConditioner": true,
+    "powerSeats": true,
+    "leatherSeats": true,
+    "sunroof": false,
+    "alloyWheels": true,
+    "abs": true,
+    "airbags": true,
+    "backCamera": true,
+    "camera360": true,
+    "radarCruise": true,
+    "laneAssist": true,
+    "ledLights": true,
+    "navigation": true,
+    "audioPlayer": true,
+    "fogLights": true,
+    "rearSpoiler": true,
+    "doubleAc": true,
+    "powerBackDoor": true
+  },
+  "heroImage": "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg",
+  "heroVideo": "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+  "colors": [
+    {
+      "name": "Onyx Black Metallic",
+      "hex": "#0D0E11",
+      "imageUrl": "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Volvo XC40 R-Design — Front Three Quarter",
+      "description": "Signature Thor's Hammer LED headlights, high-gloss black R-Design mesh grille, and diamond-cut alloys.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Aggressive Front Stance",
+      "description": "Sculpted clamshell hood, contrasting gloss black roof accents, and integrated radar sensor emblem.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/front-angle-stance.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Driver Cockpit & 360 Display",
+      "description": "9-inch portrait Sensus touchscreen with 360-degree overhead parking camera and digital instrument display.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/driver-cockpit-360.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — High-Definition Portrait Touchscreen",
+      "description": "Intuitive portrait center display with Bluetooth connectivity, climate sliders, and satellite navigation.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/portrait-touchscreen.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Center Console & Shifter",
+      "description": "Minimalist Scandinavian console with electronic parking brake, drive mode selector, and cup holders.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/center-console-cockpit.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Harman / Kardon Sound System",
+      "description": "Audiophile-grade Harman Kardon premium audio with bespoke metallic perforated door speaker grilles.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/harman-kardon-speaker.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Front Sport Bucket Seats",
+      "description": "Contoured R-Design sport seats in black perforated leather and nubuck with electric memory controls.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/front-rdesign-seats.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Rear Passenger Cabin",
+      "description": "Spacious Scandinavian rear bench with ISOFIX child seat tethers, rear air vents, and contrast stitching.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/rear-leather-seats.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — T4 AWD & Itami Kobe Emblems",
+      "description": "Official factory Volvo T4 AWD and R-Design badges confirming Japanese dealer delivery history.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/t4-awd-rdesign-badge.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — IntelliSafe Radar & Papago Dashcam",
+      "description": "Windshield-mounted IntelliSafe radar and dual optical dash camera for full safety recording.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/intellisafe-dashcam.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Cavernous Cargo Boot",
+      "description": "Deep square luggage compartment with flat loading floor, load-securing hooks, and parcel shelf.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/open-cargo-boot.jpg"
+    },
+    {
+      "title": "Volvo XC40 R-Design — Rear Tailgate & Vertical LED Lamps",
+      "description": "Iconic vertical Scandinavian LED taillights, integrated roof spoiler, and chrome dual exhaust finishers.",
+      "url": "/vehicles/volvo-xc40-r-design-2019/rear-tailgate-full.jpg"
+    }
+  ],
+  "closerLookPoints": [
+    {
+      "id": "thor-hammer-led",
+      "title": "Thor's Hammer Active LED Optics",
+      "subtitle": "Signature Scandinavian Lighting",
+      "description": "High-intensity LED headlights with auto high-beam switching and distinct T-shaped daytime running light guides.",
+      "imageUrl": "/vehicles/volvo-xc40-r-design-2019/front-angle-stance.jpg",
+      "metric": "LED DRL",
+      "metricLabel": "Thor's Hammer Optics"
+    },
+    {
+      "id": "harman-kardon",
+      "title": "Harman Kardon Premium Sound",
+      "subtitle": "Concert Hall Acoustic Tuning",
+      "description": "Multichannel high-fidelity audio system with Air Woofer Technology delivering crystal-clear soundscapes.",
+      "imageUrl": "/vehicles/volvo-xc40-r-design-2019/harman-kardon-speaker.jpg",
+      "metric": "PREMIUM",
+      "metricLabel": "Harman Kardon Audio"
+    },
+    {
+      "id": "verified-mileage",
+      "title": "Ultra-Low 40,000 KM Mileage",
+      "subtitle": "JEVIC Japanese Odometer Certified",
+      "description": "Rare low-mileage European compact SUV verified directly from Japanese export documentation.",
+      "imageUrl": "/vehicles/volvo-xc40-r-design-2019/cockpit-steering-view.jpg",
+      "metric": "40K KM",
+      "metricLabel": "Verified Japanese Odometer"
+    },
+    {
+      "id": "t4-awd-powertrain",
+      "title": "T4 AWD 2.0L Turbo Engine",
+      "subtitle": "190 HP with 8-Speed Geartronic",
+      "description": "Surefooted Haldex All-Wheel Drive paired with 300 Nm of low-end torque for cross-country exploration.",
+      "imageUrl": "/vehicles/volvo-xc40-r-design-2019/t4-awd-rdesign-badge.jpg",
+      "metric": "190 HP",
+      "metricLabel": "Turbocharged AWD Power"
+    }
+  ],
+  "editorialFeatures": [
+    {
+      "id": "scandinavian-safety",
+      "badge": "INTELLISAFE RADAR",
+      "title": "World-Class Volvo Safety Architecture",
+      "lead": "Autonomous emergency braking, blind spot information, and lane keeping assist.",
+      "narrative": [
+        "The Volvo XC40 is constructed with high-strength boron steel forming a rigid safety cage around passengers.",
+        "Equipped with IntelliSafe radar suite, pedestrian detection, and 360-degree overhead parking camera."
+      ],
+      "specs": [
+        { "label": "Safety Suite", "value": "Volvo IntelliSafe with Pilot Assist" },
+        { "label": "Camera", "value": "360-Degree Overhead Parking Monitor" },
+        { "label": "Chassis", "value": "Boron Steel Safety Cage" }
+      ],
+      "slides": [
+        {
+          "id": "dashcam-slide",
+          "title": "IntelliSafe Optical Radar Sensor",
+          "subtitle": "Front Radar & Dashcam",
+          "description": "Active collision mitigation sensors mounted in the windshield header.",
+          "imageUrl": "/vehicles/volvo-xc40-r-design-2019/intellisafe-dashcam.jpg"
+        }
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "overview",
+      "tabLabel": "Overview",
+      "eyebrow": "2019 VOLVO XC40 R-DESIGN",
+      "title": "The Premium Scandinavian Benchmark",
+      "narrative": [
+        "The Volvo XC40 R-Design combines sporty aesthetics with Scandinavian functionality.",
+        "Available directly at Alberka Enterprises showroom next to Ganjoni Primary School, Mombasa."
+      ],
+      "imageUrl": "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg",
+      "highlights": [
+        { "label": "Year", "value": "2019 Model" },
+        { "label": "Mileage", "value": "40,000 KM Only" },
+        { "label": "Drivetrain", "value": "T4 All-Wheel Drive" }
+      ]
+    }
+  ],
+  "specifications": [
+    {
+      "category": "Engine & Powertrain",
+      "items": [
+        { "label": "Engine", "value": "1,968 cc B4204T 4-Cylinder Turbocharged Petrol" },
+        { "label": "Power Output", "value": "190 HP @ 4,700 RPM" },
+        { "label": "Torque", "value": "300 Nm @ 1,400 - 4,000 RPM" },
+        { "label": "Transmission", "value": "8-Speed Geartronic Automatic" },
+        { "label": "Drive Type", "value": "All-Wheel Drive (AWD)" },
+        { "label": "Fuel Tank", "value": "54 Liters" }
+      ]
+    },
+    {
+      "category": "Dimensions & Utility",
+      "items": [
+        { "label": "Dimensions", "value": "4,425 mm × 1,863 mm × 1,652 mm" },
+        { "label": "Wheelbase", "value": "2,702 mm" },
+        { "label": "Ground Clearance", "value": "211 mm" },
+        { "label": "Boot Capacity", "value": "460 Liters (Extendable to 1,336L)" },
+        { "label": "Towing Capacity", "value": "2,100 kg" }
+      ]
+    }
+  ],
+  "workshopProtocol": [
+    "QISJ pre-shipment vehicle condition inspection verified at Yokohama port prior to dispatch.",
+    "Comprehensive 100-point mechanical evaluation covering turbocharger boost lines and AWD haldex clutch.",
+    "Electronic diagnostic scan with VIDA diagnostic software confirming zero fault codes.",
+    "Fresh synthetic engine oil and OEM filter replacement according to Volvo Castrol Edge Professional standard.",
+    "Four-wheel laser alignment and high-speed tire balancing.",
+    "Full interior leather deep cleanse and anti-bacterial cabin sanitization."
+  ],
+  "equipmentChecklist": [
+    {
+      "category": "COMFORT & CONVENIENCE",
+      "items": [
+        { "name": "ACC (Adaptive Cruise)", "active": true },
+        { "name": "Air Conditioner", "active": true },
+        { "name": "Audio Player", "active": true },
+        { "name": "Both Power Slide Door", "active": false },
+        { "name": "Cooler", "active": true },
+        { "name": "Cruise Control", "active": true },
+        { "name": "Double Air Conditioner", "active": true },
+        { "name": "Left Side Power Slide Door", "active": false },
+        { "name": "Navigation System", "active": true },
+        { "name": "Paddle Shift", "active": false },
+        { "name": "Power Back Door", "active": true },
+        { "name": "Power Seat", "active": true },
+        { "name": "Power Steering", "active": true },
+        { "name": "Power Window All", "active": true },
+        { "name": "Power Window Driver", "active": true },
+        { "name": "Power Window Front", "active": true },
+        { "name": "Push Start", "active": true },
+        { "name": "Steering Switch", "active": true }
+      ]
+    },
+    {
+      "category": "DRESS UP",
+      "items": [
+        { "name": "Aero Front", "active": true },
+        { "name": "Aero Rear", "active": true },
+        { "name": "Aero Side", "active": true },
+        { "name": "Alloy Wheels", "active": true },
+        { "name": "Grill Guard", "active": false },
+        { "name": "Rear Spoiler", "active": true },
+        { "name": "Wood Combination Steering", "active": false }
+      ]
+    },
+    {
+      "category": "EXTERIOR",
+      "items": [
+        { "name": "Carrier Base", "active": false },
+        { "name": "Roof Box", "active": false },
+        { "name": "Roof Carrier", "active": false },
+        { "name": "Roof Rails", "active": true },
+        { "name": "Sun Roof", "active": false },
+        { "name": "Double Sun Roof", "active": false },
+        { "name": "Glass Roof", "active": false },
+        { "name": "Fog Light", "active": true },
+        { "name": "HID Light", "active": false },
+        { "name": "LED Light", "active": true },
+        { "name": "High Roof", "active": false },
+        { "name": "New Shape", "active": true },
+        { "name": "Slide Glass", "active": false }
+      ]
+    },
+    {
+      "category": "SAFETY",
+      "items": [
+        { "name": "ABS", "active": true },
+        { "name": "Air Bag", "active": true },
+        { "name": "Around View Monitor", "active": true },
+        { "name": "Back Camera", "active": true },
+        { "name": "Front Camera", "active": true },
+        { "name": "Side Camera", "active": true },
+        { "name": "Corner Sensor", "active": true },
+        { "name": "ESC", "active": true }
+      ]
+    },
+    {
+      "category": "OTHER & REMARKS",
+      "items": [
+        { "name": "Auto Door", "active": false },
+        { "name": "Back Tire", "active": false },
+        { "name": "Just Low", "active": false },
+        { "name": "Half Leather Seat", "active": true },
+        { "name": "Leather Seat", "active": true },
+        { "name": "Same Tire", "active": true },
+        { "name": "Side Lift Up Seat", "active": false },
+        { "name": "Sloper", "active": false }
+      ]
+    }
+  ],
+  "equipmentRemarks": "5SEATS, R-DESIGN T4 AWD, HARMAN KARDON, 360 CAMERA, POWER TAILGATE, 40K KM ONLY"
+}

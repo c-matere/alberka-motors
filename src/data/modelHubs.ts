@@ -20,24 +20,24 @@ export interface ModelHub {
 
 export const MODEL_HUBS: ModelHub[] = [
   {
-    id: 'toyota-prado',
-    name: 'Toyota Land Cruiser Prado',
+    id: 'toyota-harrier',
+    name: 'Toyota Harrier',
     make: 'Toyota',
-    title: 'Toyota Land Cruiser Prado Hub',
-    subtitle: '120-Series TX & TX Limited · 4.0L V6 1GR-FE · Full-Time Dual-Range 4WD With Torsen LSD',
-    tagline: 'Kenya’s undisputed overland and executive benchmark. Unshakeable resale value, unmatched parts availability across all 47 counties, and true cross-country luxury.',
-    startingPriceKes: 3200000,
-    heroImage: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
-    badge: 'FLAGSHIP 4WD HUB · SAVE UP TO KES 350,000',
-    avgFuelEconomy: '8.5 KM/L',
-    groundClearance: '220 mm',
-    seatingCapacity: '8 Seats',
-    driveTypes: 'Dual-Range Full-Time 4WD',
-    verdict: 'The golden standard of Kenyan motoring. High-mount intake, dual-range transfer case, and seating for 8 with independent rear climate controls.',
+    title: 'Toyota Harrier Dynamic Luxury Hub',
+    subtitle: '80-Series & GR Sport · 2.0L Petrol · Dynamic Force Efficiency & Executive Craftsmanship',
+    tagline: 'Kenya’s ultimate executive luxury crossover. TNGA architecture, ultra-efficient petrol power, whisper-quiet acoustic insulation, and unmatched street prestige.',
+    startingPriceKes: 4850000,
+    heroImage: '/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg',
+    badge: 'FLAGSHIP LUXURY CROSSOVER · MOMBASA STOCK',
+    avgFuelEconomy: '15.8 KM/L',
+    groundClearance: '195 mm',
+    seatingCapacity: '5 Seats',
+    driveTypes: '2WD Automatic',
+    verdict: 'A masterclass in modern Japanese automotive design, combining razor-sharp styling, low running costs, and premium interior luxury.',
     highlights: [
-      { label: 'Drivetrain', value: 'Dual-Range 4WD', desc: 'High/Low transfer case with center differential lock.' },
-      { label: 'Cabin Capacity', value: '8 Seats', desc: 'Versatile 3rd row with 100-point workshop verified condition.' },
-      { label: 'Resale Stability', value: 'Class Leader', desc: 'Retains over 82% equity value after years on Kenyan roads.' },
+      { label: 'Platform & Styling', value: '80-Series & GR', desc: 'Continuous LED rear light bar, sculpted coupe aerodynamics, and commanding presence.' },
+      { label: 'Dynamic Efficiency', value: '15.8 KM/L', desc: 'M20A-FKS Dynamic Force engine with physical launch gear Direct Shift-CVT.' },
+      { label: 'Cabin Luxury', value: 'Leather & Tech', desc: 'Touchscreen display, dual-zone climate, power seating, and radar cruise control.' },
     ],
   },
   {
@@ -62,24 +62,45 @@ export const MODEL_HUBS: ModelHub[] = [
     ],
   },
   {
-    id: 'toyota-harrier',
-    name: 'Toyota Harrier GR Sport',
-    make: 'Toyota',
-    title: 'Toyota Harrier GR Sport Hub',
-    subtitle: 'Gazoo Racing Edition · 2.0L Petrol · Sport Aerodynamic Package & 19" Alloy Rims',
-    tagline: 'The pinnacle of sporty luxury. Aerodynamic Gazoo Racing styling, dynamic handling, bespoke leather & suede cabin, and legendary Toyota reliability.',
-    startingPriceKes: 4850000,
-    heroImage: '/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg',
-    badge: 'GR SPORT EDITION · PREMIUM PERFORMANCE SUV',
+    id: 'subaru-xv',
+    name: 'Subaru XV',
+    make: 'Subaru',
+    title: 'Subaru XV Symmetrical AWD Hub',
+    subtitle: '2.0i-L EyeSight · Symmetrical AWD · 220mm Ground Clearance & Boxer Agility',
+    tagline: 'Kenya’s premier adventure crossover. Symmetrical All-Wheel Drive, high 220mm clearance, renowned Boxer balance, and EyeSight safety assist.',
+    startingPriceKes: 3150000,
+    heroImage: '/vehicles/subaru-xv-2019-black/hero-front-34.jpg',
+    badge: 'SYMMETRICAL AWD · MOMBASA STOCK',
     avgFuelEconomy: '16.0 KM/L',
-    groundClearance: '190 mm',
+    groundClearance: '220 mm',
     seatingCapacity: '5 Seats',
-    driveTypes: '2WD Sport Automatic',
-    verdict: 'A head-turning blend of executive luxury and Gazoo Racing track styling, featuring low mileage, dual-zone climate, and full leather interior.',
+    driveTypes: 'Symmetrical AWD',
+    verdict: 'The sweet spot between rugged SUV capability and sporty hatchback agility. Symmetrical AWD delivers unmatched grip on wet tarmac and upcountry dirt roads.',
     highlights: [
-      { label: 'Aesthetics', value: 'GR Body Kit', desc: 'Factory Gazoo Racing front and rear bumpers, honeycomb grille, and rear diffuser.' },
-      { label: 'Wheels & Calipers', value: '19" GR Alloys', desc: 'Machined two-tone Gazoo Racing sport alloys with branded GR white brake calipers.' },
-      { label: 'Cabin Luxury', value: 'Leather & Suede', desc: 'Embroidered GR sport seats with dual-zone climate and multi-function leather steering wheel.' },
+      { label: 'Drivetrain', value: 'Symmetrical AWD', desc: 'Constant active torque split with X-Mode and Hill Descent Control.' },
+      { label: 'Ground Clearance', value: '220 mm', desc: 'Superior obstacle clearance surpassing conventional urban crossovers.' },
+      { label: 'Safety Suite', value: 'Subaru EyeSight', desc: 'Stereo-camera pre-collision braking, adaptive cruise, and lane sway warning.' },
+    ],
+  },
+  {
+    id: 'volvo-xc40',
+    name: 'Volvo XC40 R-Design',
+    make: 'Volvo',
+    title: 'Volvo XC40 Scandinavian Luxury Hub',
+    subtitle: 'T4 All-Wheel Drive · 2.0L Turbo Petrol · Harman Kardon Sound & Thor’s Hammer LED',
+    tagline: 'Pure Scandinavian luxury and performance. R-Design sports styling, surefooted all-wheel drive, premium Harman Kardon acoustics, and world-renowned Volvo safety.',
+    startingPriceKes: 4650000,
+    heroImage: '/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg',
+    badge: 'SCANDINAVIAN LUXURY · 40,000 KM ONLY',
+    avgFuelEconomy: '13.6 KM/L',
+    groundClearance: '211 mm',
+    seatingCapacity: '5 Seats',
+    driveTypes: 'T4 All-Wheel Drive',
+    verdict: 'The pinnacle of compact European SUV design. Direct Japanese import with genuine 40,000 km, 360-degree camera, and bespoke R-Design leather cabin.',
+    highlights: [
+      { label: 'Acoustic Sound', value: 'Harman Kardon', desc: 'Concert-hall multi-speaker audio with Air Woofer door integration.' },
+      { label: 'Lighting Signature', value: 'Thor Hammer LED', desc: 'Active high-beam Scandinavian LED lighting with iconic daytime light guides.' },
+      { label: 'Safety Rating', value: '5-Star Euro NCAP', desc: 'IntelliSafe radar, collision mitigation, and 360-degree overhead monitor.' },
     ],
   },
 ];
@@ -89,8 +110,9 @@ export function getVehicleHubId(vehicle: Vehicle): string {
   if (vehicle.hubId) return vehicle.hubId;
   const lower = vehicle.name.toLowerCase();
   if (lower.includes('every') || lower.includes('suzuki')) return 'suzuki-every';
-  if (lower.includes('harrier')) return 'toyota-harrier';
-  return 'toyota-prado';
+  if (lower.includes('volvo') || lower.includes('xc40')) return 'volvo-xc40';
+  if (lower.includes('xv') || lower.includes('subaru')) return 'subaru-xv';
+  return 'toyota-harrier';
 }
 
 // Helper: Get ModelHub by ID
