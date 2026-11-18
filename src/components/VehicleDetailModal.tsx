@@ -35,7 +35,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 }) => {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const [showAuctionModal, setShowAuctionModal] = useState(false);
-  const [specTab, setSpecTab] = useState<'sbt' | 'dimensions' | 'options' | 'finance'>('sbt');
+  const [specTab, setSpecTab] = useState<'sbt' | 'cif' | 'dimensions' | 'options'>('sbt');
 
   // Financing Calculator State
   const [depositPercent, setDepositPercent] = useState(25);
@@ -50,23 +50,86 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
       (Math.pow(1 + monthlyRate, loanTenureMonths) - 1)
   );
 
-  const optionsList = [
-    { label: 'Push Start Button', key: 'pushStart', val: vehicle.options?.pushStart },
-    { label: 'Smart Keyless Entry', key: 'smartKey', val: vehicle.options?.smartKey },
-    { label: 'Power Windows', key: 'powerWindows', val: vehicle.options?.powerWindows },
-    { label: 'Dual Climate AC', key: 'airConditioner', val: vehicle.options?.airConditioner },
-    { label: 'Power Driver Seat', key: 'powerSeats', val: vehicle.options?.powerSeats },
-    { label: 'Leather Upholstery', key: 'leatherSeats', val: vehicle.options?.leatherSeats },
-    { label: 'Sunroof / Moonroof', key: 'sunroof', val: vehicle.options?.sunroof },
-    { label: 'Original Alloy Wheels', key: 'alloyWheels', val: vehicle.options?.alloyWheels },
-    { label: 'Anti-Lock Brakes (ABS)', key: 'abs', val: vehicle.options?.abs },
-    { label: 'Dual & Curtain Airbags', key: 'airbags', val: vehicle.options?.airbags },
-    { label: 'Backup / Rear Camera', key: 'backCamera', val: vehicle.options?.backCamera },
-    { label: 'Around View 360° Camera', key: 'camera360', val: vehicle.options?.camera360 },
-    { label: 'Radar Adaptive Cruise', key: 'radarCruise', val: vehicle.options?.radarCruise },
-    { label: 'Lane Departure Assist', key: 'laneAssist', val: vehicle.options?.laneAssist },
-    { label: 'LED Headlamps & Fogs', key: 'ledLights', val: vehicle.options?.ledLights },
-    { label: 'Display Navigation Audio', key: 'navigation', val: vehicle.options?.navigation },
+  const sbtOptionCategories = [
+    {
+      category: 'Comfort & Convenience',
+      items: [
+        { label: 'Air Conditioner', val: vehicle.options?.airConditioner },
+        { label: 'Double Air Conditioner', val: vehicle.options?.doubleAc },
+        { label: 'Power Steering', val: true },
+        { label: 'Power Windows', val: vehicle.options?.powerWindows },
+        { label: 'Push Start Button', val: vehicle.options?.pushStart },
+        { label: 'Smart Keyless Entry', val: vehicle.options?.smartKey },
+        { label: 'Power Driver Seat', val: vehicle.options?.powerSeats },
+        { label: 'Audio Player / CD', val: vehicle.options?.audioPlayer ?? true },
+        { label: 'Navigation System', val: vehicle.options?.navigation },
+        { label: 'Cruise Control', val: vehicle.options?.radarCruise },
+        { label: 'Paddle Shift', val: false },
+        { label: 'Power Back Door', val: vehicle.options?.powerBackDoor },
+        { label: 'Both Power Slide Door', val: false },
+        { label: 'Left Side Power Slide Door', val: false },
+        { label: 'Cooler', val: vehicle.options?.airConditioner },
+      ],
+    },
+    {
+      category: 'Dress Up & Exterior',
+      items: [
+        { label: 'Alloy Wheels', val: vehicle.options?.alloyWheels },
+        { label: 'Roof Rails', val: vehicle.options?.roofRails },
+        { label: 'Wood Combination Steering', val: vehicle.options?.woodSteering },
+        { label: 'Rear Spoiler', val: vehicle.options?.rearSpoiler },
+        { label: 'Aero Front / Bodykit', val: false },
+        { label: 'Aero Rear', val: false },
+        { label: 'Aero Side', val: false },
+        { label: 'Grill Guard', val: false },
+      ],
+    },
+    {
+      category: 'Roof & Cargo',
+      items: [
+        { label: 'Sun Roof / Moon Roof', val: vehicle.options?.sunroof },
+        { label: 'Double Sun Roof', val: false },
+        { label: 'Glass Roof', val: false },
+        { label: 'Roof Carrier / Base', val: false },
+        { label: 'Roof Box', val: false },
+        { label: 'Back Tire Carrier', val: vehicle.modelCode?.includes('GRJ120') || vehicle.name.includes('Prado') },
+        { label: 'Slide Glass', val: false },
+        { label: 'High Roof', val: false },
+      ],
+    },
+    {
+      category: 'Lighting',
+      items: [
+        { label: 'Front Fog Lamps', val: vehicle.options?.fogLights ?? vehicle.options?.ledLights },
+        { label: 'LED Headlamps', val: vehicle.options?.ledLights },
+        { label: 'HID Light', val: !vehicle.options?.ledLights },
+      ],
+    },
+    {
+      category: 'Safety & Sensors',
+      items: [
+        { label: 'Anti-Lock Brakes (ABS)', val: vehicle.options?.abs },
+        { label: 'SRS Dual & Curtain Airbags', val: vehicle.options?.airbags },
+        { label: 'Backup / Rear Camera', val: vehicle.options?.backCamera },
+        { label: 'Around View 360° Monitor', val: vehicle.options?.camera360 },
+        { label: 'Front Camera', val: false },
+        { label: 'Side Camera', val: false },
+        { label: 'Electronic Stability Control (ESC)', val: true },
+        { label: 'Corner Parking Sensors', val: false },
+        { label: 'Lane Departure Assist', val: vehicle.options?.laneAssist },
+      ],
+    },
+    {
+      category: 'Seating & Interior',
+      items: [
+        { label: 'Leather Upholstery', val: vehicle.options?.leatherSeats },
+        { label: 'Half Leather Seat', val: false },
+        { label: '8-Passenger Seating (3-Row)', val: vehicle.seats === 8 },
+        { label: 'Sloper', val: false },
+        { label: 'Side Lift Up Seat', val: false },
+        { label: 'Auto Door', val: false },
+      ],
+    },
   ];
 
   return (
@@ -241,6 +304,42 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 <span className="text-[11px] text-emerald-700 font-medium block">Duty Cleared</span>
               </div>
             </div>
+
+            {/* SBT Japan Product Status Bar */}
+            <div className="mt-4 p-3 bg-white border border-zinc-200 rounded-xl grid grid-cols-4 sm:grid-cols-8 gap-2 text-center text-xs shadow-xs">
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Mileage</span>
+                <span className="font-mono font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.mileageKm.toLocaleString()}km</span>
+              </div>
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Engine</span>
+                <span className="font-mono font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.engine}</span>
+              </div>
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Trans.</span>
+                <span className="font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.transmission}</span>
+              </div>
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Drive</span>
+                <span className="font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.drivetrain}</span>
+              </div>
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Steering</span>
+                <span className="font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.steering}</span>
+              </div>
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Fuel</span>
+                <span className="font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.fuelType}</span>
+              </div>
+              <div className="border-r border-zinc-100 last:border-none">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Doors</span>
+                <span className="font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.doors} Doors</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Seats</span>
+                <span className="font-bold text-zinc-950 text-xs sm:text-sm">{vehicle.seats} Seats</span>
+              </div>
+            </div>
           </div>
 
           {/* SBT Car Exporter Verified Specification Section */}
@@ -254,23 +353,31 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   </span>
                 </div>
                 <p className="text-xs text-zinc-600 mt-0.5">
-                  Verified against Japanese Export Certificate, USS/TAA Auction Data & QISJ/JEVIC Inspection.
+                  Verified against Japanese Export Certificate, USS/TAA Auction Data & QISJ/JEVIC Inspection. Stock ID: <strong className="text-zinc-950">{vehicle.sbtStockId || vehicle.stockNo}</strong> · Location: <strong className="text-zinc-950">{vehicle.inventoryLocation || 'JAPAN'}</strong>
                 </p>
               </div>
 
               {/* Navigation Tabs */}
-              <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-zinc-200">
+              <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-zinc-200 overflow-x-auto">
                 <button
                   onClick={() => setSpecTab('sbt')}
-                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer shrink-0 ${
                     specTab === 'sbt' ? 'bg-zinc-950 text-white' : 'text-zinc-600 hover:text-zinc-950'
                   }`}
                 >
                   Vehicle Details
                 </button>
                 <button
+                  onClick={() => setSpecTab('cif')}
+                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer shrink-0 ${
+                    specTab === 'cif' ? 'bg-zinc-950 text-white' : 'text-zinc-600 hover:text-zinc-950'
+                  }`}
+                >
+                  SBT CIF Price
+                </button>
+                <button
                   onClick={() => setSpecTab('dimensions')}
-                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer shrink-0 ${
                     specTab === 'dimensions' ? 'bg-zinc-950 text-white' : 'text-zinc-600 hover:text-zinc-950'
                   }`}
                 >
@@ -278,7 +385,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 </button>
                 <button
                   onClick={() => setSpecTab('options')}
-                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer shrink-0 ${
                     specTab === 'options' ? 'bg-zinc-950 text-white' : 'text-zinc-600 hover:text-zinc-950'
                   }`}
                 >
@@ -292,11 +399,19 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-xs">
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Stock ID</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.stockNo}</span>
+                  <span className="font-mono font-bold text-zinc-950">{vehicle.sbtStockId || vehicle.stockNo}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
-                  <span className="text-zinc-600">SBT Stock Reference</span>
-                  <span className="font-mono font-semibold text-zinc-950">{vehicle.sbtStockId || `SBT-${vehicle.stockNo}`}</span>
+                  <span className="text-zinc-600">Inventory Location</span>
+                  <span className="font-semibold text-zinc-950">{vehicle.inventoryLocation || 'OSAKA, JAPAN'}</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-b border-zinc-200">
+                  <span className="text-zinc-600">Make</span>
+                  <span className="font-bold text-zinc-950">TOYOTA</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-b border-zinc-200">
+                  <span className="text-zinc-600">Model</span>
+                  <span className="font-bold text-zinc-950">{vehicle.modelCode}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Chassis / Frame #</span>
@@ -305,8 +420,8 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   </span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
-                  <span className="text-zinc-600">Model Code</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.modelCode}</span>
+                  <span className="text-zinc-600">Grade / Edition</span>
+                  <span className="font-semibold text-zinc-950">{vehicle.sbtGrade || vehicle.auctionGrade}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Engine Size & Code</span>
@@ -357,6 +472,68 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Port / Delivery Location</span>
                   <span className="font-semibold text-zinc-950">{vehicle.locationYard}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Tab 2: SBT Japan CIF Pricing & Import Calculator */}
+            {specTab === 'cif' && (
+              <div className="space-y-4">
+                <div className="p-4 bg-white rounded-lg border border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <span className="text-[11px] text-zinc-500 uppercase tracking-wider block font-semibold">
+                      Total CIF Mombasa Port (SBT Invoice)
+                    </span>
+                    <span className="text-2xl font-mono font-bold text-zinc-950">
+                      ${(vehicle.totalCifUsd || 14046).toLocaleString()} USD
+                    </span>
+                    <span className="text-xs text-zinc-600 block mt-0.5">
+                      Inventory Location: <strong className="text-zinc-950">{vehicle.inventoryLocation || 'OSAKA, JAPAN'}</strong>
+                    </span>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <span className="text-[11px] text-zinc-500 uppercase tracking-wider block font-semibold">
+                      Kenya Delivered & Registered
+                    </span>
+                    <span className="text-2xl font-mono font-bold text-emerald-700">
+                      KES {vehicle.priceKes.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-emerald-800 font-medium block">
+                      Fully Cleared (Duty, VAT, IDF, RDL & Plates)
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-xs">
+                  <div className="flex justify-between py-2 border-b border-zinc-200">
+                    <span className="text-zinc-600 font-medium">Vehicle Price (FOB Japan)</span>
+                    <span className="font-mono font-bold text-zinc-950">${(vehicle.priceUsd || 11690).toLocaleString()} USD</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-zinc-200">
+                    <span className="text-zinc-600 font-medium">Freight Amount (RoRo to Mombasa)</span>
+                    <span className="font-mono font-bold text-zinc-950">${(vehicle.freightUsd || 1900).toLocaleString()} USD</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-zinc-200">
+                    <span className="text-zinc-600 font-medium">Vanning Amount</span>
+                    <span className="font-mono font-bold text-zinc-950">${(vehicle.vanningUsd || 0).toLocaleString()} USD</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-zinc-200">
+                    <span className="text-zinc-600 font-medium">Inspection Amount (QISJ / JEVIC)</span>
+                    <span className="font-mono font-bold text-zinc-950">${(vehicle.inspectionUsd || 250).toLocaleString()} USD</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-zinc-200">
+                    <span className="text-zinc-600 font-medium">Insurance Amount (Marine Transit)</span>
+                    <span className="font-mono font-bold text-zinc-950">${(vehicle.insuranceUsd || 206).toLocaleString()} USD</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-zinc-200">
+                    <span className="text-zinc-600 font-medium">M3 Freight Shipping Volume</span>
+                    <span className="font-mono font-bold text-zinc-950">{vehicle.m3}</span>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-zinc-100/70 rounded-lg border border-zinc-200 text-xs text-zinc-600 space-y-1">
+                  <p className="font-semibold text-zinc-950">Alberka Concierge Import Guarantee:</p>
+                  <p>All import duty calculations follow the latest KRA CRSP valuation database. We handle Japanese port clearance, bill of lading documentation, KEBS certificate verification, and Mombasa port logistics from discharge to final transport.</p>
                 </div>
               </div>
             )}
@@ -413,28 +590,53 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
             )}
 
-            {/* Tab 3: SBT Equipment & Options Checklist */}
+            {/* Tab 4: Categorized SBT Equipment & Options Checklist */}
             {specTab === 'options' && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
-                {optionsList.map((opt) => (
-                  <div
-                    key={opt.key}
-                    className={`p-2.5 rounded-lg border flex items-center gap-2 ${
-                      opt.val
-                        ? 'bg-white border-zinc-200 text-zinc-950'
-                        : 'bg-zinc-100/60 border-zinc-200 text-zinc-400'
-                    }`}
-                  >
-                    {opt.val ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    ) : (
-                      <Minus className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-                    )}
-                    <span className={`text-[11px] truncate ${opt.val ? 'font-semibold' : ''}`}>
-                      {opt.label}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-xs text-zinc-500 pb-1 border-b border-zinc-200">
+                  <span>SBT Japan Export Standard Equipment Matrix</span>
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex items-center gap-1 font-semibold text-emerald-800">
+                      <Check className="w-3.5 h-3.5 text-emerald-600" /> Available
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-zinc-600">
+                      <Minus className="w-3.5 h-3.5 text-zinc-600" /> Unavailable
                     </span>
                   </div>
-                ))}
+                </div>
+
+                <div className="space-y-4">
+                  {sbtOptionCategories.map((group) => (
+                    <div key={group.category} className="space-y-2">
+                      <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-zinc-700 block">
+                        {group.category}
+                      </span>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs">
+                        {group.items.map((opt, i) => (
+                          <div
+                            key={i}
+                            className={`p-2 rounded-lg border flex items-center justify-between gap-1.5 transition-colors ${
+                              opt.val
+                                ? 'bg-white border-zinc-300 text-zinc-950 font-semibold shadow-xs'
+                                : 'bg-zinc-100/60 border-zinc-200 text-zinc-600'
+                            }`}
+                          >
+                            <span className="truncate text-[11px]">{opt.label}</span>
+                            {opt.val ? (
+                              <span className="inline-flex items-center gap-0.5 px-1 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shrink-0">
+                                <Check className="w-2.5 h-2.5" /> OK
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center px-1 py-0.5 rounded text-[10px] font-mono text-zinc-600 bg-zinc-200/60 shrink-0">
+                                —
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>

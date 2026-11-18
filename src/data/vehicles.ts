@@ -51,12 +51,19 @@ export interface SBTOptions {
   laneAssist: boolean;
   ledLights: boolean;
   navigation: boolean;
+  roofRails?: boolean;
+  audioPlayer?: boolean;
+  fogLights?: boolean;
+  rearSpoiler?: boolean;
+  woodSteering?: boolean;
+  doubleAc?: boolean;
+  powerBackDoor?: boolean;
 }
 
 export interface Vehicle {
   id: string;
   stockNo: string;
-  sbtStockId: string; // SBT Japan Exporter Stock ID
+  sbtStockId: string; // SBT Japan Exporter Stock ID (e.g. AX2877)
   chassisNo: string; // Frame / Chassis No
   modelCode: string; // Japanese Model Code
   engineCode: string; // Engine Series Code
@@ -66,6 +73,14 @@ export interface Vehicle {
   kicker: string;
   tagline: string;
   priceKes: number;
+  priceUsd?: number; // SBT FOB Price (USD)
+  freightUsd?: number; // RoRo Freight (USD)
+  vanningUsd?: number; // Vanning (USD)
+  inspectionUsd?: number; // QISJ / JEVIC (USD)
+  insuranceUsd?: number; // Marine Insurance (USD)
+  totalCifUsd?: number; // Total CIF Mombasa (USD)
+  inventoryLocation?: string; // e.g. OSAKA, JAPAN
+  sbtGrade?: string; // SBT Grade text e.g. TX LIMITED 60TH SPECIAL EDITION
   year: number;
   registrationMonth: string;
   manufactureYearMonth: string;
@@ -129,6 +144,415 @@ export interface Vehicle {
 }
 
 export const VEHICLES: Vehicle[] = [
+  {
+    id: 'toyota-land-cruiser-prado-ax2877',
+    stockNo: 'ALB-2877',
+    sbtStockId: 'AX2877',
+    chassisNo: 'GRJ120-002877',
+    modelCode: 'CBA-GRJ120W',
+    engineCode: '1GR-FE',
+    name: 'Toyota Land Cruiser Prado TX Limited 60th Special Edition',
+    moniker: '60th Anniversary Japanese Overland Legend',
+    essenceQuote: 'A pristine 120-Series Prado straight from Osaka, powered by the indestructible 4.0L V6 1GR-FE with verified 108,000 km, 8-seater capability, and full Japanese export documentation.',
+    kicker: 'SBT Japan Certified · 4.0L Petrol V6 · 8-Seater',
+    tagline: 'Toyota Land Cruiser Prado 120 · TX Limited 60th Anniversary · 4.0L V6 Petrol · 4WD · Osaka Export',
+    priceKes: 3200000,
+    priceUsd: 11690,
+    freightUsd: 1900,
+    vanningUsd: 0,
+    inspectionUsd: 250,
+    insuranceUsd: 206,
+    totalCifUsd: 14046,
+    inventoryLocation: 'OSAKA, JAPAN',
+    sbtGrade: 'TX LIMITED 60TH SPECIAL EDITION',
+    year: 2006,
+    registrationMonth: '12',
+    manufactureYearMonth: '2006 / 12',
+    mileageKm: 108000,
+    steering: 'RHD',
+    category: 'suv',
+    bodyType: 'SUV',
+    fuelType: 'PETROL',
+    transmission: 'AT',
+    drivetrain: '4WD',
+    engine: '4,000 cc',
+    power: '249 HP @ 5,200 RPM',
+    torque: '380 Nm @ 3,800 RPM',
+    fuelEconomy: '8.5 km/L (Japanese 10-15 mode)',
+    exteriorColor: 'WHITE',
+    colorCode: '056',
+    interiorColor: 'Charcoal / Ash Gray Fabric',
+    doors: 5,
+    seats: 8,
+    locationYard: 'Osaka Yard / Mombasa Port RoRo',
+    dimensions: '4.85m × 1.88m × 1.85m (4,850 × 1,875 × 1,850 mm)',
+    m3: '16.823 m³',
+    wheelbase: '2,790 mm',
+    groundClearance: '220 mm',
+    curbWeight: '2,050 kg',
+    grossWeight: '2,600 kg',
+    maxLoadingCapacity: '550 kg',
+    fuelTankCapacity: '87 L',
+    auctionGrade: '4.5',
+    auctionHall: 'USS Osaka / SBT Japan Export Center',
+    interiorGrade: 'B',
+    inspectionStatus: 'QISJ & JEVIC Export Approved',
+    status: 'In Stock',
+    heroImage: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
+    heroVideo: '',
+    options: {
+      pushStart: false,
+      smartKey: false,
+      powerWindows: true,
+      airConditioner: true,
+      powerSeats: false,
+      leatherSeats: false,
+      sunroof: false,
+      alloyWheels: true,
+      abs: true,
+      airbags: true,
+      backCamera: true,
+      camera360: false,
+      radarCruise: false,
+      laneAssist: false,
+      ledLights: false,
+      navigation: true,
+      roofRails: true,
+      audioPlayer: true,
+      fogLights: true,
+      rearSpoiler: false,
+      woodSteering: false,
+      doubleAc: false,
+      powerBackDoor: false,
+    },
+    colors: [
+      { name: 'Pure White (056)', hex: '#F8F9FA', imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg' },
+    ],
+    closerLookPoints: [
+      {
+        id: 'engine-1gr',
+        title: '4.0L 1GR-FE V6 Powertrain',
+        subtitle: 'Dual VVTi Naturally Aspirated Gasoline Engine',
+        description: 'Renowned globally for 500,000+ km longevity. Delivers 249 horsepower and 380 Nm of smooth, responsive torque.',
+        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/37.jpg',
+        metric: '249 HP',
+        metricLabel: 'Naturally Aspirated',
+      },
+      {
+        id: 'cabin-8seats',
+        title: 'Full 8-Passenger Seating',
+        subtitle: '3-Row Flexible Family & Safari Layout',
+        description: 'Tumble-forward 2nd row and split-folding 3rd row provide cavernous luggage capacity and comfortable long-distance touring.',
+        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/20.jpg',
+        metric: '8 Seats',
+        metricLabel: 'Full Configuration',
+      },
+      {
+        id: 'odometer-verified',
+        title: '108,000 Verified Kilometers',
+        subtitle: 'Japanese Ministry of Transport Certified',
+        description: 'Documented genuine low mileage verified by export certification and JEVIC Japanese inspection certificate.',
+        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/13.jpg',
+        metric: '108k KM',
+        metricLabel: 'Certified Odometer',
+      },
+    ],
+    editorialFeatures: [
+      {
+        id: 'safety',
+        badge: 'SAFETY & CHASSIS',
+        title: 'Heavy-Duty Ladder Frame 4WD',
+        lead: 'Engineered for the harshest terrain with full-time 4WD and Torsen limited-slip center differential.',
+        narrative: [
+          'The 120 Series Prado combines a rigid boxed ladder chassis with independent double-wishbone front suspension.',
+          'Features factory ABS, dual SRS front airbags, rear parking camera, and front fog lamps.',
+        ],
+        specs: [
+          { label: 'Chassis Type', value: 'Full Box-Section Ladder Frame' },
+          { label: 'Drive System', value: 'Full-Time 4WD with Dual-Range Transfer' },
+          { label: 'Differential', value: 'Torsen Center LSD with Electronic Lock' },
+          { label: 'Brakes', value: '4-Wheel Ventilated Discs with ABS' },
+        ],
+        slides: [
+          {
+            id: 'slide-4wd',
+            title: 'Full-Time 4WD System',
+            subtitle: 'High & Low Range Transfer Case',
+            description: 'Unstoppable off-road capability across Kenyan mud, sand, and rocky corridors.',
+            imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/19.jpg',
+          },
+        ],
+      },
+    ],
+    chapters: [
+      {
+        id: 'ch-overview',
+        tabLabel: 'Overland Heritage',
+        eyebrow: 'TOYOTA LAND CRUISER PRADO',
+        title: 'The 60th Anniversary 120 Edition',
+        narrative: [
+          'Commissioned to celebrate 60 years of Toyota overland dominance, this TX Limited edition features enhanced factory appointments.',
+          'Imported directly from Osaka, Japan under official SBT Japan export protocol AX2877.',
+        ],
+        imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
+        highlights: [
+          { label: 'Stock ID', value: 'AX2877 (ALB-2877)' },
+          { label: 'Chassis', value: 'GRJ120-002877' },
+          { label: 'Port', value: 'Osaka -> Mombasa' },
+        ],
+      },
+    ],
+    gallery: [
+      {
+        title: 'Prado 120 Photo 1',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/1.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 2',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 3',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/3.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 4',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/4.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 5',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/5.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 6',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/6.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 7',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/7.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 8',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/8.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 9',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/9.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 10',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/10.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 11',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/11.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 12',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/12.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 13',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/13.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 14',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/14.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 15',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/15.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 16',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/16.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 17',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/17.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 18',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/18.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 19',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/19.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 20',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/20.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 21',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/21.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 22',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/22.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 23',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/23.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 24',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/24.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 25',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/25.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 26',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/26.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 27',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/27.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 28',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/28.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 29',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/29.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 30',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/30.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 31',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/31.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 32',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/32.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 33',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/33.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 34',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/34.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 35',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/35.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 36',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/36.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 37',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/37.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 38',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/38.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 39',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/39.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 40',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/40.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 41',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/41.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 42',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/42.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 43',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/43.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 44',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/44.jpg',
+      },
+      {
+        title: 'Prado 120 Photo 45',
+        description: 'SBT Japan Inspection Archive AX2877',
+        url: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/45.jpg',
+      }
+    ],
+    specifications: [
+      {
+        category: 'SBT Japan Exporter Specifications',
+        items: [
+          { label: 'SBT Stock ID', value: 'AX2877' },
+          { label: 'Inventory Location', value: 'OSAKA, JAPAN' },
+          { label: 'Model Code', value: 'CBA-GRJ120W' },
+          { label: 'Engine Code', value: '1GR-FE (4,000 cc)' },
+          { label: 'M3 Volume', value: '16.823 m³' },
+          { label: 'FOB Price', value: '$11,690 USD' },
+          { label: 'CIF Mombasa Port', value: '$14,046 USD' },
+          { label: 'Delivered Kenya', value: 'KES 3,200,000 (Duty Cleared)' },
+        ],
+      },
+    ],
+    workshopProtocol: [
+      '1GR-FE V6 compression and valve timing diagnostic',
+      'Differential and transfer case fluid replacement',
+      'Suspension bushing and ball joint mechanical clearance check',
+      'Brake pad wear and rotor thickness measurement',
+      'Underbody anti-corrosion chassis seal verification',
+    ],
+  },
+
   {
     id: 'toyota-rav4-adventure',
     stockNo: 'ALB-4062',

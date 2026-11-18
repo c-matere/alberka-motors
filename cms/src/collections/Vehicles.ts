@@ -125,6 +125,99 @@ export const Vehicles: CollectionConfig = {
           ],
         },
         {
+          label: 'SBT Pricing & CIF Breakdown',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'priceUsd',
+                  type: 'number',
+                  label: 'Vehicle FOB Price ($ USD)',
+                  admin: {
+                    placeholder: '11690',
+                    width: '33%',
+                  },
+                },
+                {
+                  name: 'freightUsd',
+                  type: 'number',
+                  label: 'RoRo Freight ($ USD)',
+                  admin: {
+                    placeholder: '1900',
+                    width: '33%',
+                  },
+                },
+                {
+                  name: 'insuranceUsd',
+                  type: 'number',
+                  label: 'Marine Insurance ($ USD)',
+                  admin: {
+                    placeholder: '206',
+                    width: '33%',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'inspectionUsd',
+                  type: 'number',
+                  label: 'Inspection (QISJ/JEVIC) ($ USD)',
+                  admin: {
+                    placeholder: '250',
+                    width: '33%',
+                  },
+                },
+                {
+                  name: 'vanningUsd',
+                  type: 'number',
+                  label: 'Vanning / Handling ($ USD)',
+                  admin: {
+                    placeholder: '0',
+                    width: '33%',
+                  },
+                },
+                {
+                  name: 'totalCifUsd',
+                  type: 'number',
+                  label: 'Total CIF Mombasa ($ USD)',
+                  admin: {
+                    placeholder: '14046',
+                    width: '33%',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'inventoryLocation',
+                  type: 'text',
+                  label: 'Inventory Location (Japan)',
+                  defaultValue: 'OSAKA, JAPAN',
+                  admin: {
+                    placeholder: 'OSAKA, JAPAN',
+                    width: '50%',
+                  },
+                },
+                {
+                  name: 'sbtGrade',
+                  type: 'text',
+                  label: 'SBT Edition / Grade Name',
+                  admin: {
+                    placeholder: 'TX LIMITED 60TH SPECIAL EDITION',
+                    width: '50%',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
           label: 'SBT Vehicle Details',
           fields: [
             {
@@ -628,6 +721,65 @@ export const Vehicles: CollectionConfig = {
                   label: 'Display Audio & Navigation',
                   defaultValue: true,
                   admin: { width: '25%' },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'optRoofRails',
+                  type: 'checkbox',
+                  label: 'Roof Rails',
+                  defaultValue: false,
+                  admin: { width: '25%' },
+                },
+                {
+                  name: 'optAudioPlayer',
+                  type: 'checkbox',
+                  label: 'Audio Player / CD / Bluetooth',
+                  defaultValue: true,
+                  admin: { width: '25%' },
+                },
+                {
+                  name: 'optFogLights',
+                  type: 'checkbox',
+                  label: 'Front Fog Lamps',
+                  defaultValue: true,
+                  admin: { width: '25%' },
+                },
+                {
+                  name: 'optRearSpoiler',
+                  type: 'checkbox',
+                  label: 'Rear Aerodynamic Spoiler',
+                  defaultValue: false,
+                  admin: { width: '25%' },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'optWoodSteering',
+                  type: 'checkbox',
+                  label: 'Wood Combination Steering',
+                  defaultValue: false,
+                  admin: { width: '33%' },
+                },
+                {
+                  name: 'optDoubleAc',
+                  type: 'checkbox',
+                  label: 'Dual / Rear Cooler AC',
+                  defaultValue: false,
+                  admin: { width: '33%' },
+                },
+                {
+                  name: 'optPowerBackDoor',
+                  type: 'checkbox',
+                  label: 'Power Back Door / Tailgate',
+                  defaultValue: false,
+                  admin: { width: '33%' },
                 },
               ],
             },
