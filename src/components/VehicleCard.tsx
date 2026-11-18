@@ -99,84 +99,77 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       {/* Content Layer */}
       <div className="hero-card_content">
         
-        {/* Top Badges Row */}
-        <div className="flex items-center justify-between gap-2 z-20">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="inline-flex items-center rounded-md border px-2.5 py-1 text-[11px] font-bold bg-white/95 text-zinc-950 border-white/40 shadow-sm backdrop-blur-md">
-              Grade {vehicle.auctionGrade || '4.5'}
-            </span>
-            {pricing.hasDiscount && (
-              <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold bg-red-600 text-white shadow-md font-mono">
-                Save KES {pricing.savingsKes.toLocaleString()}
+        {/* Top Header Section: Badges Row + Car Name on Top */}
+        <div className="flex flex-col gap-2.5 z-20">
+          {/* Top Badges Row */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="inline-flex items-center rounded-md border px-2.5 py-1 text-[11px] font-bold bg-white/95 text-zinc-950 border-white/40 shadow-sm backdrop-blur-md">
+                Grade {vehicle.auctionGrade || '4.5'}
               </span>
-            )}
-            <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-emerald-600 text-white border-emerald-500 shadow-sm backdrop-blur-md">
-              In Stock
-            </span>
+              {pricing.hasDiscount && (
+                <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold bg-red-600 text-white shadow-md font-mono">
+                  Save KES {pricing.savingsKes.toLocaleString()}
+                </span>
+              )}
+              <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-emerald-600 text-white border-emerald-500 shadow-sm backdrop-blur-md">
+                In Stock
+              </span>
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleFavorite(vehicle.id);
+              }}
+              className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer backdrop-blur-md active:scale-95 shrink-0 ${
+                isFavorite
+                  ? 'bg-red-600 text-white border-red-500 shadow-md'
+                  : 'bg-black/35 text-white/90 border-white/20 hover:bg-white hover:text-zinc-950'
+              }`}
+              title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+              aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+            >
+              <Heart width={15} height={15} className={isFavorite ? 'fill-white text-white' : ''} />
+            </button>
           </div>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleFavorite(vehicle.id);
-            }}
-            className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer backdrop-blur-md active:scale-95 shrink-0 ${
-              isFavorite
-                ? 'bg-red-600 text-white border-red-500 shadow-md'
-                : 'bg-black/35 text-white/90 border-white/20 hover:bg-white hover:text-zinc-950'
-            }`}
-            title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-            aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-          >
-            <Heart width={15} height={15} className={isFavorite ? 'fill-white text-white' : ''} />
-          </button>
-        </div>
-
-        {/* Bottom Vehicle Details Stack (1:1 Smart Team Layout) */}
-        <div className="flex flex-col gap-3 z-20">
-          
-          {/* Title Stack: Year & Make on top, Model below */}
-          <div className="leading-tight">
-            <div className="text-xl sm:text-2xl font-semibold text-white" style={{ textShadow: '0 1px 12px rgba(0,0,0,0.6)' }}>
+          {/* Car Name on Top */}
+          <div className="leading-tight pt-1">
+            <div className="text-xl sm:text-2xl font-semibold text-white drop-shadow-md" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.7)' }}>
               {vehicle.year} {make}<br />
               <span className="font-bold">{model}</span>
             </div>
           </div>
+        </div>
 
-          {/* Pricing Row */}
-          <div className="flex items-baseline flex-wrap gap-2 pt-0.5">
-            <span className="text-xl sm:text-2xl font-black text-white font-mono tracking-tight drop-shadow-md">
-              KES {pricing.currentPrice.toLocaleString()}
-            </span>
-            {pricing.hasDiscount && (
-              <span className="text-xs font-mono line-through text-zinc-400 drop-shadow-sm">
-                KES {pricing.originalPrice.toLocaleString()}
-              </span>
-            )}
-          </div>
-
-          {/* Category Tags (1:1 Smart Team: Brand/Year in Alberka Red, Fuel in Glass, Price in Badge) */}
+        {/* Bottom Section: Category Tags + Price Action Button */}
+        <div className="flex flex-col gap-3 z-20">
+          
+          {/* Category Tags: Brand, Fuel, and Was Price if discounted */}
           <div className="service-card_tags margin-0 z-index-1">
             <div className="category-tag text-white font-bold" style={{ background: '#DC2626', borderColor: '#DC2626' }}>
               {make}
             </div>
-            <div className="category-tag text-white" style={{ background: 'rgba(255,255,255,0.14)', borderColor: 'rgba(255,255,255,0.32)', backdropFilter: 'blur(6px)' }}>
+            <div className="category-tag text-white" style={{ background: 'rgba(255,255,255,0.16)', borderColor: 'rgba(255,255,255,0.32)', backdropFilter: 'blur(6px)' }}>
               {vehicle.fuelType}
             </div>
-            <div className="category-tag text-white font-bold" style={{ background: '#09090b', borderColor: 'rgba(255,255,255,0.2)' }}>
-              KES {(vehicle.priceKes / 1000000).toFixed(2)}M
-            </div>
+            {pricing.hasDiscount && (
+              <div className="category-tag text-zinc-300 font-mono line-through" style={{ background: 'rgba(0,0,0,0.4)', borderColor: 'rgba(255,255,255,0.15)' }}>
+                Was KES {pricing.originalPrice.toLocaleString()}
+              </div>
+            )}
           </div>
 
-          {/* Action Buttons Row (1:1 Smart Team: Explore + WhatsApp Inquire) */}
-          <div className="flex items-center gap-2 pt-1 card-link-actions">
+          {/* Action Buttons Row: Price of the car + Round WhatsApp button */}
+          <div className="flex items-center gap-2 pt-0.5 card-link-actions">
             <button
               onClick={() => onSelect(vehicle)}
-              className="flex-1 inline-flex items-center justify-center gap-2 py-3 text-[13px] font-semibold rounded-[14px] transition-all duration-200 cursor-pointer text-white shadow-md hover:shadow-lg active:scale-98"
+              className="flex-1 h-11 inline-flex items-center justify-center gap-2 px-3 text-[14px] font-bold rounded-[14px] transition-all duration-200 cursor-pointer text-white shadow-md hover:shadow-lg active:scale-98 font-mono tracking-tight"
               style={{ background: '#DC2626', border: '1px solid #DC2626' }}
             >
-              <span>Explore</span>
-              <ArrowRight width={14} height={14} />
+              <span>KES {pricing.currentPrice.toLocaleString()}</span>
+              <ArrowRight width={15} height={15} className="shrink-0" />
             </button>
 
             <button
@@ -185,11 +178,18 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
                 if (onInquire) onInquire(vehicle);
                 else handleInquire(e);
               }}
-              className="inline-flex items-center justify-center gap-1.5 py-3 px-3.5 text-[13px] font-semibold rounded-[14px] transition-all duration-200 cursor-pointer text-white shadow-md active:scale-98 bg-[#25D366] hover:bg-[#20ba59]"
-              title="Send WhatsApp Inquiry"
+              className="w-11 h-11 rounded-full inline-flex items-center justify-center transition-all duration-200 cursor-pointer text-white shadow-md hover:shadow-lg hover:scale-105 active:scale-95 bg-[#25D366] hover:bg-[#20ba59] shrink-0"
+              title="Inquire on WhatsApp"
+              aria-label="Inquire on WhatsApp"
             >
-              <MessageCircle width={15} height={15} className="fill-white text-white" />
-              <span className="hidden xs:inline">Inquire</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-5 h-5 text-white"
+              >
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.44C8.95 7.44 8.68 7.5 8.46 7.74C8.24 7.97 7.61 8.56 7.61 9.77C7.61 10.98 8.49 12.14 8.61 12.31C8.74 12.47 10.33 14.93 12.78 15.98C13.36 16.23 13.82 16.39 14.17 16.5C14.76 16.69 15.3 16.66 15.73 16.6C16.21 16.53 17.2 16 17.41 15.42C17.62 14.84 17.62 14.34 17.55 14.24C17.49 14.13 17.33 14.07 17.08 13.95C16.84 13.83 15.65 13.24 15.43 13.16C15.21 13.08 15.05 13.04 14.89 13.28C14.73 13.53 14.26 14.07 14.12 14.24C13.98 14.4 13.84 14.42 13.6 14.3C13.36 14.18 12.57 13.92 11.64 13.09C10.91 12.44 10.42 11.64 10.28 11.4C10.14 11.16 10.26 11.02 10.38 10.9C10.49 10.79 10.63 10.61 10.75 10.47C10.87 10.33 10.91 10.23 10.99 10.07C11.07 9.91 11.03 9.77 10.97 9.65C10.91 9.53 10.42 8.33 10.22 7.84C10.02 7.36 9.82 7.42 9.67 7.42C9.52 7.42 9.35 7.44 9.11 7.44Z" />
+              </svg>
             </button>
           </div>
 
@@ -206,27 +206,28 @@ export const VehicleCardSkeleton: React.FC = () => {
       className="hero-card animate-pulse"
       style={{
         aspectRatio: '3 / 4',
-        minHeight: '440px',
+        minHeight: '450px',
         backgroundColor: '#18181b',
         borderRadius: '28px',
       }}
     >
       <div className="hero-card_content">
-        <div className="flex justify-between items-center">
-          <div className="h-6 w-20 bg-white/10 rounded-md" />
-          <div className="h-8 w-8 bg-white/10 rounded-full" />
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <div className="h-6 w-28 bg-white/10 rounded-md" />
+            <div className="h-8 w-8 bg-white/10 rounded-full" />
+          </div>
+          <div className="h-6 w-3/4 bg-white/20 rounded mt-2" />
+          <div className="h-5 w-1/2 bg-white/15 rounded" />
         </div>
         <div className="space-y-3">
-          <div className="h-6 w-3/4 bg-white/20 rounded" />
-          <div className="h-5 w-1/2 bg-white/25 rounded" />
           <div className="flex gap-2">
-            <div className="h-6 w-14 bg-white/15 rounded-full" />
-            <div className="h-6 w-14 bg-white/15 rounded-full" />
+            <div className="h-6 w-16 bg-white/15 rounded-full" />
             <div className="h-6 w-16 bg-white/15 rounded-full" />
           </div>
-          <div className="flex gap-2 pt-2">
-            <div className="h-10 flex-1 bg-white/20 rounded-[14px]" />
-            <div className="h-10 w-24 bg-white/20 rounded-[14px]" />
+          <div className="flex gap-2 pt-1">
+            <div className="h-11 flex-1 bg-white/20 rounded-[14px]" />
+            <div className="h-11 w-11 bg-white/20 rounded-full" />
           </div>
         </div>
       </div>

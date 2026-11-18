@@ -304,8 +304,32 @@ export function App() {
                 />
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
-                <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
+                <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 relative border-t border-zinc-200">
                   <div className="max-w-[1520px] mx-auto space-y-12 sm:space-y-16 relative z-10">
+                    {/* Editorial Intro & Direct Actions (Cleanly Below the Fold) */}
+                    <div className="max-w-3xl mx-auto text-center space-y-4">
+                      <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
+                        From luxury executive crossovers to rugged symmetrical AWDs and ultra-efficient vans — browse, compare verified auction sheets, and drive away with confidence from Mombasa.
+                      </p>
+                      <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+                        <button
+                          onClick={() => handleNavigate('inventory')}
+                          className="py-2.5 px-6 text-xs sm:text-sm rounded-full font-bold bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
+                        >
+                          <span>Explore Available Fleet</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                        
+                        <button
+                          onClick={() => handleNavigate('workshop')}
+                          className="py-2.5 px-5 text-xs sm:text-sm rounded-full font-semibold text-zinc-700 hover:text-zinc-950 border border-zinc-200 hover:border-zinc-300 bg-white transition-all inline-flex items-center gap-2 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
+                        >
+                          <ShieldCheck className="w-4 h-4 text-red-600" />
+                          <span>Our Workshop Standard</span>
+                        </button>
+                      </div>
+                    </div>
+
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2 font-semibold">

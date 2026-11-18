@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -117,6 +117,47 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
     }
   };
 
+  // Pointer (Mouse + Touch) drag swipe handlers for Flagship Cover Flow
+  const [isHeroDragging, setIsHeroDragging] = useState(false);
+  const heroPointerStartX = useRef<number | null>(null);
+  const heroPointerMoved = useRef(false);
+
+  const handleHeroPointerDown = (e: React.PointerEvent) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    heroPointerStartX.current = e.clientX;
+    heroPointerMoved.current = false;
+    setIsHeroDragging(true);
+  };
+
+  const handleHeroPointerMove = (e: React.PointerEvent) => {
+    if (heroPointerStartX.current === null) return;
+    const diff = heroPointerStartX.current - e.clientX;
+    if (Math.abs(diff) > 8) {
+      heroPointerMoved.current = true;
+    }
+  };
+
+  const handleHeroPointerUp = (e: React.PointerEvent) => {
+    if (heroPointerStartX.current === null) return;
+    const diff = heroPointerStartX.current - e.clientX;
+    const SWIPE_THRESHOLD = 35;
+    if (Math.abs(diff) >= SWIPE_THRESHOLD) {
+      if (diff > 0) handleNext();
+      else handlePrev();
+    }
+    heroPointerStartX.current = null;
+    setIsHeroDragging(false);
+    setTimeout(() => {
+      heroPointerMoved.current = false;
+    }, 60);
+  };
+
+  const handleHeroPointerCancel = () => {
+    heroPointerStartX.current = null;
+    setIsHeroDragging(false);
+    heroPointerMoved.current = false;
+  };
+
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
   };
@@ -163,7 +204,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
   }, [isPlaying, handleNext]);
 
   return (
-    <section className="figma-carousel-section relative w-full pt-4 sm:pt-8 pb-12 sm:pb-16 text-center text-zinc-900 overflow-hidden">
+    <section className="figma-carousel-section relative w-full min-h-[calc(100vh-68px)] flex flex-col justify-between pt-4 sm:pt-6 pb-6 text-center text-zinc-900 overflow-hidden">
       
       {/* Top Header Presentation */}
       <div className="figma-carousel-top max-w-[1240px] mx-auto px-4 mb-4 sm:mb-6">
@@ -183,9 +224,15 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
         role="region" 
         aria-roledescription="carousel" 
         aria-label="Vehicle showcase carousel"
-        style={{ cursor: 'grab', touchAction: 'pan-y', userSelect: 'none' }}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        style={{
+          cursor: isHeroDragging ? 'grabbing' : 'grab',
+          touchAction: 'pan-y',
+          userSelect: 'none'
+        }}
+        onPointerDown={handleHeroPointerDown}
+        onPointerMove={handleHeroPointerMove}
+        onPointerUp={handleHeroPointerUp}
+        onPointerCancel={handleHeroPointerCancel}
       >
         <div className="figma-carousel-track">
           {FLAGSHIP_SLIDES.map((slide, idx) => {
@@ -204,27 +251,27 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
               opacityVal = 1;
               pointerEventsVal = 'auto';
             } else if (offset === -1) {
-              transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+              transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px))) scale(0.82)';
               zIndexVal = 5;
-              opacityVal = 1;
+              opacityVal = 0.9;
               pointerEventsVal = 'auto';
             } else if (offset === 1) {
-              transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+              transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px))) scale(0.82)';
               zIndexVal = 5;
-              opacityVal = 1;
+              opacityVal = 0.9;
               pointerEventsVal = 'auto';
             } else if (offset === -2) {
-              transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
-              zIndexVal = 1;
-              opacityVal = 1;
+              transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px))) scale(0.68)';
+              zIndexVal = 2;
+              opacityVal = 0.6;
               pointerEventsVal = 'auto';
             } else if (offset === 2) {
-              transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
-              zIndexVal = 1;
-              opacityVal = 1;
+              transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px))) scale(0.68)';
+              zIndexVal = 2;
+              opacityVal = 0.6;
               pointerEventsVal = 'auto';
             } else {
-              transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px) + ${Math.sign(offset)} * var(--figma-slide-overlap-far, -80px))) scale(0.65)`;
+              transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px))) scale(0.6)`;
               zIndexVal = 0;
               opacityVal = 0;
               pointerEventsVal = 'none';
@@ -244,7 +291,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
                   opacity: opacityVal,
                   pointerEvents: pointerEventsVal,
                 }}
-                onClick={() => handleSelectSlide(idx)}
+                onClick={() => {
+                  if (heroPointerMoved.current) return;
+                  handleSelectSlide(idx);
+                }}
               >
                 <div className="figma-slide-inner">
                   <img
@@ -252,6 +302,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
                     className="figma-slide-img"
                     loading="lazy"
                     src={slide.imageUrl}
+                    draggable={false}
                   />
                   <div className="figma-slide-overlay" />
                   <div className="figma-slide-content">
@@ -326,30 +377,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path fill="currentColor" fillRule="evenodd" d="M12.522 4.25 20 12l-7.478 7.75-.733-.709 6.302-6.531H4v-1.02h14.09L11.79 4.959z" clipRule="evenodd" />
             </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Bottom Description & Decisive Action CTA */}
-      <div className="figma-carousel-bottom">
-        <p className="figma-carousel-description">
-          From luxury executive crossovers to rugged symmetrical AWDs and ultra-efficient vans — browse, compare verified auction sheets, and drive away with confidence from Mombasa.
-        </p>
-        <div className="flex flex-row items-center justify-center gap-3 pt-5">
-          <button
-            onClick={onExploreFleet}
-            className="py-3 px-7 text-xs sm:text-sm rounded-full font-bold bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
-          >
-            <span>{pageData?.ctaText || 'Explore Available Fleet'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-          
-          <button
-            onClick={onExploreWorkshop}
-            className="py-3 px-6 text-xs sm:text-sm rounded-full font-semibold text-zinc-700 hover:text-zinc-950 border border-zinc-200 hover:border-zinc-300 bg-white transition-all inline-flex items-center gap-2 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
-          >
-            <ShieldCheck className="w-4 h-4 text-red-600" />
-            <span>Our Workshop Standard</span>
           </button>
         </div>
       </div>

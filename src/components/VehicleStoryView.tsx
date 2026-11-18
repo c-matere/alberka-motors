@@ -527,10 +527,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     ),
   ].filter((item, index, self) => index === self.findIndex((t) => t.url === item.url));
 
-  const filteredPhotos = allPhotos.filter((p) => {
-    if (galleryFilter === 'all') return true;
-    return p.category === galleryFilter;
-  });
+  // The 3D Cover Flow carousel always holds ALL photos so no pictures are ever hidden!
+  const filteredPhotos = allPhotos;
+
+  // Reset gallery position whenever vehicle changes
+  useEffect(() => {
+    setActivePhotoIndex(0);
+    setGalleryProgress(0);
+  }, [vehicle.id]);
 
   const currentPhoto = filteredPhotos[activePhotoIndex] || filteredPhotos[0] || allPhotos[0];
   const activeLightboxPhoto = allPhotos[lightboxIndex] || allPhotos[0];
@@ -602,19 +606,45 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     return () => clearInterval(timer);
   }, [isGalleryPlaying, isGalleryLightboxOpen, filteredPhotos.length, handleNextPhoto]);
 
-  // Touch handlers for gallery viewport
-  const handleTouchGalleryStart = (e: React.TouchEvent) => {
-    setTouchGalleryStartX(e.touches[0].clientX);
+  // Pointer (Mouse + Touch) drag swipe handlers for 3D cover flow gallery
+  const [isGalleryDragging, setIsGalleryDragging] = useState(false);
+  const galleryPointerStartX = useRef<number | null>(null);
+  const galleryPointerMoved = useRef(false);
+
+  const handleGalleryPointerDown = (e: React.PointerEvent) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    galleryPointerStartX.current = e.clientX;
+    galleryPointerMoved.current = false;
+    setIsGalleryDragging(true);
   };
 
-  const handleTouchGalleryEnd = (e: React.TouchEvent) => {
-    if (touchGalleryStartX === null) return;
-    const diff = touchGalleryStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
+  const handleGalleryPointerMove = (e: React.PointerEvent) => {
+    if (galleryPointerStartX.current === null) return;
+    const diff = galleryPointerStartX.current - e.clientX;
+    if (Math.abs(diff) > 8) {
+      galleryPointerMoved.current = true;
+    }
+  };
+
+  const handleGalleryPointerUp = (e: React.PointerEvent) => {
+    if (galleryPointerStartX.current === null) return;
+    const diff = galleryPointerStartX.current - e.clientX;
+    const SWIPE_THRESHOLD = 35;
+    if (Math.abs(diff) >= SWIPE_THRESHOLD) {
       if (diff > 0) handleNextPhoto();
       else handlePrevPhoto();
     }
-    setTouchGalleryStartX(null);
+    galleryPointerStartX.current = null;
+    setIsGalleryDragging(false);
+    setTimeout(() => {
+      galleryPointerMoved.current = false;
+    }, 60);
+  };
+
+  const handleGalleryPointerCancel = () => {
+    galleryPointerStartX.current = null;
+    setIsGalleryDragging(false);
+    galleryPointerMoved.current = false;
   };
 
   // Bulletproof body scroll lock (Clean & Reliable)
@@ -735,31 +765,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
           </div>
 
-          {/* Center Category Filters (Floating Pill) */}
-          <div className="pointer-events-auto hidden md:flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-full border border-zinc-200/90 shadow-sm">
-            {[
-              { id: 'all', label: `All (${allPhotos.length})` },
-              { id: 'exterior', label: 'Exterior' },
-              { id: 'interior', label: 'Cabin' },
-              { id: 'details', label: 'Details' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setGalleryFilter(tab.id as any);
-                  setActivePhotoIndex(0);
-                }}
-                className={`px-3 py-1 text-[11px] font-mono rounded-full transition-all cursor-pointer whitespace-nowrap ${
-                  galleryFilter === tab.id
-                    ? 'bg-red-600 text-white font-bold shadow-2xs'
-                    : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
           {/* Right Floating Group: Price & Test Drive & Fullscreen */}
           <div className="flex items-center gap-2 pointer-events-auto">
             <div className="bg-white/95 backdrop-blur-md border border-zinc-200/90 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm font-mono text-xs">
@@ -792,8 +797,15 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           role="region" 
           aria-roledescription="carousel" 
           aria-label="Vehicle showcase carousel"
-          onTouchStart={handleTouchGalleryStart}
-          onTouchEnd={handleTouchGalleryEnd}
+          style={{
+            cursor: isGalleryDragging ? 'grabbing' : 'grab',
+            touchAction: 'pan-y',
+            userSelect: 'none',
+          }}
+          onPointerDown={handleGalleryPointerDown}
+          onPointerMove={handleGalleryPointerMove}
+          onPointerUp={handleGalleryPointerUp}
+          onPointerCancel={handleGalleryPointerCancel}
         >
                 <div className="figma-carousel-track">
                   {filteredPhotos.map((photo, idx) => {
@@ -812,27 +824,27 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       opacityVal = 1;
                       pointerEventsVal = 'auto';
                     } else if (offset === -1) {
-                      transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+                      transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px))) scale(0.82)';
                       zIndexVal = 5;
-                      opacityVal = 1;
+                      opacityVal = 0.9;
                       pointerEventsVal = 'auto';
                     } else if (offset === 1) {
-                      transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap, 0px))) scale(0.8)';
+                      transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px))) scale(0.82)';
                       zIndexVal = 5;
-                      opacityVal = 1;
+                      opacityVal = 0.9;
                       pointerEventsVal = 'auto';
                     } else if (offset === -2) {
-                      transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px) + -1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
+                      transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px))) scale(0.68)';
                       zIndexVal = 2;
-                      opacityVal = 0.9;
+                      opacityVal = 0.6;
                       pointerEventsVal = 'auto';
                     } else if (offset === 2) {
-                      transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px) + 1 * var(--figma-slide-overlap-far, -80px))) scale(0.65)';
+                      transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px))) scale(0.68)';
                       zIndexVal = 2;
-                      opacityVal = 0.9;
+                      opacityVal = 0.6;
                       pointerEventsVal = 'auto';
                     } else {
-                      transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px) + ${Math.sign(offset)} * var(--figma-slide-overlap-far, -80px))) scale(0.65)`;
+                      transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px))) scale(0.6)`;
                       zIndexVal = 0;
                       opacityVal = 0;
                       pointerEventsVal = 'none';
@@ -847,6 +859,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         aria-hidden={!isActive}
                         aria-label={`Slide ${idx + 1} of ${total}: ${photo.title}`}
                         onClick={() => {
+                          if (galleryPointerMoved.current) return;
                           if (isActive) {
                             openLightboxWithIndex(idx);
                           } else {
@@ -868,12 +881,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                             className="figma-slide-img"
                             loading="lazy"
                             src={photo.url}
+                            draggable={false}
                           />
                           <div className="figma-slide-overlay" />
                           <div className="figma-slide-content">
                             <h3 className="figma-slide-title">{photo.title}</h3>
                             <p className="figma-slide-label">
-                              {vehicle.year} {vehicle.name} · View {idx + 1} of {total}
+                              {photo.tag ? `${photo.tag} · ` : ''}{vehicle.year} {vehicle.name} · View {idx + 1} of {total}
                             </p>
                           </div>
                         </div>
@@ -885,28 +899,68 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               {/* Carousel Controls */}
               <div className="figma-carousel-controls">
-                <span className="figma-carousel-counter" aria-live="polite">
-                  <span className="figma-counter-status">{`Slide ${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
-                  <span aria-hidden="true">{`${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
-                </span>
+                {/* Active Slide Counter & Section Label */}
+                <div className="flex items-center gap-2">
+                  <span className="figma-carousel-counter" aria-live="polite">
+                    <span className="figma-counter-status">{`Slide ${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
+                    <span aria-hidden="true">{`${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
+                  </span>
+                  <span className="text-zinc-300">·</span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-mono uppercase tracking-wider bg-red-50 text-red-600 border border-red-200/80">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                    {currentPhoto.tag || (currentPhoto.category === 'interior' ? 'Cabin Interior' : currentPhoto.category === 'details' ? 'Details & Wheels' : 'Exterior Stance')}
+                  </span>
+                </div>
 
-                <div className="figma-controls-group" role="group" aria-label="Slide controls">
-                  <button 
-                    type="button" 
-                    className="figma-nav-btn" 
-                    aria-label="Previous slide"
-                    onClick={handlePrevPhoto}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                      <path fill="currentColor" fillRule="evenodd" d="M11.478 4.25 4 12l7.478 7.75.733-.709L5.91 12.51H20v-1.02H5.91l6.301-6.531z" clipRule="evenodd" />
-                    </svg>
-                  </button>
+                {/* Section Filter Pills (Replacing the old <- -> buttons) */}
+                <div className="figma-controls-group flex items-center gap-2.5" role="group" aria-label="Vehicle section filters">
+                  <div className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-full border border-zinc-200/90 shadow-sm">
+                    {[
+                      { id: 'all', label: `All (${allPhotos.length})` },
+                      { id: 'exterior', label: 'Exterior' },
+                      { id: 'interior', label: 'Cabin' },
+                      { id: 'details', label: 'Details' },
+                    ].map((tab) => {
+                      const targetIdx = tab.id === 'all'
+                        ? 0
+                        : allPhotos.findIndex((p) => p.category === tab.id);
 
+                      const isCurrentSection =
+                        (tab.id === 'all' && activePhotoIndex === 0) ||
+                        (tab.id === currentPhoto.category);
+
+                      return (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          onClick={() => {
+                            if (targetIdx !== -1) {
+                              setActivePhotoIndex(targetIdx);
+                              setGalleryProgress(0);
+                            }
+                          }}
+                          className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                            isCurrentSection
+                              ? 'bg-red-600 text-white font-bold shadow-xs'
+                              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
+                          }`}
+                        >
+                          {isCurrentSection && tab.id !== 'all' && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0 animate-pulse" />
+                          )}
+                          <span>{tab.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Play / Pause Toggle Button */}
                   <button 
                     type="button" 
                     className="figma-pause-btn" 
                     aria-label={isGalleryPlaying ? "Pause" : "Play"}
                     onClick={() => setIsGalleryPlaying(!isGalleryPlaying)}
+                    title={isGalleryPlaying ? "Pause auto-scroll" : "Resume auto-scroll"}
                   >
                     <svg width="36" height="36" viewBox="0 0 36 36" className="figma-pause-ring">
                       <circle cx="18" cy="18" r="17.5" fill="none" stroke="currentColor" strokeWidth="1" className="text-zinc-200" />
@@ -929,17 +983,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     ) : (
                       <Play className="w-4 h-4 ml-0.5 text-red-600 fill-red-600 relative z-2" />
                     )}
-                  </button>
-
-                  <button 
-                    type="button" 
-                    className="figma-nav-btn" 
-                    aria-label="Next slide"
-                    onClick={handleNextPhoto}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                      <path fill="currentColor" fillRule="evenodd" d="M12.522 4.25 20 12l-7.478 7.75-.733-.709 6.302-6.531H4v-1.02h14.09L11.79 4.959z" clipRule="evenodd" />
-                    </svg>
                   </button>
                 </div>
               </div>
@@ -1169,50 +1212,148 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {vehicle.closerLookPoints.map((point, pIdx) => (
-                <div
-                  key={point.id || pIdx}
-                  onClick={() => openPhotoByUrl(point.imageUrl)}
-                  className="bg-white border border-zinc-200 hover:border-zinc-300 rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between cursor-pointer shadow-sm hover:shadow-md"
-                >
-                  <div className="w-full h-48 sm:h-52 overflow-hidden bg-zinc-100 relative">
-                    <img
-                      src={point.imageUrl}
-                      alt={point.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                    <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded border border-white/20 text-[11px] font-mono text-white font-bold flex items-center gap-1.5 shadow-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                      <span>{point.metric}</span>
+            {/* Individual Feature Rows: Image with Description Text Next to It */}
+            <div className="space-y-12 sm:space-y-16">
+              {vehicle.closerLookPoints.map((point, pIdx) => {
+                const isEven = pIdx % 2 === 1;
+                return (
+                  <div
+                    key={point.id || pIdx}
+                    className={`flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16 ${
+                      isEven ? 'lg:flex-row-reverse' : ''
+                    } bg-white p-6 sm:p-10 lg:p-12 rounded-3xl border border-zinc-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)] transition-all duration-300`}
+                  >
+                    {/* Image Column */}
+                    <div 
+                      onClick={() => openPhotoByUrl(point.imageUrl)}
+                      className="w-full lg:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-950 relative group cursor-pointer shadow-md shrink-0"
+                    >
+                      <img
+                        src={point.imageUrl}
+                        alt={point.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 text-xs font-mono text-white font-bold flex items-center gap-2 shadow-lg">
+                        <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                        <span>{point.metric}</span>
+                      </div>
+                      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md text-[11px] font-mono font-bold text-zinc-900 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click to enlarge
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div>
-                      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block mb-1 font-semibold">
-                        {point.subtitle}
-                      </span>
-                      <h3 className="text-base font-bold text-zinc-950 leading-snug group-hover:text-red-600 transition-colors">
-                        {point.title}
-                      </h3>
-                      <p className="text-xs text-zinc-600 mt-2 leading-relaxed">
+                    {/* Description Text Column Next to the Image */}
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-4 sm:space-y-5">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs font-bold text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-md border border-red-200/60">
+                            0{pIdx + 1} · {point.metricLabel || 'HIGHLIGHT'}
+                          </span>
+                          <span className="font-mono text-xs text-zinc-500 font-semibold">
+                            {point.metric}
+                          </span>
+                        </div>
+                        <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-snug">
+                          {point.title}
+                        </h3>
+                        <p className="font-mono text-xs sm:text-sm text-zinc-500 font-semibold uppercase tracking-wider">
+                          {point.subtitle}
+                        </p>
+                      </div>
+
+                      <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal">
                         {point.description}
                       </p>
-                    </div>
 
-                    <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-mono">
-                      <span>{point.metricLabel}</span>
-                      <span className="text-zinc-950 font-bold">{point.metric}</span>
+                      <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-mono text-zinc-500 uppercase font-semibold">SPECIFICATION:</span>
+                          <span className="text-xs sm:text-sm font-bold text-zinc-950 font-mono bg-zinc-100 px-3 py-1 rounded-lg">
+                            {point.metric}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => openPhotoByUrl(point.imageUrl)}
+                          className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 cursor-pointer"
+                        >
+                          <span>View Detail</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
           </div>
         </section>
       )}
+
+      {/* Complete Photographic Dossier Grid */}
+      <section id="photo-list-section" className="py-16 sm:py-24 px-4 sm:px-8 border-t border-zinc-200 bg-white text-zinc-900">
+        <div className="max-w-[1520px] mx-auto space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
+                COMPLETE INSPECTION DOSSIER · {allPhotos.length} HIGH-RES PHOTOGRAPHS
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-tight">
+                Full Photographic Fleet Gallery
+              </h2>
+              <p className="text-xs sm:text-sm text-zinc-600 mt-1">
+                Authentic, unedited photography of this {vehicle.year} {vehicle.name} from Japanese auction hall and Mombasa workshop.
+              </p>
+            </div>
+
+            <button
+              onClick={() => openLightboxWithIndex(0)}
+              className="bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-sm hover:shadow transition-all cursor-pointer inline-flex items-center gap-2 self-start sm:self-auto"
+            >
+              <Maximize2 className="w-3.5 h-3.5" />
+              <span>Fullscreen Lightbox View</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {allPhotos.map((photo, idx) => (
+              <div
+                key={photo.id || idx}
+                onClick={() => openLightboxWithIndex(idx)}
+                className="group relative rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-200/90 shadow-sm hover:shadow-xl hover:border-red-600/50 transition-all duration-300 cursor-pointer aspect-[4/3]"
+              >
+                <img
+                  src={photo.url}
+                  alt={photo.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-black/60 backdrop-blur-md text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/20">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <div className="absolute top-3 right-3">
+                  <span className="bg-white/90 backdrop-blur-md text-zinc-950 text-[10px] font-bold px-2 py-0.5 rounded-md border border-white/40">
+                    {photo.tag}
+                  </span>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3">
+                  <h4 className="text-white text-xs sm:text-sm font-bold truncate group-hover:text-red-400 transition-colors">
+                    {photo.title}
+                  </h4>
+                  <p className="text-zinc-300 text-[11px] line-clamp-1 mt-0.5">
+                    {photo.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Section Gradient Fade Transition */}
       <SectionGradientFade />

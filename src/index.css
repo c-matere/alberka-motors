@@ -649,11 +649,12 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.22) 0%,
-    transparent 18%,
-    transparent 45%,
-    rgba(0, 0, 0, 0.42) 72%,
-    rgba(0, 0, 0, 0.76) 100%
+    rgba(0, 0, 0, 0.36) 0%,
+    rgba(0, 0, 0, 0.18) 22%,
+    transparent 40%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.32) 75%,
+    rgba(0, 0, 0, 0.72) 100%
   );
   pointer-events: none;
 }
@@ -990,17 +991,24 @@ body {
     padding: 6px 0 16px;
   }
   :root {
-    --figma-slide-offset: min(68vw, 270px);
+    --figma-slide-offset: min(86vw, 320px);
     --figma-slide-overlap: 0px;
-    --figma-slide-overlap-far: -30px;
+    --figma-slide-overlap-far: 0px;
   }
   .figma-carousel-track, .figma-slide {
-    width: min(84vw, 320px);
+    width: min(80vw, 295px);
     height: 330px;
   }
   .figma-carousel-viewport {
     min-height: 350px;
-    max-height: 370px;
+    max-height: 375px;
+    overflow: hidden;
+  }
+  .figma-slide {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, filter 0.35s ease;
+  }
+  .figma-slide:not(.active) {
+    filter: brightness(0.72) blur(0.5px);
   }
   .figma-carousel-controls {
     margin-top: 14px;
