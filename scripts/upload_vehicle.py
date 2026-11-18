@@ -209,10 +209,14 @@ def process_vehicle_images(vehicle: dict) -> list:
     target_dir = os.path.join(PUBLIC_VEHICLES_DIR, vehicle_id)
     os.makedirs(target_dir, exist_ok=True)
 
-    gallery = []
     images_dir = vehicle.get("imagesDir")
     explicit_images = vehicle.get("images", [])
 
+    # If the manifest already has a curated gallery and no new images to copy, preserve it
+    if not images_dir and not explicit_images and vehicle.get("gallery"):
+        return vehicle["gallery"]
+
+    gallery = []
     files_to_copy = []
     if images_dir and os.path.isdir(images_dir):
         for fn in sorted(os.listdir(images_dir)):
@@ -246,6 +250,40 @@ def process_vehicle_images(vehicle: dict) -> list:
 
     vehicle["gallery"] = gallery
     return gallery
+
+
+def ensure_vehicle_options(vehicle: dict):
+    """Ensures options: SBTOptions exists to satisfy TypeScript interface"""
+    if "options" not in vehicle or not isinstance(vehicle["options"], dict):
+        # Infer from equipmentChecklist if present
+        checklist_items = {}
+        for cat in vehicle.get("equipmentChecklist", []):
+            for item in cat.get("items", []):
+                checklist_items[item["name"].lower()] = bool(item.get("active"))
+
+        vehicle["options"] = {
+            "pushStart": checklist_items.get("push start", True),
+            "smartKey": checklist_items.get("push start", True),
+            "powerWindows": checklist_items.get("power window all", True),
+            "airConditioner": checklist_items.get("air conditioner", True),
+            "powerSeats": checklist_items.get("power seat", False),
+            "leatherSeats": checklist_items.get("leather seat", False),
+            "sunroof": checklist_items.get("sun roof", False),
+            "alloyWheels": checklist_items.get("alloy wheels", True),
+            "abs": checklist_items.get("abs", True),
+            "airbags": checklist_items.get("air bag", True),
+            "backCamera": checklist_items.get("back camera", True),
+            "camera360": checklist_items.get("around view monitor", False),
+            "radarCruise": checklist_items.get("acc (adaptive cruise)", False),
+            "laneAssist": False,
+            "ledLights": checklist_items.get("led light", False),
+            "navigation": checklist_items.get("navigation system", False),
+            "audioPlayer": checklist_items.get("audio player", True),
+            "fogLights": checklist_items.get("fog light", False),
+            "rearSpoiler": checklist_items.get("rear spoiler", False),
+            "doubleAc": checklist_items.get("double air conditioner", False),
+            "powerBackDoor": checklist_items.get("power back door", False),
+        }
 
 
 def format_ts_vehicle(vehicle: dict) -> str:
@@ -309,38 +347,50 @@ def run_build():
 
 
 def deploy_to_vps():
-    """Deploys dist/ folder to remote VPS via SSH/SFTP"""
+    """Deploys dist/ folder to remote VPS via SSH/SCP"""
     print(f"[*] Deploying {DIST_DIR} to {VPS_HOST}:{REMOTE_DIST_PATH}...")
-    import paramiko
-
-    k = paramiko.RSAKey.from_private_key_file(VPS_KEY_PATH)
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(VPS_HOST, username=VPS_USER, pkey=k, timeout=20)
 
     temp_tar = os.path.join(tempfile.gettempdir(), "alberka_dist.tar.gz")
+    print(f"[*] Creating compressed archive {temp_tar}...")
     with tarfile.open(temp_tar, "w:gz") as tar:
         tar.add(DIST_DIR, arcname=".")
 
-    sftp = ssh.open_sftp()
     remote_tar = "/tmp/alberka_dist.tar.gz"
-    sftp.put(temp_tar, remote_tar)
-    sftp.close()
+    scp_cmd = [
+        "scp.exe",
+        "-i", VPS_KEY_PATH,
+        "-o", "StrictHostKeyChecking=no",
+        temp_tar,
+        f"{VPS_USER}@{VPS_HOST}:{remote_tar}"
+    ]
+    print(f"[*] Uploading archive to {VPS_HOST}:{remote_tar}...")
+    res = subprocess.run(scp_cmd, capture_output=True, text=True)
+    if res.returncode != 0:
+        print(f"[!] scp failed: {res.stderr}")
+        sys.exit(1)
 
-    cmd = (
+    remote_commands = (
         f"rm -rf {REMOTE_DIST_PATH} && mkdir -p {REMOTE_DIST_PATH} && "
         f"tar -xzf {remote_tar} -C {REMOTE_DIST_PATH} && rm -f {remote_tar} && "
-        f"chown -R ec2-user:ec2-user {REMOTE_DIST_PATH}"
+        f"chown -R ec2-user:ec2-user {REMOTE_DIST_PATH} && "
+        f"chmod -R 755 {REMOTE_DIST_PATH} && nginx -s reload"
     )
-    stdin, stdout, stderr = ssh.exec_command(cmd)
-    stdout.read()
-    err = stderr.read().decode("utf-8")
-    if err:
-        print(f"[!] Remote warning/stderr: {err}")
-    ssh.close()
+    ssh_cmd = [
+        "ssh.exe",
+        "-i", VPS_KEY_PATH,
+        "-o", "StrictHostKeyChecking=no",
+        f"{VPS_USER}@{VPS_HOST}",
+        remote_commands
+    ]
+    print(f"[*] Extracting on VPS and reloading web server...")
+    res = subprocess.run(ssh_cmd, capture_output=True, text=True)
+    if res.returncode != 0:
+        print(f"[!] ssh remote command failed: {res.stderr}")
+    else:
+        print(f"[✓] Deployment to {VPS_HOST} completed successfully!")
+
     if os.path.exists(temp_tar):
         os.remove(temp_tar)
-    print(f"[✓] Deployment to {VPS_HOST} completed successfully!")
 
 
 def purge_cloudflare_cache():
@@ -394,6 +444,9 @@ def main():
 
     # Process images and gallery
     process_vehicle_images(vehicle_data)
+
+    # Ensure required TypeScript SBTOptions exist
+    ensure_vehicle_options(vehicle_data)
 
     # Insert into vehicles.ts
     insert_vehicle_into_vehicles_ts(vehicle_data)

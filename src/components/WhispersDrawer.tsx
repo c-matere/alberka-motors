@@ -72,7 +72,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
     } else if (activeTab === 'dossier') {
       message = `Hello Alberka Enterprises,\n\nI would like the Japanese Auction Sheet Dossier:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (Stock ID: ${stockId}) — ${priceText}\n• Showroom Location: Next to Ganjoni Primary School, Mombasa\n• Request: Authentic Japanese Auction Sheet, JEVIC Odometer Certificate & 100-Point Inspection Dossier`;
     } else {
-      message = `Hello Alberka Enterprises,\n\nI would like to Import on Order from Japan:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Target Vehicle: ${carName} (Stock ID: ${stockId}) — ${priceText}\n• Showroom Location: Next to Ganjoni Primary School, Mombasa\n• Requirements: ${formData.notes || 'Please advise on available units and CIF Mombasa pricing'}`;
+      const targetVehicleText = formData.notes.trim() ? formData.notes.trim() : `${carName} (Stock ID: ${stockId}) — ${priceText}`;
+      message = `Hello Alberka Enterprises,\n\nI would like to Import on Order from Japan:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Target Vehicle & Desired Specs: ${targetVehicleText}\n• Showroom: Next to Ganjoni Primary School, Mombasa\n• Inquiry: Please advise on available Japanese auction units and CIF Mombasa pricing`;
     }
 
     // 3. Open WhatsApp and transition drawer state

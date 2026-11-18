@@ -74,7 +74,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   const handleInquire = (e: React.MouseEvent) => {
     e.stopPropagation();
     const text = encodeURIComponent(
-      `Hello Alberka Motors, I am inquiring about the ${vehicle.year} ${vehicle.name} (Ref: ${vehicle.stockNo || vehicle.sbtStockId || vehicle.modelCode}), priced at KES ${vehicle.priceKes.toLocaleString()}. Please share viewing details.`
+      `Hello Alberka Enterprises, I am inquiring about the ${vehicle.year} ${vehicle.name} (Stock ID: ${vehicle.sbtStockId || vehicle.stockNo}), priced at KES ${vehicle.priceKes.toLocaleString()} at your showroom next to Ganjoni Primary School, Mombasa. Please share viewing details.`
     );
     window.open(`https://wa.me/254180423075?text=${text}`, '_blank');
   };

@@ -271,7 +271,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               {savedVehicles.length} vehicle{savedVehicles.length > 1 ? 's' : ''} saved for comparison
             </span>
             <a
-              href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20have%20saved%20${savedVehicles.length}%20cars%20on%20your%20website:%20${encodeURIComponent(savedVehicles.map(v => `${v.name} (${v.stockNo})`).join(', '))}.%20Please%20confirm%20their%20viewing%20schedule.`}
+              href={`https://wa.me/254180423075?text=${encodeURIComponent(`Hello Alberka Enterprises, I have saved ${savedVehicles.length} vehicle(s) on your website: ${savedVehicles.map(v => `${v.year} ${v.name} (Stock ID: ${v.sbtStockId || v.stockNo})`).join(', ')}. Please confirm their viewing schedule at your showroom next to Ganjoni Primary School, Mombasa.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold w-full sm:w-auto text-xs py-2.5 px-5 rounded-lg flex items-center justify-center gap-2 cursor-pointer shadow-md hover:scale-[1.01] active:scale-98 transition-all"

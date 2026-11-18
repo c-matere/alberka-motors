@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       setMobileMenuOpen(false);
     } else {
       window.open(
-        'https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20inquiring%20about%20a%20vehicle%20in%20your%20inventory.',
+        `https://wa.me/254180423075?text=${encodeURIComponent('Hello Alberka Enterprises, I am inquiring about vehicles at your showroom next to Ganjoni Primary School, Mombasa.')}`,
         '_blank'
       );
     }

@@ -47,7 +47,7 @@ export const MODEL_HUBS: ModelHub[] = [
     title: 'Suzuki Every Van Fleet Hub',
     subtitle: '660cc Highly Economical Engine · Dual Sliding Doors · Maximum Commercial & Urban Utility',
     tagline: 'The ultimate fuel-saver van in Kenya. Compact, reliable, ultra-efficient, and engineered for maximum payload utility with rock-bottom running costs.',
-    startingPriceKes: 1150000,
+    startingPriceKes: 1050000,
     heroImage: '/vehicles/suzuki-every-2019/hero-front-34.jpg',
     badge: 'FUEL SAVER UTILITY · READY TO WORK',
     avgFuelEconomy: '20.2 KM/L',
@@ -58,7 +58,28 @@ export const MODEL_HUBS: ModelHub[] = [
     highlights: [
       { label: 'Fuel Economy', value: '20.2 KM/L', desc: 'Highly economical 660cc engine saves thousands weekly on fuel.' },
       { label: 'Loading Utility', value: 'Dual Sliding Doors', desc: 'Effortless loading/unloading in tight Mombasa alleys and loading bays.' },
-      { label: 'Delivered Cash', value: 'KES 1,150,000', desc: 'All duties paid, NTSA registration ready, turnkey delivery.' },
+      { label: 'Delivered Cash', value: 'KES 1,050,000', desc: 'All duties paid, NTSA registration ready, turnkey delivery.' },
+    ],
+  },
+  {
+    id: 'toyota-harrier',
+    name: 'Toyota Harrier GR Sport',
+    make: 'Toyota',
+    title: 'Toyota Harrier GR Sport Hub',
+    subtitle: 'Gazoo Racing Edition · 2.0L Petrol · Sport Aerodynamic Package & 19" Alloy Rims',
+    tagline: 'The pinnacle of sporty luxury. Aerodynamic Gazoo Racing styling, dynamic handling, bespoke leather & suede cabin, and legendary Toyota reliability.',
+    startingPriceKes: 4850000,
+    heroImage: '/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg',
+    badge: 'GR SPORT EDITION · PREMIUM PERFORMANCE SUV',
+    avgFuelEconomy: '16.0 KM/L',
+    groundClearance: '190 mm',
+    seatingCapacity: '5 Seats',
+    driveTypes: '2WD Sport Automatic',
+    verdict: 'A head-turning blend of executive luxury and Gazoo Racing track styling, featuring low mileage, dual-zone climate, and full leather interior.',
+    highlights: [
+      { label: 'Aesthetics', value: 'GR Body Kit', desc: 'Factory Gazoo Racing front and rear bumpers, honeycomb grille, and rear diffuser.' },
+      { label: 'Wheels & Calipers', value: '19" GR Alloys', desc: 'Machined two-tone Gazoo Racing sport alloys with branded GR white brake calipers.' },
+      { label: 'Cabin Luxury', value: 'Leather & Suede', desc: 'Embroidered GR sport seats with dual-zone climate and multi-function leather steering wheel.' },
     ],
   },
 ];
@@ -68,6 +89,7 @@ export function getVehicleHubId(vehicle: Vehicle): string {
   if (vehicle.hubId) return vehicle.hubId;
   const lower = vehicle.name.toLowerCase();
   if (lower.includes('every') || lower.includes('suzuki')) return 'suzuki-every';
+  if (lower.includes('harrier')) return 'toyota-harrier';
   return 'toyota-prado';
 }
 

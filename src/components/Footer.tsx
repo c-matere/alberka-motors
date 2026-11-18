@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex items-center gap-3">
             <a
-              href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=Hello%20Alberka%20Motors,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles.`}
+              href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises, I have an inquiry regarding vehicles at your showroom next to Ganjoni Primary School, Mombasa.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-crimson py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"

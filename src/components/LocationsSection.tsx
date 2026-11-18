@@ -29,7 +29,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Hello Alberka Motors, my name is ${testDriveData.name} (${testDriveData.phone}). I would like to book a private test drive for the ${testDriveData.carName} at your showroom next to Ganjoni Primary School on ${testDriveData.preferredDate || 'the earliest available date'} (${testDriveData.timeSlot}).`
+      `Hello Alberka Enterprises, my name is ${testDriveData.name} (${testDriveData.phone}). I would like to book a private test drive for the ${testDriveData.carName} at your showroom next to Ganjoni Primary School, Mombasa on ${testDriveData.preferredDate || 'the earliest available date'} (${testDriveData.timeSlot}).`
     );
     window.open(`https://wa.me/254180423075?text=${msg}`, '_blank');
     setBookingSuccess(true);
@@ -153,7 +153,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
                   <span>Open in Google Maps App</span>
                 </a>
                 <a
-                  href="https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20would%20like%20directions%20to%20visit%20your%20showroom%20next%20to%20Ganjoni%20Primary%20School."
+                  href={`https://wa.me/254180423075?text=${encodeURIComponent('Hello Alberka Enterprises, I would like directions to visit your showroom next to Ganjoni Primary School, Mombasa.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 text-xs sm:text-sm rounded-xl shadow-md transition-all hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"

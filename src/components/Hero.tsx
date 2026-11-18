@@ -36,16 +36,16 @@ interface FlagshipSlide {
 
 const FLAGSHIP_SLIDES: FlagshipSlide[] = [
   {
-    id: 'toyota-land-cruiser-prado-ax2877',
-    category: '4.0L V6 8-Seater SUV',
-    name: 'Toyota Land Cruiser Prado TX Limited 60th Special Edition',
-    tagline: 'Indestructible 4.0L V6 1GR-FE overland legend with verified 108,000 km and genuine Japanese export documentation.',
-    year: 2006,
-    mileageKm: 108000,
-    grade: 'Grade 4.0',
-    auctionHall: 'USS Osaka / SBT Japan Export Center',
-    priceKes: 3200000,
-    imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
+    id: 'toyota-harrier-gr-sport-2019',
+    category: 'Gazoo Racing Luxury SUV',
+    name: 'Toyota Harrier GR Sport 2019',
+    tagline: 'Sporty luxury crossover with factory Gazoo Racing body kit, 19" GR alloy wheels, and leather/suede cabin.',
+    year: 2019,
+    mileageKm: 38000,
+    grade: 'Grade 4.5',
+    auctionHall: 'USS Tokyo / SBT Japan Export Center',
+    priceKes: 4850000,
+    imageUrl: '/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg',
   },
   {
     id: 'suzuki-every-2019',
@@ -56,8 +56,20 @@ const FLAGSHIP_SLIDES: FlagshipSlide[] = [
     mileageKm: 157000,
     grade: 'Grade 4.0',
     auctionHall: 'USS Tokyo / SBT Japan Export Center',
-    priceKes: 1150000,
+    priceKes: 1050000,
     imageUrl: '/vehicles/suzuki-every-2019/hero-front-34.jpg',
+  },
+  {
+    id: 'toyota-land-cruiser-prado-ax2877',
+    category: '4.0L V6 8-Seater SUV',
+    name: 'Toyota Land Cruiser Prado TX Limited 60th Special Edition',
+    tagline: 'Indestructible 4.0L V6 1GR-FE overland legend with verified 108,000 km and genuine Japanese export documentation.',
+    year: 2006,
+    mileageKm: 108000,
+    grade: 'Grade 4.0',
+    auctionHall: 'USS Osaka / SBT Japan Export Center',
+    priceKes: 3200000,
+    imageUrl: 'https://img.sbtjapan.com/img/carphoto/AX2877/normal/2.jpg',
   },
 ];
 

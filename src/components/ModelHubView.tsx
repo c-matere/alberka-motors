@@ -30,7 +30,7 @@ export const ModelHubView: React.FC<ModelHubViewProps> = ({
 
   const handleCustomOrderWhatsApp = () => {
     const text = encodeURIComponent(
-      `Hello Alberka Motors, I am interested in sourcing a specific grade/trim of the ${currentHub.name} directly from Japanese auctions. Please advise on available auction units and CIF Mombasa pricing.`
+      `Hello Alberka Enterprises, I am interested in sourcing a specific grade/trim of the ${currentHub.name} directly from Japanese auctions. Please advise on available auction units and CIF Mombasa pricing.`
     );
     window.open(`https://wa.me/254180423075?text=${text}`, '_blank');
   };

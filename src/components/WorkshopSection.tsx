@@ -167,7 +167,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
 
     // Open formatted WhatsApp message
     const msg = encodeURIComponent(
-      `Hello Alberka Motors Concierge, my name is ${inquiryData.name} (${inquiryData.phone}).\n\nI would like to inquire about importing on order:\n• Vehicle: ${inquiryData.targetCar}\n• Target Year: ${inquiryData.preferredYear}\n• Budget: KES ${inquiryData.maxBudgetKes}\n• Fuel: ${inquiryData.fuelPreference}\n${inquiryData.notes ? `• Special Notes: ${inquiryData.notes}\n` : ''}\nPlease share the latest Tokyo auction options and estimated CIF Mombasa breakdown.`
+      `Hello Alberka Enterprises Concierge, my name is ${inquiryData.name} (${inquiryData.phone}).\n\nI would like to inquire about importing on order:\n• Vehicle: ${inquiryData.targetCar}\n• Target Year: ${inquiryData.preferredYear}\n• Budget: KES ${inquiryData.maxBudgetKes}\n• Fuel: ${inquiryData.fuelPreference}\n${inquiryData.notes ? `• Special Notes: ${inquiryData.notes}\n` : ''}\nPlease share the latest Tokyo auction options and estimated CIF Mombasa breakdown.`
     );
     window.open(`https://wa.me/254180423075?text=${msg}`, '_blank');
     setInquirySubmitted(true);

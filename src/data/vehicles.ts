@@ -153,7 +153,7 @@ export interface Vehicle {
 
 export const VEHICLES: Vehicle[] = [
   {
-id: 'toyota-land-cruiser-prado-ax2877',
+    id: 'toyota-land-cruiser-prado-ax2877',
     stockNo: 'ALB-2877',
     sbtStockId: 'AX2877',
     chassisNo: 'GRJ120-002877',
@@ -643,7 +643,7 @@ id: 'toyota-land-cruiser-prado-ax2877',
     equipmentRemarks: '8SEATS, 4.0L V6 1GR-FE, 4WD DUAL RANGE',
   },
   {
-id: 'suzuki-every-2019',
+    id: 'suzuki-every-2019',
     stockNo: 'ALB-EV19',
     sbtStockId: 'EV2019',
     chassisNo: 'DA17V-157665',
@@ -654,9 +654,9 @@ id: 'suzuki-every-2019',
     essenceQuote: `🚐✨ SUZUKI EVERY – 2019 MODEL ✨🚐\n🔥 COMPACT • ULTRA-EFFICIENT • MAXIMUM UTILITY! 🔥\n🔹 Model: 2019 | Mileage: 157,000 KM | 660cc Highly Economical Engine\n🔹 Pure White Color 🤍 | Automatic Transmission | Unmatched Fuel Efficiency\n🔹 Sliding Rear Doors for Easy Loading & Unloading | Super Low Maintenance & Running Costs\n💯 The Ultimate Fuel-Saver Van – Compact, Reliable & Ready to Work! 💯\n📍 Available at Alberka Enterprises Ltd, Mombasa`,
     kicker: '2019 Model · 660cc Petrol · Dual Sliding Doors · Mombasa Stock',
     tagline: 'Suzuki Every 2019 · 660cc Highly Economical Engine · Automatic · Pure White · Dual Sliding Doors',
-    priceKes: 1150000,
-    originalPriceKes: 1250000,
-    discountPercent: 8,
+    priceKes: 1050000,
+    originalPriceKes: 1150000,
+    discountPercent: 9,
     hubId: 'suzuki-every',
     priceUsd: 5400,
     freightUsd: 1300,
@@ -702,8 +702,8 @@ id: 'suzuki-every-2019',
     heroVideo: 'https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4',
     options: {
       pushStart: false,
-      smartKey: true,
-      powerWindows: true,
+      smartKey: false,
+      powerWindows: false,
       airConditioner: true,
       powerSeats: false,
       leatherSeats: false,
@@ -977,5 +977,643 @@ id: 'suzuki-every-2019',
       },
     ],
     equipmentRemarks: '4SEATS, 350KG PAYLOAD',
-  }
+  },
+  {
+    id: "toyota-harrier-gr-sport-2019",
+    stockNo: "ALB-HR19",
+    sbtStockId: "HR2019",
+    chassisNo: "ASU60-0019284",
+    modelCode: "DBA-ASU60W",
+    engineCode: "8AR-FTS / 3ZR-FAE (2.0L Petrol)",
+    name: "Toyota Harrier GR Sport 2019",
+    moniker: "Sporty Luxury Performance Crossover",
+    essenceQuote: "🚘 TOYOTA HARRIER GR SPORT – 2019 MODEL 🚘\n✨ Sporty • Luxury • Performance ✨\n🔹 Model: 2019 GR Sport | Mileage: Very Low Mileage\n🔹 Powerful & Fuel Efficient Petrol Engine | Push Start / Smart Key\n🔹 Sporty GR Body Kit | Premium Alloy Rims 🛞\n🔹 LED Headlights & Fog Lights 💡 | Luxurious Leather Interior\n🔹 Multi-Function Steering Wheel | Reverse Camera 📷 | Cruise Control | Dual-Zone Climate Control ❄️\n🔹 Excellent Condition – Well Maintained\n💯 A premium SUV that combines luxury, comfort, and sporty performance.\n📍 Available at Alberka Enterprises Ltd – Mombasa",
+    kicker: "2019 Model · GR Sport Edition · Very Low Mileage · Mombasa Stock",
+    tagline: "Toyota Harrier GR Sport · 2.0L Petrol · Factory Gazoo Racing Styling & Performance",
+    priceKes: 4850000,
+    originalPriceKes: 5300000,
+    discountPercent: 8,
+    hubId: "toyota-harrier",
+    priceUsd: 22500,
+    freightUsd: 2200,
+    vanningUsd: 0,
+    inspectionUsd: 250,
+    insuranceUsd: 200,
+    totalCifUsd: 25150,
+    inventoryLocation: "Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)",
+    sbtGrade: "GR SPORT EDITION",
+    year: 2019,
+    registrationMonth: "07",
+    manufactureYearMonth: "2019 / 07",
+    mileageKm: 38000,
+    steering: "RHD",
+    category: "suv",
+    bodyType: "SUV",
+    fuelType: "PETROL",
+    transmission: "Super CVT-i 7-Speed",
+    drivetrain: "2WD",
+    doors: 5,
+    seats: 5,
+    engine: "1,986 cc Petrol Dual VVT-i",
+    power: "151 HP @ 6,100 RPM",
+    torque: "193 Nm @ 3,800 RPM",
+    fuelEconomy: "16.0 km/L",
+    exteriorColor: "Sonic Titanium Metallic",
+    colorCode: "1J7",
+    interiorColor: "Black Leather & Suede with GR Center Stripe",
+    locationYard: "Alberka Enterprises Showroom (Next to Ganjoni Primary School, Mombasa)",
+    dimensions: "4.72m × 1.83m × 1.69m",
+    m3: "14.6 m³",
+    wheelbase: "2,660 mm",
+    groundClearance: "190 mm",
+    curbWeight: "1,580 kg",
+    grossWeight: "1,855 kg",
+    maxLoadingCapacity: "450 kg",
+    fuelTankCapacity: "60 Liters",
+    auctionGrade: "4.5",
+    auctionHall: "USS Tokyo / SBT Japan Export Center",
+    interiorGrade: "A",
+    inspectionStatus: "QISJ Certified & JEVIC Odometer Inspected",
+    status: "In Stock",
+    options: {
+    pushStart: true,
+    smartKey: true,
+    powerWindows: true,
+    airConditioner: true,
+    powerSeats: true,
+    leatherSeats: true,
+    sunroof: false,
+    alloyWheels: true,
+    abs: true,
+    airbags: true,
+    backCamera: true,
+    camera360: false,
+    radarCruise: true,
+    laneAssist: true,
+    ledLights: true,
+    navigation: true,
+    audioPlayer: true,
+    fogLights: true,
+    rearSpoiler: true,
+    doubleAc: true,
+    powerBackDoor: true
+    },
+    heroImage: "/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg",
+    heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
+    colors: [
+        {
+    name: "Sonic Titanium Metallic",
+    hex: "#A8A9AD",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg"
+        }
+    ],
+    gallery: [
+        {
+    title: "Toyota Harrier GR Sport — Front Three Quarter",
+    description: "Sporty GR aerodynamic front bumper, signature dark honeycomb mesh, and triple LED optics.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Front Stance",
+    description: "Sonic Titanium finish with piano black chin spoiler and chrome accents.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/front-stance.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Aggressive GR Grille",
+    description: "Direct front stance featuring Gazoo Racing honeycomb upper and lower grilles with fog lights.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/front-direct.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Dynamic Front Angle",
+    description: "Low athletic stance with aerodynamic front air splitters and LED daytime running lights.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/front-angle.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Rear Stance",
+    description: "Dark aerodynamic roof spoiler, diffuser bumper, and single polished chrome exhaust tip.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/rear-stance.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Rear Profile",
+    description: "Sharp coupe-like roofline, rear privacy glass, and chrome beltline mouldings.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/rear-profile.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Rear Tailgate & GR Badge",
+    description: "Distinctive Gazoo Racing emblem, clear rear LED combination lamps, and tailgate wiper.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/rear-direct.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Centered Rear Stance",
+    description: "Rear diffuser apron with integrated reflectors and sculpted aerodynamic contours.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/rear-centered.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Cockpit Panorama",
+    description: "High-resolution multimedia navigation display, leather-wrapped sports dashboard, and phone mount.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/cockpit-panorama.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Driver Cockpit",
+    description: "Electric power adjustable driver seat with lumbar support, Harrier illuminated scuff plates, and sports pedals.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/driver-cockpit.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — GR Steering Wheel",
+    description: "Leather-wrapped GR emblem multi-function steering wheel with audio, phone, and cruise controls.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/steering-controls.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Center Console",
+    description: "Carbon-pattern shift gate, dual-zone digital climate control, and electronic parking brake.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/dashboard-center.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Rear Suede & Leather Seats",
+    description: "Plush rear passenger bench with embossed geometric pattern, sport center stripe, and ISOFIX anchors.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/rear-leather-seats.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — 19-Inch Alloy Wheels",
+    description: "Diamond-cut dual-tone GR Sport alloy wheels with white brake calipers bearing GR logo and Yokohama tires.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/wheel-gr-alloy.jpg"
+        },
+        {
+    title: "Toyota Harrier GR Sport — Cavernous Cargo Bay",
+    description: "Wide electric tailgate opening, low loading floor, and custom-fit rubber protective luggage tray.",
+    url: "/vehicles/toyota-harrier-gr-sport-2019/open-cargo-boot.jpg"
+        }
+    ],
+    closerLookPoints: [
+        {
+    id: "gr-bodykit",
+    title: "Sporty GR Aerodynamic Kit",
+    metric: "GR Sport",
+    metricLabel: "Aero Package",
+    subtitle: "Gazoo Racing Front Splitter & Diffuser",
+    description: "Factory-tuned aerodynamic package with honeycomb grilles, piano-black accents, and rear sports diffuser.",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg"
+        },
+        {
+    id: "gr-wheels",
+    title: "19\" GR Diamond-Cut Alloys",
+    metric: "19-Inch",
+    metricLabel: "Alloy Rims",
+    subtitle: "Dual-Tone Wheels with White GR Calipers",
+    description: "Factory Gazoo Racing 19-inch lightweight alloy wheels with high-grip Yokohama rubber and branded calipers.",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/wheel-gr-alloy.jpg"
+        },
+        {
+    id: "cabin-leather",
+    title: "Luxurious Leather & Suede Interior",
+    metric: "GR Suede",
+    metricLabel: "Cabin Materials",
+    subtitle: "Embossed Sports Seats with Silver Stripe",
+    description: "High-bolstered front sport seats with genuine leather surrounds, suede inserts, and silver accent center stripe.",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/driver-cockpit.jpg"
+        },
+        {
+    id: "cockpit-tech",
+    title: "Push Start & Dual-Zone Climate",
+    metric: "Push Start",
+    metricLabel: "Driver Tech",
+    subtitle: "Smart Key, Multi-Function Steering & Reverse Camera",
+    description: "Full suite of driver convenience tech including crystal reverse camera, multi-function steering, and push-button start.",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/dashboard-center.jpg"
+        }
+    ],
+    editorialFeatures: [
+        {
+    id: "performance",
+    title: "Gazoo Racing Dynamics",
+    badge: "PERFORMANCE",
+    lead: "Precision-tuned suspension and responsive 2.0L Dual VVT-i petrol powertrain.",
+    narrative: [
+                "The 2019 Toyota Harrier GR Sport brings track-inspired engineering to an executive luxury crossover. Tuned by Toyota Gazoo Racing, it features reinforced underbody bracing and recalibrated shock absorbers.",
+                "Delivering smooth, confident power through a 7-speed sequential Super CVT-i gearbox, it balances exhilarating road presence with everyday fuel economy."
+            ],
+    specs: [
+                {
+    label: "Engine",
+    value: "2.0L Dual VVT-i Petrol"
+                },
+                {
+    label: "Transmission",
+    value: "Super CVT-i 7-Speed Sequential"
+                },
+                {
+    label: "Suspension",
+    value: "GR Sport Dedicated Tuning"
+                }
+            ],
+    slides: [
+                {
+    id: "gr-stance-slide",
+    title: "Athletic Road Stance",
+    subtitle: "Factory Aerodynamics",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/front-stance.jpg",
+    description: "Aerodynamic front chin spoiler and rear diffuser channel airflow for high-speed stability."
+                },
+                {
+    id: "gr-rims-slide",
+    title: "19\" GR Sport Alloy Wheels",
+    subtitle: "White GR Calipers",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/wheel-gr-alloy.jpg",
+    description: "Exclusive dual-tone machined alloy wheels wrapped in premium Yokohama performance tires."
+                }
+            ]
+        },
+        {
+    id: "cockpit",
+    title: "Luxurious Sports Sanctuary",
+    badge: "CABIN LUXURY",
+    lead: "Premium leather, suede sports bolsters, and intuitive digital controls.",
+    narrative: [
+                "Inside, the Harrier GR Sport surrounds the driver with carbon-finish trim, a dedicated GR steering wheel, and illuminated door sills.",
+                "Featuring dual-zone automatic climate control, push-button smart key ignition, and integrated reverse camera for effortless city driving."
+            ],
+    specs: [
+                {
+    label: "Seating",
+    value: "Leather & Suede Sport Seats"
+                },
+                {
+    label: "Steering",
+    value: "GR Multi-Function Wheel"
+                },
+                {
+    label: "Climate",
+    value: "Dual-Zone Climate Control"
+                }
+            ],
+    slides: [
+                {
+    id: "cockpit-slide",
+    title: "Command Center Cockpit",
+    subtitle: "Intuitive Controls",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/cockpit-panorama.jpg",
+    description: "Touchscreen navigation, digital climate panel, and leather-wrapped dashboard."
+                },
+                {
+    id: "seats-slide",
+    title: "Embossed Sports Seats",
+    subtitle: "Suede & Leather Bolsters",
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/driver-cockpit.jpg",
+    description: "Electric power adjustment with memory and supportive lateral bolsters."
+                }
+            ]
+        }
+    ],
+    chapters: [
+        {
+    id: "overview",
+    tabLabel: "GR Sport Overview",
+    eyebrow: "2019 TOYOTA HARRIER GR SPORT",
+    title: "Executive Comfort Meets Gazoo Racing DNA",
+    narrative: [
+                "The Toyota Harrier GR Sport stands out on Mombasa and Nairobi roads with its unmistakable aggressive styling, crystal LED lighting, and polished chrome details.",
+                "Inspected and certified in Japan with very low verified mileage, pristine non-smoker interior, and complete export documentation."
+            ],
+    imageUrl: "/vehicles/toyota-harrier-gr-sport-2019/front-direct.jpg",
+    highlights: [
+                {
+    label: "Model Year",
+    value: "2019"
+                },
+                {
+    label: "Condition",
+    value: "Very Low Mileage · Pristine"
+                },
+                {
+    label: "Location",
+    value: "Ganjoni Showroom, Mombasa"
+                }
+            ]
+        }
+    ],
+    specifications: [
+        {
+    category: "Powertrain & Performance",
+    items: [
+                {
+    label: "Engine Type",
+    value: "2.0L 4-Cylinder DOHC 16V Dual VVT-i"
+                },
+                {
+    label: "Displacement",
+    value: "1,986 cc"
+                },
+                {
+    label: "Horsepower",
+    value: "151 HP @ 6,100 RPM"
+                },
+                {
+    label: "Torque",
+    value: "193 Nm @ 3,800 RPM"
+                },
+                {
+    label: "Transmission",
+    value: "Super CVT-i 7-Speed Sequential Shift"
+                },
+                {
+    label: "Drive System",
+    value: "Front-Wheel Drive (2WD)"
+                },
+                {
+    label: "Fuel Delivery",
+    value: "Multi-Point EFI (Highly Economical)"
+                },
+                {
+    label: "Fuel Tank Capacity",
+    value: "60 Liters"
+                }
+            ]
+        },
+        {
+    category: "Dimensions & Chassis",
+    items: [
+                {
+    label: "Dimensions (L × W × H)",
+    value: "4,720 × 1,835 × 1,690 mm"
+                },
+                {
+    label: "Wheelbase",
+    value: "2,660 mm"
+                },
+                {
+    label: "Ground Clearance",
+    value: "190 mm"
+                },
+                {
+    label: "Curb Weight",
+    value: "1,580 kg"
+                },
+                {
+    label: "Doors / Seats",
+    value: "5 Doors / 5 Seats"
+                },
+                {
+    label: "Wheels",
+    value: "19-Inch Factory GR Sport Dual-Tone Alloys"
+                },
+                {
+    label: "Tires",
+    value: "235/50R19 Yokohama Premium Radial"
+                }
+            ]
+        }
+    ],
+    workshopProtocol: [
+        "Comprehensive 100-point pre-delivery mechanical overhaul at Mombasa workshop",
+        "Engine oil and OEM filter replacement with premium synthetic lubricant",
+        "CVT transmission diagnostic scan and electronic fluid level check",
+        "19-inch alloy wheel balance and high-speed road-force alignment",
+        "Air conditioning compressor pressure and dual-zone climate vent sanitation",
+        "Complete Japanese export verification, JEVIC certificate, and NTSA TIMS documentation"
+    ],
+    equipmentChecklist: [
+        {
+    category: "COMFORT & CONVENIENCE",
+    items: [
+                {
+    name: "ACC (Adaptive Cruise)",
+    active: true
+                },
+                {
+    name: "Air Conditioner",
+    active: true
+                },
+                {
+    name: "Audio Player",
+    active: true
+                },
+                {
+    name: "Both Power Slide Door",
+    active: false
+                },
+                {
+    name: "Cooler",
+    active: true
+                },
+                {
+    name: "Cruise Control",
+    active: true
+                },
+                {
+    name: "Double Air Conditioner",
+    active: true
+                },
+                {
+    name: "Left Side Power Slide Door",
+    active: false
+                },
+                {
+    name: "Navigation System",
+    active: true
+                },
+                {
+    name: "Paddle Shift",
+    active: false
+                },
+                {
+    name: "Power Back Door",
+    active: true
+                },
+                {
+    name: "Power Seat",
+    active: true
+                },
+                {
+    name: "Power Steering",
+    active: true
+                },
+                {
+    name: "Power Window All",
+    active: true
+                },
+                {
+    name: "Power Window Driver",
+    active: true
+                },
+                {
+    name: "Power Window Front",
+    active: true
+                },
+                {
+    name: "Push Start",
+    active: true
+                },
+                {
+    name: "Steering Switch",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "DRESS UP",
+    items: [
+                {
+    name: "Aero Front",
+    active: true
+                },
+                {
+    name: "Aero Rear",
+    active: true
+                },
+                {
+    name: "Aero Side",
+    active: true
+                },
+                {
+    name: "Alloy Wheels",
+    active: true
+                },
+                {
+    name: "Grill Guard",
+    active: false
+                },
+                {
+    name: "Rear Spoiler",
+    active: true
+                },
+                {
+    name: "Wood Combination Steering",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "EXTERIOR",
+    items: [
+                {
+    name: "Carrier Base",
+    active: false
+                },
+                {
+    name: "Roof Box",
+    active: false
+                },
+                {
+    name: "Roof Carrier",
+    active: false
+                },
+                {
+    name: "Roof Rails",
+    active: false
+                },
+                {
+    name: "Sun Roof",
+    active: false
+                },
+                {
+    name: "Double Sun Roof",
+    active: false
+                },
+                {
+    name: "Glass Roof",
+    active: false
+                },
+                {
+    name: "Fog Light",
+    active: true
+                },
+                {
+    name: "HID Light",
+    active: false
+                },
+                {
+    name: "LED Light",
+    active: true
+                },
+                {
+    name: "High Roof",
+    active: false
+                },
+                {
+    name: "New Shape",
+    active: true
+                },
+                {
+    name: "Slide Glass",
+    active: false
+                }
+            ]
+        },
+        {
+    category: "SAFETY",
+    items: [
+                {
+    name: "ABS",
+    active: true
+                },
+                {
+    name: "Air Bag",
+    active: true
+                },
+                {
+    name: "Around View Monitor",
+    active: false
+                },
+                {
+    name: "Back Camera",
+    active: true
+                },
+                {
+    name: "Front Camera",
+    active: false
+                },
+                {
+    name: "Side Camera",
+    active: false
+                },
+                {
+    name: "Corner Sensor",
+    active: true
+                },
+                {
+    name: "ESC",
+    active: true
+                }
+            ]
+        },
+        {
+    category: "OTHER & REMARKS",
+    items: [
+                {
+    name: "Auto Door",
+    active: false
+                },
+                {
+    name: "Back Tire",
+    active: false
+                },
+                {
+    name: "Just Low",
+    active: false
+                },
+                {
+    name: "Half Leather Seat",
+    active: true
+                },
+                {
+    name: "Leather Seat",
+    active: true
+                },
+                {
+    name: "Same Tire",
+    active: true
+                },
+                {
+    name: "Side Lift Up Seat",
+    active: false
+                },
+                {
+    name: "Sloper",
+    active: false
+                }
+            ]
+        }
+    ],
+    equipmentRemarks: "5SEATS, GR SPORT EDITION, 19\" ALLOYS, PUSH START, REVERSE CAMERA"
+}
 ];

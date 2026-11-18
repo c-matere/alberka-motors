@@ -862,8 +862,11 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   src={currentPhoto.url}
                   alt=""
                   aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-110 pointer-events-none select-none"
+                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-110 pointer-events-none select-none z-0"
                 />
+
+                {/* Ambient Backdrop Dimmer */}
+                <div className="absolute inset-0 z-5 bg-black/40 pointer-events-none" />
 
                 {/* Foreground Vehicle Photo — Uncropped full vertical & horizontal fidelity */}
                 <img
@@ -873,8 +876,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   className="relative z-10 max-h-[88%] sm:max-h-[92%] max-w-[94%] w-auto h-auto object-contain mx-auto my-auto drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.015]"
                 />
 
-                {/* Scrim & Gradient */}
-                <div className="absolute inset-0 z-15 bg-gradient-to-t from-black/70 via-transparent to-black/25 pointer-events-none" />
+                {/* Bottom Caption Scrim — Only behind lower text */}
+                <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-15" />
 
                 {/* Top Bar Badges & Controls */}
                 <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between z-20">

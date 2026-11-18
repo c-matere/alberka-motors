@@ -49,7 +49,9 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           </div>
 
           <a
-            href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors.%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
+            href={`https://wa.me/254180423075?text=${encodeURIComponent(
+              `Hello Alberka Enterprises, I am interested in the ${selectedVehicle.year} ${selectedVehicle.name} (Stock ID: ${selectedVehicle.sbtStockId || selectedVehicle.stockNo}) priced at KES ${selectedVehicle.priceKes.toLocaleString()} at your showroom next to Ganjoni Primary School, Mombasa.`
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-bold shadow-sm"
@@ -87,7 +89,9 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           </div>
 
           <a
-            href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20am%20reading%20'${encodeURIComponent(selectedBlogPost.title)}'%20and%20would%20like%20to%20consult%20your%20team.`}
+            href={`https://wa.me/254180423075?text=${encodeURIComponent(
+              `Hello Alberka Enterprises, I am reading '${selectedBlogPost.title}' and would like to consult your team.`
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-bold shadow-sm"
