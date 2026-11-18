@@ -23,7 +23,6 @@ import { MobileBottomDock } from './components/MobileBottomDock';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { Footer } from './components/Footer';
-import { HappyClientsSection } from './components/HappyClientsSection';
 import { TestimonialSectionDemo } from './components/ui/demo';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
@@ -445,15 +444,6 @@ export function App() {
 
                 {/* Verified Customer Testimonials Section */}
                 <TestimonialSectionDemo />
-
-                {/* Section Gradient Fade Transition */}
-                <SectionGradientFade />
-
-                {/* Happy Clients & Handover Gallery Section — Customer Satisfaction is Our North Star */}
-                <HappyClientsSection
-                  onExploreFleet={() => handleNavigate('inventory')}
-                  onOpenWhispers={() => setWhispersDrawerOpen(true)}
-                />
 
                 {/* Section Gradient Fade Transition */}
                 <SectionGradientFade />
