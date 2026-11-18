@@ -53,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       setMobileMenuOpen(false);
     } else {
       window.open(
-        'https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20inquiring%20about%20a%20vehicle%20in%20your%20inventory.',
+        'https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20am%20interested%20in%20inquiring%20about%20a%20vehicle%20in%20your%20inventory.',
         '_blank'
       );
     }
@@ -249,7 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="btn-white w-full py-3 text-xs sm:text-sm font-semibold justify-center inline-flex items-center gap-2 shadow-lg"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Chat on WhatsApp (0714 333 888)</span>
+              <span>Chat on WhatsApp (0180 423 075)</span>
             </button>
             
             <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-500 font-mono">

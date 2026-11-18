@@ -462,7 +462,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               {/* Action Buttons */}
               <div className="space-y-2 pt-2">
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
+                  href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-white py-3 text-xs sm:text-sm font-semibold w-full justify-center inline-flex items-center gap-2"

@@ -31,7 +31,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
     const msg = encodeURIComponent(
       `Hello Alberka Enterprises, my name is ${testDriveData.name} (${testDriveData.phone}). I would like to book a test drive for the ${testDriveData.carName} at your ${testDriveData.location} showroom on ${testDriveData.preferredDate || 'the earliest available date'} (${testDriveData.timeSlot}).`
     );
-    window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
+    window.open(`https://wa.me/254180423075?text=${msg}`, '_blank');
     setBookingSuccess(true);
   };
 
@@ -77,9 +77,9 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               <div className="space-y-3 py-5 border-y border-zinc-200 text-xs sm:text-sm">
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-zinc-600 shrink-0" />
-                  <a href="tel:+254714333888" className="font-mono text-zinc-950 hover:text-zinc-700 transition-colors">0714 333 888</a>
+                  <a href="tel:+254180423075" className="font-mono text-zinc-950 hover:text-zinc-700 transition-colors">0180 423 075</a>
                   <span className="text-zinc-600">/</span>
-                  <a href="tel:+254737333888" className="font-mono text-zinc-950 hover:text-zinc-700 transition-colors">0737 333 888</a>
+                  <a href="tel:+254180423075" className="font-mono text-zinc-950 hover:text-zinc-700 transition-colors">0180 423 075</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-zinc-600 shrink-0" />
@@ -95,7 +95,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs text-zinc-500 font-mono">100-Point workshop on site</span>
               <a
-                href="https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20visit%20your%20Tangana%20Road%20showroom."
+                href="https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20visit%20your%20Tangana%20Road%20showroom."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white py-2.5 px-5 text-xs font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-1.5"
@@ -126,7 +126,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               <div className="space-y-3 py-5 border-y border-zinc-200 text-xs sm:text-sm">
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-zinc-600 shrink-0" />
-                  <a href="tel:+254748999333" className="font-mono text-zinc-950 hover:text-zinc-700 transition-colors">0748 999 333</a>
+                  <a href="tel:+254180423075" className="font-mono text-zinc-950 hover:text-zinc-700 transition-colors">0180 423 075</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-zinc-600 shrink-0" />
@@ -142,7 +142,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs text-zinc-500 font-mono">Central Westlands Location</span>
               <a
-                href="https://wa.me/254748999333?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20visit%20your%20Westlands%20showroom."
+                href="https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20visit%20your%20Westlands%20showroom."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white py-2.5 px-5 text-xs font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-1.5"

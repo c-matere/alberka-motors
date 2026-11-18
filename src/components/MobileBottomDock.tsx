@@ -49,7 +49,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           </div>
 
           <a
-            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
+            href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors.%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-semibold"
@@ -85,7 +85,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           </div>
 
           <a
-            href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20am%20reading%20'${encodeURIComponent(selectedBlogPost.title)}'%20and%20would%20like%20to%20consult%20your%20team.`}
+            href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20am%20reading%20'${encodeURIComponent(selectedBlogPost.title)}'%20and%20would%20like%20to%20consult%20your%20team.`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-semibold"
@@ -152,7 +152,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
         <button
           onClick={() => {
             if (onOpenWhispers) onOpenWhispers();
-            else window.open('https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20would%20like%20more%20details%20about%20your%20cars.', '_blank');
+            else window.open('https://wa.me/254180423075?text=Hello%20Alberka%20Motors.%20I%20would%20like%20more%20details%20about%20your%20cars.', '_blank');
           }}
           className="flex flex-col items-center justify-center py-1 px-2.5 text-zinc-600 hover:text-zinc-950 transition-all cursor-pointer relative"
           title="Contact Alberka"

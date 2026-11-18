@@ -402,7 +402,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   </button>
 
                   <a
-                    href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
+                    href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-ghost !py-2.5 !px-5 !text-xs !rounded-md w-full sm:w-auto inline-flex items-center justify-center font-medium"
@@ -585,7 +585,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
               <div className="flex items-center gap-2">
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
+                  href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-ghost !py-2 !px-3.5 text-xs font-medium"

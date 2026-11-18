@@ -753,7 +753,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </button>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.name)}%20(Stock%20${vehicle.stockNo},%20Chassis%20${vehicle.chassisNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.name)}%20(Stock%20${vehicle.stockNo},%20Chassis%20${vehicle.chassisNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold !py-2.5 !px-5 !text-xs rounded-lg w-full sm:w-auto inline-flex items-center justify-center shadow transition-colors"
@@ -823,7 +823,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
             <div className="mt-5 flex justify-end">
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(Chassis%20${vehicle.chassisNo}).`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(Chassis%20${vehicle.chassisNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-zinc-950 hover:bg-zinc-800 text-white font-bold !py-2.5 !px-4 !text-xs rounded-lg transition-colors inline-flex items-center shadow"

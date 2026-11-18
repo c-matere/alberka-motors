@@ -76,7 +76,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
     const msg = encodeURIComponent(
       `Hello Alberka Enterprises, I just read your article "${post.title}" on your website and would like to consult your technical team regarding this topic.`
     );
-    window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
+    window.open(`https://wa.me/254180423075?text=${msg}`, '_blank');
   };
 
   return (

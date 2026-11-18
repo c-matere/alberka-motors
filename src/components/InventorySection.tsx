@@ -242,7 +242,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           </div>
 
           <a
-            href="https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20looking%20to%20import%20a%20specific%20vehicle%20on%20order%20from%20Japan.%20Please%20guide%20me%20on%20the%20process."
+            href="https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20looking%20to%20import%20a%20specific%20vehicle%20on%20order%20from%20Japan.%20Please%20guide%20me%20on%20the%20process."
             target="_blank"
             rel="noopener noreferrer"
             className="btn-white py-3 px-6 text-xs sm:text-sm font-semibold shrink-0 inline-flex items-center gap-2 w-full md:w-auto justify-center shadow-md"

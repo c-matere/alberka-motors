@@ -295,7 +295,7 @@ const EditorialFeatureSection: React.FC<{
 
             <div className="pt-2">
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20have%20questions%20regarding%20the%20${encodeURIComponent(feature.title)}%20on%20the%20${encodeURIComponent(vehicleName)}%20(${stockNo}).`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20have%20questions%20regarding%20the%20${encodeURIComponent(feature.title)}%20on%20the%20${encodeURIComponent(vehicleName)}%20(${stockNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-700 hover:text-zinc-950 transition-colors cursor-pointer pt-2 group"
@@ -1348,7 +1348,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </button>
 
                 <a
-                  href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20with%20exterior%20${encodeURIComponent(activeColor.name)}%20and%20interior%20${encodeURIComponent(activeLeather.name)}.%20Please%20confirm%20availability%20for%20a%20test%20drive.`}
+                  href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20with%20exterior%20${encodeURIComponent(activeColor.name)}%20and%20interior%20${encodeURIComponent(activeLeather.name)}.%20Please%20confirm%20availability%20for%20a%20test%20drive.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-white !py-2.5 !px-5 text-[13px] w-full sm:w-auto text-center font-semibold"
@@ -1858,7 +1858,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </span>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20from%20${encodeURIComponent(vehicle.auctionHall)}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white w-full sm:w-auto text-center font-semibold"
@@ -1970,7 +1970,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
 
               <a
-                href={`https://wa.me/254714333888?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.name)}%20(${vehicle.stockNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-white !py-2 !px-4 text-xs font-semibold"

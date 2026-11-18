@@ -35,8 +35,8 @@ async function seed() {
       tagline: 'Direct Japanese Imports · Mombasa Port & Nairobi',
       foundedYear: '2000',
       footerNotice: '© 2026 Alberka Motors. Direct Japanese Import Specialists. Mombasa & Nairobi.',
-      phone: '+254 714 333 888',
-      whatsappNumber: '254714333888',
+      phone: '+254 180 423 075',
+      whatsappNumber: '254180423075',
       email: 'yard@alberkamotors.co.ke',
       workingHours: 'Monday – Saturday: 8:00 AM – 6:00 PM | Sunday: By Appointment',
       mombasaYardAddress: 'Tangana Road, Ganjoni, Port Reitz Area, Mombasa, Kenya',
@@ -255,7 +255,7 @@ async function seed() {
             points: [
               { item: 'Direct carrier vessel roll-off yard' },
               { item: 'Full hydraulic hoist inspection workshop' },
-              { item: 'Contact: +254 714 333 888' },
+              { item: 'Contact: +254 180 423 075' },
             ],
           },
           {
@@ -265,7 +265,7 @@ async function seed() {
             points: [
               { item: 'Convenient central Nairobi access' },
               { item: 'Full showroom collection and financing concierge' },
-              { item: 'Contact: +254 714 333 888' },
+              { item: 'Contact: +254 180 423 075' },
             ],
           },
         ],

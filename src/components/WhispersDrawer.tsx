@@ -43,7 +43,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
       message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). I would like to import a specific vehicle on order from Japan: ${formData.notes || carName}.`;
     }
 
-    window.open(`https://wa.me/254714333888?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/254180423075?text=${encodeURIComponent(message)}`, '_blank');
     setIsSubmitted(true);
   };
 
@@ -244,11 +244,11 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
         <div className="p-6 border-t border-zinc-200 bg-zinc-100 space-y-2 text-[13px] text-zinc-700">
           <div className="flex items-center justify-between">
             <span>Direct WhatsApp Helpline:</span>
-            <a href="tel:+254714333888" className="text-zinc-950 font-mono hover:text-zinc-700">0714 333 888</a>
+            <a href="tel:+254180423075" className="text-zinc-950 font-mono hover:text-zinc-700">0180 423 075</a>
           </div>
           <div className="flex items-center justify-between">
             <span>Executive Branch Line:</span>
-            <a href="tel:+254748999333" className="text-zinc-950 font-mono hover:text-zinc-700">0748 999 333</a>
+            <a href="tel:+254180423075" className="text-zinc-950 font-mono hover:text-zinc-700">0180 423 075</a>
           </div>
           <div className="text-[11px] text-zinc-600 pt-1">
             Tangana Rd Flagship · Mwanzi Rd, Westlands

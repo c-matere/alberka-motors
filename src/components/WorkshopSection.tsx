@@ -116,7 +116,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({ pageData }) =>
     const msg = encodeURIComponent(
       `Hello Alberka Enterprises Workshop, my name is ${bookingData.name} (${bookingData.phone}). I would like to book a ${bookingData.serviceType} for my vehicle (${bookingData.vehicleModel}) on ${bookingData.preferredDate || 'the earliest available date'}.`
     );
-    window.open(`https://wa.me/254714333888?text=${msg}`, '_blank');
+    window.open(`https://wa.me/254180423075?text=${msg}`, '_blank');
     setBookingSubmitted(true);
   };
 

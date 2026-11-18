@@ -45,13 +45,13 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'phone',
               type: 'text',
-              defaultValue: '+254 714 333 888',
+              defaultValue: '+254 180 423 075',
               required: true,
             },
             {
               name: 'whatsappNumber',
               type: 'text',
-              defaultValue: '254714333888',
+              defaultValue: '254180423075',
               admin: {
                 description: 'Digits only without + symbol — used for wa.me links',
               },

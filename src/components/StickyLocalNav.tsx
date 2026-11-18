@@ -45,7 +45,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
               </span>
             </div>
             <a
-              href={`https://wa.me/254714333888?text=Hello%20Alberka%20Motors.%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
+              href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors.%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-white font-semibold !py-1.5 !px-3 !text-xs !rounded"

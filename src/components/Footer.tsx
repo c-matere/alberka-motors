@@ -51,13 +51,13 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex items-center gap-3">
             <a
-              href={`https://wa.me/${settings?.whatsappNumber || '254714333888'}?text=Hello%20Alberka%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles.`}
+              href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=Hello%20Alberka%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles.`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-white py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"
             >
               <MessageCircle className="w-3.5 h-3.5" />
-              <span>WhatsApp Us ({settings?.phone || '0714 333 888'})</span>
+              <span>WhatsApp Us ({settings?.phone || '0180 423 075'})</span>
             </a>
           </div>
         </div>
