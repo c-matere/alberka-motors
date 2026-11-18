@@ -391,7 +391,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Inventory Location</span>
-                  <span className="font-semibold text-zinc-950">{vehicle.inventoryLocation || 'OSAKA, JAPAN'}</span>
+                  <span className="font-semibold text-zinc-950">{vehicle.inventoryLocation || 'Ganjoni Showroom, Mombasa'}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Make</span>
@@ -476,7 +476,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                       ${(vehicle.totalCifUsd || 14046).toLocaleString()} USD
                     </span>
                     <span className="text-xs text-zinc-600 block mt-0.5">
-                      Inventory Location: <strong className="text-zinc-950">{vehicle.inventoryLocation || 'OSAKA, JAPAN'}</strong>
+                      Showroom Location: <strong className="text-zinc-950">{vehicle.inventoryLocation || 'Ganjoni Showroom, Mombasa'}</strong>
                     </span>
                   </div>
                   <div className="text-left sm:text-right">

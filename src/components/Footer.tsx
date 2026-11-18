@@ -1,6 +1,6 @@
 import React from 'react';
 import { Vehicle } from '../data/vehicles';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, MapPin, Navigation, ArrowRight } from 'lucide-react';
 import { CmsSiteSettings } from '../services/cmsContent';
 
 interface FooterProps {
@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Brand Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 pb-8 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-8 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
           <div className="flex items-center gap-4">
             <img
               src="/alberka-logo-cropped.png"
@@ -61,6 +61,50 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
               <span>WhatsApp Us ({settings?.phone || '0180 423 075'})</span>
             </a>
+          </div>
+        </div>
+
+        {/* Physical Showroom Location Banner */}
+        <div className="bg-[#f8f9fa] border border-zinc-200/90 rounded-2xl p-5 sm:p-7 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xs text-left">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
+              <MapPin className="w-6 h-6 text-red-600" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-red-600">
+                  Physical Showroom Location
+                </span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  Mon – Sat · 8:00 AM – 6:00 PM
+                </span>
+              </div>
+              <h3 className="font-bold text-zinc-950 text-base sm:text-lg tracking-tight">
+                Next to Ganjoni Primary School, Archbishop Makarios Rd, Mombasa
+              </h3>
+              <p className="text-xs sm:text-[13px] text-zinc-600 max-w-2xl leading-relaxed">
+                Tour our certified Japanese import fleet in person, inspect vehicles on our mechanical lift with your independent mechanic, or initiate direct Tokyo auction bidding with our Mombasa team.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href="https://www.google.com/maps/place/Ganjoni+Primary+School,+Archbishop+Makarios+Rd,+Mombasa/@-4.0637,39.6631859,17z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            >
+              <Navigation className="w-3.5 h-3.5 text-red-600" />
+              <span>Get Directions</span>
+            </a>
+            <button
+              onClick={() => onNavigate('locations')}
+              className="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+            >
+              <span>Showroom Bay Guide</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
 
@@ -130,12 +174,24 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Official Showroom</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Showroom & Hub</h4>
             <ul className="space-y-2">
+              <li className="text-zinc-950 font-semibold">
+                Next to Ganjoni Primary School
+              </li>
+              <li className="text-zinc-600">
+                Archbishop Makarios Rd, Mombasa
+              </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Next to Ganjoni Primary School, Mombasa
-                </button>
+                <a
+                  href="https://www.google.com/maps/place/Ganjoni+Primary+School,+Archbishop+Makarios+Rd,+Mombasa/@-4.0637,39.6631859,17z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 hover:text-red-700 font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <MapPin className="w-3 h-3" />
+                  <span>Google Maps Pin</span>
+                </a>
               </li>
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
@@ -145,11 +201,6 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   100-Point Mechanical Workshop
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('locations')} className="text-red-600 hover:text-red-700 font-semibold text-left cursor-pointer transition-colors">
-                  Book Private Test Drive
                 </button>
               </li>
             </ul>
@@ -192,7 +243,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-zinc-200 after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
           <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports Since 2000.`}</p>
           <div className="flex items-center gap-3">
-            <span>Kenya Nationwide</span>
+            <span>Next to Ganjoni Primary School, Mombasa</span>
             <span>·</span>
             <span>KRA & QISJ Compliant</span>
           </div>

@@ -166,7 +166,7 @@ export const VEHICLES: Vehicle[] = [
     inspectionUsd: 250,
     insuranceUsd: 206,
     totalCifUsd: 14046,
-    inventoryLocation: 'OSAKA, JAPAN',
+    inventoryLocation: 'Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)',
     sbtGrade: 'TX LIMITED 60TH SPECIAL EDITION',
     year: 2006,
     registrationMonth: '12',
@@ -537,7 +537,7 @@ export const VEHICLES: Vehicle[] = [
         category: 'SBT Japan Exporter Specifications',
         items: [
           { label: 'SBT Stock ID', value: 'AX2877' },
-          { label: 'Inventory Location', value: 'OSAKA, JAPAN' },
+          { label: 'Inventory Location', value: 'Ganjoni Showroom, Mombasa (Next to Ganjoni Primary School)' },
           { label: 'Model Code', value: 'CBA-GRJ120W' },
           { label: 'Engine Code', value: '1GR-FE (4,000 cc)' },
           { label: 'M3 Volume', value: '16.823 m³' },

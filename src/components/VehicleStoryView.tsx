@@ -38,7 +38,6 @@ import {
   Phone,
   Share2,
   Download,
-  Star,
   FileCheck2
 } from 'lucide-react';
 import { Vehicle, EditorialFeature, FeatureSlide } from '../data/vehicles';
@@ -750,24 +749,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               <span className="bg-red-50 border border-red-200 text-red-700 px-2.5 py-1 rounded-md font-bold">
                 Stock Id: {vehicle.sbtStockId || vehicle.stockNo}
               </span>
-              <span className="bg-zinc-100 border border-zinc-200 text-zinc-700 px-2.5 py-1 rounded-md flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Inventory location: <strong className="text-zinc-950">{vehicle.inventoryLocation || 'OSAKA, JAPAN · Japan'}</strong></span>
+              <span className="bg-zinc-100 border border-zinc-200 text-zinc-700 px-2.5 py-1 rounded-md flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-red-600" />
+                <span>Showroom Location: <strong className="text-zinc-950">Next to Ganjoni Primary School, Mombasa</strong></span>
               </span>
             </div>
 
-            {/* Actions Bar & Rating Row */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <span className="text-xs font-bold text-zinc-950 font-mono">4.9 star rating</span>
-                <span className="text-xs text-zinc-500 font-mono">(87 Reviews)</span>
-              </div>
-
+            {/* Actions Bar */}
+            <div className="flex flex-wrap items-center justify-end gap-3 pt-3 border-t border-zinc-100">
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   onClick={handleShareVehicle}
@@ -1489,13 +1478,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 ].map((opt, i) => (
                   <span
                     key={i}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                       opt.active
-                        ? 'bg-zinc-900 text-white border-zinc-900 font-semibold'
-                        : 'bg-zinc-50 text-zinc-400 border-zinc-200 opacity-60'
+                        ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                        : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                     }`}
                   >
-                    {opt.active && <Check className="w-3 h-3 text-red-400 shrink-0" />}
+                    {opt.active ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                    ) : (
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                    )}
                     <span>{opt.name}</span>
                   </span>
                 ))}
@@ -1521,13 +1514,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   ].map((opt, i) => (
                     <span
                       key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                         opt.active
-                          ? 'bg-zinc-900 text-white border-zinc-900 font-semibold'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200 opacity-60'
+                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                       }`}
                     >
-                      {opt.active && <Check className="w-3 h-3 text-red-400 shrink-0" />}
+                      {opt.active ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                      )}
                       <span>{opt.name}</span>
                     </span>
                   ))}
@@ -1557,13 +1554,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   ].map((opt, i) => (
                     <span
                       key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                         opt.active
-                          ? 'bg-zinc-900 text-white border-zinc-900 font-semibold'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200 opacity-60'
+                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                       }`}
                     >
-                      {opt.active && <Check className="w-3 h-3 text-red-400 shrink-0" />}
+                      {opt.active ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                      )}
                       <span>{opt.name}</span>
                     </span>
                   ))}
@@ -1591,13 +1592,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   ].map((opt, i) => (
                     <span
                       key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                         opt.active
-                          ? 'bg-zinc-900 text-white border-zinc-900 font-semibold'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200 opacity-60'
+                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                       }`}
                     >
-                      {opt.active && <Check className="w-3 h-3 text-red-400 shrink-0" />}
+                      {opt.active ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                      )}
                       <span>{opt.name}</span>
                     </span>
                   ))}
@@ -1622,13 +1627,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   ].map((opt, i) => (
                     <span
                       key={i}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                         opt.active
-                          ? 'bg-zinc-900 text-white border-zinc-900 font-semibold'
-                          : 'bg-zinc-50 text-zinc-400 border-zinc-200 opacity-60'
+                          ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                          : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                       }`}
                     >
-                      {opt.active && <Check className="w-3 h-3 text-red-400 shrink-0" />}
+                      {opt.active ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                      )}
                       <span>{opt.name}</span>
                     </span>
                   ))}
