@@ -28,7 +28,6 @@ import {
   Maximize2,
   X,
   ZoomIn,
-  Eye,
   Navigation,
   Gauge,
   Compass,
@@ -420,11 +419,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     copyToClipboard(shareUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
-  };
-
-  const handleViewPhotoList = () => {
-    const el = document.getElementById('photo-list-section');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleDownloadPhotoList = () => {
@@ -1066,21 +1060,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </button>
 
                 <button
-                  onClick={handleViewPhotoList}
-                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  title="View full photographic gallery"
-                >
-                  <Eye className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>View photo list ({allPhotos.length})</span>
-                </button>
-
-                <button
                   onClick={handleDownloadPhotoList}
                   className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  title="Download photo list & specification dossier"
+                  title="Print or save vehicle specification dossier"
                 >
                   <Download className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>Download photo list</span>
+                  <span>Print Dossier</span>
                 </button>
               </div>
             </div>
@@ -1194,10 +1179,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       {/* Section Gradient Fade Transition */}
       <SectionGradientFade />
 
-      {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS (RESTORED SECTION) */}
+      {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS (MINIMALIST DEDICATED SECTIONS) */}
       {vehicle.closerLookPoints && vehicle.closerLookPoints.length > 0 && (
-        <section className="w-full bg-[#f8f9fa] py-16 sm:py-24 px-4 sm:px-8 border-t border-zinc-200">
-          <div className="max-w-[1240px] mx-auto space-y-12 text-left">
+        <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 border-t border-zinc-200/80">
+          <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 text-left">
             
             <div className="space-y-2 max-w-3xl">
               <div className="inline-flex items-center gap-2 font-mono text-[11px] text-red-600 uppercase font-bold">
@@ -1212,21 +1197,21 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </p>
             </div>
 
-            {/* Individual Feature Rows: Image with Description Text Next to It */}
-            <div className="space-y-12 sm:space-y-16">
+            {/* Individual Minimalist Feature Sections: Image with Description Text Next to It */}
+            <div className="divide-y divide-zinc-200/80">
               {vehicle.closerLookPoints.map((point, pIdx) => {
                 const isEven = pIdx % 2 === 1;
                 return (
                   <div
                     key={point.id || pIdx}
-                    className={`flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16 ${
+                    className={`flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16 py-12 sm:py-16 first:pt-0 last:pb-0 ${
                       isEven ? 'lg:flex-row-reverse' : ''
-                    } bg-white p-6 sm:p-10 lg:p-12 rounded-3xl border border-zinc-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)] transition-all duration-300`}
+                    } bg-transparent`}
                   >
                     {/* Image Column */}
                     <div 
                       onClick={() => openPhotoByUrl(point.imageUrl)}
-                      className="w-full lg:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-950 relative group cursor-pointer shadow-md shrink-0"
+                      className="w-full lg:w-1/2 aspect-[16/10] sm:aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 relative group cursor-pointer border border-zinc-200/80 shadow-xs shrink-0"
                     >
                       <img
                         src={point.imageUrl}
@@ -1234,25 +1219,23 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 text-xs font-mono text-white font-bold flex items-center gap-2 shadow-lg">
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors pointer-events-none" />
+                      <div className="absolute top-4 left-4 bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 text-xs font-mono text-white font-bold flex items-center gap-2 shadow-sm">
                         <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                         <span>{point.metric}</span>
                       </div>
-                      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md text-[11px] font-mono font-bold text-zinc-900 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        Click to enlarge
+                      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md text-[11px] font-mono font-bold text-zinc-900 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5">
+                        <ZoomIn className="w-3.5 h-3.5 text-zinc-600" />
+                        <span>Click to enlarge</span>
                       </div>
                     </div>
 
                     {/* Description Text Column Next to the Image */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-4 sm:space-y-5">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-xs font-bold text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-md border border-red-200/60">
                             0{pIdx + 1} · {point.metricLabel || 'HIGHLIGHT'}
-                          </span>
-                          <span className="font-mono text-xs text-zinc-500 font-semibold">
-                            {point.metric}
                           </span>
                         </div>
                         <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-snug">
@@ -1263,20 +1246,20 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         </p>
                       </div>
 
-                      <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal">
+                      <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
                         {point.description}
                       </p>
 
-                      <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
+                      <div className="pt-4 border-t border-zinc-200/70 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-mono text-zinc-500 uppercase font-semibold">SPECIFICATION:</span>
-                          <span className="text-xs sm:text-sm font-bold text-zinc-950 font-mono bg-zinc-100 px-3 py-1 rounded-lg">
+                          <span className="text-xs sm:text-sm font-bold text-zinc-950 font-mono bg-zinc-200/70 px-3 py-1 rounded-md">
                             {point.metric}
                           </span>
                         </div>
                         <button
                           onClick={() => openPhotoByUrl(point.imageUrl)}
-                          className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 cursor-pointer"
+                          className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 cursor-pointer transition-colors"
                         >
                           <span>View Detail</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -1291,69 +1274,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
         </section>
       )}
-
-      {/* Complete Photographic Dossier Grid */}
-      <section id="photo-list-section" className="py-16 sm:py-24 px-4 sm:px-8 border-t border-zinc-200 bg-white text-zinc-900">
-        <div className="max-w-[1520px] mx-auto space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
-                COMPLETE INSPECTION DOSSIER · {allPhotos.length} HIGH-RES PHOTOGRAPHS
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-tight">
-                Full Photographic Fleet Gallery
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-600 mt-1">
-                Authentic, unedited photography of this {vehicle.year} {vehicle.name} from Japanese auction hall and Mombasa workshop.
-              </p>
-            </div>
-
-            <button
-              onClick={() => openLightboxWithIndex(0)}
-              className="bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-sm hover:shadow transition-all cursor-pointer inline-flex items-center gap-2 self-start sm:self-auto"
-            >
-              <Maximize2 className="w-3.5 h-3.5" />
-              <span>Fullscreen Lightbox View</span>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {allPhotos.map((photo, idx) => (
-              <div
-                key={photo.id || idx}
-                onClick={() => openLightboxWithIndex(idx)}
-                className="group relative rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-200/90 shadow-sm hover:shadow-xl hover:border-red-600/50 transition-all duration-300 cursor-pointer aspect-[4/3]"
-              >
-                <img
-                  src={photo.url}
-                  alt={photo.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                <div className="absolute top-3 left-3">
-                  <span className="bg-black/60 backdrop-blur-md text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/20">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                </div>
-                <div className="absolute top-3 right-3">
-                  <span className="bg-white/90 backdrop-blur-md text-zinc-950 text-[10px] font-bold px-2 py-0.5 rounded-md border border-white/40">
-                    {photo.tag}
-                  </span>
-                </div>
-                <div className="absolute bottom-3 left-3 right-3">
-                  <h4 className="text-white text-xs sm:text-sm font-bold truncate group-hover:text-red-400 transition-colors">
-                    {photo.title}
-                  </h4>
-                  <p className="text-zinc-300 text-[11px] line-clamp-1 mt-0.5">
-                    {photo.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Section Gradient Fade Transition */}
       <SectionGradientFade />
