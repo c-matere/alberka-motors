@@ -1,402 +1,613 @@
 import React, { useState } from 'react';
 import { CmsPage } from '../services/cmsContent';
 import {
+  Ship,
+  FileCheck2,
   ShieldCheck,
-  Droplet,
-  Disc,
-  Activity,
-  BatteryCharging,
-  Wind,
-  Sparkles,
   CheckCircle2,
-  Calendar,
+  ArrowRight,
+  Clock,
+  Calculator,
+  FileText,
+  MapPin,
   MessageCircle,
-  FileCheck,
-  ArrowRight
+  Search,
+  Award,
+  Globe,
+  SlidersHorizontal,
+  ChevronRight,
+  DollarSign
 } from 'lucide-react';
 
 interface WorkshopSectionProps {
   pageData?: CmsPage;
+  onOpenWhispers?: () => void;
+  onExploreFleet?: () => void;
 }
 
-export const WorkshopSection: React.FC<WorkshopSectionProps> = ({ pageData }) => {
-  const [activeStage, setActiveStage] = useState(0);
-  const [bookingSubmitted, setBookingSubmitted] = useState(false);
-  const [bookingData, setBookingData] = useState({
+export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
+  pageData,
+  onOpenWhispers,
+  onExploreFleet,
+}) => {
+  const [activeStep, setActiveStep] = useState(0);
+  const [inquirySubmitted, setInquirySubmitted] = useState(false);
+  const [inquiryData, setInquiryData] = useState({
     name: '',
     phone: '',
-    vehicleModel: '',
-    serviceType: '100-Point Pre-Purchase Check',
-    preferredDate: '',
+    targetCar: 'Toyota Land Cruiser Prado TX-L',
+    maxBudgetKes: '3,800,000',
+    preferredYear: '2018 - 2019',
+    fuelPreference: 'Petrol / Hybrid',
+    notes: '',
   });
 
-  const stages = [
+  // The 6-Stage Japanese Direct Import Protocol
+  const importSteps = [
     {
-      id: 'fluids',
-      icon: Droplet,
-      title: 'Oil & Fluids Service',
-      tagline: '100% Castrol EDGE Fully Synthetic',
-      description: 'We drain and replace engine oil with factory-grade Castrol EDGE synthetic oil (0W-20 or 0W-16). Every car receives a fresh genuine OEM oil filter, fresh sump washer, radiator coolant top-up, and brake fluid boiling point safety certification.',
+      id: 'auction-selection',
+      number: '01',
+      title: 'Tokyo Auction Sourcing & Live Bidding',
+      tagline: 'Access 150,000+ verified vehicles weekly across USS Tokyo, TAA, CAA, and JU',
+      duration: 'Day 1 – 4',
+      badge: 'JAPANESE AUCTION HALLS',
+      description:
+        'We connect you directly to the premier Japanese auto auctions (USS Tokyo, TAA Yokohama, CAA Chubu, and ARAI). Every car is personally vetted with its original Japanese auction inspection sheet translated line-by-line before auction day. We lock your maximum bid limit in advance — you never pay a single yen above your agreed budget.',
       checklist: [
-        'Castrol EDGE Titanium fully synthetic engine oil',
-        'Genuine OEM oil filter and fresh copper sump washer',
-        'Brake fluid boiling point digitally tested for thermal safety',
-        'Long-life radiator and hybrid inverter coolant replenished'
-      ]
+        'Live access to 150,000+ weekly lots across USS Tokyo, TAA, CAA, & JAA',
+        'Certified auction grades 4.0, 4.5, 5.0, and S only (zero R/accident cars)',
+        'Full Japanese auction inspector notes translated (undercarriage, tire wear, options)',
+        'Pre-bidding deposit locked with transparent fixed fee structure',
+      ],
+      deliverable: 'Original Japanese Auction Sheet & Translated Condition Dossier',
     },
     {
-      id: 'brakes',
-      icon: Disc,
-      title: 'Brakes & Suspension',
-      tagline: 'Micrometer Disc & Pad Thickness Testing',
-      description: 'All four wheels are removed for digital micrometer measurements against factory tolerances. Any friction pad under 80% life is renewed immediately with OEM-spec ceramic pads. Caliper slide pins are cleaned and treated with high-temp grease.',
+      id: 'pre-export-inspection',
+      number: '02',
+      title: 'Pre-Export JEVIC / QISJ Certification',
+      tagline: 'Mandatory KEBS KS 1515:2000 roadworthiness & verified mileage testing',
+      duration: 'Day 5 – 10',
+      badge: 'YOKOHAMA / KOBE PORT',
+      description:
+        'Before any vehicle is loaded onto an ocean vessel, it undergoes strict pre-shipment inspection in Japan by QISJ (Quality Inspection Services Japan) or JEVIC. They verify genuine odometer readings against national Japanese registration databases, confirm structural chassis integrity, test vehicle emissions, and issue the official certificate required by Kenya Bureau of Standards (KEBS).',
       checklist: [
-        'Rotor disc thickness measured against manufacturer tolerances',
-        'Brake friction pads renewed if under 80% wear threshold',
-        'Electronic parking brake and handbrake torque holding test',
-        'Suspension bushings, tie-rod ends, and shock absorbers checked'
-      ]
+        'QISJ or JEVIC Odometer Certification (zero rollbacks guaranteed)',
+        'KEBS KS 1515:2000 8-year age rule compliance verification',
+        'Radiation level screening and biosecurity chemical wash at port yard',
+        'Acquisition of original Japanese Export Certificate (Massha-sho)',
+      ],
+      deliverable: 'Official QISJ / JEVIC Roadworthiness & Odometer Certificate',
     },
     {
-      id: 'diagnostics',
-      icon: Activity,
-      title: 'Computer Diagnostics',
-      tagline: 'Full OBD-II Electronic Scan',
-      description: 'Factory diagnostic scanners (Toyota Techstream, Nissan Consult, Honda HDS) interrogate all onboard control modules. Engine management, transmission, hybrid system, ABS, and SRS airbags are verified 100% code-free.',
+      id: 'roro-shipping',
+      number: '03',
+      title: 'RoRo Ocean Shipping to Mombasa',
+      tagline: '28 to 35-day voyage on dedicated pure car carriers with full marine transit insurance',
+      duration: 'Day 12 – 40',
+      badge: 'INDIAN OCEAN TRANSIT',
+      description:
+        'Your car is loaded inside dedicated Roll-on/Roll-off (RoRo) pure car carriers operated by top global maritime lines (NYK Line, MOL, or K-Line). Every vehicle is parked inside covered ship decks to protect against ocean salt spray and weather. Comprehensive marine transit insurance covers the vehicle against total loss, damage, or maritime general average from Yokohama to Kilindini Harbour.',
       checklist: [
-        'Zero active or pending Diagnostic Trouble Codes (DTCs)',
-        'Live air-fuel ratio and oxygen sensor performance sweep',
-        'Variable valve timing (VVT-i) electronic test',
-        'Electronic throttle body cleaned and idle baseline recalibrated'
-      ]
+        'Covered internal ship deck parking on pure car carriers (NYK / MOL / K-Line)',
+        'Full marine cargo transit insurance (CIF coverage to Port of Mombasa)',
+        'Real-time vessel tracking via AIS satellite transponder',
+        'Original Bill of Lading (B/L) issued and dispatched via international courier',
+      ],
+      deliverable: 'Original Ocean Bill of Lading (B/L) & Marine Insurance Certificate',
     },
     {
-      id: 'hybrid',
-      icon: BatteryCharging,
-      title: 'Hybrid & Battery Test',
-      tagline: 'Cell-Level Voltage & Health Certification',
-      description: 'For hybrid and e-POWER vehicles, high-voltage traction battery packs undergo dynamic load testing under acceleration. Individual block voltages are balanced and the internal cooling fan duct is cleaned to prevent thermal throttling in coastal heat.',
+      id: 'port-clearance',
+      number: '04',
+      title: 'Mombasa Port & KRA Customs Clearing',
+      tagline: 'Transparent CRSP valuation, duty payment, and licensed CFS handling',
+      duration: 'Day 41 – 47',
+      badge: 'KILINDINI HARBOUR / CFS',
+      description:
+        'Upon arrival at the Port of Mombasa, our in-house licensed clearing agents lodge the customs entry on KRA Simba / iCMS. Duty is assessed transparently against the published KRA Current Retail Selling Price (CRSP) schedule without arbitrary markups. We settle Port Authority (KPA) wharfage, CFS terminal handling, and radiation clearance smoothly to avoid costly demurrage.',
       checklist: [
-        'High-voltage traction battery verified above 90% benchmark',
-        'Battery cooling fan duct cleared of Japanese road lint',
-        'Inverter high-voltage insulation and water pump tested',
-        '12V auxiliary starter battery cold-cranking amp (CCA) certified'
-      ]
+        'KRA Customs declaration lodged via iCMS / Simba system',
+        'Accurate duty assessment using official KRA CRSP schedule',
+        'KPA port handling, CFS gate charges, and terminal fees cleared',
+        'Zero demurrage guarantee through pre-arrival documentation lodging',
+      ],
+      deliverable: 'KRA Customs Clearance Entry, Payment Receipts & Port Gate Pass',
     },
     {
-      id: 'climate',
-      icon: Wind,
-      title: 'Air Conditioning & Filters',
-      tagline: 'Sub-6°C Vent Output & Fresh Cabin Air',
-      description: 'Engine air intake filter renewed for optimum combustion and fuel economy. Activated carbon cabin filter fitted to eliminate dust and pollen. Air conditioning compressor pressure and refrigerant levels tested to guarantee ice-cold performance.',
+      id: 'ntsa-registration',
+      number: '05',
+      title: 'NTSA Inspection & Registration (KDx Series)',
+      tagline: 'Official TIMS inspection, new generation metallic number plates & logbook transfer',
+      duration: 'Day 48 – 50',
+      badge: 'NTSA PORTAL REGISTRATION',
+      description:
+        'The vehicle is presented for physical inspection by the National Transport and Safety Authority (NTSA) at the Mombasa inspection center. We process the latest KDx series metallic number plates, secure the third license sticker, and facilitate the electronic logbook transfer directly into your personal or corporate eCitizen TIMS account.',
       checklist: [
-        'Fresh OEM engine air filter installed',
-        'New activated carbon cabin micro-filter fitted',
-        'AC compressor pressure and R134a refrigerant charge tested',
-        'Center vent output temperature confirmed below 6°C at maximum cooling'
-      ]
+        'Physical NTSA vehicle inspection clearance',
+        'Allocation of latest KDx series metallic number plates',
+        'Third license sticker mounted on front windscreen',
+        'Direct online logbook transfer to your eCitizen / TIMS account',
+      ],
+      deliverable: 'Original NTSA Logbook & KDx Series Number Plates',
     },
     {
-      id: 'detailing',
-      icon: Sparkles,
-      title: 'Decontamination & Detailing',
-      tagline: 'Deep Steam Extraction & Carnauba Sealant',
-      description: 'After ocean transit from Yokohama or Kobe, each vehicle receives a multi-stage paint decontamination, clay bar smoothing, protective carnauba paint sealant, and deep steam extraction across all upholstery and floor carpets.',
+      id: 'handover-delivery',
+      number: '06',
+      title: '100-Point Overhaul & Nationwide Delivery',
+      tagline: 'Fresh Castrol synthetic fluids, OBD scan, detailing, and showroom collection or carrier drop',
+      duration: 'Day 51 – 52',
+      badge: 'GANJONI SHOWROOM / DOOR-TO-DOOR',
+      description:
+        'Before you drive away, your vehicle arrives at our technical workshop next to Ganjoni Primary School, Mombasa. Our certified technicians execute a 100-point mechanical overhaul: fresh Castrol EDGE synthetic oil, OEM filters, hybrid battery diagnostics, and deep steam extraction detailing. Collect your keys in Mombasa or receive flatbed carrier delivery straight to Nairobi, Kisumu, Eldoret, or Nakuru.',
       checklist: [
-        'Multi-stage paint decontamination and industrial fallout removal',
-        'Hand machine buff and protective paint sealant applied',
-        'Deep steam extraction across seats, headliner, and carpets',
-        'Matte UV conditioner applied to dashboard and weather seals'
-      ]
-    }
+        '100-point bumper-to-bumper mechanical and electrical overhaul',
+        'Fresh Castrol EDGE synthetic engine oil and genuine OEM filter',
+        'Deep steam detailing, paint sealant, and interior sanitization',
+        'Collection at our Mombasa showroom or flatbed carrier delivery nationwide',
+      ],
+      deliverable: 'Signed 100-Point Inspection Dossier & Clean Vehicle Handover',
+    },
   ];
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
+  const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Persist to CMS Leads database
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: inquiryData.name,
+        phone: inquiryData.phone,
+        vehicleName: inquiryData.targetCar,
+        type: 'custom-import',
+        status: 'new',
+        notes: `Custom Import Request: Budget KES ${inquiryData.maxBudgetKes}, Preferred Year: ${inquiryData.preferredYear}, Fuel: ${inquiryData.fuelPreference}. Notes: ${inquiryData.notes}`,
+      }),
+    }).catch(() => {});
+
+    // Open formatted WhatsApp message
     const msg = encodeURIComponent(
-      `Hello Alberka Enterprises Workshop, my name is ${bookingData.name} (${bookingData.phone}). I would like to book a ${bookingData.serviceType} for my vehicle (${bookingData.vehicleModel}) on ${bookingData.preferredDate || 'the earliest available date'}.`
+      `Hello Alberka Motors Concierge, my name is ${inquiryData.name} (${inquiryData.phone}).\n\nI would like to inquire about importing on order:\n• Vehicle: ${inquiryData.targetCar}\n• Target Year: ${inquiryData.preferredYear}\n• Budget: KES ${inquiryData.maxBudgetKes}\n• Fuel: ${inquiryData.fuelPreference}\n${inquiryData.notes ? `• Special Notes: ${inquiryData.notes}\n` : ''}\nPlease share the latest Tokyo auction options and estimated CIF Mombasa breakdown.`
     );
     window.open(`https://wa.me/254180423075?text=${msg}`, '_blank');
-    setBookingSubmitted(true);
+    setInquirySubmitted(true);
   };
 
   return (
-    <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-zinc-900 relative">
-      <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 relative z-10">
+    <section className="w-full bg-[#f8f9fa] py-16 sm:py-24 px-4 sm:px-8 text-zinc-900 relative">
+      <div className="max-w-[1280px] mx-auto space-y-16 sm:space-y-20 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-[800px] mx-auto space-y-3">
+        <div className="text-center max-w-[840px] mx-auto space-y-3.5">
           <div className="inline-flex items-center gap-2">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
-              {pageData?.badge || 'TECHNICAL WORKSHOP · TANGANA ROAD'}
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold">
+              {pageData?.badge || 'DIRECT JAPANESE SOURCING · PORT OF MOMBASA'}
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
-            {pageData?.heroTitle || 'Workshop Preparation & 5,000 KM Warranty'}
+            {pageData?.heroTitle || 'The Direct Japanese Import Process'}
           </h1>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
-            {pageData?.heroSubtitle || 'We never outsource technical preparation. Every vehicle arriving from the port of arrival undergoes an in-house 100-point mechanical overhaul before delivery.'}
+            {pageData?.heroSubtitle || 'From Tokyo auction halls to Kilindini Harbour customs clearance and nationwide handover. Zero broker markups, genuine auction sheets, and complete transparency.'}
           </p>
         </div>
 
-        {/* Widescreen Workshop Stage */}
-        <div className="space-y-8">
-          <div className="w-full aspect-[16/9] sm:aspect-[21/9.5] max-h-[540px] overflow-hidden relative bg-zinc-900 border border-zinc-200 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover">
+        {/* Cinematic Cinema Stage — Mobile Responsive Aspect Ratio */}
+        <div className="space-y-6">
+          <div className="w-full aspect-[4/3] xs:aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] min-h-[260px] sm:min-h-0 max-h-[520px] overflow-hidden relative bg-zinc-950 border border-zinc-200/90 rounded-2xl shadow-xl group">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover scale-100 group-hover:scale-102 transition-transform duration-700 ease-out"
+              poster="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            >
               <source src="https://videos.pexels.com/video-files/5309381/5309381-hd_1920_1080_25fps.mp4" type="video/mp4" />
-              <img src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Workshop bay" className="w-full h-full object-cover" />
+              <img src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Japanese RoRo shipping and vehicle inspection" className="w-full h-full object-cover" />
             </video>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 sm:p-10 pointer-events-none">
-              <div className="text-left text-zinc-950 max-w-[620px] space-y-1">
-                <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest block">
-                  INSPECTION BAY 01
+            {/* Subtle Gradient Scrim for Legible Typography on all Devices */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex flex-col justify-end p-4 sm:p-8 md:p-10 pointer-events-none">
+              <div className="text-left max-w-2xl space-y-1.5 drop-shadow-md">
+                <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest font-bold block">
+                  TOKYO AUCTION TO KILINDINI HARBOUR · 28-DAY SEA TRANSIT
                 </span>
-                <p className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
-                  100-Point Pre-Delivery Overhaul & Signed Verification Certificate
+                <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                  Verified Japanese Imports Delivered Directly to Your Hands
+                </h2>
+                <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed max-w-xl hidden xs:block font-normal">
+                  Every vehicle is inspected on Japanese soil, shipped in covered pure car carriers, cleared directly through KRA customs, and fully overhauled at our Mombasa facility.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Architectural Metric Matrix (Clean Hairline Dividers) */}
-          <div className="border-y border-zinc-200 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
+          {/* Key Import Pillars Matrix (Apple Design System Soft Clean Strip) */}
+          <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)] grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">SERVICE DURATION</span>
-              <span className="text-base sm:text-lg font-bold text-zinc-950 block">48-Hour Protocol</span>
-              <span className="text-xs text-zinc-600">Zero rushed handovers</span>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">WEEKLY AUCTION FLEET</span>
+              <span className="text-base sm:text-xl font-bold text-zinc-950 block">150,000+ Cars</span>
+              <span className="text-xs text-zinc-600">USS Tokyo, TAA, CAA, JU</span>
             </div>
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">ENGINE OIL</span>
-              <span className="text-base sm:text-lg font-bold text-zinc-950 block">Castrol Full Synthetic</span>
-              <span className="text-xs text-zinc-600">OEM genuine filter</span>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">OCEAN TRANSIT DURATION</span>
+              <span className="text-base sm:text-xl font-bold text-zinc-950 block">28 – 35 Days</span>
+              <span className="text-xs text-zinc-600">Yokohama/Kobe to Mombasa</span>
             </div>
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">WRITTEN WARRANTY</span>
-              <span className="text-base sm:text-lg font-bold text-zinc-950 block">5,000 KM Written</span>
-              <span className="text-xs text-zinc-600">Engine & transmission</span>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">EXPORT VERIFICATION</span>
+              <span className="text-base sm:text-xl font-bold text-zinc-950 block">100% QISJ / JEVIC</span>
+              <span className="text-xs text-zinc-600">Certified genuine mileage</span>
             </div>
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">INSPECTION MARKS</span>
-              <span className="text-base sm:text-lg font-bold text-zinc-950 block">100 Certified Points</span>
-              <span className="text-xs text-zinc-600">Signed technician report</span>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">CUSTOMS DUTY PRICING</span>
+              <span className="text-base sm:text-xl font-bold text-red-600 block">KRA CRSP Sched.</span>
+              <span className="text-xs text-zinc-600">No arbitrary broker markups</span>
             </div>
           </div>
         </div>
 
-        {/* Interactive 6-Stage Protocol Explorer */}
-        <div className="space-y-6">
-          <div className="max-w-xl space-y-1.5 text-left">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
-              100-POINT CHECKLIST
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-              Pre-Handover Inspection Stages
-            </h2>
-            <p className="text-sm text-zinc-600">
-              Select any stage below to inspect the checklist procedures executed before collection.
-            </p>
+        {/* Interactive 6-Stage Timeline Protocol */}
+        <div className="space-y-6 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
+                STEP-BY-STEP PROVENANCE
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                The 6-Stage Import Timeline
+              </h2>
+              <p className="text-sm text-zinc-600 mt-1">
+                Select any stage to inspect the safeguards, official documentation, and timelines.
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                const el = document.getElementById('custom-import-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-xs font-mono font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 cursor-pointer self-start sm:self-auto"
+            >
+              <span>Calculate Custom Import Quote</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
 
-          {/* Stage Selector Minimalist Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {stages.map((st, i) => {
-              const Icon = st.icon;
-              const isActive = activeStage === i;
+          {/* Minimalist Stage Selector Tabs */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
+            {importSteps.map((step, idx) => {
+              const isActive = activeStep === idx;
               return (
                 <button
-                  key={st.id}
-                  onClick={() => setActiveStage(i)}
-                  className={`p-4 text-left rounded-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-24 border ${
+                  key={step.id}
+                  onClick={() => setActiveStep(idx)}
+                  className={`p-3.5 text-left rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between h-24 border ${
                     isActive
-                      ? 'bg-zinc-100 border-white text-zinc-950 shadow-lg'
-                      : 'bg-zinc-50 border-zinc-200 text-zinc-600 hover:text-zinc-950 hover:border-white/25'
+                      ? 'bg-white border-zinc-950 text-zinc-950 shadow-md ring-1 ring-zinc-950'
+                      : 'bg-white/70 border-zinc-200 text-zinc-600 hover:text-zinc-950 hover:bg-white hover:border-zinc-300'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-zinc-950' : 'text-zinc-500'}`} />
-                  <div>
-                    <span className="font-mono text-[10px] text-zinc-500 block">0{i + 1}</span>
-                    <span className="text-xs font-semibold leading-tight line-clamp-1">
-                      {st.title}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] font-bold text-red-600">
+                      STEP {step.number}
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-400">
+                      {step.duration.split(' ')[0]}
                     </span>
                   </div>
+                  <span className="text-xs font-semibold leading-snug line-clamp-2">
+                    {step.title.split('&')[0]}
+                  </span>
                 </button>
               );
             })}
           </div>
 
-          {/* Active Stage Detailed Breakdown */}
-          <div className="relative bg-white backdrop-blur-[2px] p-6 sm:p-8 border border-zinc-200 rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.35)]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-zinc-200">
-              <div>
-                <div className="inline-flex items-center gap-2 mb-1">
-                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest font-semibold">
-                    STAGE 0{activeStage + 1} OF 06
+          {/* Active Stage Detailed Breakdown Box */}
+          <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 border-b border-zinc-100">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[10px] text-red-600 font-bold uppercase tracking-widest">
+                    STAGE {importSteps[activeStep].number} OF 06 · {importSteps[activeStep].badge}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">{stages[activeStage].title}</h3>
-                <p className="text-xs sm:text-sm text-zinc-600 mt-0.5">{stages[activeStage].tagline}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+                  {importSteps[activeStep].title}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-500 font-mono">
+                  Standard Timeline: <span className="font-bold text-zinc-900">{importSteps[activeStep].duration}</span>
+                </p>
               </div>
-              <div className="font-mono text-[10.5px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-md w-fit flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>MANDATORY HANDOVER PASS</span>
+
+              <div className="font-mono text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg w-fit flex items-center gap-1.5 shrink-0">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span>100% VERIFIED PROTOCOL</span>
               </div>
             </div>
 
-            <p className="text-sm text-zinc-700 leading-relaxed max-w-3xl">
-              {stages[activeStage].description}
+            <p className="text-sm sm:text-[15px] text-zinc-700 leading-relaxed max-w-3xl font-normal">
+              {importSteps[activeStep].description}
             </p>
 
-            <div className="pt-2">
-              <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-600 block mb-3 font-semibold">
-                EXECUTION PROCEDURES:
+            <div className="space-y-3 pt-2">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 block font-bold">
+                KEY SAFEGUARDS & ACTIONS:
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {stages[activeStage].checklist.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
-                    <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
+                {importSteps[activeStep].checklist.map((item, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Official Documentation Pass */}
+            <div className="mt-4 pt-4 border-t border-zinc-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs bg-zinc-50 p-4 rounded-xl border border-zinc-200/80">
+              <div className="flex items-center gap-2">
+                <FileCheck2 className="w-4 h-4 text-red-600 shrink-0" />
+                <span className="font-semibold text-zinc-900">Official Document Issued:</span>
+                <span className="text-zinc-600 font-mono">{importSteps[activeStep].deliverable}</span>
+              </div>
+              <span className="font-mono text-[11px] text-zinc-500">Provided to client at handover</span>
+            </div>
           </div>
         </div>
 
-        {/* 5,000 KM Warranty Section */}
-        <div className="relative bg-zinc-50 p-8 sm:p-10 border border-zinc-200 rounded-2xl space-y-8 text-left">
+        {/* Transparent Cost Breakdown & Kenya Import Duty Guide */}
+        <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-10 space-y-8 text-left shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
           <div className="max-w-2xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
-              WRITTEN WARRANTY
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold block">
+              TAX & DUTY TRANSPARENCY
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-              5,000 KM Dealer Written Warranty
-            </h2>
+            <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+              How Kenyan Import Duty & Costs Are Calculated
+            </h3>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              Every passenger car sold by Alberka Enterprises comes with a formal written warranty valid for 5,000 km or 90 days from handover.
+              We operate with 100% open accounting. Unlike street brokers who add arbitrary "clearing fees," every Kenyan tax component is derived strictly from KRA published CRSP valuations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-zinc-200">
-            <div className="space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-950 font-bold flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-zinc-950" />
-                Covered Mechanical Components
-              </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
-                <li>• Engine cylinder block, head, valves, pistons, and camshaft</li>
-                <li>• Automatic transmission, torque converter, and CVT assembly</li>
-                <li>• Hybrid electric drive motor, reduction gear, and inverter circuit</li>
-                <li>• Starter motor, alternator charging system, and engine water pump</li>
-              </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-red-600 block">01 · IMPORT DUTY</span>
+              <span className="text-2xl font-black text-zinc-950 font-mono block">25%</span>
+              <p className="text-xs text-zinc-600 leading-relaxed">
+                Calculated on the KRA Current Retail Selling Price (CRSP) after legal age depreciation deductions.
+              </p>
             </div>
 
-            <div className="space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-950 font-bold flex items-center gap-2">
-                <FileCheck className="w-4 h-4 text-zinc-950" />
-                Client Privileges
-              </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-zinc-600">
-                <li>• Free 2,500 km intermediate fluid check at our showroom</li>
-                <li>• Direct WhatsApp support with our senior workshop technician</li>
-                <li>• Priority access to genuine Japanese spare parts at dealer wholesale rates</li>
-                <li>• Official inspection handover certificate signed by our head technician</li>
-              </ul>
+            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-red-600 block">02 · EXCISE DUTY</span>
+              <span className="text-2xl font-black text-zinc-950 font-mono block">20% – 35%</span>
+              <p className="text-xs text-zinc-600 leading-relaxed">
+                20% for engines under 1,500cc; 25% for 1,500cc – 2,500cc; 35% for high-displacement & luxury luxury SUVs.
+              </p>
+            </div>
+
+            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-red-600 block">03 · VALUE ADDED TAX</span>
+              <span className="text-2xl font-black text-zinc-950 font-mono block">16% VAT</span>
+              <p className="text-xs text-zinc-600 leading-relaxed">
+                Applied on Customs Value + Import Duty + Excise Duty per Kenya Revenue Authority tax statutes.
+              </p>
+            </div>
+
+            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-red-600 block">04 · LEVIES & NTSA</span>
+              <span className="text-2xl font-black text-zinc-950 font-mono block">IDF + RDL</span>
+              <p className="text-xs text-zinc-600 leading-relaxed">
+                3.5% Import Declaration Fee + 2.0% Railway Development Levy + standard NTSA number plate registration.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Service Booking Form */}
-        <div className="relative bg-white backdrop-blur-[2px] p-8 sm:p-10 border border-zinc-200 rounded-2xl space-y-6 text-left shadow-[0_16px_40px_rgba(0,0,0,0.35)] before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent">
-          <div className="max-w-xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
-              SCHEDULE APPOINTMENT
+        {/* Required Documents Checklist for Buyers */}
+        <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-6 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-zinc-500 font-semibold block mb-0.5">
+                CLEARANCE PREREQUISITES
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-zinc-950">
+                Documents You Need to Provide
+              </h3>
+            </div>
+            <span className="font-mono text-xs text-emerald-700 bg-emerald-100/60 px-3 py-1 rounded-md border border-emerald-200 font-semibold w-fit">
+              Simple 3-Item Client Checklist
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">Book a Workshop Inspection</h3>
-            <p className="text-xs sm:text-sm text-zinc-600">
-              Open to Alberka owners and pre-purchase vehicle inspections with our team.
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white border border-zinc-200 rounded-xl p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+                1
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-zinc-950">KRA PIN Certificate</h4>
+                <p className="text-xs text-zinc-600 mt-0.5">Required for Simba / iCMS customs clearance and eCitizen duty payment receipts.</p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-zinc-200 rounded-xl p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+                2
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-zinc-950">National ID or Passport</h4>
+                <p className="text-xs text-zinc-600 mt-0.5">Valid government identification for NTSA TIMS motor vehicle registration.</p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-zinc-200 rounded-xl p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+                3
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-zinc-950">eCitizen TIMS Account</h4>
+                <p className="text-xs text-zinc-600 mt-0.5">Your personal or company eCitizen profile where the digital logbook is transferred.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Custom Import on Order Consultation Form */}
+        <div
+          id="custom-import-form"
+          className="relative bg-white p-8 sm:p-12 border border-zinc-200 rounded-3xl space-y-8 text-left shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
+        >
+          <div className="max-w-2xl space-y-2">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold block">
+              DIRECT AUCTION CONCIERGE
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-bold text-zinc-950 tracking-tight leading-tight">
+              Import Your Dream Japanese Car on Order
+            </h3>
+            <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
+              Tell our Mombasa desk what make, model, year, and trim you desire. We will pull current live Tokyo auction sales data, verify typical winning bid prices, and provide a full landed cost estimate to Port of Mombasa.
             </p>
           </div>
 
-          {bookingSubmitted ? (
-            <div className="bg-zinc-100 border border-emerald-500/40 p-8 text-center text-zinc-950 space-y-2 rounded-xl">
-              <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-emerald-400" />
-              <h4 className="text-lg font-bold">Booking Request Dispatched</h4>
-              <p className="text-xs sm:text-sm text-zinc-600">Our technical desk is opening your WhatsApp message now.</p>
+          {inquirySubmitted ? (
+            <div className="bg-emerald-50 border border-emerald-200 p-8 text-center text-zinc-950 space-y-3 rounded-2xl">
+              <CheckCircle2 className="w-10 h-10 mx-auto text-emerald-600" />
+              <h4 className="text-xl font-bold">Import Inquiry Dispatched Successfully</h4>
+              <p className="text-sm text-zinc-600 max-w-lg mx-auto">
+                Our Mombasa import desk is reviewing your requirements on WhatsApp right now. We will send matching auction lots and full landed cost sheets within 1 hour.
+              </p>
+              <button
+                onClick={() => setInquirySubmitted(false)}
+                className="mt-4 text-xs font-mono font-bold text-red-600 hover:text-red-700 underline cursor-pointer"
+              >
+                Submit another vehicle request
+              </button>
             </div>
           ) : (
-            <form onSubmit={handleBookingSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <form onSubmit={handleInquirySubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Your Name</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                    Your Full Name
+                  </label>
                   <input
                     type="text"
                     required
-                    value={bookingData.name}
-                    onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
-                    placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    value={inquiryData.name}
+                    onChange={(e) => setInquiryData({ ...inquiryData, name: e.target.value })}
+                    placeholder="e.g. Dr. Samuel Karani"
+                    className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Phone Number (WhatsApp)</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                    WhatsApp Phone Number
+                  </label>
                   <input
                     type="tel"
                     required
-                    value={bookingData.phone}
-                    onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
+                    value={inquiryData.phone}
+                    onChange={(e) => setInquiryData({ ...inquiryData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm font-mono text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Service Type</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                    Target Vehicle Model
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={inquiryData.targetCar}
+                    onChange={(e) => setInquiryData({ ...inquiryData, targetCar: e.target.value })}
+                    placeholder="e.g. Toyota Prado TX / Mazda CX-5"
+                    className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                <div>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                    Target Budget (KES Delivered)
+                  </label>
+                  <input
+                    type="text"
+                    value={inquiryData.maxBudgetKes}
+                    onChange={(e) => setInquiryData({ ...inquiryData, maxBudgetKes: e.target.value })}
+                    placeholder="e.g. 3,500,000"
+                    className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm font-mono text-zinc-950 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                    Preferred Model Year
+                  </label>
                   <select
-                    value={bookingData.serviceType}
-                    onChange={(e) => setBookingData({ ...bookingData, serviceType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
+                    value={inquiryData.preferredYear}
+                    onChange={(e) => setInquiryData({ ...inquiryData, preferredYear: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-950 focus:outline-none focus:border-red-600 focus:bg-white transition-colors cursor-pointer"
                   >
-                    <option value="100-Point Pre-Purchase Check">100-Point Pre-Purchase Check</option>
-                    <option value="5,000 km Periodic Service">5,000 KM Routine Service</option>
-                    <option value="Computerized OBD-II Diagnostic Scan">Computerized OBD-II Diagnostic Scan</option>
-                    <option value="Hybrid Battery Health Assessment">Hybrid Battery Health Assessment</option>
-                    <option value="Deep Steam Detailing & Polish">Deep Steam Detailing & Polish</option>
+                    <option value="2018 - 2019">2018 – 2019 (Max 8-Year KEBS Rule)</option>
+                    <option value="2020 - 2021">2020 – 2021 (Modern Low Mileage)</option>
+                    <option value="2022 - 2023">2022 – 2023 (Near-New / Executive)</option>
+                    <option value="2024 - 2025">2024 – 2025 (Latest Facelift)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                    Drivetrain / Fuel
+                  </label>
+                  <select
+                    value={inquiryData.fuelPreference}
+                    onChange={(e) => setInquiryData({ ...inquiryData, fuelPreference: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-950 focus:outline-none focus:border-red-600 focus:bg-white transition-colors cursor-pointer"
+                  >
+                    <option value="Petrol / Hybrid">Hybrid / Self-Charging e:HEV</option>
+                    <option value="Petrol Normal">Petrol (Standard ICE)</option>
+                    <option value="Diesel Turbo">Diesel Turbo (4WD / SUV)</option>
+                    <option value="Full Electric">Full Electric (EV)</option>
                   </select>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Car Model & Reg</label>
-                  <input
-                    type="text"
-                    required
-                    value={bookingData.vehicleModel}
-                    onChange={(e) => setBookingData({ ...bookingData, vehicleModel: e.target.value })}
-                    placeholder="e.g. Toyota RAV4 (KDD 123X)"
-                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Preferred Date</label>
-                  <input
-                    type="date"
-                    value={bookingData.preferredDate}
-                    onChange={(e) => setBookingData({ ...bookingData, preferredDate: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-200 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
-                  />
-                </div>
+              <div>
+                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5 font-bold">
+                  Special Options or Preferences (Optional)
+                </label>
+                <textarea
+                  rows={3}
+                  value={inquiryData.notes}
+                  onChange={(e) => setInquiryData({ ...inquiryData, notes: e.target.value })}
+                  placeholder="e.g. Leather interior, sunroof, 360-degree camera, Pearl White or Black color, under 50,000 km..."
+                  className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:bg-white transition-colors"
+                />
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button type="submit" className="btn-white py-3 px-6 text-xs sm:text-sm font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  <span>Send Booking via WhatsApp</span>
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-8 rounded-xl text-sm inline-flex items-center justify-center gap-2 shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                    <MessageCircle className="w-4 h-4 text-white fill-white" />
+                  </span>
+                  <span>Request Custom Import Quote via WhatsApp</span>
                 </button>
-                <span className="font-mono text-xs text-zinc-500">Workshop Hours: Mon – Sat: 8:00 AM – 6:00 PM</span>
+
+                <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>Showroom Desk: Mon – Sat: 8:00 AM – 6:00 PM</span>
+                </div>
               </div>
             </form>
           )}

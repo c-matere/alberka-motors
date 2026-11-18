@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, MessageCircle, Calendar, FileText, Phone, Mail, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
@@ -7,6 +7,7 @@ interface WhispersDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   vehicles: Vehicle[];
+  initialVehicleId?: string;
   onSelectVehicle?: (vehicle: Vehicle) => void;
 }
 
@@ -14,35 +15,62 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
   isOpen,
   onClose,
   vehicles,
+  initialVehicleId,
   onSelectVehicle,
 }) => {
   const [activeTab, setActiveTab] = useState<'viewing' | 'dossier' | 'bidding'>('viewing');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    location: 'Tangana Road Flagship',
-    vehicleId: vehicles[0]?.id || '',
+    location: 'Next to Ganjoni Primary School, Mombasa',
+    vehicleId: initialVehicleId || vehicles[0]?.id || '',
     date: '',
     notes: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (initialVehicleId) {
+      setFormData((prev) => ({ ...prev, vehicleId: initialVehicleId }));
+      setActiveTab('viewing');
+      setIsSubmitted(false);
+    }
+  }, [initialVehicleId, isOpen]);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const selectedCar = vehicles.find((v) => v.id === formData.vehicleId);
-    const carName = selectedCar?.name || 'Selected Vehicle';
+    const carName = selectedCar ? `${selectedCar.year} ${selectedCar.name}` : 'Selected Vehicle';
 
+    // 1. Persist lead directly into Payload CMS database
+    try {
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
+          vehicleName: carName,
+          vehicleStockNo: selectedCar?.stockNo || selectedCar?.sbtStockId || 'N/A',
+          type: activeTab === 'viewing' ? 'test-drive' : activeTab === 'bidding' ? 'custom-import' : 'inquiry',
+          notes: `Showroom: Next to Ganjoni Primary School, Mombasa | Preferred Date: ${formData.date || 'Earliest available'} | Notes: ${formData.notes || 'None'}`,
+        }),
+      }).catch((err) => console.warn('Lead capture:', err));
+    } catch {}
+
+    // 2. Format detailed message for WhatsApp
     let message = '';
     if (activeTab === 'viewing') {
-      message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). I would like to book a test drive for the ${carName} (${selectedCar?.stockNo || ''}) at your ${formData.location} showroom on ${formData.date || 'the earliest available date'}. Notes: ${formData.notes || 'None'}.`;
+      message = `Hello Alberka Motors,\n\nI would like to book a Test Drive / Showroom Viewing:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (${selectedCar?.stockNo || ''}) — KES ${selectedCar?.priceKes.toLocaleString() || ''}\n• Location: Next to Ganjoni Primary School, Mombasa\n• Preferred Date: ${formData.date || 'Earliest available'}\n• Notes: ${formData.notes || 'None'}`;
     } else if (activeTab === 'dossier') {
-      message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). Please send me the authentic Japanese Auction Sheet and export inspection certificate for the ${carName} (${selectedCar?.stockNo || ''}).`;
+      message = `Hello Alberka Motors,\n\nI would like the Japanese Auction Dossier:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Vehicle: ${carName} (${selectedCar?.stockNo || ''})\n• Request: Authentic Japanese Auction Sheet & JEVIC Odometer Certificate`;
     } else {
-      message = `Hello Alberka Enterprises, my name is ${formData.name} (${formData.phone}). I would like to import a specific vehicle on order from Japan: ${formData.notes || carName}.`;
+      message = `Hello Alberka Motors,\n\nI would like to Import on Order from Japan:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Requirements: ${formData.notes || carName}`;
     }
 
+    // 3. Open WhatsApp and transition drawer state
     window.open(`https://wa.me/254180423075?text=${encodeURIComponent(message)}`, '_blank');
     setIsSubmitted(true);
   };
@@ -145,36 +173,36 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Your Full Name</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1 font-semibold">Your Full Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Samuel Karani"
-                    className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">WhatsApp Phone Number</label>
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1 font-semibold">WhatsApp Phone Number</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="07XX XXX XXX"
-                    className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors"
                   />
                 </div>
 
                 {activeTab !== 'bidding' && (
                   <div>
-                    <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Car Model</label>
+                    <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1 font-semibold">Car Model</label>
                     <select
                       value={formData.vehicleId}
                       onChange={(e) => setFormData({ ...formData, vehicleId: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
+                      className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer"
                     >
                       {vehicles.map((v) => (
                         <option key={v.id} value={v.id}>
@@ -188,32 +216,26 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                 {activeTab === 'viewing' && (
                   <>
                     <div>
-                      <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Preferred Showroom</label>
-                      <select
-                        value={formData.location}
-                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors cursor-pointer"
-                      >
-                        <option value="Tangana Road Showroom">Tangana Road Flagship</option>
-                        <option value="Nyali Branch">Nyali Branch</option>
-                        <option value="Westlands Mwanzi Rd">Westlands Mwanzi Rd Hub</option>
-                      </select>
+                      <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1 font-semibold">Showroom Location</label>
+                      <div className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-300 rounded-lg text-[16px] sm:text-sm font-semibold text-zinc-950">
+                        Next to Ganjoni Primary School, Mombasa
+                      </div>
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">Preferred Date</label>
+                      <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1 font-semibold">Preferred Date</label>
                       <input
                         type="date"
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                        className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-950 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors"
                       />
                     </div>
                   </>
                 )}
 
                 <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1">
+                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1 font-semibold">
                     {activeTab === 'bidding' ? 'Car Model & Specifications Desired' : 'Special Notes or Questions'}
                   </label>
                   <textarea
@@ -225,13 +247,15 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                         ? 'e.g. Looking for a 2019 Toyota Prado TX-L White with sunroof, budget KES 5.5M'
                         : 'Any specific requests, financing questions, or trade-in info...'
                     }
-                    className="w-full px-4 py-2.5 bg-zinc-100 border border-white/15 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors"
                   />
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit" className="btn-white w-full py-3 text-xs sm:text-sm justify-center cursor-pointer font-semibold rounded-lg shadow-lg inline-flex items-center gap-2">
-                    <MessageCircle className="w-4 h-4" />
+                  <button type="submit" className="w-full py-3 text-xs sm:text-sm justify-center cursor-pointer font-bold rounded-lg shadow-lg inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white transition-all hover:scale-[1.01] active:scale-98">
+                    <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                      <MessageCircle className="w-4 h-4 text-white fill-white" />
+                    </span>
                     <span>Send via WhatsApp</span>
                   </button>
                 </div>
@@ -241,17 +265,17 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
         </div>
 
         {/* Footer Contact Info */}
-        <div className="p-6 border-t border-zinc-200 bg-zinc-100 space-y-2 text-[13px] text-zinc-700">
+        <div className="p-6 border-t border-zinc-200 bg-zinc-50 space-y-2 text-[13px] text-zinc-700">
           <div className="flex items-center justify-between">
             <span>Direct WhatsApp Helpline:</span>
-            <a href="tel:+254180423075" className="text-zinc-950 font-mono hover:text-zinc-700">0180 423 075</a>
+            <a href="tel:0180423075" className="text-zinc-950 font-bold font-mono hover:text-red-600">0180 423 075</a>
           </div>
           <div className="flex items-center justify-between">
-            <span>Executive Branch Line:</span>
-            <a href="tel:+254180423075" className="text-zinc-950 font-mono hover:text-zinc-700">0180 423 075</a>
+            <span>Showroom Desk:</span>
+            <span className="text-zinc-950 font-semibold">Mon – Sat: 8AM – 6PM</span>
           </div>
-          <div className="text-[11px] text-zinc-600 pt-1">
-            Tangana Rd Flagship · Mwanzi Rd, Westlands
+          <div className="text-[11px] text-zinc-600 pt-1 font-mono">
+            Showroom: Next to Ganjoni Primary School, Mombasa
           </div>
         </div>
 

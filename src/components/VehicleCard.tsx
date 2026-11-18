@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { Bookmark, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Calendar, Cog, Compass, Fuel, Users, Gauge, MessageCircle, Bookmark } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useScrollReveal } from '../hooks/useAnimations';
+import { getVehiclePricing } from '../data/modelHubs';
 
 interface VehicleCardProps {
   vehicle: Vehicle;
   isFavorite: boolean;
   onToggleFavorite: (id: string) => void;
   onSelect: (vehicle: Vehicle) => void;
+  onInquire?: (vehicle: Vehicle) => void;
   disableScrollReveal?: boolean;
   staggerIndex?: number;
 }
@@ -17,6 +19,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   isFavorite,
   onToggleFavorite,
   onSelect,
+  onInquire,
   disableScrollReveal = false,
   staggerIndex = 0,
 }) => {
@@ -26,129 +29,249 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   const delays = ['', 'delay-75', 'delay-150', 'delay-225'];
   const delayClass = delays[staggerIndex % 4] || '';
 
-  // Curated 2-angle studio suite: Exterior Stance & Interior Cabin
-  const cardImages = [
-    { url: vehicle.heroImage, label: 'Exterior' },
-    ...(vehicle.gallery[1] ? [{ url: vehicle.gallery[1].url, label: 'Cabin' }] : []),
-  ];
+  const pricing = getVehiclePricing(vehicle);
 
-  const [activeImageIdx, setActiveImageIdx] = useState(0);
+  // Extract Make and Model cleanly
+  const parts = vehicle.name.trim().split(' ');
+  const make = parts[0] || 'TOYOTA';
+  const model = parts.slice(1).join(' ') || vehicle.name;
 
-  // Punchy powertrain description for luxury specification
-  const getPowertrainBadge = (v: Vehicle) => {
-    if (v.id === 'toyota-rav4-adventure') return '2.0L Petrol AWD';
-    if (v.id === 'toyota-harrier-hybrid') return '2.5L Hybrid AWD';
-    if (v.id === 'nissan-serena-highway-star') return '1.2L e-POWER';
-    if (v.id === 'nissan-note-epower') return '1.2L e-POWER';
-    const eng = v.engine.split(' ')[0] || '';
-    const isHyb = v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power');
-    const isAwd = v.drivetrain.includes('AWD') || v.drivetrain.includes('4WD');
-    return `${eng} ${isHyb ? 'Hybrid' : 'Petrol'} ${isAwd ? 'AWD' : '2WD'}`.trim();
+  // Extract Engine Displacement (e.g. 2.7L, 3.0L, 2.5L)
+  const getDisplacement = (engineStr: string) => {
+    if (!engineStr) return '2.0L';
+    const match = engineStr.match(/(\d+\.?\d*)\s*(L|cc)/i);
+    if (match) {
+      if (match[2].toLowerCase() === 'cc') {
+        const cc = parseFloat(match[1]);
+        return `${(cc / 1000).toFixed(1)}L`;
+      }
+      return `${match[1]}L`;
+    }
+    const firstWord = engineStr.split(' ')[0];
+    if (firstWord && /\d/.test(firstWord)) return firstWord;
+    return '2.0L';
+  };
+
+  // Extract Transmission
+  const getTransmission = (trans: string) => {
+    if (!trans) return 'Automatic';
+    const t = trans.toLowerCase();
+    if (t.includes('auto') || t.includes('at') || t.includes('cvt')) return 'Automatic';
+    if (t.includes('manual')) return 'Manual';
+    return trans;
+  };
+
+  // Extract Drivetrain
+  const getDrivetrain = (drive: string) => {
+    if (!drive) return '4WD';
+    const d = drive.toUpperCase();
+    if (d.includes('4WD')) return '4WD';
+    if (d.includes('AWD')) return 'AWD';
+    if (d.includes('2WD') || d.includes('FWD')) return '2WD';
+    return drive;
+  };
+
+  const handleInquire = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const text = encodeURIComponent(
+      `Hello Alberka Motors, I am inquiring about the ${vehicle.year} ${vehicle.name} (Ref: ${vehicle.stockNo || vehicle.sbtStockId || vehicle.modelCode}), priced at KES ${vehicle.priceKes.toLocaleString()}. Please share viewing details.`
+    );
+    window.open(`https://wa.me/254180423075?text=${text}`, '_blank');
   };
 
   return (
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`group relative bg-white hover:bg-zinc-50/90 border border-zinc-200/90 hover:border-zinc-400 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] cursor-pointer select-none overflow-hidden ${
+      className={`bg-white border border-zinc-200/90 hover:border-zinc-300 rounded-2xl shadow-[0_2px_8px_-1px_rgba(0,0,0,0.05),0_1px_3px_0_rgba(0,0,0,0.03)] hover:shadow-[0_14px_28px_-6px_rgba(0,0,0,0.07),0_3px_10px_-2px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden cursor-pointer flex flex-col justify-between ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
+      {/* Hover Ambient Gradient */}
+      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-red-600/[0.04] via-transparent to-red-600/[0.02]" />
+
       <div>
-        {/* Widescreen 16:10 Theatrical Media Aperture */}
-        <div 
-          onMouseEnter={() => cardImages[1] && setActiveImageIdx(1)}
-          onMouseLeave={() => setActiveImageIdx(0)}
-          className="w-full aspect-[16/10.4] overflow-hidden bg-zinc-100 border border-zinc-200/80 mb-4 relative rounded-xl transition-colors"
-        >
-          {/* Smooth Crossfade Media */}
-          {cardImages.map((img, idx) => (
+        {/* Media Window */}
+        <div className="relative w-full h-48 sm:h-52 bg-gray-100 overflow-hidden">
+          {/* Top Scrim Gradient */}
+          <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/35 via-black/10 to-transparent z-10 pointer-events-none" />
+
+          {/* Top Left Japanese Provenance Grade Tag */}
+          <div className="absolute top-2.5 left-2.5 z-20 pointer-events-none">
+            <span className="inline-flex items-center rounded-md border px-2 py-0.5 text-[10.5px] font-bold bg-white/95 text-zinc-900 border-gray-200 shadow-sm backdrop-blur-sm">
+              Grade {vehicle.auctionGrade || '4.5'}
+            </span>
+          </div>
+
+          {/* Top Right: Promotional Discount Sticker (Only if vehicle has discount, NO fire emoji) */}
+          {pricing.hasDiscount && (
+            <div className="absolute top-2.5 right-2.5 z-20 pointer-events-none">
+              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10.5px] font-black bg-red-600 text-white shadow-sm uppercase tracking-wider">
+                {pricing.discountPercent}% OFF
+              </span>
+            </div>
+          )}
+
+          {/* Bottom Right "In Stock" Status Badge */}
+          <div className="absolute right-2.5 bottom-2.5 z-20 pointer-events-none">
+            <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-800 border-emerald-200 shadow-sm backdrop-blur-sm">
+              In Stock
+            </span>
+          </div>
+
+          {/* Primary Vehicle Image */}
+          <div className="absolute inset-0 transition-opacity duration-500 opacity-100">
             <img
-              key={img.url}
-              src={img.url}
-              alt={`${vehicle.name} - ${img.label}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out ${
-                idx === activeImageIdx ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
-              }`}
+              src={vehicle.heroImage}
+              alt={`${vehicle.year} ${vehicle.name}`}
               loading="lazy"
+              decoding="async"
+              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
             />
-          ))}
+          </div>
+        </div>
 
-          {/* Discreet Scrim Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none z-10" />
-
-          {/* Top Left: Authentic Japanese Provenance Seal */}
-          <div className="absolute top-3 left-3 z-20 pointer-events-none">
-            <div className="font-mono text-[10.5px] font-bold bg-white text-zinc-950 border border-zinc-300 px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm">
-              <span className="text-zinc-950 font-bold">Grade {vehicle.auctionGrade}</span>
-              <span className="text-zinc-400 font-bold">·</span>
-              <span className="text-zinc-800 font-medium">{vehicle.auctionHall}</span>
+        {/* Content Body */}
+        <div className="p-3.5 sm:p-4">
+          {/* Make, Model & Price Row */}
+          <div className="flex items-start justify-between gap-2.5 mb-3 min-h-[3.25rem]">
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wide truncate mb-0.5">
+                {make}
+              </p>
+              <h3 className="font-bold text-gray-900 text-[14.5px] sm:text-base leading-tight truncate group-hover:text-red-600 transition-colors">
+                {model}
+              </h3>
+            </div>
+            <div className="text-right shrink-0 flex flex-col items-end justify-start">
+              {pricing.hasDiscount && (
+                <span className="text-[11px] font-mono line-through text-gray-400 leading-none">
+                  KES {pricing.originalPrice.toLocaleString()}
+                </span>
+              )}
+              <div className="flex items-baseline justify-end gap-1 mt-0.5">
+                <span className="text-red-600 font-black text-base sm:text-lg font-mono tracking-tight leading-tight">
+                  KES {pricing.currentPrice.toLocaleString()}
+                </span>
+              </div>
+              {pricing.hasDiscount && (
+                <span className="text-[10px] font-mono text-emerald-700 font-bold leading-none mt-0.5">
+                  Save KES {pricing.savingsKes.toLocaleString()}
+                </span>
+              )}
             </div>
           </div>
 
-          {/* Top Right: Minimalist Hairline Bookmark Action */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleFavorite(vehicle.id);
-            }}
-            className={`absolute top-3 right-3 w-9 h-9 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer z-20 backdrop-blur-md shadow-lg hover:scale-105 active:scale-95 ${
-              isFavorite 
-                ? 'bg-zinc-950 text-white font-bold border-zinc-950 opacity-100' 
-                : 'bg-white/90 hover:bg-white text-zinc-600 hover:text-zinc-950 border border-zinc-200 shadow-sm opacity-90 group-hover:opacity-100'
-            }`}
-            aria-label={isFavorite ? 'Remove from saved cars' : 'Save car'}
-            title={isFavorite ? 'Remove from saved cars' : 'Save car'}
-          >
-            <Bookmark className={`w-3.5 h-3.5 transition-transform ${isFavorite ? 'fill-black' : ''}`} />
-          </button>
-
-          {/* Bottom Right: Discreet Multi-Angle Indicator */}
-          {cardImages.length > 1 && (
-            <div className="absolute bottom-2.5 right-3 z-20 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-2 py-1 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
-              {cardImages.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    idx === activeImageIdx ? 'w-4 bg-white' : 'w-1.5 bg-white/30'
-                  }`}
-                />
-              ))}
+          {/* 6-Grid Feature Pills Matrix */}
+          <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
+            {/* 1: Year */}
+            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
+              <Calendar className="text-gray-500 flex-shrink-0" width={14} height={14} />
+              <span className="truncate font-medium">{vehicle.year}</span>
             </div>
-          )}
-        </div>
 
-        {/* Clean Line 1: Year, Mileage, SBT Model Code & Drivetrain */}
-        <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-700 font-medium mb-1.5 flex-wrap">
-          <span className="font-bold text-zinc-950 text-[13px]">{vehicle.year}</span>
-          <span className="text-zinc-400 font-bold">·</span>
-          <span className="text-zinc-800 font-semibold">{vehicle.mileageKm.toLocaleString()} KM</span>
-          <span className="text-zinc-400 font-bold">·</span>
-          <span className="text-zinc-800 font-semibold">{getPowertrainBadge(vehicle)}</span>
-          <span className="text-zinc-400 font-bold">·</span>
-          <span className="bg-zinc-100 text-zinc-800 font-mono text-[10px] font-bold px-1.5 py-0.5 rounded border border-zinc-300">
-            {vehicle.modelCode}
-          </span>
-        </div>
+            {/* 2: Transmission */}
+            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
+              <Cog className="text-gray-500 flex-shrink-0" width={14} height={14} />
+              <span className="truncate font-medium">{getTransmission(vehicle.transmission)}</span>
+            </div>
 
-        {/* Clean Line 2: Vehicle Model Title (Full Model Title, 2 Lines Max) */}
-        <h3 className="text-lg sm:text-[20px] font-bold text-zinc-950 tracking-[-0.025em] leading-snug group-hover:text-red-700 transition-colors line-clamp-2 min-h-[1.75rem] sm:min-h-[2.75rem] mb-2">
-          {vehicle.name}
-        </h3>
+            {/* 3: Drivetrain */}
+            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
+              <Compass className="text-gray-500 flex-shrink-0" width={14} height={14} />
+              <span className="truncate font-medium">{getDrivetrain(vehicle.drivetrain)}</span>
+            </div>
+
+            {/* 4: Fuel */}
+            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
+              <Fuel className="text-gray-500 flex-shrink-0" width={14} height={14} />
+              <span className="truncate font-medium">{vehicle.fuelType}</span>
+            </div>
+
+            {/* 5: Seats */}
+            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
+              <Users className="text-gray-500 flex-shrink-0" width={14} height={14} />
+              <span className="truncate font-medium">{vehicle.seats || 5} Seats</span>
+            </div>
+
+            {/* 6: Engine Displacement */}
+            <div className="flex items-center gap-1.5 text-gray-700 bg-gray-50 rounded px-2 py-1.5 border border-gray-100/80">
+              <Gauge className="text-gray-500 flex-shrink-0" width={14} height={14} />
+              <span className="truncate font-medium">{getDisplacement(vehicle.engine)}</span>
+            </div>
+          </div>
+
+          {/* Action Buttons Row */}
+          <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
+            {/* Send Inquiry via WhatsApp / Drawer */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onInquire) {
+                  onInquire(vehicle);
+                } else {
+                  handleInquire(e);
+                }
+              }}
+              className="flex-1 py-2.5 px-4 text-xs font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm hover:shadow cursor-pointer active:scale-98"
+              title="Send inquiry"
+            >
+              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <MessageCircle width={14} height={14} className="text-white fill-white" />
+              </span>
+              <span>Send Inquiry</span>
+            </button>
+
+            {/* Bookmark Vehicle (Round Button) */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleFavorite(vehicle.id);
+              }}
+              className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer active:scale-95 shrink-0 ${
+                isFavorite
+                  ? 'bg-red-50 text-red-600 border-red-200 shadow-sm'
+                  : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-zinc-200 hover:text-zinc-950'
+              }`}
+              title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+              aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+            >
+              <Bookmark width={14} height={14} className={isFavorite ? 'fill-red-600 text-red-600' : ''} />
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Clean Line 3: Delivered Price & Subtle Exploration Link */}
-      <div className="pt-3.5 mt-2 border-t border-zinc-200 flex items-center justify-between">
-        <div className="flex items-baseline gap-1.5 font-mono">
-          <span className="text-xs text-zinc-600 font-semibold">KES</span>
-          <span className="text-base sm:text-lg font-bold text-zinc-950 tracking-tight">
-            {vehicle.priceKes.toLocaleString()}
-          </span>
-        </div>
-
-        <div className="text-xs font-bold text-zinc-900 group-hover:text-red-600 group-hover:translate-x-0.5 inline-flex items-center gap-1.5 transition-all">
-          <span>Explore</span>
-          <ArrowRight className="w-3.5 h-3.5 text-zinc-900 group-hover:text-red-600" />
+// Animated Loading Skeleton for Vehicle Cards
+export const VehicleCardSkeleton: React.FC = () => {
+  return (
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden animate-pulse shadow-sm flex flex-col justify-between">
+      <div>
+        <div className="relative w-full h-52 sm:h-56 bg-gray-200" />
+        <div className="p-4 space-y-3">
+          <div className="flex items-start justify-between gap-3 min-h-[3.25rem]">
+            <div className="space-y-1.5 flex-1">
+              <div className="h-3 w-16 bg-gray-200 rounded" />
+              <div className="h-4 w-3/4 bg-gray-300 rounded" />
+            </div>
+            <div className="space-y-1 w-24 flex flex-col items-end">
+              <div className="h-5 w-20 bg-gray-300 rounded" />
+              <div className="h-3 w-14 bg-gray-200 rounded" />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-7 bg-gray-100 rounded" />
+            ))}
+          </div>
+          <div className="flex gap-2 pt-3 border-t border-gray-200">
+            <div className="h-9 flex-1 bg-gray-200 rounded" />
+            <div className="h-9 w-9 bg-gray-200 rounded" />
+            <div className="h-9 w-9 bg-gray-200 rounded" />
+          </div>
         </div>
       </div>
     </div>

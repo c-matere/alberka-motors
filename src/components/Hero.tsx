@@ -5,6 +5,7 @@ import {
   VolumeX,
   ArrowRight,
   ShieldCheck,
+  Globe,
   ChevronLeft,
   ChevronRight,
   Maximize2,
@@ -171,9 +172,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
         <div className="flex flex-row items-center justify-center gap-2 sm:gap-2.5 pt-0.5 animate-hero-4 max-w-md mx-auto xs:max-w-none">
           <button
             onClick={onExploreFleet}
-            className="btn-white group py-2 px-3.5 sm:py-2.5 sm:px-5 text-xs sm:text-[13px] rounded-full sm:rounded-lg font-semibold tracking-tight inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+            className="group py-2.5 px-4 sm:py-2.5 sm:px-6 text-xs sm:text-[13.5px] rounded-full sm:rounded-xl font-bold tracking-tight inline-flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-lg bg-red-600 hover:bg-red-700 text-white transition-all hover:scale-105 active:scale-95"
           >
-            <span>{pageData?.ctaText || 'Explore Collection'}</span>
+            <span>{pageData?.ctaText || 'Explore Available Fleet'}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
           
@@ -404,10 +405,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
                 setIsHeroLightboxOpen(false);
                 onExploreFleet();
               }}
-              className="btn-white !py-2.5 !px-5 text-xs font-semibold cursor-pointer"
+              className="bg-red-600 hover:bg-red-700 text-white !py-2.5 !px-5 text-xs font-bold rounded-lg cursor-pointer inline-flex items-center gap-1.5 shadow-md transition-all hover:scale-105 active:scale-95"
             >
-              <span>Explore Full Collection</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              <span>Explore Available Fleet</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </button>
           </div>
         </div>,

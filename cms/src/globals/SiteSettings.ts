@@ -74,12 +74,12 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'mombasaYardAddress',
               type: 'text',
-              defaultValue: 'Tangana Road, Ganjoni, Port Reitz Area, Mombasa, Kenya',
+              defaultValue: 'Next to Ganjoni Primary School, Mombasa, Kenya',
             },
             {
               name: 'nairobiShowroomAddress',
               type: 'text',
-              defaultValue: 'Alberka Plaza, Ngong Road, Nairobi, Kenya',
+              defaultValue: 'Next to Ganjoni Primary School, Mombasa, Kenya',
             },
           ],
         },

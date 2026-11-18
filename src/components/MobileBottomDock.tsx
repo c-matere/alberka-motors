@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Car, Wrench, ArrowLeftRight, Bookmark, MessageCircle, ArrowLeft } from 'lucide-react';
+import { Home, Car, Globe, MapPin, Bookmark, MessageCircle, ArrowLeft } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { BlogPost } from '../data/blogs';
 
@@ -52,9 +52,11 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors.%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedVehicle.name)}%20(${selectedVehicle.stockNo}).`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-semibold"
+            className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-bold shadow-sm"
           >
-            <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+            <span className="animate-whatsapp-vibrate inline-flex items-center justify-center mr-1.5">
+              <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
+            </span>
             <span>WhatsApp Us</span>
           </a>
         </div>
@@ -88,9 +90,11 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20am%20reading%20'${encodeURIComponent(selectedBlogPost.title)}'%20and%20would%20like%20to%20consult%20your%20team.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-semibold"
+            className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-2 !px-3.5 !text-[12px] !rounded-md whitespace-nowrap shrink-0 flex items-center font-bold shadow-sm"
           >
-            <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+            <span className="animate-whatsapp-vibrate inline-flex items-center justify-center mr-1.5">
+              <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
+            </span>
             <span>Consult</span>
           </a>
         </div>
@@ -101,8 +105,8 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
   const navItems = [
     { id: 'overview', label: 'Home', icon: Home },
     { id: 'inventory', label: 'Cars', icon: Car },
-    { id: 'trade-in', label: 'Trade-In', icon: ArrowLeftRight },
-    { id: 'workshop', label: 'Workshop', icon: Wrench },
+    { id: 'workshop', label: 'Import', icon: Globe },
+    { id: 'locations', label: 'Showroom', icon: MapPin },
   ];
 
   return (
@@ -140,27 +144,12 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           <div className="p-0.5 relative">
             <Bookmark className="w-4 h-4 text-zinc-600" />
             {favoritesCount > 0 && (
-              <span className="absolute -top-1 -right-1.5 bg-white text-zinc-950 text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
+              <span className="absolute -top-1 -right-1.5 bg-red-600 text-white text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
                 {favoritesCount}
               </span>
             )}
           </div>
           <span className="text-[10px] font-medium mt-0.5 text-zinc-600">Saved</span>
-        </button>
-
-        {/* Contact WhatsApp */}
-        <button
-          onClick={() => {
-            if (onOpenWhispers) onOpenWhispers();
-            else window.open('https://wa.me/254180423075?text=Hello%20Alberka%20Motors.%20I%20would%20like%20more%20details%20about%20your%20cars.', '_blank');
-          }}
-          className="flex flex-col items-center justify-center py-1 px-2.5 text-zinc-600 hover:text-zinc-950 transition-all cursor-pointer relative"
-          title="Contact Alberka"
-        >
-          <div className="p-0.5 relative">
-            <MessageCircle className="w-4 h-4 text-zinc-300" />
-          </div>
-          <span className="text-[10px] font-medium mt-0.5 text-zinc-300">Contact</span>
         </button>
       </div>
     </div>

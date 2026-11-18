@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  BookOpen,
   ArrowRight,
-  Plus,
+  BookOpen,
   X,
   Search,
-  Sparkles,
-  Calendar,
-  Clock,
-  User,
-  Tag
 } from 'lucide-react';
 import { BlogPost } from '../data/blogs';
 import { SkeletonImage } from './SkeletonImage';
@@ -17,7 +11,7 @@ import { SkeletonImage } from './SkeletonImage';
 interface BlogSectionProps {
   blogs: BlogPost[];
   onSelectPost: (post: BlogPost) => void;
-  onAddPost: (post: BlogPost) => void;
+  onAddPost?: (post: BlogPost) => void;
   onNavigateHome?: () => void;
   onNavigateInventory?: () => void;
 }
@@ -25,38 +19,9 @@ interface BlogSectionProps {
 export const BlogSection: React.FC<BlogSectionProps> = ({
   blogs,
   onSelectPost,
-  onAddPost,
-  onNavigateHome,
-  onNavigateInventory,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isWriteModalOpen, setIsWriteModalOpen] = useState<boolean>(false);
-
-  // Authoring Form State
-  const [formData, setFormData] = useState({
-    title: '',
-    subtitle: '',
-    category: 'Provenance' as BlogPost['category'],
-    authorName: 'Alberka Editorial Desk',
-    authorRole: 'Automotive Intelligence & Research',
-    coverImage: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    readTime: '5 min read',
-    excerpt: '',
-    content: '',
-    tags: 'Japan Auction, Kenya, Maintenance',
-  });
-
-  // Lock scroll when write modal is active
-  useEffect(() => {
-    if (isWriteModalOpen) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = prev;
-      };
-    }
-  }, [isWriteModalOpen]);
 
   const categories = [
     { id: 'all', label: 'All Articles' },
@@ -81,63 +46,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   const featuredArticle = filteredBlogs.find((b) => b.featured) || filteredBlogs[0];
   const standardArticles = filteredBlogs.filter((b) => b.id !== featuredArticle?.id);
 
-  const handleCreateBlog = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.title.trim() || !formData.content.trim()) return;
-
-    const slug = formData.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
-
-    const newPost: BlogPost = {
-      id: `blog-${Date.now()}`,
-      slug: slug || `post-${Date.now()}`,
-      title: formData.title.trim(),
-      subtitle: formData.subtitle.trim() || formData.excerpt.trim(),
-      category: formData.category,
-      coverImage: formData.coverImage.trim(),
-      author: {
-        name: formData.authorName.trim(),
-        role: formData.authorRole.trim(),
-      },
-      publishedDate: new Date().toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      }),
-      readTime: formData.readTime.trim() || '4 min read',
-      excerpt: formData.excerpt.trim() || formData.content.slice(0, 160) + '...',
-      content: formData.content
-        .split('\n\n')
-        .map((p) => p.trim())
-        .filter((p) => p.length > 0),
-      tags: formData.tags
-        .split(',')
-        .map((t) => t.trim())
-        .filter(Boolean),
-      featured: false,
-    };
-
-    onAddPost(newPost);
-    setIsWriteModalOpen(false);
-    onSelectPost(newPost);
-
-    // Reset form
-    setFormData({
-      title: '',
-      subtitle: '',
-      category: 'Provenance',
-      authorName: 'Alberka Editorial Desk',
-      authorRole: 'Automotive Intelligence & Research',
-      coverImage: 'https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      readTime: '5 min read',
-      excerpt: '',
-      content: '',
-      tags: 'Japan Auction, Kenya, Maintenance',
-    });
-  };
-
   return (
     <section className="w-full bg-transparent py-14 sm:py-20 px-4 sm:px-8 text-zinc-900 relative">
       <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
@@ -159,13 +67,9 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => setIsWriteModalOpen(true)}
-              className="btn-white btn-glint py-2.5 px-5 text-xs font-semibold inline-flex items-center gap-2 cursor-pointer shadow-lg hover:scale-102 active:scale-95 transition-all"
-            >
-              <Plus className="w-4 h-4 text-zinc-950" />
-              <span>Write & Publish Article</span>
-            </button>
+            <span className="font-mono text-xs text-zinc-500 bg-zinc-100 border border-zinc-200 px-3 py-1.5 rounded-full">
+              {filteredBlogs.length} Published Articles
+            </span>
           </div>
         </div>
 
@@ -245,7 +149,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     <span>{featuredArticle.readTime}</span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight leading-snug group-hover:text-zinc-200 transition-colors">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight leading-snug group-hover:text-red-600 transition-colors">
                     {featuredArticle.title}
                   </h2>
 
@@ -310,7 +214,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                 </div>
               </div>
 
-              <div className="p-6 pt-0 border-t border-white/[0.06] mt-4 flex items-center justify-between">
+              <div className="p-6 pt-0 border-t border-zinc-100 mt-4 flex items-center justify-between">
                 <span className="text-xs text-zinc-600 font-mono">{article.author.name}</span>
                 <span className="text-xs text-zinc-950 font-bold inline-flex items-center gap-1 group-hover:text-red-600 transition-colors">
                   <span>Read Story</span>
@@ -342,142 +246,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         )}
 
       </div>
-
-      {/* Authoring Modal Studio ("Write Blogs") */}
-      {isWriteModalOpen && (
-        <div 
-          className="fixed inset-0 z-[9999] bg-[#09090b]/95 backdrop-blur-2xl overflow-y-auto p-4 sm:p-8 flex justify-center animate-fadeIn"
-          onClick={() => setIsWriteModalOpen(false)}
-        >
-          <div 
-            className="w-full max-w-2xl bg-white border border-zinc-200 rounded-2xl p-6 sm:p-10 my-auto shadow-2xl space-y-6 text-left animate-scaleIn relative text-zinc-900"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
-              <div className="space-y-0.5">
-                <div className="inline-flex items-center gap-2">
-                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-zinc-600 font-semibold">
-                    EDITORIAL DESK
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-zinc-950">Write & Publish New Article</h3>
-              </div>
-
-              <button
-                onClick={() => setIsWriteModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <form onSubmit={handleCreateBlog} className="space-y-5">
-              <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Article Headline</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. 2026 KRA Valuation Changes on Japanese Imports"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white transition-colors"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Category</label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
-                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white cursor-pointer"
-                  >
-                    <option value="Provenance">Provenance (Auction & Sourcing)</option>
-                    <option value="Engineering">Engineering (Workshop & Mechanics)</option>
-                    <option value="Ownership">Ownership (Maintenance & Care)</option>
-                    <option value="Market Guide">Market Guide (Taxes, Drivetrains & Pricing)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Estimated Read Time</label>
-                  <input
-                    type="text"
-                    value={formData.readTime}
-                    onChange={(e) => setFormData({ ...formData, readTime: e.target.value })}
-                    placeholder="e.g. 5 min read"
-                    className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Subtitle / Key Thesis</label>
-                <input
-                  type="text"
-                  placeholder="A one-sentence non-obvious thesis for the reader..."
-                  value={formData.subtitle}
-                  onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white"
-                />
-              </div>
-
-              <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Cover Image URL</label>
-                <input
-                  type="url"
-                  required
-                  value={formData.coverImage}
-                  onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-black border border-zinc-200 rounded-lg text-[16px] sm:text-sm font-mono text-zinc-700 focus:outline-none focus:border-white"
-                />
-              </div>
-
-              <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">
-                  Article Body (Separate paragraphs with blank lines)
-                </label>
-                <textarea
-                  required
-                  rows={6}
-                  placeholder="Write the full technical article here. Use two line breaks between paragraphs..."
-                  value={formData.content}
-                  onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full p-4 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white leading-relaxed resize-y"
-                />
-              </div>
-
-              <div>
-                <label className="text-[11px] font-mono uppercase text-zinc-600 block mb-1.5">Tags (Comma-separated)</label>
-                <input
-                  type="text"
-                  value={formData.tags}
-                  onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-                  placeholder="e.g. Auction Sheets, Hybrid, Inspection"
-                  className="w-full px-4 py-2 bg-white border border-zinc-300 rounded-lg text-[16px] sm:text-sm text-zinc-950 focus:outline-none focus:border-white font-mono"
-                />
-              </div>
-
-              <div className="pt-2 flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsWriteModalOpen(false)}
-                  className="btn-ghost !text-xs !py-2.5 !px-4 cursor-pointer"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="btn-white !text-xs !py-2.5 !px-5 font-bold cursor-pointer inline-flex items-center gap-2"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-zinc-950" />
-                  <span>Publish to Journal</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
     </section>
   );

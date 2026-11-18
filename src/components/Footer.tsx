@@ -15,13 +15,13 @@ export const Footer: React.FC<FooterProps> = ({
   settings,
 }) => {
   return (
-    <footer className="w-full bg-transparent relative text-zinc-600 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
+    <footer className="w-full bg-white border-t border-zinc-200 relative text-zinc-600 text-xs sm:text-[13px] py-16 px-4 sm:px-8">
       <div className="max-w-[1240px] mx-auto relative z-10">
         
         {/* Disclaimers & Consumer Assurance */}
         <div className="pb-8 mb-10 space-y-2.5 leading-relaxed text-xs text-zinc-600 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
           <p>
-            1. <strong className="text-zinc-950">5,000 KM Written Warranty:</strong> Covers engine internal mechanical components and automatic transmission/transaxle assemblies. Valid for 5,000 kilometers or 90 days from collection date, serviced through our approved workshop at our certified technical workshop.
+            1. <strong className="text-zinc-950">100-Point Pre-Delivery Overhaul:</strong> Every vehicle undergoes comprehensive mechanical inspection, fresh fluids service, filter renewal, and electronic diagnostic scan at our Mombasa workshop prior to client handover.
           </p>
           <p>
             2. <strong className="text-zinc-950">All-Inclusive Delivered Pricing:</strong> All listed prices in Kenya Shillings (KES) include 16% VAT, KRA Import Duty, Excise Duty, and Railway Development Levy. NTSA TIMS logbook transfer executed directly by our conveyancing desk.
@@ -51,12 +51,14 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex items-center gap-3">
             <a
-              href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=Hello%20Alberka%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles.`}
+              href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=Hello%20Alberka%20Motors,%20I%20have%20an%20inquiry%20regarding%20your%20vehicles.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-white py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"
+              className="btn-crimson py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
+              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
+              </span>
               <span>WhatsApp Us ({settings?.phone || '0180 423 075'})</span>
             </a>
           </div>
@@ -97,57 +99,57 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Technical Services</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Import Protocol</h4>
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Certified Workshop Service
+                  Direct Japanese Import Process
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  100-Point Inspection Check
+                  Tokyo Auction Bidding & Sourcing
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  5,000 KM Written Warranty
+                  Mombasa Port & KRA Customs Duty
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('trade-in')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Trade In Your Vehicle
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Custom Japan Auction Orders
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('trade-in')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Bank Finance Estimation
+                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Private Showroom Viewing
                 </button>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Locations</h4>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Official Showroom</h4>
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Tangana Road Flagship
+                  Next to Ganjoni Primary School, Mombasa
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Nyali Links Rd Branch
+                  Customer Inspection & Handover Bay
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Westlands (Mwanzi Rd) Hub
+                  100-Point Mechanical Workshop
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  VIP Test Drive Booking
+                <button onClick={() => onNavigate('locations')} className="text-red-600 hover:text-red-700 font-semibold text-left cursor-pointer transition-colors">
+                  Book Private Test Drive
                 </button>
               </li>
             </ul>
@@ -187,7 +189,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Copyright Strip with Gradient Feather Divider */}
-        <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/[0.08] after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
+        <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-zinc-200 after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
           <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports Since 2000.`}</p>
           <div className="flex items-center gap-3">
             <span>Kenya Nationwide</span>

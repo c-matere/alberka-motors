@@ -44,8 +44,8 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-zinc-950 text-zinc-950 flex items-center justify-center font-bold">
-              <Bookmark className="w-4 h-4 fill-white" />
+            <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold shadow-sm">
+              <Bookmark className="w-4 h-4 fill-white text-white" />
             </div>
             <div>
               <h3 className="font-bold text-base text-zinc-950 leading-tight">
@@ -102,8 +102,8 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                   <span className="font-mono text-xs text-zinc-600 uppercase tracking-wider font-semibold">
                     SIDE-BY-SIDE SPECIFICATION AUDIT
                   </span>
-                  <span className="text-xs font-mono text-emerald-400">
-                    5,000 KM Written Warranty Included
+                  <span className="text-xs font-mono text-emerald-600 font-semibold">
+                    100-Point Pre-Delivery Overhaul Included
                   </span>
                 </div>
 
@@ -112,24 +112,24 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                     {savedVehicles.map((vehicle) => (
                       <div
                         key={vehicle.id}
-                        className="bg-black/60 border border-white/[0.1] rounded-xl p-4 flex flex-col justify-between space-y-4 text-left"
+                        className="bg-zinc-50 border border-zinc-200 hover:border-zinc-300 rounded-xl p-4 flex flex-col justify-between space-y-4 text-left shadow-sm"
                       >
                         <div className="space-y-3">
-                          <div className="w-full aspect-[16/10] overflow-hidden rounded-lg bg-black border border-zinc-200 relative">
+                          <div className="w-full aspect-[16/10] overflow-hidden rounded-lg bg-zinc-900 border border-zinc-200 relative">
                             <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
-                            <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono font-bold border border-white/15 text-zinc-950">
+                            <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono font-bold border border-white/20 text-white">
                               Grade {vehicle.auctionGrade}
                             </div>
                           </div>
 
                           <div>
-                            <span className="font-mono text-[10px] text-zinc-600 uppercase block">
+                            <span className="font-mono text-[10px] text-zinc-600 uppercase block font-semibold">
                               {vehicle.stockNo} · {vehicle.year}
                             </span>
                             <h4 className="text-sm font-bold text-zinc-950 line-clamp-2 mt-0.5">
                               {vehicle.name}
                             </h4>
-                            <p className="font-mono text-base font-bold text-zinc-950 mt-1">
+                            <p className="font-mono text-base font-bold text-red-600 mt-1">
                               KES {vehicle.priceKes.toLocaleString()}
                             </p>
                           </div>
@@ -187,7 +187,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                 {savedVehicles.map((vehicle) => (
                   <div
                     key={vehicle.id}
-                    className="p-3.5 border border-zinc-200 hover:border-white/25 rounded-xl transition-all bg-black/40 hover:bg-black/70 flex items-center justify-between gap-4"
+                    className="p-3.5 border border-zinc-200 hover:border-zinc-300 rounded-xl transition-all bg-zinc-50 hover:bg-zinc-100/80 flex items-center justify-between gap-4 shadow-sm"
                   >
                     <div
                       onClick={() => {
@@ -196,7 +196,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                       }}
                       className="flex items-center gap-3.5 cursor-pointer flex-1 min-w-0"
                     >
-                      <div className="w-20 h-14 overflow-hidden rounded-lg bg-black border border-zinc-200 shrink-0">
+                      <div className="w-20 h-14 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-200 shrink-0">
                         <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                       </div>
                       <div className="min-w-0 text-left">
@@ -208,7 +208,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         <h4 className="text-[14.5px] font-bold text-zinc-950 truncate mt-0.5">
                           {vehicle.name}
                         </h4>
-                        <p className="font-mono text-xs text-zinc-950 font-semibold">
+                        <p className="font-mono text-xs text-red-600 font-bold">
                           KES {vehicle.priceKes.toLocaleString()} · {vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM
                         </p>
                       </div>
@@ -266,7 +266,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
 
         {/* Footer Actions */}
         {savedVehicles.length > 0 && (
-          <div className="p-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:pb-4 border-t border-zinc-200 bg-black/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="p-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:pb-4 border-t border-zinc-200 bg-zinc-50 flex flex-col sm:flex-row items-center justify-between gap-3">
             <span className="text-xs font-mono text-zinc-600">
               {savedVehicles.length} vehicle{savedVehicles.length > 1 ? 's' : ''} saved for comparison
             </span>
@@ -274,9 +274,11 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20have%20saved%20${savedVehicles.length}%20cars%20on%20your%20website:%20${encodeURIComponent(savedVehicles.map(v => `${v.name} (${v.stockNo})`).join(', '))}.%20Please%20confirm%20their%20viewing%20schedule.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-white font-semibold w-full sm:w-auto text-xs !py-2.5 !px-5 rounded-lg flex items-center justify-center gap-2 cursor-pointer"
+              className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold w-full sm:w-auto text-xs py-2.5 px-5 rounded-lg flex items-center justify-center gap-2 cursor-pointer shadow-md hover:scale-[1.01] active:scale-98 transition-all"
             >
-              <MessageCircle className="w-4 h-4" />
+              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <MessageCircle className="w-4 h-4 text-white fill-white" />
+              </span>
               <span>Inquire on Saved Fleet via WhatsApp</span>
             </a>
           </div>

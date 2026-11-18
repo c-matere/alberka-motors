@@ -239,19 +239,31 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
                 <div
                   key={vehicle.id}
                   onClick={() => onSelectVehicle(vehicle)}
-                  className="bg-zinc-50 hover:bg-[#121216] border border-zinc-200 hover:border-white/25 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 group"
+                  className="bg-white hover:bg-zinc-50/80 border border-zinc-200 hover:border-red-600/40 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all duration-300 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_-6px_rgba(0,0,0,0.08)] group"
                 >
                   <div className="w-20 h-16 rounded-lg overflow-hidden bg-zinc-100 shrink-0 border border-zinc-200">
                     <img src={vehicle.heroImage} alt={vehicle.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="font-mono text-[10px] text-zinc-500 block">Grade {vehicle.auctionGrade}</span>
-                    <h4 className="text-sm font-bold text-zinc-950 truncate">{vehicle.name}</h4>
-                    <span className="font-mono text-xs font-bold text-zinc-950 block mt-0.5">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="font-mono text-[10px] font-bold text-zinc-600 bg-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200">
+                        Grade {vehicle.auctionGrade || '4.5'}
+                      </span>
+                      <span className="font-mono text-[10px] text-zinc-500">
+                        {vehicle.year} · {vehicle.transmission || 'Automatic'}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-zinc-950 group-hover:text-red-600 transition-colors truncate">
+                      {vehicle.name}
+                    </h4>
+                    <span className="font-mono text-xs font-bold text-red-600 block mt-0.5">
                       KES {vehicle.priceKes.toLocaleString()}
                     </span>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-zinc-950 group-hover:translate-x-1 transition-all shrink-0" />
+                  <div className="shrink-0 flex items-center text-xs font-semibold text-red-600 group-hover:translate-x-1 transition-transform">
+                    <span>View</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  </div>
                 </div>
               ))}
             </div>
@@ -259,20 +271,22 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         )}
 
         {/* Direct Concierge Callout */}
-        <div className="relative bg-gradient-to-r from-[#0c0c0f] to-[#121216] border border-zinc-200 rounded-2xl p-8 sm:p-10 space-y-4 text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent mt-12">
+        <div className="relative bg-white border border-zinc-200 rounded-2xl p-8 sm:p-10 space-y-4 text-left shadow-[0_4px_24px_rgba(0,0,0,0.04)] mt-12">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-zinc-950" />
+            <ShieldCheck className="w-5 h-5 text-red-600" />
             <h4 className="text-lg font-bold text-zinc-950">Have Questions About Japanese Provenance?</h4>
           </div>
           <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-            Our technical team at Tangana Road can verify Japanese auction sheets, inspect chassis condition, and guide you through custom port clearance.
+            Our technical team next to Ganjoni Primary School, Mombasa can verify Japanese auction sheets, inspect chassis condition, and guide you through custom port clearance.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
             <button
               onClick={handleInquireWhatsApp}
-              className="btn-white py-3 px-6 text-xs sm:text-sm font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-2 shadow-lg"
+              className="bg-[#25D366] hover:bg-[#20ba59] text-white py-3 px-6 text-xs sm:text-sm font-bold w-full sm:w-auto inline-flex items-center justify-center gap-2 shadow-lg rounded-xl transition-all cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4" />
+              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <MessageCircle className="w-4 h-4 text-white fill-white" />
+              </span>
               <span>Consult Technician on WhatsApp</span>
             </button>
             <button
@@ -314,10 +328,10 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
                   onSelectPost(rel);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="group relative bg-zinc-50 hover:bg-[#111115] border border-zinc-200 hover:border-white/25 rounded-2xl overflow-hidden cursor-pointer transition-all duration-400 hover:-translate-y-1 p-5 flex flex-col justify-between"
+                className="group relative bg-white hover:bg-zinc-50 border border-zinc-200 hover:border-red-600/40 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 p-5 flex flex-col justify-between shadow-[0_2px_8px_-1px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_-6px_rgba(0,0,0,0.08)]"
               >
                 <div className="space-y-3">
-                  <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-zinc-100">
+                  <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-zinc-100 border border-zinc-200">
                     <img src={rel.coverImage} alt={rel.title} className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500" />
                   </div>
                   <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-500">
@@ -325,7 +339,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
                     <span>·</span>
                     <span>{rel.readTime}</span>
                   </div>
-                  <h3 className="text-base font-bold text-zinc-950 group-hover:text-zinc-200 transition-colors line-clamp-2">
+                  <h3 className="text-base font-bold text-zinc-950 group-hover:text-red-600 transition-colors line-clamp-2">
                     {rel.title}
                   </h3>
                   <p className="text-xs text-zinc-600 line-clamp-2">
@@ -333,9 +347,9 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-white/[0.06] mt-4 flex items-center justify-between">
+                <div className="pt-4 border-t border-zinc-100 mt-4 flex items-center justify-between">
                   <span className="text-xs text-zinc-500 font-mono">{rel.author.name}</span>
-                  <span className="text-xs text-zinc-950 font-semibold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span className="text-xs text-red-600 font-semibold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     <span>Read</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>

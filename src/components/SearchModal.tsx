@@ -94,7 +94,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   return createPortal(
     <div 
-      className="fixed inset-0 z-[9999] bg-zinc-50 backdrop-blur-md flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20 animate-fadeIn"
+      className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-end sm:items-start justify-center p-0 sm:p-6 sm:pt-20 animate-fadeIn"
       onClick={onClose}
     >
       <div 
@@ -104,46 +104,46 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       >
         
         {/* Search Input Bar */}
-        <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center gap-3">
-          <Search className="w-5 h-5 text-zinc-600 shrink-0" />
+        <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center gap-3 bg-white">
+          <Search className="w-5 h-5 text-zinc-500 shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by model, grade, fuel, or stock number..."
-            className="w-full text-[16px] sm:text-[15px] font-medium text-zinc-950 placeholder:text-zinc-600 focus:outline-none bg-transparent"
+            className="w-full text-[16px] sm:text-[15px] font-medium text-zinc-950 placeholder:text-zinc-400 focus:outline-none bg-transparent"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-xs font-mono text-zinc-600 hover:text-zinc-950 cursor-pointer px-2 py-1"
+              className="text-xs font-mono text-zinc-600 hover:text-zinc-950 cursor-pointer px-2 py-1 font-semibold"
             >
               Clear
             </button>
           )}
           <button
             onClick={onClose}
-            className="p-1 text-zinc-600 hover:text-zinc-950 cursor-pointer transition-colors"
+            className="p-1 text-zinc-500 hover:text-zinc-950 cursor-pointer transition-colors"
             title="Close (Esc)"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Quick Filter Tags (Working & Active) */}
-        <div className="px-5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-          <span className="text-[10px] font-mono text-zinc-500 uppercase mr-1">Quick:</span>
+        {/* Quick Filter Tags (Working & Active with Crystal-Clear Contrast) */}
+        <div className="px-5 py-2.5 bg-zinc-100 border-b border-zinc-200 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+          <span className="text-[10px] font-mono text-zinc-600 uppercase mr-1 font-semibold shrink-0">Quick:</span>
           {quickFilters.map((qf) => {
             const isActive = activeFilterId === qf.id;
             return (
               <button
                 key={qf.id}
                 onClick={() => setActiveFilterId(qf.id)}
-                className={`text-xs px-3 py-1 rounded-full transition-all whitespace-nowrap cursor-pointer border ${
+                className={`text-xs px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer border ${
                   isActive
-                    ? 'bg-zinc-950 text-zinc-950 font-bold border-zinc-950 shadow-sm'
-                    : 'bg-zinc-900/80 text-zinc-600 border-zinc-200 hover:text-zinc-950 hover:border-white/20'
+                    ? 'bg-red-600 text-white font-bold border-red-600 shadow-sm'
+                    : 'bg-white text-zinc-800 font-semibold border-zinc-300 hover:bg-zinc-200 hover:text-zinc-950 hover:border-zinc-400'
                 }`}
               >
                 {qf.label}
@@ -153,7 +153,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Results List */}
-        <div ref={listRef} className="overflow-y-auto divide-y divide-white/[0.06] p-2 flex-1">
+        <div ref={listRef} className="overflow-y-auto divide-y divide-zinc-100 p-2 flex-1 bg-white">
           {results.length > 0 ? (
             results.map((vehicle, idx) => {
               const isSelected = idx === selectedIndex;
@@ -166,11 +166,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   }}
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`p-3.5 transition-all flex items-center justify-between gap-4 cursor-pointer rounded-xl ${
-                    isSelected ? 'bg-white/[0.08] border border-white/20' : 'hover:bg-white/[0.04] border border-transparent'
+                    isSelected ? 'bg-zinc-100 border border-zinc-300' : 'hover:bg-zinc-50 border border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-20 h-14 overflow-hidden rounded-lg bg-black border border-white/10 shrink-0">
+                    <div className="w-20 h-14 overflow-hidden rounded-lg bg-zinc-100 border border-zinc-200 shrink-0">
                       <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                     </div>
                     <div className="min-w-0">
@@ -178,7 +178,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                         <span className="font-mono text-[10.5px] text-zinc-700 font-bold">
                           {vehicle.stockNo}
                         </span>
-                        <span className="text-[10px] font-mono bg-white/[0.06] border border-white/10 px-1.5 py-0.2 rounded text-zinc-700">
+                        <span className="text-[10px] font-mono bg-zinc-100 border border-zinc-200 px-1.5 py-0.2 rounded text-zinc-700 font-semibold">
                           Grade {vehicle.auctionGrade}
                         </span>
                       </div>
@@ -192,12 +192,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="font-mono text-sm font-bold text-zinc-950 block">
+                    <span className="font-mono text-sm font-bold text-red-600 block">
                       KES {vehicle.priceKes.toLocaleString()}
                     </span>
-                    <span className="text-[11px] text-zinc-600 flex items-center justify-end gap-1 mt-0.5 transition-colors">
+                    <span className="text-[11px] text-zinc-600 flex items-center justify-end gap-1 mt-0.5 transition-colors font-medium">
                       <span>View</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <ArrowRight className="w-3 h-3 text-red-600" />
                     </span>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             })
           ) : (
             <div className="py-16 text-center text-zinc-500 space-y-2">
-              <Search className="w-8 h-8 text-zinc-700 mx-auto" />
+              <Search className="w-8 h-8 text-zinc-400 mx-auto" />
               <p className="text-[15px] font-bold text-zinc-950">No cars match your search.</p>
               <p className="text-xs text-zinc-600">Try searching for RAV4, Harrier, Serena, Hybrid, or 4WD.</p>
             </div>
@@ -213,14 +213,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Footer Info with Keyboard Navigation Hints */}
-        <div className="p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] sm:pb-3 bg-black/50 border-t border-zinc-200 flex items-center justify-between text-[11px] text-zinc-600 font-mono px-5">
-          <span>{results.length} vehicles found</span>
+        <div className="p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] sm:pb-3 bg-zinc-50 border-t border-zinc-200 flex items-center justify-between text-[11px] text-zinc-600 font-mono px-5">
+          <span className="font-semibold text-zinc-900">{results.length} vehicles found</span>
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline-flex items-center gap-1">
-              <span className="px-1.5 py-0.5 bg-zinc-800 rounded border border-zinc-700 text-[10px] text-zinc-700">↑↓</span> to navigate
+              <span className="px-1.5 py-0.5 bg-zinc-200 rounded border border-zinc-300 text-[10px] text-zinc-700 font-bold">↑↓</span> to navigate
             </span>
             <span className="hidden sm:inline-flex items-center gap-1">
-              <span className="px-1.5 py-0.5 bg-zinc-800 rounded border border-zinc-700 text-[10px] text-zinc-700">↵</span> to select
+              <span className="px-1.5 py-0.5 bg-zinc-200 rounded border border-zinc-300 text-[10px] text-zinc-700 font-bold">↵</span> to select
             </span>
             <span>ESC to close</span>
           </div>

@@ -6,12 +6,12 @@ import { useSiteSettings } from './hooks/useSiteSettings';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { VehicleCard } from './components/VehicleCard';
+import { VehicleCard, VehicleCardSkeleton } from './components/VehicleCard';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
+import { ModelHubView } from './components/ModelHubView';
 import { WorkshopSection } from './components/WorkshopSection';
-import { TradeInSection } from './components/TradeInSection';
 import { AboutSection } from './components/AboutSection';
 import { LocationsSection } from './components/LocationsSection';
 import { BlogSection } from './components/BlogSection';
@@ -23,22 +23,26 @@ import { MobileBottomDock } from './components/MobileBottomDock';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { Footer } from './components/Footer';
+import { HappyClientsSection } from './components/HappyClientsSection';
+import { TestimonialSectionDemo } from './components/ui/demo';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
 import { SectionGradientFade } from './components/SectionGradientFade';
 import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
-  const { vehicles, isCmsConnected } = useVehicles();
+  const { vehicles, isCmsConnected, loading } = useVehicles();
   const { pages } = useCmsPages();
   const { settings } = useSiteSettings();
   const [currentView, setCurrentView] = useState<string>('overview');
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPost | null>(null);
+  const [selectedHubId, setSelectedHubId] = useState<string | null>(null);
   const [testDriveTargetVehicle, setTestDriveTargetVehicle] = useState<Vehicle | null>(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
   const [whispersDrawerOpen, setWhispersDrawerOpen] = useState(false);
+  const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
 
   // Favorites state persisted in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -103,18 +107,37 @@ export function App() {
         }
       }
 
-      // Section views: #overview, #inventory, #workshop, #trade-in, #blog, #about, #locations, #sitemap
-      if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(hash)) {
-        setCurrentView(hash);
+      // Model Hub page: #hub-mazda-cx-5
+      if (hash.startsWith('hub-')) {
+        const hubId = hash.replace('hub-', '');
+        setSelectedHubId(hubId);
+        setCurrentView('hub');
         setSelectedVehicle(null);
         setSelectedBlogPost(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // Section views: #overview, #inventory, #workshop, #trade-in, #blog, #about, #locations, #sitemap
+      if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(hash)) {
+        const targetView = (hash === 'locations' || hash === 'about') ? 'about' : hash === 'trade-in' ? 'inventory' : hash;
+        setCurrentView(targetView);
+        setSelectedVehicle(null);
+        setSelectedBlogPost(null);
+        setSelectedHubId(null);
+        if (hash === 'locations') {
+          setTimeout(() => {
+            const el = document.getElementById('about-showroom-location');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+        }
       }
     };
 
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [blogs]);
+  }, [blogs, vehicles]);
 
   // Global Keyboard Shortcuts (Cmd+K / Ctrl+K search, Escape modal dismissal, Slash shortcut)
   useEffect(() => {
@@ -140,11 +163,53 @@ export function App() {
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
   }, []);
 
+  // Progressive Gaussian Blur Scroll Reveal for Sections
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+
+    const timer = setTimeout(() => {
+      const sections = document.querySelectorAll('main section');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      sections.forEach((sec, idx) => {
+        // Keep above-the-fold clear while applying progressive unblur to subsequent sections on scroll
+        if (idx > 0 && !sec.classList.contains('is-visible')) {
+          sec.classList.add('scroll-reveal');
+          observer.observe(sec);
+        }
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [currentView, selectedVehicle, selectedBlogPost]);
+
   const handleNavigate = (view: string) => {
-    setCurrentView(view);
+    let targetView = view === 'trade-in' ? 'inventory' : view;
+    if (targetView === 'locations') targetView = 'about';
+    setCurrentView(targetView);
     setSelectedVehicle(null);
     setSelectedBlogPost(null);
-    window.location.hash = view;
+    setSelectedHubId(null);
+    window.location.hash = targetView;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectHub = (hubId: string) => {
+    setSelectedHubId(hubId);
+    setCurrentView('hub');
+    setSelectedVehicle(null);
+    setSelectedBlogPost(null);
+    window.location.hash = `hub-${hubId}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -176,9 +241,17 @@ export function App() {
     setTestDriveTargetVehicle(vehicle);
     setSelectedVehicle(null);
     setSelectedBlogPost(null);
-    setCurrentView('locations');
-    window.location.hash = 'locations';
-    window.scrollTo({ top: 600, behavior: 'smooth' });
+    setCurrentView('about');
+    window.location.hash = 'about';
+    setTimeout(() => {
+      const el = document.getElementById('about-showroom-location');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  };
+
+  const handleInquireVehicle = (vehicle: Vehicle) => {
+    setWhispersVehicleId(vehicle.id);
+    setWhispersDrawerOpen(true);
   };
 
   return (
@@ -232,11 +305,11 @@ export function App() {
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
-                  <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
+                  <div className="max-w-[1520px] mx-auto space-y-12 sm:space-y-16 relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">
-                          AVAILABLE FLEET · QUALITY JAPANESE IMPORTS
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2 font-semibold">
+                          AVAILABLE FLEET · 4 CARS PER ROW SHOWROOM
                         </span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
                           Vehicles in Stock
@@ -252,18 +325,25 @@ export function App() {
                       </button>
                     </div>
 
-                    {/* Expansive 2x2 Exhibition Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-                      {vehicles.map((vehicle, idx) => (
-                        <VehicleCard
-                          key={vehicle.id}
-                          vehicle={vehicle}
-                          isFavorite={favorites.includes(vehicle.id)}
-                          onToggleFavorite={handleToggleFavorite}
-                          onSelect={handleSelectVehicle}
-                          staggerIndex={idx}
-                        />
-                      ))}
+                    {/* Responsive 4-Column Exhibition Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+                      {loading ? (
+                        [...Array(4)].map((_, i) => (
+                          <VehicleCardSkeleton key={i} />
+                        ))
+                      ) : (
+                        vehicles.map((vehicle, idx) => (
+                          <VehicleCard
+                            key={vehicle.id}
+                            vehicle={vehicle}
+                            isFavorite={favorites.includes(vehicle.id)}
+                            onToggleFavorite={handleToggleFavorite}
+                            onSelect={handleSelectVehicle}
+                            onInquire={handleInquireVehicle}
+                            staggerIndex={idx}
+                          />
+                        ))
+                      )}
                     </div>
                   </div>
                 </section>
@@ -340,20 +420,20 @@ export function App() {
                       <ScrollRevealBox delay={150}>
                         <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
-                            03 · INTEGRITY
+                            03 · VERIFICATION
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-                            5,000 KM Written Warranty
+                            Japanese Export Dossier
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
-                            Written dealer warranty covering engine and drivetrain, backed directly by our in-house mechanical team and certified partner stations.
+                            Original Japanese export certificate, verified QISJ/JEVIC odometer certification, and translated auction inspection sheet delivered with your logbook.
                           </p>
                           <div className="pt-2">
                             <button
-                              onClick={() => handleNavigate('workshop')}
+                              onClick={() => handleNavigate('about')}
                               className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
-                              <span>Warranty terms</span>
+                              <span>Verification standards</span>
                               <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
@@ -363,19 +443,31 @@ export function App() {
                   </div>
                 </section>
 
+                {/* Verified Customer Testimonials Section */}
+                <TestimonialSectionDemo />
+
                 {/* Section Gradient Fade Transition */}
                 <SectionGradientFade />
 
-                {/* Serene Showrooms Dispatch (Kenya) */}
+                {/* Happy Clients & Handover Gallery Section — Customer Satisfaction is Our North Star */}
+                <HappyClientsSection
+                  onExploreFleet={() => handleNavigate('inventory')}
+                  onOpenWhispers={() => setWhispersDrawerOpen(true)}
+                />
+
+                {/* Section Gradient Fade Transition */}
+                <SectionGradientFade />
+
+                {/* Official Showroom Dispatch */}
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">
-                          PRIVATE APPOINTMENTS & INSPECTIONS
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2 font-semibold">
+                          OFFICIAL SHOWROOM & WORKSHOP
                         </span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
-                          Our Showrooms
+                          Visit Our Showroom
                         </h2>
                       </div>
 
@@ -383,46 +475,26 @@ export function App() {
                         onClick={() => handleNavigate('locations')}
                         className="btn-ghost !text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer"
                       >
-                        <span>Interactive Maps & Directions</span>
+                        <span>Interactive Map & Directions</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 text-left">
-                      {/* Mombasa */}
+                    <div className="max-w-2xl text-left">
                       <ScrollRevealBox delay={0}>
-                        <div className="space-y-4">
-                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
-                            SHOWROOM & WORKSHOP HUB
+                        <div className="space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                          <span className="font-mono text-xs text-red-600 uppercase tracking-widest block font-bold">
+                            MOMBASA MAIN HUB
                           </span>
                           <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
-                            {settings.mombasaYardAddress.split(',')[0] || 'Tangana Road, Majengo'}
+                            Next to Ganjoni Primary School, Mombasa
                           </h3>
                           <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                            {settings.mombasaYardAddress} · Featuring our primary showroom floor, hoist inspection bays, and dedicated Japanese import workshop.
+                            Featuring our dedicated customer showroom floor, hoist inspection bays, and certified Japanese import maintenance workshop.
                           </p>
-                          <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
-                            <p>Direct: <span className="text-zinc-950">{settings.phone}</span></p>
-                            <p>Hours: <span className="text-zinc-700">{settings.workingHours}</span></p>
-                          </div>
-                        </div>
-                      </ScrollRevealBox>
-
-                      {/* Nairobi */}
-                      <ScrollRevealBox delay={75}>
-                        <div className="space-y-4">
-                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
-                            CONSULTATION SALON
-                          </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
-                            {settings.nairobiShowroomAddress.split(',')[0] || 'Mwanzi Road, Westlands'}
-                          </h3>
-                          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                            {settings.nairobiShowroomAddress} · Centrally situated for convenient private viewings, trade-in valuations, and concierge vehicle deliveries across Kenya.
-                          </p>
-                          <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1">
-                            <p>Direct: <span className="text-zinc-950">{settings.phone}</span></p>
-                            <p>Hours: <span className="text-zinc-700">{settings.workingHours}</span></p>
+                          <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1.5 border-t border-zinc-100">
+                            <p>Direct Phone / WhatsApp: <a href="tel:0180423075" className="text-zinc-950 font-bold hover:text-red-600">0180 423 075</a></p>
+                            <p>Showroom Hours: <span className="text-zinc-800 font-semibold">{settings.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>
@@ -441,7 +513,9 @@ export function App() {
                 favorites={favorites}
                 onToggleFavorite={handleToggleFavorite}
                 onSelectVehicle={handleSelectVehicle}
+                onInquire={handleInquireVehicle}
                 onCustomImportRequest={() => handleNavigate('about')}
+                isLoading={loading}
                 pageData={pages['inventory']}
               />
             )}
@@ -458,28 +532,16 @@ export function App() {
               />
             )}
 
-            {currentView === 'trade-in' && (
-              <TradeInSection
-                vehicles={vehicles}
-                onSelectVehicle={handleSelectVehicle}
-                pageData={pages['trade-in']}
-              />
-            )}
-
-            {currentView === 'about' && (
+            {(currentView === 'about' || currentView === 'locations') && (
               <AboutSection
                 onExploreFleet={() => handleNavigate('inventory')}
-                onExploreLocations={() => handleNavigate('locations')}
+                onExploreLocations={() => {
+                  const el = document.getElementById('about-showroom-location');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
                 pageData={pages['about']}
-              />
-            )}
-
-            {currentView === 'locations' && (
-              <LocationsSection
-                vehicles={vehicles}
-                preselectedVehicle={testDriveTargetVehicle}
-                pageData={pages['locations']}
                 settings={settings}
+                vehicles={vehicles}
               />
             )}
 
@@ -543,7 +605,11 @@ export function App() {
       {/* WhatsApp / Concierge Contact Drawer */}
       <WhispersDrawer
         isOpen={whispersDrawerOpen}
-        onClose={() => setWhispersDrawerOpen(false)}
+        onClose={() => {
+          setWhispersDrawerOpen(false);
+          setWhispersVehicleId(undefined);
+        }}
+        initialVehicleId={whispersVehicleId}
         vehicles={vehicles}
         onSelectVehicle={handleSelectVehicle}
       />

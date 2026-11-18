@@ -154,9 +154,9 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
           </p>
         </div>
 
-        {/* Video Cinema Banner */}
+        {/* Video Cinema Banner — Mobile Responsive Aspect Ratio */}
         <div className="space-y-8">
-          <div className="w-full aspect-[16/9] sm:aspect-[21/9.5] max-h-[500px] overflow-hidden relative bg-black border border-zinc-200 rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
+          <div className="w-full aspect-[4/3] xs:aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] min-h-[260px] sm:min-h-0 max-h-[500px] overflow-hidden relative bg-zinc-950 border border-zinc-200 rounded-2xl shadow-xl">
             <video
               ref={videoRef}
               autoPlay
@@ -174,26 +174,26 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               />
             </video>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-zinc-950 pointer-events-none">
-              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest block mb-1">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex flex-col justify-end p-4 sm:p-8 md:p-10 text-white pointer-events-none drop-shadow-md">
+              <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest block mb-1 font-bold">
                 APPRAISAL PROTOCOL
               </span>
-              <p className="text-xl sm:text-2xl font-bold text-zinc-950 leading-tight max-w-xl">
-                20-minute hoist check. Direct NTSA transfer. Same-day handover.
+              <p className="text-lg xs:text-xl sm:text-2xl font-bold text-white tracking-tight">
+                Direct trade-in valuation against certified Japanese import inventory.
               </p>
             </div>
 
             <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
               <button
                 onClick={togglePlay}
-                className="w-8 h-8 bg-black/75 hover:bg-black border border-zinc-200 flex items-center justify-center text-zinc-950 transition-all cursor-pointer rounded-lg backdrop-blur-md"
+                className="w-8 h-8 bg-black/75 hover:bg-black border border-white/20 flex items-center justify-center text-white transition-all cursor-pointer rounded-lg backdrop-blur-md"
                 title={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-8 h-8 bg-black/75 hover:bg-black border border-zinc-200 flex items-center justify-center text-zinc-950 transition-all cursor-pointer rounded-lg backdrop-blur-md"
+                className="w-8 h-8 bg-black/75 hover:bg-black border border-white/20 flex items-center justify-center text-white transition-all cursor-pointer rounded-lg backdrop-blur-md"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -263,7 +263,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setMakeModel(m)}
                       className={`text-xs px-2.5 py-1 rounded-md transition-all cursor-pointer border ${
                         makeModel === m
-                          ? 'bg-zinc-950 text-zinc-950 font-bold border-zinc-950'
+                          ? 'bg-red-600 text-white font-bold border-red-600 shadow-sm'
                           : 'bg-zinc-100 text-zinc-600 border-zinc-200 hover:text-zinc-950 hover:border-zinc-300'
                       }`}
                     >
@@ -286,7 +286,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setYearTier(yr)}
                       className={`py-2 text-xs font-mono rounded-lg transition-all cursor-pointer border ${
                         yearTier === yr
-                          ? 'bg-zinc-950 text-zinc-950 border-zinc-950 font-bold'
+                          ? 'bg-red-600 text-white border-red-600 font-bold shadow-sm'
                           : 'bg-zinc-100 text-zinc-600 border-zinc-200 hover:text-zinc-950 hover:border-zinc-300'
                       }`}
                     >
@@ -314,12 +314,12 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                       onClick={() => setMileageTier(m.id)}
                       className={`p-3 text-left rounded-lg transition-all cursor-pointer border ${
                         mileageTier === m.id
-                          ? 'bg-zinc-950 text-zinc-950 border-zinc-950 font-bold'
+                          ? 'bg-red-600 text-white border-red-600 font-bold shadow-sm'
                           : 'bg-zinc-100 text-zinc-600 border-zinc-200 hover:text-zinc-950 hover:border-zinc-300'
                       }`}
                     >
                       <span className="block font-mono text-xs font-bold">{m.label}</span>
-                      <span className={`block text-[10px] mt-0.5 ${mileageTier === m.id ? 'text-zinc-700' : 'text-zinc-500'}`}>{m.desc}</span>
+                      <span className={`block text-[10px] mt-0.5 ${mileageTier === m.id ? 'text-red-100' : 'text-zinc-500'}`}>{m.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -404,21 +404,21 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span className="bg-black/80 backdrop-blur-md border border-zinc-200 text-zinc-950 px-2 py-0.5 text-[10px] font-bold rounded">
+                  <span className="bg-black/80 backdrop-blur-md border border-white/20 text-white px-2 py-0.5 text-[10px] font-bold rounded">
                     Grade {targetVehicle.auctionGrade}
                   </span>
                 </div>
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-black/85 backdrop-blur-md px-3 py-2 border border-zinc-200 flex items-center justify-between rounded-lg">
-                  <span className="text-xs font-bold text-zinc-950 truncate mr-2">{targetVehicle.name}</span>
-                  <span className="font-mono text-xs font-bold text-zinc-950 shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-black/85 backdrop-blur-md px-3 py-2 border border-white/20 flex items-center justify-between rounded-lg">
+                  <span className="text-xs font-bold text-white truncate mr-2">{targetVehicle.name}</span>
+                  <span className="font-mono text-xs font-bold text-red-400 shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
               {/* Equity Ratio Bar */}
-              <div className="p-4 bg-zinc-950 border border-zinc-200 rounded-xl space-y-2.5">
+              <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-xl space-y-2.5 text-white">
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-zinc-600">Equity Covered by Trade-In</span>
-                  <span className="text-zinc-950 font-bold">{animatedEquityPercent}% Covered</span>
+                  <span className="text-zinc-400">Equity Covered by Trade-In</span>
+                  <span className="text-white font-bold">{animatedEquityPercent}% Covered</span>
                 </div>
                 <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                   <div

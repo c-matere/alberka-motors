@@ -62,17 +62,16 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
   const titleMap: Record<string, { kicker: string; title: string }> = {
     overview: { kicker: 'Overview', title: 'Quality Japanese Cars' },
     inventory: { kicker: 'Showroom', title: 'Cars Available Now' },
-    workshop: { kicker: 'Technical Workshop', title: '100-Point Inspection & 5,000 KM Warranty' },
-    'trade-in': { kicker: 'Trade-In', title: 'Fair Appraisals & Instant Upgrades' },
+    workshop: { kicker: 'Technical Workshop', title: '100-Point Pre-Delivery Overhaul' },
     about: { kicker: 'About Us', title: '26 Years of Trust in Kenya' },
-    locations: { kicker: 'Showrooms', title: 'Kenya Locations' },
+    locations: { kicker: 'Showroom', title: 'Next to Ganjoni Primary School, Mombasa' },
     sitemap: { kicker: 'Directory', title: 'Quick Links' },
   };
 
   const info = titleMap[currentView] || { kicker: 'Alberka Enterprises', title: 'Quality Japanese Cars' };
 
   return (
-    <div className="hidden sm:block sticky sm:top-[68px] z-30 bg-white/90 backdrop-blur-md border-b border-zinc-200">
+    <div className="hidden sm:block sticky sm:top-[76px] z-30 bg-white/90 backdrop-blur-md border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-11 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-xs">
           <span className="text-zinc-950 font-semibold">{info.kicker}</span>
@@ -87,7 +86,7 @@ export const StickyLocalNav: React.FC<StickyLocalNavProps> = ({
               className="text-xs text-zinc-600 hover:text-zinc-950 flex items-center gap-1.5 cursor-pointer"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
-              <span>5,000 KM Warranty</span>
+              <span>100-Point Overhaul</span>
             </button>
           )}
 

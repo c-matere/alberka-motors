@@ -382,10 +382,10 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                   </span>
                 </div>
                 <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Warranty Included</span>
+                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Pre-Delivery Overhaul</span>
                   <span className="font-semibold text-zinc-950 flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
-                    <span>5,000 KM</span>
+                    <span>100-Point Pass</span>
                   </span>
                 </div>
               </div>

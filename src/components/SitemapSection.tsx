@@ -34,9 +34,9 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
         {/* Directory Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           {/* Box 1: Pages */}
-          <div className="relative bg-[#0c0c0f] border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-4 before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-zinc-300 before:to-transparent">
+          <div className="relative bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
             <div className="flex items-center gap-2.5 pb-3 border-b border-zinc-200">
-              <Compass className="w-4 h-4 text-zinc-600" />
+              <Compass className="w-4 h-4 text-red-600" />
               <h3 className="text-xs font-mono font-semibold text-zinc-950 uppercase tracking-wider">Navigation</h3>
             </div>
             <ul className="space-y-3 text-xs sm:text-sm">
@@ -63,9 +63,9 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
                   onClick={() => onNavigate('workshop')}
                   className="font-medium text-zinc-950 hover:text-zinc-700 text-left cursor-pointer transition-colors block"
                 >
-                  Workshop & 5,000 KM Warranty
+                  Workshop & 100-Point Overhaul
                 </button>
-                <p className="text-xs text-zinc-600">100-point mechanical overhaul.</p>
+                <p className="text-xs text-zinc-600">100-point mechanical overhaul & fluids service.</p>
               </li>
               <li>
                 <button
@@ -78,12 +78,12 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('trade-in')}
+                  onClick={() => onNavigate('locations')}
                   className="font-medium text-zinc-950 hover:text-zinc-700 text-left cursor-pointer transition-colors block"
                 >
-                  Trade In & Upgrade
+                  Showroom & Workshop Hub
                 </button>
-                <p className="text-xs text-zinc-600">Instant trade equity calculator.</p>
+                <p className="text-xs text-zinc-600">Next to Ganjoni Primary School, Mombasa.</p>
               </li>
               <li>
                 <button
@@ -107,9 +107,9 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           </div>
 
           {/* Box 2: Cars */}
-          <div className="relative bg-[#0c0c0f] border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-4 before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-zinc-300 before:to-transparent">
+          <div className="relative bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
             <div className="flex items-center gap-2.5 pb-3 border-b border-zinc-200">
-              <Car className="w-4 h-4 text-zinc-600" />
+              <Car className="w-4 h-4 text-red-600" />
               <h3 className="text-xs font-mono font-semibold text-zinc-950 uppercase tracking-wider">Vehicles in Stock</h3>
             </div>
             <ul className="space-y-3 text-xs sm:text-sm">
@@ -130,15 +130,15 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
           </div>
 
           {/* Box 3: Guarantees */}
-          <div className="relative bg-[#0c0c0f] border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-4 before:absolute before:inset-x-6 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-zinc-300 before:to-transparent">
+          <div className="relative bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
             <div className="flex items-center gap-2.5 pb-3 border-b border-zinc-200">
-              <Shield className="w-4 h-4 text-zinc-600" />
+              <Shield className="w-4 h-4 text-red-600" />
               <h3 className="text-xs font-mono font-semibold text-zinc-950 uppercase tracking-wider">Dealer Standards</h3>
             </div>
             <ul className="space-y-3 text-xs sm:text-sm">
               <li>
-                <span className="font-medium text-zinc-950 block">5,000 KM Written Warranty</span>
-                <p className="text-xs text-zinc-600">Written engine & transmission coverage.</p>
+                <span className="font-medium text-zinc-950 block">100-Point Pre-Delivery Overhaul</span>
+                <p className="text-xs text-zinc-600">Fresh synthetic fluids, filters & electronic diagnostic scan.</p>
               </li>
               <li>
                 <span className="font-medium text-zinc-950 block">Grade 4.5+ Auction Guarantee</span>

@@ -23,11 +23,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Editorial navigation links with descriptive subtext for mobile menu
   const navLinks = [
     { id: 'inventory', index: '01', label: 'Showroom', desc: 'Verified Tokyo stock & Japanese imports' },
-    { id: 'trade-in', index: '02', label: 'Trade-In', desc: '20-min hoist check & equity appraisal' },
-    { id: 'workshop', index: '03', label: 'Workshop', desc: '100-point overhaul & 5,000 km warranty' },
-    { id: 'blog', index: '04', label: 'Journal', desc: 'Technical guides, auction decoding & Kenyan market research' },
-    { id: 'about', index: '05', label: 'Why Alberka', desc: '26-year heritage & direct Japanese auction sourcing' },
-    { id: 'locations', index: '06', label: 'Locations', desc: 'Tangana Road Showroom Hub' },
+    { id: 'workshop', index: '02', label: 'Import Process', desc: 'Direct Tokyo auction bidding, shipping & Mombasa port clearing' },
+    { id: 'blog', index: '03', label: 'Journal', desc: 'Technical guides, auction decoding & Kenyan market research' },
+    { id: 'about', index: '04', label: 'About Us', desc: '26-year heritage, Japanese sourcing & Mombasa showroom' },
   ];
 
   // Prevent background body scroll when mobile menu is open
@@ -61,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-white/85 backdrop-blur-xl border-b border-zinc-200/80 h-14 sm:h-[68px] flex items-center justify-center px-3 sm:px-8 sticky top-0 z-50 transition-all">
+      <nav className="w-full bg-white/90 backdrop-blur-xl border-b border-zinc-200/80 h-16 sm:h-[76px] flex items-center justify-center px-3 sm:px-8 sticky top-0 z-50 transition-all">
         <div className="max-w-[1440px] w-full flex items-center justify-between gap-2.5 sm:gap-4">
           
           {/* Logo & Brand Emblem (Mobile: Icon only; Desktop: Full typographic emblem) */}
@@ -73,13 +71,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             <img
               src="/alberka-logo-cropped.png"
               alt="Alberka Enterprises"
-              className="h-8 sm:h-9 w-auto object-contain"
+              className="h-10 sm:h-12 md:h-13 w-auto object-contain"
             />
-            <div className="hidden sm:flex flex-col text-left pl-3 border-l border-zinc-200">
-              <span className="font-bold text-[14.5px] tracking-tight text-zinc-950 leading-tight">
+            <div className="hidden sm:flex flex-col text-left pl-3.5 border-l border-zinc-200">
+              <span className="font-extrabold text-[15px] sm:text-[16.5px] tracking-tight text-zinc-950 leading-tight">
                 ALBERKA ENTERPRISES
               </span>
-              <span className="font-mono text-[9px] tracking-[0.16em] text-zinc-500 leading-none mt-0.5">
+              <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.18em] text-zinc-500 leading-none mt-0.5 font-medium">
                 QUALITY JAPANESE IMPORTS
               </span>
             </div>
@@ -104,9 +102,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium pill-interactive cursor-pointer whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium pill-interactive cursor-pointer whitespace-nowrap transition-all ${
                     isActive
-                      ? 'bg-white text-zinc-950 font-bold shadow-sm border border-zinc-200/60 scale-[1.02]'
+                      ? 'bg-red-600 text-white font-bold shadow-sm scale-[1.02]'
                       : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
                   }`}
                 >
@@ -116,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </div>
 
-          {/* Right Action Suite (Desktop & Tablet only: Hidden on mobile where bottom dock & floating buttons serve user) */}
+          {/* Right Action Suite */}
           <div className="hidden sm:flex items-center gap-2.5 sm:gap-3 text-zinc-900">
             
             {/* Quick Search Capsule */}
@@ -141,19 +139,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Bookmark className="w-4 h-4" />
               {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-zinc-950 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-heartbeat">
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-heartbeat">
                   {favoritesCount}
                 </span>
               )}
-            </button>
-
-            {/* WhatsApp VIP Concierge Pill */}
-            <button
-              onClick={handleContactClick}
-              className="btn-white btn-glint !py-2 !px-4 !text-xs !rounded-full inline-flex cursor-pointer font-semibold shadow-sm items-center gap-1.5"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-zinc-950" />
-              <span>WhatsApp Us</span>
             </button>
 
             {/* Tablet Menu Toggle Button (Visible only on tablets where segmented controller is hidden) */}
@@ -188,23 +177,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => handleLinkClick(link.id)}
                     className={`w-full text-left p-3.5 rounded-xl transition-all flex items-center justify-between group ${
                       isActive
-                        ? 'bg-zinc-100 border border-zinc-200 shadow-sm'
+                        ? 'bg-red-600 text-white shadow-sm'
                         : 'hover:bg-zinc-50 border border-transparent'
                     }`}
                   >
                     <div className="space-y-0.5">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] text-zinc-500 font-semibold">{link.index}</span>
-                        <span className={`text-base font-bold tracking-tight ${isActive ? 'text-zinc-950' : 'text-zinc-800 group-hover:text-zinc-950'}`}>
+                        <span className={`font-mono text-[10px] font-semibold ${isActive ? 'text-white/80' : 'text-zinc-500'}`}>{link.index}</span>
+                        <span className={`text-base font-bold tracking-tight ${isActive ? 'text-white' : 'text-zinc-800 group-hover:text-zinc-950'}`}>
                           {link.label}
                         </span>
                       </div>
-                      <p className="text-xs text-zinc-500 pl-6 leading-relaxed">
+                      <p className={`text-xs pl-6 leading-relaxed ${isActive ? 'text-white/90' : 'text-zinc-500'}`}>
                         {link.desc}
                       </p>
                     </div>
 
-                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-zinc-950' : 'text-zinc-400'}`} />
+                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-zinc-400'}`} />
                   </button>
                 );
               })}
@@ -246,15 +235,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-6 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] sm:pb-6 border-t border-zinc-200 space-y-3 mt-6">
             <button
               onClick={handleContactClick}
-              className="btn-white w-full py-3 text-xs sm:text-sm font-semibold justify-center inline-flex items-center gap-2 shadow-lg"
+              className="w-full py-3 text-xs sm:text-sm font-bold justify-center inline-flex items-center gap-2 shadow-lg bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl transition-all cursor-pointer active:scale-98"
             >
-              <MessageCircle className="w-4 h-4" />
+              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <MessageCircle className="w-4 h-4 text-white fill-white" />
+              </span>
               <span>Chat on WhatsApp (0180 423 075)</span>
             </button>
             
             <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-500 font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>Tangana Road Showroom & Hub</span>
+              <span>Showroom: Next to Ganjoni Primary School, Mombasa</span>
             </div>
           </div>
 

@@ -129,12 +129,12 @@ export const BlueprintBackground: React.FC = () => {
   const masterLightFade = 1;
   const carFade = 1;
 
-  // Dynamic Opacity Computations (Dim above the fold; brightening on scroll)
-  const baseGridOpacity = 0.06 + scrollFactor * 0.44;
-  const gridOpacity = Math.min(0.65, 0.25 + scrollFactor * 0.35);
-  const carOpacity = Math.min(0.92, 0.65 + scrollFactor * 0.30);
-  const softboxOpacity = (0.3 + scrollFactor * 0.45) * masterLightFade;
-  const midGlowOpacity = (0.08 + scrollFactor * 0.24) * masterLightFade;
+  // Dynamic Opacity Computations (Subtle architectural watermark that never distracts)
+  const baseGridOpacity = 0.02 + scrollFactor * 0.04;
+  const gridOpacity = Math.min(0.12, 0.05 + scrollFactor * 0.05);
+  const carOpacity = Math.min(0.18, 0.08 + scrollFactor * 0.08);
+  const softboxOpacity = (0.12 + scrollFactor * 0.12) * masterLightFade;
+  const midGlowOpacity = (0.03 + scrollFactor * 0.05) * masterLightFade;
 
   // Station text mapping array for clean rendering
   const stationLookup: Record<number, { text: string; isTyping: boolean }> = {
@@ -199,8 +199,8 @@ export const BlueprintBackground: React.FC = () => {
           style={{
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
-            opacity: masterLightFade,
-            background: 'radial-gradient(circle 420px at center, rgba(255, 255, 255, 0.6) 0%, rgba(241, 245, 249, 0.1) 50%, transparent 75%)',
+            opacity: masterLightFade * 0.35,
+            background: 'radial-gradient(circle 420px at center, rgba(255, 255, 255, 0.3) 0%, rgba(241, 245, 249, 0.05) 50%, transparent 75%)',
           }}
         />
       )}
