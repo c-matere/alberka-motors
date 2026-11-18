@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Cog, Compass, Fuel, Users, Gauge, MessageCircle, Bookmark } from 'lucide-react';
+import { ArrowRight, MessageCircle, Heart, CheckCircle2 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { useScrollReveal } from '../hooks/useAnimations';
 import { getVehiclePricing } from '../data/modelHubs';
@@ -36,7 +36,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   const make = parts[0] || 'TOYOTA';
   const model = parts.slice(1).join(' ') || vehicle.name;
 
-  // Extract Engine Displacement (e.g. 2.7L, 3.0L, 2.5L)
+  // Extract Engine Displacement
   const getDisplacement = (engineStr: string) => {
     if (!engineStr) return '2.0L';
     const clean = engineStr.replace(/,/g, '');
@@ -53,7 +53,6 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     return '2.0L';
   };
 
-  // Extract Transmission
   const getTransmission = (trans: string) => {
     if (!trans) return 'Automatic';
     const t = trans.toLowerCase();
@@ -62,7 +61,6 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     return trans;
   };
 
-  // Extract Drivetrain
   const getDrivetrain = (drive: string) => {
     if (!drive) return '4WD';
     const d = drive.toUpperCase();
@@ -84,191 +82,171 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`bg-white border border-zinc-200/90 hover:border-zinc-300 rounded-2xl shadow-[0_2px_8px_-1px_rgba(0,0,0,0.05),0_1px_3px_0_rgba(0,0,0,0.03)] hover:shadow-[0_14px_28px_-6px_rgba(0,0,0,0.07),0_3px_10px_-2px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden cursor-pointer flex flex-col justify-between ${
+      className={`hero-card group cursor-pointer ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
+      style={{
+        backgroundImage: `url(${vehicle.heroImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        aspectRatio: '3 / 4',
+        minHeight: '450px',
+      }}
     >
-      {/* Hover Ambient Gradient */}
-      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-red-600/[0.04] via-transparent to-red-600/[0.02]" />
+      {/* Dark Film Gradient Overlay (1:1 Smart Team Layout) */}
+      <div className="hero-card_overlay" />
 
-      <div>
-        {/* Media Window */}
-        <div className="relative w-full h-48 sm:h-52 bg-gray-100 overflow-hidden">
-          {/* Top Scrim Gradient */}
-          <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-black/35 via-black/10 to-transparent z-10 pointer-events-none" />
-
-          {/* Top Left Japanese Provenance Grade Tag */}
-          <div className="absolute top-2.5 left-2.5 z-20 pointer-events-none">
-            <span className="inline-flex items-center rounded-md border px-2 py-0.5 text-[10.5px] font-bold bg-white/95 text-zinc-900 border-gray-200 shadow-sm backdrop-blur-sm">
+      {/* Content Layer */}
+      <div className="hero-card_content">
+        
+        {/* Top Badges Row */}
+        <div className="flex items-center justify-between gap-2 z-20">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="inline-flex items-center rounded-md border px-2.5 py-1 text-[11px] font-bold bg-white/95 text-zinc-950 border-white/40 shadow-sm backdrop-blur-md">
               Grade {vehicle.auctionGrade || '4.5'}
             </span>
-          </div>
-
-          {/* Top Right: Promotional Discount Sticker & Bookmark */}
-          <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5">
             {pricing.hasDiscount && (
-              <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10.5px] font-black bg-red-600 text-white shadow-sm uppercase tracking-wider">
+              <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-black bg-red-600 text-white shadow-md uppercase tracking-wider">
                 {pricing.discountPercent}% OFF
               </span>
             )}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggleFavorite(vehicle.id);
-              }}
-              className={`w-7 h-7 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer backdrop-blur-md shadow-xs active:scale-95 ${
-                isFavorite
-                  ? 'bg-red-600 text-white border-red-600'
-                  : 'bg-white/85 text-zinc-600 border-zinc-200 hover:bg-white hover:text-zinc-950'
-              }`}
-              title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-              aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-            >
-              <Bookmark width={13} height={13} className={isFavorite ? 'fill-white text-white' : ''} />
-            </button>
-          </div>
-
-          {/* Bottom Right "In Stock" Status Badge */}
-          <div className="absolute right-2.5 bottom-2.5 z-20 pointer-events-none">
-            <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-800 border-emerald-200 shadow-sm backdrop-blur-sm">
+            <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-emerald-600 text-white border-emerald-500 shadow-sm backdrop-blur-md">
               In Stock
             </span>
           </div>
 
-          {/* Primary Vehicle Image */}
-          <div className="absolute inset-0 transition-opacity duration-500 opacity-100">
-            <img
-              src={vehicle.heroImage}
-              alt={`${vehicle.year} ${vehicle.name}`}
-              loading="lazy"
-              decoding="async"
-              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite(vehicle.id);
+            }}
+            className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer backdrop-blur-md active:scale-95 shrink-0 ${
+              isFavorite
+                ? 'bg-red-600 text-white border-red-500 shadow-md'
+                : 'bg-black/35 text-white/90 border-white/20 hover:bg-white hover:text-zinc-950'
+            }`}
+            title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+            aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
+          >
+            <Heart width={15} height={15} className={isFavorite ? 'fill-white text-white' : ''} />
+          </button>
         </div>
 
-        {/* Content Body */}
-        <div className="p-4 flex flex-col justify-between flex-1">
-          {/* Make & Model */}
-          <div className="mb-2.5">
-            <p className="text-[11px] sm:text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-0.5">
+        {/* Bottom Vehicle Details Stack (1:1 Smart Team Layout) */}
+        <div className="flex flex-col gap-3 z-20">
+          
+          {/* Title Stack: Year & Make on top, Model below */}
+          <div className="leading-tight">
+            <div className="text-xl sm:text-2xl font-semibold text-white" style={{ textShadow: '0 1px 12px rgba(0,0,0,0.6)' }}>
+              {vehicle.year} {make}<br />
+              <span className="font-bold">{model}</span>
+            </div>
+          </div>
+
+          {/* Pricing List with Checkmarks (1:1 Smart Team Layout) */}
+          <div className="pricing_list">
+            <div className="pricing_list-item">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="text-[13.5px] font-normal text-white" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
+                {getDisplacement(vehicle.engine)} Engine · {getTransmission(vehicle.transmission)}
+              </div>
+            </div>
+
+            <div className="pricing_list-item">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="text-[13.5px] font-normal text-white" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
+                {getDrivetrain(vehicle.drivetrain)} · {vehicle.fuelType} · {vehicle.seats || 5} Seats
+              </div>
+            </div>
+
+            <div className="pricing_list-item">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="text-[14px] font-semibold text-white flex items-center gap-2 flex-wrap" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
+                <span>KES {pricing.currentPrice.toLocaleString()} Asking</span>
+                {pricing.hasDiscount && (
+                  <span className="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/50 px-2 py-0.5 rounded-full">
+                    Save KES {pricing.savingsKes.toLocaleString()}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Category Tags (1:1 Smart Team: Brand/Year in Alberka Red, Fuel in Glass, Price in Badge) */}
+          <div className="service-card_tags margin-0 z-index-1">
+            <div className="category-tag text-white font-bold" style={{ background: '#DC2626', borderColor: '#DC2626' }}>
               {make}
-            </p>
-            <h3 className="font-bold text-zinc-950 text-base sm:text-lg leading-tight truncate group-hover:text-red-600 transition-colors">
-              {model}
-            </h3>
-          </div>
-
-          {/* Price Stack (1:1 Smart Team Layout) */}
-          <div className="mb-3">
-            {pricing.hasDiscount && (
-              <p className="text-xs font-mono line-through text-zinc-400 leading-none mb-1">
-                KES {pricing.originalPrice.toLocaleString()}
-              </p>
-            )}
-            <div className="flex items-baseline justify-between gap-2">
-              <span className="text-red-600 font-black text-lg sm:text-xl font-mono tracking-tight leading-none">
-                KES {pricing.currentPrice.toLocaleString()}
-              </span>
-              {pricing.hasDiscount && (
-                <span className="text-[10.5px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full font-bold">
-                  Save KES {pricing.savingsKes.toLocaleString()}
-                </span>
-              )}
+            </div>
+            <div className="category-tag text-white" style={{ background: 'rgba(255,255,255,0.14)', borderColor: 'rgba(255,255,255,0.32)', backdropFilter: 'blur(6px)' }}>
+              {vehicle.fuelType}
+            </div>
+            <div className="category-tag text-white font-bold" style={{ background: '#09090b', borderColor: 'rgba(255,255,255,0.2)' }}>
+              KES {(vehicle.priceKes / 1000000).toFixed(2)}M
             </div>
           </div>
 
-          {/* 6-Grid Feature Pills Matrix */}
-          <div className="grid grid-cols-2 gap-1.5 mb-3.5 text-xs">
-            {/* 1: Year */}
-            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
-              <Calendar className="text-zinc-500 flex-shrink-0" width={13} height={13} />
-              <span className="truncate font-medium">{vehicle.year}</span>
-            </div>
+          {/* Action Buttons Row (1:1 Smart Team: Explore + WhatsApp Inquire) */}
+          <div className="flex items-center gap-2 pt-1 card-link-actions">
+            <button
+              onClick={() => onSelect(vehicle)}
+              className="flex-1 inline-flex items-center justify-center gap-2 py-3 text-[13px] font-semibold rounded-[14px] transition-all duration-200 cursor-pointer text-white shadow-md hover:shadow-lg active:scale-98"
+              style={{ background: '#DC2626', border: '1px solid #DC2626' }}
+            >
+              <span>Explore</span>
+              <ArrowRight width={14} height={14} />
+            </button>
 
-            {/* 2: Transmission */}
-            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
-              <Cog className="text-zinc-500 flex-shrink-0" width={13} height={13} />
-              <span className="truncate font-medium">{getTransmission(vehicle.transmission)}</span>
-            </div>
-
-            {/* 3: Drivetrain */}
-            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
-              <Compass className="text-zinc-500 flex-shrink-0" width={13} height={13} />
-              <span className="truncate font-medium">{getDrivetrain(vehicle.drivetrain)}</span>
-            </div>
-
-            {/* 4: Fuel */}
-            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
-              <Fuel className="text-zinc-500 flex-shrink-0" width={13} height={13} />
-              <span className="truncate font-medium">{vehicle.fuelType}</span>
-            </div>
-
-            {/* 5: Seats */}
-            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
-              <Users className="text-zinc-500 flex-shrink-0" width={13} height={13} />
-              <span className="truncate font-medium">{vehicle.seats || 5} Seats</span>
-            </div>
-
-            {/* 6: Engine Displacement */}
-            <div className="flex items-center gap-1.5 text-zinc-700 bg-zinc-50 rounded-lg px-2.5 py-1.5 border border-zinc-100">
-              <Gauge className="text-zinc-500 flex-shrink-0" width={13} height={13} />
-              <span className="truncate font-medium">{getDisplacement(vehicle.engine)}</span>
-            </div>
-          </div>
-
-          {/* Full-Width Send Inquiry CTA (1:1 Smart Team Layout) */}
-          <div className="pt-2 border-t border-zinc-100">
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                if (onInquire) {
-                  onInquire(vehicle);
-                } else {
-                  handleInquire(e);
-                }
+                if (onInquire) onInquire(vehicle);
+                else handleInquire(e);
               }}
-              className="w-full py-2.5 px-4 text-xs sm:text-sm font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm hover:shadow cursor-pointer active:scale-98"
-              title="Send inquiry"
+              className="inline-flex items-center justify-center gap-1.5 py-3 px-3.5 text-[13px] font-semibold rounded-[14px] transition-all duration-200 cursor-pointer text-white shadow-md active:scale-98 bg-[#25D366] hover:bg-[#20ba59]"
+              title="Send WhatsApp Inquiry"
             >
-              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
-                <MessageCircle width={15} height={15} className="text-white fill-white" />
-              </span>
-              <span>Send Inquiry</span>
+              <MessageCircle width={15} height={15} className="fill-white text-white" />
+              <span className="hidden xs:inline">Inquire</span>
             </button>
           </div>
+
         </div>
       </div>
     </div>
   );
 };
 
-// Animated Loading Skeleton for Vehicle Cards
+// Animated Loading Skeleton for Vehicle Cards (1:1 Smart Team Style)
 export const VehicleCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden animate-pulse shadow-sm flex flex-col justify-between">
-      <div>
-        <div className="relative w-full h-52 sm:h-56 bg-gray-200" />
-        <div className="p-4 space-y-3">
-          <div className="flex items-start justify-between gap-3 min-h-[3.25rem]">
-            <div className="space-y-1.5 flex-1">
-              <div className="h-3 w-16 bg-gray-200 rounded" />
-              <div className="h-4 w-3/4 bg-gray-300 rounded" />
-            </div>
-            <div className="space-y-1 w-24 flex flex-col items-end">
-              <div className="h-5 w-20 bg-gray-300 rounded" />
-              <div className="h-3 w-14 bg-gray-200 rounded" />
-            </div>
+    <div
+      className="hero-card animate-pulse"
+      style={{
+        aspectRatio: '3 / 4',
+        minHeight: '440px',
+        backgroundColor: '#18181b',
+        borderRadius: '28px',
+      }}
+    >
+      <div className="hero-card_content">
+        <div className="flex justify-between items-center">
+          <div className="h-6 w-20 bg-white/10 rounded-md" />
+          <div className="h-8 w-8 bg-white/10 rounded-full" />
+        </div>
+        <div className="space-y-3">
+          <div className="h-6 w-3/4 bg-white/20 rounded" />
+          <div className="space-y-2">
+            <div className="h-4 w-5/6 bg-white/15 rounded" />
+            <div className="h-4 w-4/6 bg-white/15 rounded" />
+            <div className="h-4 w-3/6 bg-white/15 rounded" />
           </div>
-          <div className="grid grid-cols-2 gap-2">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-7 bg-gray-100 rounded" />
-            ))}
+          <div className="flex gap-2">
+            <div className="h-6 w-14 bg-white/15 rounded-full" />
+            <div className="h-6 w-14 bg-white/15 rounded-full" />
           </div>
-          <div className="flex gap-2 pt-3 border-t border-gray-200">
-            <div className="h-9 flex-1 bg-gray-200 rounded" />
-            <div className="h-9 w-9 bg-gray-200 rounded" />
-            <div className="h-9 w-9 bg-gray-200 rounded" />
+          <div className="flex gap-2 pt-2">
+            <div className="h-10 flex-1 bg-white/20 rounded-[14px]" />
+            <div className="h-10 w-24 bg-white/20 rounded-[14px]" />
           </div>
         </div>
       </div>
