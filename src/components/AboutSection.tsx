@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, Clock, Phone, Mail, MessageCircle, Navigation, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock, Phone, Mail, MessageCircle, Navigation, MapPin, Compass } from 'lucide-react';
 import { SkeletonImage } from './SkeletonImage';
 import { CmsPage, CmsSiteSettings } from '../services/cmsContent';
 import { Vehicle } from '../data/vehicles';
@@ -291,15 +291,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100">
-                <a
-                  href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-ghost !text-xs !py-3 !px-5 inline-flex items-center gap-2 w-full sm:w-auto justify-center cursor-pointer"
-                >
-                  <Navigation className="w-4 h-4 text-red-600" />
-                  <span>Open in Google Maps App</span>
-                </a>
+                <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+                  <a
+                    href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-ghost !text-xs !py-3 !px-4 inline-flex items-center gap-2 cursor-pointer flex-1 sm:flex-none justify-center"
+                  >
+                    <Navigation className="w-4 h-4 text-red-600" />
+                    <span>Get Directions</span>
+                  </a>
+                  <a
+                    href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=-4.064257,39.663731"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-ghost !text-xs !py-3 !px-4 inline-flex items-center gap-2 cursor-pointer flex-1 sm:flex-none justify-center"
+                    title="Launch Street View on Google Maps"
+                  >
+                    <Compass className="w-4 h-4 text-zinc-700" />
+                    <span>Street View 360°</span>
+                  </a>
+                </div>
                 <a
                   href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises, I would like directions to visit your showroom next to Ganjoni Primary School, Mombasa.')}`}
                   target="_blank"
