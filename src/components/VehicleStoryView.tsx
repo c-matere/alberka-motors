@@ -344,6 +344,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [selectedInspectorPoint, setSelectedInspectorPoint] = useState<string>('front');
   const [showAuctionModal, setShowAuctionModal] = useState(false);
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
+  const [dossierTab, setDossierTab] = useState<'auction' | 'specs' | 'features'>('auction');
 
   const hubId = getVehicleHubId(vehicle);
   const currentModelHub = getModelHub(hubId);
@@ -683,10 +684,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const activeColor = vehicle.colors[selectedColorIndex] || vehicle.colors[0];
 
   return (
-    <div className="w-full bg-transparent text-zinc-900 pb-32">
+    <div className="w-full bg-transparent text-zinc-900 pb-16">
       
-      {/* 1. FULL-WIDTH 3D COVER FLOW GALLERY (OCCUPIES ABOVE THE FOLD ALONE) */}
-      <section className="figma-carousel-section w-full max-w-none min-h-[calc(100vh-68px)] flex flex-col justify-between pt-2 pb-6 overflow-hidden relative">
+      {/* 1. FULL-WIDTH 3D COVER FLOW GALLERY */}
+      <section className="figma-carousel-section w-full max-w-none flex flex-col justify-start pt-1 pb-4 overflow-hidden relative">
         
         {/* Floating Top Control Strip (Summarized to give full space to the gallery) */}
         <div className="w-full max-w-[1520px] mx-auto px-3 sm:px-8 py-2 z-30 relative flex flex-wrap items-center justify-between gap-2 pointer-events-none">
@@ -988,58 +989,40 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
             </section>
 
-      {/* 3. DETAILED VEHICLE IDENTIFICATION & SPECS */}
-      <section className="relative w-full pt-6 pb-12 sm:pb-16 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
-        <div className="relative z-10 space-y-6">
-          {/* Detailed Vehicle Identification Header */}
-          <div className="text-left max-w-[1240px] mx-auto space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-7 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)]">
-            <div className="space-y-1.5">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-                <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
-                  Direct Japanese Import
-                </span>
-                <span>{vehicle.manufactureYearMonth || `${vehicle.year}/12`}</span>
-                <span>•</span>
-                <span>{make.toUpperCase()}</span>
-                <span>•</span>
-                <span>{bodyTypeUpper}</span>
-              </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-                {vehicle.manufactureYearMonth || `${vehicle.year}/12`} {vehicleDisplayTitle.toUpperCase()}
-              </h1>
-            </div>
-
-            {/* Model Code, Year, Body Type, Stock ID & Location Badges */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-mono pt-1">
-              <span className="bg-zinc-100 border border-zinc-300 text-zinc-900 px-3 py-1 rounded-lg font-bold tracking-wider shadow-2xs">
-                {vehicle.modelCode || 'CBA-GRJ120W'}
-              </span>
-              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
-                {vehicle.year}
-              </span>
-              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
-                {vehicle.bodyType || 'SUV'}
-              </span>
-              <span className="bg-red-50 border border-red-200 text-red-700 px-2.5 py-1 rounded-lg font-bold">
-                Stock Id: {vehicle.sbtStockId || vehicle.stockNo}
-              </span>
-              <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-3 py-1 rounded-lg flex items-center gap-1.5 font-medium">
-                <MapPin className="w-3.5 h-3.5 text-red-600 shrink-0" />
-                <span>Showroom Location: <strong className="text-zinc-950 font-bold">Next to Ganjoni Primary School, Mombasa</strong></span>
-              </span>
-            </div>
-
-            {/* Actions Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
-              <div className="text-xs text-zinc-500 font-mono hidden sm:flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-red-600" />
-                <span>Verified Japanese Import · Ganjoni Showroom Mombasa</span>
+      {/* 2. CONSOLIDATED EXECUTIVE DOSSIER & TECHNICAL MATRIX (BENTO COMPACT) */}
+      <section className="relative w-full pt-4 pb-8 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
+        <div className="relative z-10 space-y-4 max-w-[1240px] mx-auto text-left">
+          
+          {/* Header Card: Title, Badges, Quick Actions */}
+          <div className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
+                  <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
+                    Direct Japanese Import
+                  </span>
+                  <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2 py-0.5 rounded font-mono font-bold">
+                    Stock ID: {vehicle.sbtStockId || vehicle.stockNo}
+                  </span>
+                  <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-700 px-2 py-0.5 rounded font-mono">
+                    Code: {vehicle.modelCode || 'CBA-GRJ120W'}
+                  </span>
+                  <span className="text-zinc-400 hidden sm:inline">•</span>
+                  <span className="hidden sm:inline">{vehicle.year} · {bodyTypeUpper}</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+                  {vehicle.year} {vehicleDisplayTitle.toUpperCase()}
+                </h1>
+                <p className="text-xs sm:text-sm text-zinc-600 font-normal">
+                  {vehicle.tagline || vehicle.moniker}
+                </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+              {/* Share & Print Buttons */}
+              <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
                 <button
                   onClick={handleShareVehicle}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
                     copiedLink
                       ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-semibold'
                       : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
@@ -1048,8 +1031,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 >
                   {copiedLink ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-white stroke-[2.5]" />
-                      <span>Link Copied!</span>
+                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                      <span>Copied!</span>
                     </>
                   ) : (
                     <>
@@ -1061,673 +1044,405 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
                 <button
                   onClick={handleDownloadPhotoList}
-                  className="px-3.5 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
                   title="Print or save vehicle specification dossier"
                 >
                   <Download className="w-3.5 h-3.5 text-zinc-600" />
-                  <span>Print Dossier</span>
+                  <span className="hidden sm:inline">Print Dossier</span>
                 </button>
               </div>
             </div>
-          </div>
 
-          {/* Clean Apple-Style Specification Strip (Diffused soft shadows, no heavy badges) */}
-            <div className="max-w-[1240px] mx-auto mt-8 bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-8 apple-card-shadow text-left">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-zinc-200">
-                {/* 1: Year & Mileage */}
+            {/* Price & Primary Specs Bento Split */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-3 border-t border-zinc-100">
+              
+              {/* Left Column: Pricing & Purchase Actions (5 cols) */}
+              <div className="lg:col-span-5 bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-3.5">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block font-semibold">
-                    Year & Mileage
-                  </span>
-                  <div className="text-xl sm:text-2xl font-bold text-zinc-950 font-mono">
-                    {vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM
-                  </div>
-                  <p className="text-xs text-zinc-600">
-                    JEVIC Odometer Inspection Certified
-                  </p>
-                </div>
-
-                {/* 2: Auction Grade & Hall */}
-                <div className="sm:pl-6 space-y-1 pt-4 sm:pt-0">
-                  <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block font-semibold">
-                    Auction Grade
-                  </span>
-                  <div className="text-xl sm:text-2xl font-bold text-zinc-950 font-mono">
-                    Grade {vehicle.auctionGrade || '4.5'}
-                  </div>
-                  <p className="text-xs text-zinc-600 truncate">
-                    {vehicle.auctionHall || 'USS Tokyo'} (Japan)
-                  </p>
-                </div>
-
-                {/* 3: Powertrain & Transmission */}
-                <div className="sm:pl-6 space-y-1 pt-4 sm:pt-0">
-                  <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block font-semibold">
-                    Powertrain
-                  </span>
-                  <div className="text-xl sm:text-2xl font-bold text-zinc-950">
-                    {vehicle.drivetrain}
-                  </div>
-                  <p className="text-xs text-zinc-600 truncate">
-                    {vehicle.engine} · {vehicle.transmission}
-                  </p>
-                </div>
-
-                {/* 4: Delivered Cash (Obvious price with 7% - 10% off sticker) */}
-                <div className="sm:pl-6 space-y-1 pt-4 sm:pt-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block font-semibold">
-                      Delivered Cash
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-semibold block">
+                      DELIVERED CASH PRICE
                     </span>
-                    <span className="bg-red-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">
-                      {pricing.discountPercent}% OFF
+                    <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs whitespace-nowrap shrink-0">
+                      Save KES {pricing.savingsKes.toLocaleString()}
                     </span>
                   </div>
-                  <div className="text-xs font-mono line-through text-gray-400">
-                    KES {pricing.originalPrice.toLocaleString()}
+
+                  <div className="flex items-baseline gap-2 pt-0.5">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-red-600 font-mono tracking-tight leading-none">
+                      KES {vehicle.priceKes.toLocaleString()}
+                    </span>
+                    {pricing.hasDiscount && (
+                      <span className="text-xs font-mono text-zinc-400 line-through">
+                        KES {pricing.originalPrice.toLocaleString()}
+                      </span>
+                    )}
                   </div>
-                  <div className="text-2xl sm:text-[28px] font-black text-red-600 font-mono leading-none">
-                    KES {pricing.currentPrice.toLocaleString()}
-                  </div>
-                  <p className="text-[11px] text-red-600 font-bold whitespace-nowrap">
-                    Save KES {pricing.savingsKes.toLocaleString()} · 100-Point Overhaul
+
+                  <p className="text-[11px] text-zinc-600 leading-tight pt-1">
+                    Includes KRA customs duty, port clearance, 100-point overhaul & Mombasa yard handover.
                   </p>
+                </div>
+
+                <div className="space-y-2 pt-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button
+                      onClick={() => onScheduleTestDrive(vehicle)}
+                      className="bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-98"
+                    >
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span>Book Test Drive</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (onOpenWhispers) onOpenWhispers(vehicle.id);
+                      }}
+                      className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-98"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+                      <span>Chat WhatsApp</span>
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={() => setShowAuctionModal(true)}
+                    className="w-full bg-white hover:bg-zinc-100 text-zinc-800 border border-zinc-200/90 font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-red-600" />
+                    <span>View Japanese Auction Sheet (Grade {vehicle.auctionGrade || '4.5'})</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Key 6 Mechanical & Inspection Metrics (7 cols) */}
+              <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Auction Grade</span>
+                  <p className="text-base font-bold text-zinc-950 font-mono">Grade {vehicle.auctionGrade || '4.5'}</p>
+                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.auctionHall || 'USS Tokyo'} (Japan)</p>
+                </div>
+
+                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Mileage</span>
+                  <p className="text-base font-bold text-zinc-950 font-mono">{vehicle.mileageKm.toLocaleString()} KM</p>
+                  <p className="text-[11px] text-emerald-700 font-semibold truncate">JEVIC Certified</p>
+                </div>
+
+                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Drivetrain</span>
+                  <p className="text-base font-bold text-zinc-950 truncate">{vehicle.drivetrain || '4WD'}</p>
+                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.transmission || 'Automatic'}</p>
+                </div>
+
+                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Engine</span>
+                  <p className="text-base font-bold text-zinc-950 truncate">{vehicle.engine}</p>
+                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.power || vehicle.torque || 'Direct Injection'}</p>
+                </div>
+
+                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Fuel & Capacity</span>
+                  <p className="text-base font-bold text-zinc-950 truncate">{vehicle.fuelType.toUpperCase()}</p>
+                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
+                </div>
+
+                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Location</span>
+                  <p className="text-base font-bold text-zinc-950 truncate">Mombasa Yard</p>
+                  <p className="text-[11px] text-zinc-500 truncate">Ganjoni Showroom</p>
                 </div>
               </div>
             </div>
 
-            {/* 8-Grid Primary Specs Strip */}
-            <div className="max-w-[1240px] mx-auto mt-6 bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-6 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)] text-left">
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 text-center">
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Mileage</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">{vehicle.mileageKm.toLocaleString()}km</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Engine</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">{vehicle.engine || '4,000cc'}</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Transmission</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">AT</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Drive</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">{vehicle.drivetrain || '4WD'}</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Steering</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">RHD</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Fuel</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">{vehicle.fuelType.toUpperCase() || 'PETROL'}</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Door</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">{vehicle.doors || 5}</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Seats</span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-950 font-mono block mt-0.5">{vehicle.seats || 8}</span>
-                </div>
-              </div>
+            {/* Compact Specs Chip Strip */}
+            <div className="pt-2 flex flex-wrap items-center gap-1.5 text-[11px] font-mono text-zinc-600 border-t border-zinc-100">
+              <span className="font-bold text-zinc-700">SPEC SUMMARY:</span>
+              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Steering: RHD</span>
+              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Accident History: ZERO (No R-Grade)</span>
+              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Economy: {vehicle.fuelEconomy || '14.2 km/L'}</span>
+              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Dim: {vehicle.dimensions || '4.46m × 1.80m × 1.61m'}</span>
+              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Weight: {vehicle.curbWeight || '1,440 kg'}</span>
+              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Wheelbase: {vehicle.wheelbase || '2,665 mm'}</span>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-      {/* Section Gradient Fade Transition */}
-      <SectionGradientFade />
-
-      {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS (MINIMALIST DEDICATED SECTIONS) */}
+      {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS (COMPACT BENTO GRID) */}
       {vehicle.closerLookPoints && vehicle.closerLookPoints.length > 0 && (
-        <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 border-t border-zinc-200/80">
-          <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 text-left">
+        <section className="w-full bg-transparent py-8 sm:py-10 px-4 sm:px-8 border-t border-zinc-200/80">
+          <div className="max-w-[1240px] mx-auto space-y-6 text-left">
             
-            <div className="space-y-2 max-w-3xl">
-              <div className="inline-flex items-center gap-2 font-mono text-[11px] text-red-600 uppercase font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                <span>CLOSER LOOK · 4 KEY ADVANTAGES</span>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 font-mono text-[10.5px] text-red-600 uppercase font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+                  <span>CLOSER LOOK · 4 KEY ADVANTAGES</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+                  Engineered for Daily Life & Kenyan Roads
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-bold text-zinc-950 tracking-tight leading-tight">
-                Engineered for Daily Life & Kenyan Roads
-              </h2>
-              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                Key mechanical, comfort, and interior features handpicked for durability and effortless everyday driving.
+              <p className="text-xs text-zinc-500 max-w-md sm:text-right">
+                Click any highlight to inspect high-resolution mechanical detail in fullscreen.
               </p>
             </div>
 
-            {/* Individual Minimalist Feature Sections: Image with Description Text Next to It */}
-            <div className="divide-y divide-zinc-200/80">
-              {vehicle.closerLookPoints.map((point, pIdx) => {
-                const isEven = pIdx % 2 === 1;
-                return (
-                  <div
-                    key={point.id || pIdx}
-                    className={`flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16 py-12 sm:py-16 first:pt-0 last:pb-0 ${
-                      isEven ? 'lg:flex-row-reverse' : ''
-                    } bg-transparent`}
-                  >
-                    {/* Image Column: 3:4 Native Aspect Ratio */}
-                    <div 
-                      onClick={() => openPhotoByUrl(point.imageUrl)}
-                      className="w-full max-w-[420px] aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-100 relative group cursor-pointer border border-zinc-200/80 shadow-xs shrink-0"
-                    >
-                      <img
-                        src={point.imageUrl}
-                        alt={point.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors pointer-events-none" />
-                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-950 font-bold flex items-center gap-2 shadow-sm">
-                        <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                        <span>{point.metric}</span>
-                      </div>
-                      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md text-[11px] font-mono font-bold text-zinc-900 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5">
-                        <ZoomIn className="w-3.5 h-3.5 text-zinc-600" />
-                        <span>Click to enlarge</span>
-                      </div>
+            {/* 4-Card Responsive Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {vehicle.closerLookPoints.map((point, pIdx) => (
+                <div
+                  key={point.id || pIdx}
+                  onClick={() => openPhotoByUrl(point.imageUrl, point.title, point.description)}
+                  className="bg-white border border-zinc-200/90 rounded-2xl overflow-hidden shadow-2xs hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
+                >
+                  <div className="aspect-[16/10] w-full overflow-hidden relative bg-zinc-100">
+                    <img
+                      src={point.imageUrl}
+                      alt={point.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-zinc-200/80 text-[10px] font-mono text-zinc-950 font-bold flex items-center gap-1.5 shadow-2xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                      <span>{point.metric}</span>
                     </div>
-
-                    {/* Description Text Column Next to the Image */}
-                    <div className="w-full lg:flex-1 flex flex-col justify-center space-y-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs font-bold text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-md border border-red-200/60">
-                            0{pIdx + 1} · {point.metricLabel || 'HIGHLIGHT'}
-                          </span>
-                        </div>
-                        <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-snug">
-                          {point.title}
-                        </h3>
-                        <p className="font-mono text-xs sm:text-sm text-zinc-500 font-semibold uppercase tracking-wider">
-                          {point.subtitle}
-                        </p>
-                      </div>
-
-                      <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
-                        {point.description}
-                      </p>
-
-                      <div className="pt-4 border-t border-zinc-200/70 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono text-zinc-500 uppercase font-semibold">SPECIFICATION:</span>
-                          <span className="text-xs sm:text-sm font-bold text-zinc-950 font-mono bg-zinc-200/70 px-3 py-1 rounded-md">
-                            {point.metric}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => openPhotoByUrl(point.imageUrl)}
-                          className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 cursor-pointer transition-colors"
-                        >
-                          <span>View Detail</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                    <div className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-md p-1.5 rounded-md text-zinc-700 shadow-2xs opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-3.5 h-3.5" />
                     </div>
                   </div>
-                );
-              })}
+
+                  <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                    <div className="space-y-1">
+                      <span className="font-mono text-[10px] font-bold text-red-600 uppercase tracking-wider block">
+                        0{pIdx + 1} · {point.metricLabel || 'HIGHLIGHT'}
+                      </span>
+                      <h3 className="text-sm font-bold text-zinc-950 leading-snug group-hover:text-red-600 transition-colors">
+                        {point.title}
+                      </h3>
+                      <p className="text-xs text-zinc-600 leading-relaxed line-clamp-3">
+                        {point.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                      <span>{point.subtitle}</span>
+                      <span className="text-red-600 font-bold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                        <span>Inspect</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>
         </section>
       )}
 
-      {/* Section Gradient Fade Transition */}
-      <SectionGradientFade />
-
-      {/* 5. TECHNICAL ARCHIVES & AUCTION SHEET */}
-      <section className="w-full bg-transparent relative py-20 px-6 sm:px-10">
-        <div className="max-w-[1400px] mx-auto space-y-10 relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div className="space-y-2">
-              <span className="brand-eyebrow block">FACTORY SPECS & INSPECTION</span>
-              <h2 className="text-[26px] sm:text-[34px] font-bold text-zinc-950 tracking-tight">
-                Technical Specifications · {vehicle.name}
-              </h2>
-            </div>
-
-            <button
-              onClick={() => setShowAuctionModal(true)}
-              className="btn-ghost !py-2.5 !px-4 text-[13px] cursor-pointer"
-            >
-              <FileText className="w-4 h-4 text-zinc-600" />
-              <span>View Japanese Auction Sheet</span>
-            </button>
-          </div>
-
-          {/* Technical Specs 4-Column Grid with Crystalline Glassmorphism */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 bg-white backdrop-blur-[2px] border border-zinc-200 rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-              <span className="text-[10.5px] font-mono text-zinc-600 uppercase block">Engine & Power</span>
-              <p className="font-bold text-zinc-950 text-[15px]">{vehicle.engine}</p>
-              <p className="text-[13px] text-zinc-700 font-mono">{vehicle.power} · {vehicle.torque}</p>
-            </div>
-
-            <div className="p-5 bg-white backdrop-blur-[2px] border border-zinc-200 rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-              <span className="text-[10.5px] font-mono text-zinc-600 uppercase block">Fuel & Efficiency</span>
-              <p className="font-bold text-zinc-950 text-[15px]">{vehicle.fuelType}</p>
-              <p className="text-[13px] text-zinc-700 font-mono">{vehicle.fuelEconomy}</p>
-            </div>
-
-            <div className="p-5 bg-white backdrop-blur-[2px] border border-zinc-200 rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-              <span className="text-[10.5px] font-mono text-zinc-600 uppercase block">Auction Provenance</span>
-              <p className="font-bold text-zinc-950 text-[15px]">{vehicle.auctionHall}</p>
-              <p className="text-[13px] text-zinc-950 font-mono font-bold">Grade {vehicle.auctionGrade} · Interior {vehicle.interiorGrade}</p>
-            </div>
-
-            <div className="p-5 bg-white backdrop-blur-[2px] border border-zinc-200 rounded-2xl space-y-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-              <span className="text-[10.5px] font-mono text-zinc-600 uppercase block">Export Dossier</span>
-              <p className="font-bold text-zinc-950 text-[15px]">QISJ & JEVIC</p>
-              <p className="text-[13px] text-zinc-700">Genuine Odometer Verified</p>
-            </div>
-          </div>
-
-          {/* Action Bottom Bar with Crystalline Glassmorphism */}
-          <div className="p-8 bg-white backdrop-blur-[2px] border border-zinc-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-            <div className="space-y-1 text-left">
-              <span className="text-[11px] font-mono text-[#71717a] uppercase block">
-                DELIVERED HANDOVER PRICE
-              </span>
-              <span className="font-mono text-[26px] font-bold text-zinc-950">
-                KES {vehicle.priceKes.toLocaleString()}
-              </span>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-              <button
-                onClick={() => onScheduleTestDrive(vehicle)}
-                className="btn-ghost !py-3 !px-5 text-[13px] cursor-pointer w-full sm:w-auto"
-              >
-                <Calendar className="w-4 h-4 mr-1.5" />
-                <span>Book Test Drive</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  if (onOpenWhispers) onOpenWhispers(vehicle.id);
-                }}
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-3 !px-5 text-[13px] cursor-pointer w-full sm:w-auto font-bold rounded-lg inline-flex items-center justify-center gap-1.5 shadow-md hover:scale-[1.01] active:scale-98 transition-all"
-              >
-                <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
-                  <MessageCircle className="w-4 h-4 text-white fill-white" />
-                </span>
-                <span>Chat on WhatsApp</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. JAPANESE AUCTION SHEET NOTES & TRANSLATION */}
-      <section className="w-full bg-[#f8f9fa] py-16 sm:py-20 px-4 sm:px-8 border-t border-zinc-200 text-left">
-        <div className="max-w-[1240px] mx-auto space-y-8">
+      {/* 4. HIGH-DENSITY TABBED TECHNICAL DOSSIER & JAPANESE INSPECTION ARCHIVE */}
+      <section className="w-full bg-[#F8F9FB] py-8 sm:py-12 px-4 sm:px-8 border-t border-zinc-200 text-left">
+        <div className="max-w-[1240px] mx-auto space-y-6">
+          
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
-                JAPANESE AUCTION DOSSIER
+                AUTHENTIC JAPANESE EXPORT ARCHIVE
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-                Auction Sheet Notes & Translation
+                Factory Specifications & Japanese Inspection Dossier
               </h2>
-              <p className="text-xs sm:text-sm text-zinc-600 mt-1">
-                Official inspector condition report from {vehicle.auctionHall || 'USS Tokyo'} (Japan). File ref: inspect_en.jpg
-              </p>
             </div>
 
-            <button
-              onClick={() => setShowAuctionModal(true)}
-              className="bg-white hover:bg-zinc-100 text-zinc-900 border border-zinc-300 font-bold text-xs py-2.5 px-4 rounded-xl inline-flex items-center gap-2 shadow-sm cursor-pointer self-start sm:self-auto"
-            >
-              <FileText className="w-4 h-4 text-red-600" />
-              <span>Inspect Original Japanese Sheet</span>
-            </button>
-          </div>
+            {/* Dossier Tabs */}
+            <div className="inline-flex items-center gap-1 bg-white p-1 rounded-xl border border-zinc-200/90 shadow-2xs self-start sm:self-auto">
+              <button
+                type="button"
+                onClick={() => setDossierTab('auction')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                  dossierTab === 'auction'
+                    ? 'bg-red-50 text-red-700 border border-red-200/80 shadow-2xs'
+                    : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50'
+                }`}
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Auction Sheet & Inspection</span>
+              </button>
 
-          <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)] space-y-6">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-6 border-b border-zinc-100 text-xs font-mono">
-              <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-bold">OVERALL AUCTION GRADE</span>
-                <span className="text-xl sm:text-2xl font-black text-zinc-950 block mt-0.5">Grade {vehicle.auctionGrade || '4.5'}</span>
-              </div>
-              <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-bold">INTERIOR / CABIN GRADE</span>
-                <span className="text-xl sm:text-2xl font-black text-zinc-950 block mt-0.5">Grade {vehicle.interiorGrade || 'A'}</span>
-              </div>
-              <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-bold">ACCIDENT HISTORY</span>
-                <span className="text-xl sm:text-2xl font-black text-zinc-950 block mt-0.5">ZERO (No R-Grade)</span>
-              </div>
-              <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-bold">ODOMETER CERTIFICATION</span>
-                <span className="text-xl sm:text-2xl font-black text-zinc-950 block mt-0.5">JEVIC Certified</span>
-              </div>
-            </div>
+              <button
+                type="button"
+                onClick={() => setDossierTab('specs')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                  dossierTab === 'specs'
+                    ? 'bg-red-50 text-red-700 border border-red-200/80 shadow-2xs'
+                    : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50'
+                }`}
+              >
+                <Sliders className="w-3.5 h-3.5" />
+                <span>Dimensions & Engine Specs</span>
+              </button>
 
-            <div className="space-y-3">
-              <span className="font-mono text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">
-                INSPECTOR REMARKS TRANSLATION (JAPANESE TO ENGLISH):
-              </span>
-              <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-4 text-xs sm:text-sm text-zinc-700 space-y-2 leading-relaxed">
-                <p>• One registered Japanese corporate/private owner. Non-smoker cabin with original floor mats.</p>
-                <p>• High-grade leather seating preserved in factory state with zero tears or excessive wear.</p>
-                <p>• Clean undercarriage with zero coastal corrosion or oil leaks. Factory exhaust and suspension boots intact.</p>
-                <p>• Air conditioning compressor and climate controls confirmed ice-cold. Push-button start and smart key system tested.</p>
-                <p>• Engine starts smoothly at idle; automatic transmission shifts seamlessly through all gear ratios.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. VEHICLE DETAILS & SPECIFICATIONS TABLES */}
-      <section className="w-full bg-white py-16 sm:py-20 px-4 sm:px-8 border-t border-zinc-200 text-left">
-        <div className="max-w-[1240px] mx-auto space-y-10">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
-              SPECIFICATION DOSSIER
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-              Vehicle Details & Dimensions
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-600 mt-1">
-              Technical factory benchmarks and Japanese export registration metrics.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Vehicle Details Table */}
-            <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-              <h3 className="text-base font-bold text-zinc-950 border-b border-zinc-200 pb-3 flex items-center gap-2">
-                <FileCheck2 className="w-4 h-4 text-red-600" />
-                <span>Vehicle Details</span>
-              </h3>
-
-              <div className="divide-y divide-zinc-200 text-xs sm:text-sm">
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Make</span>
-                  <span className="font-bold text-zinc-950">{make.toUpperCase()}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Model</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.modelCode || 'CBA-GRJ120W'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Body color</span>
-                  <span className="font-semibold text-zinc-950">{vehicle.exteriorColor?.toUpperCase() || 'WHITE'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Body Type</span>
-                  <span className="font-semibold text-zinc-950">{vehicle.bodyType?.toUpperCase() || 'SUV'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Doors</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.doors || 5}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Seats</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.seats || 8}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Specifications Table */}
-            <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-              <h3 className="text-base font-bold text-zinc-950 border-b border-zinc-200 pb-3 flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-red-600" />
-                <span>Specifications</span>
-              </h3>
-
-              <div className="divide-y divide-zinc-200 text-xs sm:text-sm">
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Dimension</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.dimensions || '4.76m × 1.88m × 1.85m'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">M3 (Volume)</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.m3 || '16.823'} m³</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Vehicle Weight</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.curbWeight || '1,980 kg'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Gross Vehicle Weight</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.grossWeight || '2,600 kg'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Max Loading Capacity</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.maxLoadingCapacity || '— kg'}</span>
-                </div>
-                <div className="py-2.5 flex justify-between items-center">
-                  <span className="text-zinc-500 font-mono">Wheelbase</span>
-                  <span className="font-mono font-bold text-zinc-950">{vehicle.wheelbase || '2,790 mm'}</span>
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={() => setDossierTab('features')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                  dossierTab === 'features'
+                    ? 'bg-red-50 text-red-700 border border-red-200/80 shadow-2xs'
+                    : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50'
+                }`}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Options Checklist</span>
+              </button>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 8. CAR OPTIONS CATEGORIZED CHECKLIST */}
-      <section className="w-full bg-[#f8f9fa] py-16 sm:py-20 px-4 sm:px-8 border-t border-zinc-200 text-left">
-        <div className="max-w-[1240px] mx-auto space-y-10">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
-              EQUIPMENT & ACCESSORIES
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
-              Car Options & Features Checklist
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-600 mt-1">
-              Verified factory and dealer-installed accessories on this Japanese import.
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {/* Comfort & Convenience */}
-            {(() => {
-              const comfort = vehicle.equipmentChecklist?.find((c) => c.category === 'COMFORT & CONVENIENCE') || {
-                category: 'COMFORT & CONVENIENCE',
-                items: [
-                  { name: 'Air Conditioner', active: true },
-                  { name: 'Audio Player', active: true },
-                  { name: 'Power Steering', active: true },
-                ],
-              };
-              return (
-                <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                  <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                    {comfort.category}
-                  </span>
-                  <div className="flex flex-wrap gap-2 text-xs">
-                    {comfort.items.map((opt, i) => (
-                      <span
-                        key={i}
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                          opt.active
-                            ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
-                            : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                        }`}
-                      >
-                        {opt.active ? (
-                          <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
-                        ) : (
-                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                        )}
-                        <span>{opt.name}</span>
-                      </span>
-                    ))}
+          {/* TAB 1: AUCTION SHEET & INSPECTION */}
+          {dossierTab === 'auction' && (
+            <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 shadow-xs space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-100">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 flex-1">
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] font-mono uppercase font-bold">OVERALL AUCTION GRADE</span>
+                    <span className="text-2xl font-black text-zinc-950 font-mono block mt-0.5">Grade {vehicle.auctionGrade || '4.5'}</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] font-mono uppercase font-bold">INTERIOR GRADE</span>
+                    <span className="text-2xl font-black text-zinc-950 font-mono block mt-0.5">Grade {vehicle.interiorGrade || 'A'}</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] font-mono uppercase font-bold">ACCIDENT HISTORY</span>
+                    <span className="text-2xl font-black text-emerald-700 font-mono block mt-0.5">ZERO (No R-Grade)</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] font-mono uppercase font-bold">ODOMETER CERTIFICATION</span>
+                    <span className="text-2xl font-black text-zinc-950 font-mono block mt-0.5">JEVIC Genuine</span>
                   </div>
                 </div>
-              );
-            })()}
 
-            {/* Dress Up & Exterior */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Dress Up */}
-              {(() => {
-                const dressUp = vehicle.equipmentChecklist?.find((c) => c.category === 'DRESS UP') || {
-                  category: 'DRESS UP',
-                  items: [],
-                };
-                return (
-                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                      {dressUp.category}
+                <button
+                  onClick={() => setShowAuctionModal(true)}
+                  className="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 font-bold text-xs py-2.5 px-4 rounded-xl inline-flex items-center gap-2 shadow-2xs cursor-pointer self-start sm:self-auto shrink-0 transition-colors"
+                >
+                  <FileText className="w-4 h-4 text-red-600" />
+                  <span>Inspect Original Japanese Sheet</span>
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                <span className="font-mono text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">
+                  INSPECTOR REMARKS TRANSLATION (JAPANESE TO ENGLISH):
+                </span>
+                <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-4 text-xs sm:text-sm text-zinc-700 space-y-2 leading-relaxed">
+                  <p>• One registered Japanese corporate/private owner. Non-smoker cabin with original factory mats.</p>
+                  <p>• Factory seating preserved with zero tears or excessive bolster wear. All seat adjusters operational.</p>
+                  <p>• Clean undercarriage with zero coastal corrosion or fluid leaks. Factory exhaust and suspension boots fully intact.</p>
+                  <p>• Air conditioning compressor confirmed ice-cold. Push-button start, smart key system, and reverse camera tested.</p>
+                  <p>• Engine starts smoothly at idle; automatic transmission shifts seamlessly through all gear ratios.</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: SPECIFICATIONS & DIMENSIONS */}
+          {dossierTab === 'specs' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="bg-white border border-zinc-200 rounded-2xl p-5 sm:p-6 space-y-3 shadow-xs">
+                <h3 className="text-sm font-bold text-zinc-950 border-b border-zinc-100 pb-2.5 flex items-center gap-2">
+                  <FileCheck2 className="w-4 h-4 text-red-600" />
+                  <span>Vehicle Identification</span>
+                </h3>
+                <div className="divide-y divide-zinc-100 text-xs">
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Make</span><span className="font-bold text-zinc-950">{make.toUpperCase()}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Model Code</span><span className="font-mono font-bold text-zinc-950">{vehicle.modelCode || 'CBA-GRJ120W'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Exterior Color</span><span className="font-semibold text-zinc-950">{vehicle.exteriorColor?.toUpperCase() || 'BLACK'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Body Type</span><span className="font-semibold text-zinc-950">{vehicle.bodyType?.toUpperCase() || 'SUV'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Engine & Capacity</span><span className="font-bold text-zinc-950">{vehicle.engine}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Power & Torque</span><span className="font-mono text-zinc-800">{vehicle.power || '154 HP'} · {vehicle.torque || '196 Nm'}</span></div>
+                </div>
+              </div>
+
+              <div className="bg-white border border-zinc-200 rounded-2xl p-5 sm:p-6 space-y-3 shadow-xs">
+                <h3 className="text-sm font-bold text-zinc-950 border-b border-zinc-100 pb-2.5 flex items-center gap-2">
+                  <Sliders className="w-4 h-4 text-red-600" />
+                  <span>Dimensions & Weights</span>
+                </h3>
+                <div className="divide-y divide-zinc-100 text-xs">
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Dimensions (L × W × H)</span><span className="font-mono font-bold text-zinc-950">{vehicle.dimensions || '4.46m × 1.80m × 1.61m'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Curb Weight</span><span className="font-mono font-bold text-zinc-950">{vehicle.curbWeight || '1,440 kg'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Gross Vehicle Weight</span><span className="font-mono font-bold text-zinc-950">{vehicle.grossWeight || '1,940 kg'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Wheelbase</span><span className="font-mono font-bold text-zinc-950">{vehicle.wheelbase || '2,665 mm'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">Fuel Economy</span><span className="font-mono font-bold text-zinc-950">{vehicle.fuelEconomy || '14.2 km/L'}</span></div>
+                  <div className="py-2 flex justify-between items-center"><span className="text-zinc-500 font-mono">M3 Shipping Volume</span><span className="font-mono font-bold text-zinc-950">{vehicle.m3 || '12.92'} m³</span></div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: OPTIONS CHECKLIST */}
+          {dossierTab === 'features' && (
+            <div className="bg-white border border-zinc-200 rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+              <div className="flex flex-wrap gap-2 text-xs">
+                {(() => {
+                  const allItems = (vehicle.equipmentChecklist || []).flatMap((c) => c.items);
+                  const displayItems = allItems.length > 0 ? allItems : [
+                    { name: 'Air Conditioner', active: true },
+                    { name: 'Power Steering', active: true },
+                    { name: 'Power Windows', active: true },
+                    { name: 'Anti-Lock Brakes (ABS)', active: true },
+                    { name: 'Airbag (Driver & Passenger)', active: true },
+                    { name: 'Side Airbags', active: true },
+                    { name: 'Smart Key / Push Start', active: true },
+                    { name: 'Navigation / Display Audio', active: true },
+                    { name: 'Reverse Parking Camera', active: true },
+                    { name: 'Alloy Wheels', active: true },
+                    { name: 'Fog Lights', active: true },
+                    { name: 'EyeSight Driver Assist / Pre-Crash', active: true },
+                    { name: 'Adaptive Cruise Control', active: true },
+                    { name: 'Lane Keep Assist', active: true },
+                    { name: 'Electronic Stability Control (ESC)', active: true },
+                  ];
+                  return displayItems.map((opt, i) => (
+                    <span
+                      key={i}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs ${
+                        opt.active
+                          ? 'bg-zinc-50 text-zinc-900 border-zinc-200 font-semibold'
+                          : 'bg-zinc-50/50 text-zinc-400 border-zinc-200/50 opacity-50 line-through'
+                      }`}
+                    >
+                      {opt.active ? (
+                        <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
+                      )}
+                      <span>{opt.name}</span>
                     </span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      {dressUp.items.map((opt, i) => (
-                        <span
-                          key={i}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                            opt.active
-                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
-                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                          }`}
-                        >
-                          {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
-                          ) : (
-                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                          )}
-                          <span>{opt.name}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
+                  ));
+                })()}
+              </div>
 
-              {/* Exterior */}
-              {(() => {
-                const exterior = vehicle.equipmentChecklist?.find((c) => c.category === 'EXTERIOR') || {
-                  category: 'EXTERIOR',
-                  items: [],
-                };
-                return (
-                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                      {exterior.category}
-                    </span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      {exterior.items.map((opt, i) => (
-                        <span
-                          key={i}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                            opt.active
-                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
-                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                          }`}
-                        >
-                          {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
-                          ) : (
-                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                          )}
-                          <span>{opt.name}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
+              <div className="pt-3 border-t border-zinc-100 flex items-center gap-2">
+                <span className="font-mono text-xs text-zinc-500 uppercase font-bold">REMARKS:</span>
+                <span className="bg-red-50 border border-red-200 text-red-700 px-2 py-0.5 rounded font-mono text-xs font-bold">
+                  {vehicle.equipmentRemarks || `${vehicle.seats || 5} SEATS · 100% FACTORY ORIGINAL`}
+                </span>
+              </div>
             </div>
+          )}
 
-            {/* Safety & Other */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Safety */}
-              {(() => {
-                const safety = vehicle.equipmentChecklist?.find((c) => c.category === 'SAFETY') || {
-                  category: 'SAFETY',
-                  items: [],
-                };
-                return (
-                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                      {safety.category}
-                    </span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      {safety.items.map((opt, i) => (
-                        <span
-                          key={i}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                            opt.active
-                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
-                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                          }`}
-                        >
-                          {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
-                          ) : (
-                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                          )}
-                          <span>{opt.name}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
-
-              {/* Other & Remarks */}
-              {(() => {
-                const other = vehicle.equipmentChecklist?.find((c) => c.category === 'OTHER & REMARKS') || {
-                  category: 'OTHER & REMARKS',
-                  items: [],
-                };
-                return (
-                  <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm">
-                    <span className="font-mono text-xs uppercase tracking-wider text-red-600 font-bold block">
-                      {other.category}
-                    </span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      {other.items.map((opt, i) => (
-                        <span
-                          key={i}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
-                            opt.active
-                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
-                              : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
-                          }`}
-                        >
-                          {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
-                          ) : (
-                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
-                          )}
-                          <span>{opt.name}</span>
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-3 border-t border-zinc-100 flex items-center gap-2">
-                      <span className="font-mono text-xs text-zinc-500 uppercase font-bold">REMARKS:</span>
-                      <span className="bg-red-50 border border-red-200 text-red-700 px-2 py-0.5 rounded font-mono text-xs font-bold">
-                        {vehicle.equipmentRemarks || `${vehicle.seats || 4}SEATS, 350KG PAYLOAD`}
-                      </span>
-                      <span className="bg-zinc-100 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded font-mono text-xs font-semibold">
-                        100% Verified Import
-                      </span>
-                    </div>
-                  </div>
-                );
-              })()}
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Showroom Physical Location & Google Maps Embed */}
-      <section className="py-16 sm:py-20 px-4 sm:px-8 border-t border-zinc-200 bg-zinc-50 text-zinc-900">
-        <div className="max-w-[1240px] mx-auto space-y-8 text-left">
+      <section className="py-8 sm:py-10 px-4 sm:px-8 border-t border-zinc-200 bg-zinc-50 text-zinc-900">
+        <div className="max-w-[1240px] mx-auto space-y-6 text-left">
           <div className="space-y-1">
             <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block">
               PHYSICAL SHOWROOM & INSPECTION BAY
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-950 tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
               View & Test Drive in Mombasa
             </h2>
             <p className="text-xs sm:text-sm text-zinc-600 max-w-2xl">
@@ -1735,17 +1450,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* Showroom Details Column */}
-            <div className="lg:col-span-5 bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm">
-              <div className="space-y-4">
+            <div className="lg:col-span-5 bg-white border border-zinc-200 rounded-2xl p-5 sm:p-6 flex flex-col justify-between space-y-5 shadow-xs">
+              <div className="space-y-3.5">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
-                    <MapPin className="w-5 h-5 text-white" />
+                  <div className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                    <MapPin className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-mono font-bold text-red-600 uppercase tracking-wider block">SHOWROOM ADDRESS</span>
-                    <h3 className="text-lg font-bold text-zinc-950 leading-snug">
+                    <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-wider block">SHOWROOM ADDRESS</span>
+                    <h3 className="text-base font-bold text-zinc-950 leading-snug">
                       Next to Ganjoni Primary School
                     </h3>
                     <p className="text-xs text-zinc-600 mt-0.5">
@@ -1754,37 +1469,37 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   </div>
                 </div>
 
-                <div className="border-t border-zinc-100 pt-4 space-y-3 text-xs">
-                  <div className="flex items-center gap-2.5 text-zinc-700 font-medium">
-                    <Clock className="w-4 h-4 text-zinc-500 shrink-0" />
+                <div className="border-t border-zinc-100 pt-3 space-y-2.5 text-xs">
+                  <div className="flex items-center gap-2 text-zinc-700 font-medium">
+                    <Clock className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                     <span>Mon – Sat: 8:00 AM – 6:00 PM (Sundays by appointment)</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-zinc-700 font-medium">
-                    <Phone className="w-4 h-4 text-zinc-500 shrink-0" />
+                  <div className="flex items-center gap-2 text-zinc-700 font-medium">
+                    <Phone className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                     <span>Direct Helpline: 0180 423 075 (WhatsApp & Calls)</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-zinc-800 font-semibold">
-                    <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
+                  <div className="flex items-center gap-2 text-zinc-800 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-red-600 shrink-0" />
                     <span>In-house 100-point inspection hoist available for viewing</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2 space-y-2.5">
+              <div className="pt-1 space-y-2">
                 <a
                   href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-5 rounded-xl text-xs sm:text-sm inline-flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-98 cursor-pointer"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs inline-flex items-center justify-center gap-2 shadow-xs transition-all hover:scale-[1.01] active:scale-98 cursor-pointer"
                 >
-                  <Navigation className="w-4 h-4" />
+                  <Navigation className="w-3.5 h-3.5" />
                   <span>Get Google Maps Directions</span>
                 </a>
                 <a
                   href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20at%20your%20showroom%20next%20to%20Ganjoni%20Primary%20School,%20Mombasa.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold py-2.5 px-5 rounded-xl text-xs inline-flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  className="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold py-2.5 px-4 rounded-xl text-xs inline-flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Book Viewing on WhatsApp</span>
@@ -1793,12 +1508,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
 
             {/* Interactive Google Maps Frame */}
-            <div className="lg:col-span-7 bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm min-h-[340px] sm:min-h-[400px] relative">
+            <div className="lg:col-span-7 bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-xs min-h-[260px] sm:min-h-[290px] relative">
               <iframe
                 src="https://maps.google.com/maps?q=-4.064257,39.663731+(Alberka+Enterprises+Limited)&t=k&z=19&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: '340px' }}
+                style={{ border: 0, minHeight: '260px' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
@@ -1811,8 +1526,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </section>
 
       {/* Similar Vehicles in Stock — 4-Card Responsive Grid */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 border-t border-zinc-200 bg-white text-zinc-900">
-        <div className="max-w-[1520px] mx-auto space-y-8">
+      <section className="py-8 sm:py-12 px-4 sm:px-8 border-t border-zinc-200 bg-white text-zinc-900">
+        <div className="max-w-[1520px] mx-auto space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">
