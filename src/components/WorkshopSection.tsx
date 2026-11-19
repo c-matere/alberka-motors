@@ -42,6 +42,29 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
     notes: '',
   });
 
+  // Hash-based stage synchronization for footer deep links
+  useEffect(() => {
+    const syncStageFromHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('auction-grades') || hash.includes('stage-01') || hash.includes('stage-auction-grades')) {
+        setActiveStep(0);
+      } else if (hash.includes('damage-report') || hash.includes('jevic') || hash.includes('stage-02') || hash.includes('stage-damage-report') || hash.includes('stage-jevic')) {
+        setActiveStep(1);
+      } else if (hash.includes('shipping') || hash.includes('tracking') || hash.includes('stage-03') || hash.includes('stage-shipping') || hash.includes('stage-tracking')) {
+        setActiveStep(2);
+      } else if (hash.includes('customs') || hash.includes('stage-04')) {
+        setActiveStep(3);
+      } else if (hash.includes('ntsa') || hash.includes('stage-05')) {
+        setActiveStep(4);
+      } else if (hash.includes('overhaul') || hash.includes('stage-06') || hash.includes('stage-overhaul')) {
+        setActiveStep(5);
+      }
+    };
+    syncStageFromHash();
+    window.addEventListener('hashchange', syncStageFromHash);
+    return () => window.removeEventListener('hashchange', syncStageFromHash);
+  }, []);
+
   // The 6-Stage Japanese Direct Import Protocol
   const importSteps = [
     {
@@ -248,7 +271,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
         </div>
 
         {/* Interactive 6-Stage Timeline Protocol */}
-        <div className="space-y-6 text-left">
+        <div id="import-timeline" className="space-y-6 text-left scroll-mt-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-1">

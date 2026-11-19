@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, Clock, Phone, Mail, MessageCircle, Navigation, MapPin, Compass } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock, Phone, Mail, MessageCircle, Navigation, MapPin, Compass, ShieldCheck } from 'lucide-react';
 import { SkeletonImage } from './SkeletonImage';
 import { CmsPage, CmsSiteSettings } from '../services/cmsContent';
 import { Vehicle } from '../data/vehicles';
@@ -41,7 +41,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-20 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-[800px] mx-auto space-y-3">
+        <div id="about-provenance" className="text-center max-w-[800px] mx-auto space-y-3 scroll-mt-24">
           <div className="inline-flex items-center gap-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600">
               {pageData?.badge || 'HERITAGE & PROVENANCE · ESTABLISHED 2000'}
@@ -102,7 +102,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         </div>
 
         {/* Chapter 1: Direct Japanese Bidding */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+        <div id="why-choose-alberka" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4 scroll-mt-24">
           <div className="lg:col-span-7 space-y-5 text-left">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-600 font-semibold block">
               SOURCING PRINCIPLE
@@ -335,7 +335,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </div>
 
           {/* Test Drive Reservation */}
-          <div className="relative bg-white p-6 sm:p-10 border border-zinc-200 rounded-3xl space-y-6 text-left shadow-sm">
+          <div id="test-drive-booking" className="relative bg-white p-6 sm:p-10 border border-zinc-200 rounded-3xl space-y-6 text-left shadow-sm scroll-mt-24">
             <div className="max-w-xl space-y-1">
               <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold block">
                 VIP RESERVATION
@@ -431,6 +431,83 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 </div>
               </form>
             )}
+          </div>
+        </div>
+
+        {/* Anti-Tampering Mileage Policy & CSR Governance */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 border-t border-zinc-200 text-left">
+          {/* Anti-Tampering Mileage Policy */}
+          <div id="anti-tampering-policy" className="bg-white border border-zinc-200/90 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs scroll-mt-24 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-red-600" />
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-red-600 shrink-0">
+                <CheckCircle2 className="w-4 h-4" />
+              </span>
+              <div>
+                <span className="font-mono text-[10px] text-red-600 uppercase tracking-widest font-bold block">
+                  LEGAL BUYER PROTECTION
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-zinc-950">
+                  Anti-Tampering Mileage Policy
+                </h3>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-[13px] text-zinc-600 leading-relaxed font-normal">
+              Odometer fraud is the single largest consumer abuse in the imported car market. Alberka operates an audited zero-tolerance protocol:
+            </p>
+
+            <ul className="space-y-2.5 text-xs text-zinc-700">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>QISJ / JEVIC Verification:</strong> Official Japanese inspection certificates verified against Japan Ministry of Land, Infrastructure, Transport and Tourism records.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Original Massha-sho Export Dossier:</strong> You receive the physical Japanese deregistration certificate stating historical mileage at previous road inspection (Shaken).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>100% Refund Guarantee:</strong> If mileage rollback is proven on any unit delivered by Alberka, you receive a full 100% refund of your purchase price.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* CSR & Community Road Safety Policy */}
+          <div id="csr-policy" className="bg-white border border-zinc-200/90 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs scroll-mt-24 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-zinc-950" />
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-950 shrink-0">
+                <ShieldCheck className="w-4 h-4" />
+              </span>
+              <div>
+                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest font-bold block">
+                  COMMUNITY & SUSTAINABILITY
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-zinc-950">
+                  Corporate Social Responsibility (CSR)
+                </h3>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-[13px] text-zinc-600 leading-relaxed font-normal">
+              Our 26-year legacy in Mombasa is rooted in responsible citizenship, mechanical safety, and community empowerment:
+            </p>
+
+            <ul className="space-y-2.5 text-xs text-zinc-700">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
+                <span><strong>Mombasa Highway Road Safety:</strong> Every unit undergoes a rigorous 100-point brake, steering, and suspension overhaul to guarantee zero highway mechanical failures.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
+                <span><strong>KS 1515:2000 Eco-Emissions Audit:</strong> Strict adherence to Kenya Bureau of Standards clean air emissions regulations and Japanese catalytic converter verification.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
+                <span><strong>Technical Youth Apprenticeships:</strong> Training local Mombasa automotive mechanics in hybrid powertrain diagnostics and computerized OBD telemetry.</span>
+              </li>
+            </ul>
           </div>
         </div>
 

@@ -25,6 +25,7 @@ import { MobileBottomDock } from './components/MobileBottomDock';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { Footer } from './components/Footer';
+import { HelpCenterModal } from './components/HelpCenterModal';
 import { TestimonialSectionDemo } from './components/ui/demo';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
@@ -44,6 +45,8 @@ export function App() {
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
   const [whispersDrawerOpen, setWhispersDrawerOpen] = useState(false);
   const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
+  const [helpCenterOpen, setHelpCenterOpen] = useState(false);
+  const [helpCenterInitialTab, setHelpCenterInitialTab] = useState<'faq' | 'policies' | 'contact'>('faq');
   const [homeFilterTab, setHomeFilterTab] = useState<'bodyType' | 'category'>('bodyType');
   const [homeBodyType, setHomeBodyType] = useState<string>('all');
   const [homeCategory, setHomeCategory] = useState<string>('all');
@@ -202,18 +205,23 @@ export function App() {
         return;
       }
 
-      // Section views: #overview, #inventory, #workshop, #trade-in, #blog, #about, #locations, #sitemap
-      if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(hash)) {
-        const targetView = (hash === 'locations' || hash === 'about') ? 'about' : hash === 'trade-in' ? 'inventory' : hash;
+      // Section views: #overview, #inventory, #workshop, #trade-in, #blog, #about, #locations, #sitemap (with optional sub-target e.g. #about/anti-tampering-policy)
+      const hashClean = hash.split('?')[0];
+      const [mainSec, subId] = hashClean.split('/');
+
+      if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(mainSec)) {
+        const targetView = (mainSec === 'locations' || mainSec === 'about') ? 'about' : mainSec === 'trade-in' ? 'inventory' : mainSec;
         setCurrentView(targetView);
         setSelectedVehicle(null);
         setSelectedBlogPost(null);
         setSelectedHubId(null);
-        if (hash === 'locations') {
+        
+        const targetElId = subId || (mainSec === 'locations' ? 'about-showroom-location' : null);
+        if (targetElId) {
           setTimeout(() => {
-            const el = document.getElementById('about-showroom-location');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
+            const el = document.getElementById(targetElId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 180);
         }
       }
     };
@@ -277,15 +285,27 @@ export function App() {
     return () => clearTimeout(timer);
   }, [currentView, selectedVehicle, selectedBlogPost]);
 
-  const handleNavigate = (view: string) => {
+  const handleNavigate = (view: string, param?: string) => {
     let targetView = view === 'trade-in' ? 'inventory' : view;
     if (targetView === 'locations') targetView = 'about';
     setCurrentView(targetView);
     setSelectedVehicle(null);
     setSelectedBlogPost(null);
     setSelectedHubId(null);
-    window.location.hash = targetView;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.hash = param ? `${targetView}/${param}` : targetView;
+
+    if (param) {
+      setTimeout(() => {
+        const el = document.getElementById(param);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 150);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleSelectHub = (hubId: string) => {
@@ -643,7 +663,9 @@ export function App() {
                 </section>
 
                 {/* Verified Customer Testimonials Section */}
-                <TestimonialSectionDemo />
+                <div id="customer-reviews" className="scroll-mt-24">
+                  <TestimonialSectionDemo />
+                </div>
 
                 {/* Section Gradient Fade Transition */}
                 <SectionGradientFade />
@@ -778,6 +800,18 @@ export function App() {
         vehicles={vehicles}
         onNavigate={handleNavigate}
         onSelectVehicle={handleSelectVehicle}
+        onOpenHelpCenter={(tab) => {
+          setHelpCenterInitialTab(tab || 'faq');
+          setHelpCenterOpen(true);
+        }}
+        settings={settings}
+      />
+
+      {/* Help Center & Policies Modal */}
+      <HelpCenterModal
+        isOpen={helpCenterOpen}
+        onClose={() => setHelpCenterOpen(false)}
+        initialTab={helpCenterInitialTab}
         settings={settings}
       />
 

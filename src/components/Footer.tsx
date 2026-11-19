@@ -8,11 +8,13 @@ interface FooterProps {
   vehicles: Vehicle[];
   onNavigate: (view: string, param?: string) => void;
   onSelectVehicle: (vehicle: Vehicle) => void;
+  onOpenHelpCenter?: (tab?: 'faq' | 'policies' | 'contact') => void;
   settings?: CmsSiteSettings;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigate,
+  onOpenHelpCenter,
   settings,
 }) => {
   return (
@@ -111,22 +113,22 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'why-choose-alberka')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Why Choose Alberka
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('overview', 'customer-reviews')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Customer Reviews
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'stage-auction-grades')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Japanese Auction Grades
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'stage-overhaul')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   100-Point Pre-Delivery Overhaul
                 </button>
               </li>
@@ -141,27 +143,30 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button
+                  onClick={() => (onOpenHelpCenter ? onOpenHelpCenter('faq') : onNavigate('about'))}
+                  className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors"
+                >
                   Help Center
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'stage-tracking')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Car Tracking & Vessel ETA
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'stage-damage-report')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Damage Condition Report
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'stage-shipping')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Shipping Schedule
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'stage-jevic')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Chassis & Odometer Check (JEVIC)
                 </button>
               </li>
@@ -176,27 +181,27 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'about-provenance')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Our Company
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'about-provenance')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Company Profile & Provenance
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-950 font-semibold hover:text-red-600 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'about-showroom-location')} className="text-zinc-950 font-semibold hover:text-red-600 text-left cursor-pointer transition-colors">
                   Mombasa Showroom (Sole Office)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'anti-tampering-policy')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Anti-Tampering Mileage Policy
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'csr-policy')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   CSR Policy
                 </button>
               </li>
@@ -211,23 +216,23 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'about-showroom-location')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Contact
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('workshop', 'custom-import-form')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Vehicle Request (Japan Order)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                <button onClick={() => onNavigate('about', 'test-drive-booking')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   Private Showroom Viewing
                 </button>
               </li>
               <li>
                 <a
-                  href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises, I have an inquiry regarding vehicles in stock.')}`}
+                  href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises, I have an inquiry regarding vehicles at your showroom next to Ganjoni Primary School, Mombasa.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-emerald-700 hover:text-emerald-800 font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors"
@@ -367,15 +372,40 @@ export const Footer: React.FC<FooterProps> = ({
         {/* SBT Japan Policy Strip */}
         <div className="pt-6 pb-4 border-t border-zinc-200 flex flex-wrap items-center justify-between gap-3 text-[11px] text-zinc-600 font-mono">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <span className="hover:text-zinc-950 cursor-pointer">Terms of Use</span>
+            <button
+              onClick={() => (onOpenHelpCenter ? onOpenHelpCenter('policies') : onNavigate('about', 'anti-tampering-policy'))}
+              className="hover:text-zinc-950 cursor-pointer text-left"
+            >
+              Terms of Use
+            </button>
             <span>·</span>
-            <span className="hover:text-zinc-950 cursor-pointer">Privacy Policy</span>
+            <button
+              onClick={() => (onOpenHelpCenter ? onOpenHelpCenter('policies') : onNavigate('about', 'anti-tampering-policy'))}
+              className="hover:text-zinc-950 cursor-pointer text-left"
+            >
+              Privacy Policy
+            </button>
             <span>·</span>
-            <span className="hover:text-zinc-950 cursor-pointer">Claims & Inspection Policy</span>
+            <button
+              onClick={() => (onOpenHelpCenter ? onOpenHelpCenter('policies') : onNavigate('about', 'anti-tampering-policy'))}
+              className="hover:text-zinc-950 cursor-pointer text-left"
+            >
+              Claims & Inspection Policy
+            </button>
             <span>·</span>
-            <span className="hover:text-zinc-950 cursor-pointer">Basic Policy Against Anti-Social Forces</span>
+            <button
+              onClick={() => (onOpenHelpCenter ? onOpenHelpCenter('policies') : onNavigate('about', 'anti-tampering-policy'))}
+              className="hover:text-zinc-950 cursor-pointer text-left"
+            >
+              Basic Policy Against Anti-Social Forces
+            </button>
             <span>·</span>
-            <span className="hover:text-zinc-950 cursor-pointer">Security Export Control</span>
+            <button
+              onClick={() => (onOpenHelpCenter ? onOpenHelpCenter('policies') : onNavigate('about', 'anti-tampering-policy'))}
+              className="hover:text-zinc-950 cursor-pointer text-left"
+            >
+              Security Export Control
+            </button>
           </div>
 
           <div className="text-zinc-700 font-bold">
