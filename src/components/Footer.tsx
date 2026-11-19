@@ -2,6 +2,7 @@ import React from 'react';
 import { Vehicle } from '../data/vehicles';
 import { MessageCircle, MapPin, Navigation, ArrowRight } from 'lucide-react';
 import { CmsSiteSettings } from '../services/cmsContent';
+import alberkaLogo from '../assets/alberka-logo.png';
 
 interface FooterProps {
   vehicles: Vehicle[];
@@ -35,9 +36,9 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-8 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-200 after:via-zinc-100 after:to-transparent">
           <div className="flex items-center gap-4">
             <img
-              src="/alberka-logo-cropped.png"
+              src={alberkaLogo}
               alt="Alberka Enterprises Limited"
-              className="h-10 w-auto object-contain"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
             <div className="border-l border-zinc-200 pl-4 text-left">
               <span className="font-bold text-sm tracking-tight text-zinc-950 block leading-tight">

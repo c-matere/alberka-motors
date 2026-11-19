@@ -103,6 +103,14 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
     window.open(`https://wa.me/254180423075?text=${message}`, '_blank');
   };
 
+  // Format engine summary displacement to prevent grid squeezing
+  const formatEngineSummary = (eng: string) => {
+    if (!eng) return 'Petrol';
+    const m = eng.match(/^(\d[\d,]*\s*(?:cc|L))/i);
+    if (m) return m[1];
+    return eng.split(' ')[0] || eng;
+  };
+
   return (
     <div
       onClick={() => onSelect(vehicle)}
@@ -231,108 +239,82 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
           </p>
         </div>
 
-        {/* SBT Japan 4-Column Specification Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#F8F9FB] border border-zinc-200/70 rounded-xl p-3 text-xs">
+        {/* SBT Japan 6-Specification Matrix (Spacious, Un-squeezed 3x2 Grid) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3.5 bg-[#F8F9FB] border border-zinc-200/80 rounded-xl p-4 sm:p-4.5 text-xs">
           {/* Mileage */}
-          <div className="flex items-center gap-2">
-            <Gauge className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Gauge className="w-4 h-4 text-zinc-500 shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
                 Mileage
               </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
+              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
                 {vehicle.mileageKm.toLocaleString()} KM
               </span>
             </div>
           </div>
 
           {/* Year / Reg */}
-          <div className="flex items-center gap-2">
-            <Calendar className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Calendar className="w-4 h-4 text-zinc-500 shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
                 Year / Reg
               </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
+              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
                 {vehicle.year} / {vehicle.registrationMonth || '08'}
               </span>
             </div>
           </div>
 
           {/* Engine Capacity */}
-          <div className="flex items-center gap-2">
-            <Cpu className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Cpu className="w-4 h-4 text-zinc-500 shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
                 Engine
               </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
-                {vehicle.engine}
+              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight truncate" title={vehicle.engine}>
+                {formatEngineSummary(vehicle.engine)}
               </span>
             </div>
           </div>
 
           {/* Transmission */}
-          <div className="flex items-center gap-2">
-            <Sliders className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Sliders className="w-4 h-4 text-zinc-500 shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
                 Gearbox
               </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
+              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
                 {vehicle.transmission || 'Automatic'}
               </span>
             </div>
           </div>
 
           {/* Drivetrain */}
-          <div className="flex items-center gap-2">
-            <Compass className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Compass className="w-4 h-4 text-zinc-500 shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
                 Drive
               </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
+              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
                 {vehicle.drivetrain || '2WD'}
               </span>
             </div>
           </div>
 
           {/* Fuel Type */}
-          <div className="flex items-center gap-2">
-            <Fuel className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Fuel className="w-4 h-4 text-zinc-500 shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
                 Fuel
               </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
+              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
                 {vehicle.fuelType || 'Petrol'}
-              </span>
-            </div>
-          </div>
-
-          {/* Color & Steering */}
-          <div className="flex items-center gap-2">
-            <Palette className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
-            <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
-                Color
-              </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
-                {vehicle.exteriorColor || 'Pearl'}
-              </span>
-            </div>
-          </div>
-
-          {/* Showroom Yard */}
-          <div className="flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
-            <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-600 uppercase block font-semibold leading-none mb-0.5">
-                Location
-              </span>
-              <span className="font-bold text-zinc-900 font-mono text-[12px] truncate block">
-                Mombasa Yard
               </span>
             </div>
           </div>
@@ -445,8 +427,8 @@ export const VehicleSbtListCardSkeleton: React.FC = () => {
         </div>
         <div className="h-7 w-3/4 bg-zinc-200 rounded" />
         <div className="h-4 w-1/2 bg-zinc-200/60 rounded" />
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-zinc-50 border border-zinc-100 rounded-xl p-3">
-          {[...Array(8)].map((_, i) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3.5 bg-zinc-50 border border-zinc-100 rounded-xl p-4 sm:p-4.5">
+          {[...Array(6)].map((_, i) => (
             <div key={i} className="h-8 bg-zinc-200/60 rounded" />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Bookmark, Menu, X, MessageCircle, ArrowRight, MapPin } from 'lucide-react';
+import alberkaLogo from '../assets/alberka-logo.png';
 
 interface NavbarProps {
   currentView: string;
@@ -69,8 +70,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             aria-label="Alberka Enterprises Home"
           >
             <img
-              src="/alberka-logo-cropped.png"
-              alt="Alberka Enterprises"
+              src={alberkaLogo}
+              alt="Alberka Enterprises Limited"
               className="h-10 sm:h-12 md:h-13 w-auto object-contain"
             />
             <div className="hidden sm:flex flex-col text-left pl-3.5 border-l border-zinc-200">

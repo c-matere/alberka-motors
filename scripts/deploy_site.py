@@ -39,7 +39,7 @@ def build():
 
 def deploy():
     print(f"[*] Creating archive from {DIST_DIR}...")
-    temp_tar = os.path.join(tempfile.gettempdir(), "alberka_dist.tar.gz")
+    temp_tar = os.path.join(ROOT_DIR, "alberka_dist.tar.gz")
     with tarfile.open(temp_tar, "w:gz") as tar:
         tar.add(DIST_DIR, arcname=".")
 
@@ -53,6 +53,11 @@ def deploy():
         f"{VPS_USER}@{VPS_HOST}:{remote_tar}"
     ]
     res = subprocess.run(scp_cmd, capture_output=True, text=True)
+    if os.path.exists(temp_tar):
+        try:
+            os.remove(temp_tar)
+        except Exception:
+            pass
     if res.returncode != 0:
         print(f"[!] scp failed: {res.stderr}")
         sys.exit(1)
