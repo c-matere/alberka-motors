@@ -770,7 +770,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
             <button
               onClick={() => onScheduleTestDrive(vehicle)}
-              className="bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap hidden sm:inline-flex items-center gap-1.5"
+              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap hidden sm:inline-flex items-center gap-1.5"
             >
               <span>Book Test Drive</span>
             </button>
@@ -1011,7 +1011,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
             {/* Model Code, Year, Body Type, Stock ID & Location Badges */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono pt-1">
-              <span className="bg-zinc-950 text-white px-3 py-1 rounded-lg font-bold tracking-wider shadow-2xs">
+              <span className="bg-zinc-100 border border-zinc-300 text-zinc-900 px-3 py-1 rounded-lg font-bold tracking-wider shadow-2xs">
                 {vehicle.modelCode || 'CBA-GRJ120W'}
               </span>
               <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2.5 py-1 rounded-lg font-semibold">
@@ -1041,7 +1041,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={handleShareVehicle}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
                     copiedLink
-                      ? 'bg-zinc-900 border-zinc-900 text-white font-semibold'
+                      ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-semibold'
                       : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
                   }`}
                   title="Share vehicle link"
@@ -1220,7 +1220,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors pointer-events-none" />
-                      <div className="absolute top-4 left-4 bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 text-xs font-mono text-white font-bold flex items-center gap-2 shadow-sm">
+                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-950 font-bold flex items-center gap-2 shadow-sm">
                         <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                         <span>{point.metric}</span>
                       </div>
@@ -1967,12 +1967,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       onClick={() => setSelectedInspectorPoint(pt.id)}
                       className={`p-3 rounded-lg border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-zinc-950 border-zinc-950 text-white shadow-sm'
-                          : 'bg-white border-zinc-200 text-zinc-900 hover:bg-zinc-100'
+                          ? 'bg-red-50 border-red-500 text-zinc-950 shadow-sm ring-1 ring-red-500/30'
+                          : 'bg-white border-zinc-200 text-zinc-900 hover:bg-zinc-50'
                       }`}
                     >
-                      <span className={`block font-bold text-xs ${isSelected ? 'text-white' : 'text-zinc-950'}`}>{pt.label}</span>
-                      <span className={`text-[11px] block mt-1 ${isSelected ? 'text-zinc-300' : 'text-zinc-600'}`}>{pt.code}</span>
+                      <span className={`block font-bold text-xs ${isSelected ? 'text-red-700' : 'text-zinc-950'}`}>{pt.label}</span>
+                      <span className={`text-[11px] block mt-1 ${isSelected ? 'text-zinc-700 font-medium' : 'text-zinc-600'}`}>{pt.code}</span>
                     </button>
                   );
                 })}

@@ -129,10 +129,10 @@ export const HelpCenterModal: React.FC<HelpCenterModalProps> = ({
         <div className="px-5 sm:px-6 pt-3 pb-2 border-b border-zinc-100 flex items-center gap-2 bg-white">
           <button
             onClick={() => setActiveTab('faq')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 border ${
               activeTab === 'faq'
-                ? 'bg-zinc-950 text-white shadow-xs'
-                : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200'
+                ? 'bg-red-50 text-red-700 border-red-200 shadow-2xs'
+                : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200 border-transparent'
             }`}
           >
             <HelpCircle className="w-3.5 h-3.5" />
@@ -141,10 +141,10 @@ export const HelpCenterModal: React.FC<HelpCenterModalProps> = ({
 
           <button
             onClick={() => setActiveTab('policies')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 border ${
               activeTab === 'policies'
-                ? 'bg-zinc-950 text-white shadow-xs'
-                : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200'
+                ? 'bg-red-50 text-red-700 border-red-200 shadow-2xs'
+                : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200 border-transparent'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -153,10 +153,10 @@ export const HelpCenterModal: React.FC<HelpCenterModalProps> = ({
 
           <button
             onClick={() => setActiveTab('contact')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 border ${
               activeTab === 'contact'
-                ? 'bg-zinc-950 text-white shadow-xs'
-                : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200'
+                ? 'bg-red-50 text-red-700 border-red-200 shadow-2xs'
+                : 'bg-zinc-100 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200 border-transparent'
             }`}
           >
             <Phone className="w-3.5 h-3.5" />

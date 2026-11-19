@@ -167,8 +167,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             >
               <source src="/videos/flatbed-delivery.mp4" type="video/mp4" />
             </video>
-            <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-xs px-2.5 py-1 rounded-md text-[10.5px] font-mono text-white flex items-center gap-1.5 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-[10.5px] font-mono text-zinc-950 font-bold border border-zinc-200/80 flex items-center gap-1.5 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
               <span>NATIONWIDE FLATBED CARRIER TRANSIT</span>
             </div>
           </div>
@@ -475,7 +475,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
           {/* CSR & Community Road Safety Policy */}
           <div id="csr-policy" className="bg-white border border-zinc-200/90 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs scroll-mt-24 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-zinc-950" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-red-600" />
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-950 shrink-0">
                 <ShieldCheck className="w-4 h-4" />

@@ -7,8 +7,6 @@ import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
-import { CategoryFilterSlider } from './components/CategoryFilterSlider';
-import { BodyTypeFilterSlider } from './components/BodyTypeFilterSlider';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
@@ -30,7 +28,7 @@ import { TestimonialSectionDemo } from './components/ui/demo';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
 import { SectionGradientFade } from './components/SectionGradientFade';
-import { ArrowRight, ShieldCheck, CheckCircle2, Car } from 'lucide-react';
+import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export function App() {
   const { vehicles, isCmsConnected, loading } = useVehicles();
@@ -47,89 +45,6 @@ export function App() {
   const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
   const [helpCenterInitialTab, setHelpCenterInitialTab] = useState<'faq' | 'policies' | 'contact'>('faq');
-  const [homeFilterTab, setHomeFilterTab] = useState<'bodyType' | 'category'>('bodyType');
-  const [homeBodyType, setHomeBodyType] = useState<string>('all');
-  const [homeCategory, setHomeCategory] = useState<string>('all');
-
-  // Dynamic Body Type counts in local stock
-  const homeBodyTypeCounts = useMemo<Record<string, number>>(() => {
-    return {
-      all: vehicles.length,
-      suv: vehicles.filter((v) => v.bodyType.toLowerCase() === 'suv' || v.category === 'suv').length,
-      van: vehicles.filter((v) => v.bodyType.toLowerCase() === 'van' || v.category === 'van').length,
-      'mini-van': vehicles.filter((v) => v.bodyType.toLowerCase().includes('mini') || v.category === 'minivan').length,
-      sedan: vehicles.filter((v) => v.bodyType.toLowerCase() === 'sedan' || v.category === 'sedan').length,
-      hatchback: vehicles.filter((v) => v.bodyType.toLowerCase().includes('hatch') || v.category === 'hatchback').length,
-      wagon: vehicles.filter((v) => v.bodyType.toLowerCase().includes('wagon') || v.category === 'wagon').length,
-      'pick-up': vehicles.filter((v) => v.bodyType.toLowerCase().includes('pickup') || v.bodyType.toLowerCase().includes('pick-up') || v.category === 'pickup').length,
-      truck: vehicles.filter((v) => v.bodyType.toLowerCase().includes('truck') || v.category === 'truck').length,
-      convertible: vehicles.filter((v) => v.bodyType.toLowerCase().includes('convertible') || v.bodyType.toLowerCase().includes('cabriolet')).length,
-      coupe: vehicles.filter((v) => v.bodyType.toLowerCase().includes('coupe')).length,
-      bus: vehicles.filter((v) => v.bodyType.toLowerCase().includes('bus')).length,
-      'heavy-equipment': vehicles.filter((v) => v.bodyType.toLowerCase().includes('heavy') || v.category === 'heavy').length,
-    };
-  }, [vehicles]);
-
-  // Category counts in local stock
-  const homeCategoryCounts = useMemo<Record<string, number>>(() => {
-    return {
-      all: vehicles.length,
-      hybrid: vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power')).length,
-      lhd: vehicles.filter((v) => v.steering === 'LHD').length,
-      manual: vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt')).length,
-      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4')).length,
-      electric: vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev')).length,
-      sunroof: vehicles.filter((v) => v.options?.sunroof === true || v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
-      diesel: vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel')).length,
-      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.toLowerCase().includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
-    };
-  }, [vehicles]);
-
-  const homeFilteredVehicles = useMemo(() => {
-    if (homeFilterTab === 'bodyType') {
-      if (homeBodyType === 'all') return vehicles;
-      if (homeBodyType === 'suv') return vehicles.filter((v) => v.bodyType.toLowerCase() === 'suv' || v.category === 'suv');
-      if (homeBodyType === 'van') return vehicles.filter((v) => v.bodyType.toLowerCase() === 'van' || v.category === 'van');
-      if (homeBodyType === 'mini-van') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('mini') || v.category === 'minivan');
-      if (homeBodyType === 'sedan') return vehicles.filter((v) => v.bodyType.toLowerCase() === 'sedan' || v.category === 'sedan');
-      if (homeBodyType === 'hatchback') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('hatch') || v.category === 'hatchback');
-      if (homeBodyType === 'wagon') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('wagon') || v.category === 'wagon');
-      if (homeBodyType === 'pick-up') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('pickup') || v.bodyType.toLowerCase().includes('pick-up') || v.category === 'pickup');
-      if (homeBodyType === 'truck') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('truck') || v.category === 'truck');
-      if (homeBodyType === 'convertible') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('convertible') || v.bodyType.toLowerCase().includes('cabriolet'));
-      if (homeBodyType === 'coupe') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('coupe'));
-      if (homeBodyType === 'bus') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('bus'));
-      if (homeBodyType === 'heavy-equipment') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('heavy') || v.category === 'heavy');
-      return vehicles.filter((v) => v.bodyType.toLowerCase() === homeBodyType.toLowerCase());
-    }
-
-    if (homeCategory === 'all') return vehicles;
-    if (homeCategory === 'hybrid') {
-      return vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power'));
-    }
-    if (homeCategory === 'lhd') {
-      return vehicles.filter((v) => v.steering === 'LHD');
-    }
-    if (homeCategory === 'manual') {
-      return vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt'));
-    }
-    if (homeCategory === '4wd') {
-      return vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4'));
-    }
-    if (homeCategory === 'electric') {
-      return vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev'));
-    }
-    if (homeCategory === 'sunroof') {
-      return vehicles.filter((v) => v.options?.sunroof === true || v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof'))));
-    }
-    if (homeCategory === 'diesel') {
-      return vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel'));
-    }
-    if (homeCategory === 'kei') {
-      return vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.toLowerCase().includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200));
-    }
-    return vehicles.filter((v) => v.category === homeCategory);
-  }, [vehicles, homeFilterTab, homeBodyType, homeCategory]);
 
   // Favorites state persisted in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -454,79 +369,14 @@ export function App() {
                       </button>
                     </div>
 
-                    {/* Quick Filter Bar (Body Type & Category Tabs) */}
-                    <div className="pt-2 pb-2 space-y-3">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => setHomeFilterTab('bodyType')}
-                            type="button"
-                            className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
-                              homeFilterTab === 'bodyType'
-                                ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
-                                : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
-                            }`}
-                          >
-                            <Car className="w-3.5 h-3.5" />
-                            <span>Browse by Body Type</span>
-                          </button>
-                          <button
-                            onClick={() => setHomeFilterTab('category')}
-                            type="button"
-                            className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
-                              homeFilterTab === 'category'
-                                ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
-                                : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
-                            }`}
-                          >
-                            <span className="w-2 h-2 rounded-full bg-red-600" />
-                            <span>Browse by Category & Specs</span>
-                          </button>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          {homeFilterTab === 'bodyType' && homeBodyType !== 'all' && (
-                            <button
-                              onClick={() => setHomeBodyType('all')}
-                              className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
-                            >
-                              <span>Reset Body Type ({homeBodyType.toUpperCase()})</span>
-                            </button>
-                          )}
-                          {homeFilterTab === 'category' && homeCategory !== 'all' && (
-                            <button
-                              onClick={() => setHomeCategory('all')}
-                              className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
-                            >
-                              <span>Reset Category ({homeCategory.toUpperCase()})</span>
-                            </button>
-                          )}
-                        </div>
-                      </div>
-
-                      {homeFilterTab === 'bodyType' ? (
-                        <BodyTypeFilterSlider
-                          activeBodyType={homeBodyType}
-                          onSelectBodyType={(btId) => setHomeBodyType(btId)}
-                          localCounts={homeBodyTypeCounts}
-                        />
-                      ) : (
-                        <CategoryFilterSlider
-                          activeCategory={homeCategory}
-                          onSelectCategory={(catId) => setHomeCategory(catId)}
-                          localCounts={homeCategoryCounts}
-                        />
-                      )}
-                    </div>
-
                     {/* Featured Vehicles List View */}
                     <div className="space-y-4 sm:space-y-5">
                       {loading ? (
                         [...Array(4)].map((_, i) => (
                           <VehicleSbtListCardSkeleton key={i} />
                         ))
-                      ) : homeFilteredVehicles.length > 0 ? (
-                        homeFilteredVehicles.map((vehicle) => (
+                      ) : (
+                        vehicles.map((vehicle) => (
                           <VehicleSbtListCard
                             key={vehicle.id}
                             vehicle={vehicle}
@@ -536,32 +386,6 @@ export function App() {
                             onInquire={handleInquireVehicle}
                           />
                         ))
-                      ) : (
-                        <div className="bg-white border border-zinc-200/80 rounded-2xl p-8 sm:p-10 text-center space-y-4 shadow-2xs">
-                          <p className="text-sm sm:text-base font-bold text-zinc-900">
-                            No vehicles currently match {homeFilterTab === 'bodyType' ? `"${homeBodyType.toUpperCase()}"` : `"${homeCategory.toUpperCase()}"`} in our Mombasa physical yard.
-                          </p>
-                          <p className="text-xs sm:text-sm text-zinc-600 max-w-md mx-auto">
-                            Over 40,000+ units available on direct order from SBT Japan. We inspect and deliver to Mombasa within 25 days.
-                          </p>
-                          <div className="flex items-center justify-center gap-3 pt-2">
-                            <button
-                              onClick={() => {
-                                setHomeBodyType('all');
-                                setHomeCategory('all');
-                              }}
-                              className="btn-ghost !text-xs !py-2.5 !px-4 cursor-pointer"
-                            >
-                              Show All Stock ({vehicles.length})
-                            </button>
-                            <button
-                              onClick={() => handleNavigate('inventory')}
-                              className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 px-4 rounded-xl cursor-pointer shadow-xs transition-all"
-                            >
-                              Browse Full Catalog
-                            </button>
-                          </div>
-                        </div>
                       )}
                     </div>
                   </div>

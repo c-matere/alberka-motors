@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({
             </a>
             <button
               onClick={() => onNavigate('locations')}
-              className="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+              className="px-4 py-2.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-900 font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
             >
               <span>Showroom Bay Guide</span>
               <ArrowRight className="w-3.5 h-3.5" />

@@ -87,7 +87,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         {/* Hairline reading progress indicator */}
         <div className="absolute top-0 inset-x-0 h-[2px] bg-zinc-200 overflow-hidden">
           <div
-            className="h-full bg-zinc-950 transition-all duration-150 ease-out"
+            className="h-full bg-red-600 transition-all duration-150 ease-out"
             style={{ width: `${readProgress}%` }}
           />
         </div>
@@ -151,7 +151,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         {/* Author Byline */}
         <div className="pt-4 border-t border-zinc-200 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-full bg-zinc-800 border border-white/15 flex items-center justify-center text-zinc-950 font-bold font-mono text-sm shrink-0 shadow-md">
+            <div className="w-11 h-11 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-700 font-bold font-mono text-sm shrink-0 shadow-xs">
               {post.author.name.charAt(0)}
             </div>
             <div>

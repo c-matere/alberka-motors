@@ -112,7 +112,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
                   Save KES {pricing.savingsKes.toLocaleString()}
                 </span>
               )}
-              <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-zinc-950 text-white border-zinc-800 shadow-sm backdrop-blur-md">
+              <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-white/95 text-emerald-700 border-emerald-200/80 shadow-sm backdrop-blur-md">
                 In Stock
               </span>
             </div>

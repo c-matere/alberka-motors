@@ -127,7 +127,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
             className="group relative bg-white hover:bg-zinc-50/70 border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-left"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-              <div className="lg:col-span-7 aspect-[16/10] sm:aspect-[21/11] lg:h-full overflow-hidden bg-black relative">
+              <div className="lg:col-span-7 aspect-[16/10] sm:aspect-[21/11] lg:h-full overflow-hidden bg-zinc-100 relative">
                 <SkeletonImage
                   src={featuredArticle.coverImage}
                   alt={featuredArticle.title}
@@ -135,7 +135,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                  <span className="bg-black/80 backdrop-blur-md border border-zinc-200 text-white px-2.5 py-1 text-[10.5px] font-mono uppercase font-bold rounded-md">
+                  <span className="bg-white/95 backdrop-blur-md border border-zinc-200 text-zinc-950 px-2.5 py-1 text-[10.5px] font-mono uppercase font-bold rounded-md shadow-xs">
                     FEATURED STORY
                   </span>
                 </div>
@@ -183,7 +183,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
               className="group relative bg-white hover:bg-zinc-50/70 border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] cursor-pointer"
             >
               <div>
-                <div className="aspect-[16/10] w-full overflow-hidden bg-black relative">
+                <div className="aspect-[16/10] w-full overflow-hidden bg-zinc-100 relative">
                   <SkeletonImage
                     src={article.coverImage}
                     alt={article.title}
@@ -191,7 +191,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     containerClassName="w-full h-full"
                   />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="bg-black/80 backdrop-blur-md border border-zinc-200 text-white px-2 py-0.5 text-[10px] font-mono uppercase font-semibold rounded">
+                    <span className="bg-white/95 backdrop-blur-md border border-zinc-200 text-zinc-950 px-2 py-0.5 text-[10px] font-mono uppercase font-semibold rounded shadow-xs">
                       {article.category}
                     </span>
                   </div>

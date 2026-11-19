@@ -115,9 +115,9 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         className="bg-zinc-50 border border-zinc-200 hover:border-zinc-300 rounded-xl p-4 flex flex-col justify-between space-y-4 text-left shadow-sm"
                       >
                         <div className="space-y-3">
-                          <div className="w-full aspect-[16/10] overflow-hidden rounded-lg bg-zinc-900 border border-zinc-200 relative">
+                          <div className="w-full aspect-[16/10] overflow-hidden rounded-lg bg-zinc-100 border border-zinc-200 relative">
                             <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
-                            <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono font-bold border border-white/20 text-white">
+                            <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono font-bold border border-zinc-200 text-zinc-950 shadow-xs">
                               Grade {vehicle.auctionGrade}
                             </div>
                           </div>
@@ -196,7 +196,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                       }}
                       className="flex items-center gap-3.5 cursor-pointer flex-1 min-w-0"
                     >
-                      <div className="w-20 h-14 overflow-hidden rounded-lg bg-zinc-900 border border-zinc-200 shrink-0">
+                      <div className="w-20 h-14 overflow-hidden rounded-lg bg-zinc-100 border border-zinc-200 shrink-0">
                         <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                       </div>
                       <div className="min-w-0 text-left">

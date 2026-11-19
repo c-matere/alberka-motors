@@ -186,14 +186,14 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
               <button
                 onClick={togglePlay}
-                className="w-8 h-8 bg-black/75 hover:bg-black border border-white/20 flex items-center justify-center text-white transition-all cursor-pointer rounded-lg backdrop-blur-md"
+                className="w-8 h-8 bg-white/90 hover:bg-white text-zinc-900 border border-zinc-200/80 flex items-center justify-center transition-all cursor-pointer rounded-lg backdrop-blur-md shadow-xs"
                 title={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-8 h-8 bg-black/75 hover:bg-black border border-white/20 flex items-center justify-center text-white transition-all cursor-pointer rounded-lg backdrop-blur-md"
+                className="w-8 h-8 bg-white/90 hover:bg-white text-zinc-900 border border-zinc-200/80 flex items-center justify-center transition-all cursor-pointer rounded-lg backdrop-blur-md shadow-xs"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -404,25 +404,25 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   containerClassName="w-full h-full"
                 />
                 <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                  <span className="bg-black/80 backdrop-blur-md border border-white/20 text-white px-2 py-0.5 text-[10px] font-bold rounded">
+                  <span className="bg-white/95 backdrop-blur-md border border-zinc-200 text-zinc-950 px-2 py-0.5 text-[10px] font-bold rounded shadow-xs">
                     Grade {targetVehicle.auctionGrade}
                   </span>
                 </div>
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-black/85 backdrop-blur-md px-3 py-2 border border-white/20 flex items-center justify-between rounded-lg">
-                  <span className="text-xs font-bold text-white truncate mr-2">{targetVehicle.name}</span>
-                  <span className="font-mono text-xs font-bold text-red-400 shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-md px-3 py-2 border border-zinc-200/90 flex items-center justify-between rounded-lg shadow-xs">
+                  <span className="text-xs font-bold text-zinc-950 truncate mr-2">{targetVehicle.name}</span>
+                  <span className="font-mono text-xs font-bold text-red-600 shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
               {/* Equity Ratio Bar */}
-              <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-xl space-y-2.5 text-white">
+              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl space-y-2.5 text-zinc-900">
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-zinc-400">Equity Covered by Trade-In</span>
-                  <span className="text-white font-bold">{animatedEquityPercent}% Covered</span>
+                  <span className="text-zinc-600">Equity Covered by Trade-In</span>
+                  <span className="text-zinc-950 font-bold">{animatedEquityPercent}% Covered</span>
                 </div>
-                <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-white transition-all duration-300 ease-out"
+                    className="h-full bg-red-600 transition-all duration-300 ease-out"
                     style={{ width: `${animatedEquityPercent}%` }}
                   />
                 </div>

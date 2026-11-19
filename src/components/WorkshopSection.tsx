@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CmsPage } from '../services/cmsContent';
 import {
   Ship,
@@ -307,7 +307,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
                   onClick={() => setActiveStep(idx)}
                   className={`p-3.5 text-left rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between h-24 border ${
                     isActive
-                      ? 'bg-white border-zinc-950 text-zinc-950 shadow-md ring-1 ring-zinc-950'
+                      ? 'bg-red-50/80 border-red-500 text-zinc-950 shadow-sm ring-1 ring-red-500/30'
                       : 'bg-white/70 border-zinc-200 text-zinc-600 hover:text-zinc-950 hover:bg-white hover:border-zinc-300'
                   }`}
                 >

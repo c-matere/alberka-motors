@@ -154,7 +154,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               onClick={() => onToggleFavorite(vehicle.id)}
               className={`p-2 border rounded-lg transition-colors cursor-pointer ${
                 isFavorite
-                  ? 'bg-zinc-950 text-white border-zinc-950'
+                  ? 'bg-red-600 text-white border-red-600'
                   : 'bg-zinc-100 text-zinc-700 border-zinc-300 hover:text-zinc-950 hover:bg-zinc-200'
               }`}
               title="Save vehicle"

@@ -562,75 +562,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
       </div>
 
-      {/* 2. Authentic SBT Japan / Beforward Filter Slider (Body Type & Category Tabs) */}
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 pt-6 pb-2">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-          {/* Segmented Mode Tabs */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setFilterTab('bodyType')}
-              type="button"
-              className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
-                filterTab === 'bodyType'
-                  ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
-                  : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
-              }`}
-            >
-              <Car className="w-3.5 h-3.5" />
-              <span>Browse by Body Type</span>
-            </button>
-            <button
-              onClick={() => setFilterTab('category')}
-              type="button"
-              className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
-                filterTab === 'category'
-                  ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
-                  : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
-              }`}
-            >
-              <span className="w-2 h-2 rounded-full bg-red-600" />
-              <span>Browse by Category & Specs</span>
-            </button>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {activeBodyType !== 'all' && (
-              <button
-                onClick={() => setActiveBodyType('all')}
-                className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
-              >
-                <RotateCcw className="w-3 h-3" />
-                <span>Reset Body Type ({activeBodyType.toUpperCase()})</span>
-              </button>
-            )}
-            {activeCategory !== 'all' && (
-              <button
-                onClick={() => setActiveCategory('all')}
-                className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
-              >
-                <RotateCcw className="w-3 h-3" />
-                <span>Reset Category ({activeCategory.toUpperCase()})</span>
-              </button>
-            )}
-          </div>
-        </div>
-
-        {filterTab === 'bodyType' ? (
-          <BodyTypeFilterSlider
-            activeBodyType={activeBodyType}
-            onSelectBodyType={setActiveBodyType}
-            localCounts={bodyTypeLocalCounts}
-          />
-        ) : (
-          <CategoryFilterSlider
-            activeCategory={activeCategory}
-            onSelectCategory={setActiveCategory}
-            localCounts={categoryLocalCounts}
-          />
-        )}
-      </div>
-
-      {/* 3. SBT Japan 2-Column Search Layout: Left Filter Column + Right Vehicle List */}
+      {/* 2. SBT Japan 2-Column Search Layout: Left Filter Column + Right Vehicle List */}
       <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           
@@ -817,7 +749,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                         onClick={() => setCurrentPage(page)}
                         className={`w-8 h-8 rounded-lg font-bold text-xs flex items-center justify-center transition-all cursor-pointer ${
                           currentPage === page
-                            ? 'bg-zinc-950 text-white shadow-xs'
+                            ? 'bg-red-600 text-white shadow-xs'
                             : 'bg-white border border-zinc-200/80 text-zinc-700 hover:bg-zinc-50'
                         }`}
                       >

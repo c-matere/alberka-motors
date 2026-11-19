@@ -118,7 +118,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
     >
       {/* 1. LEFT COLUMN: Media Viewer & Gallery Preview */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2.5">
-        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-zinc-900 border border-zinc-200/80 shadow-xs group/img">
+        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-zinc-100 border border-zinc-200/80 shadow-xs group/img">
           <img
             src={activeImageUrl}
             alt={vehicle.name}
@@ -131,8 +131,8 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
           {/* Top-Left: Auction Grade Badge */}
           <div className="absolute top-2.5 left-2.5 z-10">
-            <span className="inline-flex items-center gap-1 bg-black/85 backdrop-blur-md text-white border border-white/20 text-[11px] font-mono font-bold px-2 py-0.5 rounded-md shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-zinc-950 border border-zinc-200/80 text-[11px] font-mono font-bold px-2 py-0.5 rounded-md shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
               <span>Grade {vehicle.auctionGrade || '4.5'}</span>
             </span>
           </div>
@@ -146,7 +146,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
             className={`absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer backdrop-blur-md border ${
               isFavorite
                 ? 'bg-red-600 text-white border-red-500 shadow-md scale-105'
-                : 'bg-black/40 text-white/90 border-white/20 hover:bg-white hover:text-zinc-950'
+                : 'bg-white/90 text-zinc-700 border-zinc-200 hover:bg-white hover:text-red-600 shadow-xs'
             }`}
             title={isFavorite ? 'Remove from saved' : 'Save vehicle'}
             aria-label={isFavorite ? 'Remove from saved' : 'Save vehicle'}
@@ -156,15 +156,15 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
           {/* Bottom-Left: Photo Count Pill */}
           <div className="absolute bottom-2.5 left-2.5 z-10">
-            <span className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-md text-white border border-white/20 text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-sm">
-              <Camera className="w-3 h-3 text-red-400" />
+            <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-md text-zinc-900 border border-zinc-200 text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-sm">
+              <Camera className="w-3 h-3 text-red-600" />
               <span>{vehicle.gallery?.length || 15} Photos</span>
             </span>
           </div>
 
           {/* Bottom-Right: Stock Location */}
           <div className="absolute bottom-2.5 right-2.5 z-10">
-            <span className="inline-flex items-center gap-1 bg-zinc-950/90 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">
+            <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-emerald-800 border border-emerald-200/80 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">
               Mombasa Stock
             </span>
           </div>
