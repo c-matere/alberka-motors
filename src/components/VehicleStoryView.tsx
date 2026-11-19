@@ -687,7 +687,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     <div className="w-full bg-transparent text-zinc-900 pb-16">
       
       {/* 1. FULL-WIDTH 3D COVER FLOW GALLERY */}
-      <section className="figma-carousel-section w-full max-w-none flex flex-col justify-start pt-1 pb-4 overflow-hidden relative">
+      <section className="figma-carousel-section w-full max-w-none min-h-[calc(100vh-68px)] flex flex-col justify-between pt-2 pb-6 overflow-hidden relative">
         
         {/* Floating Top Control Strip (Summarized to give full space to the gallery) */}
         <div className="w-full max-w-[1520px] mx-auto px-3 sm:px-8 py-2 z-30 relative flex flex-wrap items-center justify-between gap-2 pointer-events-none">
