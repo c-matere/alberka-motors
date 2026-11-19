@@ -60,18 +60,17 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         {/* Video Cinema Stage — Mobile Responsive Aspect Ratio */}
         <div className="space-y-8">
           <div className="w-full aspect-[4/3] xs:aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] min-h-[260px] sm:min-h-0 max-h-[520px] overflow-hidden relative bg-zinc-950 border border-zinc-200 rounded-2xl shadow-xl">
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-              <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4" type="video/mp4" />
-              <img src="https://images.pexels.com/photos/33327689/pexels-photo-33327689.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Alberka Enterprises Heritage" className="w-full h-full object-cover" />
+            <video autoPlay muted loop playsInline preload="metadata" className="w-full h-full object-cover">
+              <source src="/videos/port-container-shipping.mp4" type="video/mp4" />
             </video>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex items-end p-4 sm:p-8 md:p-10 pointer-events-none">
               <div className="text-left text-white max-w-[620px] space-y-1.5 drop-shadow-md">
                 <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest block font-bold">
-                  PROVENANCE ARCHIVE
+                  PROVENANCE ARCHIVE · KILINDINI HARBOUR
                 </span>
                 <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
-                  Direct auction procurement from Tokyo, Yokohama, and Nagoya since 2000.
+                  Direct auction procurement from Tokyo & ocean container port clearance in Mombasa.
                 </p>
               </div>
             </div>
@@ -157,12 +156,21 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
         {/* Chapter 2: Coast to Nairobi Logistics */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-8 border-t border-zinc-200">
-          <div className="lg:col-span-5 order-2 lg:order-1 overflow-hidden border border-zinc-200 rounded-2xl bg-zinc-100">
-            <SkeletonImage
-              src="https://images.pexels.com/photos/16176579/pexels-photo-16176579.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="Port of Mombasa Operations"
-              containerClassName="w-full aspect-[4/3] sm:h-[320px]"
-            />
+          <div className="lg:col-span-5 order-2 lg:order-1 overflow-hidden border border-zinc-200/90 rounded-2xl bg-zinc-950 aspect-[4/3] sm:h-[320px] relative shadow-md group">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            >
+              <source src="/videos/flatbed-delivery.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-xs px-2.5 py-1 rounded-md text-[10.5px] font-mono text-white flex items-center gap-1.5 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span>NATIONWIDE FLATBED CARRIER TRANSIT</span>
+            </div>
           </div>
 
           <div className="lg:col-span-7 order-1 lg:order-2 space-y-5 text-left">

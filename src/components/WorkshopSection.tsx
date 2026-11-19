@@ -200,18 +200,17 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
               muted
               loop
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover scale-100 group-hover:scale-102 transition-transform duration-700 ease-out"
-              poster="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600"
             >
-              <source src="https://videos.pexels.com/video-files/5309381/5309381-hd_1920_1080_25fps.mp4" type="video/mp4" />
-              <img src="https://images.pexels.com/photos/8986138/pexels-photo-8986138.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Japanese RoRo shipping and vehicle inspection" className="w-full h-full object-cover" />
+              <source src="/videos/port-container-shipping.mp4" type="video/mp4" />
             </video>
 
             {/* Subtle Gradient Scrim for Legible Typography on all Devices */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex flex-col justify-end p-4 sm:p-8 md:p-10 pointer-events-none">
               <div className="text-left max-w-2xl space-y-1.5 drop-shadow-md">
                 <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest font-bold block">
-                  TOKYO AUCTION TO KILINDINI HARBOUR · 28-DAY SEA TRANSIT
+                  TOKYO AUCTION TO KILINDINI HARBOUR · CONTAINER PORT DISCHARGE
                 </span>
                 <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
                   Verified Japanese Imports Delivered Directly to Your Hands
@@ -331,6 +330,42 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             <p className="text-sm sm:text-[15px] text-zinc-700 leading-relaxed max-w-3xl font-normal">
               {importSteps[activeStep].description}
             </p>
+
+            {/* Contextual Video Footage for Sourcing, Ocean Shipping & Flatbed Handover */}
+            {(activeStep === 0 || activeStep === 2 || activeStep === 5) && (
+              <div className="w-full aspect-[16/9] sm:aspect-[21/9] max-h-[280px] rounded-xl overflow-hidden border border-zinc-200/90 bg-zinc-950 relative shadow-inner">
+                <video
+                  key={activeStep}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                >
+                  <source
+                    src={
+                      activeStep === 0
+                        ? '/videos/global-tracking-telemetry.mp4'
+                        : activeStep === 2
+                        ? '/videos/port-container-shipping.mp4'
+                        : '/videos/flatbed-delivery.mp4'
+                    }
+                    type="video/mp4"
+                  />
+                </video>
+                <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs px-2.5 py-1 rounded-md text-[10.5px] font-mono text-white flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                  <span>
+                    {activeStep === 0
+                      ? 'GLOBAL SOURCING & TELEMETRY'
+                      : activeStep === 2
+                      ? 'PORT OF MOMBASA · CONTAINER BERTH CLEARANCE'
+                      : 'NATIONWIDE FLATBED CARRIER DROP'}
+                  </span>
+                </div>
+              </div>
+            )}
 
             <div className="space-y-3 pt-2">
               <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 block font-bold">

@@ -471,11 +471,29 @@ export function App() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 lg:divide-x lg:divide-zinc-200 pt-4">
                       {/* Pillar 01 */}
                       <ScrollRevealBox delay={0}>
-                        <div className="space-y-4 lg:pr-12 text-left">
+                        <div className="space-y-4 lg:pr-10 text-left">
+                          {/* Video Asset 1: Port Container Discharge */}
+                          <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-zinc-200/90 bg-zinc-950 relative shadow-2xs group mb-4">
+                            <video
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              preload="metadata"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            >
+                              <source src="/videos/port-container-shipping.mp4" type="video/mp4" />
+                            </video>
+                            <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono text-white font-medium flex items-center gap-1.5 shadow-xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                              <span>PORT DISCHARGE · MOMBASA</span>
+                            </div>
+                          </div>
+
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             01 · DIRECT SOURCING
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
                             Tokyo Auction Selection
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
@@ -495,11 +513,29 @@ export function App() {
 
                       {/* Pillar 02 */}
                       <ScrollRevealBox delay={75}>
-                        <div className="space-y-4 lg:px-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
+                        <div className="space-y-4 lg:px-10 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
+                          {/* Video Asset 2: Nationwide Flatbed Carrier Delivery */}
+                          <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-zinc-200/90 bg-zinc-950 relative shadow-2xs group mb-4">
+                            <video
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              preload="metadata"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            >
+                              <source src="/videos/flatbed-delivery.mp4" type="video/mp4" />
+                            </video>
+                            <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono text-white font-medium flex items-center gap-1.5 shadow-xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                              <span>NATIONWIDE FLATBED DROP</span>
+                            </div>
+                          </div>
+
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             02 · PREPARATION
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
                             100-Point Technical Overhaul
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
@@ -519,11 +555,29 @@ export function App() {
 
                       {/* Pillar 03 */}
                       <ScrollRevealBox delay={150}>
-                        <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
+                        <div className="space-y-4 lg:pl-10 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
+                          {/* Video Asset 3: Satellite Telemetry & Verification */}
+                          <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-zinc-200/90 bg-zinc-950 relative shadow-2xs group mb-4">
+                            <video
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              preload="metadata"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            >
+                              <source src="/videos/global-tracking-telemetry.mp4" type="video/mp4" />
+                            </video>
+                            <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono text-white font-medium flex items-center gap-1.5 shadow-xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                              <span>SATELLITE AUDIT · TELEMETRY</span>
+                            </div>
+                          </div>
+
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             03 · VERIFICATION
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
                             Japanese Export Dossier
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
