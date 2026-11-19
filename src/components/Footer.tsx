@@ -36,15 +36,15 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center gap-4">
             <img
               src="/alberka-logo-cropped.png"
-              alt="Alberka Enterprises Kenya"
-              className="h-9 w-auto object-contain"
+              alt="Alberka Enterprises Limited"
+              className="h-10 w-auto object-contain"
             />
             <div className="border-l border-zinc-200 pl-4 text-left">
               <span className="font-bold text-sm tracking-tight text-zinc-950 block leading-tight">
-                {settings?.businessName?.toUpperCase() || 'ALBERKA ENTERPRISES (KENYA) LTD'}
+                {settings?.businessName?.toUpperCase() || 'ALBERKA ENTERPRISES LIMITED'}
               </span>
               <span className="font-mono text-[10px] tracking-wider text-zinc-600 mt-0.5 block">
-                {settings?.tagline?.toUpperCase() || 'DIRECT JAPANESE IMPORTS · EST. 2000'}
+                {settings?.tagline?.toUpperCase() || 'DIRECT JAPANESE IMPORTS · MOMBASA SHOWROOM & YARD'}
               </span>
             </div>
           </div>
@@ -64,8 +64,8 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Physical Showroom Location Banner */}
-        <div className="bg-[#f8f9fa] border border-zinc-200/90 rounded-2xl p-5 sm:p-7 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xs text-left">
+        {/* Physical Showroom Location Banner (Background matches section background white) */}
+        <div className="bg-white border border-zinc-200/80 rounded-2xl p-5 sm:p-7 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xs text-left">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
               <MapPin className="w-6 h-6 text-red-600" />
@@ -75,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-red-600">
                   Physical Showroom Location
                 </span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-zinc-100 text-zinc-700 border border-zinc-200">
                   Mon – Sat · 8:00 AM – 6:00 PM
                 </span>
               </div>
@@ -398,7 +398,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Copyright Strip with Gradient Feather Divider */}
         <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600 font-mono">
-          <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports. All Rights Reserved.`}</p>
+          <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises Limited. Direct Japanese Imports. All Rights Reserved.`}</p>
           <div className="flex items-center gap-3">
             <span>Next to Ganjoni Primary School, Mombasa</span>
             <span>·</span>

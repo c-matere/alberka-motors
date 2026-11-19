@@ -284,7 +284,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="strict-origin-when-cross-origin"
-                    title="Alberka Motors Showroom Location"
+                    title="Alberka Enterprises Limited Showroom Location"
                     className="w-full h-full"
                   />
                 </div>
@@ -327,8 +327,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             </div>
 
             {bookingSuccess ? (
-              <div className="bg-emerald-50 border border-emerald-300 p-8 text-center text-zinc-950 space-y-2 rounded-2xl">
-                <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-emerald-600" />
+              <div className="bg-zinc-50 border border-zinc-300 p-8 text-center text-zinc-950 space-y-2 rounded-2xl">
+                <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-red-600" />
                 <h4 className="text-xl font-bold">Appointment Confirmed</h4>
                 <p className="text-xs sm:text-sm text-zinc-600">Our concierge is connecting with you on WhatsApp right now to confirm your schedule.</p>
               </div>

@@ -363,7 +363,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
       {/* Copy Link Toast */}
       {copiedToast && (
         <div className="fixed bottom-6 right-6 z-[9999] bg-white text-zinc-950 px-4 py-2.5 rounded-lg shadow-2xl text-xs font-mono font-bold flex items-center gap-2 animate-fadeIn">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+          <CheckCircle2 className="w-4 h-4 text-red-600" />
           <span>Article link copied to clipboard</span>
         </div>
       )}

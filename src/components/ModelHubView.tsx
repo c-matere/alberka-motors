@@ -120,10 +120,10 @@ export const ModelHubView: React.FC<ModelHubViewProps> = ({
             </div>
 
             {/* Kenyan Road Suitability Callout */}
-            <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-3.5 text-xs text-emerald-950 flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+            <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-3.5 text-xs text-zinc-900 flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                <strong className="font-bold text-emerald-900">Kenyan Road Suitability:</strong> {currentHub.verdict}
+                <strong className="font-bold text-zinc-950">Kenyan Road Suitability:</strong> {currentHub.verdict}
               </p>
             </div>
           </div>
@@ -206,14 +206,14 @@ export const ModelHubView: React.FC<ModelHubViewProps> = ({
             </div>
           )}
 
-          {/* 4. Why Buy This Model at Alberka Motors */}
+          {/* 4. Why Buy This Model at Alberka Enterprises Limited */}
           <div className="bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-10 text-left shadow-sm mt-12 space-y-6">
             <div>
               <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 font-bold block mb-1">
-                ALBERKA MOTORS BUYER'S ASSURANCE
+                ALBERKA ENTERPRISES BUYER'S ASSURANCE
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-zinc-950">
-                Why Buy Your {currentHub.name} from Alberka Motors?
+                Why Buy Your {currentHub.name} from Alberka Enterprises Limited?
               </h3>
             </div>
 

@@ -263,7 +263,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 {activeVehicle.stockNo}
               </span>
               <span className="bg-zinc-100/75 backdrop-blur-md border border-zinc-800 text-zinc-700 text-[11px] font-medium px-3 py-1 rounded-md hidden md:inline-flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-red-600" />
                 <span>Duty Paid & Cleared</span>
               </span>
             </div>

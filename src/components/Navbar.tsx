@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
             <div className="hidden sm:flex flex-col text-left pl-3.5 border-l border-zinc-200">
               <span className="font-extrabold text-[15px] sm:text-[16.5px] tracking-tight text-zinc-950 leading-tight">
-                ALBERKA ENTERPRISES
+                ALBERKA ENTERPRISES LIMITED
               </span>
               <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.18em] text-zinc-500 leading-none mt-0.5 font-medium">
                 QUALITY JAPANESE IMPORTS
@@ -244,7 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             
             <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-500 font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
               <span>Showroom: Next to Ganjoni Primary School, Mombasa</span>
             </div>
           </div>

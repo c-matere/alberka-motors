@@ -752,7 +752,7 @@ export const BlueprintBackground: React.FC = () => {
             {/* Studio Release Terminal Block (Top Right) */}
             <g transform="translate(1040, 42)">
               <rect x="0" y="0" width="310" height="74" fill="rgba(255, 255, 255, 0.92)" stroke="rgba(15, 23, 42, 0.15)" strokeWidth="1.1" rx="4" />
-              <circle cx="12" cy="16" r="3" fill="#22c55e" className="animate-pulse" />
+              <circle cx="12" cy="16" r="3" fill="#dc2626" className="animate-pulse" />
               
               {studioTitle?.text && (
                 <text x="24" y="19" fill="rgba(15, 23, 42, 0.85)" fontSize="9.5" fontFamily="JetBrains Mono, monospace" fontWeight="600" letterSpacing="0.14em">

@@ -38,7 +38,7 @@ export const TestimonialSection = ({
       <div className="container mx-auto max-w-6xl px-4 text-center mb-10 sm:mb-14">
         {/* Section Header */}
         <span className="font-mono text-xs uppercase tracking-widest text-red-600 font-bold block mb-2">
-          CLIENT EXPERIENCES · ALBERKA MOTORS
+          CLIENT EXPERIENCES · ALBERKA ENTERPRISES LIMITED
         </span>
         <h2 className="text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl md:text-5xl">
           {title}

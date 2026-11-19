@@ -156,7 +156,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
           {/* Bottom-Right: Stock Location */}
           <div className="absolute bottom-2.5 right-2.5 z-10">
-            <span className="inline-flex items-center gap-1 bg-emerald-600/95 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">
+            <span className="inline-flex items-center gap-1 bg-zinc-950/90 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">
               Mombasa Stock
             </span>
           </div>
@@ -203,8 +203,8 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
                 Code: {vehicle.modelCode}
               </span>
             )}
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-zinc-800 bg-[#F8F9FB] border border-zinc-200/80 px-2 py-0.5 rounded">
+              <CheckCircle2 className="w-3 h-3 text-red-600" />
               <span>JEVIC Odometer Verified</span>
             </span>
           </div>

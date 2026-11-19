@@ -163,8 +163,8 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
           {/* Form Content */}
           <div className="p-6">
             {isSubmitted ? (
-              <div className="p-8 text-center bg-white border border-emerald-500/30 rounded-xl space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+              <div className="p-8 text-center bg-white border border-red-200 rounded-xl space-y-3">
+                <CheckCircle2 className="w-10 h-10 text-red-600 mx-auto" />
                 <h3 className="text-lg font-bold text-zinc-950">Message Dispatched!</h3>
                 <p className="text-xs sm:text-sm text-zinc-600">
                   We are opening WhatsApp with your details. Our sales team will assist you right away.

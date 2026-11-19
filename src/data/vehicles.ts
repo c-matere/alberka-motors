@@ -195,7 +195,7 @@ export const VEHICLES: Vehicle[] = [
     exteriorColor: 'Pure White',
     colorCode: '26U',
     interiorColor: 'Durable Grey / Brown Fabric',
-    locationYard: 'Alberka Motors Showroom (Ganjoni, Mombasa)',
+    locationYard: 'Alberka Enterprises Limited Showroom (Ganjoni, Mombasa)',
     dimensions: '3.39m × 1.47m × 1.89m',
     m3: '9.45 m³',
     wheelbase: '2,430 mm',

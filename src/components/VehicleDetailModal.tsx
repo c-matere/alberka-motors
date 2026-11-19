@@ -178,7 +178,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           {/* Main Showcase Hero */}
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">
+              <span className="text-xs uppercase tracking-wider text-zinc-800 font-bold bg-zinc-100 px-2.5 py-0.5 rounded border border-zinc-200">
                 Direct Japanese Import • {vehicle.status}
               </span>
               <span className="text-xs font-mono text-zinc-500 font-semibold">
@@ -289,7 +289,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               <div>
                 <span className="text-xs text-zinc-600 block mb-1">Delivered Price</span>
                 <span className="font-mono font-bold text-sm text-zinc-950">KES {vehicle.priceKes.toLocaleString()}</span>
-                <span className="text-[11px] text-emerald-700 font-medium block">Duty Cleared</span>
+                <span className="text-[11px] text-zinc-600 font-medium block">Duty Cleared</span>
               </div>
             </div>
 
@@ -425,7 +425,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-zinc-200">
                   <span className="text-zinc-600">Steering</span>
-                  <span className="font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                  <span className="font-bold text-zinc-800 bg-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200">
                     {vehicle.steering} (Right-Hand Drive)
                   </span>
                 </div>
@@ -483,10 +483,10 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                     <span className="text-[11px] text-zinc-500 uppercase tracking-wider block font-semibold">
                       Kenya Delivered & Registered
                     </span>
-                    <span className="text-2xl font-mono font-bold text-emerald-700">
+                    <span className="text-2xl font-mono font-bold text-zinc-950">
                       KES {vehicle.priceKes.toLocaleString()}
                     </span>
-                    <span className="text-xs text-emerald-800 font-medium block">
+                    <span className="text-xs text-zinc-600 font-medium block">
                       Fully Cleared (Duty, VAT, IDF, RDL & Plates)
                     </span>
                   </div>
@@ -584,8 +584,8 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 <div className="flex items-center justify-between text-xs text-zinc-500 pb-1 border-b border-zinc-200">
                   <span>SBT Japan Export Standard Equipment Matrix</span>
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex items-center gap-1 font-semibold text-emerald-800">
-                      <Check className="w-3.5 h-3.5 text-emerald-600" /> Available
+                    <span className="inline-flex items-center gap-1 font-semibold text-zinc-800">
+                      <Check className="w-3.5 h-3.5 text-red-600" /> Available
                     </span>
                     <span className="inline-flex items-center gap-1 text-zinc-600">
                       <Minus className="w-3.5 h-3.5 text-zinc-600" /> Unavailable
@@ -611,8 +611,8 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                           >
                             <span className="truncate text-[11px]">{opt.label}</span>
                             {opt.val ? (
-                              <span className="inline-flex items-center gap-0.5 px-1 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shrink-0">
-                                <Check className="w-2.5 h-2.5" /> OK
+                              <span className="inline-flex items-center gap-0.5 px-1 py-0.5 rounded text-[10px] font-bold bg-zinc-100 text-zinc-800 border border-zinc-200 shrink-0">
+                                <Check className="w-2.5 h-2.5 text-red-600" /> OK
                               </span>
                             ) : (
                               <span className="inline-flex items-center px-1 py-0.5 rounded text-[10px] font-mono text-zinc-600 bg-zinc-200/60 shrink-0">
@@ -696,7 +696,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
           <div className="p-6 bg-zinc-50 border border-zinc-200 rounded-xl space-y-3">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-200">
               <div className="flex items-center gap-3">
-                <ShieldCheck className="w-5 h-5 text-emerald-700" />
+                <ShieldCheck className="w-5 h-5 text-red-600" />
                 <div>
                   <h4 className="text-sm font-bold text-zinc-950">
                     100-Point Workshop Inspection Certificate
@@ -715,7 +715,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
               {vehicle.workshopProtocol.map((item, i) => (
                 <div key={i} className="flex items-start gap-2.5 text-xs text-zinc-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                   <span className="font-medium">{item}</span>
                 </div>
               ))}
@@ -741,7 +741,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </button>
 
               <a
-                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.name)}%20(Stock%20${vehicle.stockNo},%20Chassis%20${vehicle.chassisNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
+                href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.name)}%20(Stock%20${vehicle.stockNo},%20Chassis%20${vehicle.chassisNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold !py-2.5 !px-5 !text-xs rounded-xl w-full sm:w-auto inline-flex items-center justify-center shadow-lg transition-all hover:scale-105 active:scale-95"
@@ -769,7 +769,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
             </button>
 
             <div className="inline-flex items-center gap-2 mb-1">
-              <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 block">
+              <span className="text-xs uppercase tracking-wider text-zinc-800 font-bold bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200 block">
                 Official Japanese Auction Document
               </span>
             </div>
@@ -803,11 +803,11 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
               </div>
               <div className="flex justify-between border-b border-zinc-200 pb-1.5">
                 <span className="text-zinc-600">Accident History:</span>
-                <span className="text-emerald-700 font-bold">ZERO (Clean Original Chassis)</span>
+                <span className="text-zinc-950 font-bold">ZERO (Clean Original Chassis)</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-zinc-600">QISJ Pre-Shipment Inspection:</span>
-                <span className="text-emerald-700 font-bold">PASSED & AUTHENTICATED</span>
+                <span className="text-zinc-950 font-bold">PASSED & AUTHENTICATED</span>
               </div>
             </div>
 

@@ -399,13 +399,13 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
   const handleShareVehicle = async () => {
     const shareUrl = window.location.href;
-    const shareTitle = `${vehicle.year} ${vehicle.name} · Alberka Motors Mombasa`;
+    const shareTitle = `${vehicle.year} ${vehicle.name} · Alberka Enterprises Limited Mombasa`;
 
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
           title: shareTitle,
-          text: `Explore this verified Japanese import at Alberka Motors Mombasa: ${vehicle.name}`,
+          text: `Explore this verified Japanese import at Alberka Enterprises Limited Mombasa: ${vehicle.name}`,
           url: shareUrl,
         });
         setCopiedLink(true);
@@ -1032,7 +1032,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             {/* Actions Bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
               <div className="text-xs text-zinc-500 font-mono hidden sm:flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-red-600" />
                 <span>Verified Japanese Import · Ganjoni Showroom Mombasa</span>
               </div>
 
@@ -1041,14 +1041,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={handleShareVehicle}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
                     copiedLink
-                      ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold'
+                      ? 'bg-zinc-900 border-zinc-900 text-white font-semibold'
                       : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
                   }`}
                   title="Share vehicle link"
                 >
                   {copiedLink ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                      <Check className="w-3.5 h-3.5 text-white stroke-[2.5]" />
                       <span>Link Copied!</span>
                     </>
                   ) : (
@@ -1129,7 +1129,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   <div className="text-2xl sm:text-[28px] font-black text-red-600 font-mono leading-none">
                     KES {pricing.currentPrice.toLocaleString()}
                   </div>
-                  <p className="text-[11px] text-emerald-700 font-bold">
+                  <p className="text-[11px] text-red-600 font-bold">
                     Save KES {pricing.savingsKes.toLocaleString()} · 100-Point Overhaul
                   </p>
                 </div>
@@ -1398,7 +1398,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </div>
               <div>
                 <span className="text-zinc-500 block text-[10px] uppercase font-bold">ACCIDENT HISTORY</span>
-                <span className="text-xl sm:text-2xl font-black text-emerald-600 block mt-0.5">ZERO (No R-Grade)</span>
+                <span className="text-xl sm:text-2xl font-black text-zinc-950 block mt-0.5">ZERO (No R-Grade)</span>
               </div>
               <div>
                 <span className="text-zinc-500 block text-[10px] uppercase font-bold">ODOMETER CERTIFICATION</span>
@@ -1548,12 +1548,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                         key={i}
                         className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                           opt.active
-                            ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                            ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
                             : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                         }`}
                       >
                         {opt.active ? (
-                          <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
                         ) : (
                           <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
                         )}
@@ -1584,12 +1584,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                           key={i}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                             opt.active
-                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
                               : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                           }`}
                         >
                           {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
                           ) : (
                             <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
                           )}
@@ -1618,12 +1618,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                           key={i}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                             opt.active
-                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
                               : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                           }`}
                         >
                           {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
                           ) : (
                             <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
                           )}
@@ -1655,12 +1655,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                           key={i}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                             opt.active
-                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
                               : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                           }`}
                         >
                           {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
                           ) : (
                             <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
                           )}
@@ -1689,12 +1689,12 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                           key={i}
                           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-xs transition-colors ${
                             opt.active
-                              ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold shadow-xs'
+                              ? 'bg-zinc-100 text-zinc-900 border-zinc-300 font-semibold shadow-2xs'
                               : 'bg-zinc-50 text-zinc-400 border-zinc-200/70 opacity-60 line-through'
                           }`}
                         >
                           {opt.active ? (
-                            <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5] shrink-0" />
+                            <Check className="w-3.5 h-3.5 text-red-600 stroke-[2.5] shrink-0" />
                           ) : (
                             <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0" />
                           )}
@@ -1763,8 +1763,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     <Phone className="w-4 h-4 text-zinc-500 shrink-0" />
                     <span>Direct Helpline: 0180 423 075 (WhatsApp & Calls)</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-emerald-700 font-semibold">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <div className="flex items-center gap-2.5 text-zinc-800 font-semibold">
+                    <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
                     <span>In-house 100-point inspection hoist available for viewing</span>
                   </div>
                 </div>
@@ -1802,7 +1802,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
-                title="Alberka Motors Showroom Location"
+                title="Alberka Enterprises Limited Showroom Location"
                 className="w-full h-full"
               />
             </div>
@@ -1924,7 +1924,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Zero smoke, zero pet wear</span>
                 </div>
                 <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
-                  <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-mono font-bold">QISJ PASSED</span>
+                  <span className="text-xs text-zinc-800 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded font-mono font-bold">QISJ PASSED</span>
                 </div>
               </div>
 
@@ -1937,7 +1937,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Certified Japanese JEVIC</span>
                 </div>
                 <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
-                  <span className="text-xs text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">100% GENUINE</span>
+                  <span className="text-xs text-zinc-800 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded font-mono font-bold">100% GENUINE</span>
                 </div>
               </div>
             </div>
@@ -1948,7 +1948,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 <span className="text-zinc-800 uppercase font-bold">
                   INTERACTIVE PANEL & CHASSIS INSPECTOR (JAPANESE STANDARD)
                 </span>
-                <span className="text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded font-bold">
+                <span className="text-zinc-800 bg-zinc-100 border border-zinc-200 px-2.5 py-0.5 rounded font-bold">
                   FRAME DISTORTION: 0%
                 </span>
               </div>

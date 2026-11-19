@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { CmsSiteSettings, fetchCmsSiteSettings } from '../services/cmsContent';
 
 const DEFAULT_SETTINGS: CmsSiteSettings = {
-  businessName: 'Alberka Motors',
-  tagline: 'Direct Japanese Imports · Mombasa Port & Nairobi',
+  businessName: 'Alberka Enterprises Limited',
+  tagline: 'Direct Japanese Imports · Mombasa Showroom & Yard',
   foundedYear: '2000',
-  footerNotice: '© 2026 Alberka Motors. Direct Japanese Import Specialists. Mombasa & Nairobi.',
+  footerNotice: '© 2026 Alberka Enterprises Limited. Direct Japanese Import Specialists. Mombasa, Kenya.',
   phone: '+254 180 423 075',
   whatsappNumber: '254180423075',
-  email: 'yard@alberkamotors.co.ke',
+  email: 'yard@alberka.co.ke',
   workingHours: 'Monday – Saturday: 8:00 AM – 6:00 PM | Sunday: By Appointment',
-  mombasaYardAddress: 'Tangana Road, Ganjoni, Port Reitz Area, Mombasa, Kenya',
-  nairobiShowroomAddress: 'Alberka Plaza, Ngong Road, Nairobi, Kenya',
+  mombasaYardAddress: 'Next to Ganjoni Primary School, Archbishop Makarios Rd, Mombasa, Kenya',
+  nairobiShowroomAddress: 'Mombasa Showroom & Yard (Sole Office)',
 };
 
 export function useSiteSettings() {

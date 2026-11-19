@@ -102,7 +102,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                   <span className="font-mono text-xs text-zinc-600 uppercase tracking-wider font-semibold">
                     SIDE-BY-SIDE SPECIFICATION AUDIT
                   </span>
-                  <span className="text-xs font-mono text-emerald-600 font-semibold">
+                  <span className="text-xs font-mono text-red-600 font-semibold">
                     100-Point Pre-Delivery Overhaul Included
                   </span>
                 </div>

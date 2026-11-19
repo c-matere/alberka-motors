@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Search,
   X,
@@ -46,6 +46,13 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   const [drivetrainFilter, setDrivetrainFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'year' | 'mileage'>('featured');
   const [mobileFilterOpen, setMobileFilterOpen] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+
+  // Reset to page 1 whenever search or filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeMake, activeCategory, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
 
   // Curated Comprehensive Automakers list (with authentic SBT Japan maker logos)
   const makes = useMemo(() => {
@@ -188,6 +195,13 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       });
   }, [vehicles, activeCategory, activeMake, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
 
+  // SBT Japan Pagination Slicing
+  const totalPages = Math.ceil(filteredVehicles.length / itemsPerPage) || 1;
+  const paginatedVehicles = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredVehicles.slice(start, start + itemsPerPage);
+  }, [filteredVehicles, currentPage, itemsPerPage]);
+
   // Reusable Filter Controls for both Desktop Sidebar and Mobile Sheet Drawer
   const renderFilterControls = () => (
     <div className="space-y-6 text-left">
@@ -272,7 +286,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                   isSelected
                     ? 'bg-red-100 text-red-700 font-bold'
                     : m.count > 0
-                      ? 'bg-emerald-50 text-emerald-700 font-bold border border-emerald-200/60'
+                      ? 'bg-zinc-100 text-zinc-700 font-bold border border-zinc-200/70'
                       : 'text-zinc-400 font-normal'
                 }`}>
                   {m.id === 'all' ? `${m.count}` : m.count > 0 ? `${m.count} in stock` : 'Order'}
@@ -404,7 +418,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
           <div className="flex items-center gap-2 self-start sm:self-auto">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold bg-white border border-zinc-200/70 text-zinc-800 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
               <span>{vehicles.length} Units Available in Mombasa</span>
             </span>
           </div>
@@ -511,64 +525,43 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           {/* RIGHT COLUMN: SEARCH RESULTS & SBT LIST VIEW ONLY (NO GRID) */}
           <main className="flex-1 min-w-0 w-full space-y-5 text-left">
             
-            {/* Results Header Utility Bar */}
-            <div className="bg-white border border-zinc-200/70 rounded-2xl px-4 py-3 sm:px-6 sm:py-3.5 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
-              
-              {/* Left: Active Results Count */}
-              <div className="flex items-center gap-2 text-xs font-mono text-zinc-700">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="font-bold text-zinc-950">
-                  {filteredVehicles.length}
-                </span>
-                <span className="text-zinc-500">
-                  of {vehicles.length} verified vehicles found
-                </span>
+            {/* Minimal Mobile Filters & Sort Bar */}
+            <div className="flex items-center justify-between gap-3 pb-1">
+              {/* White Background Filter Button (Mobile Only) */}
+              <button
+                onClick={() => setMobileFilterOpen(true)}
+                className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-zinc-50 text-zinc-900 border border-zinc-200/80 rounded-xl text-xs font-bold transition-all shadow-2xs cursor-pointer active:scale-95"
+              >
+                <Filter className="w-4 h-4 text-red-600" />
+                <span>Filters</span>
                 {activeFilterCount > 0 && (
-                  <span className="hidden sm:inline-block bg-red-50 text-red-700 font-semibold text-[11px] px-2 py-0.5 rounded border border-red-200/70">
-                    Filtered ({activeFilterCount})
+                  <span className="bg-red-600 text-white text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold">
+                    {activeFilterCount}
                   </span>
                 )}
-              </div>
+              </button>
 
-              {/* Right: Mobile Filter Button & Sort By Dropdown */}
-              <div className="flex items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
-                {/* Mobile Filter Button */}
-                <button
-                  onClick={() => setMobileFilterOpen(true)}
-                  className="lg:hidden inline-flex items-center gap-2 px-3.5 py-2 bg-zinc-950 text-white rounded-xl text-xs font-bold hover:bg-zinc-800 transition-all shadow-xs cursor-pointer active:scale-95"
-                >
-                  <Filter className="w-3.5 h-3.5 text-red-400" />
-                  <span>Filters</span>
-                  {activeFilterCount > 0 && (
-                    <span className="bg-red-600 text-white text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold">
-                      {activeFilterCount}
-                    </span>
-                  )}
-                </button>
-
-                {/* Sort By Dropdown (SBT Japan Sort Standard) */}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-zinc-500 uppercase font-semibold hidden md:inline">
-                    Sort:
-                  </span>
-                  <div className="flex items-center gap-1.5 bg-[#F8F9FB] border border-zinc-200/70 rounded-lg px-2.5 py-1.5">
-                    <ArrowUpDown className="w-3.5 h-3.5 text-zinc-500" />
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value as any)}
-                      aria-label="Sort vehicles"
-                      className="bg-transparent text-xs font-mono font-medium text-zinc-800 focus:outline-none cursor-pointer pr-1"
-                    >
-                      <option value="featured" className="bg-white text-zinc-900">Featured Provenance</option>
-                      <option value="price-asc" className="bg-white text-zinc-900">Price: Low to High</option>
-                      <option value="price-desc" className="bg-white text-zinc-900">Price: High to Low</option>
-                      <option value="year" className="bg-white text-zinc-900">Newest Year</option>
-                      <option value="mileage" className="bg-white text-zinc-900">Lowest Mileage</option>
-                    </select>
-                  </div>
+              {/* Discreet Sort By (Aligned Right) */}
+              <div className="flex items-center gap-2 ml-auto">
+                <span className="text-xs font-mono text-zinc-400 uppercase font-semibold hidden sm:inline">
+                  Sort:
+                </span>
+                <div className="flex items-center gap-1.5 bg-white border border-zinc-200/80 rounded-xl px-3 py-2 shadow-2xs">
+                  <ArrowUpDown className="w-3.5 h-3.5 text-zinc-400" />
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as any)}
+                    aria-label="Sort vehicles"
+                    className="bg-transparent text-xs font-mono font-medium text-zinc-800 focus:outline-none cursor-pointer pr-1"
+                  >
+                    <option value="featured">Featured Provenance</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="year">Newest Year</option>
+                    <option value="mileage">Lowest Mileage</option>
+                  </select>
                 </div>
               </div>
-
             </div>
 
             {/* SBT LIST VIEW ONLY (NO GRID) */}
@@ -580,16 +573,81 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
               </div>
             ) : filteredVehicles.length > 0 ? (
               <div className="space-y-4 sm:space-y-5">
-                {filteredVehicles.map((vehicle) => (
-                  <VehicleSbtListCard
-                    key={vehicle.id}
-                    vehicle={vehicle}
-                    isFavorite={favorites.includes(vehicle.id)}
-                    onToggleFavorite={onToggleFavorite}
-                    onSelect={onSelectVehicle}
-                    onInquire={onInquire}
-                  />
-                ))}
+                <div className="space-y-4 sm:space-y-5">
+                  {paginatedVehicles.map((vehicle) => (
+                    <VehicleSbtListCard
+                      key={vehicle.id}
+                      vehicle={vehicle}
+                      isFavorite={favorites.includes(vehicle.id)}
+                      onToggleFavorite={onToggleFavorite}
+                      onSelect={onSelectVehicle}
+                      onInquire={onInquire}
+                    />
+                  ))}
+                </div>
+
+                {/* SBT Japan Pagination Bar */}
+                <div className="bg-white border border-zinc-200/70 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs text-xs font-mono">
+                  {/* Left: Showing range */}
+                  <div className="text-zinc-600">
+                    Showing <span className="font-bold text-zinc-950">{Math.min((currentPage - 1) * itemsPerPage + 1, filteredVehicles.length)}</span> to{' '}
+                    <span className="font-bold text-zinc-950">{Math.min(currentPage * itemsPerPage, filteredVehicles.length)}</span> of{' '}
+                    <span className="font-bold text-zinc-950">{filteredVehicles.length}</span> units
+                  </div>
+
+                  {/* Center: Page numbers & Previous / Next */}
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="px-3 py-1.5 rounded-lg border border-zinc-200/80 bg-white hover:bg-zinc-50 text-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer font-bold"
+                      aria-label="Previous page"
+                    >
+                      Prev
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`w-8 h-8 rounded-lg font-bold text-xs flex items-center justify-center transition-all cursor-pointer ${
+                          currentPage === page
+                            ? 'bg-zinc-950 text-white shadow-xs'
+                            : 'bg-white border border-zinc-200/80 text-zinc-700 hover:bg-zinc-50'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-1.5 rounded-lg border border-zinc-200/80 bg-white hover:bg-zinc-50 text-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer font-bold"
+                      aria-label="Next page"
+                    >
+                      Next
+                    </button>
+                  </div>
+
+                  {/* Right: Items per page selector */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-zinc-500 uppercase">Per page:</span>
+                    <select
+                      value={itemsPerPage}
+                      onChange={(e) => {
+                        setItemsPerPage(Number(e.target.value));
+                        setCurrentPage(1);
+                      }}
+                      className="bg-[#F8F9FB] border border-zinc-200/70 rounded-lg px-2 py-1 text-xs font-mono text-zinc-800 focus:outline-none cursor-pointer"
+                    >
+                      <option value={5}>5</option>
+                      <option value={10}>10</option>
+                      <option value={25}>25</option>
+                      <option value={50}>50</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="text-center py-20 bg-white border border-zinc-200/70 rounded-2xl p-8 space-y-4 max-w-xl mx-auto shadow-2xs">
@@ -651,14 +709,14 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
       </div>
 
-      {/* MOBILE FLOATING FILTER PILL (Always accessible on mobile) */}
+      {/* MOBILE FLOATING FILTER PILL (White background, always accessible on mobile) */}
       <div className="fixed bottom-6 inset-x-0 z-40 lg:hidden flex justify-center pointer-events-none px-4">
         <button
           onClick={() => setMobileFilterOpen(true)}
-          className="pointer-events-auto bg-zinc-950/95 hover:bg-zinc-900 text-white backdrop-blur-md px-5 py-3 rounded-full shadow-2xl border border-white/20 flex items-center gap-2.5 text-xs font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          className="pointer-events-auto bg-white hover:bg-zinc-50 text-zinc-950 px-5 py-3 rounded-full shadow-2xl border border-zinc-200/90 flex items-center gap-2.5 text-xs font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer"
         >
-          <Filter className="w-4 h-4 text-red-500" />
-          <span>Filter Fleet ({filteredVehicles.length} Units)</span>
+          <Filter className="w-4 h-4 text-red-600" />
+          <span>Filters</span>
           {activeFilterCount > 0 && (
             <span className="bg-red-600 text-white text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold">
               {activeFilterCount}

@@ -322,8 +322,8 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
                 </p>
               </div>
 
-              <div className="font-mono text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg w-fit flex items-center gap-1.5 shrink-0">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <div className="font-mono text-[11px] font-semibold text-zinc-800 bg-zinc-100 border border-zinc-200 px-3 py-1.5 rounded-lg w-fit flex items-center gap-1.5 shrink-0">
+                <ShieldCheck className="w-4 h-4 text-red-600" />
                 <span>100% VERIFIED PROTOCOL</span>
               </div>
             </div>
@@ -339,7 +339,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {importSteps[activeStep].checklist.map((item, i) => (
                   <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -418,7 +418,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
                 Documents You Need to Provide
               </h3>
             </div>
-            <span className="font-mono text-xs text-emerald-700 bg-emerald-100/60 px-3 py-1 rounded-md border border-emerald-200 font-semibold w-fit">
+            <span className="font-mono text-xs text-zinc-700 bg-zinc-100 px-3 py-1 rounded-md border border-zinc-200 font-semibold w-fit">
               Simple 3-Item Client Checklist
             </span>
           </div>
@@ -474,8 +474,8 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
           </div>
 
           {inquirySubmitted ? (
-            <div className="bg-emerald-50 border border-emerald-200 p-8 text-center text-zinc-950 space-y-3 rounded-2xl">
-              <CheckCircle2 className="w-10 h-10 mx-auto text-emerald-600" />
+            <div className="bg-zinc-50 border border-zinc-200 p-8 text-center text-zinc-950 space-y-3 rounded-2xl">
+              <CheckCircle2 className="w-10 h-10 mx-auto text-red-600" />
               <h4 className="text-xl font-bold">Import Inquiry Dispatched Successfully</h4>
               <p className="text-sm text-zinc-600 max-w-lg mx-auto">
                 Our Mombasa import desk is reviewing your requirements on WhatsApp right now. We will send matching auction lots and full landed cost sheets within 1 hour.
