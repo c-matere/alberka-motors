@@ -108,61 +108,129 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Multi-Column Directory */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-14 text-xs text-left">
+        {/* Multi-Column Directory (1:1 SBT Japan Automotive Export Directory Structure - Sole Mombasa Office) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-14 text-xs text-left">
           
+          {/* 1. Buying */}
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Showroom Fleet</h4>
-            <ul className="space-y-2">
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span>Buying</span>
+            </h4>
+            <ul className="space-y-2.5">
               <li>
                 <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  All Vehicles in Stock
+                  Find Cars (Stock)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  SUVs & All-Wheel Drive
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Why Choose Alberka
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Hybrids & e-POWER
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Customer Reviews
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  7-Seater Vans & MPVs
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Japanese Auction Grades
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Compact Hatchbacks
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  100-Point Pre-Delivery Overhaul
                 </button>
               </li>
             </ul>
           </div>
 
+          {/* 2. Support & Verification */}
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Import Protocol</h4>
-            <ul className="space-y-2">
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span>Support</span>
+            </h4>
+            <ul className="space-y-2.5">
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Direct Japanese Import Process
+                  Help Center
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Tokyo Auction Bidding & Sourcing
+                  Car Tracking & Vessel ETA
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Mombasa Port & KRA Customs Duty
+                  Damage Condition Report
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Custom Japan Auction Orders
+                  Shipping Schedule
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Chassis & Odometer Check (JEVIC)
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* 3. About Us (Strictly 1 Office - Mombasa Showroom) */}
+          <div>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span>About Us</span>
+            </h4>
+            <ul className="space-y-2.5">
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Our Company
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Company Profile & Provenance
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('locations')} className="text-zinc-950 font-semibold hover:text-red-600 text-left cursor-pointer transition-colors">
+                  Mombasa Showroom (Sole Office)
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Anti-Tampering Mileage Policy
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  CSR Policy
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* 4. Inquiry */}
+          <div>
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span>Inquiry</span>
+            </h4>
+            <ul className="space-y-2.5">
+              <li>
+                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('workshop')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Vehicle Request (Japan Order)
                 </button>
               </li>
               <li>
@@ -170,68 +238,44 @@ export const Footer: React.FC<FooterProps> = ({
                   Private Showroom Viewing
                 </button>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">Showroom & Hub</h4>
-            <ul className="space-y-2">
-              <li className="text-zinc-950 font-semibold">
-                Next to Ganjoni Primary School
-              </li>
-              <li className="text-zinc-600">
-                Archbishop Makarios Rd, Mombasa
-              </li>
               <li>
                 <a
-                  href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
+                  href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises, I have an inquiry regarding vehicles in stock.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-red-600 hover:text-red-700 font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors"
+                  className="text-emerald-700 hover:text-emerald-800 font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors"
                 >
-                  <MapPin className="w-3 h-3" />
-                  <span>Google Maps Pin</span>
+                  <span>WhatsApp Direct Desk</span>
                 </a>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Customer Inspection & Handover Bay
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('locations')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  100-Point Mechanical Workshop
-                </button>
               </li>
             </ul>
           </div>
 
+          {/* 5. Connect & News */}
           <div>
-            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3">About Alberka</h4>
-            <ul className="space-y-2">
+            <h4 className="font-mono text-[11px] font-bold text-zinc-950 uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              <span>Connect With Us</span>
+            </h4>
+            <ul className="space-y-2.5">
               <li>
                 <button onClick={() => onNavigate('blog')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
                   The Alberka Journal (Blog)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  26-Year Provenance
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Tokyo Auction Weekly Arrivals
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Japanese Auction Bidding
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('about')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  QISJ & JEVIC Odometer Guarantee
+                <button onClick={() => onNavigate('inventory')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
+                  Showroom Clearance Alerts
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('sitemap')} className="text-zinc-600 hover:text-zinc-950 text-left cursor-pointer transition-colors">
-                  Site Directory
+                  Sitemap
                 </button>
               </li>
             </ul>
@@ -239,9 +283,28 @@ export const Footer: React.FC<FooterProps> = ({
 
         </div>
 
+        {/* SBT Japan Policy Strip */}
+        <div className="pt-6 pb-4 border-t border-zinc-200 flex flex-wrap items-center justify-between gap-3 text-[11px] text-zinc-600 font-mono">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="hover:text-zinc-950 cursor-pointer">Terms of Use</span>
+            <span>·</span>
+            <span className="hover:text-zinc-950 cursor-pointer">Privacy Policy</span>
+            <span>·</span>
+            <span className="hover:text-zinc-950 cursor-pointer">Claims & Inspection Policy</span>
+            <span>·</span>
+            <span className="hover:text-zinc-950 cursor-pointer">Basic Policy Against Anti-Social Forces</span>
+            <span>·</span>
+            <span className="hover:text-zinc-950 cursor-pointer">Security Export Control</span>
+          </div>
+
+          <div className="text-zinc-700 font-bold">
+            Sole Office & Yard: Mombasa, Kenya
+          </div>
+        </div>
+
         {/* Bottom Copyright Strip with Gradient Feather Divider */}
-        <div className="pt-6 relative after:absolute after:top-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-zinc-200 after:to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
-          <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports Since 2000.`}</p>
+        <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600 font-mono">
+          <p>{settings?.footerNotice || `© ${new Date().getFullYear()} Alberka Enterprises (Kenya) Ltd. Direct Japanese Imports. All Rights Reserved.`}</p>
           <div className="flex items-center gap-3">
             <span>Next to Ganjoni Primary School, Mombasa</span>
             <span>·</span>
