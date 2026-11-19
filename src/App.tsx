@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { VEHICLES, Vehicle } from './data/vehicles';
 import { useVehicles } from './hooks/useVehicles';
 import { useCmsPages } from './hooks/useCmsPages';
@@ -7,6 +7,7 @@ import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
+import { CategoryFilterSlider } from './components/CategoryFilterSlider';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
@@ -42,6 +43,51 @@ export function App() {
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
   const [whispersDrawerOpen, setWhispersDrawerOpen] = useState(false);
   const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
+  const [homeCategory, setHomeCategory] = useState<string>('all');
+
+  // Category counts in local stock
+  const homeCategoryCounts = useMemo<Record<string, number>>(() => {
+    return {
+      all: vehicles.length,
+      hybrid: vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power')).length,
+      lhd: vehicles.filter((v) => v.steering === 'LHD').length,
+      manual: vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt')).length,
+      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv').length,
+      electric: vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev')).length,
+      sunroof: vehicles.filter((v) => v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
+      diesel: vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel')).length,
+      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
+    };
+  }, [vehicles]);
+
+  const homeFilteredVehicles = useMemo(() => {
+    if (homeCategory === 'all') return vehicles;
+    if (homeCategory === 'hybrid') {
+      return vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power'));
+    }
+    if (homeCategory === 'lhd') {
+      return vehicles.filter((v) => v.steering === 'LHD');
+    }
+    if (homeCategory === 'manual') {
+      return vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt'));
+    }
+    if (homeCategory === '4wd') {
+      return vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv');
+    }
+    if (homeCategory === 'electric') {
+      return vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev'));
+    }
+    if (homeCategory === 'sunroof') {
+      return vehicles.filter((v) => v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof'))));
+    }
+    if (homeCategory === 'diesel') {
+      return vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel'));
+    }
+    if (homeCategory === 'kei') {
+      return vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200));
+    }
+    return vehicles.filter((v) => v.category === homeCategory);
+  }, [vehicles, homeCategory]);
 
   // Favorites state persisted in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -330,7 +376,7 @@ export function App() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 block mb-2 font-bold">
                           AVAILABLE FLEET · MOMBASA SHOWROOM STOCK
@@ -349,14 +395,23 @@ export function App() {
                       </button>
                     </div>
 
+                    {/* Quick Category Filter Bar */}
+                    <div className="pt-2 pb-2">
+                      <CategoryFilterSlider
+                        activeCategory={homeCategory}
+                        onSelectCategory={(catId) => setHomeCategory(catId)}
+                        localCounts={homeCategoryCounts}
+                      />
+                    </div>
+
                     {/* Featured Vehicles List View */}
                     <div className="space-y-4 sm:space-y-5">
                       {loading ? (
                         [...Array(4)].map((_, i) => (
                           <VehicleSbtListCardSkeleton key={i} />
                         ))
-                      ) : (
-                        vehicles.map((vehicle) => (
+                      ) : homeFilteredVehicles.length > 0 ? (
+                        homeFilteredVehicles.map((vehicle) => (
                           <VehicleSbtListCard
                             key={vehicle.id}
                             vehicle={vehicle}
@@ -366,6 +421,29 @@ export function App() {
                             onInquire={handleInquireVehicle}
                           />
                         ))
+                      ) : (
+                        <div className="bg-white border border-zinc-200/80 rounded-2xl p-8 sm:p-10 text-center space-y-4 shadow-2xs">
+                          <p className="text-sm sm:text-base font-bold text-zinc-900">
+                            No vehicles currently match "{homeCategory.toUpperCase()}" in our Mombasa physical yard.
+                          </p>
+                          <p className="text-xs sm:text-sm text-zinc-600 max-w-md mx-auto">
+                            Over 40,000+ units available on direct order from SBT Japan. We inspect and deliver to Mombasa within 25 days.
+                          </p>
+                          <div className="flex items-center justify-center gap-3 pt-2">
+                            <button
+                              onClick={() => setHomeCategory('all')}
+                              className="btn-ghost !text-xs !py-2.5 !px-4 cursor-pointer"
+                            >
+                              Show All Stock
+                            </button>
+                            <button
+                              onClick={() => handleNavigate('inventory')}
+                              className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 px-4 rounded-xl cursor-pointer shadow-xs transition-all"
+                            >
+                              Browse Full Catalog
+                            </button>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>

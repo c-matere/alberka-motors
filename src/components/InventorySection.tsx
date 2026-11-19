@@ -15,6 +15,7 @@ import {
 import { Vehicle } from '../data/vehicles';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './VehicleSbtListCard';
 import { CmsPage } from '../services/cmsContent';
+import { CategoryFilterSlider, CATEGORY_OPTIONS } from './CategoryFilterSlider';
 
 interface InventorySectionProps {
   vehicles: Vehicle[];
@@ -96,14 +97,20 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     });
   }, [vehicles]);
 
-  // Curated categories
-  const categories = useMemo(() => [
-    { id: 'all', label: 'All Body Types', count: vehicles.length },
-    { id: 'suv', label: 'SUVs & 4WD', count: vehicles.filter((v) => v.category === 'suv').length },
-    { id: 'hybrid', label: 'Hybrids & e-POWER', count: vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power')).length },
-    { id: 'van', label: '7-Seaters & Vans', count: vehicles.filter((v) => v.category === 'van').length },
-    { id: 'compact', label: 'Hatchbacks', count: vehicles.filter((v) => v.category === 'compact' || v.bodyType.toLowerCase().includes('hatchback')).length },
-  ], [vehicles]);
+  // Dynamic Category Counts in Local Mombasa Stock
+  const categoryLocalCounts = useMemo<Record<string, number>>(() => {
+    return {
+      all: vehicles.length,
+      hybrid: vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power')).length,
+      lhd: vehicles.filter((v) => v.steering === 'LHD').length,
+      manual: vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt')).length,
+      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv').length,
+      electric: vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev')).length,
+      sunroof: vehicles.filter((v) => v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
+      diesel: vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel')).length,
+      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
+    };
+  }, [vehicles]);
 
   // Price ranges (KES)
   const priceRanges = [
@@ -137,13 +144,31 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   const filteredVehicles = useMemo(() => {
     return vehicles
       .filter((v) => {
-        // Category
+        // Category Filter with Authentic Japanese SVGs & Attributes
         if (activeCategory === 'all') return true;
         if (activeCategory === 'hybrid') {
           return v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power');
         }
-        if (activeCategory === 'compact') {
-          return v.category === 'compact' || v.bodyType.toLowerCase().includes('hatchback');
+        if (activeCategory === 'lhd') {
+          return v.steering === 'LHD';
+        }
+        if (activeCategory === 'manual') {
+          return v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt');
+        }
+        if (activeCategory === '4wd') {
+          return v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv';
+        }
+        if (activeCategory === 'electric') {
+          return v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev');
+        }
+        if (activeCategory === 'sunroof') {
+          return v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')));
+        }
+        if (activeCategory === 'diesel') {
+          return v.fuelType.toLowerCase().includes('diesel');
+        }
+        if (activeCategory === 'kei') {
+          return v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200);
         }
         return v.category === activeCategory;
       })
@@ -297,27 +322,40 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
       </div>
 
-      {/* 3. Category / Body Type Filter */}
+      {/* 3. Category & Feature Filter with Authentic Japanese Automotive SVGs */}
       <div className="space-y-2 pt-2 border-t border-zinc-200/60">
         <label className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold block">
-          Body Type & Purpose
+          Japanese Export Categories
         </label>
         <div className="space-y-1">
-          {categories.map((c) => {
+          {CATEGORY_OPTIONS.map((c) => {
             const isSelected = activeCategory === c.id;
+            const Icon = c.icon;
+            const localCount = categoryLocalCounts[c.id] || 0;
             return (
               <button
                 key={c.id}
                 onClick={() => setActiveCategory(c.id)}
-                className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer text-left ${
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs transition-all cursor-pointer text-left ${
                   isSelected
                     ? 'bg-red-50 text-red-700 font-bold border border-red-200 shadow-2xs'
                     : 'bg-[#F8F9FB]/60 hover:bg-[#F8F9FB] text-zinc-700 font-medium border border-transparent'
                 }`}
               >
-                <span>{c.label}</span>
-                <span className={`font-mono text-[11px] ${isSelected ? 'text-red-700 font-bold' : 'text-zinc-500'}`}>
-                  {c.count}
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                    isSelected ? 'bg-red-600 text-white' : 'bg-zinc-200/70 text-zinc-600'
+                  }`}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="truncate">{c.name}</span>
+                </div>
+                <span className={`font-mono text-[10.5px] shrink-0 ml-2 ${isSelected ? 'text-red-700 font-bold' : 'text-zinc-500'}`}>
+                  {c.id === 'all'
+                    ? `${localCount}`
+                    : localCount > 0
+                    ? `${localCount} in stock`
+                    : c.count}
                 </span>
               </button>
             );
@@ -425,7 +463,33 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
       </div>
 
-      {/* 2. SBT Japan 2-Column Search Layout: Left Filter Column + Right Vehicle List */}
+      {/* 2. Authentic SBT Japan / Beforward Category Filter Slider */}
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 pt-6 pb-2">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-red-600" />
+            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider font-mono text-zinc-950">
+              Browse by Japanese Category
+            </h2>
+          </div>
+          {activeCategory !== 'all' && (
+            <button
+              onClick={() => setActiveCategory('all')}
+              className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>Reset Category</span>
+            </button>
+          )}
+        </div>
+        <CategoryFilterSlider
+          activeCategory={activeCategory}
+          onSelectCategory={setActiveCategory}
+          localCounts={categoryLocalCounts}
+        />
+      </div>
+
+      {/* 3. SBT Japan 2-Column Search Layout: Left Filter Column + Right Vehicle List */}
       <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           

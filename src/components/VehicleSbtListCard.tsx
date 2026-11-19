@@ -378,10 +378,10 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
           {/* Primary View Car Dossier */}
           <button
             onClick={() => onSelect(vehicle)}
-            className="w-full bg-zinc-950 hover:bg-zinc-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-[0.98]"
+            className="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border border-zinc-200/90 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.98]"
           >
             <span>Explore Vehicle Dossier</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 text-zinc-600" />
           </button>
 
           {/* WhatsApp Direct Inquiry */}
