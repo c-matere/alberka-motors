@@ -1795,7 +1795,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             {/* Interactive Google Maps Frame */}
             <div className="lg:col-span-7 bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm min-h-[340px] sm:min-h-[400px] relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d994.9464693737012!2d39.66370568422173!3d-4.064016499896472!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ske!4v1795000396644!5m2!1sen!2ske"
+                src="https://maps.google.com/maps?q=-4.064257,39.663731+(Alberka+Enterprises+Limited)&t=k&z=19&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '340px' }}

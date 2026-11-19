@@ -129,7 +129,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               <div className="pt-2">
                 <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm relative">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d994.9464693737012!2d39.66370568422173!3d-4.064016499896472!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ske!4v1795000396644!5m2!1sen!2ske"
+                    src="https://maps.google.com/maps?q=-4.064257,39.663731+(Alberka+Enterprises+Limited)&t=k&z=19&ie=UTF8&iwloc=&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

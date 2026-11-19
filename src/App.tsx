@@ -6,7 +6,7 @@ import { useSiteSettings } from './hooks/useSiteSettings';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { VehicleCard, VehicleCardSkeleton } from './components/VehicleCard';
+import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
@@ -332,8 +332,8 @@ export function App() {
 
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2 font-semibold">
-                          AVAILABLE FLEET · 4 CARS PER ROW SHOWROOM
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 block mb-2 font-bold">
+                          AVAILABLE FLEET · MOMBASA SHOWROOM STOCK
                         </span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
                           Vehicles in Stock
@@ -349,22 +349,21 @@ export function App() {
                       </button>
                     </div>
 
-                    {/* Responsive 4-Column Exhibition Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+                    {/* Featured Vehicles List View */}
+                    <div className="space-y-4 sm:space-y-5">
                       {loading ? (
                         [...Array(4)].map((_, i) => (
-                          <VehicleCardSkeleton key={i} />
+                          <VehicleSbtListCardSkeleton key={i} />
                         ))
                       ) : (
-                        vehicles.map((vehicle, idx) => (
-                          <VehicleCard
+                        vehicles.map((vehicle) => (
+                          <VehicleSbtListCard
                             key={vehicle.id}
                             vehicle={vehicle}
                             isFavorite={favorites.includes(vehicle.id)}
                             onToggleFavorite={handleToggleFavorite}
                             onSelect={handleSelectVehicle}
                             onInquire={handleInquireVehicle}
-                            staggerIndex={idx}
                           />
                         ))
                       )}

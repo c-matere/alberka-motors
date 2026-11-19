@@ -76,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
             <div className="hidden sm:flex flex-col text-left pl-3.5 border-l border-zinc-200">
               <span className="font-extrabold text-[15px] sm:text-[16.5px] tracking-tight text-zinc-950 leading-tight">
-                ALBERKA ENTERPRISES LIMITED
+                ENTERPRISES LIMITED
               </span>
               <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.18em] text-zinc-500 leading-none mt-0.5 font-medium">
                 QUALITY JAPANESE IMPORTS
