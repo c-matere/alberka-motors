@@ -108,7 +108,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
                 Grade {vehicle.auctionGrade || '4.5'}
               </span>
               {pricing.hasDiscount && (
-                <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold bg-red-600 text-white shadow-md font-mono">
+                <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold bg-red-600 text-white shadow-md font-mono whitespace-nowrap shrink-0">
                   Save KES {pricing.savingsKes.toLocaleString()}
                 </span>
               )}

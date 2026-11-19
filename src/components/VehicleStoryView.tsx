@@ -1129,7 +1129,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   <div className="text-2xl sm:text-[28px] font-black text-red-600 font-mono leading-none">
                     KES {pricing.currentPrice.toLocaleString()}
                   </div>
-                  <p className="text-[11px] text-red-600 font-bold">
+                  <p className="text-[11px] text-red-600 font-bold whitespace-nowrap">
                     Save KES {pricing.savingsKes.toLocaleString()} · 100-Point Overhaul
                   </p>
                 </div>

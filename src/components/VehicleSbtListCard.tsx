@@ -341,16 +341,16 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
       </div>
 
       {/* 3. RIGHT COLUMN: Pricing & Direct Actions */}
-      <div className="w-full lg:w-60 xl:w-68 shrink-0 border-t lg:border-t-0 lg:border-l border-zinc-200/70 pt-4 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
+      <div className="w-full lg:w-64 xl:w-72 shrink-0 border-t lg:border-t-0 lg:border-l border-zinc-200/70 pt-4 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
         
         {/* Delivered Cash Price Block */}
         <div className="space-y-1">
-          <div className="flex items-center justify-between lg:justify-start gap-2">
-            <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider font-semibold block">
+          <div className="flex flex-wrap items-center justify-between gap-1.5">
+            <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider font-semibold block whitespace-nowrap">
               DELIVERED CASH PRICE
             </span>
             {pricing.hasDiscount && (
-              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs">
+              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs whitespace-nowrap shrink-0">
                 Save KES {pricing.savingsKes.toLocaleString()}
               </span>
             )}
