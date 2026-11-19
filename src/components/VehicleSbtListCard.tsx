@@ -45,6 +45,25 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
   const activeImageUrl = thumbnails[activeThumbIndex] || vehicle.heroImage;
 
+  // Car Maker Brand Logo Mapping
+  const makeKey = vehicle.name.split(' ')[0].toLowerCase();
+  const makerLogos: Record<string, string> = {
+    toyota: '/logos/toyota.png',
+    nissan: '/logos/nissan.png',
+    subaru: '/logos/subaru.png',
+    suzuki: '/logos/suzuki.png',
+    volvo: '/logos/volvo.png',
+    mazda: '/logos/mazda.png',
+    honda: '/logos/honda.png',
+    mitsubishi: '/logos/mitsubishi.png',
+    lexus: '/logos/lexus.png',
+    mercedes: '/logos/mercedes.png',
+    bmw: '/logos/bmw.png',
+    volkswagen: '/logos/volkswagen.png',
+    audi: '/logos/audi.png',
+  };
+  const makeLogo = makerLogos[makeKey] || null;
+
   // Active SBT equipment options
   const activeOptions: string[] = [];
   if (vehicle.options) {
@@ -180,10 +199,20 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
             </span>
           </div>
 
-          {/* Vehicle Title */}
-          <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 group-hover:text-red-600 transition-colors tracking-tight leading-snug">
-            {vehicle.year} {vehicle.name}
-          </h2>
+          {/* Vehicle Title & Maker Logo (B/W by default, color on hover) */}
+          <div className="flex items-center gap-2.5 pt-0.5">
+            {makeLogo && (
+              <img
+                src={makeLogo}
+                alt={makeKey}
+                className="w-6 h-6 object-contain grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shrink-0"
+                onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
+              />
+            )}
+            <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 group-hover:text-red-600 transition-colors tracking-tight leading-snug">
+              {vehicle.year} {vehicle.name}
+            </h2>
+          </div>
 
           <p className="text-xs sm:text-sm text-zinc-600 font-normal line-clamp-1">
             {vehicle.tagline || vehicle.moniker}

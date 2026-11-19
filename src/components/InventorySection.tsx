@@ -269,25 +269,42 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                 </div>
               </div>
 
-              {/* 2. Make / Brand Filter */}
+              {/* 2. Make / Brand Filter with Maker Logos (B/W by default, color on hover) */}
               <div className="space-y-2">
                 <label className="text-[11px] font-mono uppercase tracking-wider text-zinc-600 font-bold block">
                   Make / Manufacturer
                 </label>
-                <div className="space-y-1 max-h-48 overflow-y-auto pr-1 no-scrollbar">
+                <div className="space-y-1 max-h-56 overflow-y-auto pr-1 no-scrollbar">
                   {makes.map((m) => {
                     const isSelected = activeMake === m.id;
+                    const logoSrc = m.id !== 'all' ? `/logos/${m.id}.png` : null;
                     return (
                       <button
                         key={m.id}
                         onClick={() => setActiveMake(m.id)}
-                        className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer text-left ${
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all cursor-pointer text-left group ${
                           isSelected
-                            ? 'bg-red-50 text-red-700 font-bold border border-red-200'
-                            : 'hover:bg-zinc-50 text-zinc-700 font-medium'
+                            ? 'bg-red-50 text-red-700 font-bold border border-red-200 shadow-2xs'
+                            : 'hover:bg-zinc-50 text-zinc-700 font-medium border border-transparent'
                         }`}
                       >
-                        <span className="capitalize">{m.label}</span>
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          {logoSrc ? (
+                            <img
+                              src={logoSrc}
+                              alt={m.label}
+                              className={`w-5 h-5 object-contain transition-all duration-300 shrink-0 ${
+                                isSelected
+                                  ? 'grayscale-0 scale-110'
+                                  : 'grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110'
+                              }`}
+                              onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
+                            />
+                          ) : (
+                            <Car className={`w-4 h-4 shrink-0 ${isSelected ? 'text-red-600' : 'text-zinc-400 group-hover:text-zinc-700'}`} />
+                          )}
+                          <span className="capitalize truncate">{m.label}</span>
+                        </div>
                         <span className={`font-mono text-[11px] ${isSelected ? 'text-red-700 font-bold' : 'text-zinc-500'}`}>
                           {m.count}
                         </span>
@@ -401,6 +418,74 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
           {/* RIGHT COLUMN: SEARCH RESULTS & SBT LIST VIEW ONLY (NO GRID) */}
           <main className="flex-1 min-w-0 w-full space-y-5 text-left">
+            
+            {/* SBT Quick Maker Logo Selection Rail (B/W by default, Color on Hover & Active) */}
+            <div className="bg-white border border-zinc-200/90 rounded-2xl p-4 shadow-2xs">
+              <div className="flex items-center justify-between mb-3 px-0.5">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5">
+                  <Car className="w-3.5 h-3.5 text-zinc-400" />
+                  Popular Japanese & Global Makers
+                </span>
+                {activeMake !== 'all' && (
+                  <button
+                    onClick={() => setActiveMake('all')}
+                    className="text-[11px] font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer hover:underline"
+                  >
+                    Clear Filter
+                  </button>
+                )}
+              </div>
+              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2">
+                {[
+                  { id: 'all', label: 'All Fleet', logo: null },
+                  { id: 'toyota', label: 'Toyota', logo: '/logos/toyota.png' },
+                  { id: 'nissan', label: 'Nissan', logo: '/logos/nissan.png' },
+                  { id: 'subaru', label: 'Subaru', logo: '/logos/subaru.png' },
+                  { id: 'suzuki', label: 'Suzuki', logo: '/logos/suzuki.png' },
+                  { id: 'volvo', label: 'Volvo', logo: '/logos/volvo.png' },
+                  { id: 'mazda', label: 'Mazda', logo: '/logos/mazda.png' },
+                ].map((m) => {
+                  const isSelected = activeMake === m.id;
+                  const count = m.id === 'all'
+                    ? vehicles.length
+                    : vehicles.filter((v) => v.name.toLowerCase().includes(m.id)).length;
+                  return (
+                    <button
+                      key={m.id}
+                      onClick={() => setActiveMake(isSelected && m.id !== 'all' ? 'all' : m.id)}
+                      className={`group flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all text-center cursor-pointer ${
+                        isSelected
+                          ? 'bg-red-50/80 border-red-300 text-red-700 shadow-2xs ring-2 ring-red-500/20'
+                          : 'bg-zinc-50/70 hover:bg-white border-zinc-200/70 hover:border-zinc-300 text-zinc-700 hover:shadow-2xs'
+                      }`}
+                    >
+                      <div className="h-7 w-full flex items-center justify-center mb-1.5">
+                        {m.logo ? (
+                          <img
+                            src={m.logo}
+                            alt={m.label}
+                            className={`h-6 max-w-[44px] object-contain transition-all duration-300 ${
+                              isSelected
+                                ? 'grayscale-0 scale-105'
+                                : 'grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110'
+                            }`}
+                            onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
+                          />
+                        ) : (
+                          <Car className={`w-5 h-5 transition-transform duration-300 group-hover:scale-110 ${isSelected ? 'text-red-600' : 'text-zinc-500 group-hover:text-zinc-800'}`} />
+                        )}
+                      </div>
+                      <span className="text-[11px] font-bold truncate max-w-full leading-tight">
+                        {m.label}
+                      </span>
+                      <span className={`text-[10px] font-mono mt-0.5 ${isSelected ? 'text-red-600 font-bold' : 'text-zinc-400'}`}>
+                        {count} {count === 1 ? 'unit' : 'units'}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             
             {/* Results Header Utility Bar */}
             <div className="bg-white border border-zinc-200/90 rounded-2xl px-4 py-3 sm:px-6 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
