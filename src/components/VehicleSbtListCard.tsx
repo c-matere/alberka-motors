@@ -61,6 +61,16 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
     bmw: '/logos/bmw.png',
     volkswagen: '/logos/volkswagen.png',
     audi: '/logos/audi.png',
+    landrover: '/logos/landrover.png',
+    isuzu: '/logos/isuzu.png',
+    daihatsu: '/logos/daihatsu.png',
+    hyundai: '/logos/hyundai.png',
+    porsche: '/logos/porsche.png',
+    ford: '/logos/ford.png',
+    peugeot: '/logos/peugeot.png',
+    jeep: '/logos/jeep.png',
+    kia: '/logos/kia.png',
+    renault: '/logos/renault.png',
   };
   const makeLogo = makerLogos[makeKey] || null;
 
@@ -96,7 +106,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
   return (
     <div
       onClick={() => onSelect(vehicle)}
-      className="bg-white border border-zinc-200/90 hover:border-red-600/50 rounded-2xl p-4 sm:p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(220,38,38,0.08)] transition-all duration-300 flex flex-col lg:flex-row gap-5 lg:gap-6 text-left relative group cursor-pointer"
+      className="bg-white border border-zinc-200/70 hover:border-red-600/40 rounded-2xl p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_28px_rgba(220,38,38,0.07)] transition-all duration-300 flex flex-col lg:flex-row gap-5 lg:gap-6 text-left relative group cursor-pointer"
     >
       {/* 1. LEFT COLUMN: Media Viewer & Gallery Preview */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2.5">
@@ -184,7 +194,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
               STOCK: {vehicle.stockNo}
             </span>
             {vehicle.sbtStockId && (
-              <span className="font-mono text-[11px] font-semibold text-zinc-600 bg-zinc-100 px-2 py-0.5 rounded">
+              <span className="font-mono text-[11px] font-semibold text-zinc-600 bg-[#F8F9FB] border border-zinc-200/70 px-2 py-0.5 rounded">
                 SBT Ref: {vehicle.sbtStockId}
               </span>
             )}
@@ -200,14 +210,16 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
           </div>
 
           {/* Vehicle Title & Maker Logo (B/W by default, color on hover) */}
-          <div className="flex items-center gap-2.5 pt-0.5">
+          <div className="flex items-center gap-3 pt-0.5">
             {makeLogo && (
-              <img
-                src={makeLogo}
-                alt={makeKey}
-                className="w-6 h-6 object-contain grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shrink-0"
-                onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
-              />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#F8F9FB] border border-zinc-200/70 p-1 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-zinc-300 transition-all">
+                <img
+                  src={makeLogo}
+                  alt={makeKey}
+                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shrink-0"
+                  onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
+                />
+              </div>
             )}
             <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 group-hover:text-red-600 transition-colors tracking-tight leading-snug">
               {vehicle.year} {vehicle.name}
@@ -220,7 +232,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
         </div>
 
         {/* SBT Japan 4-Column Specification Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-3 text-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#F8F9FB] border border-zinc-200/70 rounded-xl p-3 text-xs">
           {/* Mileage */}
           <div className="flex items-center gap-2">
             <Gauge className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
@@ -332,13 +344,13 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
             {activeOptions.slice(0, 6).map((opt, oIdx) => (
               <span
                 key={oIdx}
-                className="bg-zinc-100 text-zinc-700 font-medium text-[11px] px-2 py-0.5 rounded-md border border-zinc-200/70"
+                className="bg-[#F8F9FB] text-zinc-700 font-medium text-[11px] px-2.5 py-0.5 rounded-md border border-zinc-200/70"
               >
                 {opt}
               </span>
             ))}
             {activeOptions.length > 6 && (
-              <span className="text-[10px] font-mono text-zinc-600 font-bold">
+              <span className="text-[10px] font-mono text-zinc-500 font-bold">
                 +{activeOptions.length - 6} more options
               </span>
             )}
@@ -347,7 +359,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
       </div>
 
       {/* 3. RIGHT COLUMN: Pricing & Direct Actions */}
-      <div className="w-full lg:w-60 xl:w-68 shrink-0 border-t lg:border-t-0 lg:border-l border-zinc-200/80 pt-4 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
+      <div className="w-full lg:w-60 xl:w-68 shrink-0 border-t lg:border-t-0 lg:border-l border-zinc-200/70 pt-4 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
         
         {/* Delivered Cash Price Block */}
         <div className="space-y-1">
@@ -413,10 +425,10 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
 export const VehicleSbtListCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white border border-zinc-200/90 rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col lg:flex-row gap-5 lg:gap-6 animate-pulse text-left">
+    <div className="bg-white border border-zinc-200/70 rounded-2xl p-4 sm:p-5 shadow-2xs flex flex-col lg:flex-row gap-5 lg:gap-6 animate-pulse text-left">
       {/* Left Media skeleton */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2.5">
-        <div className="aspect-[4/3] rounded-xl bg-zinc-200/80" />
+        <div className="aspect-[4/3] rounded-xl bg-zinc-200/60" />
         <div className="grid grid-cols-4 gap-1.5">
           <div className="aspect-[4/3] rounded-lg bg-zinc-200/60" />
           <div className="aspect-[4/3] rounded-lg bg-zinc-200/60" />
