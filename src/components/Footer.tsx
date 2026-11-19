@@ -49,20 +49,6 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
             </div>
           </div>
-
-          <div className="flex items-center gap-3">
-            <a
-              href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises, I have an inquiry regarding vehicles at your showroom next to Ganjoni Primary School, Mombasa.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-crimson py-2.5 px-4 text-xs font-semibold inline-flex items-center gap-2"
-            >
-              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
-                <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
-              </span>
-              <span>WhatsApp Us ({settings?.phone || '0180 423 075'})</span>
-            </a>
-          </div>
         </div>
 
         {/* Physical Showroom Location Banner (Background matches section background white) */}
