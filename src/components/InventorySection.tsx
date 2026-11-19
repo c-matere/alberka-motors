@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Search, X, ArrowRight, ArrowUpDown, Sparkles } from 'lucide-react';
+import { Search, X, ArrowRight, ArrowUpDown, Sparkles, LayoutList, LayoutGrid } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { VehicleCard, VehicleCardSkeleton } from './VehicleCard';
+import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './VehicleSbtListCard';
 import { CmsPage } from '../services/cmsContent';
 
 interface InventorySectionProps {
@@ -28,6 +29,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'year'>('featured');
+  const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
 
   // Curated categories
   const categories = [
@@ -155,27 +157,60 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             </div>
           </div>
 
-          {/* Desktop Sort Dropdown */}
-          <div className="hidden md:flex items-center gap-1.5 shrink-0 bg-zinc-100 border border-zinc-200 rounded-lg px-2.5 py-1">
-            <ArrowUpDown className="w-3 h-3 text-zinc-400" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              aria-label="Sort vehicles"
-              className="bg-transparent text-xs font-mono text-zinc-700 focus:outline-none cursor-pointer pr-1 py-0.5"
-            >
-              <option value="featured" className="bg-white text-zinc-900">Featured</option>
-              <option value="price-asc" className="bg-white text-zinc-900">Price: Low to High</option>
-              <option value="price-desc" className="bg-white text-zinc-900">Price: High to Low</option>
-              <option value="year" className="bg-white text-zinc-900">Newest Year</option>
-            </select>
+          {/* Right Group: Desktop Sort Dropdown + View Switcher */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Desktop Sort Dropdown */}
+            <div className="hidden md:flex items-center gap-1.5 shrink-0 bg-zinc-100 border border-zinc-200 rounded-lg px-2.5 py-1">
+              <ArrowUpDown className="w-3 h-3 text-zinc-400" />
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                aria-label="Sort vehicles"
+                className="bg-transparent text-xs font-mono text-zinc-700 focus:outline-none cursor-pointer pr-1 py-0.5"
+              >
+                <option value="featured" className="bg-white text-zinc-900">Featured</option>
+                <option value="price-asc" className="bg-white text-zinc-900">Price: Low to High</option>
+                <option value="price-desc" className="bg-white text-zinc-900">Price: High to Low</option>
+                <option value="year" className="bg-white text-zinc-900">Newest Year</option>
+              </select>
+            </div>
+
+            {/* SBT Japan View Toggle: Detailed List vs Showroom Grid */}
+            <div className="flex items-center bg-zinc-100 p-0.5 rounded-lg border border-zinc-200 shrink-0">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
+                  viewMode === 'list'
+                    ? 'bg-white text-zinc-950 shadow-2xs font-bold'
+                    : 'text-zinc-500 hover:text-zinc-900'
+                }`}
+                title="SBT Japan Detailed Search List View"
+                aria-label="List View"
+              >
+                <LayoutList className="w-3.5 h-3.5 text-red-600" />
+                <span className="text-[11px] font-mono">List</span>
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
+                  viewMode === 'grid'
+                    ? 'bg-white text-zinc-950 shadow-2xs font-bold'
+                    : 'text-zinc-500 hover:text-zinc-900'
+                }`}
+                title="Showroom Card Grid View"
+                aria-label="Grid View"
+              >
+                <LayoutGrid className="w-3.5 h-3.5 text-zinc-600" />
+                <span className="text-[11px] font-mono">Grid</span>
+              </button>
+            </div>
           </div>
 
         </div>
       </div>
 
-      {/* 3. Inventory Runway & Vehicle Grid (4 Cars Per Row Responsive Exhibition) */}
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-10 sm:py-16 space-y-10 sm:space-y-12">
+      {/* 3. Inventory Runway & Vehicle Grid (SBT Japan List View by Default) */}
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-10 sm:py-16 space-y-8 sm:space-y-10">
         
         {/* Results Counter Bar */}
         <div className="flex items-center justify-between text-xs text-zinc-500 font-mono px-1 pb-2 border-b border-zinc-200">
@@ -186,27 +221,50 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           <span className="hidden sm:inline text-zinc-700 font-mono text-[11px] font-medium">Next to Ganjoni Primary School, Mombasa</span>
         </div>
 
-        {/* 4-Column Responsive Runway Grid or Loading Skeletons */}
+        {/* Vehicles Rendering: SBT List View or Grid View */}
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-            {[...Array(8)].map((_, i) => (
-              <VehicleCardSkeleton key={i} />
-            ))}
-          </div>
+          viewMode === 'list' ? (
+            <div className="space-y-4 sm:space-y-5">
+              {[...Array(4)].map((_, i) => (
+                <VehicleSbtListCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+              {[...Array(8)].map((_, i) => (
+                <VehicleCardSkeleton key={i} />
+              ))}
+            </div>
+          )
         ) : filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-            {filteredVehicles.map((vehicle, idx) => (
-              <VehicleCard
-                key={vehicle.id}
-                vehicle={vehicle}
-                isFavorite={favorites.includes(vehicle.id)}
-                onToggleFavorite={onToggleFavorite}
-                onSelect={onSelectVehicle}
-                onInquire={onInquire}
-                staggerIndex={idx}
-              />
-            ))}
-          </div>
+          viewMode === 'list' ? (
+            <div className="space-y-4 sm:space-y-5">
+              {filteredVehicles.map((vehicle) => (
+                <VehicleSbtListCard
+                  key={vehicle.id}
+                  vehicle={vehicle}
+                  isFavorite={favorites.includes(vehicle.id)}
+                  onToggleFavorite={onToggleFavorite}
+                  onSelect={onSelectVehicle}
+                  onInquire={onInquire}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+              {filteredVehicles.map((vehicle, idx) => (
+                <VehicleCard
+                  key={vehicle.id}
+                  vehicle={vehicle}
+                  isFavorite={favorites.includes(vehicle.id)}
+                  onToggleFavorite={onToggleFavorite}
+                  onSelect={onSelectVehicle}
+                  onInquire={onInquire}
+                  staggerIndex={idx}
+                />
+              ))}
+            </div>
+          )
         ) : (
           <div className="text-center py-20 bg-white border border-zinc-200 rounded-2xl p-8 space-y-4 max-w-xl mx-auto shadow-sm">
             <div className="w-10 h-10 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center mx-auto text-zinc-600">

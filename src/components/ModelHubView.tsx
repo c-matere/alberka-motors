@@ -130,7 +130,7 @@ export const ModelHubView: React.FC<ModelHubViewProps> = ({
 
           {/* Right: Flagship High-Resolution Presentation */}
           <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200 shadow-xl group">
+            <div className="relative aspect-[3/4] max-w-[380px] mx-auto rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200 shadow-xl group">
               <img
                 src={currentHub.heroImage}
                 alt={currentHub.name}

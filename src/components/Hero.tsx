@@ -251,27 +251,27 @@ export const Hero: React.FC<HeroProps> = ({ onExploreFleet, onExploreWorkshop, p
               opacityVal = 1;
               pointerEventsVal = 'auto';
             } else if (offset === -1) {
-              transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px))) scale(0.82)';
+              transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 360px))) scale(0.82)';
               zIndexVal = 5;
               opacityVal = 0.9;
               pointerEventsVal = 'auto';
             } else if (offset === 1) {
-              transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px))) scale(0.82)';
+              transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 360px))) scale(0.82)';
               zIndexVal = 5;
               opacityVal = 0.9;
               pointerEventsVal = 'auto';
             } else if (offset === -2) {
-              transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px))) scale(0.68)';
+              transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 360px))) scale(0.68)';
               zIndexVal = 2;
               opacityVal = 0.6;
               pointerEventsVal = 'auto';
             } else if (offset === 2) {
-              transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px))) scale(0.68)';
+              transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 360px))) scale(0.68)';
               zIndexVal = 2;
               opacityVal = 0.6;
               pointerEventsVal = 'auto';
             } else {
-              transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px))) scale(0.6)`;
+              transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 360px))) scale(0.6)`;
               zIndexVal = 0;
               opacityVal = 0;
               pointerEventsVal = 'none';

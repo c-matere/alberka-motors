@@ -818,27 +818,27 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       opacityVal = 1;
                       pointerEventsVal = 'auto';
                     } else if (offset === -1) {
-                      transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 480px))) scale(0.82)';
+                      transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 360px))) scale(0.82)';
                       zIndexVal = 5;
                       opacityVal = 0.9;
                       pointerEventsVal = 'auto';
                     } else if (offset === 1) {
-                      transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 480px))) scale(0.82)';
+                      transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 360px))) scale(0.82)';
                       zIndexVal = 5;
                       opacityVal = 0.9;
                       pointerEventsVal = 'auto';
                     } else if (offset === -2) {
-                      transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 480px))) scale(0.68)';
+                      transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 360px))) scale(0.68)';
                       zIndexVal = 2;
                       opacityVal = 0.6;
                       pointerEventsVal = 'auto';
                     } else if (offset === 2) {
-                      transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 480px))) scale(0.68)';
+                      transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 360px))) scale(0.68)';
                       zIndexVal = 2;
                       opacityVal = 0.6;
                       pointerEventsVal = 'auto';
                     } else {
-                      transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 480px))) scale(0.6)`;
+                      transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 360px))) scale(0.6)`;
                       zIndexVal = 0;
                       opacityVal = 0;
                       pointerEventsVal = 'none';
@@ -1208,10 +1208,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                       isEven ? 'lg:flex-row-reverse' : ''
                     } bg-transparent`}
                   >
-                    {/* Image Column */}
+                    {/* Image Column: 3:4 Native Aspect Ratio */}
                     <div 
                       onClick={() => openPhotoByUrl(point.imageUrl)}
-                      className="w-full lg:w-1/2 aspect-[16/10] sm:aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 relative group cursor-pointer border border-zinc-200/80 shadow-xs shrink-0"
+                      className="w-full max-w-[420px] aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-100 relative group cursor-pointer border border-zinc-200/80 shadow-xs shrink-0"
                     >
                       <img
                         src={point.imageUrl}
@@ -1231,7 +1231,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     </div>
 
                     {/* Description Text Column Next to the Image */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <div className="w-full lg:flex-1 flex flex-col justify-center space-y-4">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-xs font-bold text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-md border border-red-200/60">
@@ -2099,7 +2099,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   key={p.id || idx}
                   ref={lightboxIndex === idx ? activeThumbRef : undefined}
                   onClick={() => setLightboxIndex(idx)}
-                  className={`h-11 sm:h-12 w-16 sm:w-20 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
+                  className={`h-14 sm:h-16 aspect-[3/4] rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer ${
                     lightboxIndex === idx
                       ? 'border-white ring-2 ring-white/50 scale-105'
                       : 'border-zinc-800 opacity-50 hover:opacity-100'

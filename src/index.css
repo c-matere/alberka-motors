@@ -614,7 +614,7 @@ body {
    ======================================================== */
 :root {
   --color-alberka-red: #dc2626;
-  --figma-slide-offset: min(41vw, 480px);
+  --figma-slide-offset: min(32vw, 360px);
   --figma-slide-overlap: 0px;
   --figma-slide-overlap-far: -80px;
 }
@@ -728,8 +728,8 @@ body {
 }
 
 .figma-carousel-viewport {
-  min-height: 460px;
-  max-height: 500px;
+  min-height: 560px;
+  max-height: 600px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -751,19 +751,21 @@ body {
   align-items: center;
   display: flex;
   position: relative;
-  width: min(48vw, 540px);
-  height: 430px;
+  width: 360px;
+  height: 480px;
+  aspect-ratio: 3 / 4;
 }
 
 .figma-slide {
   cursor: pointer;
   will-change: transform;
-  border-radius: 18px;
+  border-radius: 20px;
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
   position: absolute;
   overflow: hidden;
-  width: min(48vw, 540px);
-  height: 430px;
+  width: 360px;
+  height: 480px;
+  aspect-ratio: 3 / 4;
   box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
   background: #09090b;
 }
@@ -961,17 +963,18 @@ body {
 
 @media (max-width: 1024px) {
   :root {
-    --figma-slide-offset: min(55vw, 420px);
+    --figma-slide-offset: min(44vw, 320px);
     --figma-slide-overlap: 0px;
     --figma-slide-overlap-far: -50px;
   }
   .figma-carousel-track, .figma-slide {
-    width: min(68vw, 460px);
-    height: 380px;
+    width: 320px;
+    height: 426px;
+    aspect-ratio: 3 / 4;
   }
   .figma-carousel-viewport {
-    min-height: 400px;
-    max-height: 420px;
+    min-height: 500px;
+    max-height: 530px;
   }
   .figma-slide-title {
     font-size: 1rem;
@@ -991,17 +994,18 @@ body {
     padding: 6px 0 16px;
   }
   :root {
-    --figma-slide-offset: min(86vw, 320px);
+    --figma-slide-offset: min(84vw, 290px);
     --figma-slide-overlap: 0px;
     --figma-slide-overlap-far: 0px;
   }
   .figma-carousel-track, .figma-slide {
-    width: min(80vw, 295px);
-    height: 330px;
+    width: min(75vw, 270px);
+    height: calc(min(75vw, 270px) * 4 / 3);
+    aspect-ratio: 3 / 4;
   }
   .figma-carousel-viewport {
-    min-height: 350px;
-    max-height: 375px;
+    min-height: 430px;
+    max-height: 460px;
     overflow: hidden;
   }
   .figma-slide {
