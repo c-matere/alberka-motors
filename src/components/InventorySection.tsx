@@ -16,6 +16,7 @@ import { Vehicle } from '../data/vehicles';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './VehicleSbtListCard';
 import { CmsPage } from '../services/cmsContent';
 import { CategoryFilterSlider, CATEGORY_OPTIONS } from './CategoryFilterSlider';
+import { BodyTypeFilterSlider, BODY_TYPE_OPTIONS } from './BodyTypeFilterSlider';
 
 interface InventorySectionProps {
   vehicles: Vehicle[];
@@ -41,7 +42,9 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   // SBT Japan-style faceted search state
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeMake, setActiveMake] = useState<string>('all');
+  const [activeBodyType, setActiveBodyType] = useState<string>('all');
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [filterTab, setFilterTab] = useState<'bodyType' | 'category'>('bodyType');
   const [priceRange, setPriceRange] = useState<string>('all');
   const [transmissionFilter, setTransmissionFilter] = useState<string>('all');
   const [drivetrainFilter, setDrivetrainFilter] = useState<string>('all');
@@ -53,7 +56,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   // Reset to page 1 whenever search or filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeMake, activeCategory, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
+  }, [activeMake, activeBodyType, activeCategory, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
 
   // Curated Comprehensive Automakers list (with authentic SBT Japan maker logos)
   const makes = useMemo(() => {
@@ -97,6 +100,25 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     });
   }, [vehicles]);
 
+  // Dynamic Body Type Counts in Local Mombasa Stock
+  const bodyTypeLocalCounts = useMemo<Record<string, number>>(() => {
+    return {
+      all: vehicles.length,
+      suv: vehicles.filter((v) => v.bodyType.toLowerCase() === 'suv' || v.category === 'suv').length,
+      van: vehicles.filter((v) => v.bodyType.toLowerCase() === 'van' || v.category === 'van').length,
+      'mini-van': vehicles.filter((v) => v.bodyType.toLowerCase().includes('mini') || v.category === 'minivan').length,
+      sedan: vehicles.filter((v) => v.bodyType.toLowerCase() === 'sedan' || v.category === 'sedan').length,
+      hatchback: vehicles.filter((v) => v.bodyType.toLowerCase().includes('hatch') || v.category === 'hatchback').length,
+      wagon: vehicles.filter((v) => v.bodyType.toLowerCase().includes('wagon') || v.category === 'wagon').length,
+      'pick-up': vehicles.filter((v) => v.bodyType.toLowerCase().includes('pickup') || v.bodyType.toLowerCase().includes('pick-up') || v.category === 'pickup').length,
+      truck: vehicles.filter((v) => v.bodyType.toLowerCase().includes('truck') || v.category === 'truck').length,
+      convertible: vehicles.filter((v) => v.bodyType.toLowerCase().includes('convertible') || v.bodyType.toLowerCase().includes('cabriolet')).length,
+      coupe: vehicles.filter((v) => v.bodyType.toLowerCase().includes('coupe')).length,
+      bus: vehicles.filter((v) => v.bodyType.toLowerCase().includes('bus')).length,
+      'heavy-equipment': vehicles.filter((v) => v.bodyType.toLowerCase().includes('heavy') || v.category === 'heavy').length,
+    };
+  }, [vehicles]);
+
   // Dynamic Category Counts in Local Mombasa Stock
   const categoryLocalCounts = useMemo<Record<string, number>>(() => {
     return {
@@ -104,11 +126,11 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       hybrid: vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power')).length,
       lhd: vehicles.filter((v) => v.steering === 'LHD').length,
       manual: vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt')).length,
-      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv').length,
+      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4')).length,
       electric: vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev')).length,
-      sunroof: vehicles.filter((v) => v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
+      sunroof: vehicles.filter((v) => v.options?.sunroof === true || v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
       diesel: vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel')).length,
-      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
+      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.toLowerCase().includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
     };
   }, [vehicles]);
 
@@ -124,6 +146,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   // Active filter count
   const activeFilterCount = (
     (activeMake !== 'all' ? 1 : 0) +
+    (activeBodyType !== 'all' ? 1 : 0) +
     (activeCategory !== 'all' ? 1 : 0) +
     (priceRange !== 'all' ? 1 : 0) +
     (transmissionFilter !== 'all' ? 1 : 0) +
@@ -133,6 +156,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
   const resetAllFilters = () => {
     setActiveMake('all');
+    setActiveBodyType('all');
     setActiveCategory('all');
     setPriceRange('all');
     setTransmissionFilter('all');
@@ -143,6 +167,23 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
   const filteredVehicles = useMemo(() => {
     return vehicles
+      .filter((v) => {
+        // Body Type Filter
+        if (activeBodyType === 'all') return true;
+        if (activeBodyType === 'suv') return v.bodyType.toLowerCase() === 'suv' || v.category === 'suv';
+        if (activeBodyType === 'van') return v.bodyType.toLowerCase() === 'van' || v.category === 'van';
+        if (activeBodyType === 'mini-van') return v.bodyType.toLowerCase().includes('mini') || v.category === 'minivan';
+        if (activeBodyType === 'sedan') return v.bodyType.toLowerCase() === 'sedan' || v.category === 'sedan';
+        if (activeBodyType === 'hatchback') return v.bodyType.toLowerCase().includes('hatch') || v.category === 'hatchback';
+        if (activeBodyType === 'wagon') return v.bodyType.toLowerCase().includes('wagon') || v.category === 'wagon';
+        if (activeBodyType === 'pick-up') return v.bodyType.toLowerCase().includes('pickup') || v.bodyType.toLowerCase().includes('pick-up') || v.category === 'pickup';
+        if (activeBodyType === 'truck') return v.bodyType.toLowerCase().includes('truck') || v.category === 'truck';
+        if (activeBodyType === 'convertible') return v.bodyType.toLowerCase().includes('convertible') || v.bodyType.toLowerCase().includes('cabriolet');
+        if (activeBodyType === 'coupe') return v.bodyType.toLowerCase().includes('coupe');
+        if (activeBodyType === 'bus') return v.bodyType.toLowerCase().includes('bus');
+        if (activeBodyType === 'heavy-equipment') return v.bodyType.toLowerCase().includes('heavy') || v.category === 'heavy';
+        return v.bodyType.toLowerCase() === activeBodyType.toLowerCase();
+      })
       .filter((v) => {
         // Category Filter with Authentic Japanese SVGs & Attributes
         if (activeCategory === 'all') return true;
@@ -156,13 +197,13 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           return v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt');
         }
         if (activeCategory === '4wd') {
-          return v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv';
+          return v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4');
         }
         if (activeCategory === 'electric') {
           return v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev');
         }
         if (activeCategory === 'sunroof') {
-          return v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')));
+          return v.options?.sunroof === true || v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')));
         }
         if (activeCategory === 'diesel') {
           return v.fuelType.toLowerCase().includes('diesel');
@@ -218,7 +259,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         if (sortBy === 'mileage') return a.mileageKm - b.mileageKm;
         return 0;
       });
-  }, [vehicles, activeCategory, activeMake, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
+  }, [vehicles, activeBodyType, activeCategory, activeMake, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
 
   // SBT Japan Pagination Slicing
   const totalPages = Math.ceil(filteredVehicles.length / itemsPerPage) || 1;
@@ -255,7 +296,69 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
       </div>
 
-      {/* 2. Make / Brand Filter with High-Resolution Maker Logos */}
+      {/* 2. Body Type Filter with Authentic SBT Japan Silhouettes */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <label className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold block">
+            Body Type
+          </label>
+          {activeBodyType !== 'all' && (
+            <button
+              onClick={() => setActiveBodyType('all')}
+              className="text-[10px] font-mono text-red-600 hover:text-red-700 font-bold cursor-pointer"
+            >
+              Show All
+            </button>
+          )}
+        </div>
+        <div className="space-y-1 max-h-56 overflow-y-auto pr-1 no-scrollbar">
+          {BODY_TYPE_OPTIONS.map((bt) => {
+            const isSelected = activeBodyType === bt.id;
+            const count = bodyTypeLocalCounts[bt.id] || 0;
+            return (
+              <button
+                key={bt.id}
+                onClick={() => setActiveBodyType(bt.id)}
+                className={`w-full flex items-center justify-between p-2 rounded-xl text-xs transition-all cursor-pointer text-left group ${
+                  isSelected
+                    ? 'bg-red-50 text-red-700 font-bold border border-red-200 shadow-2xs'
+                    : 'bg-[#F8F9FB]/60 hover:bg-[#F8F9FB] text-zinc-700 font-medium border border-transparent'
+                }`}
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className={`w-8 h-6 rounded-md border flex items-center justify-center shrink-0 p-0.5 transition-all ${
+                    isSelected 
+                      ? 'bg-white border-red-200 shadow-2xs' 
+                      : 'bg-white/80 border-zinc-200/60 group-hover:bg-white group-hover:border-zinc-300'
+                  }`}>
+                    {bt.iconSrc ? (
+                      <img
+                        src={bt.iconSrc}
+                        alt={bt.name}
+                        className={`w-full h-full object-contain ${isSelected ? 'scale-105' : 'group-hover:scale-105'}`}
+                      />
+                    ) : (
+                      <Car className={`w-3.5 h-3.5 ${isSelected ? 'text-red-600' : 'text-zinc-500'}`} />
+                    )}
+                  </div>
+                  <span className="truncate font-semibold">{bt.name}</span>
+                </div>
+                <span className={`font-mono text-[10px] px-1.5 py-0.5 rounded ${
+                  isSelected
+                    ? 'bg-red-100 text-red-700 font-bold'
+                    : count > 0
+                      ? 'bg-zinc-100 text-zinc-700 font-bold border border-zinc-200/70'
+                      : 'text-zinc-400 font-normal'
+                }`}>
+                  {bt.id === 'all' ? `${count}` : count > 0 ? `${count} in stock` : 'Order'}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Make / Brand Filter with High-Resolution Maker Logos */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold block">
@@ -351,11 +454,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
                   <span className="truncate">{c.name}</span>
                 </div>
                 <span className={`font-mono text-[10.5px] shrink-0 ml-2 ${isSelected ? 'text-red-700 font-bold' : 'text-zinc-500'}`}>
-                  {c.id === 'all'
-                    ? `${localCount}`
-                    : localCount > 0
-                    ? `${localCount} in stock`
-                    : c.count}
+                  ({localCount})
                 </span>
               </button>
             );
@@ -463,30 +562,72 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         </div>
       </div>
 
-      {/* 2. Authentic SBT Japan / Beforward Category Filter Slider */}
+      {/* 2. Authentic SBT Japan / Beforward Filter Slider (Body Type & Category Tabs) */}
       <div className="max-w-[1520px] mx-auto px-4 sm:px-8 pt-6 pb-2">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+          {/* Segmented Mode Tabs */}
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-red-600" />
-            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider font-mono text-zinc-950">
-              Browse by Japanese Category
-            </h2>
-          </div>
-          {activeCategory !== 'all' && (
             <button
-              onClick={() => setActiveCategory('all')}
-              className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
+              onClick={() => setFilterTab('bodyType')}
+              type="button"
+              className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                filterTab === 'bodyType'
+                  ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
+                  : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
+              }`}
             >
-              <RotateCcw className="w-3 h-3" />
-              <span>Reset Category</span>
+              <Car className="w-3.5 h-3.5" />
+              <span>Browse by Body Type</span>
             </button>
-          )}
+            <button
+              onClick={() => setFilterTab('category')}
+              type="button"
+              className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                filterTab === 'category'
+                  ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
+                  : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
+              }`}
+            >
+              <span className="w-2 h-2 rounded-full bg-red-600" />
+              <span>Browse by Category & Specs</span>
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {activeBodyType !== 'all' && (
+              <button
+                onClick={() => setActiveBodyType('all')}
+                className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Reset Body Type ({activeBodyType.toUpperCase()})</span>
+              </button>
+            )}
+            {activeCategory !== 'all' && (
+              <button
+                onClick={() => setActiveCategory('all')}
+                className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Reset Category ({activeCategory.toUpperCase()})</span>
+              </button>
+            )}
+          </div>
         </div>
-        <CategoryFilterSlider
-          activeCategory={activeCategory}
-          onSelectCategory={setActiveCategory}
-          localCounts={categoryLocalCounts}
-        />
+
+        {filterTab === 'bodyType' ? (
+          <BodyTypeFilterSlider
+            activeBodyType={activeBodyType}
+            onSelectBodyType={setActiveBodyType}
+            localCounts={bodyTypeLocalCounts}
+          />
+        ) : (
+          <CategoryFilterSlider
+            activeCategory={activeCategory}
+            onSelectCategory={setActiveCategory}
+            localCounts={categoryLocalCounts}
+          />
+        )}
       </div>
 
       {/* 3. SBT Japan 2-Column Search Layout: Left Filter Column + Right Vehicle List */}

@@ -15,20 +15,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 export interface CategoryOption {
   id: string;
   name: string;
-  count: string;
   icon: React.FC<{ className?: string }>;
 }
 
 export const CATEGORY_OPTIONS: CategoryOption[] = [
-  { id: 'all', name: 'All Fleet', count: '(All Stock)', icon: AllFleetIcon },
-  { id: 'hybrid', name: 'Hybrid', count: '(43,153)', icon: HybridIcon },
-  { id: 'lhd', name: 'Left Hand Drive', count: '(87,356)', icon: LhdIcon },
-  { id: 'manual', name: 'Manual', count: '(27,378)', icon: ManualIcon },
-  { id: '4wd', name: '4WD', count: '(79,294)', icon: FourWdIcon },
-  { id: 'electric', name: 'Electric Vehicles', count: '(1,111)', icon: ElectricIcon },
-  { id: 'sunroof', name: 'Sunroof', count: '(41,030)', icon: SunroofIcon },
-  { id: 'diesel', name: 'Diesel', count: '(65,618)', icon: DieselIcon },
-  { id: 'kei', name: 'Kei Cars', count: '(46,061)', icon: KeiCarIcon },
+  { id: 'all', name: 'All Fleet', icon: AllFleetIcon },
+  { id: 'hybrid', name: 'Hybrid', icon: HybridIcon },
+  { id: '4wd', name: '4WD / AWD', icon: FourWdIcon },
+  { id: 'kei', name: 'Kei Cars', icon: KeiCarIcon },
+  { id: 'diesel', name: 'Diesel', icon: DieselIcon },
+  { id: 'sunroof', name: 'Sunroof', icon: SunroofIcon },
+  { id: 'manual', name: 'Manual', icon: ManualIcon },
+  { id: 'electric', name: 'Electric Vehicles', icon: ElectricIcon },
+  { id: 'lhd', name: 'Left Hand Drive', icon: LhdIcon },
 ];
 
 interface CategoryFilterSliderProps {
@@ -74,7 +73,7 @@ export const CategoryFilterSlider: React.FC<CategoryFilterSliderProps> = ({
         {CATEGORY_OPTIONS.map((cat) => {
           const isSelected = activeCategory === cat.id;
           const Icon = cat.icon;
-          const localCount = localCounts[cat.id];
+          const realCount = localCounts[cat.id] ?? 0;
 
           return (
             <button
@@ -109,13 +108,11 @@ export const CategoryFilterSlider: React.FC<CategoryFilterSliderProps> = ({
                 </p>
                 <p
                   className={`car-other-category-count car-choose__category-items text-[10.5px] font-mono leading-none mt-1 truncate ${
-                    isSelected ? 'text-red-600 font-semibold' : 'text-zinc-500'
+                    isSelected ? 'text-red-600 font-bold' : 'text-zinc-500'
                   }`}
                   data-type={cat.id}
                 >
-                  {typeof localCount === 'number' && localCount > 0
-                    ? `(${localCount} in stock)`
-                    : cat.count}
+                  ({realCount})
                 </p>
               </div>
             </button>

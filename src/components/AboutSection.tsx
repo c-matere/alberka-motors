@@ -59,7 +59,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
         {/* Video Cinema Stage — Mobile Responsive Aspect Ratio */}
         <div className="space-y-8">
-          <div className="w-full aspect-[4/3] xs:aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] min-h-[260px] sm:min-h-0 max-h-[520px] overflow-hidden relative bg-zinc-950 border border-zinc-200 rounded-2xl shadow-xl">
+          <div className="w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] min-h-[320px] sm:min-h-[440px] md:min-h-[520px] max-h-[620px] overflow-hidden relative bg-zinc-950 border border-zinc-200 rounded-2xl shadow-xl">
             <video autoPlay muted loop playsInline preload="metadata" className="w-full h-full object-cover">
               <source src="/videos/port-container-shipping.mp4" type="video/mp4" />
             </video>

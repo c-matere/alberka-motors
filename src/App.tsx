@@ -8,6 +8,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
 import { CategoryFilterSlider } from './components/CategoryFilterSlider';
+import { BodyTypeFilterSlider } from './components/BodyTypeFilterSlider';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
@@ -28,7 +29,7 @@ import { TestimonialSectionDemo } from './components/ui/demo';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
 import { SectionGradientFade } from './components/SectionGradientFade';
-import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, CheckCircle2, Car } from 'lucide-react';
 
 export function App() {
   const { vehicles, isCmsConnected, loading } = useVehicles();
@@ -43,7 +44,28 @@ export function App() {
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
   const [whispersDrawerOpen, setWhispersDrawerOpen] = useState(false);
   const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
+  const [homeFilterTab, setHomeFilterTab] = useState<'bodyType' | 'category'>('bodyType');
+  const [homeBodyType, setHomeBodyType] = useState<string>('all');
   const [homeCategory, setHomeCategory] = useState<string>('all');
+
+  // Dynamic Body Type counts in local stock
+  const homeBodyTypeCounts = useMemo<Record<string, number>>(() => {
+    return {
+      all: vehicles.length,
+      suv: vehicles.filter((v) => v.bodyType.toLowerCase() === 'suv' || v.category === 'suv').length,
+      van: vehicles.filter((v) => v.bodyType.toLowerCase() === 'van' || v.category === 'van').length,
+      'mini-van': vehicles.filter((v) => v.bodyType.toLowerCase().includes('mini') || v.category === 'minivan').length,
+      sedan: vehicles.filter((v) => v.bodyType.toLowerCase() === 'sedan' || v.category === 'sedan').length,
+      hatchback: vehicles.filter((v) => v.bodyType.toLowerCase().includes('hatch') || v.category === 'hatchback').length,
+      wagon: vehicles.filter((v) => v.bodyType.toLowerCase().includes('wagon') || v.category === 'wagon').length,
+      'pick-up': vehicles.filter((v) => v.bodyType.toLowerCase().includes('pickup') || v.bodyType.toLowerCase().includes('pick-up') || v.category === 'pickup').length,
+      truck: vehicles.filter((v) => v.bodyType.toLowerCase().includes('truck') || v.category === 'truck').length,
+      convertible: vehicles.filter((v) => v.bodyType.toLowerCase().includes('convertible') || v.bodyType.toLowerCase().includes('cabriolet')).length,
+      coupe: vehicles.filter((v) => v.bodyType.toLowerCase().includes('coupe')).length,
+      bus: vehicles.filter((v) => v.bodyType.toLowerCase().includes('bus')).length,
+      'heavy-equipment': vehicles.filter((v) => v.bodyType.toLowerCase().includes('heavy') || v.category === 'heavy').length,
+    };
+  }, [vehicles]);
 
   // Category counts in local stock
   const homeCategoryCounts = useMemo<Record<string, number>>(() => {
@@ -52,15 +74,32 @@ export function App() {
       hybrid: vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power')).length,
       lhd: vehicles.filter((v) => v.steering === 'LHD').length,
       manual: vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt')).length,
-      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv').length,
+      '4wd': vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4')).length,
       electric: vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev')).length,
-      sunroof: vehicles.filter((v) => v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
+      sunroof: vehicles.filter((v) => v.options?.sunroof === true || v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof')))).length,
       diesel: vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel')).length,
-      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
+      kei: vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.toLowerCase().includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200)).length,
     };
   }, [vehicles]);
 
   const homeFilteredVehicles = useMemo(() => {
+    if (homeFilterTab === 'bodyType') {
+      if (homeBodyType === 'all') return vehicles;
+      if (homeBodyType === 'suv') return vehicles.filter((v) => v.bodyType.toLowerCase() === 'suv' || v.category === 'suv');
+      if (homeBodyType === 'van') return vehicles.filter((v) => v.bodyType.toLowerCase() === 'van' || v.category === 'van');
+      if (homeBodyType === 'mini-van') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('mini') || v.category === 'minivan');
+      if (homeBodyType === 'sedan') return vehicles.filter((v) => v.bodyType.toLowerCase() === 'sedan' || v.category === 'sedan');
+      if (homeBodyType === 'hatchback') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('hatch') || v.category === 'hatchback');
+      if (homeBodyType === 'wagon') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('wagon') || v.category === 'wagon');
+      if (homeBodyType === 'pick-up') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('pickup') || v.bodyType.toLowerCase().includes('pick-up') || v.category === 'pickup');
+      if (homeBodyType === 'truck') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('truck') || v.category === 'truck');
+      if (homeBodyType === 'convertible') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('convertible') || v.bodyType.toLowerCase().includes('cabriolet'));
+      if (homeBodyType === 'coupe') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('coupe'));
+      if (homeBodyType === 'bus') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('bus'));
+      if (homeBodyType === 'heavy-equipment') return vehicles.filter((v) => v.bodyType.toLowerCase().includes('heavy') || v.category === 'heavy');
+      return vehicles.filter((v) => v.bodyType.toLowerCase() === homeBodyType.toLowerCase());
+    }
+
     if (homeCategory === 'all') return vehicles;
     if (homeCategory === 'hybrid') {
       return vehicles.filter((v) => v.category === 'hybrid' || v.fuelType.toLowerCase().includes('hybrid') || v.fuelType.toLowerCase().includes('power'));
@@ -72,22 +111,22 @@ export function App() {
       return vehicles.filter((v) => v.transmission.toLowerCase().includes('manual') || v.transmission.toLowerCase().includes('mt'));
     }
     if (homeCategory === '4wd') {
-      return vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4') || v.category === 'suv');
+      return vehicles.filter((v) => v.drivetrain.toLowerCase().includes('4wd') || v.drivetrain.toLowerCase().includes('awd') || v.drivetrain.toLowerCase().includes('4x4'));
     }
     if (homeCategory === 'electric') {
       return vehicles.filter((v) => v.fuelType.toLowerCase().includes('electric') || v.fuelType.toLowerCase().includes('ev'));
     }
     if (homeCategory === 'sunroof') {
-      return vehicles.filter((v) => v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof'))));
+      return vehicles.filter((v) => v.options?.sunroof === true || v.sbtOptions?.sunroof === true || (v.features && v.features.some((f) => f.toLowerCase().includes('sunroof') || f.toLowerCase().includes('moonroof'))));
     }
     if (homeCategory === 'diesel') {
       return vehicles.filter((v) => v.fuelType.toLowerCase().includes('diesel'));
     }
     if (homeCategory === 'kei') {
-      return vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200));
+      return vehicles.filter((v) => v.category === 'compact' || v.category === 'van' || v.bodyType.toLowerCase().includes('kei') || v.engine.toLowerCase().includes('660') || (parseInt(v.engine) > 0 && parseInt(v.engine) <= 1200));
     }
     return vehicles.filter((v) => v.category === homeCategory);
-  }, [vehicles, homeCategory]);
+  }, [vehicles, homeFilterTab, homeBodyType, homeCategory]);
 
   // Favorites state persisted in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -395,13 +434,69 @@ export function App() {
                       </button>
                     </div>
 
-                    {/* Quick Category Filter Bar */}
-                    <div className="pt-2 pb-2">
-                      <CategoryFilterSlider
-                        activeCategory={homeCategory}
-                        onSelectCategory={(catId) => setHomeCategory(catId)}
-                        localCounts={homeCategoryCounts}
-                      />
+                    {/* Quick Filter Bar (Body Type & Category Tabs) */}
+                    <div className="pt-2 pb-2 space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setHomeFilterTab('bodyType')}
+                            type="button"
+                            className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                              homeFilterTab === 'bodyType'
+                                ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
+                                : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
+                            }`}
+                          >
+                            <Car className="w-3.5 h-3.5" />
+                            <span>Browse by Body Type</span>
+                          </button>
+                          <button
+                            onClick={() => setHomeFilterTab('category')}
+                            type="button"
+                            className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                              homeFilterTab === 'category'
+                                ? 'bg-zinc-950 text-white shadow-xs ring-1 ring-zinc-800'
+                                : 'bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-950 border border-zinc-200/80 shadow-2xs'
+                            }`}
+                          >
+                            <span className="w-2 h-2 rounded-full bg-red-600" />
+                            <span>Browse by Category & Specs</span>
+                          </button>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          {homeFilterTab === 'bodyType' && homeBodyType !== 'all' && (
+                            <button
+                              onClick={() => setHomeBodyType('all')}
+                              className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
+                            >
+                              <span>Reset Body Type ({homeBodyType.toUpperCase()})</span>
+                            </button>
+                          )}
+                          {homeFilterTab === 'category' && homeCategory !== 'all' && (
+                            <button
+                              onClick={() => setHomeCategory('all')}
+                              className="text-xs font-mono text-red-600 hover:text-red-700 font-semibold cursor-pointer inline-flex items-center gap-1 transition-colors"
+                            >
+                              <span>Reset Category ({homeCategory.toUpperCase()})</span>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {homeFilterTab === 'bodyType' ? (
+                        <BodyTypeFilterSlider
+                          activeBodyType={homeBodyType}
+                          onSelectBodyType={(btId) => setHomeBodyType(btId)}
+                          localCounts={homeBodyTypeCounts}
+                        />
+                      ) : (
+                        <CategoryFilterSlider
+                          activeCategory={homeCategory}
+                          onSelectCategory={(catId) => setHomeCategory(catId)}
+                          localCounts={homeCategoryCounts}
+                        />
+                      )}
                     </div>
 
                     {/* Featured Vehicles List View */}
@@ -424,17 +519,20 @@ export function App() {
                       ) : (
                         <div className="bg-white border border-zinc-200/80 rounded-2xl p-8 sm:p-10 text-center space-y-4 shadow-2xs">
                           <p className="text-sm sm:text-base font-bold text-zinc-900">
-                            No vehicles currently match "{homeCategory.toUpperCase()}" in our Mombasa physical yard.
+                            No vehicles currently match {homeFilterTab === 'bodyType' ? `"${homeBodyType.toUpperCase()}"` : `"${homeCategory.toUpperCase()}"`} in our Mombasa physical yard.
                           </p>
                           <p className="text-xs sm:text-sm text-zinc-600 max-w-md mx-auto">
                             Over 40,000+ units available on direct order from SBT Japan. We inspect and deliver to Mombasa within 25 days.
                           </p>
                           <div className="flex items-center justify-center gap-3 pt-2">
                             <button
-                              onClick={() => setHomeCategory('all')}
+                              onClick={() => {
+                                setHomeBodyType('all');
+                                setHomeCategory('all');
+                              }}
                               className="btn-ghost !text-xs !py-2.5 !px-4 cursor-pointer"
                             >
-                              Show All Stock
+                              Show All Stock ({vehicles.length})
                             </button>
                             <button
                               onClick={() => handleNavigate('inventory')}
@@ -471,29 +569,11 @@ export function App() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 lg:divide-x lg:divide-zinc-200 pt-4">
                       {/* Pillar 01 */}
                       <ScrollRevealBox delay={0}>
-                        <div className="space-y-4 lg:pr-10 text-left">
-                          {/* Video Asset 1: Port Container Discharge */}
-                          <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-zinc-200/90 bg-zinc-950 relative shadow-2xs group mb-4">
-                            <video
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                              preload="metadata"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            >
-                              <source src="/videos/port-container-shipping.mp4" type="video/mp4" />
-                            </video>
-                            <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono text-white font-medium flex items-center gap-1.5 shadow-xs">
-                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                              <span>PORT DISCHARGE · MOMBASA</span>
-                            </div>
-                          </div>
-
+                        <div className="space-y-4 lg:pr-12 text-left">
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             01 · DIRECT SOURCING
                           </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
                             Tokyo Auction Selection
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
@@ -513,29 +593,11 @@ export function App() {
 
                       {/* Pillar 02 */}
                       <ScrollRevealBox delay={75}>
-                        <div className="space-y-4 lg:px-10 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
-                          {/* Video Asset 2: Nationwide Flatbed Carrier Delivery */}
-                          <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-zinc-200/90 bg-zinc-950 relative shadow-2xs group mb-4">
-                            <video
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                              preload="metadata"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            >
-                              <source src="/videos/flatbed-delivery.mp4" type="video/mp4" />
-                            </video>
-                            <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono text-white font-medium flex items-center gap-1.5 shadow-xs">
-                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                              <span>NATIONWIDE FLATBED DROP</span>
-                            </div>
-                          </div>
-
+                        <div className="space-y-4 lg:px-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             02 · PREPARATION
                           </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
                             100-Point Technical Overhaul
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
@@ -555,29 +617,11 @@ export function App() {
 
                       {/* Pillar 03 */}
                       <ScrollRevealBox delay={150}>
-                        <div className="space-y-4 lg:pl-10 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
-                          {/* Video Asset 3: Satellite Telemetry & Verification */}
-                          <div className="w-full aspect-[16/10] overflow-hidden rounded-xl border border-zinc-200/90 bg-zinc-950 relative shadow-2xs group mb-4">
-                            <video
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                              preload="metadata"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            >
-                              <source src="/videos/global-tracking-telemetry.mp4" type="video/mp4" />
-                            </video>
-                            <div className="absolute top-2.5 left-2.5 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono text-white font-medium flex items-center gap-1.5 shadow-xs">
-                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                              <span>SATELLITE AUDIT · TELEMETRY</span>
-                            </div>
-                          </div>
-
+                        <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
                           <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
                             03 · VERIFICATION
                           </span>
-                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
                             Japanese Export Dossier
                           </h3>
                           <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
