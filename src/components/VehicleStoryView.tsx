@@ -37,7 +37,8 @@ import {
   Phone,
   Share2,
   Download,
-  FileCheck2
+  FileCheck2,
+  Search
 } from 'lucide-react';
 import { Vehicle, EditorialFeature, FeatureSlide } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
@@ -687,16 +688,16 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     <div className="w-full bg-transparent text-zinc-900 pb-16">
       
       {/* 1. FULL-WIDTH 3D COVER FLOW GALLERY */}
-      <section className="figma-carousel-section w-full max-w-none min-h-[calc(100vh-68px)] flex flex-col justify-between pt-2 pb-6 overflow-hidden relative">
+      {/* 1. VEHICLE SHOWCASE & SPECIFICATION OVERVIEW (KHUSHI MOTORS 12-COL DESIGN) */}
+      <section className="w-full max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-8">
         
-        {/* Floating Top Control Strip (Summarized to give full space to the gallery) */}
-        <div className="w-full max-w-[1520px] mx-auto px-3 sm:px-8 py-2 z-30 relative flex flex-wrap items-center justify-between gap-2 pointer-events-none">
-          
+        {/* Floating Top Control Strip */}
+        <div className="w-full pb-3 flex flex-wrap items-center justify-between gap-2">
           {/* Left Floating Group: Back Button & Vehicle Selector Dropdown */}
-          <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={onBackToFleet}
-              className="bg-white/95 hover:bg-white backdrop-blur-md border border-zinc-200/90 text-xs font-semibold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer"
+              className="bg-white hover:bg-zinc-50 border border-zinc-200/90 text-xs font-semibold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-2xs hover:shadow-xs transition-all cursor-pointer"
               title="Back to cars"
             >
               <ArrowLeft className="w-3.5 h-3.5 text-zinc-600" />
@@ -707,7 +708,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <div className="relative">
               <button
                 onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                className="bg-white/95 hover:bg-white backdrop-blur-md border border-zinc-200/90 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-zinc-950 shadow-sm hover:shadow transition-all cursor-pointer"
+                className="bg-white hover:bg-zinc-50 border border-zinc-200/90 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-zinc-950 shadow-2xs hover:shadow-xs transition-all cursor-pointer"
                 title="Switch vehicle"
               >
                 <span className="font-mono text-red-600 text-[11px] font-bold hidden sm:inline">{vehicle.stockNo}</span>
@@ -761,8 +762,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
 
           {/* Right Floating Group: Price & Test Drive & Fullscreen */}
-          <div className="flex items-center gap-2 pointer-events-auto">
-            <div className="bg-white/95 backdrop-blur-md border border-zinc-200/90 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm font-mono text-xs">
+          <div className="flex items-center gap-2">
+            <div className="bg-white border border-zinc-200/90 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs font-mono text-xs">
               <span className="text-[10px] text-zinc-500 uppercase tracking-wider hidden sm:inline">CASH:</span>
               <span className="font-black text-red-600 text-xs sm:text-[13px]">
                 KES {vehicle.priceKes.toLocaleString()}
@@ -771,14 +772,14 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
             <button
               onClick={() => onScheduleTestDrive(vehicle)}
-              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap hidden sm:inline-flex items-center gap-1.5"
+              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-2xs hover:shadow transition-all cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5"
             >
               <span>Book Test Drive</span>
             </button>
 
             <button
               onClick={() => openLightboxWithIndex(activePhotoIndex)}
-              className="bg-white/95 hover:bg-white backdrop-blur-md p-2 rounded-full border border-zinc-200/90 text-zinc-700 hover:text-red-600 shadow-sm transition-colors cursor-pointer"
+              className="bg-white hover:bg-zinc-50 p-2 rounded-full border border-zinc-200/90 text-zinc-700 hover:text-red-600 shadow-2xs transition-colors cursor-pointer"
               title="Fullscreen Lightbox"
             >
               <Maximize2 className="w-3.5 h-3.5" />
@@ -786,304 +787,320 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
           </div>
         </div>
 
-        <div 
-          ref={stageRef}
-          className="figma-carousel-viewport" 
-          role="region" 
-          aria-roledescription="carousel" 
-          aria-label="Vehicle showcase carousel"
-          style={{
-            cursor: isGalleryDragging ? 'grabbing' : 'grab',
-            touchAction: 'pan-y',
-            userSelect: 'none',
-          }}
-          onPointerDown={handleGalleryPointerDown}
-          onPointerMove={handleGalleryPointerMove}
-          onPointerUp={handleGalleryPointerUp}
-          onPointerCancel={handleGalleryPointerCancel}
-        >
-                <div className="figma-carousel-track">
-                  {filteredPhotos.map((photo, idx) => {
-                    const offset = idx - activePhotoIndex;
-                    const total = filteredPhotos.length;
-                    const isActive = offset === 0;
-
-                    let transformStr = '';
-                    let zIndexVal = 0;
-                    let opacityVal = 0;
-                    let pointerEventsVal: 'auto' | 'none' = 'none';
-
-                    if (offset === 0) {
-                      transformStr = 'translateX(0px) scale(1.15)';
-                      zIndexVal = 10;
-                      opacityVal = 1;
-                      pointerEventsVal = 'auto';
-                    } else if (offset === -1) {
-                      transformStr = 'translateX(calc(-1 * var(--figma-slide-offset, 360px))) scale(0.82)';
-                      zIndexVal = 5;
-                      opacityVal = 0.9;
-                      pointerEventsVal = 'auto';
-                    } else if (offset === 1) {
-                      transformStr = 'translateX(calc(1 * var(--figma-slide-offset, 360px))) scale(0.82)';
-                      zIndexVal = 5;
-                      opacityVal = 0.9;
-                      pointerEventsVal = 'auto';
-                    } else if (offset === -2) {
-                      transformStr = 'translateX(calc(-2 * var(--figma-slide-offset, 360px))) scale(0.68)';
-                      zIndexVal = 2;
-                      opacityVal = 0.6;
-                      pointerEventsVal = 'auto';
-                    } else if (offset === 2) {
-                      transformStr = 'translateX(calc(2 * var(--figma-slide-offset, 360px))) scale(0.68)';
-                      zIndexVal = 2;
-                      opacityVal = 0.6;
-                      pointerEventsVal = 'auto';
-                    } else {
-                      transformStr = `translateX(calc(${offset} * var(--figma-slide-offset, 360px))) scale(0.6)`;
-                      zIndexVal = 0;
-                      opacityVal = 0;
-                      pointerEventsVal = 'none';
-                    }
-
-                    return (
-                      <div
-                        key={photo.id || idx}
-                        className={`figma-slide ${isActive ? 'active' : ''}`}
-                        role="group"
-                        aria-roledescription="slide"
-                        aria-hidden={!isActive}
-                        aria-label={`Slide ${idx + 1} of ${total}: ${photo.title}`}
-                        onClick={() => {
-                          if (galleryPointerMoved.current) return;
-                          if (isActive) {
-                            openLightboxWithIndex(idx);
-                          } else {
-                            handleSelectPhoto(idx);
-                          }
-                        }}
-                        style={{
-                          transform: transformStr,
-                          zIndex: zIndexVal,
-                          opacity: opacityVal,
-                          pointerEvents: pointerEventsVal,
-                          cursor: isActive ? 'zoom-in' : 'pointer'
-                        }}
-                      >
-                        <div className="figma-slide-inner">
-                          {/* Crisp single vehicle image without duplicate backdrop */}
-                          <img
-                            alt={photo.title}
-                            className="figma-slide-img"
-                            loading="lazy"
-                            src={photo.url}
-                            draggable={false}
-                          />
-                          <div className="figma-slide-overlay" />
-                          <div className="figma-slide-content">
-                            <h3 className="figma-slide-title">{photo.title}</h3>
-                            <p className="figma-slide-label">
-                              {photo.tag ? `${photo.tag} · ` : ''}{vehicle.year} {vehicle.name} · View {idx + 1} of {total}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Carousel Controls */}
-              <div className="figma-carousel-controls">
-                {/* Active Slide Counter & Section Label */}
-                <div className="flex items-center gap-2">
-                  <span className="figma-carousel-counter" aria-live="polite">
-                    <span className="figma-counter-status">{`Slide ${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
-                    <span aria-hidden="true">{`${activePhotoIndex + 1} of ${filteredPhotos.length}`}</span>
-                  </span>
-                  <span className="text-zinc-300">·</span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold font-mono uppercase tracking-wider bg-red-50 text-red-600 border border-red-200/80">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-                    {currentPhoto.tag || (currentPhoto.category === 'interior' ? 'Cabin Interior' : currentPhoto.category === 'details' ? 'Details & Wheels' : 'Exterior Stance')}
-                  </span>
+        {/* 12-Column Responsive Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          {/* Left Column: lg:col-span-7 (Khushi Motors 4:3 Gallery + Thumbnails + Opening Times + Sales Concierge) */}
+          <div className="lg:col-span-7">
+            
+            {/* 1. Main 4:3 Image Stage */}
+            <div className="bg-white rounded-2xl shadow-sm border border-zinc-200/90 overflow-hidden mb-3">
+              <div 
+                className="relative aspect-[4/3] bg-zinc-100 cursor-zoom-in group select-none"
+                onClick={() => openLightboxWithIndex(activePhotoIndex)}
+              >
+                {/* Active Photo */}
+                <div className="absolute inset-0">
+                  <img
+                    src={currentPhoto.url}
+                    alt={`${vehicle.year} ${vehicle.name} - View ${activePhotoIndex + 1}`}
+                    className="w-full h-full object-cover transition-opacity duration-200"
+                    loading="eager"
+                    decoding="async"
+                  />
                 </div>
 
-                {/* Section Filter Pills (Replacing the old <- -> buttons) */}
-                <div className="figma-controls-group flex items-center gap-2.5" role="group" aria-label="Vehicle section filters">
-                  <div className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-full border border-zinc-200/90 shadow-sm">
-                    {[
-                      { id: 'all', label: `All (${allPhotos.length})` },
-                      { id: 'exterior', label: 'Exterior' },
-                      { id: 'interior', label: 'Cabin' },
-                      { id: 'details', label: 'Details' },
-                    ].map((tab) => {
-                      const targetIdx = tab.id === 'all'
-                        ? 0
-                        : allPhotos.findIndex((p) => p.category === tab.id);
+                {/* Previous Image Arrow Button */}
+                <button
+                  type="button"
+                  aria-label="Previous image"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevPhoto();
+                  }}
+                  className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-white text-zinc-800 rounded-full items-center justify-center shadow-lg transition-all duration-200 hover:scale-105 z-20 cursor-pointer border border-zinc-200/80 active:scale-95"
+                  title="Previous image"
+                >
+                  <ChevronLeft className="w-6 h-6 text-zinc-800" />
+                </button>
 
-                      const isCurrentSection =
-                        (tab.id === 'all' && activePhotoIndex === 0) ||
-                        (tab.id === currentPhoto.category);
+                {/* Next Image Arrow Button */}
+                <button
+                  type="button"
+                  aria-label="Next image"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextPhoto();
+                  }}
+                  className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-white text-zinc-800 rounded-full items-center justify-center shadow-lg transition-all duration-200 hover:scale-105 z-20 cursor-pointer border border-zinc-200/80 active:scale-95"
+                  title="Next image"
+                >
+                  <ChevronRight className="w-6 h-6 text-zinc-800" />
+                </button>
 
-                      return (
-                        <button
-                          key={tab.id}
-                          type="button"
-                          onClick={() => {
-                            if (targetIdx !== -1) {
-                              setActivePhotoIndex(targetIdx);
-                              setGalleryProgress(0);
-                            }
-                          }}
-                          className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                            isCurrentSection
-                              ? 'bg-red-600 text-white font-bold shadow-xs'
-                              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
-                          }`}
-                        >
-                          {isCurrentSection && tab.id !== 'all' && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0 animate-pulse" />
-                          )}
-                          <span>{tab.label}</span>
-                        </button>
-                      );
-                    })}
+                {/* Bottom Overlay Bar */}
+                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex justify-between items-center z-20 pointer-events-none">
+                  {/* Counter Badge (clean white pill, NO black pills!) */}
+                  <div className="bg-white/95 backdrop-blur-md text-zinc-900 border border-zinc-200/90 font-mono font-bold px-3 py-1.5 rounded-full text-xs sm:text-sm shadow-md pointer-events-auto">
+                    {activePhotoIndex + 1} / {allPhotos.length}
                   </div>
 
-                  {/* Play / Pause Toggle Button */}
-                  <button 
-                    type="button" 
-                    className="figma-pause-btn" 
-                    aria-label={isGalleryPlaying ? "Pause" : "Play"}
-                    onClick={() => setIsGalleryPlaying(!isGalleryPlaying)}
-                    title={isGalleryPlaying ? "Pause auto-scroll" : "Resume auto-scroll"}
-                  >
-                    <svg width="36" height="36" viewBox="0 0 36 36" className="figma-pause-ring">
-                      <circle cx="18" cy="18" r="17.5" fill="none" stroke="currentColor" strokeWidth="1" className="text-zinc-200" />
-                      <circle 
-                        cx="18" 
-                        cy="18" 
-                        r="17" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        strokeDasharray="106.8" 
-                        className="figma-pause-progress"
-                        style={{ animationPlayState: isGalleryPlaying ? 'running' : 'paused' }} 
+                  {/* Magnifier and Fullscreen buttons */}
+                  <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openLightboxWithIndex(activePhotoIndex);
+                      }}
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 bg-white/95 hover:bg-white text-zinc-800 border border-zinc-200/90 shadow-md hover:shadow-lg cursor-pointer"
+                      title="Magnifier"
+                    >
+                      <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600" />
+                      <span className="hidden sm:inline">Magnifier</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openLightboxWithIndex(activePhotoIndex);
+                      }}
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/95 hover:bg-white rounded-full text-xs sm:text-sm font-semibold text-zinc-800 border border-zinc-200/90 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
+                      title="Fullscreen"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600" />
+                      <span className="hidden sm:inline">Fullscreen</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Thumbnail Strip Grid */}
+            <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-3 sm:p-4 mb-4">
+              <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-9 lg:grid-cols-7 xl:grid-cols-8 gap-2">
+                {allPhotos.map((photo, idx) => {
+                  const isActive = idx === activePhotoIndex;
+                  return (
+                    <button
+                      key={photo.id || idx}
+                      type="button"
+                      title="Click to preview, double-click for fullscreen gallery"
+                      onClick={() => setActivePhotoIndex(idx)}
+                      onDoubleClick={() => openLightboxWithIndex(idx)}
+                      className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? 'border-red-600 ring-2 ring-red-600/25 shadow-xs scale-102'
+                          : 'border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100'
+                      }`}
+                    >
+                      <img
+                        src={photo.url}
+                        alt={photo.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="object-cover w-full h-full"
                       />
-                    </svg>
-                    {isGalleryPlaying ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 14" className="figma-pause-icon">
-                        <path fill="currentColor" d="M9.91 0h6.1v13.71h-6.1zM0 0h6.1v13.71H0z" />
-                      </svg>
-                    ) : (
-                      <Play className="w-4 h-4 ml-0.5 text-red-600 fill-red-600 relative z-2" />
-                    )}
-                  </button>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 3. Opening Times & Sales Representatives Cards (Desktop Grid) */}
+            <div className="hidden lg:grid lg:grid-cols-2 gap-3 sm:gap-4 mt-2">
+              
+              {/* Card 1: Opening times */}
+              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5 transform transition-all duration-300 hover:shadow-md">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h3 className="text-base sm:text-lg font-bold text-zinc-950 leading-tight">
+                    Opening times
+                  </h3>
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
+                    <span className="text-xs leading-none">🇰🇪</span>
+                    <span className="text-[11px] font-semibold text-zinc-800">Mombasa</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1.5 animate-pulse mb-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                    Open now
+                  </span>
+
+                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 text-xs sm:text-[13px]">
+                    <span className="text-zinc-600">Monday to Friday:</span>
+                    <span className="font-bold text-zinc-950">8:00 AM - 5:30 PM</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 text-xs sm:text-[13px]">
+                    <span className="text-zinc-600">Saturday:</span>
+                    <span className="font-bold text-zinc-950">9:00 AM - 2:00 PM</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 text-xs sm:text-[13px]">
+                    <span className="text-zinc-600">Sunday:</span>
+                    <span className="font-bold text-zinc-950">Closed (By Appt)</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 text-xs sm:text-[13px]">
+                    <span className="text-zinc-600">Public Holidays:</span>
+                    <span className="font-bold text-zinc-950">9:00 AM - 1:00 PM</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="figma-carousel-bottom">
-                <p className="figma-carousel-description">
-                  {vehicle.tagline || 'From luxury sedans to rugged SUVs and electric pioneers — find the vehicle that matches your lifestyle. Browse, compare, and drive away with confidence.'}
-                </p>
-              </div>
-            </section>
+              {/* Card 2: Sales representatives */}
+              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5 transform transition-all duration-300 hover:shadow-md">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h3 className="text-base sm:text-lg font-bold text-zinc-950 leading-tight">
+                    Sales desk
+                  </h3>
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
+                    <span className="text-xs leading-none">🇰🇪</span>
+                    <span className="text-[11px] font-semibold text-zinc-800">Mombasa</span>
+                  </div>
+                </div>
 
-      {/* 2. CONSOLIDATED EXECUTIVE DOSSIER & TECHNICAL MATRIX (BENTO COMPACT) */}
-      <section className="relative w-full pt-4 pb-8 px-4 sm:px-8 text-center max-w-[1360px] mx-auto">
-        <div className="relative z-10 space-y-4 max-w-[1240px] mx-auto text-left">
-          
-          {/* Header Card: Title, Badges, Quick Actions */}
-          <div className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="space-y-1">
-                <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
+                <div className="space-y-3">
+                  {/* Rep 1: Showroom Concierge */}
+                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 gap-2">
+                    <div className="min-w-0">
+                      <p className="text-xs sm:text-[13px] font-bold text-zinc-950 truncate">Mombasa Showroom Desk</p>
+                      <span className="text-[11px] text-zinc-500 font-mono">0786 000 040</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <a
+                        href="tel:+254786000040"
+                        aria-label="Call Showroom Desk"
+                        className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
+                        title="Call +254 786 000 040"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href={`https://wa.me/254786000040?text=${encodeURIComponent(
+                          `Hi, I'm interested in this vehicle:
+
+${vehicle.year} ${vehicle.name}
+
+Vehicle Details:
+* Make: ${vehicle.make}
+* Model: ${vehicle.model}
+* Stock #: ${vehicle.sbtStockId || vehicle.stockNo}
+* Price: KES ${vehicle.priceKes.toLocaleString()}
+
+Please provide more information about this vehicle.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp Showroom Desk"
+                        className="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
+                        title="WhatsApp +254 786 000 040"
+                      >
+                        <MessageCircle className="w-4 h-4 fill-white text-white" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Rep 2: Japan Import & Customs Desk */}
+                  <div className="flex items-center justify-between py-1.5 gap-2">
+                    <div className="min-w-0">
+                      <p className="text-xs sm:text-[13px] font-bold text-zinc-950 truncate">Japan Orders & Port Desk</p>
+                      <span className="text-[11px] text-zinc-500 font-mono">0180 423 075</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <a
+                        href="tel:+254180423075"
+                        aria-label="Call Japan Import Desk"
+                        className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
+                        title="Call +254 180 423 075"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href={`https://wa.me/254180423075?text=${encodeURIComponent(
+                          `Hi, I'm interested in this vehicle:
+
+${vehicle.year} ${vehicle.name}
+
+Vehicle Details:
+* Make: ${vehicle.make}
+* Model: ${vehicle.model}
+* Stock #: ${vehicle.sbtStockId || vehicle.stockNo}
+* Price: KES ${vehicle.priceKes.toLocaleString()}
+
+Please provide more information about this vehicle.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp Japan Import Desk"
+                        className="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
+                        title="WhatsApp +254 180 423 075"
+                      >
+                        <MessageCircle className="w-4 h-4 fill-white text-white" />
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right Column: lg:col-span-5 (Executive Vehicle Card: Badges, Title, Pricing, Actions, Specs) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+              
+              {/* Header Badges & Stock Number */}
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
                   <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
                     Direct Japanese Import
                   </span>
                   <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2 py-0.5 rounded font-mono font-bold">
-                    Stock ID: {vehicle.sbtStockId || vehicle.stockNo}
+                    Stock: {vehicle.sbtStockId || vehicle.stockNo}
                   </span>
                   <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-700 px-2 py-0.5 rounded font-mono">
                     Code: {vehicle.modelCode || 'CBA-GRJ120W'}
                   </span>
-                  <span className="text-zinc-400 hidden sm:inline">•</span>
-                  <span className="hidden sm:inline">{vehicle.year} · {bodyTypeUpper}</span>
                 </div>
-                <h1 className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
                   {vehicle.year} {vehicleDisplayTitle.toUpperCase()}
                 </h1>
-                <p className="text-xs sm:text-sm text-zinc-600 font-normal">
+
+                <p className="text-xs text-zinc-600 font-normal">
                   {vehicle.tagline || vehicle.moniker}
                 </p>
               </div>
 
-              {/* Share & Print Buttons */}
-              <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
-                <button
-                  onClick={handleShareVehicle}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
-                    copiedLink
-                      ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-semibold'
-                      : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
-                  }`}
-                  title="Share vehicle link"
-                >
-                  {copiedLink ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
-                      <span>Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Share2 className="w-3.5 h-3.5 text-zinc-600" />
-                      <span>Share</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  onClick={handleDownloadPhotoList}
-                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  title="Print or save vehicle specification dossier"
-                >
-                  <Download className="w-3.5 h-3.5 text-zinc-600" />
-                  <span className="hidden sm:inline">Print Dossier</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Price & Primary Specs Bento Split */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-3 border-t border-zinc-100">
-              
-              {/* Left Column: Pricing & Purchase Actions (5 cols) */}
-              <div className="lg:col-span-5 bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-3.5">
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-semibold block">
-                      DELIVERED CASH PRICE
-                    </span>
-                    <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs whitespace-nowrap shrink-0">
-                      Save KES {pricing.savingsKes.toLocaleString()}
-                    </span>
-                  </div>
-
-                  <div className="flex items-baseline gap-2 pt-0.5">
-                    <span className="text-3xl sm:text-4xl font-extrabold text-red-600 font-mono tracking-tight leading-none">
-                      KES {vehicle.priceKes.toLocaleString()}
-                    </span>
-                    {pricing.hasDiscount && (
-                      <span className="text-xs font-mono text-zinc-400 line-through">
-                        KES {pricing.originalPrice.toLocaleString()}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="text-[11px] text-zinc-600 leading-tight pt-1">
-                    Includes KRA customs duty, port clearance, 100-point overhaul & Mombasa yard handover.
-                  </p>
+              {/* Price Container */}
+              <div className="bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-4 space-y-2.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-semibold block">
+                    DELIVERED CASH PRICE
+                  </span>
+                  <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs whitespace-nowrap shrink-0">
+                    Save KES {pricing.savingsKes.toLocaleString()}
+                  </span>
                 </div>
 
+                <div className="flex items-baseline gap-2 pt-0.5">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-red-600 font-mono tracking-tight leading-none">
+                    KES {vehicle.priceKes.toLocaleString()}
+                  </span>
+                  {pricing.hasDiscount && (
+                    <span className="text-xs font-mono text-zinc-400 line-through">
+                      KES {pricing.originalPrice.toLocaleString()}
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-[11px] text-zinc-600 leading-tight">
+                  Includes KRA customs duty, port clearance, 100-point overhaul & Mombasa yard handover.
+                </p>
+
+                {/* Primary Action Buttons */}
                 <div className="space-y-2 pt-1">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <button
@@ -1114,58 +1131,162 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 </div>
               </div>
 
-              {/* Right Column: Key 6 Mechanical & Inspection Metrics (7 cols) */}
-              <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+              {/* 6 Key Mechanical & Inspection Metrics */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
                   <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Auction Grade</span>
-                  <p className="text-base font-bold text-zinc-950 font-mono">Grade {vehicle.auctionGrade || '4.5'}</p>
-                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.auctionHall || 'USS Tokyo'} (Japan)</p>
+                  <p className="text-sm font-bold text-zinc-950 font-mono">Grade {vehicle.auctionGrade || '4.5'}</p>
+                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.auctionHall || 'USS Tokyo'}</p>
                 </div>
 
-                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
                   <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Mileage</span>
-                  <p className="text-base font-bold text-zinc-950 font-mono">{vehicle.mileageKm.toLocaleString()} KM</p>
-                  <p className="text-[11px] text-emerald-700 font-semibold truncate">JEVIC Certified</p>
+                  <p className="text-sm font-bold text-zinc-950 font-mono">{vehicle.mileageKm.toLocaleString()} KM</p>
+                  <p className="text-[10px] text-emerald-700 font-semibold truncate">JEVIC Certified</p>
                 </div>
 
-                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
                   <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Drivetrain</span>
-                  <p className="text-base font-bold text-zinc-950 truncate">{vehicle.drivetrain || '4WD'}</p>
-                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.transmission || 'Automatic'}</p>
+                  <p className="text-sm font-bold text-zinc-950 truncate">{vehicle.drivetrain || '4WD'}</p>
+                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.transmission || 'Automatic'}</p>
                 </div>
 
-                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
                   <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Engine</span>
-                  <p className="text-base font-bold text-zinc-950 truncate">{vehicle.engine}</p>
-                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.power || vehicle.torque || 'Direct Injection'}</p>
+                  <p className="text-sm font-bold text-zinc-950 truncate">{vehicle.engine}</p>
+                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.power || 'Direct Injection'}</p>
                 </div>
 
-                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
                   <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Fuel & Capacity</span>
-                  <p className="text-base font-bold text-zinc-950 truncate">{vehicle.fuelType.toUpperCase()}</p>
-                  <p className="text-[11px] text-zinc-500 truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
+                  <p className="text-sm font-bold text-zinc-950 truncate">{vehicle.fuelType.toUpperCase()}</p>
+                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
                 </div>
 
-                <div className="p-3 bg-white border border-zinc-200/80 rounded-xl space-y-0.5">
+                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
                   <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Location</span>
-                  <p className="text-base font-bold text-zinc-950 truncate">Mombasa Yard</p>
-                  <p className="text-[11px] text-zinc-500 truncate">Ganjoni Showroom</p>
+                  <p className="text-sm font-bold text-zinc-950 truncate">Mombasa Yard</p>
+                  <p className="text-[10px] text-zinc-500 truncate">Ganjoni Showroom</p>
+                </div>
+              </div>
+
+              {/* Compact Specs Chip Strip */}
+              <div className="pt-1 flex flex-wrap items-center gap-1 text-[10.5px] font-mono text-zinc-600">
+                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">RHD</span>
+                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Zero Accident (No R-Grade)</span>
+                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">{vehicle.fuelEconomy || '14.2 km/L'}</span>
+                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">{vehicle.dimensions || '4.46m × 1.80m'}</span>
+              </div>
+
+              {/* Share & Print Buttons */}
+              <div className="pt-2 border-t border-zinc-100 flex items-center justify-between gap-2">
+                <button
+                  onClick={handleShareVehicle}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
+                    copiedLink
+                      ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-semibold'
+                      : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
+                  }`}
+                  title="Share vehicle link"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                      <span>Link Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-3.5 h-3.5 text-zinc-600" />
+                      <span>Share Vehicle</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  onClick={handleDownloadPhotoList}
+                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                  title="Print or save vehicle specification dossier"
+                >
+                  <Download className="w-3.5 h-3.5 text-zinc-600" />
+                  <span>Print Dossier</span>
+                </button>
+              </div>
+
+            </div>
+
+            {/* Mobile-Only Opening Times & Sales Reps */}
+            <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              {/* Card 1: Opening times */}
+              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 className="text-sm font-bold text-zinc-950 leading-tight">Opening times</h3>
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
+                    <span className="text-xs leading-none">🇰🇪</span>
+                    <span className="text-[10px] font-semibold text-zinc-800">Mombasa</span>
+                  </div>
+                </div>
+                <div className="space-y-1.5 text-xs">
+                  <div className="flex items-center justify-between py-1 border-b border-zinc-100">
+                    <span className="text-zinc-600">Mon - Fri:</span>
+                    <span className="font-bold text-zinc-950">8:00 AM - 5:30 PM</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-zinc-100">
+                    <span className="text-zinc-600">Saturday:</span>
+                    <span className="font-bold text-zinc-950">9:00 AM - 2:00 PM</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1">
+                    <span className="text-zinc-600">Sunday:</span>
+                    <span className="font-bold text-zinc-950">Closed (By Appt)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Sales desk */}
+              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 className="text-sm font-bold text-zinc-950 leading-tight">Sales desk</h3>
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
+                    <span className="text-xs leading-none">🇰🇪</span>
+                    <span className="text-[10px] font-semibold text-zinc-800">Direct</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between py-1 border-b border-zinc-100">
+                    <div>
+                      <p className="text-xs font-bold text-zinc-950">Showroom Desk</p>
+                      <span className="text-[10px] text-zinc-500 font-mono">0786 000 040</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <a href="tel:+254786000040" className="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xs">
+                        <Phone className="w-3 h-3" />
+                      </a>
+                      <a href={`https://wa.me/254786000040?text=${encodeURIComponent(`Hi, I'm interested in ${vehicle.year} ${vehicle.name} (Stock: ${vehicle.sbtStockId || vehicle.stockNo}).`)}`} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-2xs">
+                        <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between py-1">
+                    <div>
+                      <p className="text-xs font-bold text-zinc-950">Japan Orders</p>
+                      <span className="text-[10px] text-zinc-500 font-mono">0180 423 075</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <a href="tel:+254180423075" className="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xs">
+                        <Phone className="w-3 h-3" />
+                      </a>
+                      <a href={`https://wa.me/254180423075?text=${encodeURIComponent(`Hi, I'm interested in ${vehicle.year} ${vehicle.name} (Stock: ${vehicle.sbtStockId || vehicle.stockNo}).`)}`} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-2xs">
+                        <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Compact Specs Chip Strip */}
-            <div className="pt-2 flex flex-wrap items-center gap-1.5 text-[11px] font-mono text-zinc-600 border-t border-zinc-100">
-              <span className="font-bold text-zinc-700">SPEC SUMMARY:</span>
-              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Steering: RHD</span>
-              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Accident History: ZERO (No R-Grade)</span>
-              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Economy: {vehicle.fuelEconomy || '14.2 km/L'}</span>
-              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Dim: {vehicle.dimensions || '4.46m × 1.80m × 1.61m'}</span>
-              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Weight: {vehicle.curbWeight || '1,440 kg'}</span>
-              <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Wheelbase: {vehicle.wheelbase || '2,665 mm'}</span>
-            </div>
           </div>
+
         </div>
+
       </section>
 
       {/* 3. CLOSER LOOK: 4-POINT INSPECTION HIGHLIGHTS (COMPACT BENTO GRID) */}
