@@ -687,602 +687,576 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   return (
     <div className="w-full bg-transparent text-zinc-900 pb-16">
       
-      {/* 1. FULL-WIDTH 3D COVER FLOW GALLERY */}
-      {/* 1. VEHICLE SHOWCASE & SPECIFICATION OVERVIEW (KHUSHI MOTORS 12-COL DESIGN) */}
-      <section className="w-full max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-8">
+      {/* AIRBNB SIGNATURE ITEM PAGE SHOWCASE */}
+      <section className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
         
-        {/* Floating Top Control Strip */}
-        <div className="w-full pb-3 flex flex-wrap items-center justify-between gap-2">
-          {/* Left Floating Group: Back Button & Vehicle Selector Dropdown */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <button
-              onClick={onBackToFleet}
-              className="bg-white hover:bg-zinc-50 border border-zinc-200/90 text-xs font-semibold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-2xs hover:shadow-xs transition-all cursor-pointer"
-              title="Back to cars"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 text-zinc-600" />
-              <span className="hidden xs:inline">Back</span>
-            </button>
-
-            {/* Model Dropdown Trigger */}
-            <div className="relative">
+        {/* 1. Header Bar: Title, Back & Actions */}
+        <div className="w-full pb-4 space-y-2 text-left">
+          {/* Top Navigation & Utility Actions */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                className="bg-white hover:bg-zinc-50 border border-zinc-200/90 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full text-xs font-bold text-zinc-950 shadow-2xs hover:shadow-xs transition-all cursor-pointer"
-                title="Switch vehicle"
+                onClick={onBackToFleet}
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer group"
               >
-                <span className="font-mono text-red-600 text-[11px] font-bold hidden sm:inline">{vehicle.stockNo}</span>
-                <span className="truncate max-w-[125px] xs:max-w-[160px] sm:max-w-[200px]">{vehicle.name}</span>
-                <ChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                <span>Show all cars</span>
               </button>
 
-              {/* Elegant Dropdown Menu */}
-              {modelDropdownOpen && (
-                <>
-                  <div className="fixed inset-0 z-40" onClick={() => setModelDropdownOpen(false)} />
-                  <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 bg-white/98 backdrop-blur-2xl border border-zinc-200 rounded-2xl shadow-2xl p-2 z-50 space-y-1">
-                    <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider px-3 py-1 block">
-                      SWITCH TO ANOTHER CAR
-                    </span>
-                    <div className="max-h-72 overflow-y-auto space-y-1">
-                      {allVehicles.map((v) => {
-                        const isSelected = v.id === vehicle.id;
-                        return (
-                          <button
-                            key={v.id}
-                            onClick={() => {
-                              onSelectVehicle(v);
-                              setModelDropdownOpen(false);
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                            className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-colors cursor-pointer ${
-                              isSelected ? 'bg-red-600 text-white shadow-sm' : 'hover:bg-zinc-100 text-zinc-800'
-                            }`}
-                          >
-                            <div className="flex items-center gap-2.5 min-w-0">
-                              <div className="w-10 h-8 rounded bg-zinc-100 overflow-hidden shrink-0 border border-zinc-200/60">
-                                <img src={v.heroImage} alt={v.name} className="w-full h-full object-cover" />
+              <span className="text-[#ebebeb]">/</span>
+
+              {/* Quick Car Selector Trigger */}
+              <div className="relative">
+                <button
+                  onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
+                  className="bg-white hover:bg-[#f7f7f7] border border-[#ebebeb] flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-[#222222] transition-colors cursor-pointer"
+                  title="Switch car"
+                >
+                  <span className="text-[#ff385c] font-mono text-[11px] font-semibold">{vehicle.stockNo}</span>
+                  <span className="truncate max-w-[130px] sm:max-w-[180px]">{vehicle.name}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-[#6a6a6a] transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Dropdown Menu */}
+                {modelDropdownOpen && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setModelDropdownOpen(false)} />
+                    <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 bg-white border border-[#ebebeb] rounded-2xl shadow-xl p-2 z-50 space-y-1">
+                      <span className="text-[10px] text-[#6a6a6a] uppercase tracking-wider px-3 py-1 block font-medium">
+                        SWITCH TO ANOTHER CAR
+                      </span>
+                      <div className="max-h-72 overflow-y-auto space-y-1">
+                        {allVehicles.map((v) => {
+                          const isSelected = v.id === vehicle.id;
+                          return (
+                            <button
+                              key={v.id}
+                              onClick={() => {
+                                onSelectVehicle(v);
+                                setModelDropdownOpen(false);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }}
+                              className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-colors cursor-pointer ${
+                                isSelected ? 'bg-[#ff385c] text-white' : 'hover:bg-[#f7f7f7] text-[#222222]'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <div className="w-10 h-8 rounded-lg bg-[#f7f7f7] overflow-hidden shrink-0 border border-[#ebebeb]">
+                                  <img src={v.heroImage} alt={v.name} className="w-full h-full object-cover" />
+                                </div>
+                                <div className="min-w-0">
+                                  <p className={`text-xs font-semibold truncate ${isSelected ? 'text-white' : 'text-[#222222]'}`}>{v.name}</p>
+                                  <span className={`text-[10px] block ${isSelected ? 'text-white/80' : 'text-[#6a6a6a]'}`}>{v.stockNo} · {v.year}</span>
+                                </div>
                               </div>
-                              <div className="min-w-0">
-                                <p className={`text-xs font-bold truncate ${isSelected ? 'text-white' : 'text-zinc-950'}`}>{v.name}</p>
-                                <span className={`font-mono text-[10px] block ${isSelected ? 'text-white/80' : 'text-zinc-500'}`}>{v.stockNo} · {v.year}</span>
+                              <div className="text-right shrink-0 pl-2">
+                                <span className={`text-xs font-semibold block ${isSelected ? 'text-white' : 'text-[#ff385c]'}`}>KES {(v.priceKes / 1000000).toFixed(2)}M</span>
                               </div>
-                            </div>
-                            <div className="text-right shrink-0 pl-2">
-                              <span className={`font-mono text-xs font-bold block ${isSelected ? 'text-white' : 'text-red-600'}`}>KES {(v.priceKes / 1000000).toFixed(2)}M</span>
-                            </div>
-                          </button>
-                        );
-                      })}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                </>
-              )}
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Right-Aligned Share & Save buttons */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleShareVehicle}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
+              >
+                {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
+                <span>{copiedLink ? 'Link copied' : 'Share'}</span>
+              </button>
+
+              <button
+                onClick={() => onToggleFavorite(vehicle.id)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
+              >
+                <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-[#ff385c] text-[#ff385c]' : 'text-[#222222]'}`} />
+                <span>{isFavorite ? 'Saved' : 'Save'}</span>
+              </button>
             </div>
           </div>
 
-          {/* Right Floating Group: Price & Test Drive & Fullscreen */}
-          <div className="flex items-center gap-2">
-            <div className="bg-white border border-zinc-200/90 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs font-mono text-xs">
-              <span className="text-[10px] text-zinc-500 uppercase tracking-wider hidden sm:inline">CASH:</span>
-              <span className="font-black text-red-600 text-xs sm:text-[13px]">
-                KES {vehicle.priceKes.toLocaleString()}
-              </span>
+          {/* Listing Title */}
+          <h1 className="text-2xl sm:text-3xl font-semibold text-[#222222] tracking-tight pt-1">
+            {vehicle.year} {vehicleDisplayTitle}
+          </h1>
+
+          {/* Subtitle / Metadata strip */}
+          <div className="flex flex-wrap items-center gap-2 text-xs text-[#6a6a6a]">
+            <span className="font-semibold text-[#222222] inline-flex items-center gap-1">
+              ★ Grade {vehicle.auctionGrade || '4.5'}
+            </span>
+            <span>·</span>
+            <span>{vehicle.mileageKm.toLocaleString()} KM</span>
+            <span>·</span>
+            <button
+              onClick={() => setShowAuctionModal(true)}
+              className="underline text-[#222222] hover:text-[#ff385c] font-medium transition-colors cursor-pointer"
+            >
+              {vehicle.auctionHall || 'USS Tokyo'} Verified
+            </button>
+            <span>·</span>
+            <span>Stock #{vehicle.sbtStockId || vehicle.stockNo}</span>
+            <span>·</span>
+            <span className="text-[#222222] font-medium">Mombasa Yard Handover</span>
+          </div>
+        </div>
+
+        {/* 2. Airbnb Signature 5-Photo Bento Grid */}
+        <div className="relative mb-8 rounded-[16px] overflow-hidden select-none">
+          {/* Desktop Mosaic Bento Grid (5 Photos) */}
+          <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[420px] lg:h-[460px]">
+            {/* 1. Big Hero Left Photo (Spans 2 cols, 2 rows) */}
+            <div 
+              onClick={() => openLightboxWithIndex(0)}
+              className="col-span-2 row-span-2 relative cursor-pointer overflow-hidden group bg-[#f7f7f7]"
+            >
+              <img
+                src={allPhotos[0]?.url || vehicle.heroImage}
+                alt={`${vehicle.name} Main View`}
+                className="w-full h-full object-cover group-hover:scale-102 group-hover:brightness-95 transition-all duration-300"
+              />
             </div>
 
-            <button
-              onClick={() => onScheduleTestDrive(vehicle)}
-              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-2xs hover:shadow transition-all cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5"
+            {/* 2. Top-Mid Photo */}
+            <div 
+              onClick={() => openLightboxWithIndex(1)}
+              className="col-span-1 row-span-1 relative cursor-pointer overflow-hidden group bg-[#f7f7f7]"
             >
-              <span>Book Test Drive</span>
-            </button>
+              <img
+                src={allPhotos[1]?.url || allPhotos[0]?.url}
+                alt={`${vehicle.name} Cockpit View`}
+                className="w-full h-full object-cover group-hover:scale-102 group-hover:brightness-95 transition-all duration-300"
+              />
+            </div>
 
+            {/* 3. Top-Right Photo */}
+            <div 
+              onClick={() => openLightboxWithIndex(2)}
+              className="col-span-1 row-span-1 relative cursor-pointer overflow-hidden group bg-[#f7f7f7]"
+            >
+              <img
+                src={allPhotos[2]?.url || allPhotos[0]?.url}
+                alt={`${vehicle.name} Rear Profile`}
+                className="w-full h-full object-cover group-hover:scale-102 group-hover:brightness-95 transition-all duration-300"
+              />
+            </div>
+
+            {/* 4. Bottom-Mid Photo */}
+            <div 
+              onClick={() => openLightboxWithIndex(3)}
+              className="col-span-1 row-span-1 relative cursor-pointer overflow-hidden group bg-[#f7f7f7]"
+            >
+              <img
+                src={allPhotos[3]?.url || allPhotos[0]?.url}
+                alt={`${vehicle.name} Interior Cabin`}
+                className="w-full h-full object-cover group-hover:scale-102 group-hover:brightness-95 transition-all duration-300"
+              />
+            </div>
+
+            {/* 5. Bottom-Right Photo with "Show all photos" floating pill button */}
+            <div 
+              onClick={() => openLightboxWithIndex(4)}
+              className="col-span-1 row-span-1 relative cursor-pointer overflow-hidden group bg-[#f7f7f7]"
+            >
+              <img
+                src={allPhotos[4]?.url || allPhotos[0]?.url}
+                alt={`${vehicle.name} Engine Bay / Details`}
+                className="w-full h-full object-cover group-hover:scale-102 group-hover:brightness-95 transition-all duration-300"
+              />
+
+              {/* Floating "Show all photos" button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openLightboxWithIndex(0);
+                }}
+                className="absolute bottom-4 right-4 bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#222222] font-semibold text-xs px-3.5 py-2 rounded-lg shadow-sm flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-98"
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>Show all {allPhotos.length} photos</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Responsive 4:3 Carousel Stage */}
+          <div className="md:hidden relative aspect-[4/3] bg-[#f7f7f7] overflow-hidden rounded-[16px]">
+            <img
+              src={currentPhoto.url}
+              alt={vehicle.name}
+              className="w-full h-full object-cover cursor-zoom-in"
+              onClick={() => openLightboxWithIndex(activePhotoIndex)}
+            />
+            {/* Previous Image Arrow */}
+            <button
+              type="button"
+              aria-label="Previous image"
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevPhoto();
+              }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 hover:bg-white text-[#222222] rounded-full flex items-center justify-center shadow-md transition-all cursor-pointer border border-[#ebebeb]"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            {/* Next Image Arrow */}
+            <button
+              type="button"
+              aria-label="Next image"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNextPhoto();
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 hover:bg-white text-[#222222] rounded-full flex items-center justify-center shadow-md transition-all cursor-pointer border border-[#ebebeb]"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            {/* Counter Badge */}
+            <div className="absolute bottom-3 left-3 bg-white/95 text-[#222222] px-3 py-1 rounded-full text-xs font-semibold shadow-sm border border-[#ebebeb]">
+              {activePhotoIndex + 1} / {allPhotos.length}
+            </div>
+            {/* Fullscreen Button */}
             <button
               onClick={() => openLightboxWithIndex(activePhotoIndex)}
-              className="bg-white hover:bg-zinc-50 p-2 rounded-full border border-zinc-200/90 text-zinc-700 hover:text-red-600 shadow-2xs transition-colors cursor-pointer"
-              title="Fullscreen Lightbox"
+              className="absolute bottom-3 right-3 bg-white/95 text-[#222222] px-3 py-1 rounded-full text-xs font-semibold shadow-sm border border-[#ebebeb] flex items-center gap-1.5"
             >
-              <Maximize2 className="w-3.5 h-3.5" />
+              <Maximize2 className="w-3.5 h-3.5 text-[#ff385c]" />
+              <span>Photos</span>
             </button>
           </div>
         </div>
 
-        {/* 12-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* 3. Two-Column Asymmetrical Layout (60% Left Content / 40% Right Sticky Reserve Card) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: lg:col-span-7 (Khushi Motors 4:3 Gallery + Thumbnails + Opening Times + Sales Concierge) */}
-          <div className="lg:col-span-7">
+          {/* LEFT COLUMN: Deep Automotive Story & Provenance (lg:col-span-7) */}
+          <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* 1. Main 4:3 Image Stage */}
-            <div className="bg-white rounded-2xl shadow-sm border border-zinc-200/90 overflow-hidden mb-3">
-              <div 
-                className="relative aspect-[4/3] bg-zinc-100 cursor-zoom-in group select-none"
-                onClick={() => openLightboxWithIndex(activePhotoIndex)}
-              >
-                {/* Active Photo */}
-                <div className="absolute inset-0">
-                  <img
-                    src={currentPhoto.url}
-                    alt={`${vehicle.year} ${vehicle.name} - View ${activePhotoIndex + 1}`}
-                    className="w-full h-full object-cover transition-opacity duration-200"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </div>
-
-                {/* Previous Image Arrow Button */}
-                <button
-                  type="button"
-                  aria-label="Previous image"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevPhoto();
-                  }}
-                  className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-white text-zinc-800 rounded-full items-center justify-center shadow-lg transition-all duration-200 hover:scale-105 z-20 cursor-pointer border border-zinc-200/80 active:scale-95"
-                  title="Previous image"
-                >
-                  <ChevronLeft className="w-6 h-6 text-zinc-800" />
-                </button>
-
-                {/* Next Image Arrow Button */}
-                <button
-                  type="button"
-                  aria-label="Next image"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextPhoto();
-                  }}
-                  className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-white text-zinc-800 rounded-full items-center justify-center shadow-lg transition-all duration-200 hover:scale-105 z-20 cursor-pointer border border-zinc-200/80 active:scale-95"
-                  title="Next image"
-                >
-                  <ChevronRight className="w-6 h-6 text-zinc-800" />
-                </button>
-
-                {/* Bottom Overlay Bar */}
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex justify-between items-center z-20 pointer-events-none">
-                  {/* Counter Badge (clean white pill, NO black pills!) */}
-                  <div className="bg-white/95 backdrop-blur-md text-zinc-900 border border-zinc-200/90 font-mono font-bold px-3 py-1.5 rounded-full text-xs sm:text-sm shadow-md pointer-events-auto">
-                    {activePhotoIndex + 1} / {allPhotos.length}
-                  </div>
-
-                  {/* Magnifier and Fullscreen buttons */}
-                  <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openLightboxWithIndex(activePhotoIndex);
-                      }}
-                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 bg-white/95 hover:bg-white text-zinc-800 border border-zinc-200/90 shadow-md hover:shadow-lg cursor-pointer"
-                      title="Magnifier"
-                    >
-                      <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600" />
-                      <span className="hidden sm:inline">Magnifier</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openLightboxWithIndex(activePhotoIndex);
-                      }}
-                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/95 hover:bg-white rounded-full text-xs sm:text-sm font-semibold text-zinc-800 border border-zinc-200/90 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
-                      title="Fullscreen"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600" />
-                      <span className="hidden sm:inline">Fullscreen</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 2. Thumbnail Strip Grid */}
-            <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-3 sm:p-4 mb-4">
-              <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-9 lg:grid-cols-7 xl:grid-cols-8 gap-2">
-                {allPhotos.map((photo, idx) => {
-                  const isActive = idx === activePhotoIndex;
-                  return (
-                    <button
-                      key={photo.id || idx}
-                      type="button"
-                      title="Click to preview, double-click for fullscreen gallery"
-                      onClick={() => setActivePhotoIndex(idx)}
-                      onDoubleClick={() => openLightboxWithIndex(idx)}
-                      className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all duration-150 cursor-pointer ${
-                        isActive
-                          ? 'border-red-600 ring-2 ring-red-600/25 shadow-xs scale-102'
-                          : 'border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100'
-                      }`}
-                    >
-                      <img
-                        src={photo.url}
-                        alt={photo.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="object-cover w-full h-full"
-                      />
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* 3. Opening Times & Sales Representatives Cards (Desktop Grid) */}
-            <div className="hidden lg:grid lg:grid-cols-2 gap-3 sm:gap-4 mt-2">
-              
-              {/* Card 1: Opening times */}
-              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5 transform transition-all duration-300 hover:shadow-md">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  <h3 className="text-base sm:text-lg font-bold text-zinc-950 leading-tight">
-                    Opening times
-                  </h3>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
-                    <span className="text-xs leading-none">🇰🇪</span>
-                    <span className="text-[11px] font-semibold text-zinc-800">Mombasa</span>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1.5 animate-pulse mb-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-                    Open now
-                  </span>
-
-                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 text-xs sm:text-[13px]">
-                    <span className="text-zinc-600">Monday to Friday:</span>
-                    <span className="font-bold text-zinc-950">8:00 AM - 5:30 PM</span>
-                  </div>
-                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 text-xs sm:text-[13px]">
-                    <span className="text-zinc-600">Saturday:</span>
-                    <span className="font-bold text-zinc-950">9:00 AM - 2:00 PM</span>
-                  </div>
-                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 text-xs sm:text-[13px]">
-                    <span className="text-zinc-600">Sunday:</span>
-                    <span className="font-bold text-zinc-950">Closed (By Appt)</span>
-                  </div>
-                  <div className="flex items-center justify-between py-1.5 text-xs sm:text-[13px]">
-                    <span className="text-zinc-600">Public Holidays:</span>
-                    <span className="font-bold text-zinc-950">9:00 AM - 1:00 PM</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 2: Sales representatives */}
-              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5 transform transition-all duration-300 hover:shadow-md">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  <h3 className="text-base sm:text-lg font-bold text-zinc-950 leading-tight">
-                    Sales desk
-                  </h3>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
-                    <span className="text-xs leading-none">🇰🇪</span>
-                    <span className="text-[11px] font-semibold text-zinc-800">Mombasa</span>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  {/* Rep 1: Showroom Concierge */}
-                  <div className="flex items-center justify-between py-1.5 border-b border-zinc-100 gap-2">
-                    <div className="min-w-0">
-                      <p className="text-xs sm:text-[13px] font-bold text-zinc-950 truncate">Mombasa Showroom Desk</p>
-                      <span className="text-[11px] text-zinc-500 font-mono">0786 000 040</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <a
-                        href="tel:+254786000040"
-                        aria-label="Call Showroom Desk"
-                        className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
-                        title="Call +254 786 000 040"
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href={`https://wa.me/254786000040?text=${encodeURIComponent(
-                          `Hi, I'm interested in this vehicle:
-
-${vehicle.year} ${vehicle.name}
-
-Vehicle Details:
-* Make: ${vehicle.make}
-* Model: ${vehicle.model}
-* Stock #: ${vehicle.sbtStockId || vehicle.stockNo}
-* Price: KES ${vehicle.priceKes.toLocaleString()}
-
-Please provide more information about this vehicle.`
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="WhatsApp Showroom Desk"
-                        className="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
-                        title="WhatsApp +254 786 000 040"
-                      >
-                        <MessageCircle className="w-4 h-4 fill-white text-white" />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Rep 2: Japan Import & Customs Desk */}
-                  <div className="flex items-center justify-between py-1.5 gap-2">
-                    <div className="min-w-0">
-                      <p className="text-xs sm:text-[13px] font-bold text-zinc-950 truncate">Japan Orders & Port Desk</p>
-                      <span className="text-[11px] text-zinc-500 font-mono">0180 423 075</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <a
-                        href="tel:+254180423075"
-                        aria-label="Call Japan Import Desk"
-                        className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
-                        title="Call +254 180 423 075"
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href={`https://wa.me/254180423075?text=${encodeURIComponent(
-                          `Hi, I'm interested in this vehicle:
-
-${vehicle.year} ${vehicle.name}
-
-Vehicle Details:
-* Make: ${vehicle.make}
-* Model: ${vehicle.model}
-* Stock #: ${vehicle.sbtStockId || vehicle.stockNo}
-* Price: KES ${vehicle.priceKes.toLocaleString()}
-
-Please provide more information about this vehicle.`
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="WhatsApp Japan Import Desk"
-                        className="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
-                        title="WhatsApp +254 180 423 075"
-                      >
-                        <MessageCircle className="w-4 h-4 fill-white text-white" />
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Right Column: lg:col-span-5 (Executive Vehicle Card: Badges, Title, Pricing, Actions, Specs) */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="bg-white border border-[#ebebeb] rounded-[14px] p-4 sm:p-5 shadow-xs space-y-3.5">
-              
-              {/* Header Badges & Stock Number */}
+            {/* Importer Provenance Row */}
+            <div className="flex items-center justify-between pb-6 border-b border-[#ebebeb]">
               <div className="space-y-1">
-                <div className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-mono uppercase tracking-wider text-[#6a6a6a]">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#fff0f3] text-[#ff385c] font-medium border border-[#ff385c]/25">
-                    Direct Japanese Import
-                  </span>
-                  <span className="bg-[#f7f7f7] border border-[#ebebeb] text-[#222222] px-2.5 py-0.5 rounded-full font-mono font-medium">
-                    Stock: {vehicle.sbtStockId || vehicle.stockNo}
-                  </span>
-                  <span className="bg-[#f7f7f7] border border-[#ebebeb] text-[#6a6a6a] px-2.5 py-0.5 rounded-full font-mono">
-                    Code: {vehicle.modelCode || 'CBA-GRJ120W'}
-                  </span>
-                </div>
-
-                <h1 className="text-xl sm:text-2xl font-medium text-[#222222] tracking-tight leading-snug">
-                  {vehicle.year} {vehicleDisplayTitle}
-                </h1>
-
-                <p className="text-xs text-[#6a6a6a] font-normal">
-                  {vehicle.tagline || vehicle.moniker}
+                <h2 className="text-xl font-semibold text-[#222222]">
+                  Directly Imported & Verified by Alberka Enterprises
+                </h2>
+                <p className="text-xs text-[#6a6a6a]">
+                  Tokyo Wholesale Auction Partner · 7+ Years Provenance · Ganjoni Mombasa Showroom
                 </p>
               </div>
+              <div className="w-12 h-12 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center text-[#ff385c] font-bold text-sm shrink-0 shadow-xs">
+                AE
+              </div>
+            </div>
 
-              {/* Price Container */}
-              <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-3.5 sm:p-4 space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider font-medium block">
-                    DELIVERED CASH PRICE
-                  </span>
-                  <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-[#fff0f3] text-[#ff385c] border border-[#ff385c]/25 font-mono shadow-2xs whitespace-nowrap shrink-0">
-                    Save KES {pricing.savingsKes.toLocaleString()}
-                  </span>
+            {/* Key Highlights / Value Reassurance Strip */}
+            <div className="space-y-4 py-2 border-b border-[#ebebeb] pb-6">
+              <div className="flex items-start gap-4">
+                <Award className="w-5 h-5 text-[#222222] shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <h3 className="text-sm font-semibold text-[#222222]">
+                    Verified Japanese Auction Grade {vehicle.auctionGrade || '4.5'}
+                  </h3>
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed">
+                    Authenticated {vehicle.auctionHall || 'USS Tokyo'} inspection sheet confirming pristine panels and zero undisclosed chassis repair.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <ShieldCheck className="w-5 h-5 text-[#222222] shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <h3 className="text-sm font-semibold text-[#222222]">
+                    100-Point Pre-Export JEVIC Audit
+                  </h3>
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed">
+                    Rigorous radiation check, structural weld assessment, and odometer certification prior to shipping.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <MapPin className="w-5 h-5 text-[#222222] shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <h3 className="text-sm font-semibold text-[#222222]">
+                    Physical Handover at Ganjoni Showroom, Mombasa
+                  </h3>
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed">
+                    Test drive and inspect on-site next to Ganjoni Primary School, Archbishop Makarios Rd.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Clock className="w-5 h-5 text-[#222222] shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <h3 className="text-sm font-semibold text-[#222222]">
+                    Zero Clearing Delays & KRA Duty Inclusive
+                  </h3>
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed">
+                    Delivered price includes all import duties, port handling, KRA clearance, and registration guidance.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* About this Vehicle */}
+            <div className="space-y-3 py-2 border-b border-[#ebebeb] pb-6">
+              <h2 className="text-lg font-semibold text-[#222222]">
+                About this vehicle
+              </h2>
+              <p className="text-sm text-[#222222] leading-relaxed font-normal">
+                {vehicle.tagline || vehicle.moniker}. This {vehicle.year} {vehicle.name} has been hand-selected from Japanese wholesale auctions for optimal mechanical durability and high resale retention on Kenyan roads.
+              </p>
+            </div>
+
+            {/* 6 Key Mechanical & Inspection Metrics */}
+            <div className="space-y-3 py-2 border-b border-[#ebebeb] pb-6">
+              <h2 className="text-lg font-semibold text-[#222222]">
+                Key specifications & condition
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="p-3 bg-white border border-[#ebebeb] rounded-[12px] space-y-0.5">
+                  <span className="text-[10px] text-[#6a6a6a] uppercase block font-medium">Auction Grade</span>
+                  <p className="text-sm font-semibold text-[#222222]">Grade {vehicle.auctionGrade || '4.5'}</p>
+                  <p className="text-[11px] text-[#6a6a6a] truncate">{vehicle.auctionHall || 'USS Tokyo'}</p>
                 </div>
 
-                <div className="flex items-baseline gap-2 pt-0.5">
-                  <span className="text-2xl sm:text-3xl font-semibold text-[#222222] font-mono tracking-tight leading-none">
-                    KES {vehicle.priceKes.toLocaleString()}
-                  </span>
+                <div className="p-3 bg-white border border-[#ebebeb] rounded-[12px] space-y-0.5">
+                  <span className="text-[10px] text-[#6a6a6a] uppercase block font-medium">Mileage</span>
+                  <p className="text-sm font-semibold text-[#222222]">{vehicle.mileageKm.toLocaleString()} KM</p>
+                  <p className="text-[11px] text-[#6a6a6a] truncate">JEVIC Certified</p>
+                </div>
+
+                <div className="p-3 bg-white border border-[#ebebeb] rounded-[12px] space-y-0.5">
+                  <span className="text-[10px] text-[#6a6a6a] uppercase block font-medium">Drivetrain</span>
+                  <p className="text-sm font-semibold text-[#222222] truncate">{vehicle.drivetrain || '4WD'}</p>
+                  <p className="text-[11px] text-[#6a6a6a] truncate">{vehicle.transmission || 'Automatic'}</p>
+                </div>
+
+                <div className="p-3 bg-white border border-[#ebebeb] rounded-[12px] space-y-0.5">
+                  <span className="text-[10px] text-[#6a6a6a] uppercase block font-medium">Engine</span>
+                  <p className="text-sm font-semibold text-[#222222] truncate">{vehicle.engine}</p>
+                  <p className="text-[11px] text-[#6a6a6a] truncate">{vehicle.power || 'Direct Injection'}</p>
+                </div>
+
+                <div className="p-3 bg-white border border-[#ebebeb] rounded-[12px] space-y-0.5">
+                  <span className="text-[10px] text-[#6a6a6a] uppercase block font-medium">Fuel & Capacity</span>
+                  <p className="text-sm font-semibold text-[#222222] truncate">{vehicle.fuelType.toUpperCase()}</p>
+                  <p className="text-[11px] text-[#6a6a6a] truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
+                </div>
+
+                <div className="p-3 bg-white border border-[#ebebeb] rounded-[12px] space-y-0.5">
+                  <span className="text-[10px] text-[#6a6a6a] uppercase block font-medium">Location</span>
+                  <p className="text-sm font-semibold text-[#222222] truncate">Mombasa Yard</p>
+                  <p className="text-[11px] text-[#6a6a6a] truncate">Ganjoni Showroom</p>
+                </div>
+              </div>
+            </div>
+
+            {/* View Japanese Auction Sheet Trigger */}
+            <div className="flex items-center justify-between p-4 bg-[#f7f7f7] border border-[#ebebeb] rounded-[14px]">
+              <div className="flex items-center gap-3">
+                <FileText className="w-5 h-5 text-[#ff385c]" />
+                <div>
+                  <h4 className="text-xs font-semibold text-[#222222]">Original Japanese Auction Sheet</h4>
+                  <p className="text-[11px] text-[#6a6a6a]">Inspect the unedited USS Tokyo inspection sheet with inspector markings</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowAuctionModal(true)}
+                className="bg-white hover:bg-[#f7f7f7] border border-[#222222] text-[#222222] px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer transition-colors shrink-0"
+              >
+                View Sheet
+              </button>
+            </div>
+
+            {/* Opening Times & Sales Desks */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              {/* Card 1: Opening Times */}
+              <div className="bg-white rounded-[14px] border border-[#ebebeb] p-4 sm:p-5">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-[#222222]">Opening Times</h3>
+                  <span className="text-[11px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium">Open now</span>
+                </div>
+                <div className="space-y-1.5 text-xs">
+                  <div className="flex justify-between py-1 border-b border-[#ebebeb]/60">
+                    <span className="text-[#6a6a6a]">Mon - Fri:</span>
+                    <span className="font-medium text-[#222222]">8:00 AM - 5:30 PM</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-[#ebebeb]/60">
+                    <span className="text-[#6a6a6a]">Saturday:</span>
+                    <span className="font-medium text-[#222222]">9:00 AM - 2:00 PM</span>
+                  </div>
+                  <div className="flex justify-between py-1">
+                    <span className="text-[#6a6a6a]">Sunday:</span>
+                    <span className="font-medium text-[#222222]">Closed (By Appt)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Concierge Desk */}
+              <div className="bg-white rounded-[14px] border border-[#ebebeb] p-4 sm:p-5">
+                <h3 className="text-sm font-semibold text-[#222222] mb-3">Direct Concierge</h3>
+                <div className="space-y-2.5 text-xs">
+                  <div className="flex items-center justify-between py-1 border-b border-[#ebebeb]/60">
+                    <div>
+                      <p className="font-medium text-[#222222]">Showroom Desk</p>
+                      <span className="text-[11px] text-[#6a6a6a]">0786 000 040</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <a href="tel:+254786000040" className="w-7 h-7 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] border border-[#ebebeb] text-[#222222] flex items-center justify-center">
+                        <Phone className="w-3 h-3" />
+                      </a>
+                      <a href={`https://wa.me/254786000040?text=${encodeURIComponent(`Hi, I'm interested in ${vehicle.year} ${vehicle.name} (Stock: ${vehicle.sbtStockId || vehicle.stockNo}).`)}`} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                        <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between py-1">
+                    <div>
+                      <p className="font-medium text-[#222222]">Japan Orders Desk</p>
+                      <span className="text-[11px] text-[#6a6a6a]">0180 423 075</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <a href="tel:+254180423075" className="w-7 h-7 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] border border-[#ebebeb] text-[#222222] flex items-center justify-center">
+                        <Phone className="w-3 h-3" />
+                      </a>
+                      <a href={`https://wa.me/254180423075?text=${encodeURIComponent(`Hi, I'm interested in ${vehicle.year} ${vehicle.name} (Stock: ${vehicle.sbtStockId || vehicle.stockNo}).`)}`} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                        <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: Authentic Airbnb Sticky Floating Reserve Card (lg:col-span-5) */}
+          <div className="lg:col-span-5 sticky top-24 space-y-4">
+            <div className="bg-white border border-[#ebebeb] rounded-[16px] p-6 shadow-[0_6px_16px_rgba(0,0,0,0.1)] space-y-4 text-left">
+              
+              {/* Price & Rating Header */}
+              <div className="flex items-baseline justify-between gap-2">
+                <div>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-2xl sm:text-3xl font-semibold text-[#222222] tracking-tight">
+                      KES {vehicle.priceKes.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-[#6a6a6a]">delivered</span>
+                  </div>
                   {pricing.hasDiscount && (
-                    <span className="text-xs font-mono text-[#6a6a6a] line-through">
+                    <span className="text-xs text-[#6a6a6a] line-through block mt-0.5">
                       KES {pricing.originalPrice.toLocaleString()}
                     </span>
                   )}
                 </div>
 
-                <p className="text-[11px] text-[#6a6a6a] leading-tight">
-                  Includes KRA customs duty, port clearance, 100-point overhaul & Mombasa yard handover.
-                </p>
+                <div className="text-right">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#222222]">
+                    ★ Grade {vehicle.auctionGrade || '4.5'}
+                  </span>
+                  <span className="text-[11px] text-[#6a6a6a] block underline cursor-pointer" onClick={() => setShowAuctionModal(true)}>
+                    USS Tokyo
+                  </span>
+                </div>
+              </div>
 
-                {/* Primary Action Buttons (Airbnb pill styling) */}
-                <div className="space-y-2 pt-1">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <button
-                      onClick={() => onScheduleTestDrive(vehicle)}
-                      className="bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-2 px-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-98"
-                    >
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>Book Test Drive</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (onOpenWhispers) onOpenWhispers(vehicle.id);
-                      }}
-                      className="bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] hover:border-[#dddddd] font-medium py-2 px-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs active:scale-98"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5 fill-[#25D366] text-[#25D366]" />
-                      <span>Chat WhatsApp</span>
-                    </button>
+              {/* Segmented Reservation Box */}
+              <div className="border border-[#222222] rounded-[10px] overflow-hidden text-xs">
+                <div className="grid grid-cols-2 border-b border-[#222222]">
+                  <div className="p-2.5 border-r border-[#222222]">
+                    <span className="text-[9px] uppercase tracking-wider text-[#222222] font-bold block">
+                      HANDOVER YARD
+                    </span>
+                    <span className="text-[#222222] font-medium block truncate">Mombasa Showroom</span>
                   </div>
-
-                  <button
-                    onClick={() => setShowAuctionModal(true)}
-                    className="w-full bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] font-medium py-2 px-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  >
-                    <FileText className="w-3.5 h-3.5 text-[#ff385c]" />
-                    <span>View Japanese Auction Sheet (Grade {vehicle.auctionGrade || '4.5'})</span>
-                  </button>
+                  <div className="p-2.5">
+                    <span className="text-[9px] uppercase tracking-wider text-[#222222] font-bold block">
+                      DELIVERY STATUS
+                    </span>
+                    <span className="text-[#222222] font-medium block truncate">Ready / Available</span>
+                  </div>
+                </div>
+                <div className="p-2.5">
+                  <span className="text-[9px] uppercase tracking-wider text-[#222222] font-bold block">
+                    PAYMENT OPTIONS
+                  </span>
+                  <span className="text-[#222222] font-medium block">Direct Cash / SACCO / Bank Finance</span>
                 </div>
               </div>
 
-              {/* 6 Key Mechanical & Inspection Metrics */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
-                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Auction Grade</span>
-                  <p className="text-[13px] font-medium text-[#222222] font-mono">Grade {vehicle.auctionGrade || '4.5'}</p>
-                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.auctionHall || 'USS Tokyo'}</p>
-                </div>
-
-                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
-                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Mileage</span>
-                  <p className="text-[13px] font-medium text-[#222222] font-mono">{vehicle.mileageKm.toLocaleString()} KM</p>
-                  <p className="text-[10px] text-[#6a6a6a] truncate">JEVIC Certified</p>
-                </div>
-
-                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
-                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Drivetrain</span>
-                  <p className="text-[13px] font-medium text-[#222222] truncate">{vehicle.drivetrain || '4WD'}</p>
-                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.transmission || 'Automatic'}</p>
-                </div>
-
-                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
-                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Engine</span>
-                  <p className="text-[13px] font-medium text-[#222222] truncate">{vehicle.engine}</p>
-                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.power || 'Direct Injection'}</p>
-                </div>
-
-                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
-                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Fuel & Capacity</span>
-                  <p className="text-[13px] font-medium text-[#222222] truncate">{vehicle.fuelType.toUpperCase()}</p>
-                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
-                </div>
-
-                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
-                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Location</span>
-                  <p className="text-[13px] font-medium text-[#222222] truncate">Mombasa Yard</p>
-                  <p className="text-[10px] text-[#6a6a6a] truncate">Ganjoni Showroom</p>
-                </div>
-              </div>
-
-              {/* Compact Specs Chip Strip */}
-              <div className="pt-0.5 flex flex-wrap items-center gap-1 text-[10.5px] font-mono text-[#6a6a6a]">
-                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">RHD</span>
-                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">Zero Accident</span>
-                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">{vehicle.fuelEconomy || '14.2 km/L'}</span>
-                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">{vehicle.dimensions || '4.46m × 1.80m'}</span>
-              </div>
-
-              {/* Share & Print Buttons */}
-              <div className="pt-2 border-t border-zinc-100 flex items-center justify-between gap-2">
+              {/* Rausch CTA Action */}
+              <div className="space-y-2 pt-1">
                 <button
-                  onClick={handleShareVehicle}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
-                    copiedLink
-                      ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-semibold'
-                      : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-950'
-                  }`}
-                  title="Share vehicle link"
+                  onClick={() => {
+                    if (onOpenWhispers) onOpenWhispers(vehicle.id);
+                  }}
+                  className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer active:scale-98"
                 >
-                  {copiedLink ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
-                      <span>Link Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Share2 className="w-3.5 h-3.5 text-zinc-600" />
-                      <span>Share Vehicle</span>
-                    </>
-                  )}
+                  <MessageCircle className="w-4 h-4 fill-white text-white" />
+                  <span>Reserve Vehicle on WhatsApp</span>
                 </button>
 
                 <button
-                  onClick={handleDownloadPhotoList}
-                  className="px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-                  title="Print or save vehicle specification dossier"
+                  onClick={() => onScheduleTestDrive(vehicle)}
+                  className="w-full bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] hover:border-[#dddddd] font-medium py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
-                  <Download className="w-3.5 h-3.5 text-zinc-600" />
+                  <Calendar className="w-3.5 h-3.5 text-[#ff385c]" />
+                  <span>Book Showroom Test Drive</span>
+                </button>
+              </div>
+
+              {/* Reassurance Microcopy */}
+              <p className="text-center text-xs text-[#6a6a6a]">
+                You won't be charged yet · Free Japanese provenance dossier
+              </p>
+
+              {/* Transparent Cost Breakdown Table */}
+              <div className="pt-4 border-t border-[#ebebeb] space-y-2.5 text-xs">
+                <div className="flex justify-between text-[#6a6a6a]">
+                  <span className="underline">CIF Tokyo Port to Mombasa</span>
+                  <span>KES {Math.round(vehicle.priceKes * 0.68).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-[#6a6a6a]">
+                  <span className="underline">KRA Customs Duty & Port Charges</span>
+                  <span>KES {Math.round(vehicle.priceKes * 0.27).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-[#6a6a6a]">
+                  <span className="underline">100-Point Overhaul & Handover</span>
+                  <span>KES {Math.round(vehicle.priceKes * 0.05).toLocaleString()}</span>
+                </div>
+                <div className="pt-2 border-t border-[#ebebeb] flex justify-between font-semibold text-[#222222] text-sm">
+                  <span>Total Delivered Price</span>
+                  <span>KES {vehicle.priceKes.toLocaleString()}</span>
+                </div>
+              </div>
+
+              {/* Share & Print Buttons */}
+              <div className="pt-2 border-t border-[#ebebeb] flex items-center justify-between text-xs">
+                <button
+                  onClick={handleShareVehicle}
+                  className="text-[#6a6a6a] hover:text-[#222222] inline-flex items-center gap-1.5 cursor-pointer font-medium"
+                >
+                  <Share2 className="w-3.5 h-3.5" />
+                  <span>Share</span>
+                </button>
+                <button
+                  onClick={handleDownloadPhotoList}
+                  className="text-[#6a6a6a] hover:text-[#222222] inline-flex items-center gap-1.5 cursor-pointer font-medium"
+                >
+                  <Download className="w-3.5 h-3.5" />
                   <span>Print Dossier</span>
                 </button>
               </div>
 
             </div>
-
-            {/* Mobile-Only Opening Times & Sales Reps */}
-            <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              {/* Card 1: Opening times */}
-              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-sm font-bold text-zinc-950 leading-tight">Opening times</h3>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
-                    <span className="text-xs leading-none">🇰🇪</span>
-                    <span className="text-[10px] font-semibold text-zinc-800">Mombasa</span>
-                  </div>
-                </div>
-                <div className="space-y-1.5 text-xs">
-                  <div className="flex items-center justify-between py-1 border-b border-zinc-100">
-                    <span className="text-zinc-600">Mon - Fri:</span>
-                    <span className="font-bold text-zinc-950">8:00 AM - 5:30 PM</span>
-                  </div>
-                  <div className="flex items-center justify-between py-1 border-b border-zinc-100">
-                    <span className="text-zinc-600">Saturday:</span>
-                    <span className="font-bold text-zinc-950">9:00 AM - 2:00 PM</span>
-                  </div>
-                  <div className="flex items-center justify-between py-1">
-                    <span className="text-zinc-600">Sunday:</span>
-                    <span className="font-bold text-zinc-950">Closed (By Appt)</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 2: Sales desk */}
-              <div className="bg-white rounded-2xl shadow-xs border border-zinc-200/90 p-4 sm:p-5">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-sm font-bold text-zinc-950 leading-tight">Sales desk</h3>
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 shadow-2xs">
-                    <span className="text-xs leading-none">🇰🇪</span>
-                    <span className="text-[10px] font-semibold text-zinc-800">Direct</span>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between py-1 border-b border-zinc-100">
-                    <div>
-                      <p className="text-xs font-bold text-zinc-950">Showroom Desk</p>
-                      <span className="text-[10px] text-zinc-500 font-mono">0786 000 040</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <a href="tel:+254786000040" className="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xs">
-                        <Phone className="w-3 h-3" />
-                      </a>
-                      <a href={`https://wa.me/254786000040?text=${encodeURIComponent(`Hi, I'm interested in ${vehicle.year} ${vehicle.name} (Stock: ${vehicle.sbtStockId || vehicle.stockNo}).`)}`} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-2xs">
-                        <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between py-1">
-                    <div>
-                      <p className="text-xs font-bold text-zinc-950">Japan Orders</p>
-                      <span className="text-[10px] text-zinc-500 font-mono">0180 423 075</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <a href="tel:+254180423075" className="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xs">
-                        <Phone className="w-3 h-3" />
-                      </a>
-                      <a href={`https://wa.me/254180423075?text=${encodeURIComponent(`Hi, I'm interested in ${vehicle.year} ${vehicle.name} (Stock: ${vehicle.sbtStockId || vehicle.stockNo}).`)}`} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-2xs">
-                        <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
 
         </div>

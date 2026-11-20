@@ -241,7 +241,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
         </div>
 
         {/* 6-Specification Matrix (Quiet, Architectural) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 bg-[#f7f7f7] border border-[#ebebeb] rounded-[10px] p-3 sm:p-3.5 text-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 bg-white border border-[#ebebeb] rounded-[10px] p-3 sm:p-3.5 text-xs">
           {/* Mileage */}
           <div className="flex items-center gap-2 min-w-0">
             <Gauge className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
@@ -422,7 +422,7 @@ export const VehicleSbtListCardSkeleton: React.FC = () => {
         </div>
         <div className="h-6 w-3/4 bg-[#f7f7f7] rounded" />
         <div className="h-4 w-1/2 bg-[#f7f7f7] rounded" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 bg-[#f7f7f7] border border-[#ebebeb] rounded-[10px] p-3 sm:p-3.5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 bg-white border border-[#ebebeb] rounded-[10px] p-3 sm:p-3.5">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="h-8 bg-[#ebebeb]/60 rounded" />
           ))}
