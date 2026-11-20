@@ -7,7 +7,6 @@ import {
   User,
   MessageCircle,
   Tag,
-  CheckCircle2,
   ArrowRight,
   ShieldCheck,
   ExternalLink,
@@ -16,6 +15,7 @@ import {
 import { BlogPost } from '../data/blogs';
 import { Vehicle } from '../data/vehicles';
 import { SkeletonImage } from './SkeletonImage';
+import { dynaura } from 'dynaura';
 
 interface BlogPostViewProps {
   post: BlogPost;
@@ -69,6 +69,10 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
       navigator.clipboard.writeText(`${post.title} — ${url}`);
       setCopiedToast(true);
       setTimeout(() => setCopiedToast(false), 2500);
+      dynaura.success({
+        title: 'Link copied',
+        description: 'Article link is ready to share.',
+      });
     }
   };
 
@@ -357,14 +361,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
               </div>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* Copy Link Toast */}
-      {copiedToast && (
-        <div className="fixed bottom-6 right-6 z-[9999] bg-white text-[#222222] px-4 py-2.5 rounded-full shadow-2xl text-xs font-semibold flex items-center gap-2 border border-[#ebebeb] animate-fadeIn">
-          <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
-          <span>Article link copied to clipboard</span>
         </div>
       )}
 

@@ -7,6 +7,7 @@ import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import type { HeroSearchFilters } from './components/Hero';
+import { Toaster, dynaura } from 'dynaura';
 import { VehicleCard, VehicleCardSkeleton } from './components/VehicleCard';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
 import { VehicleStoryView } from './components/VehicleStoryView';
@@ -280,9 +281,16 @@ export function App() {
   };
 
   const handleToggleFavorite = (id: string) => {
+    const isAdding = !favorites.includes(id);
     setFavorites((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+    dynaura.success({
+      title: isAdding ? 'Saved to favorites' : 'Removed from favorites',
+      description: isAdding
+        ? 'Open the saved list from the heart icon in the header.'
+        : 'The vehicle has been removed from your saved list.',
+    });
   };
 
   const handleScheduleTestDrive = (vehicle: Vehicle) => {
@@ -858,6 +866,24 @@ export function App() {
         initialVehicleId={whispersVehicleId || selectedVehicle?.id}
         vehicles={vehicles}
         onSelectVehicle={handleSelectVehicle}
+      />
+
+      {/* Single global notification island */}
+      <Toaster
+        position="top"
+        queue
+        maxQueue={4}
+        theme={{
+          background: '#171717',
+          foreground: '#ffffff',
+          muted: '#b4b4b4',
+          ring: 'rgba(255, 255, 255, 0.14)',
+          button: '#DC2626',
+          success: '#22c55e',
+          error: '#DC2626',
+          warning: '#f59e0b',
+          info: '#38bdf8',
+        }}
       />
 
     </div>

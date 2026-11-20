@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { dynaura } from 'dynaura';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -439,6 +440,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
         });
         setCopiedLink(true);
         setTimeout(() => setCopiedLink(false), 2500);
+        dynaura.success({ title: 'Shared', description: 'Vehicle link sent successfully.' });
         return;
       } catch (err: any) {
         if (err?.name === 'AbortError') return;
@@ -448,6 +450,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
     copyToClipboard(shareUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
+    dynaura.success({ title: 'Link copied', description: 'Vehicle link is ready to share.' });
   };
 
   const handleDownloadPhotoList = () => {

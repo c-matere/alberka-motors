@@ -1103,3 +1103,9 @@ div[id="customer-reviews"] {
     transform: none !important;
   }
 }
+
+/* 8. Dynaura notification island — match the site's type stack and brand red */
+.dynaura-root {
+  --dynaura-font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --dynaura-duration: 420ms;
+}
