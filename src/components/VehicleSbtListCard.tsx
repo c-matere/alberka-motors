@@ -14,7 +14,8 @@ import {
   FileText,
   Camera,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  MessageCircle
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
 import { getVehiclePricing } from '../data/modelHubs';
