@@ -77,13 +77,13 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`bg-white rounded-[12px] border border-[#ebebeb] hover:border-[#dddddd] p-3 text-left relative group cursor-pointer transition-all duration-200 hover:shadow-xs flex flex-col justify-between ${
+      className={`bg-white rounded-[14px] border border-[#ebebeb] hover:border-[#dddddd] p-3 text-left relative group cursor-pointer transition-all duration-300 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 flex flex-col justify-between ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
     >
       <div>
         {/* 1. Full-Bleed Photograph Container (Airbnb 12px Card Pattern) */}
-        <div className="relative aspect-[4/3] rounded-[10px] overflow-hidden bg-[#f7f7f7] mb-2.5 group/img">
+        <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden bg-[#f7f7f7] border border-[#ebebeb]/50 mb-2.5 group/img">
           <img
             src={vehicle.heroImage}
             alt={vehicle.name}
@@ -119,7 +119,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {/* Bottom-Left: Savings Pill */}
           {pricing.hasDiscount && (
             <div className="absolute bottom-2 left-2 z-10">
-              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[9.5px] font-semibold bg-white/95 backdrop-blur-md text-[#ff385c] border border-black/5 font-mono shadow-2xs whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[9.5px] font-medium bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 font-mono shadow-2xs whitespace-nowrap shrink-0">
                 Save KES {pricing.savingsKes.toLocaleString()}
               </span>
             </div>
@@ -128,7 +128,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
         {/* 2. Content Block: Title + Metadata */}
         <div className="space-y-0.5 px-0.5">
-          <h3 className="text-[14px] sm:text-[15px] font-medium text-[#222222] group-hover:text-[#ff385c] transition-colors truncate leading-snug">
+          <h3 className="text-[14px] sm:text-[15px] font-medium text-[#222222] group-hover:text-black transition-colors truncate leading-snug">
             {vehicle.year} {vehicle.name}
           </h3>
           <p className="text-xs text-[#6a6a6a] font-normal truncate">
@@ -148,7 +148,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </span>
         </div>
 
-        <span className="text-xs font-medium text-[#ff385c] inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
+        <span className="text-xs font-semibold text-[#222222] inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
           <span>Inspect</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </span>
@@ -160,9 +160,9 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 // Airbnb-Style Loading Skeleton for Vehicle Cards
 export const VehicleCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white rounded-[12px] border border-[#ebebeb] p-3 flex flex-col justify-between animate-pulse text-left">
+    <div className="bg-white rounded-[14px] border border-[#ebebeb] p-3 flex flex-col justify-between animate-pulse text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
       <div>
-        <div className="aspect-[4/3] rounded-[10px] bg-[#f7f7f7] border border-[#ebebeb] mb-2.5" />
+        <div className="aspect-[4/3] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb] mb-2.5" />
         <div className="space-y-1.5 px-0.5">
           <div className="h-4 w-3/4 bg-[#f7f7f7] rounded" />
           <div className="h-3 w-1/2 bg-[#f7f7f7] rounded" />

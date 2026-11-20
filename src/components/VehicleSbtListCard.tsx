@@ -115,11 +115,11 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
   return (
     <div
       onClick={() => onSelect(vehicle)}
-      className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-3.5 sm:p-4 transition-all duration-200 flex flex-col lg:flex-row gap-4 lg:gap-5 text-left relative group cursor-pointer hover:shadow-xs"
+      className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[16px] p-3.5 sm:p-4 transition-all duration-300 flex flex-col lg:flex-row gap-4 lg:gap-5 text-left relative group cursor-pointer shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5"
     >
       {/* 1. LEFT COLUMN: Media Viewer & Gallery Preview */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2">
-        <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden bg-[#f7f7f7] border border-[#ebebeb] group/img">
+        <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden bg-[#f7f7f7] border border-[#ebebeb]/60 group/img">
           <img
             src={activeImageUrl}
             alt={vehicle.name}
@@ -158,7 +158,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
           {/* Bottom-Left: Photo Count Pill */}
           <div className="absolute bottom-2.5 left-2.5 z-10">
             <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full shadow-2xs">
-              <Camera className="w-3 h-3 text-[#ff385c]" />
+              <Camera className="w-3 h-3 text-[#222222]" />
               <span>{vehicle.gallery?.length || 15} Photos</span>
             </span>
           </div>
@@ -181,7 +181,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
                 onClick={() => setActiveThumbIndex(tIdx)}
                 className={`aspect-[4/3] rounded-[8px] overflow-hidden border transition-all cursor-pointer bg-[#f7f7f7] ${
                   activeThumbIndex === tIdx
-                    ? 'border-[#ff385c] ring-1 ring-[#ff385c]/30 shadow-2xs scale-102'
+                    ? 'border-[#222222] ring-1 ring-[#222222]/30 shadow-2xs scale-102'
                     : 'border-[#ebebeb] opacity-75 hover:opacity-100 hover:border-[#dddddd]'
                 }`}
                 title={`Preview photo ${tIdx + 1}`}
@@ -199,7 +199,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
         {/* Identity & Reference Header */}
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="font-mono text-[11px] font-medium text-[#ff385c] bg-[#fff0f3] border border-[#ff385c]/25 px-2.5 py-0.5 rounded-full">
+            <span className="font-mono text-[11px] font-medium text-[#222222] bg-[#f7f7f7] border border-[#ebebeb] px-2.5 py-0.5 rounded-full">
               STOCK: {vehicle.stockNo}
             </span>
             {vehicle.sbtStockId && (
@@ -213,7 +213,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
               </span>
             )}
             <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#222222] bg-[#f7f7f7] border border-[#ebebeb] px-2.5 py-0.5 rounded-full">
-              <CheckCircle2 className="w-3 h-3 text-[#ff385c]" />
+              <CheckCircle2 className="w-3 h-3 text-[#222222]" />
               <span>JEVIC Verified</span>
             </span>
           </div>
@@ -230,7 +230,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
                 />
               </div>
             )}
-            <h2 className="text-lg sm:text-[20px] font-medium text-[#222222] group-hover:text-[#ff385c] transition-colors tracking-tight leading-snug">
+            <h2 className="text-lg sm:text-[20px] font-medium text-[#222222] group-hover:text-black transition-colors tracking-tight leading-snug">
               {vehicle.year} {vehicle.name}
             </h2>
           </div>
@@ -351,7 +351,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
               DELIVERED CASH PRICE
             </span>
             {pricing.hasDiscount && (
-              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-[#fff0f3] text-[#ff385c] border border-[#ff385c]/25 font-mono shadow-2xs whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] font-mono shadow-2xs whitespace-nowrap shrink-0">
                 Save KES {pricing.savingsKes.toLocaleString()}
               </span>
             )}
@@ -379,7 +379,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
           {/* Primary View Car Dossier */}
           <button
             onClick={() => onSelect(vehicle)}
-            className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-2.5 px-4 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs hover:shadow active:scale-[0.98]"
+            className="w-full bg-[#222222] hover:bg-black text-white font-medium py-2.5 px-4 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs hover:shadow active:scale-[0.98]"
           >
             <span>Explore Vehicle Dossier</span>
             <ArrowRight className="w-3.5 h-3.5 text-white/90" />
@@ -402,7 +402,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
 export const VehicleSbtListCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white border border-[#ebebeb] rounded-[14px] p-3.5 sm:p-4 shadow-2xs flex flex-col lg:flex-row gap-4 lg:gap-5 animate-pulse text-left">
+    <div className="bg-white border border-[#ebebeb] rounded-[16px] p-3.5 sm:p-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] flex flex-col lg:flex-row gap-4 lg:gap-5 animate-pulse text-left">
       {/* Left Media skeleton */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2">
         <div className="aspect-[4/3] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb]" />

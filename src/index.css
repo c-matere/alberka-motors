@@ -71,6 +71,11 @@
 }
 
 /* Base Canvas & Global Typography: Quiet White Gallery Wall */
+::selection {
+  background-color: #222222;
+  color: #ffffff;
+}
+
 body {
   background-color: #f7f7f7;
   color: #222222;

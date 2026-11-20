@@ -518,19 +518,19 @@ export function App() {
 
                     <div className="max-w-2xl text-left">
                       <ScrollRevealBox delay={0}>
-                        <div className="space-y-4 bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-8 shadow-xs">
-                          <span className="font-mono text-xs text-[#ff385c] uppercase tracking-widest block font-bold">
+                        <div className="space-y-4 bg-white border border-[#ebebeb] rounded-[16px] p-6 sm:p-8 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                          <span className="font-mono text-xs text-[#222222] uppercase tracking-widest block font-semibold">
                             MOMBASA MAIN HUB
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-[#222222]">
+                          <h3 className="text-2xl sm:text-3xl font-semibold text-[#222222] tracking-tight">
                             Next to Ganjoni Primary School, Mombasa
                           </h3>
                           <p className="text-sm sm:text-base text-[#6a6a6a] leading-relaxed font-normal">
                             Featuring our dedicated customer showroom floor, hoist inspection bays, and certified Japanese import maintenance workshop.
                           </p>
                           <div className="pt-2 font-mono text-xs text-[#6a6a6a] space-y-1.5 border-t border-[#ebebeb]">
-                            <p>Direct Phone / WhatsApp: <a href="tel:0180423075" className="text-[#222222] font-bold hover:text-[#ff385c]">0180 423 075</a></p>
-                            <p>Showroom Hours: <span className="text-[#222222] font-semibold">{settings.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}</span></p>
+                            <p>Direct Phone / WhatsApp: <a href="tel:0180423075" className="text-[#222222] font-semibold hover:underline">0180 423 075</a></p>
+                            <p>Showroom Hours: <span className="text-[#222222] font-medium">{settings.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>
