@@ -50,8 +50,8 @@ export const Hero: React.FC<HeroProps> = ({
         <img
           src={HERO_BACKGROUND}
           alt="Alberka Enterprises Luxury Showroom"
-          className="w-full h-full object-cover object-center"
-          style={{ filter: 'brightness(1.25) contrast(1.04) saturate(1.05)' }}
+          className="w-full h-full object-cover object-center scale-[1.06]"
+          style={{ filter: 'brightness(1.06) contrast(1.03) saturate(1.02) blur(2px)' }}
           loading="eager"
           fetchPriority="high"
         />
