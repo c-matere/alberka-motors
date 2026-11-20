@@ -127,27 +127,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative bg-white border border-zinc-200 shadow-sm p-6 sm:p-8 rounded-2xl space-y-5 text-left before:absolute before:inset-x-8 before:top-0 before:h-[1px] before:bg-gradient-to-r before:from-transparent before:via-zinc-300 before:to-transparent">
-            <span className="font-mono text-xs text-zinc-950 uppercase tracking-wider font-bold block">
+          <div className="lg:col-span-5 relative bg-white border border-[#ebebeb] shadow-xs p-6 sm:p-8 rounded-[14px] space-y-5 text-left">
+            <span className="font-mono text-xs text-[#222222] uppercase tracking-wider font-bold block">
               The Alberka Standard:
             </span>
             <div className="space-y-4 text-xs sm:text-sm">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
-                <p className="text-zinc-700">
-                  <strong className="text-zinc-950">Grade 4.5 Minimum:</strong> Pristine bodywork, factory paint depth, and flawless interior cabins.
+                <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                <p className="text-[#222222]">
+                  <strong className="text-[#222222]">Grade 4.5 Minimum:</strong> Pristine bodywork, factory paint depth, and flawless interior cabins.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
-                <p className="text-zinc-700">
-                  <strong className="text-zinc-950">Certified Genuine Mileage:</strong> Official QISJ and JEVIC Japanese certificates provided with every unit.
+                <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                <p className="text-[#222222]">
+                  <strong className="text-[#222222]">Certified Genuine Mileage:</strong> Official QISJ and JEVIC Japanese certificates provided with every unit.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
-                <p className="text-zinc-700">
-                  <strong className="text-zinc-950">Original Export Dossier:</strong> Japanese export certificate and translated auction inspection sheet delivered with your logbook.
+                <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                <p className="text-[#222222]">
+                  <strong className="text-[#222222]">Original Export Dossier:</strong> Japanese export certificate and translated auction inspection sheet delivered with your logbook.
                 </p>
               </div>
             </div>
@@ -212,78 +212,78 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             </p>
           </div>
 
-          <div className="relative bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-sm text-left overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-red-600" />
+          <div className="relative bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-10 shadow-xs text-left overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#ff385c]" />
             
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-100 pb-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#ebebeb] pb-5">
                 <div>
                   <div className="inline-flex items-center gap-2 mb-1">
-                    <span className="font-mono text-[11px] text-red-600 uppercase tracking-widest font-bold">ALBERKA FLAGSHIP</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-                    <span className="font-mono text-[10.5px] text-zinc-500 uppercase">MOMBASA, KENYA</span>
+                    <span className="font-mono text-[11px] text-[#ff385c] uppercase tracking-widest font-bold">ALBERKA FLAGSHIP</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
+                    <span className="font-mono text-[10.5px] text-[#6a6a6a] uppercase">MOMBASA, KENYA</span>
                   </div>
-                  <h3 className="text-xl sm:text-3xl font-bold text-zinc-950 tracking-tight">Main Showroom & Inspection Bay</h3>
+                  <h3 className="text-xl sm:text-3xl font-bold text-[#222222] tracking-tight">Main Showroom & Inspection Bay</h3>
                 </div>
-                <span className="font-mono text-xs bg-red-50 border border-red-200 text-red-600 px-3 py-1 rounded-full font-bold self-start sm:self-center">
+                <span className="font-mono text-xs bg-[#fff1f3] border border-[#ffccd5] text-[#ff385c] px-3 py-1 rounded-full font-bold self-start sm:self-center">
                   EST. 2000 · DIRECT IMPORTER
                 </span>
               </div>
 
               {/* Address Highlight */}
-              <div className="p-4 sm:p-5 bg-zinc-50 border border-zinc-200/80 rounded-2xl flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-sm">
-                  <Clock className="w-5 h-5 text-white" />
+              <div className="p-4 sm:p-5 bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-full bg-[#ff385c] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <Clock className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-red-600 uppercase tracking-wider block mb-0.5">PHYSICAL ADDRESS</span>
-                  <p className="text-base sm:text-lg font-bold text-zinc-950 leading-snug">
+                  <span className="text-[11px] font-mono font-bold text-[#ff385c] uppercase tracking-wider block mb-0.5">PHYSICAL ADDRESS</span>
+                  <p className="text-base sm:text-lg font-bold text-[#222222] leading-snug">
                     Next to Ganjoni Primary School, Mombasa, Kenya
                   </p>
-                  <p className="text-xs text-zinc-600 mt-1">
+                  <p className="text-xs text-[#6a6a6a] mt-1">
                     Customer parking & executive handover bay on site. Direct access from port gates.
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs sm:text-sm">
-                <div className="p-4 bg-white border border-zinc-200 rounded-xl space-y-1">
-                  <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs">
-                    <Phone className="w-3.5 h-3.5 text-red-600" />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2 text-xs sm:text-sm">
+                <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
+                  <div className="flex items-center gap-2 text-[#6a6a6a] font-mono text-xs">
+                    <Phone className="w-3.5 h-3.5 text-[#ff385c]" />
                     <span>ENQUIRY HELPLINE</span>
                   </div>
-                  <a href="tel:0180423075" className="font-mono text-base font-bold text-zinc-950 hover:text-red-600 block transition-colors">
+                  <a href="tel:0180423075" className="font-mono text-base font-bold text-[#222222] hover:text-[#ff385c] block transition-colors">
                     {settings?.phone || '0180 423 075'}
                   </a>
-                  <span className="text-[11px] text-zinc-500 block">WhatsApp & Calls 24/7</span>
+                  <span className="text-[11px] text-[#6a6a6a] block">WhatsApp & Calls 24/7</span>
                 </div>
 
-                <div className="p-4 bg-white border border-zinc-200 rounded-xl space-y-1">
-                  <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs">
-                    <Mail className="w-3.5 h-3.5 text-red-600" />
+                <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
+                  <div className="flex items-center gap-2 text-[#6a6a6a] font-mono text-xs">
+                    <Mail className="w-3.5 h-3.5 text-[#ff385c]" />
                     <span>EMAIL INQUIRIES</span>
                   </div>
-                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-sm font-bold text-zinc-950 hover:text-red-600 block truncate transition-colors">
+                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-sm font-bold text-[#222222] hover:text-[#ff385c] block truncate transition-colors">
                     {settings?.email || 'sales@alberkamotors.co.ke'}
                   </a>
-                  <span className="text-[11px] text-zinc-500 block">Japanese Auction CIF Inquiries</span>
+                  <span className="text-[11px] text-[#6a6a6a] block">Japanese Auction CIF Inquiries</span>
                 </div>
 
-                <div className="p-4 bg-white border border-zinc-200 rounded-xl space-y-1">
-                  <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs">
-                    <Clock className="w-3.5 h-3.5 text-red-600" />
+                <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
+                  <div className="flex items-center gap-2 text-[#6a6a6a] font-mono text-xs">
+                    <Clock className="w-3.5 h-3.5 text-[#ff385c]" />
                     <span>OPERATING HOURS</span>
                   </div>
-                  <span className="font-mono text-xs font-bold text-zinc-950 block">
+                  <span className="font-mono text-xs font-bold text-[#222222] block">
                     {settings?.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}
                   </span>
-                  <span className="text-[11px] text-zinc-500 block">Sundays by appointment</span>
+                  <span className="text-[11px] text-[#6a6a6a] block">Sundays by appointment</span>
                 </div>
               </div>
 
               {/* Interactive Google Maps Frame */}
               <div className="pt-2">
-                <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm relative">
+                <div className="w-full h-72 sm:h-96 rounded-[12px] overflow-hidden border border-[#ebebeb] shadow-xs relative">
                   <iframe
                     src="https://maps.google.com/maps?q=-4.064257,39.663731+(Alberka+Enterprises+Limited)&t=k&z=19&ie=UTF8&iwloc=&output=embed"
                     width="100%"

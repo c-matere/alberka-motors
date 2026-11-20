@@ -175,50 +175,50 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
         )}
 
         {/* Standard Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 text-left">
           {(searchQuery || activeCategory !== 'all' ? filteredBlogs : standardArticles).map((article) => (
             <div
               key={article.id}
               onClick={() => onSelectPost(article)}
-              className="group relative bg-white hover:bg-zinc-50/70 border border-zinc-200/90 hover:border-zinc-300 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.04)] cursor-pointer"
+              className="group relative bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[12px] overflow-hidden flex flex-col justify-between transition-all duration-200 hover:shadow-xs cursor-pointer"
             >
               <div>
-                <div className="aspect-[16/10] w-full overflow-hidden bg-zinc-100 relative">
+                <div className="aspect-[16/10] w-full overflow-hidden bg-[#f7f7f7] relative">
                   <SkeletonImage
                     src={article.coverImage}
                     alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                     containerClassName="w-full h-full"
                   />
-                  <div className="absolute top-3 left-3 z-10">
-                    <span className="bg-white/95 backdrop-blur-md border border-zinc-200 text-zinc-950 px-2 py-0.5 text-[10px] font-mono uppercase font-semibold rounded shadow-xs">
+                  <div className="absolute top-2.5 left-2.5 z-10">
+                    <span className="bg-white/95 backdrop-blur-md border border-black/5 text-[#222222] px-2.5 py-0.5 text-[10.5px] font-medium rounded-full shadow-2xs">
                       {article.category}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-6 space-y-2.5">
-                  <div className="flex items-center gap-2 text-[11px] text-zinc-500 font-mono">
+                <div className="p-4 sm:p-5 space-y-2">
+                  <div className="flex items-center gap-2 text-[11px] text-[#6a6a6a] font-mono">
                     <span>{article.readTime}</span>
                     <span>·</span>
                     <span>{article.publishedDate}</span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-zinc-950 tracking-tight leading-snug group-hover:text-red-700 transition-colors">
+                  <h3 className="text-base sm:text-lg font-medium text-[#222222] tracking-tight leading-snug group-hover:text-[#ff385c] transition-colors">
                     {article.title}
                   </h3>
 
-                  <p className="text-xs text-zinc-600 leading-relaxed line-clamp-3">
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed line-clamp-3">
                     {article.excerpt}
                   </p>
                 </div>
               </div>
 
-              <div className="p-6 pt-0 border-t border-zinc-100 mt-4 flex items-center justify-between">
-                <span className="text-xs text-zinc-600 font-mono">{article.author.name}</span>
-                <span className="text-xs text-zinc-950 font-bold inline-flex items-center gap-1 group-hover:text-red-600 transition-colors">
+              <div className="p-4 sm:p-5 pt-0 border-t border-[#ebebeb] mt-3 flex items-center justify-between">
+                <span className="text-xs text-[#6a6a6a] font-mono">{article.author.name}</span>
+                <span className="text-xs text-[#ff385c] font-medium inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                   <span>Read Story</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
             </div>

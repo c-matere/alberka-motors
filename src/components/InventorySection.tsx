@@ -273,22 +273,22 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     <div className="space-y-6 text-left">
       {/* 1. Keyword Search Box */}
       <div className="space-y-1.5">
-        <label className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold block">
+        <label className="text-[11px] font-mono uppercase tracking-wider text-[#6a6a6a] font-medium block">
           Search Vehicle
         </label>
-        <div className="relative bg-[#F8F9FB] border border-zinc-200/70 focus-within:border-red-600 focus-within:bg-white rounded-xl px-3 py-2 flex items-center gap-2 transition-all">
-          <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+        <div className="relative bg-white border border-[#ebebeb] focus-within:border-[#222222] focus-within:shadow-2xs rounded-full px-3.5 py-2 flex items-center gap-2 transition-all">
+          <Search className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
           <input
             type="text"
             placeholder="Make, model, stock ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
+            className="w-full bg-transparent text-xs font-medium text-[#222222] placeholder:text-[#6a6a6a] focus:outline-none"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="p-0.5 text-zinc-400 hover:text-zinc-950 cursor-pointer"
+              className="p-0.5 text-[#6a6a6a] hover:text-[#222222] cursor-pointer"
             >
               <X className="w-3 h-3" />
             </button>
@@ -568,13 +568,13 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
           
           {/* DESKTOP LEFT COLUMN: SBT JAPAN SEARCH & FILTER SIDEBAR */}
           <aside className="hidden lg:block w-72 xl:w-80 shrink-0 space-y-5 text-left">
-            <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 shadow-2xs space-y-6 lg:sticky lg:top-24">
+            <div className="bg-white border border-[#ebebeb] rounded-[14px] p-4 sm:p-5 shadow-xs space-y-5 lg:sticky lg:top-24">
               
               {/* Sidebar Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-zinc-200/70">
+              <div className="flex items-center justify-between pb-3 border-b border-[#ebebeb]">
                 <div className="flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-red-600" />
-                  <h3 className="font-mono text-xs font-bold text-zinc-950 uppercase tracking-wider">
+                  <Filter className="w-4 h-4 text-[#ff385c]" />
+                  <h3 className="font-mono text-xs font-semibold text-[#222222] uppercase tracking-wider">
                     Filter Fleet
                   </h3>
                 </div>
@@ -667,12 +667,12 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
               {/* White Background Filter Button (Mobile Only) */}
               <button
                 onClick={() => setMobileFilterOpen(true)}
-                className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-zinc-50 text-zinc-900 border border-zinc-200/80 rounded-xl text-xs font-bold transition-all shadow-2xs cursor-pointer active:scale-95"
+                className="lg:hidden inline-flex items-center gap-2 px-3.5 py-2 bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] rounded-full text-xs font-medium transition-all shadow-2xs cursor-pointer active:scale-95"
               >
-                <Filter className="w-4 h-4 text-red-600" />
+                <Filter className="w-3.5 h-3.5 text-[#ff385c]" />
                 <span>Filters</span>
                 {activeFilterCount > 0 && (
-                  <span className="bg-red-600 text-white text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold">
+                  <span className="bg-[#ff385c] text-white text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold">
                     {activeFilterCount}
                   </span>
                 )}
@@ -680,16 +680,16 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
               {/* Discreet Sort By (Aligned Right) */}
               <div className="flex items-center gap-2 ml-auto">
-                <span className="text-xs font-mono text-zinc-400 uppercase font-semibold hidden sm:inline">
+                <span className="text-xs font-mono text-[#6a6a6a] uppercase font-medium hidden sm:inline">
                   Sort:
                 </span>
-                <div className="flex items-center gap-1.5 bg-white border border-zinc-200/80 rounded-xl px-3 py-2 shadow-2xs">
-                  <ArrowUpDown className="w-3.5 h-3.5 text-zinc-400" />
+                <div className="flex items-center gap-1.5 bg-white border border-[#ebebeb] rounded-full px-3 py-1.5 shadow-2xs">
+                  <ArrowUpDown className="w-3.5 h-3.5 text-[#6a6a6a]" />
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as any)}
                     aria-label="Sort vehicles"
-                    className="bg-transparent text-xs font-mono font-medium text-zinc-800 focus:outline-none cursor-pointer pr-1"
+                    className="bg-transparent text-xs font-mono font-medium text-[#222222] focus:outline-none cursor-pointer pr-1"
                   >
                     <option value="featured">Featured Provenance</option>
                     <option value="price-asc">Price: Low to High</option>

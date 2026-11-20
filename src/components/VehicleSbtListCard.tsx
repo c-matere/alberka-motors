@@ -114,57 +114,57 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
   return (
     <div
       onClick={() => onSelect(vehicle)}
-      className="bg-white border border-zinc-200/70 hover:border-red-600/40 rounded-2xl p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_28px_rgba(220,38,38,0.07)] transition-all duration-300 flex flex-col lg:flex-row gap-5 lg:gap-6 text-left relative group cursor-pointer"
+      className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-3.5 sm:p-4 transition-all duration-200 flex flex-col lg:flex-row gap-4 lg:gap-5 text-left relative group cursor-pointer hover:shadow-xs"
     >
       {/* 1. LEFT COLUMN: Media Viewer & Gallery Preview */}
-      <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2.5">
-        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-zinc-100 border border-zinc-200/80 shadow-xs group/img">
+      <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2">
+        <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden bg-[#f7f7f7] border border-[#ebebeb] group/img">
           <img
             src={activeImageUrl}
             alt={vehicle.name}
             loading="lazy"
-            className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
+            className="w-full h-full object-cover group-hover/img:scale-103 transition-transform duration-500 ease-out"
           />
 
           {/* Gradient Film */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 pointer-events-none" />
 
-          {/* Top-Left: Auction Grade Badge */}
+          {/* Top-Left: Guest Favorite / Auction Grade Pill */}
           <div className="absolute top-2.5 left-2.5 z-10">
-            <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-zinc-950 border border-zinc-200/80 text-[11px] font-mono font-bold px-2 py-0.5 rounded-md shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
               <span>Grade {vehicle.auctionGrade || '4.5'}</span>
             </span>
           </div>
 
-          {/* Top-Right: Bookmark Heart Button */}
+          {/* Top-Right: Airbnb Wishlist Heart Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleFavorite(vehicle.id);
             }}
-            className={`absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer backdrop-blur-md border ${
+            className={`absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-xs ${
               isFavorite
-                ? 'bg-red-600 text-white border-red-500 shadow-md scale-105'
-                : 'bg-white/90 text-zinc-700 border-zinc-200 hover:bg-white hover:text-red-600 shadow-xs'
+                ? 'bg-white text-[#ff385c] shadow-xs'
+                : 'bg-white/85 hover:bg-white text-[#222222] hover:text-[#ff385c] shadow-xs border border-white/60'
             }`}
             title={isFavorite ? 'Remove from saved' : 'Save vehicle'}
             aria-label={isFavorite ? 'Remove from saved' : 'Save vehicle'}
           >
-            <Heart className={`w-3.5 h-3.5 ${isFavorite ? 'fill-white text-white' : ''}`} />
+            <Heart className={`w-4 h-4 ${isFavorite ? 'fill-[#ff385c] text-[#ff385c]' : 'stroke-[2.2]'}`} />
           </button>
 
           {/* Bottom-Left: Photo Count Pill */}
           <div className="absolute bottom-2.5 left-2.5 z-10">
-            <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-md text-zinc-900 border border-zinc-200 text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-sm">
-              <Camera className="w-3 h-3 text-red-600" />
+            <span className="inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full shadow-2xs">
+              <Camera className="w-3 h-3 text-[#ff385c]" />
               <span>{vehicle.gallery?.length || 15} Photos</span>
             </span>
           </div>
 
           {/* Bottom-Right: Stock Location */}
           <div className="absolute bottom-2.5 right-2.5 z-10">
-            <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-emerald-800 border border-emerald-200/80 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">
+            <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 text-[10px] font-medium px-2 py-0.5 rounded-full shadow-2xs">
               Mombasa Stock
             </span>
           </div>
@@ -178,10 +178,10 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
                 key={tIdx}
                 onMouseEnter={() => setActiveThumbIndex(tIdx)}
                 onClick={() => setActiveThumbIndex(tIdx)}
-                className={`aspect-[4/3] rounded-lg overflow-hidden border-2 transition-all cursor-pointer bg-zinc-100 ${
+                className={`aspect-[4/3] rounded-[8px] overflow-hidden border transition-all cursor-pointer bg-[#f7f7f7] ${
                   activeThumbIndex === tIdx
-                    ? 'border-red-600 ring-2 ring-red-600/30 shadow-xs scale-102'
-                    : 'border-zinc-200 opacity-70 hover:opacity-100 hover:border-zinc-300'
+                    ? 'border-[#ff385c] ring-1 ring-[#ff385c]/30 shadow-2xs scale-102'
+                    : 'border-[#ebebeb] opacity-75 hover:opacity-100 hover:border-[#dddddd]'
                 }`}
                 title={`Preview photo ${tIdx + 1}`}
               >
@@ -193,127 +193,127 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
       </div>
 
       {/* 2. MIDDLE COLUMN: Vehicle Identity & Detailed Specifications Table */}
-      <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5 space-y-3.5">
+      <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5 space-y-3">
         
         {/* Identity & Reference Header */}
-        <div className="space-y-1.5">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-mono text-[11px] font-bold text-red-600 bg-red-50 border border-red-200/80 px-2 py-0.5 rounded">
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="font-mono text-[11px] font-medium text-[#ff385c] bg-[#fff0f3] border border-[#ff385c]/25 px-2.5 py-0.5 rounded-full">
               STOCK: {vehicle.stockNo}
             </span>
             {vehicle.sbtStockId && (
-              <span className="font-mono text-[11px] font-semibold text-zinc-600 bg-[#F8F9FB] border border-zinc-200/70 px-2 py-0.5 rounded">
+              <span className="font-mono text-[11px] font-normal text-[#6a6a6a] bg-[#f7f7f7] border border-[#ebebeb] px-2.5 py-0.5 rounded-full">
                 SBT Ref: {vehicle.sbtStockId}
               </span>
             )}
             {vehicle.modelCode && (
-              <span className="font-mono text-[11px] font-semibold text-zinc-500 hidden sm:inline">
+              <span className="font-mono text-[11px] font-normal text-[#6a6a6a] hidden sm:inline">
                 Code: {vehicle.modelCode}
               </span>
             )}
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-zinc-800 bg-[#F8F9FB] border border-zinc-200/80 px-2 py-0.5 rounded">
-              <CheckCircle2 className="w-3 h-3 text-red-600" />
-              <span>JEVIC Odometer Verified</span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#222222] bg-[#f7f7f7] border border-[#ebebeb] px-2.5 py-0.5 rounded-full">
+              <CheckCircle2 className="w-3 h-3 text-[#ff385c]" />
+              <span>JEVIC Verified</span>
             </span>
           </div>
 
-          {/* Vehicle Title & Maker Logo (B/W by default, color on hover) */}
-          <div className="flex items-center gap-3 pt-0.5">
+          {/* Vehicle Title & Maker Logo */}
+          <div className="flex items-center gap-2.5 pt-0.5">
             {makeLogo && (
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#F8F9FB] border border-zinc-200/70 p-1 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-zinc-300 transition-all">
+              <div className="w-8 h-8 rounded-[8px] bg-[#f7f7f7] border border-[#ebebeb] p-1 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-[#dddddd] transition-all">
                 <img
                   src={makeLogo}
                   alt={makeKey}
-                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shrink-0"
+                  className="w-6 h-6 object-contain grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 shrink-0"
                   onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
                 />
               </div>
             )}
-            <h2 className="text-xl sm:text-2xl font-bold text-zinc-950 group-hover:text-red-600 transition-colors tracking-tight leading-snug">
+            <h2 className="text-lg sm:text-[20px] font-medium text-[#222222] group-hover:text-[#ff385c] transition-colors tracking-tight leading-snug">
               {vehicle.year} {vehicle.name}
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-zinc-600 font-normal line-clamp-1">
+          <p className="text-xs sm:text-[13px] text-[#6a6a6a] font-normal line-clamp-1">
             {vehicle.tagline || vehicle.moniker}
           </p>
         </div>
 
-        {/* SBT Japan 6-Specification Matrix (Spacious, Un-squeezed 3x2 Grid) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3.5 bg-[#F8F9FB] border border-zinc-200/80 rounded-xl p-4 sm:p-4.5 text-xs">
+        {/* 6-Specification Matrix (Quiet, Architectural) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 bg-[#f7f7f7] border border-[#ebebeb] rounded-[10px] p-3 sm:p-3.5 text-xs">
           {/* Mileage */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Gauge className="w-4 h-4 text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Gauge className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
+              <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal leading-tight mb-0.5">
                 Mileage
               </span>
-              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
+              <span className="font-medium text-[#222222] font-mono text-[13px] block leading-tight">
                 {vehicle.mileageKm.toLocaleString()} KM
               </span>
             </div>
           </div>
 
           {/* Year / Reg */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Calendar className="w-4 h-4 text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Calendar className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
+              <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal leading-tight mb-0.5">
                 Year / Reg
               </span>
-              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
+              <span className="font-medium text-[#222222] font-mono text-[13px] block leading-tight">
                 {vehicle.year} / {vehicle.registrationMonth || '08'}
               </span>
             </div>
           </div>
 
           {/* Engine Capacity */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Cpu className="w-4 h-4 text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Cpu className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
+              <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal leading-tight mb-0.5">
                 Engine
               </span>
-              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight truncate" title={vehicle.engine}>
+              <span className="font-medium text-[#222222] font-mono text-[13px] block leading-tight truncate" title={vehicle.engine}>
                 {formatEngineSummary(vehicle.engine)}
               </span>
             </div>
           </div>
 
           {/* Transmission */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Sliders className="w-4 h-4 text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Sliders className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
+              <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal leading-tight mb-0.5">
                 Gearbox
               </span>
-              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
+              <span className="font-medium text-[#222222] font-mono text-[13px] block leading-tight">
                 {vehicle.transmission || 'Automatic'}
               </span>
             </div>
           </div>
 
           {/* Drivetrain */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Compass className="w-4 h-4 text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Compass className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
+              <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal leading-tight mb-0.5">
                 Drive
               </span>
-              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
+              <span className="font-medium text-[#222222] font-mono text-[13px] block leading-tight">
                 {vehicle.drivetrain || '2WD'}
               </span>
             </div>
           </div>
 
           {/* Fuel Type */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            <Fuel className="w-4 h-4 text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Fuel className="w-3.5 h-3.5 text-[#6a6a6a] shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold leading-tight mb-0.5">
+              <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal leading-tight mb-0.5">
                 Fuel
               </span>
-              <span className="font-bold text-zinc-950 font-mono text-[13px] block leading-tight">
+              <span className="font-medium text-[#222222] font-mono text-[13px] block leading-tight">
                 {vehicle.fuelType || 'Petrol'}
               </span>
             </div>
@@ -326,14 +326,14 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
             {activeOptions.slice(0, 6).map((opt, oIdx) => (
               <span
                 key={oIdx}
-                className="bg-[#F8F9FB] text-zinc-700 font-medium text-[11px] px-2.5 py-0.5 rounded-md border border-zinc-200/70"
+                className="bg-white text-[#6a6a6a] hover:text-[#222222] font-normal text-[11px] px-2.5 py-0.5 rounded-full border border-[#ebebeb]"
               >
                 {opt}
               </span>
             ))}
             {activeOptions.length > 6 && (
-              <span className="text-[10px] font-mono text-zinc-500 font-bold">
-                +{activeOptions.length - 6} more options
+              <span className="text-[10px] font-mono text-[#6a6a6a]">
+                +{activeOptions.length - 6} more
               </span>
             )}
           </div>
@@ -341,62 +341,56 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
       </div>
 
       {/* 3. RIGHT COLUMN: Pricing & Direct Actions */}
-      <div className="w-full lg:w-64 xl:w-72 shrink-0 border-t lg:border-t-0 lg:border-l border-zinc-200/70 pt-4 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
+      <div className="w-full lg:w-64 xl:w-72 shrink-0 border-t lg:border-t-0 lg:border-l border-[#ebebeb] pt-3 lg:pt-0 lg:pl-5 flex flex-col justify-between space-y-3.5">
         
         {/* Delivered Cash Price Block */}
         <div className="space-y-1">
           <div className="flex flex-wrap items-center justify-between gap-1.5">
-            <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider font-semibold block whitespace-nowrap">
+            <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider font-medium block whitespace-nowrap">
               DELIVERED CASH PRICE
             </span>
             {pricing.hasDiscount && (
-              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-[#fff0f3] text-[#ff385c] border border-[#ff385c]/25 font-mono shadow-2xs whitespace-nowrap shrink-0">
                 Save KES {pricing.savingsKes.toLocaleString()}
               </span>
             )}
           </div>
 
           <div className="flex items-baseline gap-2">
-            <div className="text-2xl sm:text-3xl font-extrabold text-red-600 font-mono tracking-tight leading-none">
+            <div className="text-2xl sm:text-[26px] font-semibold text-[#222222] font-mono tracking-tight leading-none">
               KES {vehicle.priceKes.toLocaleString()}
             </div>
           </div>
 
           {pricing.hasDiscount && (
-            <div className="text-xs font-mono text-zinc-600 line-through">
+            <div className="text-xs font-mono text-[#6a6a6a] line-through">
               Was KES {pricing.originalPrice.toLocaleString()}
             </div>
           )}
 
-          <p className="text-[11px] text-zinc-600 font-normal leading-tight pt-1">
-            Includes KRA customs duty, port clearance & Mombasa handover.
+          <p className="text-[11px] text-[#6a6a6a] font-normal leading-tight pt-0.5">
+            Includes KRA customs duty, port clearance & Mombasa yard handover.
           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="space-y-2 pt-2" onClick={(e) => e.stopPropagation()}>
+        {/* Action Buttons (Pill-shaped, Airbnb Hierarchy) */}
+        <div className="space-y-2 pt-1" onClick={(e) => e.stopPropagation()}>
           {/* Primary View Car Dossier */}
           <button
             onClick={() => onSelect(vehicle)}
-            className="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border border-zinc-200/90 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.98]"
+            className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-2.5 px-4 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs hover:shadow active:scale-[0.98]"
           >
             <span>Explore Vehicle Dossier</span>
-            <ArrowRight className="w-3.5 h-3.5 text-zinc-600" />
+            <ArrowRight className="w-3.5 h-3.5 text-white/90" />
           </button>
 
           {/* WhatsApp Direct Inquiry */}
           <button
             onClick={handleWhatsAppInquiry}
-            className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-[0.98]"
+            className="w-full bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] hover:border-[#dddddd] font-medium py-2 px-4 rounded-full text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-[0.98]"
           >
-            <svg
-              className="w-4 h-4 fill-white shrink-0"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.12.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29" />
-            </svg>
-            <span>Inquire on WhatsApp</span>
+            <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+            <span>Chat WhatsApp</span>
           </button>
         </div>
 
@@ -407,48 +401,48 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
 
 export const VehicleSbtListCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white border border-zinc-200/70 rounded-2xl p-4 sm:p-5 shadow-2xs flex flex-col lg:flex-row gap-5 lg:gap-6 animate-pulse text-left">
+    <div className="bg-white border border-[#ebebeb] rounded-[14px] p-3.5 sm:p-4 shadow-2xs flex flex-col lg:flex-row gap-4 lg:gap-5 animate-pulse text-left">
       {/* Left Media skeleton */}
-      <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2.5">
-        <div className="aspect-[4/3] rounded-xl bg-zinc-200/60" />
+      <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2">
+        <div className="aspect-[4/3] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb]" />
         <div className="grid grid-cols-4 gap-1.5">
-          <div className="aspect-[4/3] rounded-lg bg-zinc-200/60" />
-          <div className="aspect-[4/3] rounded-lg bg-zinc-200/60" />
-          <div className="aspect-[4/3] rounded-lg bg-zinc-200/60" />
-          <div className="aspect-[4/3] rounded-lg bg-zinc-200/60" />
+          <div className="aspect-[4/3] rounded-[8px] bg-[#f7f7f7]" />
+          <div className="aspect-[4/3] rounded-[8px] bg-[#f7f7f7]" />
+          <div className="aspect-[4/3] rounded-[8px] bg-[#f7f7f7]" />
+          <div className="aspect-[4/3] rounded-[8px] bg-[#f7f7f7]" />
         </div>
       </div>
 
       {/* Middle Specs skeleton */}
       <div className="flex-1 space-y-3 py-1">
         <div className="flex gap-2">
-          <div className="h-5 w-24 bg-zinc-200/80 rounded" />
-          <div className="h-5 w-28 bg-zinc-200/60 rounded" />
+          <div className="h-5 w-24 bg-[#f7f7f7] border border-[#ebebeb] rounded-full" />
+          <div className="h-5 w-28 bg-[#f7f7f7] border border-[#ebebeb] rounded-full" />
         </div>
-        <div className="h-7 w-3/4 bg-zinc-200 rounded" />
-        <div className="h-4 w-1/2 bg-zinc-200/60 rounded" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3.5 bg-zinc-50 border border-zinc-100 rounded-xl p-4 sm:p-4.5">
+        <div className="h-6 w-3/4 bg-[#f7f7f7] rounded" />
+        <div className="h-4 w-1/2 bg-[#f7f7f7] rounded" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 bg-[#f7f7f7] border border-[#ebebeb] rounded-[10px] p-3 sm:p-3.5">
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="h-8 bg-zinc-200/60 rounded" />
+            <div key={i} className="h-8 bg-[#ebebeb]/60 rounded" />
           ))}
         </div>
-        <div className="flex gap-2">
-          <div className="h-5 w-20 bg-zinc-200/60 rounded-md" />
-          <div className="h-5 w-20 bg-zinc-200/60 rounded-md" />
-          <div className="h-5 w-20 bg-zinc-200/60 rounded-md" />
+        <div className="flex gap-1.5">
+          <div className="h-5 w-20 bg-[#f7f7f7] border border-[#ebebeb] rounded-full" />
+          <div className="h-5 w-20 bg-[#f7f7f7] border border-[#ebebeb] rounded-full" />
+          <div className="h-5 w-20 bg-[#f7f7f7] border border-[#ebebeb] rounded-full" />
         </div>
       </div>
 
       {/* Right Price skeleton */}
-      <div className="w-full lg:w-60 xl:w-68 shrink-0 border-t lg:border-t-0 lg:border-l border-zinc-200/80 pt-4 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
+      <div className="w-full lg:w-64 xl:w-72 shrink-0 border-t lg:border-t-0 lg:border-l border-[#ebebeb] pt-3 lg:pt-0 lg:pl-5 flex flex-col justify-between space-y-3.5">
         <div className="space-y-2">
-          <div className="h-3 w-32 bg-zinc-200/60 rounded" />
-          <div className="h-8 w-44 bg-zinc-200 rounded" />
-          <div className="h-3 w-full bg-zinc-200/40 rounded" />
+          <div className="h-3 w-32 bg-[#f7f7f7] rounded" />
+          <div className="h-8 w-44 bg-[#f7f7f7] rounded" />
+          <div className="h-3 w-full bg-[#f7f7f7] rounded" />
         </div>
         <div className="space-y-2">
-          <div className="h-10 w-full bg-zinc-200 rounded-xl" />
-          <div className="h-10 w-full bg-zinc-200 rounded-xl" />
+          <div className="h-9 w-full bg-[#f7f7f7] rounded-full border border-[#ebebeb]" />
+          <div className="h-9 w-full bg-[#f7f7f7] rounded-full border border-[#ebebeb]" />
         </div>
       </div>
     </div>

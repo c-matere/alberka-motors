@@ -31,11 +31,6 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
   const pricing = getVehiclePricing(vehicle);
 
-  // Extract Make and Model cleanly
-  const parts = vehicle.name.trim().split(' ');
-  const make = parts[0] || 'TOYOTA';
-  const model = parts.slice(1).join(' ') || vehicle.name;
-
   // Extract Engine Displacement
   const getDisplacement = (engineStr: string) => {
     if (!engineStr) return '2.0L';
@@ -82,155 +77,118 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div
       ref={disableScrollReveal ? undefined : ref}
       onClick={() => onSelect(vehicle)}
-      className={`hero-card group cursor-pointer ${
+      className={`bg-white rounded-[12px] border border-[#ebebeb] hover:border-[#dddddd] p-3 text-left relative group cursor-pointer transition-all duration-200 hover:shadow-xs flex flex-col justify-between ${
         disableScrollReveal ? '' : `scroll-reveal ${delayClass} ${shouldReveal ? 'is-visible' : ''}`
       }`}
-      style={{
-        backgroundImage: `url(${vehicle.heroImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        aspectRatio: '3 / 4',
-        minHeight: '450px',
-      }}
     >
-      {/* Dark Film Gradient Overlay (1:1 Smart Team Layout) */}
-      <div className="hero-card_overlay" />
+      <div>
+        {/* 1. Full-Bleed Photograph Container (Airbnb 12px Card Pattern) */}
+        <div className="relative aspect-[4/3] rounded-[10px] overflow-hidden bg-[#f7f7f7] mb-2.5 group/img">
+          <img
+            src={vehicle.heroImage}
+            alt={vehicle.name}
+            loading="lazy"
+            className="w-full h-full object-cover group-hover/img:scale-103 transition-transform duration-500 ease-out"
+          />
 
-      {/* Content Layer */}
-      <div className="hero-card_content">
-        
-        {/* Top Header Section: Badges Row + Car Name on Top */}
-        <div className="flex flex-col gap-2.5 z-20">
-          {/* Top Badges Row */}
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="inline-flex items-center rounded-md border px-2.5 py-1 text-[11px] font-bold bg-white/95 text-zinc-950 border-white/40 shadow-sm backdrop-blur-md">
-                Grade {vehicle.auctionGrade || '4.5'}
-              </span>
-              {pricing.hasDiscount && (
-                <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold bg-red-600 text-white shadow-md font-mono whitespace-nowrap shrink-0">
-                  Save KES {pricing.savingsKes.toLocaleString()}
-                </span>
-              )}
-              <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-[10.5px] font-bold bg-white/95 text-emerald-700 border-emerald-200/80 shadow-sm backdrop-blur-md">
-                In Stock
-              </span>
-            </div>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggleFavorite(vehicle.id);
-              }}
-              className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center border cursor-pointer backdrop-blur-md active:scale-95 shrink-0 ${
-                isFavorite
-                  ? 'bg-red-600 text-white border-red-500 shadow-md'
-                  : 'bg-black/35 text-white/90 border-white/20 hover:bg-white hover:text-zinc-950'
-              }`}
-              title={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-              aria-label={isFavorite ? 'Remove from saved fleet' : 'Bookmark vehicle'}
-            >
-              <Heart width={15} height={15} className={isFavorite ? 'fill-white text-white' : ''} />
-            </button>
+          {/* Top-Left: Guest Favorite / Inspection Grade Pill */}
+          <div className="absolute top-2 left-2 z-10">
+            <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 text-[10.5px] font-semibold px-2 py-0.5 rounded-full shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
+              <span>Grade {vehicle.auctionGrade || '4.5'}</span>
+            </span>
           </div>
 
-          {/* Car Name on Top */}
-          <div className="leading-tight pt-1">
-            <div className="text-xl sm:text-2xl font-semibold text-white drop-shadow-md" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.7)' }}>
-              {vehicle.year} {make}<br />
-              <span className="font-bold">{model}</span>
+          {/* Top-Right: Airbnb Wishlist Heart Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite(vehicle.id);
+            }}
+            className={`absolute top-2 right-2 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-xs ${
+              isFavorite
+                ? 'bg-white text-[#ff385c] shadow-xs'
+                : 'bg-white/85 hover:bg-white text-[#222222] hover:text-[#ff385c] shadow-xs border border-white/60'
+            }`}
+            title={isFavorite ? 'Remove from saved' : 'Save vehicle'}
+            aria-label={isFavorite ? 'Remove from saved' : 'Save vehicle'}
+          >
+            <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isFavorite ? 'fill-[#ff385c] text-[#ff385c]' : 'stroke-[2.2]'}`} />
+          </button>
+
+          {/* Bottom-Left: Savings Pill */}
+          {pricing.hasDiscount && (
+            <div className="absolute bottom-2 left-2 z-10">
+              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[9.5px] font-semibold bg-white/95 backdrop-blur-md text-[#ff385c] border border-black/5 font-mono shadow-2xs whitespace-nowrap shrink-0">
+                Save KES {pricing.savingsKes.toLocaleString()}
+              </span>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Bottom Section: Category Tags + Price Action Button */}
-        <div className="flex flex-col gap-3 z-20">
-          
-          {/* Category Tags: Brand, Fuel, and Was Price if discounted */}
-          <div className="service-card_tags margin-0 z-index-1">
-            <div className="category-tag text-white font-bold" style={{ background: '#DC2626', borderColor: '#DC2626' }}>
-              {make}
-            </div>
-            <div className="category-tag text-white" style={{ background: 'rgba(255,255,255,0.16)', borderColor: 'rgba(255,255,255,0.32)', backdropFilter: 'blur(6px)' }}>
-              {vehicle.fuelType}
-            </div>
-            {pricing.hasDiscount && (
-              <div className="category-tag text-zinc-300 font-mono line-through" style={{ background: 'rgba(0,0,0,0.4)', borderColor: 'rgba(255,255,255,0.15)' }}>
-                Was KES {pricing.originalPrice.toLocaleString()}
-              </div>
-            )}
-          </div>
+        {/* 2. Content Block: Title + Metadata */}
+        <div className="space-y-0.5 px-0.5">
+          <h3 className="text-[14px] sm:text-[15px] font-medium text-[#222222] group-hover:text-[#ff385c] transition-colors truncate leading-snug">
+            {vehicle.year} {vehicle.name}
+          </h3>
+          <p className="text-xs text-[#6a6a6a] font-normal truncate">
+            {getDisplacement(vehicle.engine)} · {getTransmission(vehicle.transmission)} · {getDrivetrain(vehicle.drivetrain)} · {vehicle.mileageKm.toLocaleString()} KM
+          </p>
+        </div>
+      </div>
 
-          {/* Action Buttons Row: Price of the car + Round WhatsApp button */}
-          <div className="flex items-center gap-2 pt-0.5 card-link-actions">
-            <button
-              onClick={() => onSelect(vehicle)}
-              className="flex-1 h-11 inline-flex items-center justify-center gap-2 px-3 text-[14px] font-bold rounded-[14px] transition-all duration-200 cursor-pointer text-white shadow-md hover:shadow-lg active:scale-98 font-mono tracking-tight"
-              style={{ background: '#DC2626', border: '1px solid #DC2626' }}
-            >
-              <span>KES {pricing.currentPrice.toLocaleString()}</span>
-              <ArrowRight width={15} height={15} className="shrink-0" />
-            </button>
+      {/* 3. Bottom Row: Price & Inspection Link */}
+      <div className="mt-2.5 pt-2 border-t border-[#ebebeb] flex items-center justify-between px-0.5">
+        <div className="flex items-baseline gap-1">
+          <span className="text-[#222222] font-semibold text-sm sm:text-[15px] font-mono leading-none">
+            KES {pricing.currentPrice.toLocaleString()}
+          </span>
+          <span className="text-[11px] text-[#6a6a6a] font-normal">
+            duty-paid
+          </span>
+        </div>
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onInquire) onInquire(vehicle);
-                else handleInquire(e);
-              }}
-              className="w-11 h-11 rounded-full inline-flex items-center justify-center transition-all duration-200 cursor-pointer text-white shadow-md hover:shadow-lg hover:scale-105 active:scale-95 bg-[#25D366] hover:bg-[#20ba59] shrink-0"
-              title="Inquire on WhatsApp"
-              aria-label="Inquire on WhatsApp"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-5 h-5 text-white"
-              >
-                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.44C8.95 7.44 8.68 7.5 8.46 7.74C8.24 7.97 7.61 8.56 7.61 9.77C7.61 10.98 8.49 12.14 8.61 12.31C8.74 12.47 10.33 14.93 12.78 15.98C13.36 16.23 13.82 16.39 14.17 16.5C14.76 16.69 15.3 16.66 15.73 16.6C16.21 16.53 17.2 16 17.41 15.42C17.62 14.84 17.62 14.34 17.55 14.24C17.49 14.13 17.33 14.07 17.08 13.95C16.84 13.83 15.65 13.24 15.43 13.16C15.21 13.08 15.05 13.04 14.89 13.28C14.73 13.53 14.26 14.07 14.12 14.24C13.98 14.4 13.84 14.42 13.6 14.3C13.36 14.18 12.57 13.92 11.64 13.09C10.91 12.44 10.42 11.64 10.28 11.4C10.14 11.16 10.26 11.02 10.38 10.9C10.49 10.79 10.63 10.61 10.75 10.47C10.87 10.33 10.91 10.23 10.99 10.07C11.07 9.91 11.03 9.77 10.97 9.65C10.91 9.53 10.42 8.33 10.22 7.84C10.02 7.36 9.82 7.42 9.67 7.42C9.52 7.42 9.35 7.44 9.11 7.44Z" />
-              </svg>
-            </button>
-          </div>
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onInquire) onInquire(vehicle);
+              else handleInquire(e);
+            }}
+            className="w-7 h-7 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] flex items-center justify-center transition-colors cursor-pointer"
+            title="Chat WhatsApp"
+            aria-label="Chat WhatsApp"
+          >
+            <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+          </button>
 
+          <span className="text-xs font-medium text-[#ff385c] inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
+            <span>Inspect</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-// Animated Loading Skeleton for Vehicle Cards (1:1 Smart Team Style)
+// Airbnb-Style Loading Skeleton for Vehicle Cards
 export const VehicleCardSkeleton: React.FC = () => {
   return (
-    <div
-      className="hero-card animate-pulse"
-      style={{
-        aspectRatio: '3 / 4',
-        minHeight: '450px',
-        backgroundColor: '#18181b',
-        borderRadius: '28px',
-      }}
-    >
-      <div className="hero-card_content">
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <div className="h-6 w-28 bg-white/10 rounded-md" />
-            <div className="h-8 w-8 bg-white/10 rounded-full" />
-          </div>
-          <div className="h-6 w-3/4 bg-white/20 rounded mt-2" />
-          <div className="h-5 w-1/2 bg-white/15 rounded" />
+    <div className="bg-white rounded-[12px] border border-[#ebebeb] p-3 flex flex-col justify-between animate-pulse text-left">
+      <div>
+        <div className="aspect-[4/3] rounded-[10px] bg-[#f7f7f7] border border-[#ebebeb] mb-2.5" />
+        <div className="space-y-1.5 px-0.5">
+          <div className="h-4 w-3/4 bg-[#f7f7f7] rounded" />
+          <div className="h-3 w-1/2 bg-[#f7f7f7] rounded" />
         </div>
-        <div className="space-y-3">
-          <div className="flex gap-2">
-            <div className="h-6 w-16 bg-white/15 rounded-full" />
-            <div className="h-6 w-16 bg-white/15 rounded-full" />
-          </div>
-          <div className="flex gap-2 pt-1">
-            <div className="h-11 flex-1 bg-white/20 rounded-[14px]" />
-            <div className="h-11 w-11 bg-white/20 rounded-full" />
-          </div>
-        </div>
+      </div>
+      <div className="mt-3 pt-2 border-t border-[#ebebeb] flex items-center justify-between px-0.5">
+        <div className="h-4 w-24 bg-[#f7f7f7] rounded" />
+        <div className="h-4 w-12 bg-[#f7f7f7] rounded" />
       </div>
     </div>
   );
 };
+
+export default VehicleCard;

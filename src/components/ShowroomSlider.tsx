@@ -320,42 +320,42 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
           {/* Bottom Floating Theatrical HUD (Specs + Model Information) */}
           <div className="absolute bottom-4 sm:bottom-8 inset-x-4 sm:inset-x-8 z-20">
-            <div className="bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-xl p-5 sm:p-7 shadow-2xl max-w-4xl space-y-4 text-zinc-900">
+            <div className="bg-white/95 backdrop-blur-xl border border-[#ebebeb] rounded-[14px] p-5 sm:p-7 shadow-xs max-w-4xl space-y-4 text-[#222222]">
               
               {/* Category & Status */}
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200 pb-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#ebebeb] pb-3">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-950 font-bold uppercase tracking-wider">
+                  <span className="text-[#222222] font-bold uppercase tracking-wider">
                     {activeVehicle.category.toUpperCase()}
                   </span>
-                  <span className="text-zinc-600">•</span>
-                  <span className="text-zinc-600 font-medium">
+                  <span className="text-[#6a6a6a]">•</span>
+                  <span className="text-[#6a6a6a] font-medium">
                     {activeVehicle.status}
                   </span>
                 </div>
 
-                <div className="text-xs text-zinc-600 font-mono">
-                  Auction: <span className="text-zinc-950 font-bold">{activeVehicle.auctionHall}</span>
+                <div className="text-xs text-[#6a6a6a] font-mono">
+                  Auction: <span className="text-[#222222] font-bold">{activeVehicle.auctionHall}</span>
                 </div>
               </div>
 
               {/* Model Name & Tagline */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-950 tracking-[-0.03em]">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#222222] tracking-[-0.03em]">
                     {activeVehicle.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-600 mt-1 max-w-xl">
+                  <p className="text-xs sm:text-sm text-[#6a6a6a] mt-1 max-w-xl">
                     {activeVehicle.tagline}
                   </p>
                 </div>
 
-                {/* Delivered Price — Pure White High-Contrast Typography */}
+                {/* Delivered Price — Hof Neutral Typography */}
                 <div className="text-left md:text-right shrink-0">
-                  <span className="text-[11px] text-zinc-600 font-semibold uppercase tracking-wider block">
+                  <span className="text-[11px] text-[#6a6a6a] font-semibold uppercase tracking-wider block">
                     Delivered Price
                   </span>
-                  <span className="font-mono text-2xl sm:text-3xl font-bold text-zinc-950">
+                  <span className="font-mono text-2xl sm:text-3xl font-bold text-[#222222]">
                     KES {activeVehicle.priceKes.toLocaleString()}
                   </span>
                 </div>
@@ -363,39 +363,39 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
 
               {/* Key Specs Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
-                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Year & Mileage</span>
-                  <span className="font-semibold text-zinc-950">
+                <div className="bg-[#f7f7f7] border border-[#ebebeb] p-2.5 rounded-[10px]">
+                  <span className="text-[10px] text-[#6a6a6a] font-semibold block mb-0.5">Year & Mileage</span>
+                  <span className="font-semibold text-[#222222]">
                     {activeVehicle.year} • {activeVehicle.mileageKm.toLocaleString()} KM
                   </span>
                 </div>
-                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Engine & Power</span>
-                  <span className="font-semibold text-zinc-950">
+                <div className="bg-[#f7f7f7] border border-[#ebebeb] p-2.5 rounded-[10px]">
+                  <span className="text-[10px] text-[#6a6a6a] font-semibold block mb-0.5">Engine & Power</span>
+                  <span className="font-semibold text-[#222222]">
                     {activeVehicle.engine.split(' ')[0]} • {activeVehicle.power.split('@')[0]}
                   </span>
                 </div>
-                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Drivetrain</span>
-                  <span className="font-semibold text-zinc-950 truncate block">
+                <div className="bg-[#f7f7f7] border border-[#ebebeb] p-2.5 rounded-[10px]">
+                  <span className="text-[10px] text-[#6a6a6a] font-semibold block mb-0.5">Drivetrain</span>
+                  <span className="font-semibold text-[#222222] truncate block">
                     {activeVehicle.drivetrain.split('(')[0]}
                   </span>
                 </div>
-                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
-                  <span className="text-[10px] text-zinc-600 font-semibold block mb-0.5">Pre-Delivery Overhaul</span>
-                  <span className="font-semibold text-zinc-950 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-zinc-600" />
+                <div className="bg-[#f7f7f7] border border-[#ebebeb] p-2.5 rounded-[10px]">
+                  <span className="text-[10px] text-[#6a6a6a] font-semibold block mb-0.5">Pre-Delivery Overhaul</span>
+                  <span className="font-semibold text-[#222222] flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#ff385c]" />
                     <span>100-Point Pass</span>
                   </span>
                 </div>
               </div>
 
-              {/* Actions Row — High-Contrast Pure White Primary Button */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-zinc-200">
+              {/* Actions Row */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#ebebeb]">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => onSelectVehicle(activeVehicle)}
-                    className="btn-white !py-2.5 !px-5 !text-xs !rounded-md w-full sm:w-auto inline-flex items-center justify-center font-semibold"
+                    className="py-2.5 px-5 text-xs rounded-full w-full sm:w-auto inline-flex items-center justify-center font-bold bg-[#ff385c] hover:bg-[#e00b41] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
                   >
                     <span>View Car Details</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -405,14 +405,14 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                     href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(activeVehicle.name)}%20(${activeVehicle.stockNo})%20priced%20at%20KES%20${activeVehicle.priceKes.toLocaleString()}.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-ghost !py-2.5 !px-5 !text-xs !rounded-md w-full sm:w-auto inline-flex items-center justify-center font-medium"
+                    className="py-2.5 px-5 text-xs rounded-full w-full sm:w-auto inline-flex items-center justify-center font-semibold bg-white border border-[#ebebeb] hover:bg-[#f7f7f7] text-[#222222] transition-colors"
                   >
                     <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
                     <span>WhatsApp Showroom</span>
                   </a>
                 </div>
 
-                <span className="text-[11px] text-zinc-600 font-mono hidden md:inline">
+                <span className="text-[11px] text-[#6a6a6a] font-mono hidden md:inline">
                   Original Auction Sheet Verified
                 </span>
               </div>
@@ -423,14 +423,14 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
           {/* Stage Side Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#222222] border border-[#ebebeb] shadow-xs backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
             title="Previous car"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-md bg-zinc-100/70 hover:bg-zinc-100 text-zinc-950 border border-zinc-800 backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#222222] border border-[#ebebeb] shadow-xs backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105"
             title="Next car"
           >
             <ChevronRight className="w-4 h-4" />

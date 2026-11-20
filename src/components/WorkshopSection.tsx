@@ -197,27 +197,27 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
   };
 
   return (
-    <section className="w-full bg-[#f8f9fa] py-16 sm:py-24 px-4 sm:px-8 text-zinc-900 relative">
+    <section className="w-full bg-[#f7f7f7] py-16 sm:py-24 px-4 sm:px-8 text-[#222222] relative">
       <div className="max-w-[1280px] mx-auto space-y-16 sm:space-y-20 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-[840px] mx-auto space-y-3.5">
           <div className="inline-flex items-center gap-2">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] font-bold">
               {pageData?.badge || 'DIRECT JAPANESE SOURCING · PORT OF MOMBASA'}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#222222] tracking-[-0.035em] leading-[1.05]">
             {pageData?.heroTitle || 'The Direct Japanese Import Process'}
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-[#6a6a6a] leading-relaxed font-normal max-w-2xl mx-auto">
             {pageData?.heroSubtitle || 'From Tokyo auction halls to Kilindini Harbour customs clearance and nationwide handover. Zero broker markups, genuine auction sheets, and complete transparency.'}
           </p>
         </div>
 
         {/* Cinematic Cinema Stage — Mobile Responsive Aspect Ratio */}
         <div className="space-y-6">
-          <div className="w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] min-h-[320px] sm:min-h-[440px] md:min-h-[520px] max-h-[620px] overflow-hidden relative bg-zinc-950 border border-zinc-200/90 rounded-2xl shadow-xl group">
+          <div className="w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] min-h-[320px] sm:min-h-[440px] md:min-h-[520px] max-h-[620px] overflow-hidden relative bg-zinc-950 border border-[#ebebeb] rounded-[14px] shadow-sm group">
             <video
               autoPlay
               muted
@@ -245,27 +245,27 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
           </div>
 
-          {/* Key Import Pillars Matrix (Apple Design System Soft Clean Strip) */}
-          <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 shadow-[0_2px_8px_-1px_rgba(0,0,0,0.04)] grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+          {/* Key Import Pillars Matrix (Airbnb Clean Minimalist Strip) */}
+          <div className="bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-8 shadow-xs grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">WEEKLY AUCTION FLEET</span>
-              <span className="text-base sm:text-xl font-bold text-zinc-950 block">150,000+ Cars</span>
-              <span className="text-xs text-zinc-600">USS Tokyo, TAA, CAA, JU</span>
+              <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider block mb-1">WEEKLY AUCTION FLEET</span>
+              <span className="text-base sm:text-xl font-bold text-[#222222] block">150,000+ Cars</span>
+              <span className="text-xs text-[#6a6a6a]">USS Tokyo, TAA, CAA, JU</span>
             </div>
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">OCEAN TRANSIT DURATION</span>
-              <span className="text-base sm:text-xl font-bold text-zinc-950 block">28 – 35 Days</span>
-              <span className="text-xs text-zinc-600">Yokohama/Kobe to Mombasa</span>
+              <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider block mb-1">OCEAN TRANSIT DURATION</span>
+              <span className="text-base sm:text-xl font-bold text-[#222222] block">28 – 35 Days</span>
+              <span className="text-xs text-[#6a6a6a]">Yokohama/Kobe to Mombasa</span>
             </div>
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">EXPORT VERIFICATION</span>
-              <span className="text-base sm:text-xl font-bold text-zinc-950 block">100% QISJ / JEVIC</span>
-              <span className="text-xs text-zinc-600">Certified genuine mileage</span>
+              <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider block mb-1">EXPORT VERIFICATION</span>
+              <span className="text-base sm:text-xl font-bold text-[#222222] block">100% QISJ / JEVIC</span>
+              <span className="text-xs text-[#6a6a6a]">Certified genuine mileage</span>
             </div>
             <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-1">CUSTOMS DUTY PRICING</span>
-              <span className="text-base sm:text-xl font-bold text-red-600 block">KRA CRSP Sched.</span>
-              <span className="text-xs text-zinc-600">No arbitrary broker markups</span>
+              <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider block mb-1">CUSTOMS DUTY PRICING</span>
+              <span className="text-base sm:text-xl font-bold text-[#ff385c] block">KRA CRSP Sched.</span>
+              <span className="text-xs text-[#6a6a6a]">No arbitrary broker markups</span>
             </div>
           </div>
         </div>
@@ -328,40 +328,40 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
           </div>
 
           {/* Active Stage Detailed Breakdown Box */}
-          <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 border-b border-zinc-100">
+          <div className="bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-8 space-y-6 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 border-b border-[#ebebeb]">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] text-red-600 font-bold uppercase tracking-widest">
+                  <span className="font-mono text-[10px] text-[#ff385c] font-bold uppercase tracking-widest">
                     STAGE {importSteps[activeStep].number} OF 06 · {importSteps[activeStep].badge}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#222222] tracking-tight">
                   {importSteps[activeStep].title}
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-500 font-mono">
-                  Standard Timeline: <span className="font-bold text-zinc-900">{importSteps[activeStep].duration}</span>
+                <p className="text-xs sm:text-sm text-[#6a6a6a] font-mono">
+                  Standard Timeline: <span className="font-bold text-[#222222]">{importSteps[activeStep].duration}</span>
                 </p>
               </div>
 
-              <div className="font-mono text-[11px] font-semibold text-zinc-800 bg-zinc-100 border border-zinc-200 px-3 py-1.5 rounded-lg w-fit flex items-center gap-1.5 shrink-0">
-                <ShieldCheck className="w-4 h-4 text-red-600" />
+              <div className="font-mono text-[11px] font-semibold text-[#222222] bg-[#f7f7f7] border border-[#ebebeb] px-3 py-1.5 rounded-full w-fit flex items-center gap-1.5 shrink-0">
+                <ShieldCheck className="w-4 h-4 text-[#ff385c]" />
                 <span>100% VERIFIED PROTOCOL</span>
               </div>
             </div>
 
-            <p className="text-sm sm:text-[15px] text-zinc-700 leading-relaxed max-w-3xl font-normal">
+            <p className="text-sm sm:text-[15px] text-[#222222] leading-relaxed max-w-3xl font-normal">
               {importSteps[activeStep].description}
             </p>
 
             <div className="space-y-3 pt-2">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 block font-bold">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#6a6a6a] block font-bold">
                 KEY SAFEGUARDS & ACTIONS:
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {importSteps[activeStep].checklist.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700">
-                    <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                  <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#222222]">
+                    <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -369,60 +369,60 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
 
             {/* Official Documentation Pass */}
-            <div className="mt-4 pt-4 border-t border-zinc-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs bg-zinc-50 p-4 rounded-xl border border-zinc-200/80">
+            <div className="mt-4 pt-4 border-t border-[#ebebeb] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs bg-[#f7f7f7] p-4 rounded-[12px] border border-[#ebebeb]">
               <div className="flex items-center gap-2">
-                <FileCheck2 className="w-4 h-4 text-red-600 shrink-0" />
-                <span className="font-semibold text-zinc-900">Official Document Issued:</span>
-                <span className="text-zinc-600 font-mono">{importSteps[activeStep].deliverable}</span>
+                <FileCheck2 className="w-4 h-4 text-[#ff385c] shrink-0" />
+                <span className="font-semibold text-[#222222]">Official Document Issued:</span>
+                <span className="text-[#6a6a6a] font-mono">{importSteps[activeStep].deliverable}</span>
               </div>
-              <span className="font-mono text-[11px] text-zinc-500">Provided to client at handover</span>
+              <span className="font-mono text-[11px] text-[#6a6a6a]">Provided to client at handover</span>
             </div>
           </div>
         </div>
 
         {/* Transparent Cost Breakdown & Kenya Import Duty Guide */}
-        <div className="bg-white border border-zinc-200 rounded-2xl p-6 sm:p-10 space-y-8 text-left shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+        <div className="bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-10 space-y-8 text-left shadow-xs">
           <div className="max-w-2xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold block">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] font-bold block">
               TAX & DUTY TRANSPARENCY
             </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-tight">
               How Kenyan Import Duty & Costs Are Calculated
             </h3>
-            <p className="text-sm text-zinc-600 leading-relaxed">
+            <p className="text-sm text-[#6a6a6a] leading-relaxed">
               We operate with 100% open accounting. Unlike street brokers who add arbitrary "clearing fees," every Kenyan tax component is derived strictly from KRA published CRSP valuations.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-red-600 block">01 · IMPORT DUTY</span>
-              <span className="text-2xl font-black text-zinc-950 font-mono block">25%</span>
-              <p className="text-xs text-zinc-600 leading-relaxed">
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-[#ff385c] block">01 · IMPORT DUTY</span>
+              <span className="text-2xl font-black text-[#222222] font-mono block">25%</span>
+              <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 Calculated on the KRA Current Retail Selling Price (CRSP) after legal age depreciation deductions.
               </p>
             </div>
 
-            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-red-600 block">02 · EXCISE DUTY</span>
-              <span className="text-2xl font-black text-zinc-950 font-mono block">20% – 35%</span>
-              <p className="text-xs text-zinc-600 leading-relaxed">
-                20% for engines under 1,500cc; 25% for 1,500cc – 2,500cc; 35% for high-displacement & luxury luxury SUVs.
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-[#ff385c] block">02 · EXCISE DUTY</span>
+              <span className="text-2xl font-black text-[#222222] font-mono block">20% – 35%</span>
+              <p className="text-xs text-[#6a6a6a] leading-relaxed">
+                20% for engines under 1,500cc; 25% for 1,500cc – 2,500cc; 35% for high-displacement & luxury SUVs.
               </p>
             </div>
 
-            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-red-600 block">03 · VALUE ADDED TAX</span>
-              <span className="text-2xl font-black text-zinc-950 font-mono block">16% VAT</span>
-              <p className="text-xs text-zinc-600 leading-relaxed">
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-[#ff385c] block">03 · VALUE ADDED TAX</span>
+              <span className="text-2xl font-black text-[#222222] font-mono block">16% VAT</span>
+              <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 Applied on Customs Value + Import Duty + Excise Duty per Kenya Revenue Authority tax statutes.
               </p>
             </div>
 
-            <div className="bg-zinc-50 border border-zinc-200/80 rounded-xl p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-red-600 block">04 · LEVIES & NTSA</span>
-              <span className="text-2xl font-black text-zinc-950 font-mono block">IDF + RDL</span>
-              <p className="text-xs text-zinc-600 leading-relaxed">
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
+              <span className="text-xs font-mono font-bold text-[#ff385c] block">04 · LEVIES & NTSA</span>
+              <span className="text-2xl font-black text-[#222222] font-mono block">IDF + RDL</span>
+              <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 3.5% Import Declaration Fee + 2.0% Railway Development Levy + standard NTSA number plate registration.
               </p>
             </div>
@@ -430,49 +430,49 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
         </div>
 
         {/* Required Documents Checklist for Buyers */}
-        <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-6 text-left">
+        <div className="bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-8 space-y-6 text-left shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-zinc-500 font-semibold block mb-0.5">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#6a6a6a] font-semibold block mb-0.5">
                 CLEARANCE PREREQUISITES
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-zinc-950">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#222222]">
                 Documents You Need to Provide
               </h3>
             </div>
-            <span className="font-mono text-xs text-zinc-700 bg-zinc-100 px-3 py-1 rounded-md border border-zinc-200 font-semibold w-fit">
+            <span className="font-mono text-xs text-[#222222] bg-[#f7f7f7] px-3 py-1 rounded-full border border-[#ebebeb] font-semibold w-fit">
               Simple 3-Item Client Checklist
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white border border-zinc-200 rounded-xl p-4 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#fff1f3] text-[#ff385c] border border-[#ffccd5] flex items-center justify-center font-bold text-xs shrink-0">
                 1
               </div>
               <div>
-                <h4 className="text-sm font-bold text-zinc-950">KRA PIN Certificate</h4>
-                <p className="text-xs text-zinc-600 mt-0.5">Required for Simba / iCMS customs clearance and eCitizen duty payment receipts.</p>
+                <h4 className="text-sm font-bold text-[#222222]">KRA PIN Certificate</h4>
+                <p className="text-xs text-[#6a6a6a] mt-0.5">Required for Simba / iCMS customs clearance and eCitizen duty payment receipts.</p>
               </div>
             </div>
 
-            <div className="bg-white border border-zinc-200 rounded-xl p-4 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#fff1f3] text-[#ff385c] border border-[#ffccd5] flex items-center justify-center font-bold text-xs shrink-0">
                 2
               </div>
               <div>
-                <h4 className="text-sm font-bold text-zinc-950">National ID or Passport</h4>
-                <p className="text-xs text-zinc-600 mt-0.5">Valid government identification for NTSA TIMS motor vehicle registration.</p>
+                <h4 className="text-sm font-bold text-[#222222]">National ID or Passport</h4>
+                <p className="text-xs text-[#6a6a6a] mt-0.5">Valid government identification for NTSA TIMS motor vehicle registration.</p>
               </div>
             </div>
 
-            <div className="bg-white border border-zinc-200 rounded-xl p-4 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#fff1f3] text-[#ff385c] border border-[#ffccd5] flex items-center justify-center font-bold text-xs shrink-0">
                 3
               </div>
               <div>
-                <h4 className="text-sm font-bold text-zinc-950">eCitizen TIMS Account</h4>
-                <p className="text-xs text-zinc-600 mt-0.5">Your personal or company eCitizen profile where the digital logbook is transferred.</p>
+                <h4 className="text-sm font-bold text-[#222222]">eCitizen TIMS Account</h4>
+                <p className="text-xs text-[#6a6a6a] mt-0.5">Your personal or company eCitizen profile where the digital logbook is transferred.</p>
               </div>
             </div>
           </div>
@@ -481,7 +481,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
         {/* Custom Import on Order Consultation Form */}
         <div
           id="custom-import-form"
-          className="relative bg-white p-8 sm:p-12 border border-zinc-200 rounded-3xl space-y-8 text-left shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
+          className="relative bg-white p-6 sm:p-10 border border-[#ebebeb] rounded-[14px] space-y-8 text-left shadow-xs"
         >
           <div className="max-w-2xl space-y-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 font-bold block">

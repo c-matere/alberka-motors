@@ -54,24 +54,24 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Physical Showroom Location Banner (Background matches section background white) */}
-        <div className="bg-white border border-zinc-200/80 rounded-2xl p-5 sm:p-7 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xs text-left">
+        <div className="bg-white border border-[#ebebeb] rounded-[14px] p-5 sm:p-7 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xs text-left">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
-              <MapPin className="w-6 h-6 text-red-600" />
+            <div className="w-12 h-12 rounded-full bg-[#fff1f3] border border-[#ffccd5] flex items-center justify-center shrink-0 mt-0.5">
+              <MapPin className="w-6 h-6 text-[#ff385c]" />
             </div>
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-red-600">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#ff385c]">
                   Physical Showroom Location
                 </span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-zinc-100 text-zinc-700 border border-zinc-200">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-[#f7f7f7] text-[#222222] border border-[#ebebeb]">
                   Mon – Sat · 8:00 AM – 6:00 PM
                 </span>
               </div>
-              <h3 className="font-bold text-zinc-950 text-base sm:text-lg tracking-tight">
+              <h3 className="font-bold text-[#222222] text-base sm:text-lg tracking-tight">
                 Next to Ganjoni Primary School, Archbishop Makarios Rd, Mombasa
               </h3>
-              <p className="text-xs sm:text-[13px] text-zinc-600 max-w-2xl leading-relaxed">
+              <p className="text-xs sm:text-[13px] text-[#6a6a6a] max-w-2xl leading-relaxed">
                 Tour our certified Japanese import fleet in person, inspect vehicles on our mechanical lift with your independent mechanic, or initiate direct Tokyo auction bidding with our Mombasa team.
               </p>
             </div>
@@ -82,14 +82,14 @@ export const Footer: React.FC<FooterProps> = ({
               href="https://maps.app.goo.gl/ALv491SA67CFww1f7"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+              className="px-4 py-2.5 bg-white hover:bg-[#f7f7f7] border border-[#ebebeb] text-[#222222] font-semibold text-xs rounded-full inline-flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
             >
-              <Navigation className="w-3.5 h-3.5 text-red-600" />
+              <Navigation className="w-3.5 h-3.5 text-[#ff385c]" />
               <span>Get Directions</span>
             </a>
             <button
               onClick={() => onNavigate('locations')}
-              className="px-4 py-2.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-900 font-bold text-xs rounded-xl inline-flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
+              className="px-4 py-2.5 bg-[#f7f7f7] hover:bg-[#ebebeb] border border-[#ebebeb] text-[#222222] font-semibold text-xs rounded-full inline-flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
             >
               <span>Showroom Bay Guide</span>
               <ArrowRight className="w-3.5 h-3.5" />

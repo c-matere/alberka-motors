@@ -1049,63 +1049,63 @@ Please provide more information about this vehicle.`
 
           {/* Right Column: lg:col-span-5 (Executive Vehicle Card: Badges, Title, Pricing, Actions, Specs) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+            <div className="bg-white border border-[#ebebeb] rounded-[14px] p-4 sm:p-5 shadow-xs space-y-3.5">
               
               {/* Header Badges & Stock Number */}
-              <div className="space-y-1.5">
-                <div className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-                  <span className="px-2 py-0.5 rounded bg-red-50 text-red-700 font-bold border border-red-200/80">
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-mono uppercase tracking-wider text-[#6a6a6a]">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#fff0f3] text-[#ff385c] font-medium border border-[#ff385c]/25">
                     Direct Japanese Import
                   </span>
-                  <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-800 px-2 py-0.5 rounded font-mono font-bold">
+                  <span className="bg-[#f7f7f7] border border-[#ebebeb] text-[#222222] px-2.5 py-0.5 rounded-full font-mono font-medium">
                     Stock: {vehicle.sbtStockId || vehicle.stockNo}
                   </span>
-                  <span className="bg-zinc-100 border border-zinc-200/90 text-zinc-700 px-2 py-0.5 rounded font-mono">
+                  <span className="bg-[#f7f7f7] border border-[#ebebeb] text-[#6a6a6a] px-2.5 py-0.5 rounded-full font-mono">
                     Code: {vehicle.modelCode || 'CBA-GRJ120W'}
                   </span>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-                  {vehicle.year} {vehicleDisplayTitle.toUpperCase()}
+                <h1 className="text-xl sm:text-2xl font-medium text-[#222222] tracking-tight leading-snug">
+                  {vehicle.year} {vehicleDisplayTitle}
                 </h1>
 
-                <p className="text-xs text-zinc-600 font-normal">
+                <p className="text-xs text-[#6a6a6a] font-normal">
                   {vehicle.tagline || vehicle.moniker}
                 </p>
               </div>
 
               {/* Price Container */}
-              <div className="bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-4 space-y-2.5">
+              <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-3.5 sm:p-4 space-y-2">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-semibold block">
+                  <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider font-medium block">
                     DELIVERED CASH PRICE
                   </span>
-                  <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white font-mono shadow-xs whitespace-nowrap shrink-0">
+                  <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-[#fff0f3] text-[#ff385c] border border-[#ff385c]/25 font-mono shadow-2xs whitespace-nowrap shrink-0">
                     Save KES {pricing.savingsKes.toLocaleString()}
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-2 pt-0.5">
-                  <span className="text-3xl sm:text-4xl font-extrabold text-red-600 font-mono tracking-tight leading-none">
+                  <span className="text-2xl sm:text-3xl font-semibold text-[#222222] font-mono tracking-tight leading-none">
                     KES {vehicle.priceKes.toLocaleString()}
                   </span>
                   {pricing.hasDiscount && (
-                    <span className="text-xs font-mono text-zinc-400 line-through">
+                    <span className="text-xs font-mono text-[#6a6a6a] line-through">
                       KES {pricing.originalPrice.toLocaleString()}
                     </span>
                   )}
                 </div>
 
-                <p className="text-[11px] text-zinc-600 leading-tight">
+                <p className="text-[11px] text-[#6a6a6a] leading-tight">
                   Includes KRA customs duty, port clearance, 100-point overhaul & Mombasa yard handover.
                 </p>
 
-                {/* Primary Action Buttons */}
+                {/* Primary Action Buttons (Airbnb pill styling) */}
                 <div className="space-y-2 pt-1">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <button
                       onClick={() => onScheduleTestDrive(vehicle)}
-                      className="bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-98"
+                      className="bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-2 px-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-98"
                     >
                       <Calendar className="w-3.5 h-3.5" />
                       <span>Book Test Drive</span>
@@ -1114,18 +1114,18 @@ Please provide more information about this vehicle.`
                       onClick={() => {
                         if (onOpenWhispers) onOpenWhispers(vehicle.id);
                       }}
-                      className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs active:scale-98"
+                      className="bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] hover:border-[#dddddd] font-medium py-2 px-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs active:scale-98"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+                      <MessageCircle className="w-3.5 h-3.5 fill-[#25D366] text-[#25D366]" />
                       <span>Chat WhatsApp</span>
                     </button>
                   </div>
 
                   <button
                     onClick={() => setShowAuctionModal(true)}
-                    className="w-full bg-white hover:bg-zinc-100 text-zinc-800 border border-zinc-200/90 font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                    className="w-full bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] font-medium py-2 px-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs"
                   >
-                    <FileText className="w-3.5 h-3.5 text-red-600" />
+                    <FileText className="w-3.5 h-3.5 text-[#ff385c]" />
                     <span>View Japanese Auction Sheet (Grade {vehicle.auctionGrade || '4.5'})</span>
                   </button>
                 </div>
@@ -1133,49 +1133,49 @@ Please provide more information about this vehicle.`
 
               {/* 6 Key Mechanical & Inspection Metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Auction Grade</span>
-                  <p className="text-sm font-bold text-zinc-950 font-mono">Grade {vehicle.auctionGrade || '4.5'}</p>
-                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.auctionHall || 'USS Tokyo'}</p>
+                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
+                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Auction Grade</span>
+                  <p className="text-[13px] font-medium text-[#222222] font-mono">Grade {vehicle.auctionGrade || '4.5'}</p>
+                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.auctionHall || 'USS Tokyo'}</p>
                 </div>
 
-                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Mileage</span>
-                  <p className="text-sm font-bold text-zinc-950 font-mono">{vehicle.mileageKm.toLocaleString()} KM</p>
-                  <p className="text-[10px] text-emerald-700 font-semibold truncate">JEVIC Certified</p>
+                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
+                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Mileage</span>
+                  <p className="text-[13px] font-medium text-[#222222] font-mono">{vehicle.mileageKm.toLocaleString()} KM</p>
+                  <p className="text-[10px] text-[#6a6a6a] truncate">JEVIC Certified</p>
                 </div>
 
-                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Drivetrain</span>
-                  <p className="text-sm font-bold text-zinc-950 truncate">{vehicle.drivetrain || '4WD'}</p>
-                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.transmission || 'Automatic'}</p>
+                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
+                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Drivetrain</span>
+                  <p className="text-[13px] font-medium text-[#222222] truncate">{vehicle.drivetrain || '4WD'}</p>
+                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.transmission || 'Automatic'}</p>
                 </div>
 
-                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Engine</span>
-                  <p className="text-sm font-bold text-zinc-950 truncate">{vehicle.engine}</p>
-                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.power || 'Direct Injection'}</p>
+                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
+                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Engine</span>
+                  <p className="text-[13px] font-medium text-[#222222] truncate">{vehicle.engine}</p>
+                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.power || 'Direct Injection'}</p>
                 </div>
 
-                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Fuel & Capacity</span>
-                  <p className="text-sm font-bold text-zinc-950 truncate">{vehicle.fuelType.toUpperCase()}</p>
-                  <p className="text-[10px] text-zinc-500 truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
+                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
+                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Fuel & Capacity</span>
+                  <p className="text-[13px] font-medium text-[#222222] truncate">{vehicle.fuelType.toUpperCase()}</p>
+                  <p className="text-[10px] text-[#6a6a6a] truncate">{vehicle.seats || 5} Seats · {vehicle.doors || 5} Doors</p>
                 </div>
 
-                <div className="p-2.5 bg-zinc-50 border border-zinc-200/80 rounded-xl space-y-0.5">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block font-semibold">Location</span>
-                  <p className="text-sm font-bold text-zinc-950 truncate">Mombasa Yard</p>
-                  <p className="text-[10px] text-zinc-500 truncate">Ganjoni Showroom</p>
+                <div className="p-2.5 bg-white border border-[#ebebeb] rounded-[10px] space-y-0.5">
+                  <span className="text-[10px] font-mono text-[#6a6a6a] uppercase block font-normal">Location</span>
+                  <p className="text-[13px] font-medium text-[#222222] truncate">Mombasa Yard</p>
+                  <p className="text-[10px] text-[#6a6a6a] truncate">Ganjoni Showroom</p>
                 </div>
               </div>
 
               {/* Compact Specs Chip Strip */}
-              <div className="pt-1 flex flex-wrap items-center gap-1 text-[10.5px] font-mono text-zinc-600">
-                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">RHD</span>
-                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">Zero Accident (No R-Grade)</span>
-                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">{vehicle.fuelEconomy || '14.2 km/L'}</span>
-                <span className="bg-zinc-50 border border-zinc-200/70 px-2 py-0.5 rounded">{vehicle.dimensions || '4.46m × 1.80m'}</span>
+              <div className="pt-0.5 flex flex-wrap items-center gap-1 text-[10.5px] font-mono text-[#6a6a6a]">
+                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">RHD</span>
+                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">Zero Accident</span>
+                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">{vehicle.fuelEconomy || '14.2 km/L'}</span>
+                <span className="bg-[#f7f7f7] border border-[#ebebeb] px-2 py-0.5 rounded-full">{vehicle.dimensions || '4.46m × 1.80m'}</span>
               </div>
 
               {/* Share & Print Buttons */}
@@ -1315,40 +1315,40 @@ Please provide more information about this vehicle.`
                 <div
                   key={point.id || pIdx}
                   onClick={() => openPhotoByUrl(point.imageUrl, point.title, point.description)}
-                  className="bg-white border border-zinc-200/90 rounded-2xl overflow-hidden shadow-2xs hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
+                  className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[12px] overflow-hidden transition-all duration-200 hover:shadow-xs cursor-pointer group flex flex-col justify-between"
                 >
-                  <div className="aspect-[16/10] w-full overflow-hidden relative bg-zinc-100">
+                  <div className="aspect-[16/10] w-full overflow-hidden relative bg-[#f7f7f7]">
                     <img
                       src={point.imageUrl}
                       alt={point.title}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                     />
-                    <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-zinc-200/80 text-[10px] font-mono text-zinc-950 font-bold flex items-center gap-1.5 shadow-2xs">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                    <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-black/5 text-[10.5px] font-mono text-[#222222] font-semibold flex items-center gap-1.5 shadow-2xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c] animate-pulse" />
                       <span>{point.metric}</span>
                     </div>
-                    <div className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-md p-1.5 rounded-md text-zinc-700 shadow-2xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ZoomIn className="w-3.5 h-3.5" />
+                    <div className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-md p-1.5 rounded-full text-[#222222] shadow-2xs opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-3.5 h-3.5 text-[#ff385c]" />
                     </div>
                   </div>
 
-                  <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                  <div className="p-3.5 sm:p-4 space-y-1.5 flex-1 flex flex-col justify-between">
                     <div className="space-y-1">
-                      <span className="font-mono text-[10px] font-bold text-red-600 uppercase tracking-wider block">
+                      <span className="font-mono text-[10px] font-semibold text-[#ff385c] uppercase tracking-wider block">
                         0{pIdx + 1} · {point.metricLabel || 'HIGHLIGHT'}
                       </span>
-                      <h3 className="text-sm font-bold text-zinc-950 leading-snug group-hover:text-red-600 transition-colors">
+                      <h3 className="text-sm font-medium text-[#222222] leading-snug group-hover:text-[#ff385c] transition-colors">
                         {point.title}
                       </h3>
-                      <p className="text-xs text-zinc-600 leading-relaxed line-clamp-3">
+                      <p className="text-xs text-[#6a6a6a] leading-relaxed line-clamp-3">
                         {point.description}
                       </p>
                     </div>
 
-                    <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                    <div className="pt-2 border-t border-[#ebebeb] flex items-center justify-between text-[11px] font-mono text-[#6a6a6a]">
                       <span>{point.subtitle}</span>
-                      <span className="text-red-600 font-bold inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                      <span className="text-[#ff385c] font-medium inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                         <span>Inspect</span>
                         <ArrowRight className="w-3 h-3" />
                       </span>
