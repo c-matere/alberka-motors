@@ -30,7 +30,9 @@ def get_cloudflare_token():
 
 def build():
     print("[*] Running npm run build...")
-    res = subprocess.run(["npm.cmd", "run", "build"], cwd=ROOT_DIR, capture_output=True, text=True)
+    env = os.environ.copy()
+    env["NODE_OPTIONS"] = "--max-old-space-size=4096"
+    res = subprocess.run(["npm.cmd", "run", "build"], cwd=ROOT_DIR, capture_output=True, text=True, env=env)
     if res.returncode != 0:
         print("[!] Build failed:")
         print(res.stderr or res.stdout)
