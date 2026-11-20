@@ -684,43 +684,44 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const activeColor = vehicle.colors[selectedColorIndex] || vehicle.colors[0];
 
   return (
-    <div className="w-full bg-transparent text-zinc-900 pb-16">
+    <div className="w-full max-w-full overflow-x-hidden bg-transparent text-zinc-900 pb-16">
       
       {/* AIRBNB SIGNATURE ITEM PAGE SHOWCASE */}
-      <section className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
+      <section className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 overflow-x-hidden">
         
         {/* 1. Header Bar: Title, Back & Actions */}
-        <div className="w-full pb-4 space-y-2 text-left">
+        <div className="w-full pb-4 space-y-2.5 text-left">
           {/* Top Navigation & Utility Actions */}
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-y-2.5 gap-x-4">
+            <div className="flex items-center gap-2 min-w-0 flex-1 sm:flex-initial">
               <button
                 onClick={onBackToFleet}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer group"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer group shrink-0"
               >
                 <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
-                <span>Show all cars</span>
+                <span className="hidden xs:inline">Show all cars</span>
+                <span className="xs:hidden">All cars</span>
               </button>
 
-              <span className="text-[#ebebeb]">/</span>
+              <span className="text-[#ebebeb] shrink-0">/</span>
 
               {/* Quick Car Selector Trigger */}
-              <div className="relative">
+              <div className="relative min-w-0">
                 <button
                   onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                  className="bg-white hover:bg-[#f7f7f7] border border-[#ebebeb] flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-[#222222] transition-colors cursor-pointer"
+                  className="bg-white hover:bg-[#f7f7f7] border border-[#ebebeb] flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium text-[#222222] transition-colors cursor-pointer max-w-full"
                   title="Switch car"
                 >
-                  <span className="text-[#ff385c] font-mono text-[11px] font-semibold">{vehicle.stockNo}</span>
-                  <span className="truncate max-w-[130px] sm:max-w-[180px]">{vehicle.name}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-[#6a6a6a] transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
+                  <span className="text-[#ff385c] font-mono text-[11px] font-semibold shrink-0">{vehicle.stockNo}</span>
+                  <span className="truncate max-w-[95px] sm:max-w-[180px]">{vehicle.name}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-[#6a6a6a] transition-transform shrink-0 ${modelDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Dropdown Menu */}
                 {modelDropdownOpen && (
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setModelDropdownOpen(false)} />
-                    <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 bg-white border border-[#ebebeb] rounded-2xl shadow-xl p-2 z-50 space-y-1">
+                    <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-32px)] bg-white border border-[#ebebeb] rounded-2xl shadow-xl p-2 z-50 space-y-1">
                       <span className="text-[10px] text-[#6a6a6a] uppercase tracking-wider px-3 py-1 block font-medium">
                         SWITCH TO ANOTHER CAR
                       </span>
@@ -762,10 +763,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
 
             {/* Right-Aligned Share & Save buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
               <button
                 onClick={handleShareVehicle}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
+                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
               >
                 {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
                 <span>{copiedLink ? 'Link copied' : 'Share'}</span>
@@ -773,7 +774,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
               <button
                 onClick={() => onToggleFavorite(vehicle.id)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
+                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
               >
                 <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-[#ff385c] text-[#ff385c]' : 'text-[#222222]'}`} />
                 <span>{isFavorite ? 'Saved' : 'Save'}</span>
@@ -1059,17 +1060,17 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             </div>
 
             {/* View Japanese Auction Sheet Trigger */}
-            <div className="flex items-center justify-between p-4 bg-[#f7f7f7] border border-[#ebebeb] rounded-[14px]">
-              <div className="flex items-center gap-3">
-                <FileText className="w-5 h-5 text-[#ff385c]" />
-                <div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-[#f7f7f7] border border-[#ebebeb] rounded-[14px]">
+              <div className="flex items-center gap-3 min-w-0">
+                <FileText className="w-5 h-5 text-[#ff385c] shrink-0" />
+                <div className="min-w-0">
                   <h4 className="text-xs font-semibold text-[#222222]">Original Japanese Auction Sheet</h4>
                   <p className="text-[11px] text-[#6a6a6a]">Inspect the unedited USS Tokyo inspection sheet with inspector markings</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowAuctionModal(true)}
-                className="bg-white hover:bg-[#f7f7f7] border border-[#222222] text-[#222222] px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer transition-colors shrink-0"
+                className="bg-white hover:bg-[#f7f7f7] border border-[#222222] text-[#222222] px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer transition-colors shrink-0 self-start sm:self-auto"
               >
                 View Sheet
               </button>
@@ -1263,7 +1264,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </section>
 
       {/* Showroom Physical Location & Google Maps Embed ("Where you'll be") */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-[#f7f7f7] text-[#222222]">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-[#f7f7f7] text-[#222222] overflow-x-hidden">
         <div className="max-w-[1280px] mx-auto space-y-6 text-left">
           <div className="space-y-1">
             <span className="text-[11px] uppercase tracking-wider text-[#6a6a6a] font-medium block">
@@ -1353,7 +1354,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </section>
 
       {/* Similar Vehicles in Stock — 4-Card Responsive Grid */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-white text-[#222222]">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-white text-[#222222] overflow-x-hidden">
         <div className="max-w-[1280px] mx-auto space-y-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>

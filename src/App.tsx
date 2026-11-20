@@ -6,12 +6,15 @@ import { useSiteSettings } from './hooks/useSiteSettings';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { VehicleCard, VehicleCardSkeleton } from './components/VehicleCard';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
 import { VehicleStoryView } from './components/VehicleStoryView';
 import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
 import { ModelHubView } from './components/ModelHubView';
 import { WorkshopSection } from './components/WorkshopSection';
+import { TradeInSection } from './components/TradeInSection';
+import { ShowroomMapHub } from './components/ShowroomMapHub';
 import { AboutSection } from './components/AboutSection';
 import { LocationsSection } from './components/LocationsSection';
 import { BlogSection } from './components/BlogSection';
@@ -27,8 +30,16 @@ import { HelpCenterModal } from './components/HelpCenterModal';
 import { TestimonialSectionDemo } from './components/ui/demo';
 import { ScrollRevealBox } from './components/ScrollRevealBox';
 import { BlueprintBackground } from './components/BlueprintBackground';
-import { SectionGradientFade } from './components/SectionGradientFade';
-import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  Sparkles,
+  Repeat,
+  Building2,
+  MapPin,
+  Car
+} from 'lucide-react';
 
 export function App() {
   const { vehicles, isCmsConnected, loading } = useVehicles();
@@ -125,7 +136,7 @@ export function App() {
       const [mainSec, subId] = hashClean.split('/');
 
       if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(mainSec)) {
-        const targetView = (mainSec === 'locations' || mainSec === 'about') ? 'about' : mainSec === 'trade-in' ? 'inventory' : mainSec;
+        const targetView = (mainSec === 'locations' || mainSec === 'about') ? 'about' : mainSec;
         setCurrentView(targetView);
         setSelectedVehicle(null);
         setSelectedBlogPost(null);
@@ -201,8 +212,7 @@ export function App() {
   }, [currentView, selectedVehicle, selectedBlogPost]);
 
   const handleNavigate = (view: string, param?: string) => {
-    let targetView = view === 'trade-in' ? 'inventory' : view;
-    if (targetView === 'locations') targetView = 'about';
+    let targetView = view === 'locations' ? 'about' : view;
     setCurrentView(targetView);
     setSelectedVehicle(null);
     setSelectedBlogPost(null);
@@ -267,7 +277,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f7f7f7] text-[#222222] relative font-sans">
+    <div className="min-h-screen flex flex-col bg-[#f7f7f7] text-[#222222] relative font-sans w-full max-w-full overflow-x-hidden">
       {/* Studio Blueprint & Atmospheric Canvas */}
       <BlueprintBackground />
       
@@ -285,7 +295,7 @@ export function App() {
       />
 
       {/* Main View Router */}
-      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0 relative z-10">
+      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0 relative z-10 w-full max-w-full overflow-x-hidden">
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
@@ -323,85 +333,215 @@ export function App() {
                   pageData={pages['overview']}
                 />
 
-                {/* In-Stock Fleet Runway (Direct Access from Hero) */}
-                <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 relative border-t border-[#ebebeb]">
-                  <div className="max-w-[1520px] mx-auto space-y-12 sm:space-y-16 relative z-10">
-                    {/* Editorial Intro & Direct Actions (Cleanly Below the Fold) */}
-                    <div className="max-w-3xl mx-auto text-center space-y-4">
-                      <p className="text-[#6a6a6a] text-sm sm:text-base leading-relaxed">
-                        From luxury executive crossovers to rugged symmetrical AWDs and ultra-efficient vans — browse, compare verified auction sheets, and drive away with confidence from Mombasa.
-                      </p>
-                      <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-                        <button
-                          onClick={() => handleNavigate('inventory')}
-                          className="py-2.5 px-6 text-xs sm:text-sm rounded-full font-bold bg-[#ff385c] hover:bg-[#e00b41] text-white shadow-xs transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
-                        >
-                          <span>Explore Available Fleet</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </button>
-                        
-                        <button
-                          onClick={() => handleNavigate('workshop')}
-                          className="py-2.5 px-5 text-xs sm:text-sm rounded-full font-semibold text-[#222222] hover:text-black border border-[#ebebeb] hover:border-[#dddddd] bg-white transition-all inline-flex items-center gap-2 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
-                        >
-                          <ShieldCheck className="w-4 h-4 text-[#ff385c]" />
-                          <span>Our Workshop Standard</span>
-                        </button>
-                      </div>
-                    </div>
+                {/* Visual Category Discovery Bar (Sticky Airbnb Pill Bar) */}
+                <div className="w-full bg-white border-y border-[#ebebeb] sticky top-16 z-20 shadow-2xs backdrop-blur-md bg-white/95">
+                  <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-3 overflow-x-auto no-scrollbar flex items-center justify-start sm:justify-center gap-2 sm:gap-3 text-xs">
+                    {[
+                      { label: 'All Stock', tag: 'all', count: vehicles.length },
+                      { label: 'Symmetrical AWD', tag: 'awd', count: vehicles.filter(v => v.drivetrain?.toLowerCase().includes('awd') || v.drivetrain?.toLowerCase().includes('4wd')).length },
+                      { label: '7–8 Seater MPVs', tag: 'mpv', count: vehicles.filter(v => (v.seating && v.seating >= 7) || v.bodyType?.toLowerCase().includes('van')).length },
+                      { label: 'Compact SUVs', tag: 'suv', count: vehicles.filter(v => v.bodyType?.toLowerCase().includes('suv') || v.bodyType?.toLowerCase().includes('crossover')).length },
+                      { label: 'Hybrid & Fuel Savers', tag: 'hybrid', count: vehicles.filter(v => v.fuelType?.toLowerCase().includes('hybrid') || v.engine?.toLowerCase().includes('hybrid')).length },
+                      { label: 'Under KES 2.5M', tag: 'budget', count: vehicles.filter(v => v.price < 2500000).length },
+                      { label: 'Custom Tokyo Import', tag: 'tokyo-order', isSpecial: true },
+                    ].map((cat, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          if (cat.isSpecial) {
+                            const el = document.getElementById('custom-tokyo-import');
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            else handleNavigate('about');
+                          } else {
+                            handleNavigate('inventory');
+                          }
+                        }}
+                        className={`px-3.5 py-1.5 rounded-full font-medium transition-all shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                          idx === 0
+                            ? 'bg-[#222222] text-white shadow-2xs'
+                            : 'bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] border border-transparent hover:border-[#dddddd]'
+                        }`}
+                      >
+                        <span>{cat.label}</span>
+                        {cat.count !== undefined && cat.count > 0 && (
+                          <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${idx === 0 ? 'bg-white/20 text-white' : 'bg-black/5 text-[#6a6a6a]'}`}>
+                            {cat.count}
+                          </span>
+                        )}
+                        {cat.isSpecial && (
+                          <Sparkles className="w-3 h-3 text-[#ff385c]" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-[#dddddd] after:via-[#ebebeb] after:to-transparent">
+                {/* Curated In-Stock Fleet Runway (Airbnb 4-Card Grid) */}
+                <section className="w-full bg-transparent py-12 sm:py-16 px-4 sm:px-8 relative">
+                  <div className="max-w-[1520px] mx-auto space-y-8 relative z-10">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#ebebeb]">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
-                          AVAILABLE FLEET · MOMBASA SHOWROOM STOCK
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-1.5 font-bold">
+                          MOMBASA SHOWROOM · VERIFIED STOCK
                         </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
-                          Vehicles in Stock
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222222] tracking-[-0.03em]">
+                          Recently Landed in Mombasa
                         </h2>
+                        <p className="text-xs sm:text-sm text-[#6a6a6a] mt-1 font-normal">
+                          Duty-paid, original Japanese auction sheets, genuine QISJ/JEVIC odometers, and ready for handover.
+                        </p>
                       </div>
 
                       <button
                         onClick={() => handleNavigate('inventory')}
-                        className="!text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer rounded-full border border-[#ebebeb] bg-white hover:bg-[#f7f7f7] text-[#222222] transition-colors"
+                        className="text-xs py-2 px-4.5 self-start sm:self-auto inline-flex items-center gap-1.5 shrink-0 cursor-pointer rounded-full border border-[#ebebeb] bg-white hover:bg-[#f7f7f7] text-[#222222] font-semibold transition-all shadow-2xs hover:shadow-xs hover:border-[#dddddd]"
                       >
                         <span>View Full Collection ({vehicles.length})</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a]" />
                       </button>
                     </div>
 
-                    {/* Featured Vehicles List View */}
-                    <div className="space-y-4 sm:space-y-5">
+                    {/* 4-Card Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                       {loading ? (
                         [...Array(4)].map((_, i) => (
-                          <VehicleSbtListCardSkeleton key={i} />
+                          <VehicleCardSkeleton key={i} />
                         ))
                       ) : (
-                        vehicles.map((vehicle) => (
-                          <VehicleSbtListCard
+                        vehicles.slice(0, 4).map((vehicle, idx) => (
+                          <VehicleCard
                             key={vehicle.id}
                             vehicle={vehicle}
                             isFavorite={favorites.includes(vehicle.id)}
                             onToggleFavorite={handleToggleFavorite}
                             onSelect={handleSelectVehicle}
                             onInquire={handleInquireVehicle}
+                            staggerIndex={idx}
                           />
                         ))
                       )}
                     </div>
+
+                    <div className="text-center pt-2">
+                      <button
+                        onClick={() => handleNavigate('inventory')}
+                        className="py-3 px-8 text-xs sm:text-sm rounded-full font-bold bg-[#222222] hover:bg-black text-white shadow-xs transition-all hover:scale-102 active:scale-98 inline-flex items-center gap-2 cursor-pointer"
+                      >
+                        <span>Explore All {vehicles.length} Vehicles in Stock</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </section>
 
-                {/* Section Gradient Fade Transition */}
-                <SectionGradientFade />
+                {/* Custom Japanese Auction Import Workflow */}
+                <section id="custom-tokyo-import" className="w-full bg-[#fbfbfb] py-16 sm:py-24 px-4 sm:px-8 border-y border-[#ebebeb] relative">
+                  <div className="max-w-[1520px] mx-auto space-y-12 sm:space-y-16 relative z-10">
+                    <div className="max-w-2xl text-left">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
+                        DIRECT JAPANESE AUCTION SOURCING
+                      </span>
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
+                        Can’t Find Your Exact Model? Import on Order.
+                      </h2>
+                      <p className="text-sm sm:text-base text-[#6a6a6a] mt-3 leading-relaxed">
+                        Access over 150,000+ weekly live vehicles across USS Tokyo, USS Yokohama, CAA, and TAA lanes. We bid, inspect, ship to Mombasa, and clear KRA duty for you.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                      {[
+                        {
+                          step: '01',
+                          title: 'Auction Lane Scout',
+                          desc: 'Specify your exact chassis, grade (4.0+), mileage cap, and interior color across USS Tokyo & CAA.',
+                          tag: '150,000+ Cars / Week',
+                        },
+                        {
+                          step: '02',
+                          title: 'Live Auction Translation',
+                          desc: 'Our Tokyo partners translate the Japanese inspection sheet line-by-line and verify genuine JEVIC mileage.',
+                          tag: 'Zero Accident Risk',
+                        },
+                        {
+                          step: '03',
+                          title: 'Ro-Ro Marine Freight',
+                          desc: 'Insured Roll-on/Roll-off shipping from Yokohama/Nagoya directly to Kilindini Harbour, Mombasa in 28–35 days.',
+                          tag: 'Port-to-Port Tracking',
+                        },
+                        {
+                          step: '04',
+                          title: 'KRA Clearance & Delivery',
+                          desc: 'Full duty payment, NTSA number plates, 100-point workshop preparation, and Mombasa showroom handover.',
+                          tag: 'Turnkey Handover',
+                        },
+                      ].map((card, i) => (
+                        <div
+                          key={i}
+                          className="bg-white rounded-[16px] border border-[#ebebeb] p-6 text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition-all flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-4">
+                              <span className="font-mono text-2xl font-bold text-[#222222]/30">{card.step}</span>
+                              <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-[#f7f7f7] text-[#6a6a6a] border border-[#ebebeb]">
+                                {card.tag}
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold text-[#222222] mb-2">{card.title}</h3>
+                            <p className="text-xs sm:text-[13px] text-[#6a6a6a] leading-relaxed">{card.desc}</p>
+                          </div>
+                          <div className="pt-4 mt-4 border-t border-[#f0f0f0] flex items-center justify-between text-xs">
+                            <span className="text-[#6a6a6a] font-mono text-[11px]">Direct from Japan</span>
+                            <CheckCircle2 className="w-4 h-4 text-[#222222]" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Custom Sourcing Callout Banner */}
+                    <div className="bg-white rounded-[16px] border border-[#ebebeb] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                      <div className="space-y-1.5 text-left">
+                        <h4 className="text-lg sm:text-xl font-bold text-[#222222]">
+                          Want an Instant CIF Mombasa & Duty Quote?
+                        </h4>
+                        <p className="text-xs sm:text-sm text-[#6a6a6a] max-w-xl">
+                          Tell us the vehicle make, year, and target budget. Our import specialists calculate the current KRA CRSP duty schedule and deliver an all-inclusive quotation.
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-3 shrink-0">
+                        <button
+                          onClick={() => {
+                            setWhispersVehicleId(undefined);
+                            setWhispersDrawerOpen(true);
+                          }}
+                          className="py-2.5 px-6 rounded-full font-bold bg-[#222222] hover:bg-black text-white text-xs sm:text-sm shadow-xs transition-all hover:scale-102 active:scale-98 cursor-pointer inline-flex items-center gap-2"
+                        >
+                          <span>Request Tokyo Sourcing</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+
+                        <a
+                          href="https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20I%20would%20like%20to%20request%20a%20Tokyo%20auction%20import%20quote."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="py-2.5 px-5 rounded-full font-semibold border border-[#ebebeb] bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] text-xs sm:text-sm transition-all cursor-pointer inline-flex items-center gap-2"
+                        >
+                          <span>Chat on WhatsApp</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
                 {/* Open Architectural 3-Pillar Provenance Manifesto */}
-                <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
-                  <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-24 relative z-10">
+                <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 relative">
+                  <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
                     <div className="max-w-2xl text-left">
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#6a6a6a] block mb-3 font-semibold">
                         THE ALBERKA COVENANT
                       </span>
-                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#222222] tracking-[-0.035em] leading-[1.05]">
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em] leading-[1.05]">
                         Three Principles of Provenance.
                       </h2>
                       <p className="text-base sm:text-lg text-[#6a6a6a] mt-4 leading-relaxed font-normal">
@@ -426,7 +566,7 @@ export function App() {
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('about')}
-                              className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-[#222222] hover:text-black inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Our sourcing process</span>
                               <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a] group-hover:translate-x-1 transition-transform" />
@@ -450,7 +590,7 @@ export function App() {
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('workshop')}
-                              className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-[#222222] hover:text-black inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Workshop standards</span>
                               <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a] group-hover:translate-x-1 transition-transform" />
@@ -474,7 +614,7 @@ export function App() {
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('about')}
-                              className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-[#222222] hover:text-black inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Verification standards</span>
                               <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a] group-hover:translate-x-1 transition-transform" />
@@ -486,61 +626,139 @@ export function App() {
                   </div>
                 </section>
 
+                {/* Trade-In Valuation & Bank Financing Solutions */}
+                <section className="w-full bg-white py-16 sm:py-24 px-4 sm:px-8 border-y border-[#ebebeb] relative">
+                  <div className="max-w-[1520px] mx-auto space-y-12 relative z-10">
+                    <div className="max-w-2xl text-left">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
+                        SEAMLESS ACQUISITION
+                      </span>
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
+                        Flexible Ownership Pathways
+                      </h2>
+                      <p className="text-sm sm:text-base text-[#6a6a6a] mt-3 leading-relaxed">
+                        Upgrade effortlessly with transparent trade-in valuations or spread payments with Kenya’s leading asset financing banks.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                      {/* Trade-In Module */}
+                      <div className="bg-[#fbfbfb] rounded-[16px] border border-[#ebebeb] p-6 sm:p-8 flex flex-col justify-between text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                        <div className="space-y-4">
+                          <div className="w-10 h-10 rounded-full bg-white border border-[#ebebeb] flex items-center justify-center text-[#222222] shadow-2xs">
+                            <Repeat className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <span className="font-mono text-[10.5px] uppercase text-[#6a6a6a] tracking-wider block mb-1 font-semibold">
+                              INSTANT VALUATION & UPGRADE
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-bold text-[#222222]">
+                              Trade In Your Current Vehicle
+                            </h3>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">
+                            Drive in with your existing car and drive home in a freshly cleared Japanese import. We provide transparent, competitive trade-in values credited directly towards your down payment.
+                          </p>
+                          <ul className="space-y-2 text-xs text-[#222222] font-medium pt-2">
+                            <li className="flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-[#222222] shrink-0" />
+                              <span>Free 20-minute physical condition & engine inspection</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-[#222222] shrink-0" />
+                              <span>Same-day valuation credited to any vehicle in stock</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-[#222222] shrink-0" />
+                              <span>Logbook transfer and clearance handled entirely by us</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="pt-6 mt-6 border-t border-[#ebebeb]">
+                          <button
+                            onClick={() => handleNavigate('trade-in')}
+                            className="py-2.5 px-6 rounded-full font-bold bg-[#222222] hover:bg-black text-white text-xs sm:text-sm shadow-xs transition-all hover:scale-102 active:scale-98 cursor-pointer inline-flex items-center gap-2"
+                          >
+                            <span>Launch Trade-In Calculator</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Bank Asset Financing Module */}
+                      <div className="bg-[#fbfbfb] rounded-[16px] border border-[#ebebeb] p-6 sm:p-8 flex flex-col justify-between text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
+                        <div className="space-y-4">
+                          <div className="w-10 h-10 rounded-full bg-white border border-[#ebebeb] flex items-center justify-center text-[#222222] shadow-2xs">
+                            <Building2 className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <span className="font-mono text-[10.5px] uppercase text-[#6a6a6a] tracking-wider block mb-1 font-semibold">
+                              APPROVED TIER-1 BANK FINANCING
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-bold text-[#222222]">
+                              Up to 80% Asset Financing
+                            </h3>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">
+                            Partnered with Kenya’s leading commercial banks for rapid loan processing, competitive interest rates, and flexible repayment tenures of up to 48 months.
+                          </p>
+
+                          <div className="pt-1">
+                            <span className="text-[11px] font-mono text-[#6a6a6a] uppercase block mb-2 font-medium">
+                              Approved Banking Partners:
+                            </span>
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                              {['NCBA Bank', 'KCB Bank', 'Co-op Bank', 'Stanbic Bank'].map((bank, i) => (
+                                <div key={i} className="bg-white border border-[#ebebeb] rounded-lg p-2.5 text-center shadow-2xs">
+                                  <span className="text-xs font-bold text-[#222222] block">{bank}</span>
+                                  <span className="text-[10px] text-[#6a6a6a]">Pre-approved</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <p className="text-xs text-[#6a6a6a] leading-relaxed">
+                            Salaried and business accounts eligible. Proforma invoice issued within 1 hour for immediate bank submission.
+                          </p>
+                        </div>
+
+                        <div className="pt-6 mt-6 border-t border-[#ebebeb]">
+                          <button
+                            onClick={() => {
+                              setWhispersVehicleId(undefined);
+                              setWhispersDrawerOpen(true);
+                            }}
+                            className="py-2.5 px-6 rounded-full font-bold bg-[#222222] hover:bg-black text-white text-xs sm:text-sm shadow-xs transition-all hover:scale-102 active:scale-98 cursor-pointer inline-flex items-center gap-2"
+                          >
+                            <span>Request Bank Proforma Invoice</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
                 {/* Verified Customer Testimonials Section */}
                 <div id="customer-reviews" className="scroll-mt-24">
                   <TestimonialSectionDemo />
                 </div>
 
-                {/* Section Gradient Fade Transition */}
-                <SectionGradientFade />
-
-                {/* Official Showroom Dispatch */}
-                <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
-                  <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-[#dddddd] after:via-[#ebebeb] after:to-transparent">
-                      <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
-                          OFFICIAL SHOWROOM & WORKSHOP
-                        </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
-                          Visit Our Showroom
-                        </h2>
-                      </div>
-
-                      <button
-                        onClick={() => handleNavigate('locations')}
-                        className="!text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer rounded-full border border-[#ebebeb] bg-white hover:bg-[#f7f7f7] text-[#222222] transition-colors"
-                      >
-                        <span>Interactive Map & Directions</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    <div className="max-w-2xl text-left">
-                      <ScrollRevealBox delay={0}>
-                        <div className="space-y-4 bg-white border border-[#ebebeb] rounded-[16px] p-6 sm:p-8 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
-                          <span className="font-mono text-xs text-[#222222] uppercase tracking-widest block font-semibold">
-                            MOMBASA MAIN HUB
-                          </span>
-                          <h3 className="text-2xl sm:text-3xl font-semibold text-[#222222] tracking-tight">
-                            Next to Ganjoni Primary School, Mombasa
-                          </h3>
-                          <p className="text-sm sm:text-base text-[#6a6a6a] leading-relaxed font-normal">
-                            Featuring our dedicated customer showroom floor, hoist inspection bays, and certified Japanese import maintenance workshop.
-                          </p>
-                          <div className="pt-2 font-mono text-xs text-[#6a6a6a] space-y-1.5 border-t border-[#ebebeb]">
-                            <p>Direct Phone / WhatsApp: <a href="tel:0180423075" className="text-[#222222] font-semibold hover:underline">0180 423 075</a></p>
-                            <p>Showroom Hours: <span className="text-[#222222] font-medium">{settings.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}</span></p>
-                          </div>
-                        </div>
-                      </ScrollRevealBox>
-                    </div>
-                  </div>
-                </section>
-
-                {/* Section Gradient Fade Transition into Footer */}
-                <SectionGradientFade />
+                {/* Official Mombasa Showroom & Interactive Google Map Hub */}
+                <ShowroomMapHub
+                  settings={settings}
+                  vehicles={vehicles}
+                />
               </>
+            )}
+
+            {currentView === 'trade-in' && (
+              <TradeInSection
+                vehicles={vehicles}
+                onSelectVehicle={handleSelectVehicle}
+                pageData={pages['trade-in']}
+              />
             )}
 
             {currentView === 'inventory' && (

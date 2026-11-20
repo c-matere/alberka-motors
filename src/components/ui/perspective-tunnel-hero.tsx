@@ -38,10 +38,10 @@ const IMAGES: TunnelVehicleItem[] = [
     priceKes: "KES 2.70M",
   },
   {
-    src: "https://images.unsplash.com/photo-1594502184342-2e12f877aa73?auto=format&fit=crop&w=900&q=80",
-    title: "Toyota Prado TX L",
-    subtitle: "Direct Japanese Import · JEVIC Verified",
-    priceKes: "KES 5.80M",
+    src: "/vehicles/rav4-adventure.jpg",
+    title: "Toyota RAV4 Adventure",
+    subtitle: "Dynamic Torque AWD · 2.0L Petrol",
+    priceKes: "KES 4.10M",
   },
   {
     src: "/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg",
@@ -50,16 +50,16 @@ const IMAGES: TunnelVehicleItem[] = [
     priceKes: "KES 4.20M",
   },
   {
-    src: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=900&q=80",
-    title: "Toyota RAV4 Adventure",
-    subtitle: "Dynamic Torque AWD · 2.0L Petrol",
-    priceKes: "KES 4.10M",
+    src: "/vehicles/serena-highway-star.jpg",
+    title: "Nissan Serena Highway Star",
+    subtitle: "Dual Power Doors · 8-Seater Luxury",
+    priceKes: "KES 2.45M",
   },
   {
-    src: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80",
-    title: "Mercedes-Benz GLE",
-    subtitle: "Executive Luxury Edition · Clean Tokyo Title",
-    priceKes: "KES 7.20M",
+    src: "/vehicles/note-epower.jpg",
+    title: "Nissan Note e-POWER",
+    subtitle: "100% Electric Motor Drive · Ultra-Efficient",
+    priceKes: "KES 1.48M",
   },
   {
     src: "/vehicles/suzuki-every-2019/hero-front-34.jpg",
@@ -68,10 +68,10 @@ const IMAGES: TunnelVehicleItem[] = [
     priceKes: "KES 1.05M",
   },
   {
-    src: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=900&q=80",
-    title: "Land Cruiser 200",
-    subtitle: "V8 Twin-Turbo Diesel · Mombasa Yard",
-    priceKes: "KES 8.90M",
+    src: "/vehicles/harrier-hybrid.jpg",
+    title: "Toyota Harrier Hybrid",
+    subtitle: "E-Four Symmetrical Electric AWD · Tokyo Grade",
+    priceKes: "KES 4.65M",
   },
 ];
 
