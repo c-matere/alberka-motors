@@ -282,9 +282,9 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
             <button
               onClick={handleInquireWhatsApp}
-              className="bg-[#25D366] hover:bg-[#20ba59] text-white py-3 px-6 text-xs sm:text-sm font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-2 shadow-sm rounded-full transition-all cursor-pointer"
+              className="bg-[#222222] hover:bg-black text-white py-3 px-6 text-xs sm:text-sm font-semibold w-full sm:w-auto inline-flex items-center justify-center gap-2 shadow-sm rounded-full transition-all cursor-pointer"
             >
-              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+              <span className="inline-flex items-center justify-center">
                 <MessageCircle className="w-4 h-4 text-white fill-white" />
               </span>
               <span>Consult Technician on WhatsApp</span>

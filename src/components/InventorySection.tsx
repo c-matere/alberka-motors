@@ -536,26 +536,26 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   );
 
   return (
-    <section className="w-full bg-[#f8f9fa] text-zinc-900 relative min-h-screen">
+    <section className="w-full bg-[#f7f7f7] text-[#222222] relative min-h-screen">
       
       {/* 1. Header Banner */}
-      <div className="pt-12 sm:pt-16 pb-6 px-4 sm:px-8 max-w-[1520px] mx-auto text-left space-y-2 border-b border-zinc-200/70">
+      <div className="pt-10 sm:pt-14 pb-6 px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-16 max-w-[1920px] 2xl:max-w-[2160px] mx-auto text-left space-y-2 border-b border-[#ebebeb]">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-red-600 font-bold block mb-1">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#ff385c] font-bold block mb-1">
               {pageData?.badge || 'VERIFIED INVENTORY · SBT JAPAN DIRECT SOURCED'}
             </span>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-zinc-950 tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-tight leading-tight">
               {pageData?.heroTitle || 'Used Cars in Stock'}
             </h1>
-            <p className="text-xs sm:text-sm text-zinc-600 mt-1 max-w-2xl font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#6a6a6a] mt-1 max-w-2xl font-normal leading-relaxed">
               {pageData?.heroSubtitle || 'Browse direct Japanese export units in Mombasa. All vehicles inspected, cleared through KRA customs duty, and ready for immediate delivery.'}
             </p>
           </div>
 
           <div className="flex items-center gap-2 self-start sm:self-auto">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold bg-white border border-zinc-200/70 text-zinc-800 shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-white border border-[#ebebeb] text-[#222222] shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#ff385c] animate-pulse" />
               <span>{vehicles.length} Units Available in Mombasa</span>
             </span>
           </div>
@@ -563,11 +563,11 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       </div>
 
       {/* 2. SBT Japan 2-Column Search Layout: Left Filter Column + Right Vehicle List */}
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
+      <div className="max-w-[1920px] 2xl:max-w-[2160px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-16 py-8 sm:py-10">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           
           {/* DESKTOP LEFT COLUMN: SBT JAPAN SEARCH & FILTER SIDEBAR */}
-          <aside className="hidden lg:block w-72 xl:w-80 shrink-0 space-y-5 text-left">
+          <aside className="hidden lg:block w-72 xl:w-80 2xl:w-88 shrink-0 space-y-5 text-left">
             <div className="bg-white border border-[#ebebeb] rounded-[14px] p-4 sm:p-5 shadow-xs space-y-5 lg:sticky lg:top-24">
               
               {/* Sidebar Header */}

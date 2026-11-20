@@ -390,7 +390,7 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
             onClick={handleWhatsAppInquiry}
             className="w-full bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] hover:border-[#dddddd] font-medium py-2 px-4 rounded-full text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-[0.98]"
           >
-            <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+            <MessageCircle className="w-3.5 h-3.5 text-[#222222] fill-[#222222]" />
             <span>Chat WhatsApp</span>
           </button>
         </div>

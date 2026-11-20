@@ -247,9 +247,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-6 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] sm:pb-6 border-t border-zinc-200 space-y-3 mt-6">
             <button
               onClick={handleContactClick}
-              className="w-full py-3 text-xs sm:text-sm font-bold justify-center inline-flex items-center gap-2 shadow-lg bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl transition-all cursor-pointer active:scale-98"
+              className="w-full py-3.5 text-xs sm:text-sm font-semibold justify-center inline-flex items-center gap-2 shadow-sm bg-[#222222] hover:bg-black text-white rounded-full transition-all cursor-pointer active:scale-98"
             >
-              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+              <span className="inline-flex items-center justify-center">
                 <MessageCircle className="w-4 h-4 text-white fill-white" />
               </span>
               <span>Chat on WhatsApp (0180 423 075)</span>

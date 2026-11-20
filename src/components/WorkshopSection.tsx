@@ -618,9 +618,9 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-8 rounded-xl text-sm inline-flex items-center justify-center gap-2 shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                  className="w-full sm:w-auto bg-[#222222] hover:bg-black text-white font-medium py-3 px-7 rounded-full text-sm inline-flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
                 >
-                  <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                  <span className="inline-flex items-center justify-center">
                     <MessageCircle className="w-4 h-4 text-white fill-white" />
                   </span>
                   <span>Request Custom Import Quote via WhatsApp</span>

@@ -289,7 +289,7 @@ export const HelpCenterModal: React.FC<HelpCenterModalProps> = ({
                 href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}?text=${encodeURIComponent('Hello Alberka Enterprises Support, I have an inquiry regarding vehicles in stock.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 px-4 bg-[#222222] hover:bg-black text-white font-medium text-xs sm:text-sm rounded-full shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Chat Directly on WhatsApp Desk (+254 180 423 075)</span>

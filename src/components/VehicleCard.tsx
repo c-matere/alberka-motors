@@ -148,25 +148,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (onInquire) onInquire(vehicle);
-              else handleInquire(e);
-            }}
-            className="w-7 h-7 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] flex items-center justify-center transition-colors cursor-pointer"
-            title="Chat WhatsApp"
-            aria-label="Chat WhatsApp"
-          >
-            <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
-          </button>
-
-          <span className="text-xs font-medium text-[#ff385c] inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
-            <span>Inspect</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
+        <span className="text-xs font-medium text-[#ff385c] inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
+          <span>Inspect</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </span>
       </div>
     </div>
   );

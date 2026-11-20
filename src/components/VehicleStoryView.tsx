@@ -1328,7 +1328,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   rel="noopener noreferrer"
                   className="w-full bg-white hover:bg-[#f7f7f7] border border-[#ebebeb] text-[#222222] font-medium py-2.5 px-4 rounded-xl text-xs inline-flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 fill-[#25D366] text-[#25D366]" />
+                  <MessageCircle className="w-3.5 h-3.5 fill-[#222222] text-[#222222]" />
                   <span>Book Viewing on WhatsApp</span>
                 </a>
               </div>
@@ -1549,9 +1549,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20from%20${encodeURIComponent(vehicle.auctionHall || 'Direct Japanese Import')}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white w-full sm:w-auto text-center font-bold px-6 py-3.5 rounded-xl inline-flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-98 transition-all text-sm"
+                className="bg-[#222222] hover:bg-black text-white w-full sm:w-auto text-center font-semibold px-6 py-3.5 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01] active:scale-98 transition-all text-sm"
               >
-                <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <span className="inline-flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-white fill-white" />
                 </span>
                 <span>Request Original PDF on WhatsApp</span>
@@ -1664,9 +1664,9 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20interested%20in%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white !py-2 !px-4 text-xs font-bold rounded-lg inline-flex items-center gap-1.5 shadow-md hover:scale-[1.02] active:scale-98 transition-all"
+                className="bg-[#222222] hover:bg-black text-white !py-2.5 !px-5 text-xs font-semibold rounded-full inline-flex items-center gap-1.5 shadow-sm hover:scale-[1.02] active:scale-98 transition-all"
               >
-                <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+                <span className="inline-flex items-center justify-center">
                   <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
                 </span>
                 <span>Inquire on WhatsApp</span>

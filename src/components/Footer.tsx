@@ -285,7 +285,7 @@ export const Footer: React.FC<FooterProps> = ({
                   href={`https://wa.me/${settings?.whatsappNumber || '254180423075'}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-[#F8F9FB] border border-zinc-200/70 flex items-center justify-center text-zinc-600 transition-all duration-300 group hover:bg-emerald-50 hover:border-[#25D366]/40 hover:text-[#25D366] hover:scale-110 shadow-2xs cursor-pointer"
+                  className="w-10 h-10 rounded-xl bg-[#F8F9FB] border border-zinc-200/70 flex items-center justify-center text-zinc-600 transition-all duration-300 group hover:bg-[#222222] hover:border-[#222222] hover:text-white hover:scale-110 shadow-2xs cursor-pointer"
                   title="WhatsApp Direct Desk"
                   aria-label="WhatsApp"
                 >

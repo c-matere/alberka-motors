@@ -167,7 +167,7 @@ export const ModelHubView: React.FC<ModelHubViewProps> = ({
             
             <button
               onClick={handleCustomOrderWhatsApp}
-              className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs py-2.5 px-4 rounded-lg inline-flex items-center gap-1.5 shadow-sm transition-all cursor-pointer self-start sm:self-auto"
+              className="bg-[#222222] hover:bg-black text-white font-medium text-xs py-2.5 px-5 rounded-full inline-flex items-center gap-1.5 shadow-sm transition-all cursor-pointer self-start sm:self-auto"
             >
               <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
               <span>Order Custom {currentHub.name} from Japan</span>

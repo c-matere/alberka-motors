@@ -274,9 +274,9 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               href={`https://wa.me/254180423075?text=${encodeURIComponent(`Hello Alberka Enterprises, I have saved ${savedVehicles.length} vehicle(s) on your website: ${savedVehicles.map(v => `${v.year} ${v.name} (Stock ID: ${v.sbtStockId || v.stockNo})`).join(', ')}. Please confirm their viewing schedule at your showroom next to Ganjoni Primary School, Mombasa.`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold w-full sm:w-auto text-xs py-2.5 px-5 rounded-lg flex items-center justify-center gap-2 cursor-pointer shadow-md hover:scale-[1.01] active:scale-98 transition-all"
+              className="bg-[#222222] hover:bg-black text-white font-medium w-full sm:w-auto text-xs py-2.5 px-5 rounded-full flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:scale-[1.01] active:scale-98 transition-all"
             >
-              <span className="animate-whatsapp-vibrate inline-flex items-center justify-center">
+              <span className="inline-flex items-center justify-center">
                 <MessageCircle className="w-4 h-4 text-white fill-white" />
               </span>
               <span>Inquire on Saved Fleet via WhatsApp</span>

@@ -744,9 +744,9 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20would%20like%20to%20view%20the%20${encodeURIComponent(vehicle.name)}%20(Stock%20${vehicle.stockNo},%20Chassis%20${vehicle.chassisNo})%20priced%20at%20KES%20${vehicle.priceKes.toLocaleString()}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold !py-2.5 !px-5 !text-xs rounded-xl w-full sm:w-auto inline-flex items-center justify-center shadow-lg transition-all hover:scale-105 active:scale-95"
+                className="bg-[#222222] hover:bg-black text-white font-medium !py-2.5 !px-5 !text-xs rounded-full w-full sm:w-auto inline-flex items-center justify-center shadow-sm transition-all hover:scale-105 active:scale-95"
               >
-                <span className="animate-whatsapp-vibrate inline-flex items-center justify-center mr-2">
+                <span className="inline-flex items-center justify-center mr-2">
                   <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
                 </span>
                 <span>WhatsApp Us</span>
@@ -816,9 +816,9 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                 href={`https://wa.me/254180423075?text=Hello%20Alberka%20Motors,%20please%20send%20the%20original%20scanned%20Japanese%20auction%20sheet%20PDF%20for%20${encodeURIComponent(vehicle.name)}%20(Chassis%20${vehicle.chassisNo}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold !py-2.5 !px-4 !text-xs rounded-lg transition-all inline-flex items-center gap-1.5 shadow-md hover:scale-[1.02] active:scale-98 cursor-pointer"
+                className="bg-[#222222] hover:bg-black text-white font-medium !py-2.5 !px-5 !text-xs rounded-full transition-all inline-flex items-center gap-1.5 shadow-sm hover:scale-[1.02] active:scale-98 cursor-pointer"
               >
-                <span className="animate-whatsapp-vibrate inline-flex items-center justify-center mr-1">
+                <span className="inline-flex items-center justify-center mr-1">
                   <MessageCircle className="w-3.5 h-3.5 text-white fill-white" />
                 </span>
                 <span>Request Original PDF via WhatsApp</span>
