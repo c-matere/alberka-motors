@@ -11,7 +11,7 @@ import { CmsPage } from '../services/cmsContent';
 
 // Single source of truth for the hero backdrop. Drop a replacement image into
 // /public/vehicles/ and change this one line to swap the showroom scene.
-const HERO_BACKGROUND = '/vehicles/showroom-bg-dark.jpg';
+const HERO_BACKGROUND = '/vehicles/hero-new.jpg';
 
 export interface HeroProps {
   onExploreFleet: () => void;
