@@ -250,7 +250,7 @@ export const WhispersDrawer: React.FC<WhispersDrawerProps> = ({
                     placeholder={
                       activeTab === 'bidding'
                         ? 'e.g. Looking for a 2019 Toyota Prado TX-L White with sunroof, budget KES 5.5M'
-                        : 'Any specific requests, financing questions, or trade-in info...'
+                        : 'Any specific requests or financing questions...'
                     }
                     className="w-full px-3.5 py-2.5 bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-lg text-sm text-[#222222] placeholder:text-[#b0b0b0] focus:outline-none focus:border-[#222222] focus:ring-1 focus:ring-[#222222] transition-colors resize-none"
                   />

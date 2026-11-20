@@ -3,7 +3,7 @@ import {
   Search,
   ArrowRight,
   ShieldCheck,
-  Repeat,
+  FileCheck2,
   Gauge,
   Headphones,
   ChevronDown,
@@ -399,12 +399,12 @@ export const Hero: React.FC<HeroProps> = ({
 
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-full bg-white/10 border border-white/15 flex items-center justify-center shrink-0 mt-0.5">
-                <Repeat className="w-4.5 h-4.5 text-amber-400" />
+                <FileCheck2 className="w-4.5 h-4.5 text-amber-400" />
               </div>
               <div>
-                <h4 className="text-xs sm:text-[13px] font-bold text-white uppercase tracking-wider">Trade-In Welcome</h4>
+                <h4 className="text-xs sm:text-[13px] font-bold text-white uppercase tracking-wider">Auction Sheet Verified</h4>
                 <p className="text-[11px] sm:text-xs text-white/65 mt-0.5 leading-snug">
-                  Get top value for your current vehicle.
+                  Original Japanese inspection records with every car.
                 </p>
               </div>
             </div>

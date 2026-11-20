@@ -245,7 +245,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               <div className="space-y-1">
                 <p className="text-base font-bold text-[#222222]">Your saved list is empty.</p>
                 <p className="text-xs text-[#6a6a6a] max-w-sm mx-auto leading-relaxed">
-                  Bookmark any vehicle in our verified fleet to review side-by-side specs, calculate trade-ins, or request a joint private viewing.
+                  Bookmark any vehicle in our verified fleet to review side-by-side specs, compare financing options, or request a joint private viewing.
                 </p>
               </div>
               {onBrowseFleet && (

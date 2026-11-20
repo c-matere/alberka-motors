@@ -38,7 +38,7 @@ export const Pages: CollectionConfig = {
                   unique: true,
                   admin: {
                     width: '50%',
-                    placeholder: 'overview, about, workshop, trade-in, locations, inventory',
+                    placeholder: 'overview, about, workshop, locations, inventory',
                     description: 'Unique URL identifier corresponding to website navigation routes',
                   },
                 },

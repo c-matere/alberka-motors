@@ -1135,7 +1135,7 @@ export const VEHICLES: Vehicle[] = [
     engineCode: "M20A-FKS (2.0L Dynamic Force Petrol)",
     name: "Toyota Harrier 2020 Grey",
     moniker: "80-Series Dynamic Force Luxury Crossover",
-    essenceQuote: "🚘 TOYOTA HARRIER 2020 – FOR SALE! 🔥\n✨ Premium Style • Comfort • Performance ✨\n📅 Year: 2020 Model | 🎨 Colour: Grey | 🛣️ Mileage: 74,000 KM\n⛽ Engine: 2.0L Dynamic Force Petrol (M20A-FKS)\n✅ Elegant & Stylish SUV | Spacious & Comfortable Interior\n✅ Premium Exterior Design | Ideal for Family & Business Use | Excellent Road Presence\n🏢 ALBERKA ENTERPRISES LTD — Your Trusted Car Partner Since 2011\n📍 Mombasa, Kenya 🇰🇪 | 📞 Call/WhatsApp: 0786000040",
+    essenceQuote: "🚘 TOYOTA HARRIER 2020 – FOR SALE! 🔥\n✨ Premium Style • Comfort • Performance ✨\n📅 Year: 2020 Model | 🎨 Colour: Grey | 🛣️ Mileage: 74,000 KM\n⛽ Engine: 2.0L Dynamic Force Petrol (M20A-FKS)\n✅ Elegant & Stylish SUV | Spacious & Comfortable Interior\n✅ Premium Exterior Design | Ideal for Family & Business Use | Excellent Road Presence\n🏢 ALBERKA ENTERPRISES LTD — Your Trusted Car Partner, 26 Years in Kenya\n📍 Mombasa, Kenya 🇰🇪 | 📞 Call/WhatsApp: 0786000040",
     kicker: "2020 Model · 80-Series New Shape · 74,000 KM · Mombasa Stock",
     tagline: "Toyota Harrier 2020 · 2.0L Dynamic Force Petrol · Slate Grey Metallic · High Spec G Package",
     priceKes: 4500000,

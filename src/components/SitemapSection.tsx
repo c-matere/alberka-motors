@@ -27,7 +27,7 @@ export const SitemapSection: React.FC<SitemapSectionProps> = ({
             Site Architecture
           </h1>
           <p className="text-zinc-600 text-xs sm:text-sm">
-            Quick reference index across verified stock, workshop standards, trade-in valuation, and showroom locations.
+            Quick reference index across verified stock, workshop standards, financing options, and showroom locations.
           </p>
         </div>
 

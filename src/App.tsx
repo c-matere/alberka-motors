@@ -14,7 +14,6 @@ import { BlogPostView } from './components/BlogPostView';
 import { InventorySection } from './components/InventorySection';
 import { ModelHubView } from './components/ModelHubView';
 import { WorkshopSection } from './components/WorkshopSection';
-import { TradeInSection } from './components/TradeInSection';
 import { ShowroomMapHub } from './components/ShowroomMapHub';
 import { AboutSection } from './components/AboutSection';
 import { LocationsSection } from './components/LocationsSection';
@@ -36,7 +35,6 @@ import {
   ShieldCheck,
   CheckCircle2,
   Sparkles,
-  Repeat,
   Building2,
   MapPin,
   Car
@@ -133,11 +131,11 @@ export function App() {
         return;
       }
 
-      // Section views: #overview, #inventory, #workshop, #trade-in, #blog, #about, #locations, #sitemap (with optional sub-target e.g. #about/anti-tampering-policy)
+      // Section views: #overview, #inventory, #workshop, #blog, #about, #locations, #sitemap (with optional sub-target e.g. #about/anti-tampering-policy)
       const hashClean = hash.split('?')[0];
       const [mainSec, subId] = hashClean.split('/');
 
-      if (['overview', 'inventory', 'workshop', 'trade-in', 'blog', 'about', 'locations', 'sitemap'].includes(mainSec)) {
+      if (['overview', 'inventory', 'workshop', 'blog', 'about', 'locations', 'sitemap'].includes(mainSec)) {
         const targetView = (mainSec === 'locations' || mainSec === 'about') ? 'about' : mainSec;
         setCurrentView(targetView);
         setSelectedVehicle(null);
@@ -651,7 +649,7 @@ export function App() {
                   </div>
                 </section>
 
-                {/* Trade-In Valuation & Bank Financing Solutions */}
+                {/* Bank Financing Solutions */}
                 <section className="w-full bg-white py-16 sm:py-24 px-4 sm:px-8 border-y border-[#ebebeb] relative">
                   <div className="max-w-[1520px] mx-auto space-y-12 relative z-10">
                     <div className="max-w-2xl text-left">
@@ -662,55 +660,11 @@ export function App() {
                         Flexible Ownership Pathways
                       </h2>
                       <p className="text-sm sm:text-base text-[#6a6a6a] mt-3 leading-relaxed">
-                        Upgrade effortlessly with transparent trade-in valuations or spread payments with Kenya’s leading asset financing banks.
+                        Spread payments with Kenya’s leading asset financing banks, with rapid approvals and flexible repayment tenures.
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-                      {/* Trade-In Module */}
-                      <div className="bg-[#fbfbfb] rounded-[16px] border border-[#ebebeb] p-6 sm:p-8 flex flex-col justify-between text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
-                        <div className="space-y-4">
-                          <div className="w-10 h-10 rounded-full bg-white border border-[#ebebeb] flex items-center justify-center text-[#222222] shadow-2xs">
-                            <Repeat className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <span className="font-mono text-[10.5px] uppercase text-[#6a6a6a] tracking-wider block mb-1 font-semibold">
-                              INSTANT VALUATION & UPGRADE
-                            </span>
-                            <h3 className="text-xl sm:text-2xl font-bold text-[#222222]">
-                              Trade In Your Current Vehicle
-                            </h3>
-                          </div>
-                          <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">
-                            Drive in with your existing car and drive home in a freshly cleared Japanese import. We provide transparent, competitive trade-in values credited directly towards your down payment.
-                          </p>
-                          <ul className="space-y-2 text-xs text-[#222222] font-medium pt-2">
-                            <li className="flex items-center gap-2">
-                              <CheckCircle2 className="w-4 h-4 text-[#222222] shrink-0" />
-                              <span>Free 20-minute physical condition & engine inspection</span>
-                            </li>
-                            <li className="flex items-center gap-2">
-                              <CheckCircle2 className="w-4 h-4 text-[#222222] shrink-0" />
-                              <span>Same-day valuation credited to any vehicle in stock</span>
-                            </li>
-                            <li className="flex items-center gap-2">
-                              <CheckCircle2 className="w-4 h-4 text-[#222222] shrink-0" />
-                              <span>Logbook transfer and clearance handled entirely by us</span>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div className="pt-6 mt-6 border-t border-[#ebebeb]">
-                          <button
-                            onClick={() => handleNavigate('trade-in')}
-                            className="py-2.5 px-6 rounded-full font-bold bg-[#222222] hover:bg-black text-white text-xs sm:text-sm shadow-xs transition-all hover:scale-102 active:scale-98 cursor-pointer inline-flex items-center gap-2"
-                          >
-                            <span>Launch Trade-In Calculator</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-
+                    <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-3xl">
                       {/* Bank Asset Financing Module */}
                       <div className="bg-[#fbfbfb] rounded-[16px] border border-[#ebebeb] p-6 sm:p-8 flex flex-col justify-between text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
                         <div className="space-y-4">
@@ -776,14 +730,6 @@ export function App() {
                   vehicles={vehicles}
                 />
               </>
-            )}
-
-            {currentView === 'trade-in' && (
-              <TradeInSection
-                vehicles={vehicles}
-                onSelectVehicle={handleSelectVehicle}
-                pageData={pages['trade-in']}
-              />
             )}
 
             {currentView === 'inventory' && (

@@ -44,7 +44,7 @@ async function seed() {
     },
   })
 
-  // 3. Pages Setup (Overview, About, Workshop, Trade-In, Locations, Inventory)
+  // 3. Pages Setup (Overview, About, Workshop, Locations, Inventory)
   const existingPages = await payload.find({
     collection: 'pages',
     limit: 10,
@@ -192,46 +192,7 @@ async function seed() {
       },
     })
 
-    // Page 4: Trade-In (Trade-In & Vehicle Valuation)
-    await payload.create({
-      collection: 'pages',
-      data: {
-        title: 'Vehicle Trade-In',
-        slug: 'trade-in',
-        badge: 'SEAMLESS UPGRADE · FAIR MARKET VALUATION',
-        heroTitle: 'Trade In Your Current Car for a Direct Japanese Import.',
-        heroSubtitle: 'Upgrade effortlessly. We value your current vehicle fairly, deduct its value from your new car price, and handle all NTSA logbook transfers in-house.',
-        ctaText: 'Submit Trade-In Valuation',
-        ctaLink: '#trade-in',
-        stats: [
-          { label: 'VALUATION TIME', value: 'Within 2 Hours', description: 'Fast transparent appraisal' },
-          { label: 'EQUITY VALUE', value: 'Immediate Offset', description: 'Deducted directly from upgrade' },
-          { label: 'NTSA TRANSFER', value: '100% Handled', description: 'Official TIMS logbook transfer' },
-        ],
-        features: [
-          {
-            title: 'Step 1: Digital Valuation Request',
-            subtitle: 'Online Submission',
-            description: 'Provide your car details, year, registration number, mileage, and current condition photos.',
-            points: [{ item: 'Quick WhatsApp or web form submission' }, { item: 'Instant preliminary assessment' }],
-          },
-          {
-            title: 'Step 2: Physical Inspection at Yard',
-            subtitle: '15-Minute Appraisal',
-            description: 'Our certified mechanics inspect the engine, gearbox, bodywork, and TIMS logbook record.',
-            points: [{ item: 'Accurate market valuation' }, { item: 'Zero hidden assessment deductions' }],
-          },
-          {
-            title: 'Step 3: Drive Away in Your Fresh Import',
-            subtitle: 'Key-for-Key Swap',
-            description: 'Drive in with your old vehicle and drive out with your fresh, duty-paid Japanese import.',
-            points: [{ item: 'Balance paid via bank transfer or financing' }, { item: 'Full NTSA transfer completed' }],
-          },
-        ],
-      },
-    })
-
-    // Page 5: Locations (Showroom & Yards)
+    // Page 4: Locations (Showroom & Yards)
     await payload.create({
       collection: 'pages',
       data: {

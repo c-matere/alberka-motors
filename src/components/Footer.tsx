@@ -74,14 +74,6 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('trade-in')}
-                  className="text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer text-left"
-                >
-                  Trade-In & Vehicle Valuation
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => onNavigate('workshop', 'stage-overhaul')}
                   className="text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer text-left"
                 >

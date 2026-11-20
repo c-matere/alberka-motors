@@ -39,7 +39,7 @@ export const Leads: CollectionConfig = {
       options: [
         { label: 'Test Drive', value: 'test-drive' },
         { label: 'Price Inquiry', value: 'inquiry' },
-        { label: 'Trade-In Request', value: 'trade-in' },
+        { label: 'Financing Inquiry', value: 'financing' },
         { label: 'Custom Import Order', value: 'custom-import' },
       ],
       defaultValue: 'inquiry',
