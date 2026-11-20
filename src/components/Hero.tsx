@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({
                 fontSize: 'clamp(3.8rem, 11vw, 10rem)',
                 lineHeight: 0.92,
                 letterSpacing: '-0.035em',
-                marginTop: 'clamp(-1rem, -4vw, -3.5rem)',
+                marginTop: 'clamp(-3.5rem, -4vw, -1rem)',
                 textShadow: '0 6px 28px rgba(0,0,0,0.55), 0 0 30px rgba(220,38,38,0.28)',
               }}
             >
