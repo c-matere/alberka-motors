@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Docs and one-off maintenance scripts are not app sources — scanning them
+   generates dead utility classes (including legacy pink accents). */
+@source not "../AIRBNB_DESIGN.md";
+@source not "../scripts/**/*";
+
 @theme {
   /* Airbnb Design Tokens */
   --color-rausch: #DC2626;
