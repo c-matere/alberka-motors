@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({
     <section
       data-no-reveal="true"
       className="relative w-full overflow-hidden bg-[#0a0a0c] text-white select-none"
-      style={{ minHeight: 'clamp(600px, 90vh, 820px)' }}
+      style={{ minHeight: 'calc(100dvh - 5rem)' }}
     >
       {/* ── 1. FULL-BLEED SHOWROOM BACKGROUND ─────────────────────────── */}
       <div className="absolute inset-0 z-0">
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* ── 2. CENTER HERO CONTENT ─────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 pt-28 sm:pt-32 pb-8 sm:pb-10 min-h-[inherit]"
-        style={{ minHeight: 'clamp(600px, 90vh, 820px)' }}
+        style={{ minHeight: 'calc(100dvh - 5rem)' }}
       >
         <div className="max-w-4xl w-full mx-auto space-y-5 sm:space-y-7 flex flex-col items-center">
 
