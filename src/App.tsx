@@ -267,7 +267,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f9fa] text-[#09090b] relative">
+    <div className="min-h-screen flex flex-col bg-[#f7f7f7] text-[#222222] relative font-sans">
       {/* Studio Blueprint & Atmospheric Canvas */}
       <BlueprintBackground />
       
@@ -324,17 +324,17 @@ export function App() {
                 />
 
                 {/* In-Stock Fleet Runway (Direct Access from Hero) */}
-                <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 relative border-t border-zinc-200">
+                <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 relative border-t border-[#ebebeb]">
                   <div className="max-w-[1520px] mx-auto space-y-12 sm:space-y-16 relative z-10">
                     {/* Editorial Intro & Direct Actions (Cleanly Below the Fold) */}
                     <div className="max-w-3xl mx-auto text-center space-y-4">
-                      <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
+                      <p className="text-[#6a6a6a] text-sm sm:text-base leading-relaxed">
                         From luxury executive crossovers to rugged symmetrical AWDs and ultra-efficient vans — browse, compare verified auction sheets, and drive away with confidence from Mombasa.
                       </p>
                       <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
                         <button
                           onClick={() => handleNavigate('inventory')}
-                          className="py-2.5 px-6 text-xs sm:text-sm rounded-full font-bold bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
+                          className="py-2.5 px-6 text-xs sm:text-sm rounded-full font-bold bg-[#ff385c] hover:bg-[#e00b41] text-white shadow-xs transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
                         >
                           <span>Explore Available Fleet</span>
                           <ArrowRight className="w-4 h-4" />
@@ -342,27 +342,27 @@ export function App() {
                         
                         <button
                           onClick={() => handleNavigate('workshop')}
-                          className="py-2.5 px-5 text-xs sm:text-sm rounded-full font-semibold text-zinc-700 hover:text-zinc-950 border border-zinc-200 hover:border-zinc-300 bg-white transition-all inline-flex items-center gap-2 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
+                          className="py-2.5 px-5 text-xs sm:text-sm rounded-full font-semibold text-[#222222] hover:text-black border border-[#ebebeb] hover:border-[#dddddd] bg-white transition-all inline-flex items-center gap-2 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
                         >
-                          <ShieldCheck className="w-4 h-4 text-red-600" />
+                          <ShieldCheck className="w-4 h-4 text-[#ff385c]" />
                           <span>Our Workshop Standard</span>
                         </button>
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-[#dddddd] after:via-[#ebebeb] after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-red-600 block mb-2 font-bold">
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
                           AVAILABLE FLEET · MOMBASA SHOWROOM STOCK
                         </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
                           Vehicles in Stock
                         </h2>
                       </div>
 
                       <button
                         onClick={() => handleNavigate('inventory')}
-                        className="btn-ghost !text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer"
+                        className="!text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer rounded-full border border-[#ebebeb] bg-white hover:bg-[#f7f7f7] text-[#222222] transition-colors"
                       >
                         <span>View Full Collection ({vehicles.length})</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -398,38 +398,38 @@ export function App() {
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-16 sm:space-y-24 relative z-10">
                     <div className="max-w-2xl text-left">
-                      <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-zinc-500 block mb-3">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#6a6a6a] block mb-3 font-semibold">
                         THE ALBERKA COVENANT
                       </span>
-                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-[-0.035em] leading-[1.05]">
+                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#222222] tracking-[-0.035em] leading-[1.05]">
                         Three Principles of Provenance.
                       </h2>
-                      <p className="text-base sm:text-lg text-zinc-600 mt-4 leading-relaxed font-normal">
+                      <p className="text-base sm:text-lg text-[#6a6a6a] mt-4 leading-relaxed font-normal">
                         Every vehicle we import into Kenya undergoes a disciplined, verified journey before keys are handed over.
                       </p>
                     </div>
 
                     {/* Clean Typographic Triptych with Hairline Dividers */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 lg:divide-x lg:divide-zinc-200 pt-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 lg:divide-x lg:divide-[#ebebeb] pt-4">
                       {/* Pillar 01 */}
                       <ScrollRevealBox delay={0}>
                         <div className="space-y-4 lg:pr-12 text-left">
-                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
+                          <span className="font-mono text-xs text-[#6a6a6a] uppercase tracking-widest block font-semibold">
                             01 · DIRECT SOURCING
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-tight">
                             Tokyo Auction Selection
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-[15px] text-[#6a6a6a] leading-relaxed font-normal">
                             Handpicked directly at USS Tokyo and CAA lanes. Zero intermediaries, verified Japanese auction sheets, and guaranteed JEVIC mileage certificates.
                           </p>
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('about')}
-                              className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Our sourcing process</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a] group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
                         </div>
@@ -437,23 +437,23 @@ export function App() {
 
                       {/* Pillar 02 */}
                       <ScrollRevealBox delay={75}>
-                        <div className="space-y-4 lg:px-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
-                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
+                        <div className="space-y-4 lg:px-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-[#ebebeb]">
+                          <span className="font-mono text-xs text-[#6a6a6a] uppercase tracking-widest block font-semibold">
                             02 · PREPARATION
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-tight">
                             100-Point Technical Overhaul
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-[15px] text-[#6a6a6a] leading-relaxed font-normal">
                             100-point pre-delivery inspection at Tangana Road. Castrol Edge synthetic lubricants, OEM filtration, full computerized diagnostics, and suspension recalibration.
                           </p>
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('workshop')}
-                              className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Workshop standards</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a] group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
                         </div>
@@ -461,23 +461,23 @@ export function App() {
 
                       {/* Pillar 03 */}
                       <ScrollRevealBox delay={150}>
-                        <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-zinc-200">
-                          <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest block font-semibold">
+                        <div className="space-y-4 lg:pl-12 text-left pt-8 lg:pt-0 border-t lg:border-t-0 border-[#ebebeb]">
+                          <span className="font-mono text-xs text-[#6a6a6a] uppercase tracking-widest block font-semibold">
                             03 · VERIFICATION
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-tight">
                             Japanese Export Dossier
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-[15px] text-[#6a6a6a] leading-relaxed font-normal">
                             Original Japanese export certificate, verified QISJ/JEVIC odometer certification, and translated auction inspection sheet delivered with your logbook.
                           </p>
                           <div className="pt-2">
                             <button
                               onClick={() => handleNavigate('about')}
-                              className="text-xs font-semibold text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
+                              className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer group"
                             >
                               <span>Verification standards</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight className="w-3.5 h-3.5 text-[#6a6a6a] group-hover:translate-x-1 transition-transform" />
                             </button>
                           </div>
                         </div>
@@ -497,19 +497,19 @@ export function App() {
                 {/* Official Showroom Dispatch */}
                 <section className="w-full bg-transparent py-20 sm:py-32 px-4 sm:px-8 relative">
                   <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-zinc-300 after:via-zinc-200 after:to-transparent">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-[#dddddd] after:via-[#ebebeb] after:to-transparent">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-zinc-500 block mb-2 font-semibold">
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
                           OFFICIAL SHOWROOM & WORKSHOP
                         </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-950 tracking-[-0.035em]">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
                           Visit Our Showroom
                         </h2>
                       </div>
 
                       <button
                         onClick={() => handleNavigate('locations')}
-                        className="btn-ghost !text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer"
+                        className="!text-xs !py-2.5 !px-5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0 cursor-pointer rounded-full border border-[#ebebeb] bg-white hover:bg-[#f7f7f7] text-[#222222] transition-colors"
                       >
                         <span>Interactive Map & Directions</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -518,19 +518,19 @@ export function App() {
 
                     <div className="max-w-2xl text-left">
                       <ScrollRevealBox delay={0}>
-                        <div className="space-y-4 bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
-                          <span className="font-mono text-xs text-red-600 uppercase tracking-widest block font-bold">
+                        <div className="space-y-4 bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-8 shadow-xs">
+                          <span className="font-mono text-xs text-[#ff385c] uppercase tracking-widest block font-bold">
                             MOMBASA MAIN HUB
                           </span>
-                          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-[#222222]">
                             Next to Ganjoni Primary School, Mombasa
                           </h3>
-                          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-base text-[#6a6a6a] leading-relaxed font-normal">
                             Featuring our dedicated customer showroom floor, hoist inspection bays, and certified Japanese import maintenance workshop.
                           </p>
-                          <div className="pt-2 font-mono text-xs text-zinc-600 space-y-1.5 border-t border-zinc-100">
-                            <p>Direct Phone / WhatsApp: <a href="tel:0180423075" className="text-zinc-950 font-bold hover:text-red-600">0180 423 075</a></p>
-                            <p>Showroom Hours: <span className="text-zinc-800 font-semibold">{settings.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}</span></p>
+                          <div className="pt-2 font-mono text-xs text-[#6a6a6a] space-y-1.5 border-t border-[#ebebeb]">
+                            <p>Direct Phone / WhatsApp: <a href="tel:0180423075" className="text-[#222222] font-bold hover:text-[#ff385c]">0180 423 075</a></p>
+                            <p>Showroom Hours: <span className="text-[#222222] font-semibold">{settings.workingHours || 'Mon – Sat: 8:00 AM – 6:00 PM'}</span></p>
                           </div>
                         </div>
                       </ScrollRevealBox>

@@ -59,15 +59,15 @@ export const CategoryFilterSlider: React.FC<CategoryFilterSliderProps> = ({
         onClick={() => scroll('left')}
         type="button"
         aria-label="Scroll left"
-        className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-zinc-200/90 text-zinc-700 hover:text-zinc-950 shadow-md items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 cursor-pointer"
+        className="hidden md:flex absolute -left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-[#ebebeb] text-[#222222] hover:text-black shadow-xs items-center justify-center transition-all opacity-90 hover:opacity-100 hover:scale-105 cursor-pointer"
       >
         <ChevronLeft className="w-4 h-4" />
       </button>
 
-      {/* Categories Horizontal Track */}
+      {/* Categories Horizontal Track — Airbnb Category Tab Strip */}
       <div
         ref={scrollRef}
-        className="car-choose__category-inner -brands footer__main-slider -js-accordion-slider flex items-stretch gap-2.5 sm:gap-3 overflow-x-auto pb-2 pt-1 px-1 scroll-smooth no-scrollbar"
+        className="flex items-center gap-6 sm:gap-8 overflow-x-auto pb-1 pt-1 px-2 scroll-smooth no-scrollbar border-b border-[#ebebeb]"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {CATEGORY_OPTIONS.map((cat) => {
@@ -79,42 +79,22 @@ export const CategoryFilterSlider: React.FC<CategoryFilterSliderProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`car-choose__category-item shrink-0 flex items-center gap-3 px-3.5 py-2.5 rounded-xl border transition-all text-left cursor-pointer group select-none min-w-[130px] sm:min-w-[155px] ${
+              className={`shrink-0 flex flex-col items-center justify-center gap-1.5 pb-2.5 pt-1 text-center cursor-pointer transition-all border-b-2 select-none group min-w-[70px] sm:min-w-[80px] ${
                 isSelected
-                  ? 'bg-red-50/90 border-red-500 shadow-xs ring-1 ring-red-500/30'
-                  : 'bg-white hover:bg-zinc-50/90 border-zinc-200/80 hover:border-zinc-300 shadow-2xs'
+                  ? 'border-[#222222] text-[#222222] opacity-100'
+                  : 'border-transparent text-[#6a6a6a] hover:text-[#222222] hover:border-[#dddddd] opacity-75 hover:opacity-100'
               }`}
               id={`used-carsBrowsbyCate_${cat.id}`}
             >
               {/* Category SVG Icon */}
-              <div
-                className={`car-choose__category-image w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                  isSelected
-                    ? 'bg-red-600 text-white shadow-2xs'
-                    : 'bg-zinc-100/80 text-zinc-600 group-hover:text-zinc-900 group-hover:bg-zinc-100'
-                }`}
-              >
-                <Icon className="w-6 h-6" />
+              <div className="w-6 h-6 flex items-center justify-center transition-transform group-hover:scale-105">
+                <Icon className={`w-5 h-5 ${isSelected ? 'text-[#222222]' : 'text-[#6a6a6a] group-hover:text-[#222222]'}`} />
               </div>
 
-              {/* Category Info */}
-              <div className="car-choose__category-info min-w-0 flex-1">
-                <p
-                  className={`car-choose__category-name text-xs sm:text-[13px] font-bold leading-snug truncate ${
-                    isSelected ? 'text-red-700' : 'text-zinc-900 group-hover:text-zinc-950'
-                  }`}
-                >
-                  {cat.name}
-                </p>
-                <p
-                  className={`car-other-category-count car-choose__category-items text-[10.5px] font-mono leading-none mt-1 truncate ${
-                    isSelected ? 'text-red-600 font-bold' : 'text-zinc-500'
-                  }`}
-                  data-type={cat.id}
-                >
-                  ({realCount})
-                </p>
-              </div>
+              {/* Category Label */}
+              <span className={`text-[12px] font-medium leading-tight whitespace-nowrap ${isSelected ? 'font-semibold text-[#222222]' : 'text-[#6a6a6a] group-hover:text-[#222222]'}`}>
+                {cat.name}
+              </span>
             </button>
           );
         })}
@@ -125,7 +105,7 @@ export const CategoryFilterSlider: React.FC<CategoryFilterSliderProps> = ({
         onClick={() => scroll('right')}
         type="button"
         aria-label="Scroll right"
-        className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-zinc-200/90 text-zinc-700 hover:text-zinc-950 shadow-md items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 cursor-pointer"
+        className="hidden md:flex absolute -right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-[#ebebeb] text-[#222222] hover:text-black shadow-xs items-center justify-center transition-all opacity-90 hover:opacity-100 hover:scale-105 cursor-pointer"
       >
         <ChevronRight className="w-4 h-4" />
       </button>

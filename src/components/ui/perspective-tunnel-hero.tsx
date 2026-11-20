@@ -9,7 +9,7 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-import { ArrowRight, ShieldCheck, CheckCircle2, MessageCircle } from "lucide-react";
+import { ArrowRight, ShieldCheck, CheckCircle2, MessageCircle, Search } from "lucide-react";
 
 export interface TunnelVehicleItem {
   src: string;
@@ -322,57 +322,73 @@ export default function PerspectiveTunnelHero({
       {/* 5. Central Anchor Typography & Action Desk */}
       <motion.div
         style={{ scale: titleScale, opacity: titleOpacity }}
-        className="pointer-events-none z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-2xl"
+        className="pointer-events-none z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl"
       >
-        {/* Sole Showroom Location Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200/90 shadow-2xs text-[11px] font-mono uppercase tracking-wider text-zinc-700 mb-3 sm:mb-4">
-          <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+        {/* Sole Showroom Location Badge (Airbnb Trust Pill) */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#ebebeb] shadow-xs text-[11px] font-mono uppercase tracking-wider text-[#222222] mb-3 sm:mb-4">
+          <span className="w-2 h-2 rounded-full bg-[#ff385c]" />
           <span>MOMBASA SOLE OFFICE · ARCHBISHOP MAKARIOS RD</span>
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[0.95] text-zinc-950">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[0.95] text-[#222222]">
           UNCOMPROMISED.
           <br />
-          <span className="text-red-600">JAPANESE GRADE.</span>
+          <span className="text-[#ff385c]">JAPANESE GRADE.</span>
         </h1>
 
         {/* Narrative Tagline */}
-        <p className="mt-3 sm:mt-4 max-w-[48ch] text-xs sm:text-sm md:text-base font-normal text-zinc-600 leading-relaxed">
+        <p className="mt-3 sm:mt-4 max-w-[50ch] text-xs sm:text-sm md:text-base font-normal text-[#6a6a6a] leading-relaxed">
           Direct Japanese auction stock delivered duty-paid to Mombasa. Certified JEVIC mileage, zero accident Grade 4.5+ units, and 100-point pre-delivery overhaul.
         </p>
 
-        {/* Interactive Action Buttons (pointer-events-auto) */}
-        <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 pointer-events-auto">
-          <button
-            type="button"
-            onClick={handleScrollToFleet}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer inline-flex items-center gap-2 active:scale-98"
-          >
-            <span>Explore Mombasa Fleet</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+        {/* Airbnb Signature Floating Search Capsule */}
+        <div
+          onClick={handleScrollToFleet}
+          className="mt-6 w-full max-w-[720px] bg-white border border-[#ebebeb] rounded-full p-2 pl-5 sm:pl-6 flex items-center justify-between shadow-[0_0_0_1px_rgba(0,0,0,0.02),0_2px_6px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_6px_20px_rgba(0,0,0,0.12)] transition-all cursor-pointer pointer-events-auto"
+        >
+          <div className="flex items-center divide-x divide-[#ebebeb] flex-1 text-left min-w-0 pr-2">
+            <div className="px-3 min-w-0 flex-1">
+              <span className="text-[11px] font-semibold text-[#222222] block leading-tight">Make & Model</span>
+              <span className="text-[13px] text-[#6a6a6a] block truncate">Prado, Harrier, XV...</span>
+            </div>
+            <div className="hidden sm:block px-4 min-w-0 flex-1">
+              <span className="text-[11px] font-semibold text-[#222222] block leading-tight">Delivered Budget</span>
+              <span className="text-[13px] text-[#6a6a6a] block truncate">Any price in KES</span>
+            </div>
+            <div className="hidden md:block px-4 min-w-0 flex-1">
+              <span className="text-[11px] font-semibold text-[#222222] block leading-tight">Body & Drive</span>
+              <span className="text-[13px] text-[#6a6a6a] block truncate">SUV, Hybrid, 4WD</span>
+            </div>
+          </div>
 
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#ff385c] hover:bg-[#e00b41] text-white flex items-center justify-center shrink-0 transition-transform hover:scale-105 active:scale-95 shadow-xs">
+            <Search className="w-4 h-4 text-white stroke-[2.5]" />
+          </div>
+        </div>
+
+        {/* Secondary Clean Actions Row */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-3 pointer-events-auto">
           <a
-            href="https://wa.me/254786000040?text=Hi%20Alberka%2C%20I'm%20interested%20in%20inquiring%20about%20your%20verified%20Japanese%20import%20stock."
+            href="https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20inquiring%20about%20your%20verified%20Japanese%20import%20stock."
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white hover:bg-zinc-50 text-zinc-800 border border-zinc-200/90 font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 rounded-full shadow-2xs hover:shadow transition-all cursor-pointer inline-flex items-center gap-2"
+            className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer py-1 px-3 rounded-full hover:bg-white/80"
           >
-            <MessageCircle className="w-4 h-4 text-emerald-600" />
-            <span>Showroom Concierge</span>
+            <MessageCircle className="w-3.5 h-3.5 text-[#ff385c]" />
+            <span>Showroom Concierge (0180 423 075)</span>
           </a>
         </div>
 
         {/* Live Metrics Pill Strip */}
-        <div className="mt-5 hidden sm:flex items-center gap-4 text-[11px] font-mono text-zinc-500 font-semibold">
+        <div className="mt-3 hidden sm:flex items-center gap-4 text-[11px] font-mono text-[#6a6a6a] font-semibold">
           <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#ff385c]" />
             <span>JEVIC Odometer Guarantee</span>
           </span>
           <span>•</span>
           <span className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-3.5 h-3.5 text-red-600" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#ff385c]" />
             <span>KRA Duty-Paid Clearance</span>
           </span>
         </div>

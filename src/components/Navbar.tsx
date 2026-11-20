@@ -60,99 +60,110 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <nav className="w-full bg-white/90 backdrop-blur-xl border-b border-zinc-200/80 h-16 sm:h-[76px] flex items-center justify-center px-3 sm:px-8 sticky top-0 z-50 transition-all">
-        <div className="max-w-[1440px] w-full flex items-center justify-between gap-2.5 sm:gap-4">
+      <nav className="w-full bg-white border-b border-[#ebebeb] h-20 flex items-center justify-center px-4 sm:px-8 sticky top-0 z-50 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+        <div className="max-w-[1440px] w-full flex items-center justify-between gap-4">
           
-          {/* Logo & Brand Emblem (Mobile: Icon only; Desktop: Full typographic emblem) */}
+          {/* Left: Brand Logo & Typography */}
           <button
             onClick={() => handleLinkClick('overview')}
-            className="flex items-center gap-2.5 sm:gap-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+            className="flex items-center gap-3 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
             aria-label="Alberka Enterprises Home"
           >
             <img
               src={alberkaLogo}
               alt="Alberka Enterprises Limited"
-              className="h-10 sm:h-12 md:h-13 w-auto object-contain"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
-            <div className="hidden sm:flex flex-col text-left pl-3.5 border-l border-zinc-200">
-              <span className="font-extrabold text-[15px] sm:text-[16.5px] tracking-tight text-zinc-950 leading-tight">
+            <div className="hidden sm:flex flex-col text-left pl-3 border-l border-[#ebebeb]">
+              <span className="font-extrabold text-[15px] tracking-tight text-[#222222] leading-tight">
                 ENTERPRISES LIMITED
               </span>
-              <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.18em] text-zinc-500 leading-none mt-0.5 font-medium">
+              <span className="font-mono text-[9.5px] tracking-[0.16em] text-[#6a6a6a] leading-none mt-0.5 font-medium">
                 QUALITY JAPANESE IMPORTS
               </span>
             </div>
           </button>
 
-          {/* Mobile Search Bar: Occupies the entire remaining space in the header */}
+          {/* Mobile Quick Search Bar (Airbnb Compact Capsule) */}
           <button
             onClick={onOpenSearch}
-            className="sm:hidden flex-1 flex items-center gap-2 bg-zinc-100/90 hover:bg-zinc-200/80 active:bg-zinc-200 border border-zinc-200 rounded-full px-3 py-2 text-left cursor-pointer transition-all ml-1 min-w-0"
+            className="sm:hidden flex-1 flex items-center gap-2.5 bg-white border border-[#ebebeb] shadow-xs rounded-full px-3.5 py-2 text-left cursor-pointer transition-all ml-1 min-w-0"
             title="Search inventory"
             aria-label="Search fleet"
           >
-            <Search className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-            <span className="text-zinc-500 text-[12px] truncate">Search fleet (e.g. RAV4, Prado, Hybrid...)</span>
+            <Search className="w-4 h-4 text-[#ff385c] shrink-0" />
+            <div className="min-w-0 flex-1">
+              <span className="text-[#222222] text-xs font-semibold block truncate">Where to?</span>
+              <span className="text-[#6a6a6a] text-[10px] block truncate">Any car · Verified stock</span>
+            </div>
           </button>
 
-          {/* Desktop Floating Segmented Controller (Apple / Leica Aesthetic) */}
-          <div className="hidden lg:inline-flex items-center gap-1 bg-zinc-100/90 backdrop-blur-xl border border-zinc-200/80 p-1.5 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+          {/* Center: Airbnb Tab Navigation with 2px Hof (#222222) Active Underline */}
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = currentView === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium pill-interactive cursor-pointer whitespace-nowrap transition-all ${
+                  className={`relative py-6 text-sm font-medium transition-colors cursor-pointer select-none whitespace-nowrap ${
                     isActive
-                      ? 'bg-red-600 text-white font-bold shadow-sm scale-[1.02]'
-                      : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
+                      ? 'text-[#222222] font-semibold'
+                      : 'text-[#6a6a6a] hover:text-[#222222]'
                   }`}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0 inset-x-0 h-[2px] bg-[#222222] rounded-full" />
+                  )}
                 </button>
               );
             })}
           </div>
 
-          {/* Right Action Suite */}
-          <div className="hidden sm:flex items-center gap-2.5 sm:gap-3 text-zinc-900">
+          {/* Right: Airbnb Utilities & Host/Order Action */}
+          <div className="hidden sm:flex items-center gap-2 text-[#222222]">
             
-            {/* Quick Search Capsule */}
+            {/* 'Direct Japan Order' text link */}
             <button
-              onClick={onOpenSearch}
-              className="h-9 px-3 rounded-full bg-zinc-100 hover:bg-zinc-200/80 border border-zinc-200 hover:border-zinc-300 text-zinc-700 hover:text-zinc-950 flex items-center gap-2 transition-all cursor-pointer hover:scale-102 active:scale-95"
-              title="Search inventory (⌘K / Ctrl+K)"
-              aria-label="Search fleet"
+              onClick={() => handleLinkClick('workshop')}
+              className="px-3.5 py-2 rounded-full text-xs font-semibold text-[#222222] hover:bg-[#f7f7f7] transition-colors cursor-pointer whitespace-nowrap"
             >
-              <Search className="w-3.5 h-3.5 text-zinc-400" />
-              <span className="hidden xl:inline text-xs text-zinc-400 font-medium">Search fleet</span>
-              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white text-zinc-500 border border-zinc-200 rounded">
-                ⌘K
-              </kbd>
+              Order from Tokyo
             </button>
 
-            {/* Saved Cars Capsule with Badge */}
+            {/* Circular Search Button */}
+            <button
+              onClick={onOpenSearch}
+              className="w-10 h-10 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+              title="Search fleet (⌘K)"
+              aria-label="Search fleet"
+            >
+              <Search className="w-4 h-4 text-[#222222]" />
+            </button>
+
+            {/* Circular Saved Cars Wishlist Button */}
             <button
               onClick={onOpenFavorites}
-              className="w-9 h-9 rounded-full bg-zinc-100 hover:bg-zinc-200/80 border border-zinc-200 hover:border-zinc-300 text-zinc-700 hover:text-zinc-950 flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
+              className="w-10 h-10 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] flex items-center justify-center transition-all cursor-pointer relative hover:scale-105 active:scale-95"
               title="Saved vehicles"
+              aria-label="Saved vehicles"
             >
-              <Bookmark className="w-4 h-4" />
+              <Bookmark className="w-4 h-4 text-[#222222]" />
               {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-heartbeat">
+                <span className="absolute -top-1 -right-1 bg-[#ff385c] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                   {favoritesCount}
                 </span>
               )}
             </button>
 
-            {/* Tablet Menu Toggle Button (Visible only on tablets where segmented controller is hidden) */}
+            {/* Circular Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-9 h-9 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-zinc-950 flex items-center justify-center cursor-pointer transition-colors active:scale-95"
+              className="w-10 h-10 rounded-full bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] flex items-center justify-center cursor-pointer transition-all hover:scale-105 active:scale-95"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-zinc-900" /> : <Menu className="w-5 h-5 text-zinc-900" />}
+              {mobileMenuOpen ? <X className="w-4 h-4 text-[#222222]" /> : <Menu className="w-4 h-4 text-[#222222]" />}
             </button>
           </div>
 
@@ -161,11 +172,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Editorial Luxury Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-14 sm:top-[68px] bg-white/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-zinc-200 text-zinc-900 overflow-y-auto animate-slideDown">
+        <div className="fixed inset-0 top-20 bg-white/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between lg:hidden border-t border-[#ebebeb] text-[#222222] overflow-y-auto animate-slideDown">
           
           {/* Main Editorial Menu Links */}
           <div className="space-y-3 pt-2">
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500 block px-2 mb-2 font-semibold">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#6a6a6a] block px-2 mb-2 font-medium">
               INDEX // NAVIGATION
             </span>
             
@@ -176,25 +187,25 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     key={link.id}
                     onClick={() => handleLinkClick(link.id)}
-                    className={`w-full text-left p-3.5 rounded-xl transition-all flex items-center justify-between group ${
+                    className={`w-full text-left p-3.5 rounded-2xl transition-all flex items-center justify-between group ${
                       isActive
-                        ? 'bg-red-600 text-white shadow-sm'
-                        : 'hover:bg-zinc-50 border border-transparent'
+                        ? 'bg-[#ff385c] text-white shadow-xs'
+                        : 'hover:bg-[#f7f7f7] border border-transparent'
                     }`}
                   >
                     <div className="space-y-0.5">
                       <div className="flex items-center gap-2">
-                        <span className={`font-mono text-[10px] font-semibold ${isActive ? 'text-white/80' : 'text-zinc-500'}`}>{link.index}</span>
-                        <span className={`text-base font-bold tracking-tight ${isActive ? 'text-white' : 'text-zinc-800 group-hover:text-zinc-950'}`}>
+                        <span className={`text-[11px] font-mono font-medium ${isActive ? 'text-white/80' : 'text-[#6a6a6a]'}`}>{link.index}</span>
+                        <span className={`text-base font-semibold tracking-tight ${isActive ? 'text-white' : 'text-[#222222]'}`}>
                           {link.label}
                         </span>
                       </div>
-                      <p className={`text-xs pl-6 leading-relaxed ${isActive ? 'text-white/90' : 'text-zinc-500'}`}>
+                      <p className={`text-xs pl-6 leading-relaxed ${isActive ? 'text-white/90' : 'text-[#6a6a6a]'}`}>
                         {link.desc}
                       </p>
                     </div>
 
-                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-zinc-400'}`} />
+                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-[#6a6a6a]'}`} />
                   </button>
                 );
               })}
@@ -207,12 +218,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenSearch();
                 }}
-                className="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-zinc-300 transition-colors"
+                className="p-3 bg-[#f7f7f7] border border-[#ebebeb] hover:border-[#dddddd] rounded-2xl text-left flex items-center gap-2.5 cursor-pointer transition-colors"
               >
-                <Search className="w-4 h-4 text-zinc-400 shrink-0" />
+                <Search className="w-4 h-4 text-[#6a6a6a] shrink-0" />
                 <div>
-                  <span className="text-xs font-bold text-zinc-950 block">Search Cars</span>
-                  <span className="text-[10px] font-mono text-zinc-500">Quick catalog scan</span>
+                  <span className="text-xs font-semibold text-[#222222] block">Search Cars</span>
+                  <span className="text-[10px] text-[#6a6a6a]">Quick catalog scan</span>
                 </div>
               </button>
 
@@ -221,12 +232,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenFavorites();
                 }}
-                className="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-left flex items-center gap-2.5 cursor-pointer hover:border-zinc-300 transition-colors"
+                className="p-3 bg-[#f7f7f7] border border-[#ebebeb] hover:border-[#dddddd] rounded-2xl text-left flex items-center gap-2.5 cursor-pointer transition-colors"
               >
-                <Bookmark className="w-4 h-4 text-zinc-400 shrink-0" />
+                <Bookmark className="w-4 h-4 text-[#6a6a6a] shrink-0" />
                 <div>
-                  <span className="text-xs font-bold text-zinc-950 block">Saved Cars ({favoritesCount})</span>
-                  <span className="text-[10px] font-mono text-zinc-500">Compare selection</span>
+                  <span className="text-xs font-semibold text-[#222222] block">Saved Cars ({favoritesCount})</span>
+                  <span className="text-[10px] text-[#6a6a6a]">Compare selection</span>
                 </div>
               </button>
             </div>

@@ -31,27 +31,27 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
 
   return createPortal(
     <div 
-      className="fixed inset-0 z-[9999] bg-black/40 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6 text-[#f4f4f5] animate-fadeIn"
+      className="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-6 text-[#222222] animate-fadeIn"
       onClick={onClose}
     >
       <div 
-        className={`bg-white w-full overflow-hidden border-t sm:border border-zinc-200 rounded-t-2xl sm:rounded-2xl flex flex-col max-h-[90vh] sm:max-h-[88vh] shadow-[0_24px_60px_rgba(0,0,0,0.15)] text-zinc-900 animate-scaleIn transition-all ${
+        className={`bg-white w-full overflow-hidden border-t sm:border border-[#ebebeb] rounded-t-2xl sm:rounded-[16px] flex flex-col max-h-[90vh] sm:max-h-[88vh] shadow-[0_8px_28px_rgba(0,0,0,0.22)] text-[#222222] animate-scaleIn transition-all ${
           viewMode === 'compare' && savedVehicles.length >= 2 ? 'max-w-[920px]' : 'max-w-[660px]'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-zinc-200 flex items-center justify-between">
+        <div className="p-4 sm:p-5 border-b border-[#ebebeb] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold shadow-sm">
+            <div className="w-8 h-8 rounded-full bg-[#ff385c] text-white flex items-center justify-center font-bold shadow-xs">
               <Bookmark className="w-4 h-4 fill-white text-white" />
             </div>
             <div>
-              <h3 className="font-bold text-base text-zinc-950 leading-tight">
+              <h3 className="font-bold text-base text-[#222222] leading-tight">
                 Saved Vehicles ({savedVehicles.length})
               </h3>
-              <p className="text-[11px] font-mono text-zinc-600">
+              <p className="text-[11px] font-mono text-[#6a6a6a]">
                 Your private shortlist for appraisal & inspection
               </p>
             </div>
@@ -59,11 +59,11 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
 
           <div className="flex items-center gap-2">
             {savedVehicles.length >= 2 && (
-              <div className="flex items-center bg-zinc-100 border border-zinc-200 p-0.5 rounded-lg mr-2">
+              <div className="flex items-center bg-[#f7f7f7] border border-[#ebebeb] p-0.5 rounded-full mr-2">
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-1.5 rounded-md text-xs transition-colors cursor-pointer ${
-                    viewMode === 'list' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-600 hover:text-zinc-950'
+                  className={`p-1.5 px-2.5 rounded-full text-xs transition-colors cursor-pointer ${
+                    viewMode === 'list' ? 'bg-white text-[#222222] font-semibold shadow-xs' : 'text-[#6a6a6a] hover:text-[#222222]'
                   }`}
                   title="List View"
                 >
@@ -71,20 +71,20 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                 </button>
                 <button
                   onClick={() => setViewMode('compare')}
-                  className={`p-1.5 rounded-md text-xs transition-colors cursor-pointer flex items-center gap-1.5 px-2 ${
-                    viewMode === 'compare' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-600 hover:text-zinc-950'
+                  className={`p-1.5 rounded-full text-xs transition-colors cursor-pointer flex items-center gap-1.5 px-3 ${
+                    viewMode === 'compare' ? 'bg-white text-[#222222] font-semibold shadow-xs' : 'text-[#6a6a6a] hover:text-[#222222]'
                   }`}
                   title="Compare Side-by-Side"
                 >
                   <Columns2 className="w-3.5 h-3.5" />
-                  <span className="text-[11px] font-mono font-bold hidden xs:inline">Compare</span>
+                  <span className="text-[11px] font-mono font-semibold hidden xs:inline">Compare</span>
                 </button>
               </div>
             )}
 
             <button
               onClick={onClose}
-              className="p-1.5 text-zinc-600 hover:text-zinc-950 cursor-pointer transition-colors rounded-lg hover:bg-white/[0.05]"
+              className="p-1.5 text-[#6a6a6a] hover:text-[#222222] cursor-pointer transition-colors rounded-full hover:bg-[#f7f7f7]"
               title="Close (Esc)"
             >
               <X className="w-5 h-5" />
@@ -98,11 +98,11 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
             viewMode === 'compare' && savedVehicles.length >= 2 ? (
               /* Side-by-Side Architectural Comparison View */
               <div className="space-y-4">
-                <div className="text-left pb-2 border-b border-zinc-200 flex items-center justify-between">
-                  <span className="font-mono text-xs text-zinc-600 uppercase tracking-wider font-semibold">
+                <div className="text-left pb-2 border-b border-[#ebebeb] flex items-center justify-between">
+                  <span className="font-mono text-xs text-[#6a6a6a] uppercase tracking-wider font-semibold">
                     SIDE-BY-SIDE SPECIFICATION AUDIT
                   </span>
-                  <span className="text-xs font-mono text-red-600 font-semibold">
+                  <span className="text-xs font-mono text-[#ff385c] font-semibold">
                     100-Point Pre-Delivery Overhaul Included
                   </span>
                 </div>
@@ -112,65 +112,65 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                     {savedVehicles.map((vehicle) => (
                       <div
                         key={vehicle.id}
-                        className="bg-zinc-50 border border-zinc-200 hover:border-zinc-300 rounded-xl p-4 flex flex-col justify-between space-y-4 text-left shadow-sm"
+                        className="bg-[#f7f7f7] border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-4 flex flex-col justify-between space-y-4 text-left shadow-xs"
                       >
                         <div className="space-y-3">
-                          <div className="w-full aspect-[16/10] overflow-hidden rounded-lg bg-zinc-100 border border-zinc-200 relative">
+                          <div className="w-full aspect-[16/10] overflow-hidden rounded-[10px] bg-white border border-[#ebebeb] relative">
                             <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
-                            <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono font-bold border border-zinc-200 text-zinc-950 shadow-xs">
+                            <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono font-bold border border-[#ebebeb] text-[#222222] shadow-2xs">
                               Grade {vehicle.auctionGrade}
                             </div>
                           </div>
 
                           <div>
-                            <span className="font-mono text-[10px] text-zinc-600 uppercase block font-semibold">
+                            <span className="font-mono text-[10px] text-[#6a6a6a] uppercase block font-semibold">
                               {vehicle.stockNo} · {vehicle.year}
                             </span>
-                            <h4 className="text-sm font-bold text-zinc-950 line-clamp-2 mt-0.5">
+                            <h4 className="text-sm font-bold text-[#222222] line-clamp-2 mt-0.5">
                               {vehicle.name}
                             </h4>
-                            <p className="font-mono text-base font-bold text-red-600 mt-1">
+                            <p className="font-mono text-base font-bold text-[#ff385c] mt-1">
                               KES {vehicle.priceKes.toLocaleString()}
                             </p>
                           </div>
 
-                          <div className="pt-2 border-t border-zinc-200 space-y-2 text-xs font-mono">
-                            <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                              <span className="text-zinc-500">Mileage</span>
-                              <span className="text-zinc-950 font-bold">{vehicle.mileageKm.toLocaleString()} KM</span>
+                          <div className="pt-2 border-t border-[#ebebeb] space-y-2 text-xs font-mono">
+                            <div className="flex justify-between py-1 border-b border-[#ebebeb]">
+                              <span className="text-[#6a6a6a]">Mileage</span>
+                              <span className="text-[#222222] font-semibold">{vehicle.mileageKm.toLocaleString()} KM</span>
                             </div>
-                            <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                              <span className="text-zinc-500">Powertrain</span>
-                              <span className="text-zinc-950 font-bold truncate max-w-[140px] text-right">{vehicle.engine}</span>
+                            <div className="flex justify-between py-1 border-b border-[#ebebeb]">
+                              <span className="text-[#6a6a6a]">Powertrain</span>
+                              <span className="text-[#222222] font-semibold truncate max-w-[140px] text-right">{vehicle.engine}</span>
                             </div>
-                            <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                              <span className="text-zinc-500">Drivetrain</span>
-                              <span className="text-zinc-950 font-bold">{vehicle.drivetrain}</span>
+                            <div className="flex justify-between py-1 border-b border-[#ebebeb]">
+                              <span className="text-[#6a6a6a]">Drivetrain</span>
+                              <span className="text-[#222222] font-semibold">{vehicle.drivetrain}</span>
                             </div>
-                            <div className="flex justify-between py-1 border-b border-white/[0.04]">
-                              <span className="text-zinc-500">Body Type</span>
-                              <span className="text-zinc-950 font-bold truncate max-w-[140px] text-right">{vehicle.bodyType}</span>
+                            <div className="flex justify-between py-1 border-b border-[#ebebeb]">
+                              <span className="text-[#6a6a6a]">Body Type</span>
+                              <span className="text-[#222222] font-semibold truncate max-w-[140px] text-right">{vehicle.bodyType}</span>
                             </div>
                             <div className="flex justify-between py-1">
-                              <span className="text-zinc-500">Auction Hall</span>
-                              <span className="text-zinc-950 font-bold">{vehicle.auctionHall}</span>
+                              <span className="text-[#6a6a6a]">Auction Hall</span>
+                              <span className="text-[#222222] font-semibold">{vehicle.auctionHall}</span>
                             </div>
                           </div>
                         </div>
 
-                        <div className="pt-3 border-t border-zinc-200 flex items-center gap-2">
+                        <div className="pt-3 border-t border-[#ebebeb] flex items-center gap-2">
                           <button
                             onClick={() => {
                               onSelectVehicle(vehicle);
                               onClose();
                             }}
-                            className="btn-white !text-xs !py-2 !px-3 flex-1 text-center font-semibold rounded-lg"
+                            className="bg-white hover:bg-[#ebebeb] text-[#222222] border border-[#ebebeb] text-xs py-2 px-3 flex-1 text-center font-semibold rounded-full transition-colors cursor-pointer"
                           >
                             Inspect Car
                           </button>
                           <button
                             onClick={() => onToggleFavorite(vehicle.id)}
-                            className="p-2 text-zinc-500 hover:text-zinc-950 transition-colors cursor-pointer rounded-lg bg-zinc-100 border border-zinc-200"
+                            className="p-2 text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer rounded-full bg-white border border-[#ebebeb]"
                             title="Remove"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -187,7 +187,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                 {savedVehicles.map((vehicle) => (
                   <div
                     key={vehicle.id}
-                    className="p-3.5 border border-zinc-200 hover:border-zinc-300 rounded-xl transition-all bg-zinc-50 hover:bg-zinc-100/80 flex items-center justify-between gap-4 shadow-sm"
+                    className="p-3.5 border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] transition-all bg-white hover:bg-[#f7f7f7] flex items-center justify-between gap-4 shadow-xs"
                   >
                     <div
                       onClick={() => {
@@ -196,19 +196,19 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                       }}
                       className="flex items-center gap-3.5 cursor-pointer flex-1 min-w-0"
                     >
-                      <div className="w-20 h-14 overflow-hidden rounded-lg bg-zinc-100 border border-zinc-200 shrink-0">
+                      <div className="w-20 h-14 overflow-hidden rounded-[8px] bg-[#f7f7f7] border border-[#ebebeb] shrink-0">
                         <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
                       </div>
                       <div className="min-w-0 text-left">
                         <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10.5px] text-zinc-600 font-bold block">
+                          <span className="font-mono text-[10.5px] text-[#6a6a6a] font-bold block">
                             {vehicle.stockNo} · Grade {vehicle.auctionGrade}
                           </span>
                         </div>
-                        <h4 className="text-[14.5px] font-bold text-zinc-950 truncate mt-0.5">
+                        <h4 className="text-[14.5px] font-semibold text-[#222222] truncate mt-0.5">
                           {vehicle.name}
                         </h4>
-                        <p className="font-mono text-xs text-red-600 font-bold">
+                        <p className="font-mono text-xs text-[#ff385c] font-bold">
                           KES {vehicle.priceKes.toLocaleString()} · {vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM
                         </p>
                       </div>
@@ -220,14 +220,14 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                           onSelectVehicle(vehicle);
                           onClose();
                         }}
-                        className="btn-ghost !text-xs !py-1.5 !px-3 hidden sm:inline-flex items-center gap-1 cursor-pointer"
+                        className="text-xs py-1.5 px-3 rounded-full border border-[#ebebeb] bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] font-semibold hidden sm:inline-flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <span>Inspect</span>
-                        <ArrowRight className="w-3 h-3" />
+                        <ArrowRight className="w-3 h-3 text-[#ff385c]" />
                       </button>
                       <button
                         onClick={() => onToggleFavorite(vehicle.id)}
-                        className="p-2 text-zinc-500 hover:text-zinc-950 transition-colors cursor-pointer rounded-lg hover:bg-white/[0.05]"
+                        className="p-2 text-[#6a6a6a] hover:text-[#222222] transition-colors cursor-pointer rounded-full hover:bg-[#f7f7f7]"
                         title="Remove from saved"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -238,13 +238,13 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               </div>
             )
           ) : (
-            <div className="py-16 text-center text-zinc-500 space-y-4">
-              <div className="w-12 h-12 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center mx-auto text-zinc-600">
+            <div className="py-16 text-center text-[#6a6a6a] space-y-4">
+              <div className="w-12 h-12 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center mx-auto text-[#6a6a6a]">
                 <Bookmark className="w-5 h-5" />
               </div>
               <div className="space-y-1">
-                <p className="text-base font-bold text-zinc-950">Your saved list is empty.</p>
-                <p className="text-xs text-zinc-600 max-w-sm mx-auto leading-relaxed">
+                <p className="text-base font-bold text-[#222222]">Your saved list is empty.</p>
+                <p className="text-xs text-[#6a6a6a] max-w-sm mx-auto leading-relaxed">
                   Bookmark any vehicle in our verified fleet to review side-by-side specs, calculate trade-ins, or request a joint private viewing.
                 </p>
               </div>
