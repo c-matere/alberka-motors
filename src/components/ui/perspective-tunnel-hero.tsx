@@ -326,7 +326,7 @@ export default function PerspectiveTunnelHero({
       >
         {/* Sole Showroom Location Badge (Airbnb Trust Pill) */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#ebebeb] shadow-xs text-[11px] font-mono uppercase tracking-wider text-[#222222] mb-3 sm:mb-4">
-          <span className="w-2 h-2 rounded-full bg-[#ff385c]" />
+          <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
           <span>MOMBASA SOLE OFFICE · ARCHBISHOP MAKARIOS RD</span>
         </div>
 
@@ -334,7 +334,7 @@ export default function PerspectiveTunnelHero({
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[0.95] text-[#222222]">
           UNCOMPROMISED.
           <br />
-          <span className="text-[#ff385c]">JAPANESE GRADE.</span>
+          <span className="text-[#DC2626]">JAPANESE GRADE.</span>
         </h1>
 
         {/* Narrative Tagline */}
@@ -362,7 +362,7 @@ export default function PerspectiveTunnelHero({
             </div>
           </div>
 
-          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#ff385c] hover:bg-[#e00b41] text-white flex items-center justify-center shrink-0 transition-transform hover:scale-105 active:scale-95 shadow-xs">
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white flex items-center justify-center shrink-0 transition-transform hover:scale-105 active:scale-95 shadow-xs">
             <Search className="w-4 h-4 text-white stroke-[2.5]" />
           </div>
         </div>
@@ -373,9 +373,9 @@ export default function PerspectiveTunnelHero({
             href="https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20am%20inquiring%20about%20your%20verified%20Japanese%20import%20stock."
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold text-[#222222] hover:text-[#ff385c] inline-flex items-center gap-1.5 transition-colors cursor-pointer py-1 px-3 rounded-full hover:bg-white/80"
+            className="text-xs font-semibold text-[#222222] hover:text-[#DC2626] inline-flex items-center gap-1.5 transition-colors cursor-pointer py-1 px-3 rounded-full hover:bg-white/80"
           >
-            <MessageCircle className="w-3.5 h-3.5 text-[#ff385c]" />
+            <MessageCircle className="w-3.5 h-3.5 text-[#DC2626]" />
             <span>Showroom Concierge (0180 423 075)</span>
           </a>
         </div>
@@ -383,12 +383,12 @@ export default function PerspectiveTunnelHero({
         {/* Live Metrics Pill Strip */}
         <div className="mt-3 hidden sm:flex items-center gap-4 text-[11px] font-mono text-[#6a6a6a] font-semibold">
           <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#ff385c]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#DC2626]" />
             <span>JEVIC Odometer Guarantee</span>
           </span>
           <span>•</span>
           <span className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#ff385c]" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#DC2626]" />
             <span>KRA Duty-Paid Clearance</span>
           </span>
         </div>

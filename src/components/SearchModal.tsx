@@ -105,7 +105,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         
         {/* Search Input Bar */}
         <div className="p-4 sm:p-5 border-b border-[#ebebeb] flex items-center gap-3 bg-white">
-          <Search className="w-5 h-5 text-[#ff385c] shrink-0" />
+          <Search className="w-5 h-5 text-[#DC2626] shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -142,7 +142,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 onClick={() => setActiveFilterId(qf.id)}
                 className={`text-xs px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer border ${
                   isActive
-                    ? 'bg-[#ff385c] text-white font-bold border-[#ff385c] shadow-xs'
+                    ? 'bg-[#DC2626] text-white font-bold border-[#DC2626] shadow-xs'
                     : 'bg-white text-[#222222] font-semibold border-[#ebebeb] hover:bg-[#ebebeb] hover:text-[#222222]'
                 }`}
               >
@@ -192,12 +192,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="font-mono text-sm font-bold text-[#ff385c] block">
+                    <span className="font-mono text-sm font-bold text-[#DC2626] block">
                       KES {vehicle.priceKes.toLocaleString()}
                     </span>
                     <span className="text-[11px] text-[#6a6a6a] flex items-center justify-end gap-1 mt-0.5 transition-colors font-medium">
                       <span>View</span>
-                      <ArrowRight className="w-3 h-3 text-[#ff385c]" />
+                      <ArrowRight className="w-3 h-3 text-[#DC2626]" />
                     </span>
                   </div>
                 </div>

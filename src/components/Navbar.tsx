@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Search inventory"
             aria-label="Search fleet"
           >
-            <Search className="w-4 h-4 text-[#ff385c] shrink-0" />
+            <Search className="w-4 h-4 text-[#DC2626] shrink-0" />
             <div className="min-w-0 flex-1">
               <span className="text-[#222222] text-xs font-semibold block truncate">Where to?</span>
               <span className="text-[#6a6a6a] text-[10px] block truncate">Any car · Verified stock</span>
@@ -151,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Bookmark className="w-4 h-4 text-[#222222]" />
               {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#ff385c] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                <span className="absolute -top-1 -right-1 bg-[#DC2626] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                   {favoritesCount}
                 </span>
               )}
@@ -189,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => handleLinkClick(link.id)}
                     className={`w-full text-left p-3.5 rounded-2xl transition-all flex items-center justify-between group ${
                       isActive
-                        ? 'bg-[#ff385c] text-white shadow-xs'
+                        ? 'bg-[#DC2626] text-white shadow-xs'
                         : 'hover:bg-[#f7f7f7] border border-transparent'
                     }`}
                   >

@@ -44,7 +44,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-[#ebebeb] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#ff385c] text-white flex items-center justify-center font-bold shadow-xs">
+            <div className="w-8 h-8 rounded-full bg-[#DC2626] text-white flex items-center justify-center font-bold shadow-xs">
               <Bookmark className="w-4 h-4 fill-white text-white" />
             </div>
             <div>
@@ -102,7 +102,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                   <span className="font-mono text-xs text-[#6a6a6a] uppercase tracking-wider font-semibold">
                     SIDE-BY-SIDE SPECIFICATION AUDIT
                   </span>
-                  <span className="text-xs font-mono text-[#ff385c] font-semibold">
+                  <span className="text-xs font-mono text-[#DC2626] font-semibold">
                     100-Point Pre-Delivery Overhaul Included
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                             <h4 className="text-sm font-bold text-[#222222] line-clamp-2 mt-0.5">
                               {vehicle.name}
                             </h4>
-                            <p className="font-mono text-base font-bold text-[#ff385c] mt-1">
+                            <p className="font-mono text-base font-bold text-[#DC2626] mt-1">
                               KES {vehicle.priceKes.toLocaleString()}
                             </p>
                           </div>
@@ -208,7 +208,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         <h4 className="text-[14.5px] font-semibold text-[#222222] truncate mt-0.5">
                           {vehicle.name}
                         </h4>
-                        <p className="font-mono text-xs text-[#ff385c] font-bold">
+                        <p className="font-mono text-xs text-[#DC2626] font-bold">
                           KES {vehicle.priceKes.toLocaleString()} · {vehicle.year} · {vehicle.mileageKm.toLocaleString()} KM
                         </p>
                       </div>
@@ -223,7 +223,7 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         className="text-xs py-1.5 px-3 rounded-full border border-[#ebebeb] bg-[#f7f7f7] hover:bg-[#ebebeb] text-[#222222] font-semibold hidden sm:inline-flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <span>Inspect</span>
-                        <ArrowRight className="w-3 h-3 text-[#ff385c]" />
+                        <ArrowRight className="w-3 h-3 text-[#DC2626]" />
                       </button>
                       <button
                         onClick={() => onToggleFavorite(vehicle.id)}

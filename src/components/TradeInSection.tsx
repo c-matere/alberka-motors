@@ -175,7 +175,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
             </video>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex flex-col justify-end p-4 sm:p-8 md:p-10 text-white pointer-events-none drop-shadow-md">
-              <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest block mb-1 font-bold">
+              <span className="font-mono text-[9.5px] sm:text-xs text-red-600 uppercase tracking-widest block mb-1 font-bold">
                 APPRAISAL PROTOCOL
               </span>
               <p className="text-lg xs:text-xl sm:text-2xl font-bold text-white tracking-tight">
@@ -410,7 +410,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 </div>
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-md px-3 py-2 border border-black/5 flex items-center justify-between rounded-xl shadow-2xs">
                   <span className="text-xs font-bold text-[#222222] truncate mr-2">{targetVehicle.name}</span>
-                  <span className="font-mono text-xs font-bold text-[#ff385c] shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
+                  <span className="font-mono text-xs font-bold text-[#DC2626] shrink-0">KES {targetVehicle.priceKes.toLocaleString()}</span>
                 </div>
               </div>
 
@@ -422,7 +422,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                 </div>
                 <div className="w-full h-1.5 bg-[#ebebeb] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#ff385c] transition-all duration-300 ease-out"
+                    className="h-full bg-[#DC2626] transition-all duration-300 ease-out"
                     style={{ width: `${animatedEquityPercent}%` }}
                   />
                 </div>
@@ -465,7 +465,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
                   href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20I%20checked%20the%20Trade-In%20value%20for%20my%20${encodeURIComponent(makeModel)}%20(${yearTier}).%20Estimated%20Credit:%20KES%20${valuation.min.toLocaleString()}%20-%20${valuation.max.toLocaleString()}.%20I%20am%20interested%20in%20upgrading%20to%20the%20${encodeURIComponent(targetVehicle.name)}%20(${targetVehicle.stockNo}).`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-6 text-xs sm:text-sm font-bold w-full justify-center inline-flex items-center gap-2 rounded-full bg-[#ff385c] hover:bg-[#e00b41] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                  className="py-3 px-6 text-xs sm:text-sm font-bold w-full justify-center inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Lock In Appraisal on WhatsApp</span>
@@ -513,7 +513,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
               <div className="p-5 sm:p-6 space-y-2">
                 <div className="inline-flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#ff385c] uppercase font-bold">STEP 01</span>
+                  <span className="text-[10px] font-mono text-[#DC2626] uppercase font-bold">STEP 01</span>
                 </div>
                 <h3 className="text-lg font-bold text-[#222222]">20-Minute Hoist Check</h3>
                 <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">
@@ -532,7 +532,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
               <div className="p-5 sm:p-6 space-y-2">
                 <div className="inline-flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#ff385c] uppercase font-bold">STEP 02</span>
+                  <span className="text-[10px] font-mono text-[#DC2626] uppercase font-bold">STEP 02</span>
                 </div>
                 <h3 className="text-lg font-bold text-[#222222]">Written Valuation Offer</h3>
                 <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">
@@ -551,7 +551,7 @@ export const TradeInSection: React.FC<TradeInSectionProps> = ({ vehicles, onSele
               </div>
               <div className="p-5 sm:p-6 space-y-2">
                 <div className="inline-flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#ff385c] uppercase font-bold">STEP 03</span>
+                  <span className="text-[10px] font-mono text-[#DC2626] uppercase font-bold">STEP 03</span>
                 </div>
                 <h3 className="text-lg font-bold text-[#222222]">Drive Away Same Day</h3>
                 <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">

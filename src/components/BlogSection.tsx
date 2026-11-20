@@ -204,7 +204,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
                     <span>{article.publishedDate}</span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-medium text-[#222222] tracking-tight leading-snug group-hover:text-[#ff385c] transition-colors">
+                  <h3 className="text-base sm:text-lg font-medium text-[#222222] tracking-tight leading-snug group-hover:text-[#DC2626] transition-colors">
                     {article.title}
                   </h3>
 
@@ -216,7 +216,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
 
               <div className="p-4 sm:p-5 pt-0 border-t border-[#ebebeb] mt-3 flex items-center justify-between">
                 <span className="text-xs text-[#6a6a6a] font-mono">{article.author.name}</span>
-                <span className="text-xs text-[#ff385c] font-medium inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                <span className="text-xs text-[#DC2626] font-medium inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                   <span>Read Story</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>

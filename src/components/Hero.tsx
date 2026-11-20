@@ -9,6 +9,10 @@ import {
 } from 'lucide-react';
 import { CmsPage } from '../services/cmsContent';
 
+// Single source of truth for the hero backdrop. Drop a replacement image into
+// /public/vehicles/ and change this one line to swap the showroom scene.
+const HERO_BACKGROUND = '/vehicles/showroom-bg-dark.jpg';
+
 export interface HeroProps {
   onExploreFleet: () => void;
   onExploreWorkshop: () => void;
@@ -44,7 +48,7 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute inset-0 z-0">
         {/* Primary showroom photo */}
         <img
-          src="/vehicles/showroom-bg-dark.jpg"
+          src={HERO_BACKGROUND}
           alt="Alberka Enterprises Luxury Showroom"
           className="w-full h-full object-cover object-center"
           loading="eager"
@@ -111,21 +115,22 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
           </div>
 
-          {/* DRIVE / Excellence — stacked, overlapping like reference */}
-          <div className="text-center leading-none">
+          {/* DRIVE / Excellence — deliberately overlapping editorial stack */}
+          <div className="text-center leading-none relative">
             <span
-              className="block font-black uppercase tracking-tight text-white"
-              style={{ fontSize: 'clamp(3.5rem, 10vw, 9rem)', lineHeight: 1 }}
+              className="block font-black uppercase tracking-tighter text-white relative z-[1]"
+              style={{ fontSize: 'clamp(3.5rem, 10vw, 9rem)', lineHeight: 0.92 }}
             >
               DRIVE
             </span>
             <span
-              className="block font-serif italic font-normal text-[#DC2626]"
+              className="block font-serif italic font-normal text-[#DC2626] relative z-[2]"
               style={{
                 fontSize: 'clamp(3.8rem, 11vw, 10rem)',
-                lineHeight: 0.9,
-                marginTop: 'clamp(-0.3rem, -1.5vw, -1.2rem)',
-                textShadow: '0 4px 24px rgba(220,38,38,0.35)',
+                lineHeight: 0.92,
+                letterSpacing: '-0.035em',
+                marginTop: 'clamp(-1rem, -4vw, -3.5rem)',
+                textShadow: '0 6px 28px rgba(0,0,0,0.55), 0 0 30px rgba(220,38,38,0.28)',
               }}
             >
               Excellence

@@ -138,7 +138,7 @@ export const ModelHubView: React.FC<ModelHubViewProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 pointer-events-none" />
               <div className="absolute bottom-4 left-4 right-4 text-white text-left">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold block">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-red-600 font-bold block">
                   GENUINE TOKYO AUCTION SOURCED
                 </span>
                 <h3 className="text-lg font-bold text-white leading-tight">

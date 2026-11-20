@@ -57,30 +57,30 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         {/* Flagship Showroom Card (Single Official Showroom) */}
         <div className="max-w-4xl mx-auto">
           <div className="relative bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-10 shadow-xs hover:shadow-sm transition-all duration-300 text-left overflow-hidden group">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-[#ff385c]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#DC2626]" />
             
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#ebebeb] pb-5">
                 <div>
                   <div className="inline-flex items-center gap-2 mb-1">
-                    <span className="font-mono text-[11px] text-[#ff385c] uppercase tracking-widest font-bold">ALBERKA ENTERPRISES LIMITED FLAGSHIP</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
+                    <span className="font-mono text-[11px] text-[#DC2626] uppercase tracking-widest font-bold">ALBERKA ENTERPRISES LIMITED FLAGSHIP</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
                     <span className="font-mono text-[10.5px] text-[#6a6a6a] uppercase">MOMBASA, KENYA</span>
                   </div>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#222222] tracking-tight">Main Showroom & Inspection Bay</h2>
                 </div>
-                <span className="font-mono text-xs bg-[#fff1f3] border border-[#ffccd5] text-[#ff385c] px-3 py-1 rounded-full font-bold self-start sm:self-center">
+                <span className="font-mono text-xs bg-[#FEF2F2] border border-[#FECACA] text-[#DC2626] px-3 py-1 rounded-full font-bold self-start sm:self-center">
                   EST. 2000 · DIRECT IMPORTER
                 </span>
               </div>
 
               {/* Address Highlight */}
               <div className="p-4 sm:p-5 bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-full bg-[#ff385c] text-white flex items-center justify-center shrink-0 shadow-xs">
+                <div className="w-9 h-9 rounded-full bg-[#DC2626] text-white flex items-center justify-center shrink-0 shadow-xs">
                   <Clock className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-mono font-bold text-[#ff385c] uppercase tracking-wider block mb-0.5">PHYSICAL ADDRESS</span>
+                  <span className="text-[11px] font-mono font-bold text-[#DC2626] uppercase tracking-wider block mb-0.5">PHYSICAL ADDRESS</span>
                   <p className="text-base sm:text-lg font-bold text-[#222222] leading-snug">
                     Next to Ganjoni Primary School, Mombasa, Kenya
                   </p>
@@ -93,10 +93,10 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2 text-xs sm:text-sm">
                 <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
                   <div className="flex items-center gap-2 text-[#6a6a6a] font-mono text-xs">
-                    <Phone className="w-3.5 h-3.5 text-[#ff385c]" />
+                    <Phone className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>ENQUIRY HELPLINE</span>
                   </div>
-                  <a href="tel:0180423075" className="font-mono text-base font-bold text-[#222222] hover:text-[#ff385c] block transition-colors">
+                  <a href="tel:0180423075" className="font-mono text-base font-bold text-[#222222] hover:text-[#DC2626] block transition-colors">
                     0180 423 075
                   </a>
                   <span className="text-[11px] text-[#6a6a6a] block">WhatsApp & Calls 24/7</span>
@@ -104,10 +104,10 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
                 <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
                   <div className="flex items-center gap-2 text-[#6a6a6a] font-mono text-xs">
-                    <Mail className="w-3.5 h-3.5 text-[#ff385c]" />
+                    <Mail className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>EMAIL INQUIRIES</span>
                   </div>
-                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-sm font-bold text-[#222222] hover:text-[#ff385c] block truncate transition-colors">
+                  <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-sm font-bold text-[#222222] hover:text-[#DC2626] block truncate transition-colors">
                     sales@alberkamotors.co.ke
                   </a>
                   <span className="text-[11px] text-[#6a6a6a] block">Japanese Auction CIF Inquiries</span>
@@ -115,7 +115,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
                 <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
                   <div className="flex items-center gap-2 text-[#6a6a6a] font-mono text-xs">
-                    <Clock className="w-3.5 h-3.5 text-[#ff385c]" />
+                    <Clock className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>OPERATING HOURS</span>
                   </div>
                   <span className="font-mono text-xs font-bold text-[#222222] block">
@@ -182,7 +182,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
         {/* Test Drive Booking Form */}
         <div className="relative bg-white p-6 sm:p-10 border border-[#ebebeb] rounded-[14px] space-y-8 text-left shadow-xs">
           <div className="max-w-xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] font-bold block">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#DC2626] font-bold block">
               VIP RESERVATION
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-tight">Schedule a Private Test Drive</h3>
@@ -193,7 +193,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
           {bookingSuccess ? (
             <div className="bg-[#f7f7f7] border border-[#ebebeb] p-8 text-center text-[#222222] space-y-2 rounded-[12px]">
-              <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-[#ff385c]" />
+              <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-[#DC2626]" />
               <h4 className="text-xl font-bold">Appointment Confirmed</h4>
               <p className="text-xs sm:text-sm text-[#6a6a6a]">Our concierge is connecting with you on WhatsApp right now to confirm your schedule.</p>
             </div>
@@ -273,7 +273,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button type="submit" className="py-3 px-7 text-xs sm:text-sm font-bold w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#ff385c] hover:bg-[#e00b41] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer">
+                <button type="submit" className="py-3 px-7 text-xs sm:text-sm font-bold w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer">
                   <Calendar className="w-4 h-4" />
                   <span>Confirm Test Drive on WhatsApp</span>
                 </button>

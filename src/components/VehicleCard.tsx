@@ -94,7 +94,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {/* Top-Left: Guest Favorite / Inspection Grade Pill */}
           <div className="absolute top-2 left-2 z-10">
             <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-[#222222] border border-black/5 text-[10.5px] font-semibold px-2 py-0.5 rounded-full shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
               <span>Grade {vehicle.auctionGrade || '4.5'}</span>
             </span>
           </div>
@@ -107,13 +107,13 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             }}
             className={`absolute top-2 right-2 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-xs ${
               isFavorite
-                ? 'bg-white text-[#ff385c] shadow-xs'
-                : 'bg-white/85 hover:bg-white text-[#222222] hover:text-[#ff385c] shadow-xs border border-white/60'
+                ? 'bg-white text-[#DC2626] shadow-xs'
+                : 'bg-white/85 hover:bg-white text-[#222222] hover:text-[#DC2626] shadow-xs border border-white/60'
             }`}
             title={isFavorite ? 'Remove from saved' : 'Save vehicle'}
             aria-label={isFavorite ? 'Remove from saved' : 'Save vehicle'}
           >
-            <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isFavorite ? 'fill-[#ff385c] text-[#ff385c]' : 'stroke-[2.2]'}`} />
+            <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isFavorite ? 'fill-[#DC2626] text-[#DC2626]' : 'stroke-[2.2]'}`} />
           </button>
 
           {/* Bottom-Left: Savings Pill */}

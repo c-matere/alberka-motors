@@ -87,7 +87,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         {/* Hairline reading progress indicator */}
         <div className="absolute top-0 inset-x-0 h-[2px] bg-[#ebebeb] overflow-hidden">
           <div
-            className="h-full bg-[#ff385c] transition-all duration-150 ease-out"
+            className="h-full bg-[#DC2626] transition-all duration-150 ease-out"
             style={{ width: `${readProgress}%` }}
           />
         </div>
@@ -117,7 +117,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
 
             <button
               onClick={handleInquireWhatsApp}
-              className="bg-[#ff385c] hover:bg-[#e00b41] text-white py-1.5 px-4 text-xs rounded-full font-medium shadow-xs inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white py-1.5 px-4 text-xs rounded-full font-medium shadow-xs inline-flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <MessageCircle className="w-3.5 h-3.5 text-white" />
               <span>Discuss Topic</span>
@@ -151,7 +151,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         {/* Author Byline */}
         <div className="pt-4 border-t border-[#ebebeb] flex items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center text-[#ff385c] font-bold text-sm shrink-0">
+            <div className="w-11 h-11 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center text-[#DC2626] font-bold text-sm shrink-0">
               {post.author.name.charAt(0)}
             </div>
             <div>
@@ -253,14 +253,14 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
                         {vehicle.year} · {vehicle.transmission || 'Automatic'}
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-[#222222] group-hover:text-[#ff385c] transition-colors truncate">
+                    <h4 className="text-sm font-bold text-[#222222] group-hover:text-[#DC2626] transition-colors truncate">
                       {vehicle.name}
                     </h4>
-                    <span className="text-xs font-bold text-[#ff385c] block mt-0.5">
+                    <span className="text-xs font-bold text-[#DC2626] block mt-0.5">
                       KES {vehicle.priceKes.toLocaleString()}
                     </span>
                   </div>
-                  <div className="shrink-0 flex items-center text-xs font-semibold text-[#ff385c] group-hover:translate-x-1 transition-transform">
+                  <div className="shrink-0 flex items-center text-xs font-semibold text-[#DC2626] group-hover:translate-x-1 transition-transform">
                     <span>View</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </div>
@@ -273,7 +273,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         {/* Direct Concierge Callout */}
         <div className="relative bg-white border border-[#ebebeb] rounded-[16px] p-8 sm:p-10 space-y-4 text-left shadow-sm mt-12">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-[#ff385c]" />
+            <ShieldCheck className="w-5 h-5 text-[#DC2626]" />
             <h4 className="text-lg font-bold text-[#222222]">Have Questions About Japanese Provenance?</h4>
           </div>
           <p className="text-xs sm:text-sm text-[#6a6a6a] leading-relaxed">
@@ -339,7 +339,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
                     <span>·</span>
                     <span>{rel.readTime}</span>
                   </div>
-                  <h3 className="text-base font-bold text-[#222222] group-hover:text-[#ff385c] transition-colors line-clamp-2">
+                  <h3 className="text-base font-bold text-[#222222] group-hover:text-[#DC2626] transition-colors line-clamp-2">
                     {rel.title}
                   </h3>
                   <p className="text-xs text-[#6a6a6a] line-clamp-2">
@@ -349,7 +349,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
 
                 <div className="pt-4 border-t border-[#ebebeb] mt-4 flex items-center justify-between">
                   <span className="text-xs text-[#6a6a6a]">{rel.author.name}</span>
-                  <span className="text-xs text-[#ff385c] font-semibold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span className="text-xs text-[#DC2626] font-semibold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     <span>Read</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -363,7 +363,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
       {/* Copy Link Toast */}
       {copiedToast && (
         <div className="fixed bottom-6 right-6 z-[9999] bg-white text-[#222222] px-4 py-2.5 rounded-full shadow-2xl text-xs font-semibold flex items-center gap-2 border border-[#ebebeb] animate-fadeIn">
-          <CheckCircle2 className="w-4 h-4 text-[#ff385c]" />
+          <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
           <span>Article link copied to clipboard</span>
         </div>
       )}

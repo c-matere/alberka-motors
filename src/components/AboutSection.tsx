@@ -50,7 +50,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex items-end p-4 sm:p-8 md:p-10 pointer-events-none">
               <div className="text-left text-white max-w-[620px] space-y-1.5 drop-shadow-md">
-                <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest block font-bold">
+                <span className="font-mono text-[9.5px] sm:text-xs text-red-600 uppercase tracking-widest block font-bold">
                   PROVENANCE ARCHIVE · KILINDINI HARBOUR
                 </span>
                 <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
@@ -117,19 +117,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             </span>
             <div className="space-y-4 text-xs sm:text-sm">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
                 <p className="text-[#222222]">
                   <strong className="text-[#222222]">Grade 4.5 Minimum:</strong> Pristine bodywork, factory paint depth, and flawless interior cabins.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
                 <p className="text-[#222222]">
                   <strong className="text-[#222222]">Certified Genuine Mileage:</strong> Official QISJ and JEVIC Japanese certificates provided with every unit.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
                 <p className="text-[#222222]">
                   <strong className="text-[#222222]">Original Export Dossier:</strong> Japanese export certificate and translated auction inspection sheet delivered with your logbook.
                 </p>
@@ -191,7 +191,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           <div id="anti-tampering-policy" className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[16px] p-6 sm:p-8 space-y-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] scroll-mt-24 relative overflow-hidden">
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center text-[#222222] shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-[#ff385c]" />
+                <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
               </span>
               <div>
                 <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-widest font-semibold block">

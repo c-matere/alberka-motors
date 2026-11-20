@@ -542,7 +542,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
       <div className="pt-10 sm:pt-14 pb-6 px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-16 max-w-[1920px] 2xl:max-w-[2160px] mx-auto text-left space-y-2 border-b border-[#ebebeb]">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#ff385c] font-bold block mb-1">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#DC2626] font-bold block mb-1">
               {pageData?.badge || 'VERIFIED INVENTORY · SBT JAPAN DIRECT SOURCED'}
             </span>
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-tight leading-tight">
@@ -555,7 +555,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
 
           <div className="flex items-center gap-2 self-start sm:self-auto">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-white border border-[#ebebeb] text-[#222222] shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#ff385c] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
               <span>{vehicles.length} Units Available in Mombasa</span>
             </span>
           </div>

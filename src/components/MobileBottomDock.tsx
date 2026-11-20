@@ -43,7 +43,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             <span className="text-[12px] font-semibold text-[#222222] block truncate">
               {selectedVehicle.name}
             </span>
-            <span className="font-mono text-[13px] font-bold text-[#ff385c] block leading-tight">
+            <span className="font-mono text-[13px] font-bold text-[#DC2626] block leading-tight">
               KES {selectedVehicle.priceKes.toLocaleString()}
             </span>
           </div>
@@ -54,7 +54,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#ff385c] hover:bg-[#e00b41] text-white py-2 px-4 text-xs font-bold rounded-full whitespace-nowrap shrink-0 flex items-center shadow-xs"
+            className="bg-[#DC2626] hover:bg-[#B91C1C] text-white py-2 px-4 text-xs font-bold rounded-full whitespace-nowrap shrink-0 flex items-center shadow-xs"
           >
             <span>Reserve via WhatsApp</span>
           </a>
@@ -91,7 +91,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#ff385c] hover:bg-[#e00b41] text-white py-2 px-4 text-xs font-bold rounded-full whitespace-nowrap shrink-0 flex items-center shadow-xs"
+            className="bg-[#DC2626] hover:bg-[#B91C1C] text-white py-2 px-4 text-xs font-bold rounded-full whitespace-nowrap shrink-0 flex items-center shadow-xs"
           >
             <span>Consult Desk</span>
           </a>
@@ -121,13 +121,13 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`flex flex-col items-center justify-center py-1 px-3 transition-all cursor-pointer rounded-full ${
-                isActive ? 'text-[#ff385c] font-semibold' : 'text-[#6a6a6a] hover:text-[#222222]'
+                isActive ? 'text-[#DC2626] font-semibold' : 'text-[#6a6a6a] hover:text-[#222222]'
               }`}
             >
               <div className="p-0.5">
-                <Icon className={`w-4 h-4 ${isActive ? 'text-[#ff385c]' : 'text-[#6a6a6a]'}`} />
+                <Icon className={`w-4 h-4 ${isActive ? 'text-[#DC2626]' : 'text-[#6a6a6a]'}`} />
               </div>
-              <span className={`text-[10px] mt-0.5 ${isActive ? 'text-[#ff385c] font-semibold' : 'text-[#6a6a6a]'}`}>
+              <span className={`text-[10px] mt-0.5 ${isActive ? 'text-[#DC2626] font-semibold' : 'text-[#6a6a6a]'}`}>
                 {item.label}
               </span>
             </button>
@@ -142,7 +142,7 @@ export const MobileBottomDock: React.FC<MobileBottomDockProps> = ({
           <div className="p-0.5 relative">
             <Bookmark className="w-4 h-4 text-[#6a6a6a]" />
             {favoritesCount > 0 && (
-              <span className="absolute -top-1 -right-1.5 bg-[#ff385c] text-white text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
+              <span className="absolute -top-1 -right-1.5 bg-[#DC2626] text-white text-[9px] font-mono w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
                 {favoritesCount}
               </span>
             )}

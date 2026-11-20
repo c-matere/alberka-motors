@@ -203,7 +203,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
         {/* Section Header */}
         <div className="text-center max-w-[840px] mx-auto space-y-3.5">
           <div className="inline-flex items-center gap-2">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] font-bold">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#DC2626] font-bold">
               {pageData?.badge || 'DIRECT JAPANESE SOURCING · PORT OF MOMBASA'}
             </span>
           </div>
@@ -232,7 +232,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             {/* Subtle Gradient Scrim for Legible Typography on all Devices */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 flex flex-col justify-end p-5 sm:p-8 md:p-12 pointer-events-none">
               <div className="text-left max-w-2xl space-y-2 drop-shadow-md">
-                <span className="font-mono text-[9.5px] sm:text-xs text-red-400 uppercase tracking-widest font-bold block">
+                <span className="font-mono text-[9.5px] sm:text-xs text-red-600 uppercase tracking-widest font-bold block">
                   NATIONWIDE FLATBED CARRIER TRANSIT · 100-POINT OVERHAUL
                 </span>
                 <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-white tracking-tight leading-snug">
@@ -264,7 +264,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
             <div>
               <span className="font-mono text-[10px] text-[#6a6a6a] uppercase tracking-wider block mb-1">CUSTOMS DUTY PRICING</span>
-              <span className="text-base sm:text-xl font-bold text-[#ff385c] block">KRA CRSP Sched.</span>
+              <span className="text-base sm:text-xl font-bold text-[#DC2626] block">KRA CRSP Sched.</span>
               <span className="text-xs text-[#6a6a6a]">No arbitrary broker markups</span>
             </div>
           </div>
@@ -332,7 +332,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 border-b border-[#ebebeb]">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] text-[#ff385c] font-bold uppercase tracking-widest">
+                  <span className="font-mono text-[10px] text-[#DC2626] font-bold uppercase tracking-widest">
                     STAGE {importSteps[activeStep].number} OF 06 · {importSteps[activeStep].badge}
                   </span>
                 </div>
@@ -345,7 +345,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
               </div>
 
               <div className="font-mono text-[11px] font-semibold text-[#222222] bg-[#f7f7f7] border border-[#ebebeb] px-3 py-1.5 rounded-full w-fit flex items-center gap-1.5 shrink-0">
-                <ShieldCheck className="w-4 h-4 text-[#ff385c]" />
+                <ShieldCheck className="w-4 h-4 text-[#DC2626]" />
                 <span>100% VERIFIED PROTOCOL</span>
               </div>
             </div>
@@ -361,7 +361,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {importSteps[activeStep].checklist.map((item, i) => (
                   <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#222222]">
-                    <CheckCircle2 className="w-4 h-4 text-[#ff385c] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -371,7 +371,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             {/* Official Documentation Pass */}
             <div className="mt-4 pt-4 border-t border-[#ebebeb] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs bg-[#f7f7f7] p-4 rounded-[12px] border border-[#ebebeb]">
               <div className="flex items-center gap-2">
-                <FileCheck2 className="w-4 h-4 text-[#ff385c] shrink-0" />
+                <FileCheck2 className="w-4 h-4 text-[#DC2626] shrink-0" />
                 <span className="font-semibold text-[#222222]">Official Document Issued:</span>
                 <span className="text-[#6a6a6a] font-mono">{importSteps[activeStep].deliverable}</span>
               </div>
@@ -383,7 +383,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
         {/* Transparent Cost Breakdown & Kenya Import Duty Guide */}
         <div className="bg-white border border-[#ebebeb] rounded-[14px] p-6 sm:p-10 space-y-8 text-left shadow-xs">
           <div className="max-w-2xl space-y-1">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] font-bold block">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#DC2626] font-bold block">
               TAX & DUTY TRANSPARENCY
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold text-[#222222] tracking-tight">
@@ -396,7 +396,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-[#ff385c] block">01 · IMPORT DUTY</span>
+              <span className="text-xs font-mono font-bold text-[#DC2626] block">01 · IMPORT DUTY</span>
               <span className="text-2xl font-black text-[#222222] font-mono block">25%</span>
               <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 Calculated on the KRA Current Retail Selling Price (CRSP) after legal age depreciation deductions.
@@ -404,7 +404,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
 
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-[#ff385c] block">02 · EXCISE DUTY</span>
+              <span className="text-xs font-mono font-bold text-[#DC2626] block">02 · EXCISE DUTY</span>
               <span className="text-2xl font-black text-[#222222] font-mono block">20% – 35%</span>
               <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 20% for engines under 1,500cc; 25% for 1,500cc – 2,500cc; 35% for high-displacement & luxury SUVs.
@@ -412,7 +412,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
 
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-[#ff385c] block">03 · VALUE ADDED TAX</span>
+              <span className="text-xs font-mono font-bold text-[#DC2626] block">03 · VALUE ADDED TAX</span>
               <span className="text-2xl font-black text-[#222222] font-mono block">16% VAT</span>
               <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 Applied on Customs Value + Import Duty + Excise Duty per Kenya Revenue Authority tax statutes.
@@ -420,7 +420,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
 
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-5 space-y-2">
-              <span className="text-xs font-mono font-bold text-[#ff385c] block">04 · LEVIES & NTSA</span>
+              <span className="text-xs font-mono font-bold text-[#DC2626] block">04 · LEVIES & NTSA</span>
               <span className="text-2xl font-black text-[#222222] font-mono block">IDF + RDL</span>
               <p className="text-xs text-[#6a6a6a] leading-relaxed">
                 3.5% Import Declaration Fee + 2.0% Railway Development Levy + standard NTSA number plate registration.
@@ -447,7 +447,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-4 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#fff1f3] text-[#ff385c] border border-[#ffccd5] flex items-center justify-center font-bold text-xs shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] flex items-center justify-center font-bold text-xs shrink-0">
                 1
               </div>
               <div>
@@ -457,7 +457,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
 
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-4 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#fff1f3] text-[#ff385c] border border-[#ffccd5] flex items-center justify-center font-bold text-xs shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] flex items-center justify-center font-bold text-xs shrink-0">
                 2
               </div>
               <div>
@@ -467,7 +467,7 @@ export const WorkshopSection: React.FC<WorkshopSectionProps> = ({
             </div>
 
             <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] p-4 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#fff1f3] text-[#ff385c] border border-[#ffccd5] flex items-center justify-center font-bold text-xs shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] flex items-center justify-center font-bold text-xs shrink-0">
                 3
               </div>
               <div>

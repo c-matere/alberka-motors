@@ -25,7 +25,7 @@ export const FloatingWhatsAppButton: React.FC<FloatingWhatsAppButtonProps> = ({ 
     >
       <div className="relative flex items-center justify-center">
         <MessageCircle className="w-4 h-4 fill-white text-white drop-shadow-sm" />
-        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
+        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
       </div>
       <span className="text-xs font-semibold tracking-tight text-white drop-shadow-sm">WhatsApp Us</span>
     </a>

@@ -88,7 +88,7 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
             <div>
               <div className="inline-flex items-center gap-2 mb-1">
                 <span className="text-xs font-semibold text-[#222222] uppercase tracking-wider">ALBERKA FLAGSHIP</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff385c]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
                 <span className="text-[11px] text-[#6a6a6a] uppercase font-mono">MOMBASA, KENYA</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-semibold text-[#222222] tracking-tight">Main Showroom & Inspection Bay</h3>
@@ -101,7 +101,7 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
           {/* Address Highlight */}
           <div className="p-4 sm:p-5 bg-[#f7f7f7] border border-[#ebebeb] rounded-[12px] flex items-start gap-3.5">
             <div className="w-9 h-9 rounded-full bg-white border border-[#ebebeb] text-[#222222] flex items-center justify-center shrink-0 shadow-2xs">
-              <MapPin className="w-4 h-4 text-[#ff385c]" />
+              <MapPin className="w-4 h-4 text-[#DC2626]" />
             </div>
             <div>
               <span className="text-[11px] font-semibold text-[#6a6a6a] uppercase tracking-wider block mb-0.5">PHYSICAL ADDRESS</span>
@@ -154,7 +154,7 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
           <div className="pt-1">
             <div className="w-full h-80 sm:h-[420px] rounded-[16px] overflow-hidden border border-[#ebebeb] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] relative">
               <div className="absolute top-3.5 left-3.5 z-10 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-full border border-black/5 shadow-md flex items-center gap-2 text-xs font-medium text-[#222222] pointer-events-none">
-                <MapPin className="w-3.5 h-3.5 text-[#ff385c]" />
+                <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
                 <span>Next to Ganjoni Primary School, Mombasa</span>
               </div>
               <iframe
@@ -221,7 +221,7 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
 
           {bookingSuccess ? (
             <div className="bg-[#f7f7f7] border border-[#ebebeb] p-8 text-center text-[#222222] space-y-2 rounded-[14px]">
-              <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-[#ff385c]" />
+              <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-[#DC2626]" />
               <h4 className="text-lg font-semibold">Appointment Confirmed</h4>
               <p className="text-xs sm:text-sm text-[#6a6a6a]">Our showroom concierge is connecting with you on WhatsApp right now to confirm your schedule.</p>
             </div>

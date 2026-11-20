@@ -2,8 +2,8 @@
 
 @theme {
   /* Airbnb Design Tokens */
-  --color-rausch: #ff385c;
-  --color-rausch-600: #e00b41;
+  --color-rausch: #DC2626;
+  --color-rausch-600: #B91C1C;
   --color-hof: #222222;
   --color-foggy: #6a6a6a;
   --color-grey-500: #c1c1c1;
@@ -29,9 +29,9 @@
   --color-dark-grey: #71717a;
 
   /* Rare Precision Accent: Crimson Red / Rausch */
-  --color-crimson: #ff385c;
-  --color-crimson-light: #ff5a79;
-  --color-crimson-dark: #e00b41;
+  --color-crimson: #DC2626;
+  --color-crimson-light: #F87171;
+  --color-crimson-dark: #B91C1C;
 
   /* Precision Fonts */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -48,8 +48,8 @@
 }
 
 :root {
-  --color-rausch: #ff385c;
-  --color-rausch-600: #e00b41;
+  --color-rausch: #DC2626;
+  --color-rausch-600: #B91C1C;
   --color-hof: #222222;
   --color-foggy: #6a6a6a;
   --color-grey-500: #c1c1c1;
@@ -64,7 +64,7 @@
   --color-pure-white: #ffffff;
   --color-ash-white: #f4f4f5;
   --color-muted-grey: #a1a1aa;
-  --color-crimson: #ff385c;
+  --color-crimson: #DC2626;
 
   --ease-clean: cubic-bezier(0.16, 1, 0.3, 1);
   --shadow-subtle: rgba(0, 0, 0, 0.02) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 6px 0px, rgba(0, 0, 0, 0.1) 0px 4px 8px 0px;
@@ -85,15 +85,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'cv01' 1, 'cv02' 1, 'cv11' 1, 'ss01' 1, 'zero' 1;
   letter-spacing: -0.011em;
-  overflow-x: hidden;
+  /* clip (not hidden) prevents horizontal overflow WITHOUT creating a scroll
+     container — required for position: sticky and smooth hash scrolling. */
+  overflow-x: clip;
   max-width: 100vw;
   width: 100%;
 }
 
 #root {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
   width: 100%;
+}
+
+/* Anchor targets clear the 64px sticky navbar */
+section[id],
+div[id="custom-tokyo-import"],
+div[id="customer-reviews"] {
+  scroll-margin-top: 6rem;
 }
 
 /* Tabular Numbers for Prices, Years, and Specs */
@@ -213,8 +222,8 @@ body {
 }
 
 .btn-crimson:hover, .btn-brand:hover {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  border-color: #ef4444;
+  background: linear-gradient(135deg, #DC2626 0%, #dc2626 100%);
+  border-color: #DC2626;
   color: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(220, 38, 38, 0.45);
@@ -325,8 +334,10 @@ body {
 }
 
 .view-enter {
-  animation: gaussianFocusPull 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: filter, opacity, transform;
+  /* `backwards` applies the start frame during the animation and then removes
+     transform/filter entirely. A lingering transform or filter on <main>
+     breaks sticky children and creates a containing block for fixed layers. */
+  animation: gaussianFocusPull 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 /* ==========================================================================
@@ -347,8 +358,11 @@ body {
 
 .scroll-reveal.is-visible {
   opacity: 1;
-  filter: blur(0px);
-  transform: translateY(0);
+  /* `none` (rather than blur(0)/translateY(0)) fully removes the containing
+     block and frees the promoted layer once the reveal has finished. */
+  filter: none;
+  transform: none;
+  will-change: auto;
 }
 
 /* Stagger Delays */

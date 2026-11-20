@@ -684,10 +684,10 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const activeColor = vehicle.colors[selectedColorIndex] || vehicle.colors[0];
 
   return (
-    <div className="w-full max-w-full overflow-x-hidden bg-transparent text-zinc-900 pb-16">
+    <div className="w-full max-w-full overflow-x-clip bg-transparent text-zinc-900 pb-16">
       
       {/* AIRBNB SIGNATURE ITEM PAGE SHOWCASE */}
-      <section className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 overflow-x-hidden">
+      <section className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 overflow-x-clip">
         
         {/* 1. Header Bar: Title, Back & Actions */}
         <div className="w-full pb-4 space-y-2.5 text-left">
@@ -712,7 +712,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   className="bg-white hover:bg-[#f7f7f7] border border-[#ebebeb] flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium text-[#222222] transition-colors cursor-pointer max-w-full"
                   title="Switch car"
                 >
-                  <span className="text-[#ff385c] font-mono text-[11px] font-semibold shrink-0">{vehicle.stockNo}</span>
+                  <span className="text-[#DC2626] font-mono text-[11px] font-semibold shrink-0">{vehicle.stockNo}</span>
                   <span className="truncate max-w-[95px] sm:max-w-[180px]">{vehicle.name}</span>
                   <ChevronDown className={`w-3.5 h-3.5 text-[#6a6a6a] transition-transform shrink-0 ${modelDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
@@ -737,7 +737,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                               }}
                               className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-colors cursor-pointer ${
-                                isSelected ? 'bg-[#ff385c] text-white' : 'hover:bg-[#f7f7f7] text-[#222222]'
+                                isSelected ? 'bg-[#DC2626] text-white' : 'hover:bg-[#f7f7f7] text-[#222222]'
                               }`}
                             >
                               <div className="flex items-center gap-2.5 min-w-0">
@@ -750,7 +750,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                                 </div>
                               </div>
                               <div className="text-right shrink-0 pl-2">
-                                <span className={`text-xs font-semibold block ${isSelected ? 'text-white' : 'text-[#ff385c]'}`}>KES {(v.priceKes / 1000000).toFixed(2)}M</span>
+                                <span className={`text-xs font-semibold block ${isSelected ? 'text-white' : 'text-[#DC2626]'}`}>KES {(v.priceKes / 1000000).toFixed(2)}M</span>
                               </div>
                             </button>
                           );
@@ -776,7 +776,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 onClick={() => onToggleFavorite(vehicle.id)}
                 className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-[#222222] hover:bg-white rounded-full transition-colors cursor-pointer underline underline-offset-4"
               >
-                <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-[#ff385c] text-[#ff385c]' : 'text-[#222222]'}`} />
+                <Bookmark className={`w-3.5 h-3.5 ${isFavorite ? 'fill-[#DC2626] text-[#DC2626]' : 'text-[#222222]'}`} />
                 <span>{isFavorite ? 'Saved' : 'Save'}</span>
               </button>
             </div>
@@ -797,7 +797,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <span>·</span>
             <button
               onClick={() => setShowAuctionModal(true)}
-              className="underline text-[#222222] hover:text-[#ff385c] font-medium transition-colors cursor-pointer"
+              className="underline text-[#222222] hover:text-[#DC2626] font-medium transition-colors cursor-pointer"
             >
               {vehicle.auctionHall || 'USS Tokyo'} Verified
             </button>
@@ -927,7 +927,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               onClick={() => openLightboxWithIndex(activePhotoIndex)}
               className="absolute bottom-3 right-3 bg-white/95 text-[#222222] px-3 py-1 rounded-full text-xs font-semibold shadow-sm border border-[#ebebeb] flex items-center gap-1.5"
             >
-              <Maximize2 className="w-3.5 h-3.5 text-[#ff385c]" />
+              <Maximize2 className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>Photos</span>
             </button>
           </div>
@@ -949,7 +949,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   Tokyo Wholesale Auction Partner · 7+ Years Provenance · Ganjoni Mombasa Showroom
                 </p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center text-[#ff385c] font-bold text-sm shrink-0 shadow-xs">
+              <div className="w-12 h-12 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center text-[#DC2626] font-bold text-sm shrink-0 shadow-xs">
                 AE
               </div>
             </div>
@@ -1062,7 +1062,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             {/* View Japanese Auction Sheet Trigger */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-[#f7f7f7] border border-[#ebebeb] rounded-[14px]">
               <div className="flex items-center gap-3 min-w-0">
-                <FileText className="w-5 h-5 text-[#ff385c] shrink-0" />
+                <FileText className="w-5 h-5 text-[#DC2626] shrink-0" />
                 <div className="min-w-0">
                   <h4 className="text-xs font-semibold text-[#222222]">Original Japanese Auction Sheet</h4>
                   <p className="text-[11px] text-[#6a6a6a]">Inspect the unedited USS Tokyo inspection sheet with inspector markings</p>
@@ -1198,7 +1198,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={() => {
                     if (onOpenWhispers) onOpenWhispers(vehicle.id);
                   }}
-                  className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer active:scale-98"
+                  className="w-full bg-[#DC2626] hover:bg-[#B91C1C] text-white font-medium py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer active:scale-98"
                 >
                   <MessageCircle className="w-4 h-4 fill-white text-white" />
                   <span>Reserve Vehicle on WhatsApp</span>
@@ -1208,7 +1208,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                   onClick={() => onScheduleTestDrive(vehicle)}
                   className="w-full bg-white hover:bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] hover:border-[#dddddd] font-medium py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
-                  <Calendar className="w-3.5 h-3.5 text-[#ff385c]" />
+                  <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />
                   <span>Book Showroom Test Drive</span>
                 </button>
               </div>
@@ -1264,7 +1264,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </section>
 
       {/* Showroom Physical Location & Google Maps Embed ("Where you'll be") */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-[#f7f7f7] text-[#222222] overflow-x-hidden">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-[#f7f7f7] text-[#222222] overflow-x-clip">
         <div className="max-w-[1280px] mx-auto space-y-6 text-left">
           <div className="space-y-1">
             <span className="text-[11px] uppercase tracking-wider text-[#6a6a6a] font-medium block">
@@ -1283,8 +1283,8 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
             <div className="lg:col-span-5 bg-white border border-[#ebebeb] rounded-[16px] p-5 sm:p-6 flex flex-col justify-between space-y-5 shadow-xs">
               <div className="space-y-3.5">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#f7f7f7] border border-[#ebebeb] text-[#ff385c] flex items-center justify-center shrink-0 mt-0.5">
-                    <MapPin className="w-4 h-4 text-[#ff385c]" />
+                  <div className="w-10 h-10 rounded-full bg-[#f7f7f7] border border-[#ebebeb] text-[#DC2626] flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4 text-[#DC2626]" />
                   </div>
                   <div>
                     <span className="text-[10.5px] uppercase tracking-wider text-[#6a6a6a] font-medium block">SHOWROOM LOCATION</span>
@@ -1307,7 +1307,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                     <span>Direct Helpline: 0180 423 075 (WhatsApp & Calls)</span>
                   </div>
                   <div className="flex items-center gap-2 text-[#222222] font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#ff385c] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
                     <span>In-house 100-point inspection hoist available for viewing</span>
                   </div>
                 </div>
@@ -1354,7 +1354,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
       </section>
 
       {/* Similar Vehicles in Stock — 4-Card Responsive Grid */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-white text-[#222222] overflow-x-hidden">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-[#ebebeb] bg-white text-[#222222] overflow-x-clip">
         <div className="max-w-[1280px] mx-auto space-y-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>

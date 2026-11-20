@@ -384,7 +384,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 <div className="bg-[#f7f7f7] border border-[#ebebeb] p-2.5 rounded-[10px]">
                   <span className="text-[10px] text-[#6a6a6a] font-semibold block mb-0.5">Pre-Delivery Overhaul</span>
                   <span className="font-semibold text-[#222222] flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#ff385c]" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#DC2626]" />
                     <span>100-Point Pass</span>
                   </span>
                 </div>
@@ -395,7 +395,7 @@ export const ShowroomSlider: React.FC<ShowroomSliderProps> = ({
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => onSelectVehicle(activeVehicle)}
-                    className="py-2.5 px-5 text-xs rounded-full w-full sm:w-auto inline-flex items-center justify-center font-bold bg-[#ff385c] hover:bg-[#e00b41] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                    className="py-2.5 px-5 text-xs rounded-full w-full sm:w-auto inline-flex items-center justify-center font-bold bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
                   >
                     <span>View Car Details</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1.5" />

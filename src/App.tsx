@@ -183,32 +183,50 @@ export function App() {
 
   // Progressive Gaussian Blur Scroll Reveal for Sections
   useEffect(() => {
-    if (typeof IntersectionObserver === 'undefined') return;
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>('main section')
+    ).filter((sec) => !sec.hasAttribute('data-no-reveal'));
 
-    const timer = setTimeout(() => {
-      const sections = document.querySelectorAll('main section');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-      );
+    const reveal = (el: Element) => el.classList.add('is-visible');
 
-      sections.forEach((sec, idx) => {
-        // Skip hero and any section explicitly marked as no-reveal
-        if (idx > 0 && !sec.classList.contains('is-visible') && !sec.hasAttribute('data-no-reveal')) {
-          sec.classList.add('scroll-reveal');
-          observer.observe(sec);
+    if (typeof IntersectionObserver === 'undefined') {
+      sections.forEach(reveal);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            reveal(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -5% 0px' }
+    );
+
+    const raf = requestAnimationFrame(() => {
+      sections.forEach((sec) => {
+        if (sec.classList.contains('is-visible')) return;
+
+        // Anything already on screen is shown instantly — no blur flash on load
+        // or when a hash link jumps straight to a deep section.
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          reveal(sec);
+          return;
         }
-      });
-    }, 100);
 
-    return () => clearTimeout(timer);
+        sec.classList.add('scroll-reveal');
+        observer.observe(sec);
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      observer.disconnect();
+    };
   }, [currentView, selectedVehicle, selectedBlogPost]);
 
   const handleNavigate = (view: string, param?: string) => {
@@ -277,7 +295,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f7f7f7] text-[#222222] relative font-sans w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#f7f7f7] text-[#222222] relative font-sans w-full max-w-full overflow-x-clip">
       {/* Studio Blueprint & Atmospheric Canvas */}
       <BlueprintBackground />
       
@@ -295,7 +313,7 @@ export function App() {
       />
 
       {/* Main View Router */}
-      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0 relative z-10 w-full max-w-full overflow-x-hidden">
+      <main key={selectedVehicle?.id || selectedBlogPost?.id || currentView} className="flex-1 view-enter pb-28 md:pb-0 relative z-10 w-full max-w-full overflow-x-clip">
         {selectedVehicle ? (
           <VehicleStoryView
             vehicle={selectedVehicle}
@@ -334,7 +352,7 @@ export function App() {
                 />
 
                 {/* Visual Category Discovery Bar (Sticky Airbnb Pill Bar) */}
-                <div className="w-full bg-white border-y border-[#ebebeb] sticky top-16 z-20 shadow-2xs backdrop-blur-md bg-white/95">
+                <div className="w-full bg-white border-y border-[#ebebeb] sticky top-20 z-20 shadow-2xs backdrop-blur-md bg-white/95">
                   <div className="max-w-[1520px] mx-auto px-4 sm:px-8 py-3 overflow-x-auto no-scrollbar flex items-center justify-start sm:justify-center gap-2 sm:gap-3 text-xs">
                     {[
                       { label: 'All Stock', tag: 'all', count: vehicles.length },
@@ -369,7 +387,7 @@ export function App() {
                           </span>
                         )}
                         {cat.isSpecial && (
-                          <Sparkles className="w-3 h-3 text-[#ff385c]" />
+                          <Sparkles className="w-3 h-3 text-[#DC2626]" />
                         )}
                       </button>
                     ))}
@@ -381,7 +399,7 @@ export function App() {
                   <div className="max-w-[1520px] mx-auto space-y-8 relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#ebebeb]">
                       <div>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-1.5 font-bold">
+                        <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#DC2626] block mb-1.5 font-bold">
                           MOMBASA SHOWROOM · VERIFIED STOCK
                         </span>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222222] tracking-[-0.03em]">
@@ -438,7 +456,7 @@ export function App() {
                 <section id="custom-tokyo-import" className="w-full bg-[#fbfbfb] py-16 sm:py-24 px-4 sm:px-8 border-y border-[#ebebeb] relative">
                   <div className="max-w-[1520px] mx-auto space-y-12 sm:space-y-16 relative z-10">
                     <div className="max-w-2xl text-left">
-                      <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#DC2626] block mb-2 font-bold">
                         DIRECT JAPANESE AUCTION SOURCING
                       </span>
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
@@ -630,7 +648,7 @@ export function App() {
                 <section className="w-full bg-white py-16 sm:py-24 px-4 sm:px-8 border-y border-[#ebebeb] relative">
                   <div className="max-w-[1520px] mx-auto space-y-12 relative z-10">
                     <div className="max-w-2xl text-left">
-                      <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#ff385c] block mb-2 font-bold">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#DC2626] block mb-2 font-bold">
                         SEAMLESS ACQUISITION
                       </span>
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#222222] tracking-[-0.035em]">
