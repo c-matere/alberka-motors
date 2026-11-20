@@ -46,6 +46,33 @@ import { SectionGradientFade } from './SectionGradientFade';
 import { VehicleCard } from './VehicleCard';
 import { getVehiclePricing, getVehicleHubId, getModelHub } from '../data/modelHubs';
 
+const AUCTION_PANEL_POINTS = [
+  {
+    id: 'front',
+    label: 'FRONT BUMPER',
+    code: 'A1 · Clean hairline',
+    detail: 'Auction code A1 records a minor surface hairline below the threshold for repair. OEM grille, bracket and lamp housings remain in place with no curb deformation.',
+  },
+  {
+    id: 'left',
+    label: 'LEFT FLANK',
+    code: 'O · Factory original',
+    detail: 'Auction code O records original factory paint on the left doors and quarter panel. No re-spray entry is listed on the inspection sheet.',
+  },
+  {
+    id: 'right',
+    label: 'RIGHT FLANK',
+    code: 'O · Factory original',
+    detail: 'Auction code O records original factory paint on the right side. Panel gaps and weatherstripping are noted as undisturbed.',
+  },
+  {
+    id: 'roof',
+    label: 'PILLARS & ROOF',
+    code: 'XX · No repair',
+    detail: 'Auction code XX records no corrosion, welding or replacement on the A/B/C pillars or roof. Factory spot welds remain visible.',
+  },
+] as const;
+
 interface VehicleStoryViewProps {
   vehicle: Vehicle;
   allVehicles: Vehicle[];
@@ -344,6 +371,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedInspectorPoint, setSelectedInspectorPoint] = useState<string>('front');
   const [showAuctionModal, setShowAuctionModal] = useState(false);
+  const selectedPanel = AUCTION_PANEL_POINTS.find((p) => p.id === selectedInspectorPoint) || AUCTION_PANEL_POINTS[0];
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
 
   const hubId = getVehicleHubId(vehicle);
@@ -1408,149 +1436,182 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
 
       {/* Japanese Auction Sheet Dossier Modal */}
       {showAuctionModal && typeof document !== 'undefined' && createPortal(
-        <div 
-          className="fixed inset-0 z-[9999] bg-zinc-950/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-fadeIn"
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="auction-sheet-title"
+          className="fixed inset-0 z-[9999] bg-zinc-950/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-fadeIn"
           onClick={() => setShowAuctionModal(false)}
         >
-          <div 
-            className="max-w-[780px] w-full bg-white border border-zinc-200/90 p-6 sm:p-8 space-y-6 text-left my-auto rounded-2xl shadow-2xl relative text-zinc-900 animate-scaleIn"
+          <div
+            className="max-w-[820px] w-full border border-[#E5E0D6] p-7 sm:p-10 space-y-5 text-left my-auto rounded-[18px] relative animate-scaleIn"
+            style={{
+              background: '#FAF8F5',
+              backgroundImage: 'radial-gradient(#E4DFD5 0.7px, transparent 0.7px)',
+              backgroundSize: '24px 24px',
+              boxShadow: '0 24px 80px rgba(0,0,0,0.38)',
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            
+            {/* Archival paper details: punch holes + folded dog-ear */}
+            <div aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 flex flex-col gap-9">
+              {[0, 1, 2].map((hole) => (
+                <span key={hole} className="w-2.5 h-2.5 rounded-full bg-[#E9E4D9] shadow-[inset_0_1px_2px_rgba(0,0,0,0.22)]" />
+              ))}
+            </div>
+            <div
+              aria-hidden="true"
+              className="absolute top-0 right-0 w-11 h-11 rounded-tr-[18px]"
+              style={{
+                background: 'linear-gradient(225deg, #EDE9E0 0%, #FFFFFF 52%, #D8D2C4 100%)',
+                clipPath: 'polygon(100% 0, 0 0, 100% 100%)',
+                boxShadow: '-2px 2px 4px rgba(0,0,0,0.10)',
+              }}
+            />
+
+            <div className="pl-5 sm:pl-7 space-y-5">
             {/* Header & Close */}
-            <div className="flex items-start justify-between border-b border-zinc-200/90 pb-4">
-              <div>
-                <div className="inline-flex items-center gap-2 mb-1.5">
-                  <span className="font-mono text-[10px] text-red-700 uppercase font-bold bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
-                    AUTHENTIC JAPANESE EXPORT SHEET
+            <div className="flex items-start justify-between gap-4 border-b border-[#E5E0D6] pb-4">
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] font-bold text-[#BE123C]">
+                    Japanese Export Inspection Record
                   </span>
-                  <span className="font-mono text-xs font-bold text-zinc-700 bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200">
+                  <span className="font-mono text-[10px] font-bold text-[#6B6459] bg-[#F1EDE4] border border-[#E5E0D6] px-2 py-0.5 rounded">
                     LOT #{vehicle.stockNo.replace(/[^0-9]/g, '') || '19'}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-zinc-950 tracking-tight">
-                  {vehicle.name} · {vehicle.stockNo}
+                <h3 id="auction-sheet-title" className="text-xl sm:text-2xl font-extrabold text-[#171717] tracking-tight leading-tight">
+                  Auction Inspection Sheet
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-600 mt-1">
-                  Direct inspection document from {vehicle.auctionHall || 'CAA Tokyo / Direct Japanese Import'}. Authenticated via QISJ Pre-Shipment Inspection.
+                <p className="font-mono text-[10.5px] sm:text-[11px] text-[#6B6459]">
+                  {vehicle.name} · Stock {vehicle.stockNo} · Chassis {vehicle.chassisNo}
+                </p>
+                <p className="text-xs text-[#575047] leading-relaxed max-w-lg">
+                  Direct from {vehicle.auctionHall || 'CAA Tokyo / Direct Japanese Import'}. Third-party verification recorded before shipment to Mombasa.
                 </p>
               </div>
 
-              <button
-                onClick={() => setShowAuctionModal(false)}
-                className="px-3.5 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-800 bg-zinc-50 hover:bg-zinc-100 cursor-pointer shrink-0 font-semibold transition-colors"
-              >
-                Close
-              </button>
+              <div className="flex items-start gap-3 shrink-0">
+                <div
+                  aria-hidden="true"
+                  className="w-12 h-12 rounded-[3px] border-[2.5px] border-[#BE123C]/85 text-[#BE123C]/90 flex flex-col items-center justify-center font-serif text-[15px] font-bold leading-none rotate-[-8deg]"
+                  style={{ filter: 'blur(0.25px)' }}
+                >
+                  <span>検</span>
+                  <span>済</span>
+                </div>
+                <button
+                  onClick={() => setShowAuctionModal(false)}
+                  aria-label="Close inspection sheet"
+                  className="w-9 h-9 rounded-full border border-[#E5E0D6] bg-white/80 text-[#171717] hover:bg-white cursor-pointer shrink-0 flex items-center justify-center transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
-            {/* Score Grid & Authentic Japanese Hanko Stamp */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl flex flex-col justify-between shadow-2xs">
-                <div>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">OVERALL GRADE</span>
-                  <span className="font-mono text-3xl sm:text-4xl text-zinc-950 font-extrabold block leading-none">{vehicle.auctionGrade || '4.0'}</span>
-                  <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Pristine Original Condition</span>
-                </div>
-                <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full border border-red-500 bg-red-50 text-red-600 flex items-center justify-center text-xs font-bold font-serif">
-                    合
-                  </div>
-                  <span className="text-xs text-zinc-800 font-mono font-bold">USS VERIFIED</span>
-                </div>
-              </div>
-
-              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl flex flex-col justify-between shadow-2xs">
-                <div>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">INTERIOR GRADE</span>
-                  <span className="font-mono text-3xl sm:text-4xl text-zinc-950 font-extrabold block leading-none">{vehicle.interiorGrade || 'B'}</span>
-                  <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Zero smoke, zero pet wear</span>
-                </div>
-                <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
-                  <span className="text-xs text-zinc-800 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded font-mono font-bold">QISJ PASSED</span>
-                </div>
-              </div>
-
-              <div className="p-4 bg-zinc-50 border border-zinc-200/90 rounded-xl flex flex-col justify-between shadow-2xs">
-                <div>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase font-bold block mb-1">VERIFIED ODOMETER</span>
-                  <span className="font-mono text-2xl sm:text-3xl text-zinc-950 font-extrabold block leading-none mt-1">
-                    {vehicle.mileageKm.toLocaleString()} KM
+            {/* Grade strip */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 rounded-2xl bg-white/85 border border-[#E5E0D6] divide-y sm:divide-y-0 sm:divide-x divide-[#E5E0D6] overflow-hidden">
+              {[
+                { label: 'OVERALL GRADE', value: vehicle.auctionGrade || '4.0', note: 'Japanese auction scale · 1 to 6', large: true },
+                { label: 'INTERIOR GRADE', value: vehicle.interiorGrade || 'B', note: 'No smoke or pet wear recorded', large: true },
+                { label: 'VERIFIED ODOMETER', value: `${vehicle.mileageKm.toLocaleString()} KM`, note: 'JEVIC certified reading', large: false },
+              ].map((grade) => (
+                <div key={grade.label} className="p-4 sm:p-5">
+                  <span className="font-mono text-[9.5px] uppercase tracking-[0.14em] font-bold text-[#6B6459] block mb-1.5">{grade.label}</span>
+                  <span className={`font-mono text-[#171717] font-extrabold block leading-none ${grade.large ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl mt-1'}`}>
+                    {grade.value}
                   </span>
-                  <span className="text-xs text-zinc-600 mt-1.5 block font-medium">Certified Japanese JEVIC</span>
+                  <span className="text-[11px] text-[#6B6459] mt-2 block">{grade.note}</span>
                 </div>
-                <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center gap-2">
-                  <span className="text-xs text-zinc-800 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded font-mono font-bold">100% GENUINE</span>
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* Vehicle Inspection Blueprint Matrix (Interactive Japanese Inspector Decoder) */}
-            <div className="p-5 bg-zinc-50 border border-zinc-200/90 rounded-xl space-y-4">
-              <div className="flex items-center justify-between border-b border-zinc-200 pb-2 text-xs font-mono">
-                <span className="text-zinc-800 uppercase font-bold">
-                  INTERACTIVE PANEL & CHASSIS INSPECTOR (JAPANESE STANDARD)
+            {/* Verification chain */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0F7F2] border border-[#CFE6D6] text-[9.5px] font-mono font-bold text-[#15803D] uppercase tracking-wider">
+                <CheckCircle2 className="w-3 h-3" />
+                {vehicle.auctionHall?.split(' / ')[0] || 'Japanese Auction'} Verified
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0F7F2] border border-[#CFE6D6] text-[9.5px] font-mono font-bold text-[#15803D] uppercase tracking-wider">
+                <CheckCircle2 className="w-3 h-3" />
+                QISJ Pre-Shipment
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0F7F2] border border-[#CFE6D6] text-[9.5px] font-mono font-bold text-[#15803D] uppercase tracking-wider">
+                <CheckCircle2 className="w-3 h-3" />
+                JEVIC Odometer
+              </span>
+            </div>
+
+            {/* Panel & chassis code decoder */}
+            <div className="p-4 sm:p-5 bg-white/85 border border-[#E5E0D6] rounded-2xl space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E5E0D6] pb-3">
+                <span className="font-mono text-[10px] uppercase tracking-[0.14em] font-bold text-[#171717]">
+                  Panel & Chassis Code Decoder
                 </span>
-                <span className="text-zinc-800 bg-zinc-100 border border-zinc-200 px-2.5 py-0.5 rounded font-bold">
-                  FRAME DISTORTION: 0%
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0F7F2] border border-[#CFE6D6] text-[9.5px] font-mono font-bold text-[#15803D] uppercase tracking-wider">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Frame distortion 0%
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
-                {[
-                  { id: 'front', label: 'FRONT BUMPER', code: 'A1 · Clean hairline', detail: 'Code A1: Negligible scratch under 5cm. Factory plastic bumper clip pins intact, zero curb deformation.' },
-                  { id: 'left', label: 'LEFT FLANK', code: 'O · Factory original', detail: 'Code O: Original factory paint verified. Digital micrometer paint thickness 112μm, zero re-sprays.' },
-                  { id: 'right', label: 'RIGHT FLANK', code: 'O · Factory original', detail: 'Code O: Zero door dings, flawless panel alignment with factory door seams and weatherstripping.' },
-                  { id: 'roof', label: 'PILLARS & ROOF', code: 'XX: NONE · Zero repair', detail: 'Code XX None: All A/B/C pillars and roof retain original factory robotic spot welds. Zero damage.' },
-                ].map((pt) => {
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                {AUCTION_PANEL_POINTS.map((pt) => {
                   const isSelected = selectedInspectorPoint === pt.id;
                   return (
                     <button
                       key={pt.id}
+                      type="button"
+                      aria-pressed={isSelected}
                       onClick={() => setSelectedInspectorPoint(pt.id)}
-                      className={`p-3 rounded-lg border text-left transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-red-50 border-red-500 text-zinc-950 shadow-sm ring-1 ring-red-500/30'
-                          : 'bg-white border-zinc-200 text-zinc-900 hover:bg-zinc-50'
+                          ? 'border-[#171717] bg-white shadow-[inset_0_-3px_0_#15803D]'
+                          : 'border-[#E5E0D6] bg-[#FBF9F5] hover:border-[#BDB5A8]'
                       }`}
                     >
-                      <span className={`block font-bold text-xs ${isSelected ? 'text-red-700' : 'text-zinc-950'}`}>{pt.label}</span>
-                      <span className={`text-[11px] block mt-1 ${isSelected ? 'text-zinc-700 font-medium' : 'text-zinc-600'}`}>{pt.code}</span>
+                      <span className={`block font-mono font-bold text-[10.5px] ${isSelected ? 'text-[#171717]' : 'text-[#3F3A33]'}`}>
+                        {pt.label}
+                      </span>
+                      <span className={`font-mono text-[10.5px] block mt-1 ${isSelected ? 'text-[#15803D]' : 'text-[#6B6459]'}`}>
+                        {pt.code}
+                      </span>
                     </button>
                   );
                 })}
               </div>
 
-              <div className="p-4 bg-white border border-zinc-200/90 rounded-lg text-left shadow-2xs">
-                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block font-bold mb-1.5">
-                  DECODED INSPECTION REPORT:
+              <div className="p-4 bg-white border border-[#E5E0D6] border-l-[3px] border-l-[#15803D] rounded-xl text-left">
+                <span className="font-mono text-[9.5px] uppercase tracking-[0.14em] font-bold text-[#6B6459] block mb-1.5">
+                  Decoded code · {selectedPanel.label}
                 </span>
-                <p className="text-xs sm:text-sm text-zinc-800 leading-relaxed font-mono">
-                  {selectedInspectorPoint === 'front' && 'Front Bumper: Minor microscopic clearcoat hairline. Grille clips, radar sensor bracket, and fog housings original OEM.'}
-                  {selectedInspectorPoint === 'left' && 'Left Flank: Factory clearcoat intact. Rocker panels and wheel arches free of corrosion or salt pit marks.'}
-                  {selectedInspectorPoint === 'right' && 'Right Flank: Pristine reflection line. Zero parking indentation, glass etching matches chassis VIN.'}
-                  {selectedInspectorPoint === 'roof' && 'Pillars & Roof: Laser alignment 100% square. Headliner shows zero sagging or water leak evidence.'}
+                <p className="text-xs sm:text-[13px] text-[#3F3A33] leading-relaxed">
+                  {selectedPanel.detail}
                 </p>
               </div>
 
-              <div className="p-3 bg-zinc-100 border border-zinc-200/80 rounded-lg text-left">
-                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-mono">
-                  <strong className="text-zinc-950 font-bold">Inspector Notes:</strong> Regular maintenance records verified in Tokyo. Zero frame damage, zero rust. Brakes and steering certified ready for road use.
+              <div className="p-3.5 bg-[#F1EDE4] border border-[#E5E0D6] rounded-xl text-left">
+                <span className="font-mono text-[9.5px] uppercase tracking-[0.14em] font-bold text-[#6B6459] block mb-1.5">
+                  Inspector's note · translated from Japanese
+                </span>
+                <p className="text-xs sm:text-[13px] text-[#575047] leading-relaxed">
+                  Maintenance records verified in Tokyo. No structural damage or corrosion listed. Brakes and steering checked before shipment.
                 </p>
               </div>
             </div>
 
-            {/* Action Bar */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-zinc-600 font-mono">
-                Official PDF dispatched via WhatsApp.
+            {/* Action bar */}
+            <div className="pt-1 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="text-[11px] text-[#6B6459] font-mono">
+                Original PDF available on request.
               </span>
 
               <a
                 href={`https://wa.me/254180423075?text=Hello%20Alberka%20Enterprises,%20please%20send%20me%20the%20original%20Japanese%20auction%20sheet%20PDF%20for%20the%20${encodeURIComponent(vehicle.year + ' ' + vehicle.name)}%20(Stock%20ID:%20${encodeURIComponent(vehicle.sbtStockId || vehicle.stockNo)})%20from%20${encodeURIComponent(vehicle.auctionHall || 'Direct Japanese Import')}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#222222] hover:bg-black text-white w-full sm:w-auto text-center font-semibold px-6 py-3.5 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01] active:scale-98 transition-all text-sm"
+                className="bg-[#DC2626] hover:bg-[#B91C1C] text-white w-full sm:w-auto text-center font-semibold px-6 py-3.5 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01] active:scale-98 transition-all text-sm"
               >
                 <span className="inline-flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-white fill-white" />
@@ -1560,6 +1621,7 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
               </a>
             </div>
 
+            </div>
           </div>
         </div>,
         document.body
