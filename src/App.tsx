@@ -200,8 +200,8 @@ export function App() {
       );
 
       sections.forEach((sec, idx) => {
-        // Keep above-the-fold clear while applying progressive unblur to subsequent sections on scroll
-        if (idx > 0 && !sec.classList.contains('is-visible')) {
+        // Skip hero and any section explicitly marked as no-reveal
+        if (idx > 0 && !sec.classList.contains('is-visible') && !sec.hasAttribute('data-no-reveal')) {
           sec.classList.add('scroll-reveal');
           observer.observe(sec);
         }
