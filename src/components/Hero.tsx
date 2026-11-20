@@ -1,17 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Search,
   ArrowRight,
   ShieldCheck,
   Repeat,
   Gauge,
-  Headphones
+  Headphones,
+  ChevronDown,
+  Check
 } from 'lucide-react';
 import { CmsPage } from '../services/cmsContent';
 
 // Single source of truth for the hero backdrop. Drop a replacement image into
 // /public/vehicles/ and change this one line to swap the showroom scene.
 const HERO_BACKGROUND = '/vehicles/hero-new.jpg';
+
+type DropdownOption = { value: string; label: string };
+
+/** Airbnb-style search field: inline value + expanding popover with checkable rows. */
+const SearchDropdown: React.FC<{
+  label: string;
+  value: string;
+  placeholder: string;
+  options: DropdownOption[];
+  isOpen: boolean;
+  onToggle: () => void;
+  onSelect: (value: string) => void;
+  showDivider?: boolean;
+  extraClassName?: string;
+}> = ({ label, value, placeholder, options, isOpen, onToggle, onSelect, showDivider = true, extraClassName = '' }) => (
+  <div className={`relative flex-1 px-4 sm:px-6 py-2 text-left ${showDivider ? 'border-r border-[#ebebeb]' : ''} ${extraClassName}`}>
+    <button type="button" onClick={onToggle} className="w-full text-left cursor-pointer">
+      <span className="text-[9.5px] sm:text-[10.5px] font-bold text-[#222222] uppercase tracking-wider block">
+        {label}
+      </span>
+      <span className="mt-0.5 flex items-center justify-between gap-2">
+        <span className={`text-xs sm:text-sm font-medium truncate ${value ? 'text-[#222222]' : 'text-[#717171]'}`}>
+          {value || placeholder}
+        </span>
+        <ChevronDown
+          className={`w-3.5 h-3.5 shrink-0 text-[#6a6a6a] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        />
+      </span>
+    </button>
+
+    {isOpen && (
+      <div className="absolute top-[calc(100%+0.7rem)] left-0 z-50 w-[250px] sm:w-[300px] rounded-[22px] bg-white border border-[#ebebeb] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.24)]">
+        <p className="px-3 pt-1 pb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#6a6a6a]">
+          {label}
+        </p>
+        <div className="max-h-[280px] overflow-y-auto">
+          {options.map((option) => {
+            const selected = value === option.value;
+            return (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => onSelect(option.value)}
+                className={`w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-[14px] text-left text-xs sm:text-sm transition-colors cursor-pointer ${
+                  selected
+                    ? 'bg-[#f7f7f7] font-semibold text-[#222222]'
+                    : 'font-medium text-[#222222] hover:bg-[#f7f7f7]'
+                }`}
+              >
+                <span className="truncate">{option.label}</span>
+                {selected && <Check className="w-4 h-4 shrink-0 text-[#222222]" strokeWidth={2.5} />}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </div>
+);
 
 export interface HeroProps {
   onExploreFleet: () => void;
@@ -28,6 +89,26 @@ export const Hero: React.FC<HeroProps> = ({
   const [searchMake, setSearchMake] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedBudget, setSelectedBudget] = useState('');
+  const [openDropdown, setOpenDropdown] = useState<'type' | 'budget' | null>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!openDropdown) return;
+    const handlePointerDown = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenDropdown(null);
+    };
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [openDropdown]);
 
   const handleExecuteSearch = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -41,11 +122,11 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       data-no-reveal="true"
-      className="relative w-full overflow-hidden bg-[#0a0a0c] text-white select-none"
+      className="relative w-full bg-[#0a0a0c] text-white select-none"
       style={{ minHeight: 'calc(100dvh - 5rem)' }}
     >
       {/* ── 1. FULL-BLEED SHOWROOM BACKGROUND ─────────────────────────── */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Primary showroom photo — brightened so the scene reads clearly */}
         <img
           src={HERO_BACKGROUND}
@@ -119,7 +200,7 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
 
           {/* ── AIRBNB SEARCH BAR ───────────────────────────────────── */}
-          <div className="w-full max-w-3xl mx-auto pt-1">
+          <div ref={searchRef} className="w-full max-w-3xl mx-auto pt-1">
             <form
               onSubmit={handleExecuteSearch}
               className="bg-white/96 backdrop-blur-xl rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.55)] border border-white/30 p-1.5 sm:p-2 text-[#222222] flex items-center transition-all hover:shadow-[0_28px_70px_rgba(0,0,0,0.65)]"
@@ -138,41 +219,48 @@ export const Hero: React.FC<HeroProps> = ({
                 />
               </div>
 
-              {/* Body Type */}
-              <div className="hidden sm:block flex-1 px-4 sm:px-6 py-2 border-r border-[#ebebeb] text-left">
-                <span className="text-[9.5px] sm:text-[10.5px] font-bold text-[#222222] uppercase tracking-wider block">
-                  Body Type
-                </span>
-                <select
-                  value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value)}
-                  className="w-full text-xs sm:text-sm font-medium text-[#222222] bg-transparent outline-none cursor-pointer mt-0.5"
-                >
-                  <option value="">Any Body Type</option>
-                  <option value="suv">SUV &amp; Crossover</option>
-                  <option value="awd">Symmetrical AWD</option>
-                  <option value="van">7–8 Seater Van</option>
-                  <option value="hybrid">Hybrid &amp; Fuel Saver</option>
-                </select>
-              </div>
+              {/* Body Type — Airbnb-style popover */}
+              <SearchDropdown
+                label="Body Type"
+                value={selectedType}
+                placeholder="Any Body Type"
+                options={[
+                  { value: '', label: 'Any Body Type' },
+                  { value: 'suv', label: 'SUV & Crossover' },
+                  { value: 'awd', label: 'Symmetrical AWD' },
+                  { value: 'van', label: '7–8 Seater Van' },
+                  { value: 'hybrid', label: 'Hybrid & Fuel Saver' },
+                ]}
+                isOpen={openDropdown === 'type'}
+                onToggle={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')}
+                onSelect={(value) => {
+                  setSelectedType(value);
+                  setOpenDropdown(null);
+                }}
+                extraClassName="hidden sm:block"
+              />
 
-              {/* Budget */}
-              <div className="hidden md:block flex-1 px-4 sm:px-6 py-2 text-left">
-                <span className="text-[9.5px] sm:text-[10.5px] font-bold text-[#222222] uppercase tracking-wider block">
-                  Budget
-                </span>
-                <select
-                  value={selectedBudget}
-                  onChange={(e) => setSelectedBudget(e.target.value)}
-                  className="w-full text-xs sm:text-sm font-medium text-[#222222] bg-transparent outline-none cursor-pointer mt-0.5"
-                >
-                  <option value="">Any Price Tier</option>
-                  <option value="2500000">Under KES 2.5M</option>
-                  <option value="3500000">Under KES 3.5M</option>
-                  <option value="4500000">Under KES 4.5M</option>
-                  <option value="luxury">KES 4.5M+ (Executive)</option>
-                </select>
-              </div>
+              {/* Budget — Airbnb-style popover */}
+              <SearchDropdown
+                label="Budget"
+                value={selectedBudget}
+                placeholder="Any Price Tier"
+                options={[
+                  { value: '', label: 'Any Price Tier' },
+                  { value: '2500000', label: 'Under KES 2.5M' },
+                  { value: '3500000', label: 'Under KES 3.5M' },
+                  { value: '4500000', label: 'Under KES 4.5M' },
+                  { value: 'luxury', label: 'KES 4.5M+ (Executive)' },
+                ]}
+                isOpen={openDropdown === 'budget'}
+                onToggle={() => setOpenDropdown(openDropdown === 'budget' ? null : 'budget')}
+                onSelect={(value) => {
+                  setSelectedBudget(value);
+                  setOpenDropdown(null);
+                }}
+                showDivider={false}
+                extraClassName="hidden md:block"
+              />
 
               {/* Search CTA */}
               <button
