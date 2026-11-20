@@ -15,6 +15,7 @@ import {
 import { Vehicle } from '../data/vehicles';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './VehicleSbtListCard';
 import { CmsPage } from '../services/cmsContent';
+import type { HeroSearchFilters } from './Hero';
 import { CategoryFilterSlider, CATEGORY_OPTIONS } from './CategoryFilterSlider';
 import { BodyTypeFilterSlider, BODY_TYPE_OPTIONS } from './BodyTypeFilterSlider';
 
@@ -27,6 +28,7 @@ interface InventorySectionProps {
   onCustomImportRequest: () => void;
   isLoading?: boolean;
   pageData?: CmsPage;
+  initialFilters?: HeroSearchFilters | null;
 }
 
 export const InventorySection: React.FC<InventorySectionProps> = ({
@@ -38,6 +40,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   onCustomImportRequest,
   isLoading = false,
   pageData,
+  initialFilters,
 }) => {
   // SBT Japan-style faceted search state
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -52,11 +55,30 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
   const [mobileFilterOpen, setMobileFilterOpen] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+  const [heroBudget, setHeroBudget] = useState<string>('');
+
+  // Apply filters submitted from the home-page hero search bar
+  useEffect(() => {
+    if (!initialFilters) return;
+    setSearchQuery(initialFilters.make || '');
+    setActiveMake('all');
+    setActiveBodyType(
+      initialFilters.bodyType === 'suv' ? 'suv' :
+      initialFilters.bodyType === 'van' ? 'van' : 'all'
+    );
+    setActiveCategory(
+      initialFilters.bodyType === 'awd' ? '4wd' :
+      initialFilters.bodyType === 'hybrid' ? 'hybrid' : 'all'
+    );
+    setHeroBudget(initialFilters.budget || '');
+    setPriceRange('all');
+    setCurrentPage(1);
+  }, [initialFilters]);
 
   // Reset to page 1 whenever search or filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeMake, activeBodyType, activeCategory, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
+  }, [activeMake, activeBodyType, activeCategory, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy, heroBudget]);
 
   // Curated Comprehensive Automakers list (with authentic SBT Japan maker logos)
   const makes = useMemo(() => {
@@ -151,7 +173,8 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     (priceRange !== 'all' ? 1 : 0) +
     (transmissionFilter !== 'all' ? 1 : 0) +
     (drivetrainFilter !== 'all' ? 1 : 0) +
-    (searchQuery.trim() !== '' ? 1 : 0)
+    (searchQuery.trim() !== '' ? 1 : 0) +
+    (heroBudget !== '' ? 1 : 0)
   );
 
   const resetAllFilters = () => {
@@ -162,6 +185,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
     setTransmissionFilter('all');
     setDrivetrainFilter('all');
     setSearchQuery('');
+    setHeroBudget('');
     setSortBy('featured');
   };
 
@@ -229,6 +253,12 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         return v.priceKes >= range.min && v.priceKes < range.max;
       })
       .filter((v) => {
+        // Budget submitted from the hero search bar
+        if (!heroBudget) return true;
+        if (heroBudget === 'luxury') return v.priceKes >= 4500000;
+        return v.priceKes < Number(heroBudget);
+      })
+      .filter((v) => {
         // Transmission
         if (transmissionFilter === 'all') return true;
         return v.transmission.toLowerCase().includes(transmissionFilter.toLowerCase());
@@ -259,7 +289,7 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
         if (sortBy === 'mileage') return a.mileageKm - b.mileageKm;
         return 0;
       });
-  }, [vehicles, activeBodyType, activeCategory, activeMake, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy]);
+  }, [vehicles, activeBodyType, activeCategory, activeMake, priceRange, transmissionFilter, drivetrainFilter, searchQuery, sortBy, heroBudget]);
 
   // SBT Japan Pagination Slicing
   const totalPages = Math.ceil(filteredVehicles.length / itemsPerPage) || 1;
@@ -294,6 +324,17 @@ export const InventorySection: React.FC<InventorySectionProps> = ({
             </button>
           )}
         </div>
+        {heroBudget && (
+          <button
+            onClick={() => setHeroBudget('')}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/20 text-[10px] font-semibold text-[#DC2626] cursor-pointer"
+          >
+            {heroBudget === 'luxury'
+              ? 'KES 4.5M+'
+              : `Under KES ${(Number(heroBudget) / 1000000).toFixed(1)}M`}
+            <X className="w-3 h-3" />
+          </button>
+        )}
       </div>
 
       {/* 2. Body Type Filter with Authentic SBT Japan Silhouettes */}

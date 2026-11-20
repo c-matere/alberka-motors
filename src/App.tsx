@@ -6,6 +6,7 @@ import { useSiteSettings } from './hooks/useSiteSettings';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import type { HeroSearchFilters } from './components/Hero';
 import { VehicleCard, VehicleCardSkeleton } from './components/VehicleCard';
 import { VehicleSbtListCard, VehicleSbtListCardSkeleton } from './components/VehicleSbtListCard';
 import { VehicleStoryView } from './components/VehicleStoryView';
@@ -56,6 +57,7 @@ export function App() {
   const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
   const [helpCenterInitialTab, setHelpCenterInitialTab] = useState<'faq' | 'policies' | 'contact'>('faq');
+  const [heroFilters, setHeroFilters] = useState<HeroSearchFilters | null>(null);
 
   // Favorites state persisted in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -229,7 +231,8 @@ export function App() {
     };
   }, [currentView, selectedVehicle, selectedBlogPost]);
 
-  const handleNavigate = (view: string, param?: string) => {
+  const handleNavigate = (view: string, param?: string, keepFilters = false) => {
+    if (!keepFilters) setHeroFilters(null);
     let targetView = view === 'locations' ? 'about' : view;
     setCurrentView(targetView);
     setSelectedVehicle(null);
@@ -348,6 +351,10 @@ export function App() {
                 <Hero
                   onExploreFleet={() => handleNavigate('inventory')}
                   onExploreWorkshop={() => handleNavigate('workshop')}
+                  onSearchQuery={(filters) => {
+                    setHeroFilters(filters);
+                    handleNavigate('inventory', undefined, true);
+                  }}
                   pageData={pages['overview']}
                 />
 
@@ -789,6 +796,7 @@ export function App() {
                 onCustomImportRequest={() => handleNavigate('about')}
                 isLoading={loading}
                 pageData={pages['inventory']}
+                initialFilters={heroFilters}
               />
             )}
 

@@ -99,10 +99,16 @@ const SearchDropdown: React.FC<{
   </div>
 );
 
+export interface HeroSearchFilters {
+  make: string;
+  bodyType: string;
+  budget: string;
+}
+
 export interface HeroProps {
   onExploreFleet: () => void;
   onExploreWorkshop: () => void;
-  onSearchQuery?: (q: string) => void;
+  onSearchQuery?: (filters: HeroSearchFilters) => void;
   pageData?: CmsPage;
 }
 
@@ -137,11 +143,16 @@ export const Hero: React.FC<HeroProps> = ({
 
   const handleExecuteSearch = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    const filters: HeroSearchFilters = {
+      make: searchMake.trim(),
+      bodyType: selectedType,
+      budget: selectedBudget,
+    };
     if (onSearchQuery) {
-      const q = [searchMake, selectedType, selectedBudget].filter(Boolean).join(' ');
-      onSearchQuery(q);
+      onSearchQuery(filters);
+    } else {
+      onExploreFleet();
     }
-    onExploreFleet();
   };
 
   return (
