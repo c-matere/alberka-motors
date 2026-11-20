@@ -46,62 +46,32 @@ export const Hero: React.FC<HeroProps> = ({
     >
       {/* ── 1. FULL-BLEED SHOWROOM BACKGROUND ─────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        {/* Primary showroom photo */}
+        {/* Primary showroom photo — brightened so the scene reads clearly */}
         <img
           src={HERO_BACKGROUND}
           alt="Alberka Enterprises Luxury Showroom"
           className="w-full h-full object-cover object-center"
+          style={{ filter: 'brightness(1.25) contrast(1.04) saturate(1.05)' }}
           loading="eager"
           fetchPriority="high"
         />
 
-        {/* Gradient overlays for legibility — matches Velocity reference */}
+        {/* Lighter scrims: enough contrast for type without flattening the photo */}
         {/* Bottom-heavy dark gradient for trust pillars */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40" />
-        {/* Slight center darkening to let text pop */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/15" />
+        {/* Soft top shade behind the kicker */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent" />
         {/* Subtle vignette */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 120% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)',
+              'radial-gradient(ellipse 120% 100% at 50% 45%, transparent 45%, rgba(0,0,0,0.4) 100%)',
           }}
         />
       </div>
 
-      {/* ── 2. ALBERKA 3D LOGO ON SHOWROOM WALL (top-left, like Velocity "V") ─ */}
-      {/* Rendered as CSS layer that sits over bg but behind content */}
-      <div
-        className="absolute top-10 left-8 sm:left-14 lg:left-20 z-[2] opacity-80"
-        aria-hidden="true"
-      >
-        <div className="relative">
-          {/* 3D effect: shadow layer behind */}
-          <div
-            className="absolute inset-0 translate-x-[3px] translate-y-[3px]"
-            style={{ filter: 'blur(2px)' }}
-          >
-            <img
-              src="/alberka-logo-transparent.png"
-              alt=""
-              className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
-              style={{ filter: 'brightness(0) opacity(0.4)' }}
-            />
-          </div>
-          {/* Primary logo */}
-          <img
-            src="/alberka-logo-transparent.png"
-            alt="ALBERKA ENTERPRISES"
-            className="h-16 sm:h-20 lg:h-24 w-auto object-contain relative z-10"
-            style={{
-              filter: 'brightness(0) invert(1) drop-shadow(0 2px 8px rgba(255,255,255,0.25))',
-            }}
-          />
-        </div>
-      </div>
-
-      {/* ── 3. CENTER HERO CONTENT ─────────────────────────────────────── */}
+      {/* ── 2. CENTER HERO CONTENT ─────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 pt-28 sm:pt-32 pb-8 sm:pb-10 min-h-[inherit]"
         style={{ minHeight: 'clamp(600px, 90vh, 820px)' }}
       >
@@ -233,7 +203,7 @@ export const Hero: React.FC<HeroProps> = ({
 
         </div>
 
-        {/* ── 4. BOTTOM TRUST PILLARS — matches Velocity reference ─────── */}
+        {/* ── 3. BOTTOM TRUST PILLARS — matches Velocity reference ─────── */}
         <div className="w-full max-w-[1440px] mx-auto mt-10 sm:mt-12 pt-6 border-t border-white/15">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 text-left px-0 sm:px-4">
 
