@@ -81,6 +81,28 @@ export const Vehicles: CollectionConfig = {
                   },
                 },
                 {
+                  name: 'publishToSite',
+                  type: 'checkbox',
+                  defaultValue: false,
+                  label: 'Publish on public site',
+                  admin: {
+                    width: '25%',
+                    description: 'Show this vehicle on alberka.co.ke even when it is not in the curated local catalogue.',
+                  },
+                },
+                {
+                  name: 'listingSource',
+                  type: 'select',
+                  defaultValue: 'manual',
+                  options: [
+                    { label: 'Manual', value: 'manual' },
+                    { label: 'WhatsApp bot', value: 'whatsapp-bot' },
+                  ],
+                  admin: {
+                    width: '25%',
+                  },
+                },
+                {
                   name: 'priceKes',
                   type: 'number',
                   required: true,

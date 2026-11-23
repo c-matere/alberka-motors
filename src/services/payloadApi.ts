@@ -183,15 +183,27 @@ export async function fetchVehiclesFromPayload(): Promise<Vehicle[] | null> {
       return mergeWithLocal(mapPayloadVehicle(doc), local, doc);
     });
 
-    // CMS-only records are ignored: the live catalogue is curated, and stale
-    // test records in the CMS must never replace it on the public site.
-    if (docsBySlug.size > 0) {
+    // CMS-only records are ignored unless an editor or the WhatsApp bot has
+    // explicitly opted them into the public site with publishToSite. This keeps
+    // stale test records out while allowing bot-created listings to go live
+    // without a frontend rebuild.
+    const publishedFromCms: Vehicle[] = [];
+    docsBySlug.forEach((doc, slug) => {
+      if (doc?.publishToSite !== true) return;
+      if (!doc?.name || !doc?.year || !doc?.priceKes) return;
+      publishedFromCms.push(mapPayloadVehicle(doc));
+    });
+
+    if (docsBySlug.size > publishedFromCms.length) {
       console.info(
-        `Payload CMS has ${docsBySlug.size} vehicle(s) not in the live catalogue; ignoring.`,
+        `Payload CMS has ${docsBySlug.size - publishedFromCms.length} vehicle(s) not published to the site; ignoring.`,
       );
     }
+    if (publishedFromCms.length > 0) {
+      console.info(`Payload CMS published ${publishedFromCms.length} bot/editor vehicle(s) to the site.`);
+    }
 
-    return vehicles;
+    return [...vehicles, ...publishedFromCms];
   } catch (error) {
     console.info('Payload CMS offline or unreachable, using verified local SBT vehicle data.');
     return null;
