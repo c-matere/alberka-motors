@@ -118,9 +118,22 @@ async function syncVehicles() {
       created += 1
       console.log(`  created  ${vehicle.id}`)
     }
+
+    // Confirm the record is actually queryable in Payload, not just accepted by
+    // the create call. A failed verification aborts the deployment.
+    const posted = await payload.find({
+      collection: 'vehicles',
+      where: { slug: { equals: vehicle.id } },
+      limit: 1,
+    })
+    if (posted.docs.length === 0) {
+      throw new Error(`Vehicle ${vehicle.id} was not found in Payload after sync`)
+    }
   }
 
-  console.log(`Vehicle sync complete: ${created} created, ${kept} already present.`)
+  console.log(
+    `Vehicle sync complete: ${created} created, ${kept} already present, ${VEHICLES.length} verified in Payload.`,
+  )
 }
 
 syncVehicles()

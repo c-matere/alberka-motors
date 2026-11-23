@@ -21,7 +21,9 @@ Usage:
 
   NOTE: adding a vehicle only in Payload /admin will NOT publish it. The frontend
   treats src/data/vehicles.ts as the canonical catalogue and ignores CMS-only
-  vehicle records. This script is the supported way to add a car.
+  vehicle records. This script is the supported way to add a car. The deploy
+  step uploads the updated catalogue to the VPS and runs the create-only Payload
+  sync, which verifies every vehicle is queryable in the CMS before finishing.
 """
 
 import argparse
