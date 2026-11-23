@@ -10,11 +10,18 @@ Usage:
   # Initialize a sample manifest template:
   python scripts/upload_vehicle.py --init-manifest new_vehicle.json
 
-  # Ingest from manifest:
+  # Check a manifest before touching the catalogue:
+  python scripts/upload_vehicle.py --manifest new_vehicle.json --validate-only
+
+  # Ingest and build:
   python scripts/upload_vehicle.py --manifest new_vehicle.json --build
 
-  # Ingest, build, deploy to VPS and purge Cloudflare cache:
-  python scripts/upload_vehicle.py --manifest new_vehicle.json --build --deploy --purge-cf
+  # Ingest, build and run the full deploy pipeline (dist, nginx, CMS sync):
+  python scripts/upload_vehicle.py --manifest new_vehicle.json --deploy
+
+  NOTE: adding a vehicle only in Payload /admin will NOT publish it. The frontend
+  treats src/data/vehicles.ts as the canonical catalogue and ignores CMS-only
+  vehicle records. This script is the supported way to add a car.
 """
 
 import argparse
@@ -28,6 +35,11 @@ import tarfile
 import tempfile
 import urllib.request
 
+# Windows consoles default to cp1252 and cannot print the check marks used in
+# the script's status messages.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VEHICLES_TS_PATH = os.path.join(ROOT_DIR, "src", "data", "vehicles.ts")
 MODEL_HUBS_TS_PATH = os.path.join(ROOT_DIR, "src", "data", "modelHubs.ts")
@@ -40,6 +52,84 @@ VPS_KEY_PATH = r"C:\Users\ADMIN\.ssh\smart_team.pem"
 REMOTE_DIST_PATH = "/home/ec2-user/alberka-motors/dist"
 CF_ZONE_ID = "35b136dc268c7a8ad91b149b8c325e8c"  # alberka.co.ke
 ENV_PATH = r"C:\Users\ADMIN\.env"
+
+# The public catalogue is TypeScript-typed. A manifest missing any of these
+# fields used to produce a vehicle object that failed `tsc --noEmit`.
+REQUIRED_SCALARS = {
+    "m3": "",
+    "heroVideo": "",
+    "hubId": "",
+    "exteriorGrade": "",
+    "equipmentRemarks": "",
+}
+REQUIRED_LISTS = [
+    "colors",
+    "closerLookPoints",
+    "editorialFeatures",
+    "chapters",
+    "gallery",
+    "specifications",
+    "workshopProtocol",
+    "equipmentChecklist",
+]
+ALLOWED_CATEGORIES = {"suv", "hybrid", "van", "compact", "executive"}
+ALLOWED_STATUSES = {"In Stock", "Cleared Port", "In Transit"}
+ALLOWED_STEERING = {"RHD", "LHD"}
+
+
+def normalize_manifest(vehicle: dict) -> list:
+    """Fill fields required by the Vehicle interface and return any warnings."""
+    warnings = []
+
+    for key, default in REQUIRED_SCALARS.items():
+        if key not in vehicle or vehicle[key] is None:
+            vehicle[key] = default
+
+    for key in REQUIRED_LISTS:
+        if not isinstance(vehicle.get(key), list):
+            vehicle[key] = []
+
+    if not vehicle["heroImage"]:
+        vehicle["heroImage"] = (
+            vehicle["gallery"][0]["url"] if vehicle["gallery"] else "/car_hero.png"
+        )
+
+    if not vehicle["chapters"]:
+        hero = vehicle["heroImage"]
+        vehicle["chapters"] = [
+            {
+                "id": "overview",
+                "tabLabel": "Overview",
+                "eyebrow": f"STOCK {vehicle.get('stockNo', '')}".strip(),
+                "title": vehicle["name"],
+                "narrative": [
+                    vehicle.get("essenceQuote") or vehicle.get("tagline") or "",
+                    vehicle.get("description") or "",
+                ],
+                "imageUrl": hero,
+                "highlights": [
+                    {"label": "Year", "value": str(vehicle.get("year", ""))},
+                    {"label": "Mileage", "value": f"{vehicle.get('mileageKm', '')} km"},
+                    {"label": "Grade", "value": str(vehicle.get("auctionGrade", ""))},
+                ],
+            }
+        ]
+
+    category = str(vehicle.get("category", "")).lower()
+    if category not in ALLOWED_CATEGORIES:
+        warnings.append(
+            f"category '{vehicle.get('category')}' is invalid; allowed: {', '.join(sorted(ALLOWED_CATEGORIES))}"
+        )
+    if vehicle.get("steering") not in ALLOWED_STEERING:
+        warnings.append("steering must be 'RHD' or 'LHD'")
+    if vehicle.get("status") not in ALLOWED_STATUSES:
+        warnings.append(f"status '{vehicle.get('status')}' is invalid; allowed: {', '.join(sorted(ALLOWED_STATUSES))}")
+
+    for key in ("id", "stockNo", "name", "priceKes", "year", "mileageKm"):
+        if not vehicle.get(key):
+            warnings.append(f"{key} is required")
+
+    return warnings
 
 
 def get_cloudflare_token() -> str:
@@ -114,6 +204,17 @@ def init_sample_manifest(path: str):
         "status": "In Stock",
         "imagesDir": "",  # Folder containing vehicle images to copy into public/vehicles/<id>/
         "images": [],     # Or list of local image paths or URLs
+        "m3": "14.5 m³",
+        "heroVideo": "",
+        "heroImage": "",
+        "colors": [],
+        "closerLookPoints": [],
+        "editorialFeatures": [],
+        "chapters": [],
+        "gallery": [],
+        "specifications": [],
+        "workshopProtocol": [],
+        "exteriorGrade": "",
         "equipmentChecklist": [
             {
                 "category": "COMFORT & CONVENIENCE",
@@ -425,7 +526,8 @@ def main():
     parser.add_argument("--init-manifest", help="Generate a sample manifest JSON file to fill out")
     parser.add_argument("--manifest", help="Path to completed vehicle manifest JSON")
     parser.add_argument("--build", action="store_true", help="Run local npm run build after ingestion")
-    parser.add_argument("--deploy", action="store_true", help="Deploy built dist to VPS (169.58.169.64)")
+    parser.add_argument("--deploy", action="store_true", help="Run the canonical deploy_site.py pipeline (build, upload, nginx, CMS sync)")
+    parser.add_argument("--validate-only", action="store_true", help="Validate the manifest without modifying vehicles.ts")
     parser.add_argument("--purge-cf", action="store_true", help="Purge Cloudflare cache after deployment")
 
     args = parser.parse_args()
@@ -442,6 +544,20 @@ def main():
     with open(args.manifest, "r", encoding="utf-8") as f:
         vehicle_data = json.load(f)
 
+    warnings = normalize_manifest(vehicle_data)
+    if warnings:
+        print("[!] Manifest problems:")
+        for warning in warnings:
+            print(f"    - {warning}")
+        if args.validate_only:
+            sys.exit(1)
+    else:
+        print("[✓] Manifest validated against the Vehicle interface.")
+
+    if args.validate_only:
+        print("[✓] Validation only; vehicles.ts was not changed.")
+        return
+
     # Process images and gallery
     process_vehicle_images(vehicle_data)
 
@@ -451,11 +567,22 @@ def main():
     # Insert into vehicles.ts
     insert_vehicle_into_vehicles_ts(vehicle_data)
 
-    if args.build or args.deploy:
+    if args.build:
         run_build()
 
     if args.deploy:
-        deploy_to_vps()
+        # The canonical pipeline also uploads vehicles.ts to the VPS, runs the
+        # create-only Payload vehicle sync and reloads nginx. The old in-script
+        # scp deploy skipped those steps and left the CMS without the new car.
+        deploy_script = os.path.join(ROOT_DIR, "scripts", "deploy_site.py")
+        print("[*] Running the canonical deploy pipeline...")
+        res = subprocess.run(
+            [sys.executable, deploy_script], cwd=ROOT_DIR, capture_output=True, text=True
+        )
+        print(res.stdout)
+        if res.returncode != 0:
+            print(res.stderr)
+            sys.exit(1)
 
     if args.purge_cf:
         purge_cloudflare_cache()
