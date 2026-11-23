@@ -4,6 +4,7 @@ import { useVehicles } from './hooks/useVehicles';
 import { useCmsPages } from './hooks/useCmsPages';
 import { useSiteSettings } from './hooks/useSiteSettings';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
+import { fetchBlogPostsFromCms } from './services/blogContent';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import type { HeroSearchFilters } from './components/Hero';
@@ -91,6 +92,29 @@ export function App() {
       localStorage.setItem('alberka_blogs', JSON.stringify(blogs));
     } catch {}
   }, [blogs]);
+
+  // CMS journal posts override matching local slugs; locally added posts survive.
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchBlogPostsFromCms()
+      .then((cmsPosts) => {
+        if (!isMounted || cmsPosts.length === 0) return;
+        setBlogs((previous) => {
+          const bySlug = new Map(cmsPosts.map((post) => [post.slug, post]));
+          const merged = previous.map((post) => bySlug.get(post.slug) ?? post);
+          const knownSlugs = new Set(previous.map((post) => post.slug));
+          return [...merged, ...cmsPosts.filter((post) => !knownSlugs.has(post.slug))];
+        });
+      })
+      .catch(() => {
+        // Static journal content remains in place when the CMS is offline.
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // URL Hash Sync for Browser Navigation
   useEffect(() => {

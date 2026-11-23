@@ -1,5 +1,33 @@
 const CMS_BASE_URL = import.meta.env.VITE_PAYLOAD_API_URL || '/api';
 
+/**
+ * Every CMS read goes through here. The SPA fallback used to return index.html
+ * with a 200 status, which made `res.ok` pass and `res.json()` throw — silently
+ * routing every request to static defaults. Requiring a JSON content type makes
+ * an unreachable CMS unmissable and safe.
+ */
+async function fetchCmsJson<T>(path: string, timeoutMs = 2500): Promise<T | null> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(`${CMS_BASE_URL}${path}`, {
+      signal: controller.signal,
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return null;
+
+    const contentType = res.headers.get('content-type') || '';
+    if (!contentType.toLowerCase().includes('application/json')) return null;
+
+    return (await res.json()) as T;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 export interface CmsPageStat {
   id?: string;
   label: string;
@@ -44,6 +72,23 @@ export interface CmsSiteSettings {
   nairobiShowroomAddress: string;
 }
 
+export interface CmsBlogPost {
+  id?: string;
+  title: string;
+  slug: string;
+  subtitle?: string;
+  category?: string;
+  coverImage?: string;
+  authorName?: string;
+  authorRole?: string;
+  publishedDate?: string;
+  readTime?: string;
+  excerpt?: string;
+  content?: { paragraph?: string }[];
+  tags?: { tag?: string }[];
+  featured?: boolean;
+}
+
 const DEFAULT_SITE_SETTINGS: CmsSiteSettings = {
   businessName: 'Alberka Enterprises Limited',
   tagline: 'Direct Japanese Imports · Mombasa Showroom & Yard',
@@ -58,65 +103,35 @@ const DEFAULT_SITE_SETTINGS: CmsSiteSettings = {
 };
 
 export async function fetchCmsPage(slug: string): Promise<CmsPage | null> {
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
-
-    const res = await fetch(`${CMS_BASE_URL}/pages?where[slug][equals]=${encodeURIComponent(slug)}&limit=1`, {
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
-
-    if (!res.ok) return null;
-    const data = await res.json();
-    if (data?.docs && data.docs.length > 0) {
-      return data.docs[0] as CmsPage;
-    }
-    return null;
-  } catch {
-    return null;
-  }
+  const data = await fetchCmsJson<{ docs?: CmsPage[] }>(
+    `/pages?where[slug][equals]=${encodeURIComponent(slug)}&limit=1`,
+  );
+  return data?.docs?.[0] ?? null;
 }
 
 export async function fetchAllCmsPages(): Promise<Record<string, CmsPage>> {
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-    const res = await fetch(`${CMS_BASE_URL}/pages?limit=50`, {
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
-
-    if (!res.ok) return {};
-    const data = await res.json();
-    if (data?.docs && Array.isArray(data.docs)) {
-      const map: Record<string, CmsPage> = {};
-      data.docs.forEach((doc: CmsPage) => {
-        if (doc.slug) map[doc.slug] = doc;
-      });
-      return map;
-    }
-    return {};
-  } catch {
-    return {};
-  }
+  const data = await fetchCmsJson<{ docs?: CmsPage[] }>('/pages?limit=50');
+  const map: Record<string, CmsPage> = {};
+  data?.docs?.forEach((doc) => {
+    if (doc?.slug) map[doc.slug] = doc;
+  });
+  return map;
 }
 
-export async function fetchCmsSiteSettings(): Promise<CmsSiteSettings> {
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
+/** Returns null when the CMS is unreachable so callers can report a real fallback. */
+export async function fetchCmsSiteSettings(): Promise<CmsSiteSettings | null> {
+  const data = await fetchCmsJson<Record<string, unknown>>('/globals/site-settings');
+  if (!data) return null;
 
-    const res = await fetch(`${CMS_BASE_URL}/globals/site-settings`, {
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
+  const settings: CmsSiteSettings = { ...DEFAULT_SITE_SETTINGS };
+  (Object.keys(DEFAULT_SITE_SETTINGS) as (keyof CmsSiteSettings)[]).forEach((key) => {
+    const value = data[key];
+    if (typeof value === 'string' && value.trim()) settings[key] = value;
+  });
+  return settings;
+}
 
-    if (!res.ok) return DEFAULT_SITE_SETTINGS;
-    const data = await res.json();
-    return { ...DEFAULT_SITE_SETTINGS, ...data };
-  } catch {
-    return DEFAULT_SITE_SETTINGS;
-  }
+export async function fetchCmsBlogPosts(): Promise<CmsBlogPost[]> {
+  const data = await fetchCmsJson<{ docs?: CmsBlogPost[] }>('/blog-posts?limit=50');
+  return data?.docs ?? [];
 }

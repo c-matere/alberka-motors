@@ -17,6 +17,7 @@ VPS_HOST = "169.58.169.64"
 VPS_USER = "root"
 VPS_KEY_PATH = r"C:\Users\ADMIN\.ssh\smart_team.pem"
 REMOTE_DIST_PATH = "/home/ec2-user/alberka-motors/dist"
+NGINX_DIR = os.path.join(ROOT_DIR, "deploy", "nginx")
 CF_ZONE_ID = "35b136dc268c7a8ad91b149b8c325e8c"
 
 def get_cloudflare_token():
@@ -87,6 +88,84 @@ def deploy():
     if os.path.exists(temp_tar):
         os.remove(temp_tar)
 
+def deploy_nginx():
+    """Install the Payload reverse-proxy config so /api reaches the CMS on the live domain."""
+    print("[*] Installing Payload CMS reverse-proxy config on VPS...")
+    files = {
+        "alberka-cms-upstream.conf": "/etc/nginx/conf.d/alberka-cms-upstream.conf",
+        "alberka-cms-proxy.conf": "/etc/nginx/snippets/alberka-cms-proxy.conf",
+        "alberka-motors.conf": "/etc/nginx/conf.d/alberka-motors.conf",
+    }
+    for name, remote_path in files.items():
+        local_path = os.path.join(NGINX_DIR, name)
+        temp_path = "/tmp/alberka-nginx-" + name
+        res = subprocess.run(
+            ["scp.exe", "-i", VPS_KEY_PATH, "-o", "StrictHostKeyChecking=no",
+             local_path, f"{VPS_USER}@{VPS_HOST}:{temp_path}"],
+            capture_output=True, text=True,
+        )
+        if res.returncode != 0:
+            print(f"[!] scp failed for {name}: {res.stderr}")
+            sys.exit(1)
+        print(f"[✓] Uploaded {name}")
+
+    remote_commands = (
+        "install -d -m 755 /etc/nginx/snippets && "
+        "install -m 644 /tmp/alberka-nginx-alberka-cms-upstream.conf /etc/nginx/conf.d/alberka-cms-upstream.conf && "
+        "install -m 644 /tmp/alberka-nginx-alberka-cms-proxy.conf /etc/nginx/snippets/alberka-cms-proxy.conf && "
+        "install -m 644 /tmp/alberka-nginx-alberka-motors.conf /etc/nginx/conf.d/alberka-motors.conf && "
+        "rm -f /tmp/alberka-nginx-*.conf && "
+        "nginx -t && "
+        "nginx -s reload"
+    )
+    res = subprocess.run(
+        ["ssh.exe", "-i", VPS_KEY_PATH, "-o", "StrictHostKeyChecking=no",
+         f"{VPS_USER}@{VPS_HOST}", remote_commands],
+        capture_output=True, text=True,
+    )
+    if res.returncode != 0:
+        print("[!] nginx config install failed:")
+        print(res.stderr or res.stdout)
+        sys.exit(1)
+    print("[✓] Payload reverse proxy active (nginx -t passed, config reloaded)")
+
+def sync_cms_vehicles():
+    """Create any live-catalogue vehicles missing from Payload (never overwrites edits)."""
+    print("[*] Aligning Payload vehicle inventory with the live catalogue...")
+    uploads = [
+        (os.path.join(ROOT_DIR, "src", "data", "vehicles.ts"),
+         "/home/ec2-user/alberka-motors/src/data/vehicles.ts"),
+        (os.path.join(ROOT_DIR, "cms", "sync-vehicles.ts"),
+         "/home/ec2-user/alberka-motors/cms/sync-vehicles.ts"),
+    ]
+    for local_path, remote_path in uploads:
+        res = subprocess.run(
+            ["scp.exe", "-i", VPS_KEY_PATH, "-o", "StrictHostKeyChecking=no",
+             local_path, f"{VPS_USER}@{VPS_HOST}:{remote_path}"],
+            capture_output=True, text=True,
+        )
+        if res.returncode != 0:
+            print(f"[!] scp failed for {local_path}: {res.stderr}")
+            sys.exit(1)
+
+    remote_commands = (
+        "cd /home/ec2-user/alberka-motors/cms && "
+        "chown -R ec2-user:ec2-user /home/ec2-user/alberka-motors/src/data/vehicles.ts "
+        "/home/ec2-user/alberka-motors/cms/sync-vehicles.ts && "
+        "./node_modules/.bin/tsx sync-vehicles.ts"
+    )
+    res = subprocess.run(
+        ["ssh.exe", "-i", VPS_KEY_PATH, "-o", "StrictHostKeyChecking=no",
+         f"{VPS_USER}@{VPS_HOST}", remote_commands],
+        capture_output=True, text=True,
+    )
+    if res.returncode != 0:
+        print("[!] CMS vehicle sync failed:")
+        print(res.stderr or res.stdout)
+        sys.exit(1)
+    print(res.stdout.strip())
+    print("[✓] Payload vehicle inventory aligned with the live catalogue")
+
 def purge_cf():
     token = get_cloudflare_token()
     if not token:
@@ -114,5 +193,7 @@ def purge_cf():
 if __name__ == "__main__":
     build()
     deploy()
+    deploy_nginx()
+    sync_cms_vehicles()
     purge_cf()
     print("\n[✓] FULL DEPLOYMENT PIPELINE COMPLETE!")
