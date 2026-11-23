@@ -4,6 +4,7 @@ import { SkeletonImage } from './SkeletonImage';
 import { CmsPage, CmsSiteSettings } from '../services/cmsContent';
 import { Vehicle } from '../data/vehicles';
 import { ShowroomMapHub } from './ShowroomMapHub';
+import { TeamSection } from './TeamSection';
 
 interface AboutSectionProps {
   onExploreFleet: () => void;
@@ -181,6 +182,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             </div>
           </div>
         </div>
+
+        {/* The desks behind the standard, and how to reach them */}
+        <TeamSection settings={settings} />
 
         {/* Official Mombasa Showroom & Workshop Hub */}
         <ShowroomMapHub settings={settings} vehicles={vehicles} />

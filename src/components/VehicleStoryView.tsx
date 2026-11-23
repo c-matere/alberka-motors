@@ -1249,26 +1249,6 @@ export const VehicleStoryView: React.FC<VehicleStoryViewProps> = ({
                 You won't be charged yet · Free Japanese provenance dossier
               </p>
 
-              {/* Transparent Cost Breakdown Table */}
-              <div className="pt-4 border-t border-[#ebebeb] space-y-2.5 text-xs">
-                <div className="flex justify-between text-[#6a6a6a]">
-                  <span className="underline">CIF Tokyo Port to Mombasa</span>
-                  <span>KES {Math.round(vehicle.priceKes * 0.68).toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between text-[#6a6a6a]">
-                  <span className="underline">KRA Customs Duty & Port Charges</span>
-                  <span>KES {Math.round(vehicle.priceKes * 0.27).toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between text-[#6a6a6a]">
-                  <span className="underline">100-Point Overhaul & Handover</span>
-                  <span>KES {Math.round(vehicle.priceKes * 0.05).toLocaleString()}</span>
-                </div>
-                <div className="pt-2 border-t border-[#ebebeb] flex justify-between font-semibold text-[#222222] text-sm">
-                  <span>Total Delivered Price</span>
-                  <span>KES {vehicle.priceKes.toLocaleString()}</span>
-                </div>
-              </div>
-
               {/* Share & Print Buttons */}
               <div className="pt-2 border-t border-[#ebebeb] flex items-center justify-between text-xs">
                 <button
