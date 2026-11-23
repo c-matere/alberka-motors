@@ -78,9 +78,18 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ settings }) => {
                 className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[16px] p-5 sm:p-6 space-y-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] text-left flex flex-col"
               >
                 <div className="flex items-center justify-between">
-                  <span className="w-10 h-10 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-[#DC2626]" />
-                  </span>
+                  {desk.photo ? (
+                    <img
+                      src={desk.photo}
+                      alt={desk.name || desk.title}
+                      loading="lazy"
+                      className="w-11 h-11 rounded-full object-cover bg-[#f7f7f7] border border-[#ebebeb] shrink-0"
+                    />
+                  ) : (
+                    <span className="w-10 h-10 rounded-full bg-[#f7f7f7] border border-[#ebebeb] flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#DC2626]" />
+                    </span>
+                  )}
                   <span className="font-mono text-[10px] text-zinc-400 tracking-widest">
                     {desk.index}
                   </span>
@@ -93,6 +102,9 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ settings }) => {
                   <h3 className="text-base sm:text-lg font-semibold text-zinc-950 tracking-tight leading-snug">
                     {desk.title}
                   </h3>
+                  {desk.name && (
+                    <span className="text-[11px] font-semibold text-[#DC2626] block">{desk.name}</span>
+                  )}
                 </div>
 
                 <p className="text-xs sm:text-[13px] text-zinc-600 leading-relaxed font-normal flex-1">
@@ -115,21 +127,21 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ settings }) => {
 
       {/* Reach the desk handling your file */}
       <div id="team-contact" className="scroll-mt-24">
-        <div className="bg-[#18181c] border border-zinc-800 rounded-[18px] p-6 sm:p-9 text-left shadow-lg">
+        <div className="bg-white border border-[#ebebeb] rounded-[18px] p-6 sm:p-9 text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 space-y-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-red-500 font-semibold block">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#DC2626] font-semibold block">
                 TALK TO THE TEAM
               </span>
-              <h3 className="text-xl sm:text-3xl font-bold text-white tracking-[-0.03em] leading-tight">
+              <h3 className="text-xl sm:text-3xl font-bold text-[#222222] tracking-[-0.03em] leading-tight">
                 Your file has a name behind it.
               </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">
+              <p className="text-sm text-[#6a6a6a] leading-relaxed">
                 Ask about a specific stock unit, request the original auction sheet, or arrange a
                 showroom visit. The desk that owns your file will answer.
               </p>
-              <div className="flex items-center gap-2 text-xs text-zinc-400 pt-1">
-                <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-[#6a6a6a] pt-1">
+                <MapPin className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
                 <span>{settings?.mombasaYardAddress || 'Next to Ganjoni Primary School, Mombasa'}</span>
               </div>
             </div>
@@ -143,17 +155,17 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ settings }) => {
                     href={contact.href}
                     target={contact.href.startsWith('http') ? '_blank' : undefined}
                     rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-4 space-y-3 transition-colors"
+                    className="group bg-[#f7f7f7] hover:bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-xl p-4 space-y-3 transition-colors"
                   >
                     <div className="flex items-center justify-between">
-                      <Icon className="w-4 h-4 text-red-500" />
-                      <ArrowRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-colors" />
+                      <Icon className="w-4 h-4 text-[#DC2626]" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[#b0b0b0] group-hover:text-[#DC2626] transition-colors" />
                     </div>
                     <div className="space-y-1">
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 block">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-[#6a6a6a] block">
                         {contact.label}
                       </span>
-                      <span className="text-xs sm:text-[13px] font-medium text-white break-words block">
+                      <span className="text-xs sm:text-[13px] font-medium text-[#222222] break-words block">
                         {contact.value}
                       </span>
                     </div>

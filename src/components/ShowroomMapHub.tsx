@@ -13,6 +13,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
+import { LOCATION_IMAGES } from '../data/location';
 
 interface ShowroomMapHubProps {
   settings?: {
@@ -121,8 +122,8 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
                 <Phone className="w-3.5 h-3.5 text-[#222222]" />
                 <span>ENQUIRY HELPLINE</span>
               </div>
-              <a href="tel:0180423075" className="font-mono text-base font-semibold text-[#222222] hover:underline block transition-colors">
-                {settings?.phone || '0180 423 075'}
+              <a href={`tel:${(settings?.phone || '+254 180 423 075').replace(/\s+/g, '')}`} className="font-mono text-base font-semibold text-[#222222] hover:underline block transition-colors">
+                {settings?.phone || '+254 180 423 075'}
               </a>
               <span className="text-[11px] text-[#6a6a6a] block">WhatsApp & Calls 24/7</span>
             </div>
@@ -132,10 +133,10 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
                 <Mail className="w-3.5 h-3.5 text-[#222222]" />
                 <span>EMAIL INQUIRIES</span>
               </div>
-              <a href="mailto:sales@alberkamotors.co.ke" className="font-mono text-sm font-semibold text-[#222222] hover:underline block truncate transition-colors">
-                {settings?.email || 'sales@alberkamotors.co.ke'}
+              <a href={`mailto:${settings?.email || 'yard@alberka.co.ke'}`} className="font-mono text-sm font-semibold text-[#222222] hover:underline block truncate transition-colors">
+                {settings?.email || 'yard@alberka.co.ke'}
               </a>
-              <span className="text-[11px] text-[#6a6a6a] block">Japanese Auction CIF Inquiries</span>
+              <span className="text-[11px] text-[#6a6a6a] block">Direct import & showroom enquiries</span>
             </div>
 
             <div className="p-4 bg-white border border-[#ebebeb] rounded-[12px] space-y-1">
@@ -170,6 +171,33 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
               />
             </div>
           </div>
+
+          {/* Real showroom photography — appears once images are added to src/data/location.ts */}
+          {LOCATION_IMAGES.length > 0 && (
+            <div className="pt-2 space-y-3">
+              <span className="text-[11px] font-semibold text-[#6a6a6a] uppercase tracking-wider block">
+                INSIDE THE YARD
+              </span>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {LOCATION_IMAGES.map((image) => (
+                  <figure
+                    key={image.src}
+                    className="group relative overflow-hidden rounded-[12px] border border-[#ebebeb] bg-[#f7f7f7]"
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt || image.caption}
+                      loading="lazy"
+                      className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-3 py-2 text-[11px] font-medium text-white">
+                      {image.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Directions & Action Bar */}
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#ebebeb]">

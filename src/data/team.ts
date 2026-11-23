@@ -8,6 +8,10 @@ export interface TeamDesk {
   title: string;
   description: string;
   responsibilities: string[];
+  /** Add a verified name when supplied; the card falls back to the desk title. */
+  name?: string;
+  /** Path to a portrait, e.g. /team/jane-doe.jpg. Falls back to the desk icon. */
+  photo?: string;
 }
 
 /**
