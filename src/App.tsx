@@ -3,6 +3,7 @@ import { VEHICLES, Vehicle } from './data/vehicles';
 import { useVehicles } from './hooks/useVehicles';
 import { useCmsPages } from './hooks/useCmsPages';
 import { useSiteSettings } from './hooks/useSiteSettings';
+import { useCmsLocationPhotos, useCmsTeamMembers } from './hooks/useTeamAndLocation';
 import { BlogPost, INITIAL_BLOG_POSTS } from './data/blogs';
 import { fetchBlogPostsFromCms } from './services/blogContent';
 import { Navbar } from './components/Navbar';
@@ -46,6 +47,8 @@ export function App() {
   const { vehicles, isCmsConnected, loading } = useVehicles();
   const { pages } = useCmsPages();
   const { settings } = useSiteSettings();
+  const teamMembers = useCmsTeamMembers();
+  const locationPhotos = useCmsLocationPhotos();
   const [currentView, setCurrentView] = useState<string>('overview');
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPost | null>(null);
@@ -760,6 +763,7 @@ export function App() {
                 <ShowroomMapHub
                   settings={settings}
                   vehicles={vehicles}
+                  photos={locationPhotos}
                 />
               </>
             )}
@@ -800,6 +804,8 @@ export function App() {
                 pageData={pages['about']}
                 settings={settings}
                 vehicles={vehicles}
+                teamMembers={teamMembers}
+                locationPhotos={locationPhotos}
               />
             )}
 

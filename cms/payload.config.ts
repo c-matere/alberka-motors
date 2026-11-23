@@ -10,6 +10,8 @@ import { Vehicles } from './src/collections/Vehicles'
 import { BlogPosts } from './src/collections/BlogPosts'
 import { Pages } from './src/collections/Pages'
 import { Leads } from './src/collections/Leads'
+import { TeamMembers } from './src/collections/TeamMembers'
+import { LocationPhotos } from './src/collections/LocationPhotos'
 import { SiteSettings } from './src/globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
@@ -29,6 +31,8 @@ export default buildConfig({
     BlogPosts,
     Media,
     Leads,
+    TeamMembers,
+    LocationPhotos,
   ],
   globals: [
     SiteSettings,

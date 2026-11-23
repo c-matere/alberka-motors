@@ -13,7 +13,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { Vehicle } from '../data/vehicles';
-import { LOCATION_IMAGES } from '../data/location';
+import { LOCATION_IMAGES, LocationImage } from '../data/location';
 
 interface ShowroomMapHubProps {
   settings?: {
@@ -23,14 +23,17 @@ interface ShowroomMapHubProps {
     whatsappNumber?: string;
   };
   vehicles?: Vehicle[];
+  photos?: LocationImage[];
   onOpenWhispers?: () => void;
 }
 
 export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
   settings,
   vehicles = [],
+  photos,
   onOpenWhispers,
 }) => {
+  const locationImages = photos && photos.length > 0 ? photos : LOCATION_IMAGES;
   const [testDriveData, setTestDriveData] = useState({
     name: '',
     phone: '',
@@ -173,13 +176,13 @@ export const ShowroomMapHub: React.FC<ShowroomMapHubProps> = ({
           </div>
 
           {/* Real showroom photography — appears once images are added to src/data/location.ts */}
-          {LOCATION_IMAGES.length > 0 && (
+          {locationImages.length > 0 && (
             <div className="pt-2 space-y-3">
               <span className="text-[11px] font-semibold text-[#6a6a6a] uppercase tracking-wider block">
                 INSIDE THE YARD
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {LOCATION_IMAGES.map((image) => (
+                {locationImages.map((image) => (
                   <figure
                     key={image.src}
                     className="group relative overflow-hidden rounded-[12px] border border-[#ebebeb] bg-[#f7f7f7]"

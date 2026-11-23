@@ -3,6 +3,8 @@ import { ArrowRight, CheckCircle2, Clock, Phone, Mail, MessageCircle, Navigation
 import { SkeletonImage } from './SkeletonImage';
 import { CmsPage, CmsSiteSettings } from '../services/cmsContent';
 import { Vehicle } from '../data/vehicles';
+import { TeamDesk } from '../data/team';
+import { LocationImage } from '../data/location';
 import { ShowroomMapHub } from './ShowroomMapHub';
 import { TeamSection } from './TeamSection';
 
@@ -12,6 +14,8 @@ interface AboutSectionProps {
   pageData?: CmsPage;
   settings?: CmsSiteSettings;
   vehicles?: Vehicle[];
+  teamMembers?: TeamDesk[];
+  locationPhotos?: LocationImage[];
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({
@@ -20,6 +24,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   pageData,
   settings,
   vehicles = [],
+  teamMembers,
+  locationPhotos,
 }) => {
   return (
     <section className="w-full bg-transparent py-16 sm:py-24 px-4 sm:px-8 text-zinc-900 relative">
@@ -184,10 +190,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         </div>
 
         {/* The desks behind the standard, and how to reach them */}
-        <TeamSection settings={settings} />
+        <TeamSection settings={settings} members={teamMembers} />
 
         {/* Official Mombasa Showroom & Workshop Hub */}
-        <ShowroomMapHub settings={settings} vehicles={vehicles} />
+        <ShowroomMapHub settings={settings} vehicles={vehicles} photos={locationPhotos} />
 
         {/* Anti-Tampering Mileage Policy & CSR Governance */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 border-t border-[#ebebeb] text-left">

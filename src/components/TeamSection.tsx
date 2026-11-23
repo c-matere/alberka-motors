@@ -10,7 +10,7 @@ import {
   Ship,
   Wrench,
 } from 'lucide-react';
-import { TEAM_DESKS, TeamDeskIcon } from '../data/team';
+import { TEAM_DESKS, TeamDesk, TeamDeskIcon } from '../data/team';
 import { CmsSiteSettings } from '../services/cmsContent';
 
 const DESK_ICONS: Record<TeamDeskIcon, React.ComponentType<{ className?: string }>> = {
@@ -22,9 +22,11 @@ const DESK_ICONS: Record<TeamDeskIcon, React.ComponentType<{ className?: string 
 
 interface TeamSectionProps {
   settings?: CmsSiteSettings;
+  members?: TeamDesk[];
 }
 
-export const TeamSection: React.FC<TeamSectionProps> = ({ settings }) => {
+export const TeamSection: React.FC<TeamSectionProps> = ({ settings, members }) => {
+  const desks = members && members.length > 0 ? members : TEAM_DESKS;
   const phone = settings?.phone || '+254 180 423 075';
   const whatsapp = settings?.whatsappNumber || '254180423075';
   const email = settings?.email || 'yard@alberka.co.ke';
@@ -70,7 +72,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ settings }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 pt-8">
-          {TEAM_DESKS.map((desk) => {
+          {desks.map((desk) => {
             const Icon = DESK_ICONS[desk.icon];
             return (
               <article
