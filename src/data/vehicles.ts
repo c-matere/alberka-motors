@@ -568,7 +568,7 @@ export const VEHICLES: Vehicle[] = [
     doubleAc: true,
     powerBackDoor: true
     },
-    heroImage: "/vehicles/toyota-harrier-gr-sport-2019/hero-front-34.jpg",
+    heroImage: "/vehicles/toyota-harrier-gr-sport-2019/cover.jpg",
     heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
     colors: [
         {
@@ -1206,7 +1206,7 @@ export const VEHICLES: Vehicle[] = [
     doubleAc: true,
     powerBackDoor: true
     },
-    heroImage: "/vehicles/toyota-harrier-2020-grey/hero-front-34.jpg",
+    heroImage: "/vehicles/toyota-harrier-2020-grey/cover.jpg",
     heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
     colors: [
         {
@@ -1794,7 +1794,7 @@ export const VEHICLES: Vehicle[] = [
     doubleAc: false,
     powerBackDoor: false
     },
-    heroImage: "/vehicles/subaru-xv-2019-black/hero-front-34.jpg",
+    heroImage: "/vehicles/subaru-xv-2019-black/cover.jpg",
     heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
     colors: [
         {
@@ -2354,7 +2354,7 @@ export const VEHICLES: Vehicle[] = [
     doubleAc: true,
     powerBackDoor: true
     },
-    heroImage: "/vehicles/volvo-xc40-r-design-2019/hero-front-34.jpg",
+    heroImage: "/vehicles/volvo-xc40-r-design-2019/cover.jpg",
     heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
     colors: [
         {

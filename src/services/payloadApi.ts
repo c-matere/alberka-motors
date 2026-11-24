@@ -127,7 +127,12 @@ function mergeWithLocal(mapped: Vehicle, local: Vehicle, doc: any): Vehicle {
   keepLocal('inspectionStatus', hasValue(doc.inspectionStatus));
   keepLocal('exteriorGrade', hasValue(doc.exteriorGrade));
   keepLocal('maxLoadingCapacity', hasValue(doc.maxLoadingCapacity));
-  keepLocal('heroImage', hasValue(doc.heroImage));
+  // Curated catalogue vehicles use their local heroImage cover; WhatsApp bot vehicles keep their uploaded photo
+  if (local.heroImage && doc.listingSource !== 'whatsapp-bot') {
+    result.heroImage = local.heroImage;
+  } else {
+    keepLocal('heroImage', hasValue(doc.heroImage));
+  }
   keepLocal('heroVideo', hasValue(doc.heroVideo));
   keepLocal('colors', hasValue(doc.colors));
   keepLocal('closerLookPoints', hasValue(doc.closerLookPoints));

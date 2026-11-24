@@ -112,7 +112,12 @@ async function syncVehicles() {
 
     if (existing.docs.length > 0) {
       kept += 1
-      console.log(`  kept     ${vehicle.id}`)
+      await payload.update({
+        collection: 'vehicles',
+        id: existing.docs[0].id,
+        data: { heroImage: data.heroImage },
+      })
+      console.log(`  kept/updated ${vehicle.id}`)
     } else {
       await payload.create({ collection: 'vehicles', data })
       created += 1
