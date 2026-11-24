@@ -13,7 +13,7 @@ import { CmsPage } from '../services/cmsContent';
 
 // Single source of truth for the hero backdrop. Drop a replacement image into
 // /public/vehicles/ and change this one line to swap the showroom scene.
-const HERO_BACKGROUND = '/vehicles/hero-new.jpg';
+const HERO_BACKGROUND = '/vehicles/hero-coastal-sunset.jpg';
 
 type DropdownOption = { value: string; label: string };
 
@@ -165,10 +165,10 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Primary showroom photo — unblurred, crisp 4K luxury studio */}
         <img
           src={HERO_BACKGROUND}
-          alt="Alberka Enterprises Luxury Showroom"
+          alt="Alberka Enterprises Luxury Fleet in Mombasa"
           className="w-full h-full object-cover"
           style={{
-            objectPosition: 'center 40%',
+            objectPosition: 'center 48%',
           }}
           loading="eager"
           fetchPriority="high"
