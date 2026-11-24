@@ -1206,7 +1206,7 @@ export const VEHICLES: Vehicle[] = [
     doubleAc: true,
     powerBackDoor: true
     },
-    heroImage: "/vehicles/toyota-harrier-2020-grey/cover.jpg",
+    heroImage: "/vehicles/toyota-harrier-2020-grey/poster.jpg",
     heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-car-driving-through-city-streets-at-night-42417-large.mp4",
     colors: [
         {
