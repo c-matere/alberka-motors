@@ -209,52 +209,18 @@ export function App() {
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
   }, []);
 
-  // Progressive Gaussian Blur Scroll Reveal for Sections
+  // Smooth Scroll Management — no layout-shifting blur or transforms
   useEffect(() => {
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>('main section')
-    ).filter((sec) => !sec.hasAttribute('data-no-reveal'));
-
-    const reveal = (el: Element) => el.classList.add('is-visible');
-
-    if (typeof IntersectionObserver === 'undefined') {
-      sections.forEach(reveal);
-      return;
+    // If arriving on page with a hash, ensure smooth scroll into view
+    if (window.location.hash) {
+      const targetId = window.location.hash.replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 120);
+      }
     }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            reveal(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: '0px 0px -5% 0px' }
-    );
-
-    const raf = requestAnimationFrame(() => {
-      sections.forEach((sec) => {
-        if (sec.classList.contains('is-visible')) return;
-
-        // Anything already on screen is shown instantly — no blur flash on load
-        // or when a hash link jumps straight to a deep section.
-        const rect = sec.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          reveal(sec);
-          return;
-        }
-
-        sec.classList.add('scroll-reveal');
-        observer.observe(sec);
-      });
-    });
-
-    return () => {
-      cancelAnimationFrame(raf);
-      observer.disconnect();
-    };
   }, [currentView, selectedVehicle, selectedBlogPost]);
 
   const handleNavigate = (view: string, param?: string, keepFilters = false) => {

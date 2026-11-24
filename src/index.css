@@ -350,21 +350,15 @@ div[id="customer-reviews"] {
    Calibrated with Apple/Rolls-Royce Easing: cubic-bezier(0.16, 1, 0.3, 1)
    ========================================================================== */
 
-/* 1. Viewport Scroll Reveal with Gaussian Blur Clearing */
+/* 1. Viewport Scroll Reveal — Clean and instant, zero scroll jitter */
 .scroll-reveal {
-  opacity: 0;
-  filter: blur(12px);
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, filter, transform;
+  opacity: 1;
+  filter: none;
+  transform: none;
 }
 
 .scroll-reveal.is-visible {
   opacity: 1;
-  /* `none` (rather than blur(0)/translateY(0)) fully removes the containing
-     block and frees the promoted layer once the reveal has finished. */
   filter: none;
   transform: none;
   will-change: auto;

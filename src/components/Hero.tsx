@@ -158,44 +158,36 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       data-no-reveal="true"
-      className="relative w-full bg-[#0a0a0c] text-white select-none"
-      style={{ minHeight: 'calc(100dvh - 5rem)' }}
+      className="relative w-full bg-[#0a0a0c] text-white select-none min-h-[640px] sm:min-h-[720px] lg:min-h-[800px]"
     >
       {/* ── 1. FULL-BLEED SHOWROOM BACKGROUND ─────────────────────────── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Primary showroom photo — brightened so the scene reads clearly */}
+        {/* Primary showroom photo — unblurred, crisp 4K luxury studio */}
         <img
           src={HERO_BACKGROUND}
           alt="Alberka Enterprises Luxury Showroom"
-          className="w-full h-full object-cover scale-[1.08]"
+          className="w-full h-full object-cover"
           style={{
-            objectPosition: 'center 35%',
-            filter: 'brightness(1.06) contrast(1.03) saturate(1.02) blur(4px)',
+            objectPosition: 'center 40%',
           }}
           loading="eager"
           fetchPriority="high"
         />
 
-        {/* Lighter scrims: enough contrast for type without flattening the photo */}
-        {/* Bottom-heavy dark gradient for trust pillars */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/15" />
-        {/* Soft top shade behind the kicker */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent" />
-        {/* Subtle vignette */}
+        {/* Cinematic gradient overlays: protects text legibility while keeping the 3D Alberka logo & car visible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/45" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 120% 100% at 50% 45%, transparent 45%, rgba(0,0,0,0.4) 100%)',
+              'radial-gradient(ellipse 110% 95% at 50% 45%, transparent 35%, rgba(0,0,0,0.55) 100%)',
           }}
         />
       </div>
 
       {/* ── 2. CENTER HERO CONTENT ─────────────────────────────────────── */}
-      <div className="relative z-40 flex flex-col items-center justify-center text-center px-4 sm:px-8 pt-28 sm:pt-32 pb-8 sm:pb-10 min-h-[inherit]"
-        style={{ minHeight: 'calc(100dvh - 5rem)' }}
-      >
-        <div className="max-w-4xl w-full mx-auto space-y-5 sm:space-y-7 flex flex-col items-center">
+      <div className="relative z-40 flex flex-col items-center justify-center text-center px-4 sm:px-8 pt-24 sm:pt-28 pb-8 sm:pb-10 min-h-[inherit]">
+        <div className="max-w-4xl w-full mx-auto space-y-4 sm:space-y-6 flex flex-col items-center">
 
           {/* Kicker badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90">
@@ -205,22 +197,21 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
           </div>
 
-          {/* DRIVE / Excellence — deliberately overlapping editorial stack */}
-          <div className="text-center leading-none relative">
+          {/* DRIVE / Excellence — pronounced editorial overlap */}
+          <div className="text-center leading-none relative select-none py-1">
             <span
-              className="block font-black uppercase tracking-tighter text-white relative z-[1]"
-              style={{ fontSize: 'clamp(3.5rem, 10vw, 9rem)', lineHeight: 0.92 }}
+              className="block font-black uppercase tracking-tight text-white relative z-[1]"
+              style={{ fontSize: 'clamp(3.5rem, 9.5vw, 8.5rem)', lineHeight: 0.88 }}
             >
               DRIVE
             </span>
             <span
-              className="block font-serif italic font-normal text-[#DC2626] relative z-[2]"
+              className="block font-serif italic font-normal text-[#DC2626] relative z-[2] -mt-3 sm:-mt-6 md:-mt-8 lg:-mt-10"
               style={{
-                fontSize: 'clamp(3.8rem, 11vw, 10rem)',
-                lineHeight: 0.92,
-                letterSpacing: '-0.035em',
-                marginTop: 'clamp(-3.5rem, -4vw, -1rem)',
-                textShadow: '0 6px 28px rgba(0,0,0,0.55), 0 0 30px rgba(220,38,38,0.28)',
+                fontSize: 'clamp(3.8rem, 11vw, 9.5rem)',
+                lineHeight: 0.88,
+                letterSpacing: '-0.025em',
+                textShadow: '0 4px 24px rgba(0,0,0,0.7), 0 0 35px rgba(220,38,38,0.35)',
               }}
             >
               Excellence
