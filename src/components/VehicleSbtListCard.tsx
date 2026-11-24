@@ -119,16 +119,16 @@ export const VehicleSbtListCard: React.FC<VehicleSbtListCardProps> = ({
     >
       {/* 1. LEFT COLUMN: Media Viewer & Gallery Preview */}
       <div className="w-full sm:w-80 lg:w-72 xl:w-80 shrink-0 space-y-2">
-        <div className="relative aspect-[9/16] rounded-[12px] overflow-hidden bg-[#0a0a0c] border border-[#ebebeb]/60 group/img">
+        <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden bg-[#0a0a0c] border border-[#ebebeb]/60 group/img">
           <img
             src={activeImageUrl}
             alt={vehicle.name}
             loading="lazy"
-            className="w-full h-full object-contain object-center group-hover/img:scale-102 transition-transform duration-500 ease-out"
+            className="w-full h-full object-cover object-center group-hover/img:scale-103 transition-transform duration-500 ease-out"
           />
 
-          {/* Subtle Gradient Film */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 pointer-events-none" />
+          {/* Gradient Film */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
 
           {/* Top-Left: Guest Favorite / Auction Grade Pill */}
           <div className="absolute top-2.5 left-2.5 z-10">
@@ -405,7 +405,7 @@ export const VehicleSbtListCardSkeleton: React.FC = () => {
     <div className="bg-white border border-[#ebebeb] rounded-[16px] p-3.5 sm:p-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] flex flex-col lg:flex-row gap-4 lg:gap-5 animate-pulse text-left">
       {/* Left Media skeleton */}
       <div className="w-full lg:w-72 xl:w-80 shrink-0 space-y-2">
-        <div className="aspect-[9/16] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb]" />
+        <div className="aspect-[4/3] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb]" />
         <div className="grid grid-cols-4 gap-1.5">
           <div className="aspect-[4/3] rounded-[8px] bg-[#f7f7f7]" />
           <div className="aspect-[4/3] rounded-[8px] bg-[#f7f7f7]" />

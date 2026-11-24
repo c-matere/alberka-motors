@@ -115,8 +115,8 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                         className="bg-[#f7f7f7] border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-4 flex flex-col justify-between space-y-4 text-left shadow-xs"
                       >
                         <div className="space-y-3">
-                          <div className="w-full aspect-[9/16] overflow-hidden rounded-[10px] bg-[#0a0a0c] border border-[#ebebeb] relative">
-                            <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} className="object-contain" containerClassName="w-full h-full bg-[#0a0a0c]" />
+                          <div className="w-full aspect-[4/3] overflow-hidden rounded-[10px] bg-[#0a0a0c] border border-[#ebebeb] relative">
+                            <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} className="object-cover" containerClassName="w-full h-full bg-[#0a0a0c]" />
                             <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono font-bold border border-[#ebebeb] text-[#222222] shadow-2xs">
                               Grade {vehicle.auctionGrade}
                             </div>
