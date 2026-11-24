@@ -82,13 +82,13 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       }`}
     >
       <div>
-        {/* 1. Full-Bleed Photograph Container (Airbnb 12px Card Pattern) */}
-        <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden bg-[#f7f7f7] border border-[#ebebeb]/50 mb-2.5 group/img">
+        {/* 1. Full-Bleed Photograph Container (9:16 Accommodating Aspect Ratio for Posters) */}
+        <div className="relative aspect-[9/16] rounded-[12px] overflow-hidden bg-[#0a0a0c] border border-[#ebebeb]/50 mb-2.5 group/img">
           <img
             src={vehicle.heroImage}
             alt={vehicle.name}
             loading="lazy"
-            className="w-full h-full object-cover group-hover/img:scale-103 transition-transform duration-500 ease-out"
+            className="w-full h-full object-contain object-center group-hover/img:scale-102 transition-transform duration-500 ease-out"
           />
 
           {/* Top-Left: Guest Favorite / Inspection Grade Pill */}
@@ -162,7 +162,7 @@ export const VehicleCardSkeleton: React.FC = () => {
   return (
     <div className="bg-white rounded-[14px] border border-[#ebebeb] p-3 flex flex-col justify-between animate-pulse text-left shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)]">
       <div>
-        <div className="aspect-[4/3] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb] mb-2.5" />
+        <div className="aspect-[9/16] rounded-[12px] bg-[#f7f7f7] border border-[#ebebeb] mb-2.5" />
         <div className="space-y-1.5 px-0.5">
           <div className="h-4 w-3/4 bg-[#f7f7f7] rounded" />
           <div className="h-3 w-1/2 bg-[#f7f7f7] rounded" />

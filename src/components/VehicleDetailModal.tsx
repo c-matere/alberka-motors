@@ -211,7 +211,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   <img
                     src={vehicle.gallery[activeMediaIndex - 1]?.url || vehicle.heroImage}
                     alt={vehicle.gallery[activeMediaIndex - 1]?.title || vehicle.name}
-                    className="w-full h-full object-cover transition-opacity duration-300"
+                    className="w-full h-full object-contain transition-opacity duration-300 bg-zinc-950"
                   />
                 )}
 

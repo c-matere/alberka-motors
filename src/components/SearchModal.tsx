@@ -170,8 +170,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-20 h-14 overflow-hidden rounded-[8px] bg-[#f7f7f7] border border-[#ebebeb] shrink-0">
-                      <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} containerClassName="w-full h-full" />
+                    <div className="w-20 h-14 overflow-hidden rounded-[8px] bg-[#0a0a0c] border border-[#ebebeb] shrink-0">
+                      <SkeletonImage src={vehicle.heroImage} alt={vehicle.name} className="object-contain" containerClassName="w-full h-full bg-[#0a0a0c]" />
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
