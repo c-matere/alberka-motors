@@ -10,6 +10,8 @@ import { Vehicles } from './src/collections/Vehicles'
 import { BlogPosts } from './src/collections/BlogPosts'
 import { Pages } from './src/collections/Pages'
 import { Leads } from './src/collections/Leads'
+import { ChatSessions } from './src/collections/ChatSessions'
+import { ChatMessages } from './src/collections/ChatMessages'
 import { TeamMembers } from './src/collections/TeamMembers'
 import { LocationPhotos } from './src/collections/LocationPhotos'
 import { SiteSettings } from './src/globals/SiteSettings'
@@ -31,6 +33,8 @@ export default buildConfig({
     BlogPosts,
     Media,
     Leads,
+    ChatSessions,
+    ChatMessages,
     TeamMembers,
     LocationPhotos,
   ],

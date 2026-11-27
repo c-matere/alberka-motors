@@ -28,6 +28,7 @@ import { WhispersDrawer } from './components/WhispersDrawer';
 import { MobileBottomDock } from './components/MobileBottomDock';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
+import { LiveChatWidget } from './components/LiveChatWidget';
 import { Footer } from './components/Footer';
 import { HelpCenterModal } from './components/HelpCenterModal';
 import { TestimonialSectionDemo } from './components/ui/demo';
@@ -58,6 +59,8 @@ export function App() {
   const [favoritesModalOpen, setFavoritesModalOpen] = useState(false);
   const [whispersDrawerOpen, setWhispersDrawerOpen] = useState(false);
   const [whispersVehicleId, setWhispersVehicleId] = useState<string | undefined>(undefined);
+  const [liveChatOpen, setLiveChatOpen] = useState(false);
+  const [liveChatUnread, setLiveChatUnread] = useState(0);
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
   const [helpCenterInitialTab, setHelpCenterInitialTab] = useState<'faq' | 'policies' | 'contact'>('faq');
   const [heroFilters, setHeroFilters] = useState<HeroSearchFilters | null>(null);
@@ -789,12 +792,18 @@ export function App() {
       {/* Floating Scroll to Top Action Button */}
       <ScrollToTopButton />
 
-      {/* Floating WhatsApp Action Button */}
+      {/* Floating Live Chat Button & Widget */}
       <FloatingWhatsAppButton
-        onOpenWhispers={() => {
-          setWhispersVehicleId(selectedVehicle?.id);
-          setWhispersDrawerOpen(true);
-        }}
+        isOpen={liveChatOpen}
+        unreadCount={liveChatUnread}
+        onToggleChat={() => setLiveChatOpen((prev) => !prev)}
+      />
+
+      <LiveChatWidget
+        isOpen={liveChatOpen}
+        onClose={() => setLiveChatOpen(false)}
+        selectedVehicle={selectedVehicle}
+        onUnreadChange={setLiveChatUnread}
       />
 
       {/* Mobile Bottom Dock */}
