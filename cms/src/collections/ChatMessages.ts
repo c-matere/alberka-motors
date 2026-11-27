@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-const WA_BRIDGE_URL = process.env.WA_BRIDGE_URL || 'http://127.0.0.1:8000'
+const WA_BRIDGE_URL = process.env.WA_BRIDGE_URL || 'http://127.0.0.1:8001'
 
 export const ChatMessages: CollectionConfig = {
   slug: 'chat-messages',
