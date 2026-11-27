@@ -10,7 +10,18 @@ export const ChatMessages: CollectionConfig = {
     group: 'Live Chat',
   },
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      if (req.user) return true
+      const sessionFilter = (req.query?.where as Record<string, Record<string, unknown>> | undefined)?.sessionId?.equals
+      if (typeof sessionFilter === 'string' && sessionFilter.length >= 16) {
+        return {
+          sessionId: {
+            equals: sessionFilter,
+          },
+        }
+      }
+      return false
+    },
     create: () => true,
     update: ({ req }) => Boolean(req.user),
   },

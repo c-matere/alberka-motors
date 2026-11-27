@@ -73,7 +73,12 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
   const [visitorPhone, setVisitorPhone] = useState<string>(() =>
     typeof window !== 'undefined' ? window.localStorage.getItem(PHONE_KEY) || '' : ''
   );
+  const [nameInput, setNameInput] = useState<string>(visitorName);
+  const [phoneInput, setPhoneInput] = useState<string>(visitorPhone);
+  const [identityError, setIdentityError] = useState<string | null>(null);
   const [showProfileForm, setShowProfileForm] = useState(false);
+
+  const isIdentified = Boolean(visitorName.trim() && visitorPhone.replace(/\D/g, '').length >= 9);
 
   const listEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -147,6 +152,24 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
     setVisitorPhone(phone);
     window.localStorage.setItem(NAME_KEY, name);
     window.localStorage.setItem(PHONE_KEY, phone);
+  };
+
+  const handleIdentitySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const cleanName = nameInput.trim();
+    const digits = phoneInput.replace(/\D/g, '');
+    if (cleanName.length < 2) {
+      setIdentityError('Please enter your name.');
+      return;
+    }
+    if (digits.length < 9) {
+      setIdentityError('Please enter a valid phone / WhatsApp number.');
+      return;
+    }
+    setIdentityError(null);
+    handleSaveProfile(cleanName, phoneInput.trim());
+    setShowProfileForm(false);
+    window.setTimeout(() => inputRef.current?.focus(), 60);
   };
 
   const sendMessage = async (textToSend: string) => {
@@ -228,7 +251,9 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
               Alberka Live Concierge
             </h3>
             <p className="text-[11px] text-white/70 truncate">
-              Direct to our Mombasa showroom team
+              {isIdentified
+                ? `${visitorName} · ${visitorPhone}`
+                : 'Direct to our Mombasa showroom team'}
             </p>
           </div>
         </div>
@@ -256,29 +281,59 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
         </div>
       </div>
 
-      {/* Optional Name / Phone Bar */}
-      {showProfileForm && (
-        <div className="bg-[#fafafa] border-b border-[#ebebeb] px-4 py-2.5 space-y-2 shrink-0">
-          <p className="text-[11px] font-medium text-[#6a6a6a]">
-            Optional: add your name &amp; WhatsApp number so our team can follow up.
+      {/* Identity Gate / Edit Contact Bar */}
+      {(!isIdentified || showProfileForm) && (
+        <form
+          onSubmit={handleIdentitySubmit}
+          className="bg-[#fafafa] border-b border-[#ebebeb] px-4 py-3 space-y-2.5 shrink-0"
+        >
+          <p className="text-[11px] font-semibold text-[#222222]">
+            {isIdentified
+              ? 'Update your contact details'
+              : 'Identify yourself to start live chat'}
           </p>
-          <div className="grid grid-cols-2 gap-2">
+          <p className="text-[11px] text-[#6a6a6a] leading-snug">
+            So our Mombasa team knows who they&apos;re replying to and can follow up on WhatsApp if you step away.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <input
               type="text"
-              value={visitorName}
-              onChange={(e) => handleSaveProfile(e.target.value, visitorPhone)}
-              placeholder="Your name"
-              className="px-2.5 py-1.5 text-xs bg-white border border-[#dddddd] rounded-lg outline-none focus:border-[#222222]"
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
+              placeholder="Your full name *"
+              required
+              className="px-3 py-2 text-xs bg-white border border-[#dddddd] rounded-xl outline-none focus:border-[#222222]"
             />
             <input
               type="tel"
-              value={visitorPhone}
-              onChange={(e) => handleSaveProfile(visitorName, e.target.value)}
-              placeholder="07XX XXX XXX"
-              className="px-2.5 py-1.5 text-xs bg-white border border-[#dddddd] rounded-lg outline-none focus:border-[#222222]"
+              value={phoneInput}
+              onChange={(e) => setPhoneInput(e.target.value)}
+              placeholder="Phone / WhatsApp *"
+              required
+              className="px-3 py-2 text-xs bg-white border border-[#dddddd] rounded-xl outline-none focus:border-[#222222]"
             />
           </div>
-        </div>
+          {identityError && (
+            <p className="text-[11px] text-[#DC2626] font-medium">{identityError}</p>
+          )}
+          <div className="flex items-center justify-end gap-2">
+            {isIdentified && (
+              <button
+                type="button"
+                onClick={() => setShowProfileForm(false)}
+                className="px-3 py-1.5 text-xs font-medium text-[#6a6a6a] hover:text-[#222222] cursor-pointer"
+              >
+                Cancel
+              </button>
+            )}
+            <button
+              type="submit"
+              className="px-4 py-1.5 rounded-full bg-[#222222] hover:bg-black text-white text-xs font-semibold transition-colors cursor-pointer"
+            >
+              {isIdentified ? 'Save Details' : 'Start Live Chat'}
+            </button>
+          </div>
+        </form>
       )}
 
       {/* Vehicle Context Chip */}
@@ -301,8 +356,8 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
           </div>
         </div>
 
-        {/* Quick-Start Prompts when empty */}
-        {messages.length === 0 && (
+        {/* Quick-Start Prompts when identified and empty */}
+        {isIdentified && messages.length === 0 && (
           <div className="pt-1 flex flex-wrap gap-1.5">
             {quickPrompts.map((prompt) => (
               <button
@@ -366,13 +421,14 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
             ref={inputRef}
             type="text"
             value={draft}
+            disabled={!isIdentified}
             onChange={(e) => setDraft(e.target.value)}
-            placeholder="Write a message..."
-            className="flex-1 bg-[#f7f7f7] border border-[#e5e5e5] focus:border-[#222222] rounded-full px-4 py-2.5 text-xs text-[#222222] placeholder:text-[#888] outline-none transition-colors"
+            placeholder={isIdentified ? 'Write a message...' : 'Enter your name & phone above to chat'}
+            className="flex-1 bg-[#f7f7f7] border border-[#e5e5e5] focus:border-[#222222] disabled:opacity-60 rounded-full px-4 py-2.5 text-xs text-[#222222] placeholder:text-[#888] outline-none transition-colors"
           />
           <button
             type="submit"
-            disabled={!draft.trim() || sending}
+            disabled={!isIdentified || !draft.trim() || sending}
             className="w-10 h-10 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] disabled:opacity-40 text-white flex items-center justify-center shrink-0 transition-colors cursor-pointer"
             aria-label="Send message"
           >

@@ -8,9 +8,9 @@ export const ChatSessions: CollectionConfig = {
     group: 'Live Chat',
   },
   access: {
-    read: () => true,
+    read: ({ req }) => Boolean(req.user),
     create: () => true,
-    update: () => true,
+    update: ({ req }) => Boolean(req.user),
   },
   fields: [
     {
