@@ -240,17 +240,17 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
       aria-label="Live Chat with Alberka Motors"
     >
       {/* Header */}
-      <div className="bg-[#18181b] text-white px-4 py-3.5 flex items-center justify-between gap-3 shrink-0">
+      <div className="bg-white text-[#222222] border-b border-[#ebebeb] px-4 py-3.5 flex items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="relative w-9 h-9 rounded-full bg-[#DC2626] flex items-center justify-center shrink-0 font-bold text-sm">
+          <div className="relative w-9 h-9 rounded-full bg-[#DC2626] text-white flex items-center justify-center shrink-0 font-bold text-sm">
             A
-            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#18181b]" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-sm font-semibold leading-tight truncate">
+            <h3 className="text-sm font-semibold leading-tight truncate text-[#222222]">
               Alberka Live Concierge
             </h3>
-            <p className="text-[11px] text-white/70 truncate">
+            <p className="text-[11px] text-[#6a6a6a] truncate">
               {isIdentified
                 ? `${visitorName} · ${visitorPhone}`
                 : 'Direct to our Mombasa showroom team'}
@@ -264,7 +264,9 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
             onClick={() => setShowProfileForm((v) => !v)}
             title="Your Name & Phone"
             className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
-              showProfileForm ? 'bg-white/20 text-white' : 'hover:bg-white/10 text-white/80'
+              showProfileForm
+                ? 'bg-[#ebebeb] text-[#222222]'
+                : 'hover:bg-[#f7f7f7] text-[#6a6a6a] hover:text-[#222222]'
             }`}
             aria-label="Edit your contact details"
           >
@@ -273,7 +275,7 @@ export const LiveChatWidget: React.FC<LiveChatWidgetProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-full hover:bg-white/10 text-white/80 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full hover:bg-[#f7f7f7] text-[#6a6a6a] hover:text-[#222222] flex items-center justify-center transition-colors cursor-pointer"
             aria-label="Close live chat"
           >
             <X className="w-4 h-4" />
