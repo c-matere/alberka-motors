@@ -11,9 +11,11 @@ import {
 } from 'lucide-react';
 import { CmsPage } from '../services/cmsContent';
 
-// Single source of truth for the hero backdrop. Drop a replacement image into
-// /public/vehicles/ and change this one line to swap the showroom scene.
-const HERO_BACKGROUND = '/vehicles/hero-cancun-roadtrip.jpg';
+// Single source of truth for the hero video & poster assets in /public/videos/.
+const HERO_VIDEO_DESKTOP = '/videos/hero-maybach-desktop.mp4';
+const HERO_POSTER_DESKTOP = '/videos/hero-maybach-poster.jpg';
+const HERO_VIDEO_MOBILE = '/videos/hero-maybach-mobile.mp4';
+const HERO_POSTER_MOBILE = '/videos/hero-maybach-mobile-poster.jpg';
 
 type DropdownOption = { value: string; label: string };
 
@@ -121,7 +123,17 @@ export const Hero: React.FC<HeroProps> = ({
   const [selectedType, setSelectedType] = useState('');
   const [selectedBudget, setSelectedBudget] = useState('');
   const [openDropdown, setOpenDropdown] = useState<'type' | 'budget' | null>(null);
+  const [isMobileViewport, setIsMobileViewport] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 639px)').matches : false
+  );
   const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)');
+    const onChange = (e: MediaQueryListEvent) => setIsMobileViewport(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   useEffect(() => {
     if (!openDropdown) return;
@@ -162,17 +174,26 @@ export const Hero: React.FC<HeroProps> = ({
     >
       {/* ── 1. FULL-BLEED SHOWROOM BACKGROUND ─────────────────────────── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Primary showroom photo — unblurred, crisp 4K luxury studio */}
-        <img
-          src={HERO_BACKGROUND}
-          alt="Alberka Enterprises Luxury Fleet in Mombasa"
+        {/* Responsive hero video: shot-aware 3:4 portrait crop on mobile, 16:9 widescreen on desktop */}
+        <video
+          key={isMobileViewport ? 'hero-mobile' : 'hero-desktop'}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={isMobileViewport ? HERO_POSTER_MOBILE : HERO_POSTER_DESKTOP}
+          aria-hidden="true"
           className="w-full h-full object-cover"
           style={{
-            objectPosition: 'center 48%',
+            objectPosition: isMobileViewport ? 'center center' : 'center 48%',
           }}
-          loading="eager"
-          fetchPriority="high"
-        />
+        >
+          <source
+            src={isMobileViewport ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP}
+            type="video/mp4"
+          />
+        </video>
 
         {/* Cinematic gradient overlays: protects text legibility while keeping the 3D Alberka logo & car visible */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/45" />
