@@ -12,9 +12,9 @@ import {
 import { CmsPage } from '../services/cmsContent';
 
 // Single source of truth for the hero video & poster assets in /public/videos/.
-const HERO_VIDEO_DESKTOP = '/videos/hero-maybach-desktop.mp4';
+const HERO_VIDEO_DESKTOP = '/videos/hero-maybach-desktop.mp4?v=2';
 const HERO_POSTER_DESKTOP = '/videos/hero-maybach-poster.jpg';
-const HERO_VIDEO_MOBILE = '/videos/hero-maybach-mobile.mp4';
+const HERO_VIDEO_MOBILE = '/videos/hero-maybach-mobile.mp4?v=2';
 const HERO_POSTER_MOBILE = '/videos/hero-maybach-mobile-poster.jpg';
 
 type DropdownOption = { value: string; label: string };
